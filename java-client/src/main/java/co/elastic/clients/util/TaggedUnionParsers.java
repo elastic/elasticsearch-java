@@ -1,0 +1,107 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.util;
+
+import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.JsonpValueParser;
+
+import javax.json.JsonObject;
+import javax.json.stream.JsonParser;
+import javax.json.stream.JsonParsingException;
+import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.function.BiFunction;
+
+public class TaggedUnionParsers {
+
+    public static <T extends Enum<T> & StringEnum, V, TU extends TaggedUnion<T, V>> JsonpValueParser<TU> externallyTagged(
+        BiFunction<T, V, TU> unionCtor,
+        EnumMap<T, JsonpValueParser<? extends V>> variantParsers,
+        StringEnum.JsonpParser<T> tagParser
+    ) {
+
+        return JsonpValueParser.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, params, event) -> {
+            JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
+
+            String tagValue = parser.getString();
+            T tag = tagParser.parse(tagValue, parser);
+
+            JsonpValueParser<? extends V> variantParser = variantParsers.get(tag);
+            if (variantParser == null) {
+                throw new JsonParsingException("No parser for variant '" + tag.jsonValue() + "'", parser.getLocation());
+            }
+
+            V value = variantParser.parse(parser, params);
+            JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
+
+            return unionCtor.apply(tag, value);
+        });
+    }
+
+    public static <T extends Enum<T> & StringEnum, V, TU extends TaggedUnion<T, V>> JsonpValueParser<TU> internallyTagged(
+        String tagField,
+        BiFunction<T, V, TU> unionCtor,
+        EnumMap<T, JsonpValueParser<? extends V>> variantParsers,
+        StringEnum.JsonpParser<T> tagParser
+    ) {
+
+        return JsonpValueParser.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, params, event) -> {
+
+            // FIXME (perf): buffer events until we see the tag property instead of materializing the json tree
+            JsonObject object = parser.getObject();
+
+            String tagValue = object.getString(tagField);
+            T tag = tagParser.parse(tagValue, parser);
+
+            JsonpValueParser<? extends V> variantParser = variantParsers.get(tag);
+            if (variantParser == null) {
+                throw new JsonParsingException("No parser for variant '" + tag.jsonValue() + "'", parser.getLocation());
+            }
+
+            JsonParser objectParser = params.jsonProvider().createParserFactory(null).createParser(object);
+            V value = variantParser.parse(objectParser, params);
+
+            return unionCtor.apply(tag, value);
+        });
+    }
+
+    /**
+     * Externally tagged representation with a key that has already been parsed. Typically used for typed_keys
+     */
+    public static <T extends Enum<T> & StringEnum, V, TU extends TaggedUnion<T, V>> JsonpValueParser<TU> externallyTagged(
+        BiFunction<T, V, TU> unionCtor,
+        EnumMap<T, JsonpValueParser<? extends V>> variantParsers,
+        StringEnum.JsonpParser<T> tagParser,
+        String tagValue
+    ) {
+        return JsonpValueParser.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, params, event) -> {
+
+            T tag = tagParser.parse(tagValue, parser);
+
+            JsonpValueParser<? extends V> variantParser = variantParsers.get(tag);
+            if (variantParser == null) {
+                throw new JsonParsingException("No parser for variant '" + tag.jsonValue() + "'", parser.getLocation());
+            }
+
+            V value = variantParser.parse(parser, params);
+            return unionCtor.apply(tag, value);
+        });
+    }
+}
