@@ -45,8 +45,11 @@ dependencies {
 // Create the low-level client
 RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
 
+// Create the transport (this may not be needed in the future)
+Transport transport = new Transport(restClient);
+
 // Build the high-level client
-ElasticsearchClient client = new ElasticsearchClient(restClient);
+ElasticsearchClient client = new ElasticsearchClient(transport);
 
 // Search all items in an index
 SearchResponse search = client.search(s -> s
