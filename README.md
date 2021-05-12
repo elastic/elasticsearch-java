@@ -35,7 +35,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'co.elastic.clients:java-client:1.0.0-SNAPSHOT'
+    implementation 'co.elastic.clients:elasticsearch-java:8.0.0-SNAPSHOT'
 }
 ```
 

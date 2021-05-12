@@ -24,7 +24,7 @@ plugins {
 }
 
 group = "co.elastic.clients"
-version = "1.0.0-SNAPSHOT"
+version = "8.0.0-SNAPSHOT"
 
 java {
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -54,6 +54,7 @@ publishing {
             from(components["java"])
             pom {
                 name.set("Elasticsearch Java Client")
+                artifactId = "elasticsearch-java"
                 description.set("Next-gen Elasticsearch Java Client")
                 url.set("https://github.com/elastic/elasticsearch-java/")
                 licenses {
@@ -84,20 +85,32 @@ repositories {
 }
 
 dependencies {
-    val jacksonVersion = "2.12.0";
-    val johnzonVersion = "1.2.10";
+    val elasticsearchVersion = "7.12.0"
+    val jacksonVersion = "2.12.0"
+    val johnzonVersion = "1.2.10"
 
-    implementation("org.elasticsearch.client:elasticsearch-rest-client:7.6.0")
+    // Apache 2.0
+    implementation("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
+
+    // Apache 2.0
     implementation("com.google.code.findbugs:jsr305:3.0.2")
+
+    // CCDL+GPL - https://oss.oracle.com/licenses/CDDL+GPL-1.1
     implementation("javax.json:javax.json-api:1.1.4")
 
+    // Apache 2.0
     implementation("org.apache.johnzon", "johnzon-core", johnzonVersion)
 
+    // Apache 2.0
     implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
 
+    // Eclipse 1.0
     testImplementation("junit", "junit" , "4.12")
 
 //    implementation("org.apache.johnzon", "johnzon-jsonb", johnzonVersion)
 //    implementation("org.apache.johnzon", "johnzon-mapper", johnzonVersion)
 //    implementation("org.apache.johnzon", "jsonb-api:1.0.0")
+
+    // MIT
+    testImplementation("org.testcontainers", "testcontainers", "1.15.3")
 }
