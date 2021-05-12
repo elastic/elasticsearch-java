@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.experiments.api.query;
 
 import co.elastic.clients.json.JsonpObjectBuilderParser;
 import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
@@ -45,7 +46,7 @@ public class BoolQuery implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator builder, ToJsonp.Params params) {
+    public void toJsonp(JsonGenerator builder, JsonpSerializationContext params) {
         builder.writeStartObject();
 
         if (should != null) {

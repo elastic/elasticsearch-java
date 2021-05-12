@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.experiments.base;
 
+import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
@@ -135,7 +136,7 @@ public class Variants<T> {
      */
 
     public static <T extends ToJsonp> void toJsonp(
-        Variants<T> variants, T v, JsonGenerator builder, ToJsonp.Params params
+        Variants<T> variants, T v, JsonGenerator builder, JsonpSerializationContext params
     ) {
       @SuppressWarnings("unchecked")
       String variant = variants.variantName((Class<? extends T>)v.getClass());

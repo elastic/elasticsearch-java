@@ -19,12 +19,23 @@
 
 package co.elastic.clients.json;
 
+import javax.annotation.Nullable;
 import javax.json.stream.JsonGenerator;
 
 /**
- * An object that is its own JsonP serializer
+ * Serialization parameters
  */
-public interface ToJsonp {
+public class JsonpSerializationContext {
 
-    void toJsonp(JsonGenerator generator, JsonpSerializationContext params);
+    public static final JsonpSerializationContext DEFAULT = new JsonpSerializationContext();
+
+    public <T> void serialize(JsonGenerator generator, T value, @Nullable JsonpSerializer<T> serializer) {
+        if (serializer != null) {
+            serializer.toJsonp(value, generator, this);
+        } else if (value instanceof ToJsonp) {
+            ((ToJsonp) value).toJsonp(generator, this);
+        } else {
+            throw new UnsupportedOperationException("TODO: add global serializer configuration");
+        }
+    }
 }

@@ -21,10 +21,6 @@ package co.elastic.clients.json;
 
 import javax.json.stream.JsonGenerator;
 
-/**
- * An object that is its own JsonP serializer
- */
-public interface ToJsonp {
-
-    void toJsonp(JsonGenerator generator, JsonpSerializationContext params);
+public interface JsonpSerializer<T> {
+    void toJsonp(T value, JsonGenerator generator, JsonpSerializationContext params);
 }

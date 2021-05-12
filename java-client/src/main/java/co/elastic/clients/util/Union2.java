@@ -19,8 +19,8 @@
 
 package co.elastic.clients.util;
 
+import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
-import co.elastic.clients.json.ToJsonp;
 
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonParser;
@@ -111,9 +111,9 @@ public class Union2<A, B> {
   // Serialization / deserialization
 
   public void toJsonp(
-    JsonGenerator builder, ToJsonp.Params params,
-    TriConsumer<A, JsonGenerator, ToJsonp.Params> a,
-    TriConsumer<B, JsonGenerator, ToJsonp.Params> b
+    JsonGenerator builder, JsonpSerializationContext params,
+    TriConsumer<A, JsonGenerator, JsonpSerializationContext> a,
+    TriConsumer<B, JsonGenerator, JsonpSerializationContext> b
   ) {
     switch (this.tag) {
       case A:

@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.experiments.api.query;
 
 import co.elastic.clients.json.JsonpObjectBuilderParser;
 import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
@@ -46,7 +47,7 @@ public class TermsQuery implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator builder, Params params) {
+    public void toJsonp(JsonGenerator builder, JsonpSerializationContext params) {
         // We only serialize our content. It's the enclosing class responsibility to output the variant's discriminant.
         // This allows using this class in non-variant contexts.
         builder.writeStartObject();

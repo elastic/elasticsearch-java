@@ -21,8 +21,8 @@ package co.elastic.clients.elasticsearch.experiments;
 
 import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
 import co.elastic.clients.elasticsearch.experiments.api.query.TermsQuery;
+import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
-import co.elastic.clients.json.ToJsonp;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,7 +54,7 @@ public class ParsingTests extends Assert {
 
       JsonProvider provider = JsonProvider.provider();
       JsonGenerator generator = provider.createGenerator(baos);
-      foo.toJsonp(generator, ToJsonp.DEFAULT_PARAMS);
+      foo.toJsonp(generator, JsonpSerializationContext.DEFAULT);
 
       generator.close();
       String str = baos.toString();
@@ -109,7 +109,7 @@ public class ParsingTests extends Assert {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       JsonProvider provider = JsonProvider.provider();
       JsonGenerator generator = provider.createGenerator(baos);
-      foo.toJsonp(generator, ToJsonp.DEFAULT_PARAMS);
+      foo.toJsonp(generator, JsonpSerializationContext.DEFAULT);
       generator.close();
 
       String str = baos.toString();
@@ -122,7 +122,7 @@ public class ParsingTests extends Assert {
 
       baos = new ByteArrayOutputStream();
       JsonGenerator generator2 = provider.createGenerator(baos);
-      foo2.toJsonp(generator2, ToJsonp.DEFAULT_PARAMS);
+      foo2.toJsonp(generator2, JsonpSerializationContext.DEFAULT);
       generator2.close();
 
       String str2 = baos.toString();

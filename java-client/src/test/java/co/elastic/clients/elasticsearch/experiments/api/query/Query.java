@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.experiments.api.query;
 
 import co.elastic.clients.json.JsonpObjectBuildFuncParser;
 import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.util.StringEnum;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
@@ -86,7 +87,7 @@ public class Query extends TaggedUnion<Query.Tag, ToJsonp> implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator generator, Params params) {
+    public void toJsonp(JsonGenerator generator, JsonpSerializationContext params) {
         generator.writeStartObject();
         generator.writeKey(tag.jsonValue);
         value.toJsonp(generator, params);

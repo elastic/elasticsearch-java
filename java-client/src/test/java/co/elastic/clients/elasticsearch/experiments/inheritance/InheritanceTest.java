@@ -21,8 +21,8 @@ package co.elastic.clients.elasticsearch.experiments.inheritance;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
 import co.elastic.clients.elasticsearch.experiments.inheritance.final_.FinalClass;
+import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
-import co.elastic.clients.json.ToJsonp;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,7 +48,7 @@ public class InheritanceTest extends Assert {
             .build();
 
         JsonGenerator generator = provider.createGenerator(baos);
-        fc.toJsonp(generator, ToJsonp.DEFAULT_PARAMS);
+        fc.toJsonp(generator, JsonpSerializationContext.DEFAULT);
 
         generator.close();
         String str = baos.toString();
@@ -64,7 +64,7 @@ public class InheritanceTest extends Assert {
             .build();
 
         generator = provider.createGenerator(baos);
-        cc.toJsonp(generator, ToJsonp.DEFAULT_PARAMS);
+        cc.toJsonp(generator, JsonpSerializationContext.DEFAULT);
 
         generator.close();
         str = baos.toString();

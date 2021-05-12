@@ -39,23 +39,8 @@ public class RequestTest {
         // Create the low-level client
         RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
         // Build the high-level client
-        ElasticsearchClient client = new ElasticsearchClient(restClient);
-
-        SearchResponse search = client.search(s -> s
-            .index("test-index")
-        );
-
-        if (search.hits().hits().isEmpty()) {
-            System.out.println("No match");
-        } else {
-            //...
-        }
-
-        client.indices().create(b -> b
-            .index("foo")
-            .settings(null)
-        );
-
+        Transport transport = new Transport(restClient);
+        ElasticsearchClient client = new ElasticsearchClient(transport);
 
         // Create an index
         CreateResponse createIndexResponse = client.indices().create(b -> b
