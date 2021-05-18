@@ -113,4 +113,5 @@ dependencies {
 
     // MIT
     testImplementation("org.testcontainers", "testcontainers", "1.15.3")
+    testImplementation("org.testcontainers", "elasticsearch", "1.15.3")
 }

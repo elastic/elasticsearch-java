@@ -262,6 +262,7 @@ public class FooOptRequest implements ToJsonp {
       r -> "/foo",
       Endpoint.Simple.emptyMap(),
       Endpoint.Simple.emptyMap(),
+      true,
       FooResponse.PARSER
     ) {
   };

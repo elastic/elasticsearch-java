@@ -20,24 +20,66 @@
 package co.elastic.clients.elasticsearch.experiments;
 
 
+import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._global.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.CreateResponse;
+import co.elastic.clients.elasticsearch.indices.GetResponse;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 import javax.json.JsonValue;
+import java.io.IOException;
+import java.time.Duration;
 
-public class RequestTest {
+public class RequestTest extends Assert {
+
+    private static ElasticsearchContainer container;
+
+    @BeforeClass
+    public static void setup() {
+        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.12.1")
+            .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
+            .withStartupTimeout(Duration.ofSeconds(30));
+        container.start();
+
+    }
+
+    @AfterClass
+    public static void tearDown() {
+        if (container != null) {
+            container.stop();
+        }
+    }
+
+    @Test
+    public void testInitialConnection() throws IOException {
+        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
+        Transport transport = new Transport(restClient);
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+
+        assertTrue(client.ping().get());
+
+        final CreateResponse createResponse = client.indices().create(b -> b.index("my-index"));
+        assertTrue(createResponse.acknowledged());
+        assertTrue(createResponse.shardsAcknowledged());
+
+        final BooleanResponse hasIndex = client.indices().get(b -> b.index("my-index"));
+        assertTrue(hasIndex.get());
+    }
 
     @Test
     public void someTest() throws Exception {
 
         // Create the low-level client
-        RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
+        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
         // Build the high-level client
         Transport transport = new Transport(restClient);
         ElasticsearchClient client = new ElasticsearchClient(transport);
@@ -61,9 +103,6 @@ public class RequestTest {
                 .index("test", "foo", "bar")
                 .allowNoIndices(true)
                 .index("blah")
-                .addIndex("foo")
-                .addIndex("bar")
-                .addRescore(rb -> rb.windowSize(1))
                 .explain(true)
         );
 

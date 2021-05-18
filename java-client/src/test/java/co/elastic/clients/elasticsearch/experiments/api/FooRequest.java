@@ -302,6 +302,7 @@ public class FooRequest implements ToJsonp {
       r -> "/foo",
       Endpoint.Simple.emptyMap(),
       Endpoint.Simple.emptyMap(),
+      true,
       FooResponse.PARSER
     );
 

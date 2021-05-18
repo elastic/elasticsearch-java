@@ -124,8 +124,8 @@ public class Transport {
             clientReq.setOptions(options);
         }
 
-        if (request instanceof ToJsonp) {
-            // Request has a body
+        if (endpoint.hasRequestBody()) {
+            // Request has a body and must implement ToJsonp
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             JsonGenerator generator = jsonProvider.createGenerator(baos);
             ((ToJsonp) request).toJsonp(generator, toJsonParams);
@@ -157,6 +157,14 @@ public class Transport {
             }
 
             throw new ApiException(error);
+
+        } else if (endpoint instanceof Endpoint.Boolean) {
+            Endpoint.Boolean<?> bep = (Endpoint.Boolean<?>)endpoint;
+
+            @SuppressWarnings("unchecked")
+            ResponseT response = (ResponseT)new BooleanResponse(bep.getResult(statusCode));
+
+            return response;
 
         } else {
             // Successful response

@@ -58,6 +58,8 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     return Collections.emptyMap();
   }
 
+  boolean hasRequestBody();
+
   /**
    * The entity parser for the response body. Can be {@code null} to indicate that there's no response body.
    */
@@ -90,6 +92,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     private final Function<RequestT, String> requestUrl;
     private final Function<RequestT, Map<String, String>> queryParameters;
     private final Function<RequestT, Map<String, String>> headers;
+    private final boolean hasRequestBody;
     private final JsonpValueParser<ResponseT> responseParser;
 
     public Simple(
@@ -97,12 +100,14 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
       Function<RequestT, String> requestUrl,
       Function<RequestT, Map<String, String>> queryParameters,
       Function<RequestT, Map<String, String>> headers,
-        JsonpValueParser<ResponseT> responseParser
+      boolean hasRequestBody,
+      JsonpValueParser<ResponseT> responseParser
     ) {
       this.method = method;
       this.requestUrl = requestUrl;
       this.queryParameters = queryParameters;
       this.headers = headers;
+      this.hasRequestBody = hasRequestBody;
       this.responseParser = responseParser;
     }
 
@@ -127,6 +132,11 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     }
 
     @Override
+    public boolean hasRequestBody() {
+      return this.hasRequestBody;
+    }
+
+    @Override
     public JsonpValueParser<ResponseT> responseParser() {
       return this.responseParser;
     }
@@ -140,6 +150,30 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     @Override
     public JsonpValueParser<ElasticsearchError> errorParser(int statusCode) {
       return ElasticsearchError.PARSER;
+    }
+  }
+
+  class Boolean<RequestT> extends Simple<RequestT, BooleanResponse> {
+
+    public Boolean(
+        Function<RequestT, String> method,
+        Function<RequestT, String> requestUrl,
+        Function<RequestT,
+        Map<String, String>> queryParameters,
+        Function<RequestT, Map<String, String>> headers,
+        boolean hasRequestBody, // always true
+        JsonpValueParser<BooleanResponse> responseParser // always null
+    ) {
+      super(method, requestUrl, queryParameters, headers, hasRequestBody, responseParser);
+    }
+
+    @Override
+    public boolean isError(int statusCode) {
+      return statusCode >= 500;
+    }
+
+    public boolean getResult(int statusCode) {
+      return statusCode < 400;
     }
   }
 }
