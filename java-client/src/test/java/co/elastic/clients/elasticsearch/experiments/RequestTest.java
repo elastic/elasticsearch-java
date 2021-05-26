@@ -1,8 +1,8 @@
 /*
- * Licensed to Elasticsearch under one or more contributor
+ * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
- * ownership. Elasticsearch licenses this file to you under
+ * ownership. Elasticsearch B.V. licenses this file to you under
  * the Apache License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,7 +20,6 @@
 package co.elastic.clients.elasticsearch.experiments;
 
 
-import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._global.SearchResponse;
@@ -35,7 +34,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
-import javax.json.JsonValue;
 import java.io.IOException;
 import java.time.Duration;
 
@@ -65,14 +63,14 @@ public class RequestTest extends Assert {
         Transport transport = new Transport(restClient);
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
-        assertTrue(client.ping().get());
+        assertTrue(client.ping().value());
 
         final CreateResponse createResponse = client.indices().create(b -> b.index("my-index"));
         assertTrue(createResponse.acknowledged());
         assertTrue(createResponse.shardsAcknowledged());
 
-        final BooleanResponse hasIndex = client.indices().get(b -> b.index("my-index"));
-        assertTrue(hasIndex.get());
+        final GetResponse hasIndex = client.indices().get(b -> b.index("my-index"));
+        assertFalse(hasIndex.value().isEmpty());
     }
 
     @Test
@@ -97,17 +95,14 @@ public class RequestTest extends Assert {
             .addHeader("x-super-header", "bar")
             .build();
 
-        SearchResponse search = client
+        SearchResponse<String> search = client
             .withRequestOptions(options)
             .search(b -> b
-                .index("test", "foo", "bar")
+                .index("test")//, "foo", "bar")
                 .allowNoIndices(true)
-                .index("blah")
-                .explain(true)
+                .explain(true),
+                String.class
         );
-
-        client.search(__ -> __
-            .fields((JsonValue) null));
 
         System.out.println(search.hits().total().asJsonObject().getInt("value") + " hits");
 

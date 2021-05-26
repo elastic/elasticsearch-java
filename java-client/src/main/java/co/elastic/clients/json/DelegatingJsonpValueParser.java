@@ -17,20 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.json;
 
-/**
- * An API response that has boolean value according to the HTTP status code.
- * Typically status codes 1xx, 2xx and 3xx are "true" and 4xx is false.
- */
-public class BooleanResponse {
-    private final boolean value;
+import javax.json.stream.JsonParser;
+import java.util.EnumSet;
+import java.util.function.BiConsumer;
 
-    public BooleanResponse(boolean value) {
-        this.value = value;
+public abstract class DelegatingJsonpValueParser<ObjectType> extends JsonpValueParser<ObjectType> {
+    public DelegatingJsonpValueParser(EnumSet<JsonParser.Event> acceptedEvents) {
+        super(acceptedEvents);
     }
 
-    public boolean value() {
-        return value;
-    }
+    public abstract <FieldType> void add(
+        BiConsumer<ObjectType, FieldType> setter,
+        JsonpValueParser<FieldType> valueParser,
+        String name, String... deprecatedNames
+    );
 }

@@ -43,11 +43,20 @@ public class JsonpObjectBuilderParser<T> extends JsonpValueParser<T> {
         return builder.build();
     }
 
-    public static <T, B extends ObjectBuilder<T>> JsonpValueParser<T> create(
+    public static <T, B extends ObjectBuilder<T>> JsonpValueParser<T> createForObject(
         Supplier<B> ctor,
-        Consumer<JsonpObjectParser<B>> configurer
+        Consumer<DelegatingJsonpValueParser<B>> configurer
     ) {
         JsonpObjectParser<B> op = new JsonpObjectParser<>(ctor);
+        configurer.accept(op);
+        return new JsonpObjectBuilderParser<>(op);
+    }
+
+    public static <T, B extends ObjectBuilder<T>> JsonpValueParser<T> createForValue(
+        Supplier<B> ctor,
+        Consumer<DelegatingJsonpValueParser<B>> configurer
+    ) {
+        JsonpValueBodyParser<B> op = new JsonpValueBodyParser<>(ctor);
         configurer.accept(op);
         return new JsonpObjectBuilderParser<>(op);
     }

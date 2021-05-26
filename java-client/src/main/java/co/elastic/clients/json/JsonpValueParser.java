@@ -103,7 +103,7 @@ public abstract class JsonpValueParser<V> {
     protected final void ensureAccepts(JsonParser parser, JsonParser.Event event) {
         if (!acceptedEvents.contains(event)) {
             throw new JsonParsingException(
-                String.format("Unexpected JSON event '%s'", event),
+                String.format("Unexpected JSON event '%s', expected %s", event, acceptedEvents.toString()),
                 parser.getLocation()
             );
         }

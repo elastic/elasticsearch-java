@@ -19,6 +19,8 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.util.QuadConsumer;
+
 import javax.json.stream.JsonParser;
 import javax.json.stream.JsonParser.Event;
 import javax.json.stream.JsonParsingException;
@@ -29,10 +31,10 @@ import java.util.function.BiConsumer;
 import java.util.function.ObjIntConsumer;
 import java.util.function.Supplier;
 
-public class JsonpObjectParser<ObjectType> extends JsonpValueParser<ObjectType> {
+public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<ObjectType> {
 
     /** A field parser parses a value and calls the setter on the target object. */
-    public abstract class FieldParser {
+    public abstract static class FieldParser<ObjectType> {
         protected final String name;
         protected final String deprecatedNames[];
 
@@ -44,7 +46,7 @@ public class JsonpObjectParser<ObjectType> extends JsonpValueParser<ObjectType> 
     }
 
     /** Field parser for objects (and boxed primitives) */
-    public class FieldObjectParser<FieldType> extends FieldParser {
+    public static class FieldObjectParser<ObjectType, FieldType> extends FieldParser<ObjectType> {
         private final BiConsumer<ObjectType, FieldType> setter;
         private final JsonpValueParser<FieldType> valueParser;
 
@@ -67,26 +69,32 @@ public class JsonpObjectParser<ObjectType> extends JsonpValueParser<ObjectType> 
                 // FIXME: handle deprecations
             }
 
-            FieldType fieldValue = valueParser.parse(parser, params);
-            setter.accept(object, fieldValue);
+            // Note: we handle `null` as a missing value. We may want to be more strict and distinguish nullable and
+            // optional values.
+            JsonParser.Event event = parser.next();
+            if (event != Event.VALUE_NULL) {
+                FieldType fieldValue = valueParser.parse(parser, params, event);
+                setter.accept(object, fieldValue);
+            }
         }
     }
 
     //---------------------------------------------------------------------------------------------
 
-    private Supplier<ObjectType> valueBuilder;
+    private Supplier<ObjectType> constructor;
     private Map<String, FieldParser> fieldParsers;
+    private QuadConsumer<ObjectType, String, JsonParser, Params> unknownFieldHandler;
 
-    public JsonpObjectParser(Supplier<ObjectType> valueBuilder) {
+    public JsonpObjectParser(Supplier<ObjectType> constructor) {
         super(EnumSet.of(Event.START_OBJECT));
-        this.valueBuilder = valueBuilder;
+        this.constructor = constructor;
         this.fieldParsers = new HashMap<>();
     }
 
     public ObjectType parse(JsonParser parser, Params params, Event event) {
         ensureAccepts(parser, event);
 
-        ObjectType value = valueBuilder.get();
+        ObjectType value = constructor.get();
 
         // Read all properties until we reach the end of the object
         while((event = parser.next()) != Event.END_OBJECT) {
@@ -106,8 +114,12 @@ public class JsonpObjectParser<ObjectType> extends JsonpValueParser<ObjectType> 
     }
 
     protected void parseUnknownField(JsonParser parser, Params params, String fieldName, ObjectType object) {
-        if (params.ignoreUnknownFields()) {
+        if (this.unknownFieldHandler != null) {
+            this.unknownFieldHandler.accept(object, fieldName, parser, params);
+
+        } else if (params.ignoreUnknownFields()) {
             JsonpUtils.consumeValue(parser);
+
         } else {
             throw new JsonParsingException(
                 "Unknown field [" + fieldName + "] for type [" + object.getClass().getSimpleName() +"]",
@@ -116,14 +128,19 @@ public class JsonpObjectParser<ObjectType> extends JsonpValueParser<ObjectType> 
         }
     }
 
+    public void setUnknownFieldHandler(QuadConsumer<ObjectType, String, JsonParser, Params> unknownFieldHandler) {
+        this.unknownFieldHandler = unknownFieldHandler;
+    }
+
     //----- Object types
 
+    @Override
     public <FieldType> void add(
         BiConsumer<ObjectType, FieldType> setter,
         JsonpValueParser<FieldType> valueParser,
         String name, String... deprecatedNames
     ) {
-        this.fieldParsers.put(name, new FieldObjectParser<FieldType>(setter, valueParser, name, deprecatedNames));
+        this.fieldParsers.put(name, new FieldObjectParser<ObjectType, FieldType>(setter, valueParser, name, deprecatedNames));
     }
 
     //----- Primitive types

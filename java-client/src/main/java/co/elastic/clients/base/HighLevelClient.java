@@ -19,6 +19,7 @@
 
 package co.elastic.clients.base;
 
+import co.elastic.clients.json.JsonpValueParser;
 import org.elasticsearch.client.RequestOptions;
 
 import javax.annotation.Nullable;
@@ -43,5 +44,9 @@ public abstract class HighLevelClient<Self extends HighLevelClient<Self>> {
     @Nullable
     public final RequestOptions requestOptions() {
         return this.requestOptions;
+    }
+
+    protected <T> JsonpValueParser<T> getDeserializer(Class<T> clazz) {
+        return null;
     }
 }

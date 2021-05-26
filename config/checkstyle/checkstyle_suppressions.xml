@@ -24,8 +24,8 @@
 
 <suppressions>
     <!-- Do not enforce line length on generated code -->
-    <suppress files="client[/\\]src[/\\]main[/\\]java[/\\]co[/\\]elastic[/\\]clients[/\\]elasticsearch[/\\]api[^.]*\.java" checks="LineLength" />
-    <suppress files="client[/\\]src[/\\]main[/\\]java[/\\]co[/\\]elastic[/\\]clients[/\\]elasticsearch[/\\]api[^.]*\.java" checks="UnusedImports" />
+    <suppress files="client[/\\]src[/\\]main[/\\]java[/\\]co[/\\]elastic[/\\]clients[/\\]elasticsearch[^.]*\.java" checks="LineLength" />
+    <suppress files="client[/\\]src[/\\]main[/\\]java[/\\]co[/\\]elastic[/\\]clients[/\\]elasticsearch[^.]*\.java" checks="UnusedImports" />
     <suppress files="client[/\\]src[/\\]main[/\\]java[/\\]co[/\\]elastic[/\\]clients[/\\]elasticsearch[/\\]Elasticsearch[^.]*\.java" checks="LineLength" />
     <suppress files="client[/\\]src[/\\]main[/\\]java[/\\]co[/\\]elastic[/\\]clients[/\\]elasticsearch[/\\]Elasticsearch[^.]*\.java" checks="UnusedImports" />
 </suppressions>

@@ -20,8 +20,8 @@
 package co.elastic.clients.elasticsearch.experiments.inheritance.child;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.base.BaseClass;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
 import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
@@ -81,12 +81,12 @@ public class ChildClass extends BaseClass implements ToJsonp {
 
     //---------------------------------------------------------------------------------------------
 
-    protected static <T extends AbstractBuilder<T>> void setupChildClassParser(JsonpObjectParser<T> op) {
+    protected static <T extends AbstractBuilder<T>> void setupChildClassParser(DelegatingJsonpValueParser<T> op) {
         BaseClass.setupBaseClassParser(op);
         op.add(AbstractBuilder::childField, JsonpValueParser.stringParser(), "childField");
     }
 
-    public static final JsonpValueParser<ChildClass> JSONP_PARSER = JsonpObjectBuilderParser.create(
+    public static final JsonpValueParser<ChildClass> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(
         Builder::new, ChildClass::setupChildClassParser
     );
 

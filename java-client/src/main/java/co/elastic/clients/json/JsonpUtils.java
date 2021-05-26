@@ -61,16 +61,14 @@ public class JsonpUtils {
                 break;
 
             case START_ARRAY: {
-                Event next;
-                while ((next = parser.next()) != Event.END_ARRAY) {
-                    consumeValue(parser, next);
+                while ((event = parser.next()) != Event.END_ARRAY) {
+                    consumeValue(parser, event);
                 }
                 break;
             }
 
             case START_OBJECT: {
-                Event next;
-                while ((next = parser.next()) != Event.END_OBJECT) {
+                while ((event = parser.next()) != Event.END_OBJECT) {
                     expectEvent(parser, Event.KEY_NAME, event);
                     consumeValue(parser, parser.next());
                 }

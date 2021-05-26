@@ -20,8 +20,8 @@
 package co.elastic.clients.elasticsearch.experiments.inheritance.final_;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
 import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.util.ObjectBuilder;
@@ -77,7 +77,7 @@ public final class FinalClass extends ChildClass {
 
     //---------------------------------------------------------------------------------------------
 
-    private static void setupFinalClassParser(JsonpObjectParser<Builder> op) {
+    private static void setupFinalClassParser(DelegatingJsonpValueParser<Builder> op) {
         ChildClass.setupChildClassParser(op);
         op.add(Builder::finalField, JsonpValueParser.stringParser(), "finalField");
     }
@@ -91,7 +91,7 @@ public final class FinalClass extends ChildClass {
     // the user and use a static field for the final parser, so that we can uniformly write SomeClass.PARSER
     // (even if users should rarely have to interact directly with the parser).
 
-    public static final JsonpValueParser<FinalClass> JSONP_PARSER = JsonpObjectBuilderParser.create(
+    public static final JsonpValueParser<FinalClass> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(
         Builder::new, FinalClass::setupFinalClassParser
     );
 

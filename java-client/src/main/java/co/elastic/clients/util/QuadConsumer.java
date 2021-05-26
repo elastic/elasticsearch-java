@@ -17,20 +17,27 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.util;
 
 /**
- * An API response that has boolean value according to the HTTP status code.
- * Typically status codes 1xx, 2xx and 3xx are "true" and 4xx is false.
+ * Represents an operation that accepts 4 input arguments and returns no
+ * result. This is 4-arity specialization of {@link java.util.function.Consumer}.
+ * Unlike most other functional interfaces, {@code QuadConsumer} is expected
+ * to operate via side-effects.
+ *
+ * @see java.util.function.Consumer
+ * @see java.util.function.BiConsumer
  */
-public class BooleanResponse {
-    private final boolean value;
+@FunctionalInterface
+public interface QuadConsumer<T, U, V, X> {
 
-    public BooleanResponse(boolean value) {
-        this.value = value;
-    }
-
-    public boolean value() {
-        return value;
-    }
+    /**
+     * Performs this operation on the given arguments.
+     *
+     * @param t the first input argument
+     * @param u the second input argument
+     * @param v the third input argument
+     * @param x the fourth input argument
+     */
+    void accept(T t, U u, V v, X x);
 }

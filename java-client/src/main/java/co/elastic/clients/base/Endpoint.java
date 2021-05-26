@@ -151,6 +151,17 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     public JsonpValueParser<ElasticsearchError> errorParser(int statusCode) {
       return ElasticsearchError.PARSER;
     }
+
+    public <NewResponseT> Simple<RequestT, NewResponseT> withResponseParser(JsonpValueParser<NewResponseT> newResponseParser) {
+      return new Simple<>(
+          method,
+          requestUrl,
+          queryParameters,
+          headers,
+          hasRequestBody,
+          newResponseParser
+      );
+    }
   }
 
   class Boolean<RequestT> extends Simple<RequestT, BooleanResponse> {
