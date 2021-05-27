@@ -1,6 +1,10 @@
-# elasticsearch-java
+<img align="right" width="auto" height="auto" src="https://www.elastic.co/static-res/images/elastic-logo-200.png">
 
-Next Generation [Elasticsearch](https://github.com/elastic/elasticsearch) High Level Java client
+# Elasticsearch Java Client
+
+The official Java client for [Elasticsearch](https://github.com/elastic/elasticsearch).
+
+---
 
 _**This project is still a work in progress**_
 
