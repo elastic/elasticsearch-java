@@ -21,10 +21,10 @@ package co.elastic.clients.json.jackson;
 
 import com.fasterxml.jackson.core.JsonStreamContext;
 
-import javax.json.JsonException;
-import javax.json.JsonValue;
-import javax.json.stream.JsonGenerationException;
-import javax.json.stream.JsonGenerator;
+import jakarta.json.JsonException;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerationException;
+import jakarta.json.stream.JsonGenerator;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;

@@ -22,7 +22,7 @@ package co.elastic.clients.util;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpValueParser;
 
-import javax.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser;
 import java.util.EnumSet;
 import java.util.function.Supplier;
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ToJsonp;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;

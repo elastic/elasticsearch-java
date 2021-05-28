@@ -20,7 +20,7 @@
 package co.elastic.clients.json;
 
 import javax.annotation.Nullable;
-import javax.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGenerator;
 
 /**
  * Serialization parameters

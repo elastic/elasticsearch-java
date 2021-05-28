@@ -26,7 +26,7 @@ import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.util.ObjectBuilder;
 
-import javax.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 /**

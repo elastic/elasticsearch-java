@@ -21,7 +21,7 @@ package co.elastic.clients.json;
 
 import co.elastic.clients.util.ObjectBuilder;
 
-import javax.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 

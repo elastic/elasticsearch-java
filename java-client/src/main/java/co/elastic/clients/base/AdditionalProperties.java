@@ -27,7 +27,7 @@ import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
 
 import javax.annotation.Nullable;
-import javax.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;

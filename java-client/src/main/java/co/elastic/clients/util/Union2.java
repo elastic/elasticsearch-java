@@ -22,10 +22,10 @@ package co.elastic.clients.util;
 import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
 
-import javax.json.stream.JsonGenerator;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParser.Event;
-import javax.json.stream.JsonParsingException;
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser.Event;
+import jakarta.json.stream.JsonParsingException;
 
 /**
  * A tagged union (also known as variant, sum type or coproduct) with two members.

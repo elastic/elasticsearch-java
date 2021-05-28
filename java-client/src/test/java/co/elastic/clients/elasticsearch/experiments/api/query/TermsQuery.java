@@ -26,7 +26,7 @@ import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 
-import javax.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGenerator;
 
 public class TermsQuery implements ToJsonp {
 

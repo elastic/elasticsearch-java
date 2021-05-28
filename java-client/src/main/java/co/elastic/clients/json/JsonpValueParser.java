@@ -21,12 +21,12 @@ package co.elastic.clients.json;
 
 import co.elastic.clients.util.TriFunction;
 
-import javax.json.JsonNumber;
-import javax.json.JsonValue;
-import javax.json.spi.JsonProvider;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParser.Event;
-import javax.json.stream.JsonParsingException;
+import jakarta.json.JsonNumber;
+import jakarta.json.JsonValue;
+import jakarta.json.spi.JsonProvider;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser.Event;
+import jakarta.json.stream.JsonParsingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumSet;

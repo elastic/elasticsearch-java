@@ -21,9 +21,9 @@ package co.elastic.clients.json.jackson;
 
 import com.fasterxml.jackson.core.JsonToken;
 
-import javax.json.stream.JsonLocation;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParsingException;
+import jakarta.json.stream.JsonLocation;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParsingException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.EnumMap;

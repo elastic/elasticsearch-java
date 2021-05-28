@@ -22,9 +22,9 @@ package co.elastic.clients.util;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpValueParser;
 
-import javax.json.JsonObject;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParsingException;
+import jakarta.json.JsonObject;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParsingException;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.function.BiFunction;

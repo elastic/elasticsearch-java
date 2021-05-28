@@ -19,9 +19,9 @@
 
 package co.elastic.clients.json;
 
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParser.Event;
-import javax.json.stream.JsonParsingException;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser.Event;
+import jakarta.json.stream.JsonParsingException;
 
 public class JsonpUtils {
 
@@ -30,7 +30,7 @@ public class JsonpUtils {
      *
      * @return the expected event
      *
-     * @throws javax.json.JsonException if an i/o error occurs (IOException would be cause of JsonException)
+     * @throws jakarta.json.JsonException if an i/o error occurs (IOException would be cause of JsonException)
      * @throws JsonParsingException if the event is not the expected one, or if the parser encounters invalid
      *         JSON when advancing to next state.
      * @throws java.util.NoSuchElementException if there are no more parsing states.

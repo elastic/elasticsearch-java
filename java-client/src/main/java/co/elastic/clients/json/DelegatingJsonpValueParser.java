@@ -19,7 +19,7 @@
 
 package co.elastic.clients.json;
 
-import javax.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser;
 import java.util.EnumSet;
 import java.util.function.BiConsumer;
 

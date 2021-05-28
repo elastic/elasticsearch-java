@@ -28,8 +28,8 @@ import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 
-import javax.json.JsonValue;
-import javax.json.stream.JsonGenerator;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
 

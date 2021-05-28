@@ -19,7 +19,7 @@
 
 package co.elastic.clients.json;
 
-import javax.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGenerator;
 
 public interface JsonpSerializer<T> {
     void toJsonp(T value, JsonGenerator generator, JsonpSerializationContext params);

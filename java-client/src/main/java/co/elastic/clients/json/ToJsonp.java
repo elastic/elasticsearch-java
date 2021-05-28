@@ -19,7 +19,7 @@
 
 package co.elastic.clients.json;
 
-import javax.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGenerator;
 
 /**
  * An object that is its own JsonP serializer

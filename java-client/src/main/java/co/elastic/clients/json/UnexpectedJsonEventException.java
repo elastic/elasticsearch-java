@@ -19,9 +19,9 @@
 
 package co.elastic.clients.json;
 
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParser.Event;
-import javax.json.stream.JsonParsingException;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser.Event;
+import jakarta.json.stream.JsonParsingException;
 
 public class UnexpectedJsonEventException extends JsonParsingException {
     public UnexpectedJsonEventException(JsonParser parser, Event event) {
