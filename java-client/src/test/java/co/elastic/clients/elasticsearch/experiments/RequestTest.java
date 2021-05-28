@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.experiments;
 
 
+import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._global.SearchResponse;
@@ -80,6 +81,8 @@ public class RequestTest extends Assert {
         RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
         // Build the high-level client
         Transport transport = new Transport(restClient);
+
+
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
         // Create an index
@@ -88,7 +91,14 @@ public class RequestTest extends Assert {
             .includeTypeName(true)
         );
 
-        String created = createIndexResponse.index();
+        assertEquals("test", createIndexResponse.index());
+
+        // Check that it actually exists. Example of a boolean response
+        BooleanResponse existsResponse = client.indices().exists(b -> b.index("test"));
+        assertTrue(existsResponse.value());
+
+        // Would be nice to have index tagged as "preferred field" to generate this:
+        // BooleanResponse existsResponse = client.indices().exists("test");
 
         // Search, adding some options
         RequestOptions options = RequestOptions.DEFAULT.toBuilder()

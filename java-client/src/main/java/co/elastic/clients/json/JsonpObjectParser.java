@@ -36,7 +36,7 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
     /** A field parser parses a value and calls the setter on the target object. */
     public abstract static class FieldParser<ObjectType> {
         protected final String name;
-        protected final String deprecatedNames[];
+        protected final String[] deprecatedNames;
 
         public FieldParser(String name, String[] deprecatedNames) {
             this.name = name;
@@ -81,8 +81,8 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
 
     //---------------------------------------------------------------------------------------------
 
-    private Supplier<ObjectType> constructor;
-    private Map<String, FieldParser> fieldParsers;
+    private final Supplier<ObjectType> constructor;
+    private final Map<String, FieldParser<?>> fieldParsers;
     private QuadConsumer<ObjectType, String, JsonParser, Params> unknownFieldHandler;
 
     public JsonpObjectParser(Supplier<ObjectType> constructor) {
@@ -102,7 +102,8 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
             JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
             String fieldName = parser.getString();
 
-            FieldParser fieldParser = fieldParsers.get(fieldName);
+            @SuppressWarnings("unchecked")
+            FieldParser<ObjectType> fieldParser = (FieldParser<ObjectType>)fieldParsers.get(fieldName);
             if (fieldParser == null) {
                 parseUnknownField(parser, params, fieldName, value);
             } else {
@@ -118,7 +119,7 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
             this.unknownFieldHandler.accept(object, fieldName, parser, params);
 
         } else if (params.ignoreUnknownFields()) {
-            JsonpUtils.consumeValue(parser);
+            JsonpUtils.skipValue(parser);
 
         } else {
             throw new JsonParsingException(
@@ -140,7 +141,12 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
         JsonpValueParser<FieldType> valueParser,
         String name, String... deprecatedNames
     ) {
-        this.fieldParsers.put(name, new FieldObjectParser<ObjectType, FieldType>(setter, valueParser, name, deprecatedNames));
+        FieldObjectParser<ObjectType, FieldType> fieldParser =
+            new FieldObjectParser<>(setter, valueParser, name, deprecatedNames);
+        this.fieldParsers.put(name, fieldParser);
+        for (String alias: deprecatedNames) {
+            this.fieldParsers.put(alias, fieldParser);
+        }
     }
 
     //----- Primitive types

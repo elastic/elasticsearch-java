@@ -47,36 +47,29 @@ public class JsonpUtils {
         }
     }
 
-    public static void consumeValue(JsonParser parser) {
-        consumeValue(parser, parser.next());
+    /**
+     * Skip the value at the next position of the parser.
+     */
+    public static void skipValue(JsonParser parser) {
+        skipValue(parser, parser.next());
     }
 
-    public static void consumeValue(JsonParser parser, Event event) {
+    /**
+     * Skip the value at the current position of the parser.
+     */
+    public static void skipValue(JsonParser parser, Event event) {
         switch(event) {
-            case VALUE_NULL:
-            case VALUE_TRUE:
-            case VALUE_FALSE:
-            case VALUE_NUMBER:
-            case VALUE_STRING:
+            case START_OBJECT:
+                parser.skipObject();
                 break;
 
-            case START_ARRAY: {
-                while ((event = parser.next()) != Event.END_ARRAY) {
-                    consumeValue(parser, event);
-                }
+            case START_ARRAY:
+                parser.skipArray();
                 break;
-            }
-
-            case START_OBJECT: {
-                while ((event = parser.next()) != Event.END_OBJECT) {
-                    expectEvent(parser, Event.KEY_NAME, event);
-                    consumeValue(parser, parser.next());
-                }
-                break;
-            }
 
             default:
-                throw new UnexpectedJsonEventException(parser, event);
+                // Not a structure, no additional skipping needed
+                break;
         }
     }
 }
