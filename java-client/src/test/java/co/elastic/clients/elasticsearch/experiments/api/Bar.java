@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.json.JsonpSerializationContext;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.json.JsonpObjectBuilderParser;
 import co.elastic.clients.json.JsonpObjectParser;
@@ -43,7 +43,7 @@ public class Bar implements ToJsonp {
   }
 
   @Override
-  public void toJsonp(JsonGenerator builder, JsonpSerializationContext params) {
+  public void toJsonp(JsonGenerator builder, JsonpMapper mapper) {
     builder.writeStartObject();
     if (this.name != null) builder.write("name", this.name);
     builder.writeEnd();

@@ -26,5 +26,5 @@ import jakarta.json.stream.JsonGenerator;
  */
 public interface ToJsonp {
 
-    void toJsonp(JsonGenerator generator, JsonpSerializationContext params);
+    void toJsonp(JsonGenerator generator, JsonpMapper mapper);
 }

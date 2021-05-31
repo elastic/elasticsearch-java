@@ -19,7 +19,7 @@
 
 package co.elastic.clients.util;
 
-import co.elastic.clients.json.JsonpSerializationContext;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
 
@@ -37,7 +37,7 @@ import java.util.NoSuchElementException;
 public interface StringEnum extends ToJsonp {
     String jsonValue();
 
-    default void toJsonp(JsonGenerator generator, JsonpSerializationContext params) {
+    default void toJsonp(JsonGenerator generator, JsonpMapper params) {
         generator.write(jsonValue());
     }
 
@@ -55,7 +55,7 @@ public interface StringEnum extends ToJsonp {
         }
 
         @Override
-        public T parse(JsonParser parser, Params params, JsonParser.Event event) {
+        public T parse(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
             String value = parser.getString();
             return parse(value, parser);
         }

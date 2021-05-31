@@ -144,7 +144,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     // ES-specific
     @Override
     public boolean isError(int statusCode) {
-      return statusCode != 200;
+      return statusCode >= 400;
     }
 
     @Override

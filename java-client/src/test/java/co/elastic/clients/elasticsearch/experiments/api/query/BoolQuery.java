@@ -19,9 +19,9 @@
 
 package co.elastic.clients.elasticsearch.experiments.api.query;
 
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpObjectBuilderParser;
 import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
@@ -46,27 +46,27 @@ public class BoolQuery implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator builder, JsonpSerializationContext params) {
+    public void toJsonp(JsonGenerator builder, JsonpMapper mapper) {
         builder.writeStartObject();
 
         if (should != null) {
             builder.writeKey("should");
             builder.writeStartArray();
-            for (Query v: should) v.toJsonp(builder, params);
+            for (Query v: should) v.toJsonp(builder, mapper);
             builder.writeEnd();
         }
 
         if (should != null) {
             builder.writeKey("must");
             builder.writeStartArray();
-            for (Query v: must) v.toJsonp(builder, params);
+            for (Query v: must) v.toJsonp(builder, mapper);
             builder.writeEnd();
         }
 
         if (minimumShouldMatch != null) {
             builder.writeKey("minimum_should_match");
             // Unions have to be expanded inline as serialization depends on the value type.
-            this.minimumShouldMatch.toJsonp(builder, params,
+            this.minimumShouldMatch.toJsonp(builder, mapper,
                 (v, b, p) -> builder.write(v),
                 (v, b, p) -> builder.write(v)
             );

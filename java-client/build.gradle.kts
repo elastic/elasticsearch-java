@@ -98,21 +98,28 @@ dependencies {
     // https://eclipse-ee4j.github.io/jsonp/
     implementation("jakarta.json", "jakarta.json-api", "2.0.1")
 
-    // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-    // http://json-b.net/
-    implementation("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
-
-
-    // Apache 2.0
-    implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
-
+    // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/jsonp
-    testImplementation("org.glassfish", "jakarta.json", "2.0.1")
+    implementation("org.glassfish", "jakarta.json", "2.0.1")
+
+    // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+    // http://json-b.net/
+    compileOnly("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
+    testImplementation("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
+
+    // Apache 2.0
+    compileOnly("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
+    compileOnly("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
+    testImplementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
+    testImplementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
+
+    // EPL-2.0 OR BSD-3-Clause
+    // https://eclipse-ee4j.github.io/yasson/
+    testImplementation("org.eclipse", "yasson", "2.0.2")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.12")
-
 
     // MIT
     testImplementation("org.testcontainers", "testcontainers", "1.15.3")

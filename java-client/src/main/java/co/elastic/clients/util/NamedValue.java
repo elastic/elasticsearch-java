@@ -19,6 +19,7 @@
 
 package co.elastic.clients.util;
 
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpValueParser;
 
@@ -47,12 +48,12 @@ public class NamedValue<T> {
     public static <T> JsonpValueParser<NamedValue<T>> parser(Supplier<JsonpValueParser<T>> valueParserBuilder) {
         return new JsonpValueParser<NamedValue<T>>(EnumSet.of(JsonParser.Event.START_OBJECT)) {
             @Override
-            public NamedValue<T> parse(JsonParser parser, Params params, JsonParser.Event event) {
+            public NamedValue<T> parse(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
                 JsonpUtils.expectEvent(parser, JsonParser.Event.KEY_NAME, event);
                 String name = parser.getString();
 
-                T value = valueParserBuilder.get().parse(parser, params);
+                T value = valueParserBuilder.get().parse(parser, mapper);
                 JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
 
                 return new NamedValue<>(name, value);

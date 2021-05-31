@@ -19,6 +19,7 @@
 
 package co.elastic.clients.json.jackson;
 
+import com.fasterxml.jackson.core.JsonFactory;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonBuilderFactory;
@@ -33,149 +34,262 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonGeneratorFactory;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParserFactory;
+
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * A partial implementation of JSONP's SPI on top of Jackson.
+ */
 public class JacksonJsonProvider extends JsonProvider {
 
-    private static class JacksonJsonParserFactory implements JsonParserFactory {
-        @Override
-        public JsonParser createParser(Reader reader) {
-            return null;
-        }
+    private JsonFactory jsonFactory = new JsonFactory();
 
-        @Override
-        public JsonParser createParser(InputStream in) {
-            return null;
-        }
-
-        @Override
-        public JsonParser createParser(InputStream in, Charset charset) {
-            return null;
-        }
-
-        @Override
-        public JsonParser createParser(JsonObject obj) {
-            return null;
-        }
-
-        @Override
-        public JsonParser createParser(JsonArray array) {
-            return null;
-        }
-
-        @Override
-        public Map<String, ?> getConfigInUse() {
-            return null;
-        }
+    public JacksonJsonProvider(JsonFactory jsonFactory) {
+        this.jsonFactory = new JsonFactory();
     }
 
-    private static class JacksonJsonWriterFactory implements JsonWriterFactory {
-        @Override
-        public JsonWriter createWriter(Writer writer) {
-            return null;
-        }
-
-        @Override
-        public JsonWriter createWriter(OutputStream out) {
-            return null;
-        }
-
-        @Override
-        public JsonWriter createWriter(OutputStream out, Charset charset) {
-            return null;
-        }
-
-        @Override
-        public Map<String, ?> getConfigInUse() {
-            return null;
-        }
+    public JacksonJsonProvider() {
+        this(new JsonFactory());
     }
 
-    private final JsonParserFactory parserFactory = createParserFactory(Collections.emptyMap());
-    private final JsonGeneratorFactory generatorFactory = createGeneratorFactory(Collections.emptyMap());
-
-    @Override
-    public JsonGeneratorFactory createGeneratorFactory(Map<String, ?> config) {
-        return null;
+    /**
+     * Return the underlying Jackson {@link JsonFactory}.
+     */
+    public JsonFactory jacksonJsonFactory() {
+        return this.jsonFactory;
     }
 
     //---------------------------------------------------------------------------------------------
-    // Dumb implementations
+    // Parser
+
+    private final ParserFactory defaultParserFactory = new ParserFactory(null);
+
+    @Override
+    public JsonParserFactory createParserFactory(Map<String, ?> config) {
+        if (config == null || config.isEmpty()) {
+            return defaultParserFactory;
+        } else {
+            // TODO: handle specific configuration
+            return defaultParserFactory;
+        }
+    }
 
     @Override
     public JsonParser createParser(Reader reader) {
-        return parserFactory.createParser(reader);
+        return defaultParserFactory.createParser(reader);
     }
 
     @Override
     public JsonParser createParser(InputStream in) {
-        return parserFactory.createParser(in);
+        return defaultParserFactory.createParser(in);
     }
 
+    private class ParserFactory implements JsonParserFactory {
+
+        private final Map<String, ?> config;
+
+        ParserFactory(Map<String, ?> config) {
+            this.config = config == null ? Collections.emptyMap() : config;
+        }
+
+        @Override
+        public JsonParser createParser(Reader reader) {
+            try {
+                return new JacksonJsonpParser(jsonFactory.createParser(reader));
+            } catch (IOException ioe) {
+                throw JacksonUtils.convertException(ioe);
+            }
+        }
+
+        @Override
+        public JsonParser createParser(InputStream in) {
+            try {
+                return new JacksonJsonpParser(jsonFactory.createParser(in));
+            } catch (IOException ioe) {
+                throw JacksonUtils.convertException(ioe);
+            }
+        }
+
+        @Override
+        public JsonParser createParser(InputStream in, Charset charset) {
+            try {
+                return new JacksonJsonpParser(jsonFactory.createParser(new InputStreamReader(in, charset)));
+            } catch (IOException ioe) {
+                throw JacksonUtils.convertException(ioe);
+            }
+        }
+
+        /**
+         * Not implemented.
+         */
+        @Override
+        public JsonParser createParser(JsonObject obj) {
+            throw new UnsupportedOperationException();
+        }
+
+        /**
+         * Not implemented.
+         */
+        @Override
+        public JsonParser createParser(JsonArray array) {
+            throw new UnsupportedOperationException();
+        }
+
+        /**
+         * Not implemented.
+         */
+        @Override
+        public Map<String, ?> getConfigInUse() {
+            return config;
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------
+    // Generator
+
+    private final JsonGeneratorFactory defaultGeneratorFactory = new GeneratorFactory(null);
+
     @Override
-    public JsonParserFactory createParserFactory(Map<String, ?> config) {
-        return parserFactory;
+    public JsonGeneratorFactory createGeneratorFactory(Map<String, ?> config) {
+        if (config == null || config.isEmpty()) {
+            return defaultGeneratorFactory;
+        } else {
+            // TODO: handle specific configuration
+            return defaultGeneratorFactory;
+        }
     }
 
     @Override
     public JsonGenerator createGenerator(Writer writer) {
-        return generatorFactory.createGenerator(writer);
+        return defaultGeneratorFactory.createGenerator(writer);
     }
 
     @Override
     public JsonGenerator createGenerator(OutputStream out) {
-        return generatorFactory.createGenerator(out);
+        return defaultGeneratorFactory.createGenerator(out);
+    }
+
+    private class GeneratorFactory implements JsonGeneratorFactory {
+
+        private final Map<String, ?> config;
+
+        GeneratorFactory(Map<String, ?> config) {
+            this.config = config == null ? Collections.emptyMap() : config;
+        }
+
+        @Override
+        public JsonGenerator createGenerator(Writer writer) {
+            try {
+                return new JacksonJsonpGenerator(jsonFactory.createGenerator(writer));
+            } catch (IOException ioe) {
+                throw JacksonUtils.convertException(ioe);
+            }
+        }
+
+        @Override
+        public JsonGenerator createGenerator(OutputStream out) {
+            try {
+                return new JacksonJsonpGenerator(jsonFactory.createGenerator(out));
+            } catch (IOException ioe) {
+                throw JacksonUtils.convertException(ioe);
+            }
+        }
+
+        @Override
+        public JsonGenerator createGenerator(OutputStream out, Charset charset) {
+            try {
+                return new JacksonJsonpGenerator(jsonFactory.createGenerator(new OutputStreamWriter(out, charset)));
+            } catch (IOException ioe) {
+                throw JacksonUtils.convertException(ioe);
+            }
+
+        }
+
+        @Override
+        public Map<String, ?> getConfigInUse() {
+            return config;
+        }
     }
 
     //---------------------------------------------------------------------------------------------
-    // Unsupported operations (for now)
+    // Unsupported operations
 
+    /**
+     * Not implemented.
+     */
     @Override
     public JsonReader createReader(Reader reader) {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Not implemented.
+     */
     @Override
     public JsonReader createReader(InputStream in) {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Not implemented.
+     */
     @Override
     public JsonWriter createWriter(Writer writer) {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Not implemented.
+     */
     @Override
     public JsonWriter createWriter(OutputStream out) {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Not implemented.
+     */
     @Override
     public JsonWriterFactory createWriterFactory(Map<String, ?> config) {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Not implemented.
+     */
     @Override
     public JsonReaderFactory createReaderFactory(Map<String, ?> config) {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Not implemented.
+     */
     @Override
     public JsonObjectBuilder createObjectBuilder() {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Not implemented.
+     */
     @Override
     public JsonArrayBuilder createArrayBuilder() {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Not implemented.
+     */
     @Override
     public JsonBuilderFactory createBuilderFactory(Map<String, ?> config) {
         throw new UnsupportedOperationException();

@@ -37,8 +37,8 @@ public class JsonpObjectBuildFuncParser<T, B> extends JsonpValueParser<T> {
     }
 
     @Override
-    public T parse(JsonParser parser, Params params, JsonParser.Event event) {
-        B builder = builderParser.parse(parser, params, event);
+    public T parse(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+        B builder = builderParser.parse(parser, mapper, event);
         return build.apply(builder);
     }
 }

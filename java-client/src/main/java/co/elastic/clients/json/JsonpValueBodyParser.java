@@ -51,9 +51,9 @@ public class JsonpValueBodyParser<ObjectType> extends DelegatingJsonpValueParser
     }
 
     @Override
-    public ObjectType parse(JsonParser parser, Params params, JsonParser.Event event) {
+    public ObjectType parse(JsonParser parser, JsonpMapper mapper, Event event) {
         ObjectType object = constructor.get();
-        Object value = valueParser.parse(parser, params, event);
+        Object value = valueParser.parse(parser, mapper, event);
         setter.accept(object, value);
         return object;
     }

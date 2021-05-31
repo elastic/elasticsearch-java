@@ -21,8 +21,8 @@ package co.elastic.clients.elasticsearch.experiments.inheritance.final_;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
 import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.util.ObjectBuilder;
 
@@ -46,8 +46,8 @@ public final class FinalClass extends ChildClass {
     }
 
     @Override
-    protected void toJsonpInternal(JsonGenerator generator, JsonpSerializationContext params) {
-        super.toJsonpInternal(generator, params);
+    protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+        super.toJsonpInternal(generator, mapper);
         generator.write("finalField", this.finalField);
     }
 

@@ -21,11 +21,13 @@ package co.elastic.clients.elasticsearch.experiments;
 
 
 import co.elastic.clients.base.BooleanResponse;
+import co.elastic.clients.base.RestClientTransport;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._global.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.CreateResponse;
-import co.elastic.clients.elasticsearch.indices.GetResponse;
+import co.elastic.clients.elasticsearch.indices.IndexState;
+import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
@@ -37,6 +39,7 @@ import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Map;
 
 public class RequestTest extends Assert {
 
@@ -59,36 +62,38 @@ public class RequestTest extends Assert {
     }
 
     @Test
-    public void testInitialConnection() throws IOException {
+    public void testIndexCreation() throws IOException {
         RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
-        Transport transport = new Transport(restClient);
+        Transport transport = new RestClientTransport(restClient, new JsonbJsonpMapper());
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
+        // Ping the server
         assertTrue(client.ping().value());
 
+        // Create an index...
         final CreateResponse createResponse = client.indices().create(b -> b.index("my-index"));
         assertTrue(createResponse.acknowledged());
         assertTrue(createResponse.shardsAcknowledged());
 
-        final GetResponse hasIndex = client.indices().get(b -> b.index("my-index"));
-        assertFalse(hasIndex.value().isEmpty());
+        //
+        final Map<String, IndexState> indices = client.indices().get(b -> b.index("my-index")).value();
+        assertEquals(1, indices.size());
+
+        assertNotNull(indices.get("my-index"));
     }
 
     @Test
-    public void someTest() throws Exception {
+    public void testDataIngestion() throws Exception {
 
         // Create the low-level client
         RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
         // Build the high-level client
-        Transport transport = new Transport(restClient);
-
-
+        Transport transport = new RestClientTransport(restClient, new JsonbJsonpMapper());
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
         // Create an index
         CreateResponse createIndexResponse = client.indices().create(b -> b
             .index("test")
-            .includeTypeName(true)
         );
 
         assertEquals("test", createIndexResponse.index());
@@ -99,6 +104,30 @@ public class RequestTest extends Assert {
 
         // Would be nice to have index tagged as "preferred field" to generate this:
         // BooleanResponse existsResponse = client.indices().exists("test");
+
+
+        // Ingest some data
+        AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
+
+        String docId = client.create(b -> b
+            .index("test")
+            .type("_doc") // needed for now because of how paths are generated
+            .id("myId")
+            .value(appData)
+        )._id();
+
+        // Query by id
+        AppData esData = client.get(b -> b
+                .index("test")
+                .type("_doc")
+                .id(docId)
+            , AppData.class
+        )._source();
+
+        assertEquals(1337, esData.getIntValue());
+        assertEquals("foo", esData.getMsg());
 
         // Search, adding some options
         RequestOptions options = RequestOptions.DEFAULT.toBuilder()
@@ -117,5 +146,26 @@ public class RequestTest extends Assert {
         System.out.println(search.hits().total().asJsonObject().getInt("value") + " hits");
 
 
+    }
+
+    public static class AppData {
+        private int intValue;
+        private String msg;
+
+        public int getIntValue() {
+            return intValue;
+        }
+
+        public void setIntValue(int intValue) {
+            this.intValue = intValue;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public void setMsg(String msg) {
+            this.msg = msg;
+        }
     }
 }

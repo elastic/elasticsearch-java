@@ -23,7 +23,6 @@ import co.elastic.clients.util.TriFunction;
 
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonValue;
-import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
@@ -36,34 +35,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public abstract class JsonpValueParser<V> {
-
-    /**
-     * Deserialization parameters
-     */
-    public static class Params {
-
-        private final JsonProvider jsonProvider;
-
-        public Params(JsonProvider provider) {
-            this.jsonProvider = provider;
-        }
-
-        public boolean allowDeprecation() {
-            return true;
-        }
-
-        public boolean ignoreUnknownFields() {
-            return true;
-        }
-
-        public JsonProvider jsonProvider() {
-            return this.jsonProvider;
-        }
-    }
-
-    public static final Params DEFAULT_PARAMS = new Params(JsonProvider.provider());
-
-    //---------------------------------------------------------------------------------------------
 
     private final EnumSet<Event> acceptedEvents;
 
@@ -113,11 +84,11 @@ public abstract class JsonpValueParser<V> {
      * Parse a value. The value starts at the next state in the json stream.
      *
      * @param parser the json parser
-     * @param params deserialization parameters
+     * @param mapper deserialization parameters
      * @return the parsed value
      */
-    public final V parse(JsonParser parser, Params params) {
-        return parse(parser, params, parser.next());
+    public final V parse(JsonParser parser, JsonpMapper mapper) {
+        return parse(parser, mapper, parser.next());
     }
 
     /**
@@ -127,20 +98,20 @@ public abstract class JsonpValueParser<V> {
      * starting state.
      *
      * @param parser the json parser
-     * @param params deserialization parameters
+     * @param mapper deserialization parameters
      * @param event the current state of {@code parser}, which must be part of {@link #acceptedEvents}
      * @return the parsed value
      */
-    public abstract V parse(JsonParser parser, Params params, JsonParser.Event event);
+    public abstract V parse(JsonParser parser, JsonpMapper mapper, Event event);
 
     //---------------------------------------------------------------------------------------------
 
-    public static <T> JsonpValueParser<T> of(EnumSet<Event> acceptedEvents, TriFunction<JsonParser, Params, Event, T> fn) {
+    public static <T> JsonpValueParser<T> of(EnumSet<Event> acceptedEvents, TriFunction<JsonParser, JsonpMapper, Event, T> fn) {
         return new JsonpValueParser<T>(acceptedEvents) {
             @Override
-            public T parse(JsonParser parser, Params params, Event event) {
+            public T parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 ensureAccepts(parser, event);
-                return fn.apply(parser, params, event);
+                return fn.apply(parser, mapper, event);
             }
         };
     }
@@ -166,7 +137,7 @@ public abstract class JsonpValueParser<V> {
         }
 
         @Override
-        public T parse(JsonParser parser, Params params, Event event) {
+        public T parse(JsonParser parser, JsonpMapper mapper, Event event) {
             // See SEI CERT LCK10-J https://wiki.sei.cmu.edu/confluence/x/6zdGBQ
             JsonpValueParser<T> p = valueParser;
             if (p == null) {
@@ -177,7 +148,7 @@ public abstract class JsonpValueParser<V> {
                     }
                 }
             }
-            return p.parse(parser, params, event);
+            return p.parse(parser, mapper, event);
         }
     }
 
@@ -186,7 +157,7 @@ public abstract class JsonpValueParser<V> {
     public static <T> JsonpValueParser<T> fixedValue(T value) {
         return new JsonpValueParser<T>(EnumSet.noneOf(Event.class)) {
             @Override
-            public T parse(JsonParser parser, Params params, Event event) {
+            public T parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 return value;
             }
         };
@@ -201,7 +172,7 @@ public abstract class JsonpValueParser<V> {
     private static final JsonpValueParser<String> STRING =
         new JsonpValueParser<String>(EnumSet.of(Event.VALUE_STRING)) {
             @Override
-            public String parse(JsonParser parser, Params params, Event event) {
+            public String parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 ensureAccepts(parser, event);
                 return parser.getString();
             }
@@ -212,7 +183,7 @@ public abstract class JsonpValueParser<V> {
     private static final JsonpValueParser<Integer> INTEGER =
         new JsonpValueParser<Integer>(EnumSet.of(Event.VALUE_NUMBER)) {
             @Override
-            public Integer parse(JsonParser parser, Params params, Event event) {
+            public Integer parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 ensureAccepts(parser, event);
                 return parser.getInt();
             }
@@ -227,7 +198,7 @@ public abstract class JsonpValueParser<V> {
     private static final JsonpValueParser<Boolean> BOOLEAN =
         new JsonpValueParser<Boolean>(EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE)) {
             @Override
-            public Boolean parse(JsonParser parser, Params params, Event event) {
+            public Boolean parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 ensureAccepts(parser, event);
                 return event == Event.VALUE_TRUE;
             }
@@ -242,7 +213,7 @@ public abstract class JsonpValueParser<V> {
     private static final JsonpValueParser<Long> LONG =
         new JsonpValueParser<Long>(EnumSet.of(Event.VALUE_NUMBER)) {
             @Override
-            public Long parse(JsonParser parser, Params params, Event event) {
+            public Long parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 ensureAccepts(parser, event);
                 return parser.getLong();
             }
@@ -257,7 +228,7 @@ public abstract class JsonpValueParser<V> {
     private static final JsonpValueParser<Float> FLOAT =
         new JsonpValueParser<Float>(EnumSet.of(Event.VALUE_NUMBER)) {
             @Override
-            public Float parse(JsonParser parser, Params params, Event event) {
+            public Float parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 ensureAccepts(parser, event);
                 return ((JsonNumber)parser.getValue()).numberValue().floatValue();
             }
@@ -272,7 +243,7 @@ public abstract class JsonpValueParser<V> {
     private static final JsonpValueParser<Double> DOUBLE =
         new JsonpValueParser<Double>(EnumSet.of(Event.VALUE_NUMBER)) {
             @Override
-            public Double parse(JsonParser parser, Params params, Event event) {
+            public Double parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 ensureAccepts(parser, event);
                 return ((JsonNumber)parser.getValue()).doubleValue();
             }
@@ -287,7 +258,7 @@ public abstract class JsonpValueParser<V> {
     private static final JsonpValueParser<Number> NUMBER =
         new JsonpValueParser<Number>(EnumSet.of(Event.VALUE_NUMBER)) {
             @Override
-            public Number parse(JsonParser parser, Params params, Event event) {
+            public Number parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 ensureAccepts(parser, event);
                 return ((JsonNumber)parser.getValue()).numberValue();
             }
@@ -302,7 +273,7 @@ public abstract class JsonpValueParser<V> {
     private static final JsonpValueParser<JsonValue> JSON_VALUE =
         new JsonpValueParser<JsonValue>(EnumSet.allOf(Event.class)) {
             @Override
-            public JsonValue parse(JsonParser parser, Params params, Event event) {
+            public JsonValue parse(JsonParser parser, JsonpMapper mapper, Event event) {
                 return parser.getValue();
             }
         };
@@ -323,12 +294,12 @@ public abstract class JsonpValueParser<V> {
         }
 
         @Override
-        public List<T> parse(JsonParser parser, Params params, Event event) {
+        public List<T> parse(JsonParser parser, JsonpMapper mapper, Event event) {
             ensureAccepts(parser, event);
 
             List<T> result = new ArrayList<>();
             while ((event = parser.next()) != Event.END_ARRAY) {
-                result.add(itemParser.parse(parser, params, event));
+                result.add(itemParser.parse(parser, mapper, event));
             }
             return result;
         }
@@ -349,14 +320,14 @@ public abstract class JsonpValueParser<V> {
         }
 
         @Override
-        public Map<String, T> parse(JsonParser parser, Params params, Event event) {
+        public Map<String, T> parse(JsonParser parser, JsonpMapper mapper, Event event) {
             ensureAccepts(parser, event);
 
             Map<String, T> result = new HashMap<>();
             while ((event = parser.next()) != Event.END_OBJECT) {
                 JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
                 String key = parser.getString();
-                T value = itemParser.parse(parser, params);
+                T value = itemParser.parse(parser, mapper);
                 result.put(key, value);
             }
             return result;
@@ -364,6 +335,6 @@ public abstract class JsonpValueParser<V> {
     }
 
     public static <T> JsonpValueParser<Map<String, T>> stringMapParser(JsonpValueParser<T> itemParser) {
-        return new StringMapParser(itemParser);
+        return new StringMapParser<T>(itemParser);
     }
 }

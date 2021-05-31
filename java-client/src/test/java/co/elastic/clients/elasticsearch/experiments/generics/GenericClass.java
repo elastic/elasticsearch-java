@@ -22,9 +22,10 @@ package co.elastic.clients.elasticsearch.experiments.generics;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpSerializationContext;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
@@ -50,10 +51,10 @@ public class GenericClass<GenParam> implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator generator, JsonpSerializationContext params) {
+    public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         generator.writeKey("genParam");
-        params.serialize(generator, genParam, genParamSerializer);
+        JsonpUtils.serialize(genParam, generator, genParamSerializer, mapper);
         generator.writeEnd();
     }
 
@@ -63,7 +64,7 @@ public class GenericClass<GenParam> implements ToJsonp {
 
         /**
          * Sets the JSON serializer for {@link GenParam} values. If not set, the client will try to find a suitable
-         * serializer in the {@link JsonpSerializationContext} and will fail if none is found.
+         * serializer in the {@link JsonpMapper} and will fail if none is found.
          */
         // Internal generic parameters always call this method to avoid runtime lookup
         public Builder<GenParam> genParamSerializer(JsonpSerializer<GenParam> value) {

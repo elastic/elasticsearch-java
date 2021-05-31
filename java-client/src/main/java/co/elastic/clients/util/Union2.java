@@ -19,7 +19,7 @@
 
 package co.elastic.clients.util;
 
-import co.elastic.clients.json.JsonpSerializationContext;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpValueParser;
 
 import jakarta.json.stream.JsonGenerator;
@@ -111,9 +111,9 @@ public class Union2<A, B> {
   // Serialization / deserialization
 
   public void toJsonp(
-    JsonGenerator builder, JsonpSerializationContext params,
-    TriConsumer<A, JsonGenerator, JsonpSerializationContext> a,
-    TriConsumer<B, JsonGenerator, JsonpSerializationContext> b
+    JsonGenerator builder, JsonpMapper params,
+    TriConsumer<A, JsonGenerator, JsonpMapper> a,
+    TriConsumer<B, JsonGenerator, JsonpMapper> b
   ) {
     switch (this.tag) {
       case A:
@@ -138,12 +138,12 @@ public class Union2<A, B> {
     }
 
     @Override
-    public Union2<A, B> parse(JsonParser parser, Params params, Event event) {
+    public Union2<A, B> parse(JsonParser parser, JsonpMapper mapper, Event event) {
       if (parserA.accepts(event)) {
-        return Union2.ofA(parserA.parse(parser, params, event));
+        return Union2.ofA(parserA.parse(parser, mapper, event));
 
       } else if (parserB.accepts(event)) {
-        return Union2.ofB(parserB.parse(parser, params, event));
+        return Union2.ofB(parserB.parse(parser, mapper, event));
 
       } else {
         throw new JsonParsingException("Unexpected event [" + event + "]", parser.getLocation());

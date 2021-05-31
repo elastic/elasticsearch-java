@@ -21,7 +21,6 @@ package co.elastic.clients.json.jackson;
 
 import com.fasterxml.jackson.core.JsonStreamContext;
 
-import jakarta.json.JsonException;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerationException;
 import jakarta.json.stream.JsonGenerator;
@@ -29,20 +28,22 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class JsonpJacksonGenerator implements JsonGenerator {
+/**
+ * A JSONP generator implementation on top of Jackson.
+ */
+public class JacksonJsonpGenerator implements JsonGenerator {
 
     private final com.fasterxml.jackson.core.JsonGenerator generator;
 
-    public JsonpJacksonGenerator(com.fasterxml.jackson.core.JsonGenerator generator) {
+    public JacksonJsonpGenerator(com.fasterxml.jackson.core.JsonGenerator generator) {
         this.generator = generator;
     }
 
-    private JsonException convertException(IOException ioe) {
-        if (ioe instanceof com.fasterxml.jackson.core.JsonGenerationException) {
-            return new JsonGenerationException(ioe.getMessage(), ioe);
-        } else {
-            return new JsonException("Jackson exception", ioe);
-        }
+    /**
+     * Returns the underlying Jackson generator.
+     */
+    public com.fasterxml.jackson.core.JsonGenerator jacksonGenerator() {
+        return generator;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeStartObject();
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -61,7 +62,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
             generator.writeFieldName(name);
             generator.writeStartObject();
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -71,7 +72,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeStartArray();
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -82,7 +83,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
             generator.writeFieldName(name);
             generator.writeStartArray();
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -92,7 +93,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeFieldName(name);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -104,7 +105,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeObject(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -115,7 +116,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
             generator.writeFieldName(name);
             generator.writeString(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -126,7 +127,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
             generator.writeFieldName(name);
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -137,7 +138,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
             generator.writeFieldName(name);
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -148,7 +149,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
             generator.writeFieldName(name);
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -159,7 +160,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
             generator.writeFieldName(name);
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -170,7 +171,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
             generator.writeFieldName(name);
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -181,7 +182,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
             generator.writeFieldName(name);
             generator.writeBooleanField(name, value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -191,7 +192,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeNull();
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -208,7 +209,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
                 throw new JsonGenerationException("Unexpected context: " + ctx.typeDesc());
             }
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -220,7 +221,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeObject(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -230,7 +231,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeString(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -240,7 +241,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -250,7 +251,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -260,7 +261,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -270,7 +271,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -280,7 +281,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeNumber(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -290,7 +291,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeBoolean(value);
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -300,7 +301,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.writeNull();
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
         return this;
     }
@@ -310,7 +311,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.close();
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
     }
 
@@ -319,7 +320,7 @@ public class JsonpJacksonGenerator implements JsonGenerator {
         try {
             generator.flush();
         } catch (IOException e) {
-            throw convertException(e);
+            throw JacksonUtils.convertException(e);
         }
     }
 }

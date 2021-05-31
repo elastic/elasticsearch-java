@@ -21,8 +21,7 @@ package co.elastic.clients.elasticsearch.experiments;
 
 import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
 import co.elastic.clients.elasticsearch.experiments.api.query.TermsQuery;
-import co.elastic.clients.json.JsonpSerializationContext;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,7 +53,7 @@ public class ParsingTests extends Assert {
 
       JsonProvider provider = JsonProvider.provider();
       JsonGenerator generator = provider.createGenerator(baos);
-      foo.toJsonp(generator, JsonpSerializationContext.DEFAULT);
+      foo.toJsonp(generator, new JsonbJsonpMapper());
 
       generator.close();
       String str = baos.toString();
@@ -63,7 +62,7 @@ public class ParsingTests extends Assert {
 
       JsonParser parser = provider.createParser(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)));
 
-      FooRequest foo2 = FooRequest.parser().parse(parser, JsonpValueParser.DEFAULT_PARAMS);
+      FooRequest foo2 = FooRequest.parser().parse(parser, new JsonbJsonpMapper());
 
       assertEquals(foo.name(), foo2.name());
       assertEquals(foo.value(), foo2.value());
@@ -109,7 +108,7 @@ public class ParsingTests extends Assert {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       JsonProvider provider = JsonProvider.provider();
       JsonGenerator generator = provider.createGenerator(baos);
-      foo.toJsonp(generator, JsonpSerializationContext.DEFAULT);
+      foo.toJsonp(generator, new JsonbJsonpMapper());
       generator.close();
 
       String str = baos.toString();
@@ -118,11 +117,11 @@ public class ParsingTests extends Assert {
 
       JsonParser parser = provider.createParser(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)));
 
-      FooRequest foo2 = FooRequest.parser().parse(parser, JsonpValueParser.DEFAULT_PARAMS);
+      FooRequest foo2 = FooRequest.parser().parse(parser, new JsonbJsonpMapper());
 
       baos = new ByteArrayOutputStream();
       JsonGenerator generator2 = provider.createGenerator(baos);
-      foo2.toJsonp(generator2, JsonpSerializationContext.DEFAULT);
+      foo2.toJsonp(generator2, new JsonbJsonpMapper());
       generator2.close();
 
       String str2 = baos.toString();

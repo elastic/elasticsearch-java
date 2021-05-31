@@ -19,9 +19,12 @@
 
 package co.elastic.clients.json;
 
+import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
+
+import javax.annotation.Nullable;
 
 public class JsonpUtils {
 
@@ -70,6 +73,16 @@ public class JsonpUtils {
             default:
                 // Not a structure, no additional skipping needed
                 break;
+        }
+    }
+
+    public static <T> void serialize(T value, JsonGenerator generator, @Nullable JsonpSerializer<T> serializer, JsonpMapper mapper) {
+        if (serializer != null) {
+            serializer.toJsonp(value, generator, mapper);
+        } else if (value instanceof ToJsonp) {
+            ((ToJsonp) value).toJsonp(generator, mapper);
+        } else {
+            mapper.serialize(value, generator);
         }
     }
 }

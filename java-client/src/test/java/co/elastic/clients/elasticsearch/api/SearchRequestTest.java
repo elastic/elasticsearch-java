@@ -20,8 +20,7 @@
 package co.elastic.clients.elasticsearch.api;
 
 import co.elastic.clients.elasticsearch._global.SearchRequest;
-import co.elastic.clients.json.JsonpSerializationContext;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,7 +53,7 @@ public class SearchRequestTest extends Assert {
         JsonProvider provider = JsonProvider.provider();
         JsonGenerator generator = provider.createGenerator(baos);
 
-        request.toJsonp(generator, JsonpSerializationContext.DEFAULT);
+        request.toJsonp(generator, new JsonbJsonpMapper());
         generator.close();
 
         String str = baos.toString();
@@ -63,7 +62,7 @@ public class SearchRequestTest extends Assert {
 
         JsonParser parser = provider.createParser(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)));
 
-        request = SearchRequest.JSONP_PARSER.parse(parser, JsonpValueParser.DEFAULT_PARAMS);
+        request = SearchRequest.JSONP_PARSER.parse(parser, new JsonbJsonpMapper());
 
         assertTrue(request.query().isType());
         assertEquals("foo", request.query().type().value());

@@ -21,17 +21,25 @@ package co.elastic.clients.json.jackson;
 
 import com.fasterxml.jackson.core.JsonToken;
 
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.EnumMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
-public class JsonpJacksonParser implements JsonParser {
+/**
+ * A JSONP parser implementation on top of Jackson.
+ */
+public class JacksonJsonpParser implements JsonParser {
 
-    private com.fasterxml.jackson.core.JsonParser parser;
+    private final com.fasterxml.jackson.core.JsonParser parser;
 
     private JsonToken nextToken;
     private boolean hadFirstToken = false;
@@ -57,31 +65,16 @@ public class JsonpJacksonParser implements JsonParser {
         // - NOT_AVAILABLE
     }
 
-    private static class JsonPJacksonLocation implements JsonLocation {
-
-        private final com.fasterxml.jackson.core.JsonLocation location;
-
-        JsonPJacksonLocation(com.fasterxml.jackson.core.JsonLocation location) {
-            this.location = location;
-        }
-
-        @Override
-        public long getLineNumber() {
-            return location.getLineNr();
-        }
-
-        @Override
-        public long getColumnNumber() {
-            return location.getColumnNr();
-        }
-
-        @Override
-        public long getStreamOffset() {
-            long charOffset = location.getCharOffset();
-            return charOffset == -1 ? location.getByteOffset() : charOffset;
-        }
+    public JacksonJsonpParser(com.fasterxml.jackson.core.JsonParser parser) {
+        this.parser = parser;
     }
 
+    /**
+     * Returns the underlying Jackson parser.
+     */
+    public com.fasterxml.jackson.core.JsonParser jacksonParser() {
+        return this.parser;
+    }
 
     private JsonParsingException convertException(IOException ioe) {
         return new JsonParsingException("Jackson exception", ioe, getLocation());
@@ -101,11 +94,17 @@ public class JsonpJacksonParser implements JsonParser {
             hadFirstToken = true;
             fetchNextToken();
         }
+
         return nextToken != null;
     }
 
     @Override
     public Event next() {
+        if (!hadFirstToken) {
+            hadFirstToken = true;
+            fetchNextToken();
+        }
+
         if (nextToken == null) {
             throw new NoSuchElementException();
         }
@@ -162,7 +161,7 @@ public class JsonpJacksonParser implements JsonParser {
 
     @Override
     public JsonLocation getLocation() {
-        return new JsonPJacksonLocation(parser.getCurrentLocation());
+        return new JacksonJsonpLocation(parser.getCurrentLocation());
     }
 
     @Override
@@ -173,4 +172,111 @@ public class JsonpJacksonParser implements JsonParser {
             throw convertException(e);
         }
     }
+
+    private JsonValueParser valueParser;
+
+    @Override
+    public JsonObject getObject() {
+        if (valueParser == null) {
+            valueParser = new JsonValueParser();
+        }
+        try {
+            return valueParser.parseObject(parser);
+        } catch (IOException e) {
+            throw convertException(e);
+        }
+    }
+
+    @Override
+    public JsonArray getArray() {
+        if (valueParser == null) {
+            valueParser = new JsonValueParser();
+        }
+        try {
+            return valueParser.parseArray(parser);
+        } catch (IOException e) {
+            throw convertException(e);
+        }
+    }
+
+    @Override
+    public JsonValue getValue() {
+        if (valueParser == null) {
+            valueParser = new JsonValueParser();
+        }
+        try {
+            return valueParser.parseValue(parser);
+        } catch (IOException e) {
+            throw convertException(e);
+        }
+    }
+
+    @Override
+    public void skipObject() {
+        if (parser.currentToken() != JsonToken.START_OBJECT) {
+            return;
+        }
+
+        try {
+            int depth = 1;
+            JsonToken token;
+            do {
+                token = parser.nextToken();
+                switch (token) {
+                    case START_OBJECT:
+                        depth++;
+                        break;
+                    case END_OBJECT:
+                        depth--;
+                        break;
+                }
+            } while(!(token == JsonToken.END_OBJECT && depth == 0));
+        } catch (IOException e) {
+            throw convertException(e);
+        }
+    }
+
+    @Override
+    public void skipArray() {
+        if (parser.currentToken() != JsonToken.START_ARRAY) {
+            return;
+        }
+
+        try {
+            int depth = 1;
+            JsonToken token;
+            do {
+                token = parser.nextToken();
+                switch (token) {
+                    case START_ARRAY:
+                        depth++;
+                        break;
+                    case END_ARRAY:
+                        depth--;
+                        break;
+                }
+            } while(!(token == JsonToken.END_ARRAY && depth == 0));
+        } catch (IOException e) {
+            throw convertException(e);
+        }
+    }
+
+    @Override
+    public Stream<Map.Entry<String, JsonValue>> getObjectStream() {
+        return getObject().entrySet().stream();
+    }
+
+    @Override
+    public Stream<JsonValue> getArrayStream() {
+        return getArray().stream();
+    }
+
+    /**
+     * Not implemented.
+     */
+    @Override
+    public Stream<JsonValue> getValueStream() {
+        return JsonParser.super.getValueStream();
+    }
 }
+

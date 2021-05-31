@@ -21,8 +21,7 @@ package co.elastic.clients.elasticsearch.experiments.inheritance;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
 import co.elastic.clients.elasticsearch.experiments.inheritance.final_.FinalClass;
-import co.elastic.clients.json.JsonpSerializationContext;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,7 +47,7 @@ public class InheritanceTest extends Assert {
             .build();
 
         JsonGenerator generator = provider.createGenerator(baos);
-        fc.toJsonp(generator, JsonpSerializationContext.DEFAULT);
+        fc.toJsonp(generator, new JsonbJsonpMapper());
 
         generator.close();
         String str = baos.toString();
@@ -64,7 +63,7 @@ public class InheritanceTest extends Assert {
             .build();
 
         generator = provider.createGenerator(baos);
-        cc.toJsonp(generator, JsonpSerializationContext.DEFAULT);
+        cc.toJsonp(generator, new JsonbJsonpMapper());
 
         generator.close();
         str = baos.toString();
@@ -79,7 +78,7 @@ public class InheritanceTest extends Assert {
         JsonParser parser = provider.createParser(new StringReader(
             "{\"baseField\":\"baseValue\",\"childField\":\"childValue\",\"finalField\":\"finalValue\"}"));
 
-        FinalClass fc = FinalClass.JSONP_PARSER.parse(parser, JsonpValueParser.DEFAULT_PARAMS);
+        FinalClass fc = FinalClass.JSONP_PARSER.parse(parser, new JsonbJsonpMapper());
 
         assertEquals("baseValue", fc.baseField());
         assertEquals("childValue", fc.childField());
@@ -89,7 +88,7 @@ public class InheritanceTest extends Assert {
         parser = provider.createParser(new StringReader(
             "{\"baseField\":\"baseValue\",\"childField\":\"childValue\"}"));
 
-        ChildClass cc = ChildClass.JSONP_PARSER.parse(parser, JsonpValueParser.DEFAULT_PARAMS);
+        ChildClass cc = ChildClass.JSONP_PARSER.parse(parser, new JsonbJsonpMapper());
 
         assertEquals("baseValue", cc.baseField());
         assertEquals("childValue", cc.childField());

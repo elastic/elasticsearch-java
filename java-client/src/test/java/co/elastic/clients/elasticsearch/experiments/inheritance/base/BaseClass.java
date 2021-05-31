@@ -20,7 +20,7 @@
 package co.elastic.clients.elasticsearch.experiments.inheritance.base;
 
 import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpSerializationContext;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
 
@@ -43,13 +43,13 @@ public abstract class BaseClass implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator generator, JsonpSerializationContext params) {
+    public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        toJsonpInternal(generator, params);
+        toJsonpInternal(generator, mapper);
         generator.writeEnd();
     }
 
-    protected void toJsonpInternal(JsonGenerator generator, JsonpSerializationContext params) {
+    protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.write("baseField", this.baseField);
     }
 

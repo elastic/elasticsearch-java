@@ -21,8 +21,9 @@ package co.elastic.clients.base;
 
 import co.elastic.clients.json.DelegatingJsonpValueParser;
 import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpSerializationContext;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpValueParser;
 import co.elastic.clients.json.ToJsonp;
 
@@ -61,16 +62,16 @@ public abstract class AdditionalProperties<TKey, TValue> implements ToJsonp {
     /**
      * Serialize this value to JSON.
      */
-    public void toJsonp(JsonGenerator generator, JsonpSerializationContext ctx) {
+    public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        this.toJsonpInternal(generator, ctx);
+        this.toJsonpInternal(generator, mapper);
         generator.writeEnd();
     }
 
-    protected void toJsonpInternal(JsonGenerator generator, JsonpSerializationContext ctx) {
+    protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
         for (Map.Entry<String, TValue> item0 : this.value.entrySet()) {
             generator.writeKey(item0.getKey());
-            ctx.serialize(generator, item0.getValue(), tValueSerializer);
+            JsonpUtils.serialize(item0.getValue(), generator, tValueSerializer, mapper);
         }
     }
 

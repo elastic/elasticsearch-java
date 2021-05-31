@@ -24,14 +24,14 @@ import org.elasticsearch.client.RequestOptions;
 
 import javax.annotation.Nullable;
 
-public abstract class HighLevelClient<Self extends HighLevelClient<Self>> {
+public abstract class ApiClient<Self extends ApiClient<Self>> {
 
     protected final Transport transport;
 
     @Nullable
     protected final RequestOptions requestOptions;
 
-    protected HighLevelClient(Transport transport, @Nullable RequestOptions requestOptions) {
+    protected ApiClient(Transport transport, @Nullable RequestOptions requestOptions) {
         this.transport = transport;
         this.requestOptions = requestOptions;
     }
@@ -47,6 +47,6 @@ public abstract class HighLevelClient<Self extends HighLevelClient<Self>> {
     }
 
     protected <T> JsonpValueParser<T> getDeserializer(Class<T> clazz) {
-        return null;
+        return transport.jsonpMapper().getDeserializer(clazz);
     }
 }

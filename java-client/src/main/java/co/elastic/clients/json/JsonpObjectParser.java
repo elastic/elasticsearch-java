@@ -42,7 +42,7 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
             this.name = name;
             this.deprecatedNames = deprecatedNames;
         }
-        public abstract void parse(JsonParser parser, Params params, String fieldName, ObjectType object);
+        public abstract void parse(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object);
     }
 
     /** Field parser for objects (and boxed primitives) */
@@ -63,17 +63,12 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
             return this.name;
         }
 
-        public void parse(JsonParser parser, Params params, String fieldName, ObjectType object) {
-
-            if (!params.allowDeprecation() && !fieldName.equals(this.name)) {
-                // FIXME: handle deprecations
-            }
-
+        public void parse(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
             // Note: we handle `null` as a missing value. We may want to be more strict and distinguish nullable and
             // optional values.
             JsonParser.Event event = parser.next();
             if (event != Event.VALUE_NULL) {
-                FieldType fieldValue = valueParser.parse(parser, params, event);
+                FieldType fieldValue = valueParser.parse(parser, mapper, event);
                 setter.accept(object, fieldValue);
             }
         }
@@ -83,7 +78,7 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
 
     private final Supplier<ObjectType> constructor;
     private final Map<String, FieldParser<?>> fieldParsers;
-    private QuadConsumer<ObjectType, String, JsonParser, Params> unknownFieldHandler;
+    private QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler;
 
     public JsonpObjectParser(Supplier<ObjectType> constructor) {
         super(EnumSet.of(Event.START_OBJECT));
@@ -91,7 +86,7 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
         this.fieldParsers = new HashMap<>();
     }
 
-    public ObjectType parse(JsonParser parser, Params params, Event event) {
+    public ObjectType parse(JsonParser parser, JsonpMapper mapper, Event event) {
         ensureAccepts(parser, event);
 
         ObjectType value = constructor.get();
@@ -105,20 +100,20 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
             @SuppressWarnings("unchecked")
             FieldParser<ObjectType> fieldParser = (FieldParser<ObjectType>)fieldParsers.get(fieldName);
             if (fieldParser == null) {
-                parseUnknownField(parser, params, fieldName, value);
+                parseUnknownField(parser, mapper, fieldName, value);
             } else {
-                fieldParser.parse(parser, params, fieldName, value);
+                fieldParser.parse(parser, mapper, fieldName, value);
             }
         }
 
         return value;
     }
 
-    protected void parseUnknownField(JsonParser parser, Params params, String fieldName, ObjectType object) {
+    protected void parseUnknownField(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
         if (this.unknownFieldHandler != null) {
-            this.unknownFieldHandler.accept(object, fieldName, parser, params);
+            this.unknownFieldHandler.accept(object, fieldName, parser, mapper);
 
-        } else if (params.ignoreUnknownFields()) {
+        } else if (mapper.ignoreUnknownFields()) {
             JsonpUtils.skipValue(parser);
 
         } else {
@@ -129,7 +124,7 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
         }
     }
 
-    public void setUnknownFieldHandler(QuadConsumer<ObjectType, String, JsonParser, Params> unknownFieldHandler) {
+    public void setUnknownFieldHandler(QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler) {
         this.unknownFieldHandler = unknownFieldHandler;
     }
 

@@ -17,25 +17,26 @@
  * under the License.
  */
 
-package co.elastic.clients.json;
+package co.elastic.clients.json.jackson;
 
-import javax.annotation.Nullable;
-import jakarta.json.stream.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParseException;
+import jakarta.json.JsonException;
+import jakarta.json.stream.JsonGenerationException;
+import jakarta.json.stream.JsonParsingException;
 
-/**
- * Serialization parameters
- */
-public class JsonpSerializationContext {
+import java.io.IOException;
 
-    public static final JsonpSerializationContext DEFAULT = new JsonpSerializationContext();
+class JacksonUtils {
+    public static JsonException convertException(IOException ioe) {
+        if (ioe instanceof com.fasterxml.jackson.core.JsonGenerationException) {
+            return new JsonGenerationException(ioe.getMessage(), ioe);
 
-    public <T> void serialize(JsonGenerator generator, T value, @Nullable JsonpSerializer<T> serializer) {
-        if (serializer != null) {
-            serializer.toJsonp(value, generator, this);
-        } else if (value instanceof ToJsonp) {
-            ((ToJsonp) value).toJsonp(generator, this);
+        } else if (ioe instanceof com.fasterxml.jackson.core.JsonParseException) {
+            JsonParseException jpe = (JsonParseException) ioe;
+            return new JsonParsingException(ioe.getMessage(), jpe, new JacksonJsonpLocation(jpe.getLocation()));
+
         } else {
-            throw new UnsupportedOperationException("TODO: add global serializer configuration");
+            return new JsonException("Jackson exception", ioe);
         }
     }
 }

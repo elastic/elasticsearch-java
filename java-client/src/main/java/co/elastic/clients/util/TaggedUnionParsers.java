@@ -75,7 +75,7 @@ public class TaggedUnionParsers {
                 throw new JsonParsingException("No parser for variant '" + tag.jsonValue() + "'", parser.getLocation());
             }
 
-            JsonParser objectParser = params.jsonProvider().createParserFactory(null).createParser(object);
+            JsonParser objectParser = params.jsonpProvider().createParserFactory(null).createParser(object);
             V value = variantParser.parse(objectParser, params);
 
             return unionCtor.apply(tag, value);

@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.json.JsonpSerializationContext;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
@@ -118,7 +118,7 @@ public class FooOptRequest implements ToJsonp {
 
 
   @Override
-  public void toJsonp(JsonGenerator builder, JsonpSerializationContext params) {
+  public void toJsonp(JsonGenerator builder, JsonpMapper mapper) {
     builder.writeStartObject();
 
     // Classic approach is to use the deserialization field's preferred name:
@@ -153,7 +153,7 @@ public class FooOptRequest implements ToJsonp {
 
     if (this.bar != null) {
       builder.writeKey("bar");
-      this.bar.toJsonp(builder, params);
+      this.bar.toJsonp(builder, mapper);
     }
 
     builder.writeEnd();
