@@ -1,0 +1,161 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.indices.get_mapping;
+
+import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: indices.get_mapping.IndexMappingRecord
+public final class IndexMappingRecord implements ToJsonp {
+	@Nullable
+	private final TypeMapping item;
+
+	private final TypeMapping mappings;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected IndexMappingRecord(Builder builder) {
+
+		this.item = builder.item;
+		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
+
+	}
+
+	/**
+	 * API name: {@code item}
+	 */
+	@Nullable
+	public TypeMapping item() {
+		return this.item;
+	}
+
+	/**
+	 * API name: {@code mappings}
+	 */
+	public TypeMapping mappings() {
+		return this.mappings;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.item != null) {
+
+			generator.writeKey("item");
+			this.item.toJsonp(generator, mapper);
+
+		}
+
+		generator.writeKey("mappings");
+		this.mappings.toJsonp(generator, mapper);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link IndexMappingRecord}.
+	 */
+	public static class Builder implements ObjectBuilder<IndexMappingRecord> {
+		@Nullable
+		private TypeMapping item;
+
+		private TypeMapping mappings;
+
+		/**
+		 * API name: {@code item}
+		 */
+		public Builder item(@Nullable TypeMapping value) {
+			this.item = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code item}
+		 */
+		public Builder item(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.item(fn.apply(new TypeMapping.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code mappings}
+		 */
+		public Builder mappings(TypeMapping value) {
+			this.mappings = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code mappings}
+		 */
+		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link IndexMappingRecord}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public IndexMappingRecord build() {
+
+			return new IndexMappingRecord(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for IndexMappingRecord
+	 */
+	public static final JsonpValueParser<IndexMappingRecord> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, IndexMappingRecord::setupIndexMappingRecordParser);
+
+	protected static void setupIndexMappingRecordParser(DelegatingJsonpValueParser<IndexMappingRecord.Builder> op) {
+
+		op.add(Builder::item, TypeMapping.JSONP_PARSER, "item");
+		op.add(Builder::mappings, TypeMapping.JSONP_PARSER, "mappings");
+
+	}
+
+}

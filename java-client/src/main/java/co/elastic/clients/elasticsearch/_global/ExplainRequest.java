@@ -1,0 +1,642 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch._global;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+
+// typedef: _global.explain.Request
+public final class ExplainRequest extends RequestBase implements ToJsonp {
+	private final String id;
+
+	private final String index;
+
+	@Nullable
+	private final String type;
+
+	@Nullable
+	private final String analyzer;
+
+	@Nullable
+	private final Boolean analyzeWildcard;
+
+	@Nullable
+	private final JsonValue defaultOperator;
+
+	@Nullable
+	private final String df;
+
+	@Nullable
+	private final Boolean lenient;
+
+	@Nullable
+	private final String preference;
+
+	@Nullable
+	private final String queryOnQueryString;
+
+	@Nullable
+	private final JsonValue routing;
+
+	@Nullable
+	private final JsonValue _source;
+
+	@Nullable
+	private final List<String> _sourceExcludes;
+
+	@Nullable
+	private final List<String> _sourceIncludes;
+
+	@Nullable
+	private final List<String> storedFields;
+
+	@Nullable
+	private final String q;
+
+	@Nullable
+	private final QueryContainer query;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected ExplainRequest(Builder builder) {
+
+		this.id = Objects.requireNonNull(builder.id, "id");
+		this.index = Objects.requireNonNull(builder.index, "index");
+		this.type = builder.type;
+		this.analyzer = builder.analyzer;
+		this.analyzeWildcard = builder.analyzeWildcard;
+		this.defaultOperator = builder.defaultOperator;
+		this.df = builder.df;
+		this.lenient = builder.lenient;
+		this.preference = builder.preference;
+		this.queryOnQueryString = builder.queryOnQueryString;
+		this.routing = builder.routing;
+		this._source = builder._source;
+		this._sourceExcludes = builder._sourceExcludes;
+		this._sourceIncludes = builder._sourceIncludes;
+		this.storedFields = builder.storedFields;
+		this.q = builder.q;
+		this.query = builder.query;
+
+	}
+
+	/**
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
+	}
+
+	/**
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
+	}
+
+	/**
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
+	}
+
+	/**
+	 * API name: {@code analyzer}
+	 */
+	@Nullable
+	public String analyzer() {
+		return this.analyzer;
+	}
+
+	/**
+	 * API name: {@code analyze_wildcard}
+	 */
+	@Nullable
+	public Boolean analyzeWildcard() {
+		return this.analyzeWildcard;
+	}
+
+	/**
+	 * API name: {@code default_operator}
+	 */
+	@Nullable
+	public JsonValue defaultOperator() {
+		return this.defaultOperator;
+	}
+
+	/**
+	 * API name: {@code df}
+	 */
+	@Nullable
+	public String df() {
+		return this.df;
+	}
+
+	/**
+	 * API name: {@code lenient}
+	 */
+	@Nullable
+	public Boolean lenient() {
+		return this.lenient;
+	}
+
+	/**
+	 * API name: {@code preference}
+	 */
+	@Nullable
+	public String preference() {
+		return this.preference;
+	}
+
+	/**
+	 * API name: {@code query_on_query_string}
+	 */
+	@Nullable
+	public String queryOnQueryString() {
+		return this.queryOnQueryString;
+	}
+
+	/**
+	 * API name: {@code routing}
+	 */
+	@Nullable
+	public JsonValue routing() {
+		return this.routing;
+	}
+
+	/**
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public JsonValue _source() {
+		return this._source;
+	}
+
+	/**
+	 * API name: {@code _source_excludes}
+	 */
+	@Nullable
+	public List<String> _sourceExcludes() {
+		return this._sourceExcludes;
+	}
+
+	/**
+	 * API name: {@code _source_includes}
+	 */
+	@Nullable
+	public List<String> _sourceIncludes() {
+		return this._sourceIncludes;
+	}
+
+	/**
+	 * API name: {@code stored_fields}
+	 */
+	@Nullable
+	public List<String> storedFields() {
+		return this.storedFields;
+	}
+
+	/**
+	 * API name: {@code q}
+	 */
+	@Nullable
+	public String q() {
+		return this.q;
+	}
+
+	/**
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public QueryContainer query() {
+		return this.query;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.query != null) {
+
+			generator.writeKey("query");
+			this.query.toJsonp(generator, mapper);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ExplainRequest}.
+	 */
+	public static class Builder implements ObjectBuilder<ExplainRequest> {
+		private String id;
+
+		private String index;
+
+		@Nullable
+		private String type;
+
+		@Nullable
+		private String analyzer;
+
+		@Nullable
+		private Boolean analyzeWildcard;
+
+		@Nullable
+		private JsonValue defaultOperator;
+
+		@Nullable
+		private String df;
+
+		@Nullable
+		private Boolean lenient;
+
+		@Nullable
+		private String preference;
+
+		@Nullable
+		private String queryOnQueryString;
+
+		@Nullable
+		private JsonValue routing;
+
+		@Nullable
+		private JsonValue _source;
+
+		@Nullable
+		private List<String> _sourceExcludes;
+
+		@Nullable
+		private List<String> _sourceIncludes;
+
+		@Nullable
+		private List<String> storedFields;
+
+		@Nullable
+		private String q;
+
+		@Nullable
+		private QueryContainer query;
+
+		/**
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code analyzer}
+		 */
+		public Builder analyzer(@Nullable String value) {
+			this.analyzer = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code analyze_wildcard}
+		 */
+		public Builder analyzeWildcard(@Nullable Boolean value) {
+			this.analyzeWildcard = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code default_operator}
+		 */
+		public Builder defaultOperator(@Nullable JsonValue value) {
+			this.defaultOperator = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code df}
+		 */
+		public Builder df(@Nullable String value) {
+			this.df = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lenient}
+		 */
+		public Builder lenient(@Nullable Boolean value) {
+			this.lenient = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code preference}
+		 */
+		public Builder preference(@Nullable String value) {
+			this.preference = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query_on_query_string}
+		 */
+		public Builder queryOnQueryString(@Nullable String value) {
+			this.queryOnQueryString = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code routing}
+		 */
+		public Builder routing(@Nullable JsonValue value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _source}
+		 */
+		public Builder _source(@Nullable JsonValue value) {
+			this._source = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _source_excludes}
+		 */
+		public Builder _sourceExcludes(@Nullable List<String> value) {
+			this._sourceExcludes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _source_excludes}
+		 */
+		public Builder _sourceExcludes(String... value) {
+			this._sourceExcludes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #_sourceExcludes(List)}, creating the list if needed.
+		 */
+		public Builder add_sourceExcludes(String value) {
+			if (this._sourceExcludes == null) {
+				this._sourceExcludes = new ArrayList<>();
+			}
+			this._sourceExcludes.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _source_includes}
+		 */
+		public Builder _sourceIncludes(@Nullable List<String> value) {
+			this._sourceIncludes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _source_includes}
+		 */
+		public Builder _sourceIncludes(String... value) {
+			this._sourceIncludes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #_sourceIncludes(List)}, creating the list if needed.
+		 */
+		public Builder add_sourceIncludes(String value) {
+			if (this._sourceIncludes == null) {
+				this._sourceIncludes = new ArrayList<>();
+			}
+			this._sourceIncludes.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code stored_fields}
+		 */
+		public Builder storedFields(@Nullable List<String> value) {
+			this.storedFields = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code stored_fields}
+		 */
+		public Builder storedFields(String... value) {
+			this.storedFields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 */
+		public Builder addStoredFields(String value) {
+			if (this.storedFields == null) {
+				this.storedFields = new ArrayList<>();
+			}
+			this.storedFields.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code q}
+		 */
+		public Builder q(@Nullable String value) {
+			this.q = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public Builder query(@Nullable QueryContainer value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
+			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link ExplainRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ExplainRequest build() {
+
+			return new ExplainRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for ExplainRequest
+	 */
+	public static final JsonpValueParser<ExplainRequest> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, ExplainRequest::setupExplainRequestParser);
+
+	protected static void setupExplainRequestParser(DelegatingJsonpValueParser<ExplainRequest.Builder> op) {
+
+		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code explain}".
+	 */
+	private static final Endpoint.Simple<ExplainRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "POST",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				buf.append("/");
+				buf.append(request.index);
+				if (request.type != null) {
+					buf.append("/");
+					buf.append(request.type);
+				}
+				buf.append("/");
+				buf.append(request.id);
+				buf.append("/_explain");
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				if (request.analyzer != null) {
+					params.put("analyzer", request.analyzer);
+				}
+				if (request.analyzeWildcard != null) {
+					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
+				}
+				if (request.defaultOperator != null) {
+					params.put("default_operator", request.defaultOperator.toString());
+				}
+				if (request.df != null) {
+					params.put("df", request.df);
+				}
+				if (request.lenient != null) {
+					params.put("lenient", String.valueOf(request.lenient));
+				}
+				if (request.preference != null) {
+					params.put("preference", request.preference);
+				}
+				if (request.queryOnQueryString != null) {
+					params.put("query_on_query_string", request.queryOnQueryString);
+				}
+				if (request.routing != null) {
+					params.put("routing", request.routing.toString());
+				}
+				if (request._source != null) {
+					params.put("_source", request._source.toString());
+				}
+				if (request._sourceExcludes != null) {
+					params.put("_source_excludes",
+							request._sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request._sourceIncludes != null) {
+					params.put("_source_includes",
+							request._sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.storedFields != null) {
+					params.put("stored_fields",
+							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.q != null) {
+					params.put("q", request.q);
+				}
+				return params;
+
+			}, Endpoint.Simple.emptyMap(), true, null);
+
+	/**
+	 * Create an "{@code explain}" endpoint.
+	 */
+	public static <TDocument> Endpoint<ExplainRequest, ExplainResponse<TDocument>, ElasticsearchError> createExplainEndpoint(
+			JsonpValueParser<TDocument> tDocumentParser) {
+		return ENDPOINT.withResponseParser(ExplainResponse.createExplainResponseParser(tDocumentParser));
+	}
+}

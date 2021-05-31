@@ -1,0 +1,227 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.graph;
+
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: graph._types.Hop
+public final class Hop implements ToJsonp {
+	@Nullable
+	private final co.elastic.clients.elasticsearch.graph.Hop connections;
+
+	private final QueryContainer query;
+
+	private final List<VertexDefinition> vertices;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected Hop(Builder builder) {
+
+		this.connections = builder.connections;
+		this.query = Objects.requireNonNull(builder.query, "query");
+		this.vertices = Objects.requireNonNull(builder.vertices, "vertices");
+
+	}
+
+	/**
+	 * API name: {@code connections}
+	 */
+	@Nullable
+	public co.elastic.clients.elasticsearch.graph.Hop connections() {
+		return this.connections;
+	}
+
+	/**
+	 * API name: {@code query}
+	 */
+	public QueryContainer query() {
+		return this.query;
+	}
+
+	/**
+	 * API name: {@code vertices}
+	 */
+	public List<VertexDefinition> vertices() {
+		return this.vertices;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.connections != null) {
+
+			generator.writeKey("connections");
+			this.connections.toJsonp(generator, mapper);
+
+		}
+
+		generator.writeKey("query");
+		this.query.toJsonp(generator, mapper);
+
+		generator.writeKey("vertices");
+		generator.writeStartArray();
+		for (VertexDefinition item0 : this.vertices) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link Hop}.
+	 */
+	public static class Builder implements ObjectBuilder<Hop> {
+		@Nullable
+		private co.elastic.clients.elasticsearch.graph.Hop connections;
+
+		private QueryContainer query;
+
+		private List<VertexDefinition> vertices;
+
+		/**
+		 * API name: {@code connections}
+		 */
+		public Builder connections(@Nullable co.elastic.clients.elasticsearch.graph.Hop value) {
+			this.connections = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code connections}
+		 */
+		public Builder connections(
+				Function<co.elastic.clients.elasticsearch.graph.Hop.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.graph.Hop>> fn) {
+			return this.connections(fn.apply(new co.elastic.clients.elasticsearch.graph.Hop.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public Builder query(QueryContainer value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
+			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code vertices}
+		 */
+		public Builder vertices(List<VertexDefinition> value) {
+			this.vertices = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code vertices}
+		 */
+		public Builder vertices(VertexDefinition... value) {
+			this.vertices = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 */
+		public Builder addVertices(VertexDefinition value) {
+			if (this.vertices == null) {
+				this.vertices = new ArrayList<>();
+			}
+			this.vertices.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #vertices(List)} to a singleton list.
+		 */
+		public Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
+			return this.vertices(fn.apply(new VertexDefinition.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 */
+		public Builder addVertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
+			return this.addVertices(fn.apply(new VertexDefinition.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link Hop}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public Hop build() {
+
+			return new Hop(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for Hop
+	 */
+	public static final JsonpValueParser<Hop> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
+			Hop::setupHopParser);
+
+	protected static void setupHopParser(DelegatingJsonpValueParser<Hop.Builder> op) {
+
+		op.add(Builder::connections, co.elastic.clients.elasticsearch.graph.Hop.JSONP_PARSER, "connections");
+		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
+		op.add(Builder::vertices, JsonpValueParser.arrayParser(VertexDefinition.JSONP_PARSER), "vertices");
+
+	}
+
+}

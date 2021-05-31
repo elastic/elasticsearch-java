@@ -1,0 +1,312 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.indices.shard_stores;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: indices.shard_stores.ShardStore
+public final class ShardStore implements ToJsonp {
+	private final JsonValue allocation;
+
+	private final String allocationId;
+
+	private final Map<String, JsonValue> attributes;
+
+	private final String id;
+
+	private final Number legacyVersion;
+
+	private final String name;
+
+	private final ShardStoreException storeException;
+
+	private final String transportAddress;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected ShardStore(Builder builder) {
+
+		this.allocation = Objects.requireNonNull(builder.allocation, "allocation");
+		this.allocationId = Objects.requireNonNull(builder.allocationId, "allocation_id");
+		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.id = Objects.requireNonNull(builder.id, "id");
+		this.legacyVersion = Objects.requireNonNull(builder.legacyVersion, "legacy_version");
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.storeException = Objects.requireNonNull(builder.storeException, "store_exception");
+		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
+
+	}
+
+	/**
+	 * API name: {@code allocation}
+	 */
+	public JsonValue allocation() {
+		return this.allocation;
+	}
+
+	/**
+	 * API name: {@code allocation_id}
+	 */
+	public String allocationId() {
+		return this.allocationId;
+	}
+
+	/**
+	 * API name: {@code attributes}
+	 */
+	public Map<String, JsonValue> attributes() {
+		return this.attributes;
+	}
+
+	/**
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
+	}
+
+	/**
+	 * API name: {@code legacy_version}
+	 */
+	public Number legacyVersion() {
+		return this.legacyVersion;
+	}
+
+	/**
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
+	}
+
+	/**
+	 * API name: {@code store_exception}
+	 */
+	public ShardStoreException storeException() {
+		return this.storeException;
+	}
+
+	/**
+	 * API name: {@code transport_address}
+	 */
+	public String transportAddress() {
+		return this.transportAddress;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("allocation");
+		generator.write(this.allocation);
+
+		generator.writeKey("allocation_id");
+		generator.write(this.allocationId);
+
+		generator.writeKey("attributes");
+		generator.writeStartObject();
+		for (Map.Entry<String, JsonValue> item0 : this.attributes.entrySet()) {
+			generator.writeKey(item0.getKey());
+			generator.write(item0.getValue());
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("id");
+		generator.write(this.id);
+
+		generator.writeKey("legacy_version");
+		generator.write(this.legacyVersion.doubleValue());
+
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		generator.writeKey("store_exception");
+		this.storeException.toJsonp(generator, mapper);
+
+		generator.writeKey("transport_address");
+		generator.write(this.transportAddress);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ShardStore}.
+	 */
+	public static class Builder implements ObjectBuilder<ShardStore> {
+		private JsonValue allocation;
+
+		private String allocationId;
+
+		private Map<String, JsonValue> attributes;
+
+		private String id;
+
+		private Number legacyVersion;
+
+		private String name;
+
+		private ShardStoreException storeException;
+
+		private String transportAddress;
+
+		/**
+		 * API name: {@code allocation}
+		 */
+		public Builder allocation(JsonValue value) {
+			this.allocation = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code allocation_id}
+		 */
+		public Builder allocationId(String value) {
+			this.allocationId = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code attributes}
+		 */
+		public Builder attributes(Map<String, JsonValue> value) {
+			this.attributes = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #attributes(Map)}, creating the map if needed.
+		 */
+		public Builder putAttributes(String key, JsonValue value) {
+			if (this.attributes == null) {
+				this.attributes = new HashMap<>();
+			}
+			this.attributes.put(key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code legacy_version}
+		 */
+		public Builder legacyVersion(Number value) {
+			this.legacyVersion = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code store_exception}
+		 */
+		public Builder storeException(ShardStoreException value) {
+			this.storeException = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code store_exception}
+		 */
+		public Builder storeException(Function<ShardStoreException.Builder, ObjectBuilder<ShardStoreException>> fn) {
+			return this.storeException(fn.apply(new ShardStoreException.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code transport_address}
+		 */
+		public Builder transportAddress(String value) {
+			this.transportAddress = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ShardStore}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ShardStore build() {
+
+			return new ShardStore(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for ShardStore
+	 */
+	public static final JsonpValueParser<ShardStore> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, ShardStore::setupShardStoreParser);
+
+	protected static void setupShardStoreParser(DelegatingJsonpValueParser<ShardStore.Builder> op) {
+
+		op.add(Builder::allocation, JsonpValueParser.jsonValueParser(), "allocation");
+		op.add(Builder::allocationId, JsonpValueParser.stringParser(), "allocation_id");
+		op.add(Builder::attributes, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "attributes");
+		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
+		op.add(Builder::legacyVersion, JsonpValueParser.numberParser(), "legacy_version");
+		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::storeException, ShardStoreException.JSONP_PARSER, "store_exception");
+		op.add(Builder::transportAddress, JsonpValueParser.stringParser(), "transport_address");
+
+	}
+
+}

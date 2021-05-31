@@ -1,0 +1,237 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch._types.aggregations;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import javax.annotation.Nullable;
+
+// typedef: _types.aggregations.BucketSortAggregation
+public final class BucketSortAggregation extends Aggregation {
+	@Nullable
+	private final Number from;
+
+	@Nullable
+	private final JsonValue gapPolicy;
+
+	@Nullable
+	private final Number size;
+
+	@Nullable
+	private final List<JsonValue> sort;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected BucketSortAggregation(Builder builder) {
+		super(builder);
+		this.from = builder.from;
+		this.gapPolicy = builder.gapPolicy;
+		this.size = builder.size;
+		this.sort = builder.sort;
+
+	}
+
+	/**
+	 * API name: {@code from}
+	 */
+	@Nullable
+	public Number from() {
+		return this.from;
+	}
+
+	/**
+	 * API name: {@code gap_policy}
+	 */
+	@Nullable
+	public JsonValue gapPolicy() {
+		return this.gapPolicy;
+	}
+
+	/**
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public Number size() {
+		return this.size;
+	}
+
+	/**
+	 * API name: {@code sort}
+	 */
+	@Nullable
+	public List<JsonValue> sort() {
+		return this.sort;
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+		super.toJsonpInternal(generator, mapper);
+		if (this.from != null) {
+
+			generator.writeKey("from");
+			generator.write(this.from.doubleValue());
+
+		}
+		if (this.gapPolicy != null) {
+
+			generator.writeKey("gap_policy");
+			generator.write(this.gapPolicy);
+
+		}
+		if (this.size != null) {
+
+			generator.writeKey("size");
+			generator.write(this.size.doubleValue());
+
+		}
+		if (this.sort != null) {
+
+			generator.writeKey("sort");
+			generator.writeStartArray();
+			for (JsonValue item0 : this.sort) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link BucketSortAggregation}.
+	 */
+	public static class Builder extends Aggregation.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<BucketSortAggregation> {
+		@Nullable
+		private Number from;
+
+		@Nullable
+		private JsonValue gapPolicy;
+
+		@Nullable
+		private Number size;
+
+		@Nullable
+		private List<JsonValue> sort;
+
+		/**
+		 * API name: {@code from}
+		 */
+		public Builder from(@Nullable Number value) {
+			this.from = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code gap_policy}
+		 */
+		public Builder gapPolicy(@Nullable JsonValue value) {
+			this.gapPolicy = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code size}
+		 */
+		public Builder size(@Nullable Number value) {
+			this.size = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 */
+		public Builder sort(@Nullable List<JsonValue> value) {
+			this.sort = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 */
+		public Builder sort(JsonValue... value) {
+			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 */
+		public Builder addSort(JsonValue value) {
+			if (this.sort == null) {
+				this.sort = new ArrayList<>();
+			}
+			this.sort.add(value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link BucketSortAggregation}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public BucketSortAggregation build() {
+
+			return new BucketSortAggregation(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for BucketSortAggregation
+	 */
+	public static final JsonpValueParser<BucketSortAggregation> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, BucketSortAggregation::setupBucketSortAggregationParser);
+
+	protected static void setupBucketSortAggregationParser(
+			DelegatingJsonpValueParser<BucketSortAggregation.Builder> op) {
+		Aggregation.setupAggregationParser(op);
+		op.add(Builder::from, JsonpValueParser.numberParser(), "from");
+		op.add(Builder::gapPolicy, JsonpValueParser.jsonValueParser(), "gap_policy");
+		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+		op.add(Builder::sort, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "sort");
+
+	}
+
+}

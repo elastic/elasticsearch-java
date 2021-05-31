@@ -1,0 +1,226 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ingest;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: ingest._types.InferenceProcessor
+public final class InferenceProcessor extends ProcessorBase {
+	private final String modelId;
+
+	private final String targetField;
+
+	@Nullable
+	private final Map<String, JsonValue> fieldMap;
+
+	@Nullable
+	private final InferenceConfig inferenceConfig;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected InferenceProcessor(Builder builder) {
+		super(builder);
+		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
+		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
+		this.fieldMap = builder.fieldMap;
+		this.inferenceConfig = builder.inferenceConfig;
+
+	}
+
+	/**
+	 * API name: {@code model_id}
+	 */
+	public String modelId() {
+		return this.modelId;
+	}
+
+	/**
+	 * API name: {@code target_field}
+	 */
+	public String targetField() {
+		return this.targetField;
+	}
+
+	/**
+	 * API name: {@code field_map}
+	 */
+	@Nullable
+	public Map<String, JsonValue> fieldMap() {
+		return this.fieldMap;
+	}
+
+	/**
+	 * API name: {@code inference_config}
+	 */
+	@Nullable
+	public InferenceConfig inferenceConfig() {
+		return this.inferenceConfig;
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+		super.toJsonpInternal(generator, mapper);
+
+		generator.writeKey("model_id");
+		generator.write(this.modelId);
+
+		generator.writeKey("target_field");
+		generator.write(this.targetField);
+
+		if (this.fieldMap != null) {
+
+			generator.writeKey("field_map");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonValue> item0 : this.fieldMap.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.inferenceConfig != null) {
+
+			generator.writeKey("inference_config");
+			this.inferenceConfig.toJsonp(generator, mapper);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link InferenceProcessor}.
+	 */
+	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<InferenceProcessor> {
+		private String modelId;
+
+		private String targetField;
+
+		@Nullable
+		private Map<String, JsonValue> fieldMap;
+
+		@Nullable
+		private InferenceConfig inferenceConfig;
+
+		/**
+		 * API name: {@code model_id}
+		 */
+		public Builder modelId(String value) {
+			this.modelId = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code target_field}
+		 */
+		public Builder targetField(String value) {
+			this.targetField = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code field_map}
+		 */
+		public Builder fieldMap(@Nullable Map<String, JsonValue> value) {
+			this.fieldMap = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #fieldMap(Map)}, creating the map if needed.
+		 */
+		public Builder putFieldMap(String key, JsonValue value) {
+			if (this.fieldMap == null) {
+				this.fieldMap = new HashMap<>();
+			}
+			this.fieldMap.put(key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code inference_config}
+		 */
+		public Builder inferenceConfig(@Nullable InferenceConfig value) {
+			this.inferenceConfig = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code inference_config}
+		 */
+		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link InferenceProcessor}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public InferenceProcessor build() {
+
+			return new InferenceProcessor(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for InferenceProcessor
+	 */
+	public static final JsonpValueParser<InferenceProcessor> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, InferenceProcessor::setupInferenceProcessorParser);
+
+	protected static void setupInferenceProcessorParser(DelegatingJsonpValueParser<InferenceProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseParser(op);
+		op.add(Builder::modelId, JsonpValueParser.stringParser(), "model_id");
+		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
+		op.add(Builder::fieldMap, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "field_map");
+		op.add(Builder::inferenceConfig, InferenceConfig.JSONP_PARSER, "inference_config");
+
+	}
+
+}

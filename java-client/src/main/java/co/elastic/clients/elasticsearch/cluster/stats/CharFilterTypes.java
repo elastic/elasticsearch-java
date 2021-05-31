@@ -1,0 +1,594 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.cluster.stats;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: cluster.stats.CharFilterTypes
+public final class CharFilterTypes implements ToJsonp {
+	private final List<FieldTypes> charFilterTypes;
+
+	private final List<FieldTypes> tokenizerTypes;
+
+	private final List<FieldTypes> filterTypes;
+
+	private final List<FieldTypes> analyzerTypes;
+
+	private final List<FieldTypes> builtInCharFilters;
+
+	private final List<FieldTypes> builtInTokenizers;
+
+	private final List<FieldTypes> builtInFilters;
+
+	private final List<FieldTypes> builtInAnalyzers;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected CharFilterTypes(Builder builder) {
+
+		this.charFilterTypes = Objects.requireNonNull(builder.charFilterTypes, "char_filter_types");
+		this.tokenizerTypes = Objects.requireNonNull(builder.tokenizerTypes, "tokenizer_types");
+		this.filterTypes = Objects.requireNonNull(builder.filterTypes, "filter_types");
+		this.analyzerTypes = Objects.requireNonNull(builder.analyzerTypes, "analyzer_types");
+		this.builtInCharFilters = Objects.requireNonNull(builder.builtInCharFilters, "built_in_char_filters");
+		this.builtInTokenizers = Objects.requireNonNull(builder.builtInTokenizers, "built_in_tokenizers");
+		this.builtInFilters = Objects.requireNonNull(builder.builtInFilters, "built_in_filters");
+		this.builtInAnalyzers = Objects.requireNonNull(builder.builtInAnalyzers, "built_in_analyzers");
+
+	}
+
+	/**
+	 * API name: {@code char_filter_types}
+	 */
+	public List<FieldTypes> charFilterTypes() {
+		return this.charFilterTypes;
+	}
+
+	/**
+	 * API name: {@code tokenizer_types}
+	 */
+	public List<FieldTypes> tokenizerTypes() {
+		return this.tokenizerTypes;
+	}
+
+	/**
+	 * API name: {@code filter_types}
+	 */
+	public List<FieldTypes> filterTypes() {
+		return this.filterTypes;
+	}
+
+	/**
+	 * API name: {@code analyzer_types}
+	 */
+	public List<FieldTypes> analyzerTypes() {
+		return this.analyzerTypes;
+	}
+
+	/**
+	 * API name: {@code built_in_char_filters}
+	 */
+	public List<FieldTypes> builtInCharFilters() {
+		return this.builtInCharFilters;
+	}
+
+	/**
+	 * API name: {@code built_in_tokenizers}
+	 */
+	public List<FieldTypes> builtInTokenizers() {
+		return this.builtInTokenizers;
+	}
+
+	/**
+	 * API name: {@code built_in_filters}
+	 */
+	public List<FieldTypes> builtInFilters() {
+		return this.builtInFilters;
+	}
+
+	/**
+	 * API name: {@code built_in_analyzers}
+	 */
+	public List<FieldTypes> builtInAnalyzers() {
+		return this.builtInAnalyzers;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("char_filter_types");
+		generator.writeStartArray();
+		for (FieldTypes item0 : this.charFilterTypes) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("tokenizer_types");
+		generator.writeStartArray();
+		for (FieldTypes item0 : this.tokenizerTypes) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("filter_types");
+		generator.writeStartArray();
+		for (FieldTypes item0 : this.filterTypes) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("analyzer_types");
+		generator.writeStartArray();
+		for (FieldTypes item0 : this.analyzerTypes) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("built_in_char_filters");
+		generator.writeStartArray();
+		for (FieldTypes item0 : this.builtInCharFilters) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("built_in_tokenizers");
+		generator.writeStartArray();
+		for (FieldTypes item0 : this.builtInTokenizers) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("built_in_filters");
+		generator.writeStartArray();
+		for (FieldTypes item0 : this.builtInFilters) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("built_in_analyzers");
+		generator.writeStartArray();
+		for (FieldTypes item0 : this.builtInAnalyzers) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link CharFilterTypes}.
+	 */
+	public static class Builder implements ObjectBuilder<CharFilterTypes> {
+		private List<FieldTypes> charFilterTypes;
+
+		private List<FieldTypes> tokenizerTypes;
+
+		private List<FieldTypes> filterTypes;
+
+		private List<FieldTypes> analyzerTypes;
+
+		private List<FieldTypes> builtInCharFilters;
+
+		private List<FieldTypes> builtInTokenizers;
+
+		private List<FieldTypes> builtInFilters;
+
+		private List<FieldTypes> builtInAnalyzers;
+
+		/**
+		 * API name: {@code char_filter_types}
+		 */
+		public Builder charFilterTypes(List<FieldTypes> value) {
+			this.charFilterTypes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code char_filter_types}
+		 */
+		public Builder charFilterTypes(FieldTypes... value) {
+			this.charFilterTypes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #charFilterTypes(List)}, creating the list if needed.
+		 */
+		public Builder addCharFilterTypes(FieldTypes value) {
+			if (this.charFilterTypes == null) {
+				this.charFilterTypes = new ArrayList<>();
+			}
+			this.charFilterTypes.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #charFilterTypes(List)} to a singleton list.
+		 */
+		public Builder charFilterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.charFilterTypes(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #charFilterTypes(List)}, creating the list if needed.
+		 */
+		public Builder addCharFilterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.addCharFilterTypes(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code tokenizer_types}
+		 */
+		public Builder tokenizerTypes(List<FieldTypes> value) {
+			this.tokenizerTypes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code tokenizer_types}
+		 */
+		public Builder tokenizerTypes(FieldTypes... value) {
+			this.tokenizerTypes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #tokenizerTypes(List)}, creating the list if needed.
+		 */
+		public Builder addTokenizerTypes(FieldTypes value) {
+			if (this.tokenizerTypes == null) {
+				this.tokenizerTypes = new ArrayList<>();
+			}
+			this.tokenizerTypes.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #tokenizerTypes(List)} to a singleton list.
+		 */
+		public Builder tokenizerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.tokenizerTypes(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #tokenizerTypes(List)}, creating the list if needed.
+		 */
+		public Builder addTokenizerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.addTokenizerTypes(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code filter_types}
+		 */
+		public Builder filterTypes(List<FieldTypes> value) {
+			this.filterTypes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code filter_types}
+		 */
+		public Builder filterTypes(FieldTypes... value) {
+			this.filterTypes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #filterTypes(List)}, creating the list if needed.
+		 */
+		public Builder addFilterTypes(FieldTypes value) {
+			if (this.filterTypes == null) {
+				this.filterTypes = new ArrayList<>();
+			}
+			this.filterTypes.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #filterTypes(List)} to a singleton list.
+		 */
+		public Builder filterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.filterTypes(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #filterTypes(List)}, creating the list if needed.
+		 */
+		public Builder addFilterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.addFilterTypes(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code analyzer_types}
+		 */
+		public Builder analyzerTypes(List<FieldTypes> value) {
+			this.analyzerTypes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code analyzer_types}
+		 */
+		public Builder analyzerTypes(FieldTypes... value) {
+			this.analyzerTypes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #analyzerTypes(List)}, creating the list if needed.
+		 */
+		public Builder addAnalyzerTypes(FieldTypes value) {
+			if (this.analyzerTypes == null) {
+				this.analyzerTypes = new ArrayList<>();
+			}
+			this.analyzerTypes.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #analyzerTypes(List)} to a singleton list.
+		 */
+		public Builder analyzerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.analyzerTypes(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #analyzerTypes(List)}, creating the list if needed.
+		 */
+		public Builder addAnalyzerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.addAnalyzerTypes(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code built_in_char_filters}
+		 */
+		public Builder builtInCharFilters(List<FieldTypes> value) {
+			this.builtInCharFilters = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code built_in_char_filters}
+		 */
+		public Builder builtInCharFilters(FieldTypes... value) {
+			this.builtInCharFilters = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #builtInCharFilters(List)}, creating the list if
+		 * needed.
+		 */
+		public Builder addBuiltInCharFilters(FieldTypes value) {
+			if (this.builtInCharFilters == null) {
+				this.builtInCharFilters = new ArrayList<>();
+			}
+			this.builtInCharFilters.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #builtInCharFilters(List)} to a singleton list.
+		 */
+		public Builder builtInCharFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.builtInCharFilters(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #builtInCharFilters(List)}, creating the list if
+		 * needed.
+		 */
+		public Builder addBuiltInCharFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.addBuiltInCharFilters(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code built_in_tokenizers}
+		 */
+		public Builder builtInTokenizers(List<FieldTypes> value) {
+			this.builtInTokenizers = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code built_in_tokenizers}
+		 */
+		public Builder builtInTokenizers(FieldTypes... value) {
+			this.builtInTokenizers = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #builtInTokenizers(List)}, creating the list if needed.
+		 */
+		public Builder addBuiltInTokenizers(FieldTypes value) {
+			if (this.builtInTokenizers == null) {
+				this.builtInTokenizers = new ArrayList<>();
+			}
+			this.builtInTokenizers.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #builtInTokenizers(List)} to a singleton list.
+		 */
+		public Builder builtInTokenizers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.builtInTokenizers(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #builtInTokenizers(List)}, creating the list if needed.
+		 */
+		public Builder addBuiltInTokenizers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.addBuiltInTokenizers(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code built_in_filters}
+		 */
+		public Builder builtInFilters(List<FieldTypes> value) {
+			this.builtInFilters = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code built_in_filters}
+		 */
+		public Builder builtInFilters(FieldTypes... value) {
+			this.builtInFilters = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #builtInFilters(List)}, creating the list if needed.
+		 */
+		public Builder addBuiltInFilters(FieldTypes value) {
+			if (this.builtInFilters == null) {
+				this.builtInFilters = new ArrayList<>();
+			}
+			this.builtInFilters.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #builtInFilters(List)} to a singleton list.
+		 */
+		public Builder builtInFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.builtInFilters(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #builtInFilters(List)}, creating the list if needed.
+		 */
+		public Builder addBuiltInFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.addBuiltInFilters(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code built_in_analyzers}
+		 */
+		public Builder builtInAnalyzers(List<FieldTypes> value) {
+			this.builtInAnalyzers = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code built_in_analyzers}
+		 */
+		public Builder builtInAnalyzers(FieldTypes... value) {
+			this.builtInAnalyzers = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #builtInAnalyzers(List)}, creating the list if needed.
+		 */
+		public Builder addBuiltInAnalyzers(FieldTypes value) {
+			if (this.builtInAnalyzers == null) {
+				this.builtInAnalyzers = new ArrayList<>();
+			}
+			this.builtInAnalyzers.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #builtInAnalyzers(List)} to a singleton list.
+		 */
+		public Builder builtInAnalyzers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.builtInAnalyzers(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #builtInAnalyzers(List)}, creating the list if needed.
+		 */
+		public Builder addBuiltInAnalyzers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return this.addBuiltInAnalyzers(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link CharFilterTypes}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public CharFilterTypes build() {
+
+			return new CharFilterTypes(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for CharFilterTypes
+	 */
+	public static final JsonpValueParser<CharFilterTypes> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, CharFilterTypes::setupCharFilterTypesParser);
+
+	protected static void setupCharFilterTypesParser(DelegatingJsonpValueParser<CharFilterTypes.Builder> op) {
+
+		op.add(Builder::charFilterTypes, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "char_filter_types");
+		op.add(Builder::tokenizerTypes, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "tokenizer_types");
+		op.add(Builder::filterTypes, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "filter_types");
+		op.add(Builder::analyzerTypes, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "analyzer_types");
+		op.add(Builder::builtInCharFilters, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER),
+				"built_in_char_filters");
+		op.add(Builder::builtInTokenizers, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER),
+				"built_in_tokenizers");
+		op.add(Builder::builtInFilters, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "built_in_filters");
+		op.add(Builder::builtInAnalyzers, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "built_in_analyzers");
+
+	}
+
+}

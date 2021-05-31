@@ -1,0 +1,322 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.cluster;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Number;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Nullable;
+
+// typedef: cluster.allocation_explain.Request
+public final class AllocationExplainRequest extends RequestBase implements ToJsonp {
+	@Nullable
+	private final Boolean includeDiskInfo;
+
+	@Nullable
+	private final Boolean includeYesDecisions;
+
+	@Nullable
+	private final String currentNode;
+
+	@Nullable
+	private final String index;
+
+	@Nullable
+	private final Boolean primary;
+
+	@Nullable
+	private final Number shard;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected AllocationExplainRequest(Builder builder) {
+
+		this.includeDiskInfo = builder.includeDiskInfo;
+		this.includeYesDecisions = builder.includeYesDecisions;
+		this.currentNode = builder.currentNode;
+		this.index = builder.index;
+		this.primary = builder.primary;
+		this.shard = builder.shard;
+
+	}
+
+	/**
+	 * If true, returns information about disk usage and shard sizes.
+	 *
+	 * API name: {@code include_disk_info}
+	 */
+	@Nullable
+	public Boolean includeDiskInfo() {
+		return this.includeDiskInfo;
+	}
+
+	/**
+	 * If true, returns YES decisions in explanation.
+	 *
+	 * API name: {@code include_yes_decisions}
+	 */
+	@Nullable
+	public Boolean includeYesDecisions() {
+		return this.includeYesDecisions;
+	}
+
+	/**
+	 * Specifies the node ID or the name of the node to only explain a shard that is
+	 * currently located on the specified node.
+	 *
+	 * API name: {@code current_node}
+	 */
+	@Nullable
+	public String currentNode() {
+		return this.currentNode;
+	}
+
+	/**
+	 * Specifies the name of the index that you would like an explanation for.
+	 *
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public String index() {
+		return this.index;
+	}
+
+	/**
+	 * If true, returns explanation for the primary shard for the given shard ID.
+	 *
+	 * API name: {@code primary}
+	 */
+	@Nullable
+	public Boolean primary() {
+		return this.primary;
+	}
+
+	/**
+	 * Specifies the ID of the shard that you would like an explanation for.
+	 *
+	 * API name: {@code shard}
+	 */
+	@Nullable
+	public Number shard() {
+		return this.shard;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.currentNode != null) {
+
+			generator.writeKey("current_node");
+			generator.write(this.currentNode);
+
+		}
+		if (this.index != null) {
+
+			generator.writeKey("index");
+			generator.write(this.index);
+
+		}
+		if (this.primary != null) {
+
+			generator.writeKey("primary");
+			generator.write(this.primary);
+
+		}
+		if (this.shard != null) {
+
+			generator.writeKey("shard");
+			generator.write(this.shard.doubleValue());
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link AllocationExplainRequest}.
+	 */
+	public static class Builder implements ObjectBuilder<AllocationExplainRequest> {
+		@Nullable
+		private Boolean includeDiskInfo;
+
+		@Nullable
+		private Boolean includeYesDecisions;
+
+		@Nullable
+		private String currentNode;
+
+		@Nullable
+		private String index;
+
+		@Nullable
+		private Boolean primary;
+
+		@Nullable
+		private Number shard;
+
+		/**
+		 * If true, returns information about disk usage and shard sizes.
+		 *
+		 * API name: {@code include_disk_info}
+		 */
+		public Builder includeDiskInfo(@Nullable Boolean value) {
+			this.includeDiskInfo = value;
+			return this;
+		}
+
+		/**
+		 * If true, returns YES decisions in explanation.
+		 *
+		 * API name: {@code include_yes_decisions}
+		 */
+		public Builder includeYesDecisions(@Nullable Boolean value) {
+			this.includeYesDecisions = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the node ID or the name of the node to only explain a shard that is
+		 * currently located on the specified node.
+		 *
+		 * API name: {@code current_node}
+		 */
+		public Builder currentNode(@Nullable String value) {
+			this.currentNode = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the name of the index that you would like an explanation for.
+		 *
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * If true, returns explanation for the primary shard for the given shard ID.
+		 *
+		 * API name: {@code primary}
+		 */
+		public Builder primary(@Nullable Boolean value) {
+			this.primary = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the ID of the shard that you would like an explanation for.
+		 *
+		 * API name: {@code shard}
+		 */
+		public Builder shard(@Nullable Number value) {
+			this.shard = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link AllocationExplainRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public AllocationExplainRequest build() {
+
+			return new AllocationExplainRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for AllocationExplainRequest
+	 */
+	public static final JsonpValueParser<AllocationExplainRequest> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, AllocationExplainRequest::setupAllocationExplainRequestParser);
+
+	protected static void setupAllocationExplainRequestParser(
+			DelegatingJsonpValueParser<AllocationExplainRequest.Builder> op) {
+
+		op.add(Builder::currentNode, JsonpValueParser.stringParser(), "current_node");
+		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
+		op.add(Builder::primary, JsonpValueParser.booleanParser(), "primary");
+		op.add(Builder::shard, JsonpValueParser.numberParser(), "shard");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code cluster.allocation_explain}".
+	 */
+	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "POST",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				buf.append("/_cluster");
+				buf.append("/allocation");
+				buf.append("/explain");
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				if (request.includeDiskInfo != null) {
+					params.put("include_disk_info", String.valueOf(request.includeDiskInfo));
+				}
+				if (request.includeYesDecisions != null) {
+					params.put("include_yes_decisions", String.valueOf(request.includeYesDecisions));
+				}
+				return params;
+
+			}, Endpoint.Simple.emptyMap(), true, AllocationExplainResponse.JSONP_PARSER);
+}

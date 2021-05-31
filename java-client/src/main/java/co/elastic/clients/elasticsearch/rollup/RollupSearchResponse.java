@@ -1,0 +1,313 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.rollup;
+
+import co.elastic.clients.elasticsearch._global.search.HitsMetadata;
+import co.elastic.clients.elasticsearch._types.ShardStatistics;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Number;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import javax.annotation.Nullable;
+
+// typedef: rollup.rollup_search.Response
+public final class RollupSearchResponse<TDocument> implements ToJsonp {
+	private final Number took;
+
+	private final Boolean timedOut;
+
+	@Nullable
+	private final Boolean terminatedEarly;
+
+	private final ShardStatistics _shards;
+
+	private final HitsMetadata<TDocument> hits;
+
+	@Nullable
+	private final Map<String, JsonValue> aggregations;
+
+	@Nullable
+	private final JsonpSerializer<TDocument> tDocumentSerializer;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected RollupSearchResponse(Builder<TDocument> builder) {
+
+		this.took = Objects.requireNonNull(builder.took, "took");
+		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
+		this.terminatedEarly = builder.terminatedEarly;
+		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.hits = Objects.requireNonNull(builder.hits, "hits");
+		this.aggregations = builder.aggregations;
+		this.tDocumentSerializer = builder.tDocumentSerializer;
+
+	}
+
+	/**
+	 * API name: {@code took}
+	 */
+	public Number took() {
+		return this.took;
+	}
+
+	/**
+	 * API name: {@code timed_out}
+	 */
+	public Boolean timedOut() {
+		return this.timedOut;
+	}
+
+	/**
+	 * API name: {@code terminated_early}
+	 */
+	@Nullable
+	public Boolean terminatedEarly() {
+		return this.terminatedEarly;
+	}
+
+	/**
+	 * API name: {@code _shards}
+	 */
+	public ShardStatistics _shards() {
+		return this._shards;
+	}
+
+	/**
+	 * API name: {@code hits}
+	 */
+	public HitsMetadata<TDocument> hits() {
+		return this.hits;
+	}
+
+	/**
+	 * API name: {@code aggregations}
+	 */
+	@Nullable
+	public Map<String, JsonValue> aggregations() {
+		return this.aggregations;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("took");
+		generator.write(this.took.doubleValue());
+
+		generator.writeKey("timed_out");
+		generator.write(this.timedOut);
+
+		if (this.terminatedEarly != null) {
+
+			generator.writeKey("terminated_early");
+			generator.write(this.terminatedEarly);
+
+		}
+
+		generator.writeKey("_shards");
+		this._shards.toJsonp(generator, mapper);
+
+		generator.writeKey("hits");
+		this.hits.toJsonp(generator, mapper);
+
+		if (this.aggregations != null) {
+
+			generator.writeKey("aggregations");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonValue> item0 : this.aggregations.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link RollupSearchResponse}.
+	 */
+	public static class Builder<TDocument> implements ObjectBuilder<RollupSearchResponse<TDocument>> {
+		private Number took;
+
+		private Boolean timedOut;
+
+		@Nullable
+		private Boolean terminatedEarly;
+
+		private ShardStatistics _shards;
+
+		private HitsMetadata<TDocument> hits;
+
+		@Nullable
+		private Map<String, JsonValue> aggregations;
+
+		@Nullable
+		private JsonpSerializer<TDocument> tDocumentSerializer;
+
+		/**
+		 * API name: {@code took}
+		 */
+		public Builder<TDocument> took(Number value) {
+			this.took = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code timed_out}
+		 */
+		public Builder<TDocument> timedOut(Boolean value) {
+			this.timedOut = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code terminated_early}
+		 */
+		public Builder<TDocument> terminatedEarly(@Nullable Boolean value) {
+			this.terminatedEarly = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _shards}
+		 */
+		public Builder<TDocument> _shards(ShardStatistics value) {
+			this._shards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _shards}
+		 */
+		public Builder<TDocument> _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code hits}
+		 */
+		public Builder<TDocument> hits(HitsMetadata<TDocument> value) {
+			this.hits = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code hits}
+		 */
+		public Builder<TDocument> hits(
+				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
+			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 */
+		public Builder<TDocument> aggregations(@Nullable Map<String, JsonValue> value) {
+			this.aggregations = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
+		 */
+		public Builder<TDocument> putAggregations(String key, JsonValue value) {
+			if (this.aggregations == null) {
+				this.aggregations = new HashMap<>();
+			}
+			this.aggregations.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Serializer for TDocument. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 *
+		 */
+		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+			this.tDocumentSerializer = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link RollupSearchResponse}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public RollupSearchResponse<TDocument> build() {
+
+			return new RollupSearchResponse<TDocument>(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Create a json parser for RollupSearchResponse
+	 */
+	public static <TDocument> JsonpValueParser<RollupSearchResponse<TDocument>> createRollupSearchResponseParser(
+			JsonpValueParser<TDocument> tDocumentParser) {
+		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> RollupSearchResponse.setupRollupSearchResponseParser(op, tDocumentParser));
+	};
+
+	protected static <TDocument> void setupRollupSearchResponseParser(
+			DelegatingJsonpValueParser<RollupSearchResponse.Builder<TDocument>> op,
+			JsonpValueParser<TDocument> tDocumentParser) {
+
+		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
+		op.add(Builder::timedOut, JsonpValueParser.booleanParser(), "timed_out");
+		op.add(Builder::terminatedEarly, JsonpValueParser.booleanParser(), "terminated_early");
+		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
+		op.add(Builder::hits, HitsMetadata.createHitsMetadataParser(tDocumentParser), "hits");
+		op.add(Builder::aggregations, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
+				"aggregations");
+
+	}
+
+}

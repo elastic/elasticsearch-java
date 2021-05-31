@@ -1,0 +1,263 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.indices;
+
+import co.elastic.clients.elasticsearch._types.ShardStatistics;
+import co.elastic.clients.elasticsearch.indices.validate_query.IndicesValidationExplanation;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: indices.validate_query.Response
+public final class ValidateQueryResponse implements ToJsonp {
+	@Nullable
+	private final List<IndicesValidationExplanation> explanations;
+
+	@Nullable
+	private final ShardStatistics _shards;
+
+	private final Boolean valid;
+
+	@Nullable
+	private final String error;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected ValidateQueryResponse(Builder builder) {
+
+		this.explanations = builder.explanations;
+		this._shards = builder._shards;
+		this.valid = Objects.requireNonNull(builder.valid, "valid");
+		this.error = builder.error;
+
+	}
+
+	/**
+	 * API name: {@code explanations}
+	 */
+	@Nullable
+	public List<IndicesValidationExplanation> explanations() {
+		return this.explanations;
+	}
+
+	/**
+	 * API name: {@code _shards}
+	 */
+	@Nullable
+	public ShardStatistics _shards() {
+		return this._shards;
+	}
+
+	/**
+	 * API name: {@code valid}
+	 */
+	public Boolean valid() {
+		return this.valid;
+	}
+
+	/**
+	 * API name: {@code error}
+	 */
+	@Nullable
+	public String error() {
+		return this.error;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.explanations != null) {
+
+			generator.writeKey("explanations");
+			generator.writeStartArray();
+			for (IndicesValidationExplanation item0 : this.explanations) {
+				item0.toJsonp(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this._shards != null) {
+
+			generator.writeKey("_shards");
+			this._shards.toJsonp(generator, mapper);
+
+		}
+
+		generator.writeKey("valid");
+		generator.write(this.valid);
+
+		if (this.error != null) {
+
+			generator.writeKey("error");
+			generator.write(this.error);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ValidateQueryResponse}.
+	 */
+	public static class Builder implements ObjectBuilder<ValidateQueryResponse> {
+		@Nullable
+		private List<IndicesValidationExplanation> explanations;
+
+		@Nullable
+		private ShardStatistics _shards;
+
+		private Boolean valid;
+
+		@Nullable
+		private String error;
+
+		/**
+		 * API name: {@code explanations}
+		 */
+		public Builder explanations(@Nullable List<IndicesValidationExplanation> value) {
+			this.explanations = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code explanations}
+		 */
+		public Builder explanations(IndicesValidationExplanation... value) {
+			this.explanations = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #explanations(List)}, creating the list if needed.
+		 */
+		public Builder addExplanations(IndicesValidationExplanation value) {
+			if (this.explanations == null) {
+				this.explanations = new ArrayList<>();
+			}
+			this.explanations.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #explanations(List)} to a singleton list.
+		 */
+		public Builder explanations(
+				Function<IndicesValidationExplanation.Builder, ObjectBuilder<IndicesValidationExplanation>> fn) {
+			return this.explanations(fn.apply(new IndicesValidationExplanation.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #explanations(List)}, creating the list if needed.
+		 */
+		public Builder addExplanations(
+				Function<IndicesValidationExplanation.Builder, ObjectBuilder<IndicesValidationExplanation>> fn) {
+			return this.addExplanations(fn.apply(new IndicesValidationExplanation.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code _shards}
+		 */
+		public Builder _shards(@Nullable ShardStatistics value) {
+			this._shards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _shards}
+		 */
+		public Builder _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code valid}
+		 */
+		public Builder valid(Boolean value) {
+			this.valid = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code error}
+		 */
+		public Builder error(@Nullable String value) {
+			this.error = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ValidateQueryResponse}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ValidateQueryResponse build() {
+
+			return new ValidateQueryResponse(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for ValidateQueryResponse
+	 */
+	public static final JsonpValueParser<ValidateQueryResponse> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, ValidateQueryResponse::setupValidateQueryResponseParser);
+
+	protected static void setupValidateQueryResponseParser(
+			DelegatingJsonpValueParser<ValidateQueryResponse.Builder> op) {
+
+		op.add(Builder::explanations, JsonpValueParser.arrayParser(IndicesValidationExplanation.JSONP_PARSER),
+				"explanations");
+		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
+		op.add(Builder::valid, JsonpValueParser.booleanParser(), "valid");
+		op.add(Builder::error, JsonpValueParser.stringParser(), "error");
+
+	}
+
+}

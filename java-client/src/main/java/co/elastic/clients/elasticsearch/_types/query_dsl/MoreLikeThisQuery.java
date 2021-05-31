@@ -1,0 +1,749 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch._types.query_dsl;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Number;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Nullable;
+
+// typedef: _types.query_dsl.MoreLikeThisQuery
+public final class MoreLikeThisQuery extends QueryBase {
+	@Nullable
+	private final String analyzer;
+
+	@Nullable
+	private final Number boostTerms;
+
+	@Nullable
+	private final List<String> fields;
+
+	@Nullable
+	private final Boolean include;
+
+	@Nullable
+	private final List<JsonValue> like;
+
+	@Nullable
+	private final Number maxDocFreq;
+
+	@Nullable
+	private final Number maxQueryTerms;
+
+	@Nullable
+	private final Number maxWordLength;
+
+	@Nullable
+	private final Number minDocFreq;
+
+	@Nullable
+	private final JsonValue minimumShouldMatch;
+
+	@Nullable
+	private final Number minTermFreq;
+
+	@Nullable
+	private final Number minWordLength;
+
+	@Nullable
+	private final Map<String, String> perFieldAnalyzer;
+
+	@Nullable
+	private final JsonValue routing;
+
+	@Nullable
+	private final List<String> stopWords;
+
+	@Nullable
+	private final List<JsonValue> unlike;
+
+	@Nullable
+	private final Number version;
+
+	@Nullable
+	private final JsonValue versionType;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected MoreLikeThisQuery(Builder builder) {
+		super(builder);
+		this.analyzer = builder.analyzer;
+		this.boostTerms = builder.boostTerms;
+		this.fields = builder.fields;
+		this.include = builder.include;
+		this.like = builder.like;
+		this.maxDocFreq = builder.maxDocFreq;
+		this.maxQueryTerms = builder.maxQueryTerms;
+		this.maxWordLength = builder.maxWordLength;
+		this.minDocFreq = builder.minDocFreq;
+		this.minimumShouldMatch = builder.minimumShouldMatch;
+		this.minTermFreq = builder.minTermFreq;
+		this.minWordLength = builder.minWordLength;
+		this.perFieldAnalyzer = builder.perFieldAnalyzer;
+		this.routing = builder.routing;
+		this.stopWords = builder.stopWords;
+		this.unlike = builder.unlike;
+		this.version = builder.version;
+		this.versionType = builder.versionType;
+
+	}
+
+	/**
+	 * API name: {@code analyzer}
+	 */
+	@Nullable
+	public String analyzer() {
+		return this.analyzer;
+	}
+
+	/**
+	 * API name: {@code boost_terms}
+	 */
+	@Nullable
+	public Number boostTerms() {
+		return this.boostTerms;
+	}
+
+	/**
+	 * API name: {@code fields}
+	 */
+	@Nullable
+	public List<String> fields() {
+		return this.fields;
+	}
+
+	/**
+	 * API name: {@code include}
+	 */
+	@Nullable
+	public Boolean include() {
+		return this.include;
+	}
+
+	/**
+	 * API name: {@code like}
+	 */
+	@Nullable
+	public List<JsonValue> like() {
+		return this.like;
+	}
+
+	/**
+	 * API name: {@code max_doc_freq}
+	 */
+	@Nullable
+	public Number maxDocFreq() {
+		return this.maxDocFreq;
+	}
+
+	/**
+	 * API name: {@code max_query_terms}
+	 */
+	@Nullable
+	public Number maxQueryTerms() {
+		return this.maxQueryTerms;
+	}
+
+	/**
+	 * API name: {@code max_word_length}
+	 */
+	@Nullable
+	public Number maxWordLength() {
+		return this.maxWordLength;
+	}
+
+	/**
+	 * API name: {@code min_doc_freq}
+	 */
+	@Nullable
+	public Number minDocFreq() {
+		return this.minDocFreq;
+	}
+
+	/**
+	 * API name: {@code minimum_should_match}
+	 */
+	@Nullable
+	public JsonValue minimumShouldMatch() {
+		return this.minimumShouldMatch;
+	}
+
+	/**
+	 * API name: {@code min_term_freq}
+	 */
+	@Nullable
+	public Number minTermFreq() {
+		return this.minTermFreq;
+	}
+
+	/**
+	 * API name: {@code min_word_length}
+	 */
+	@Nullable
+	public Number minWordLength() {
+		return this.minWordLength;
+	}
+
+	/**
+	 * API name: {@code per_field_analyzer}
+	 */
+	@Nullable
+	public Map<String, String> perFieldAnalyzer() {
+		return this.perFieldAnalyzer;
+	}
+
+	/**
+	 * API name: {@code routing}
+	 */
+	@Nullable
+	public JsonValue routing() {
+		return this.routing;
+	}
+
+	/**
+	 * API name: {@code stop_words}
+	 */
+	@Nullable
+	public List<String> stopWords() {
+		return this.stopWords;
+	}
+
+	/**
+	 * API name: {@code unlike}
+	 */
+	@Nullable
+	public List<JsonValue> unlike() {
+		return this.unlike;
+	}
+
+	/**
+	 * API name: {@code version}
+	 */
+	@Nullable
+	public Number version() {
+		return this.version;
+	}
+
+	/**
+	 * API name: {@code version_type}
+	 */
+	@Nullable
+	public JsonValue versionType() {
+		return this.versionType;
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+		super.toJsonpInternal(generator, mapper);
+		if (this.analyzer != null) {
+
+			generator.writeKey("analyzer");
+			generator.write(this.analyzer);
+
+		}
+		if (this.boostTerms != null) {
+
+			generator.writeKey("boost_terms");
+			generator.write(this.boostTerms.doubleValue());
+
+		}
+		if (this.fields != null) {
+
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (String item0 : this.fields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.include != null) {
+
+			generator.writeKey("include");
+			generator.write(this.include);
+
+		}
+		if (this.like != null) {
+
+			generator.writeKey("like");
+			generator.writeStartArray();
+			for (JsonValue item0 : this.like) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.maxDocFreq != null) {
+
+			generator.writeKey("max_doc_freq");
+			generator.write(this.maxDocFreq.doubleValue());
+
+		}
+		if (this.maxQueryTerms != null) {
+
+			generator.writeKey("max_query_terms");
+			generator.write(this.maxQueryTerms.doubleValue());
+
+		}
+		if (this.maxWordLength != null) {
+
+			generator.writeKey("max_word_length");
+			generator.write(this.maxWordLength.doubleValue());
+
+		}
+		if (this.minDocFreq != null) {
+
+			generator.writeKey("min_doc_freq");
+			generator.write(this.minDocFreq.doubleValue());
+
+		}
+		if (this.minimumShouldMatch != null) {
+
+			generator.writeKey("minimum_should_match");
+			generator.write(this.minimumShouldMatch);
+
+		}
+		if (this.minTermFreq != null) {
+
+			generator.writeKey("min_term_freq");
+			generator.write(this.minTermFreq.doubleValue());
+
+		}
+		if (this.minWordLength != null) {
+
+			generator.writeKey("min_word_length");
+			generator.write(this.minWordLength.doubleValue());
+
+		}
+		if (this.perFieldAnalyzer != null) {
+
+			generator.writeKey("per_field_analyzer");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.perFieldAnalyzer.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.routing != null) {
+
+			generator.writeKey("routing");
+			generator.write(this.routing);
+
+		}
+		if (this.stopWords != null) {
+
+			generator.writeKey("stop_words");
+			generator.writeStartArray();
+			for (String item0 : this.stopWords) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.unlike != null) {
+
+			generator.writeKey("unlike");
+			generator.writeStartArray();
+			for (JsonValue item0 : this.unlike) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.version != null) {
+
+			generator.writeKey("version");
+			generator.write(this.version.doubleValue());
+
+		}
+		if (this.versionType != null) {
+
+			generator.writeKey("version_type");
+			generator.write(this.versionType);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link MoreLikeThisQuery}.
+	 */
+	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MoreLikeThisQuery> {
+		@Nullable
+		private String analyzer;
+
+		@Nullable
+		private Number boostTerms;
+
+		@Nullable
+		private List<String> fields;
+
+		@Nullable
+		private Boolean include;
+
+		@Nullable
+		private List<JsonValue> like;
+
+		@Nullable
+		private Number maxDocFreq;
+
+		@Nullable
+		private Number maxQueryTerms;
+
+		@Nullable
+		private Number maxWordLength;
+
+		@Nullable
+		private Number minDocFreq;
+
+		@Nullable
+		private JsonValue minimumShouldMatch;
+
+		@Nullable
+		private Number minTermFreq;
+
+		@Nullable
+		private Number minWordLength;
+
+		@Nullable
+		private Map<String, String> perFieldAnalyzer;
+
+		@Nullable
+		private JsonValue routing;
+
+		@Nullable
+		private List<String> stopWords;
+
+		@Nullable
+		private List<JsonValue> unlike;
+
+		@Nullable
+		private Number version;
+
+		@Nullable
+		private JsonValue versionType;
+
+		/**
+		 * API name: {@code analyzer}
+		 */
+		public Builder analyzer(@Nullable String value) {
+			this.analyzer = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code boost_terms}
+		 */
+		public Builder boostTerms(@Nullable Number value) {
+			this.boostTerms = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 */
+		public Builder fields(@Nullable List<String> value) {
+			this.fields = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 */
+		public Builder fields(String... value) {
+			this.fields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 */
+		public Builder addFields(String value) {
+			if (this.fields == null) {
+				this.fields = new ArrayList<>();
+			}
+			this.fields.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code include}
+		 */
+		public Builder include(@Nullable Boolean value) {
+			this.include = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code like}
+		 */
+		public Builder like(@Nullable List<JsonValue> value) {
+			this.like = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code like}
+		 */
+		public Builder like(JsonValue... value) {
+			this.like = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #like(List)}, creating the list if needed.
+		 */
+		public Builder addLike(JsonValue value) {
+			if (this.like == null) {
+				this.like = new ArrayList<>();
+			}
+			this.like.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_doc_freq}
+		 */
+		public Builder maxDocFreq(@Nullable Number value) {
+			this.maxDocFreq = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_query_terms}
+		 */
+		public Builder maxQueryTerms(@Nullable Number value) {
+			this.maxQueryTerms = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_word_length}
+		 */
+		public Builder maxWordLength(@Nullable Number value) {
+			this.maxWordLength = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code min_doc_freq}
+		 */
+		public Builder minDocFreq(@Nullable Number value) {
+			this.minDocFreq = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code minimum_should_match}
+		 */
+		public Builder minimumShouldMatch(@Nullable JsonValue value) {
+			this.minimumShouldMatch = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code min_term_freq}
+		 */
+		public Builder minTermFreq(@Nullable Number value) {
+			this.minTermFreq = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code min_word_length}
+		 */
+		public Builder minWordLength(@Nullable Number value) {
+			this.minWordLength = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code per_field_analyzer}
+		 */
+		public Builder perFieldAnalyzer(@Nullable Map<String, String> value) {
+			this.perFieldAnalyzer = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #perFieldAnalyzer(Map)}, creating the map if
+		 * needed.
+		 */
+		public Builder putPerFieldAnalyzer(String key, String value) {
+			if (this.perFieldAnalyzer == null) {
+				this.perFieldAnalyzer = new HashMap<>();
+			}
+			this.perFieldAnalyzer.put(key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code routing}
+		 */
+		public Builder routing(@Nullable JsonValue value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code stop_words}
+		 */
+		public Builder stopWords(@Nullable List<String> value) {
+			this.stopWords = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code stop_words}
+		 */
+		public Builder stopWords(String... value) {
+			this.stopWords = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #stopWords(List)}, creating the list if needed.
+		 */
+		public Builder addStopWords(String value) {
+			if (this.stopWords == null) {
+				this.stopWords = new ArrayList<>();
+			}
+			this.stopWords.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code unlike}
+		 */
+		public Builder unlike(@Nullable List<JsonValue> value) {
+			this.unlike = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code unlike}
+		 */
+		public Builder unlike(JsonValue... value) {
+			this.unlike = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #unlike(List)}, creating the list if needed.
+		 */
+		public Builder addUnlike(JsonValue value) {
+			if (this.unlike == null) {
+				this.unlike = new ArrayList<>();
+			}
+			this.unlike.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code version}
+		 */
+		public Builder version(@Nullable Number value) {
+			this.version = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code version_type}
+		 */
+		public Builder versionType(@Nullable JsonValue value) {
+			this.versionType = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link MoreLikeThisQuery}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public MoreLikeThisQuery build() {
+
+			return new MoreLikeThisQuery(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for MoreLikeThisQuery
+	 */
+	public static final JsonpValueParser<MoreLikeThisQuery> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryParser);
+
+	protected static void setupMoreLikeThisQueryParser(DelegatingJsonpValueParser<MoreLikeThisQuery.Builder> op) {
+		QueryBase.setupQueryBaseParser(op);
+		op.add(Builder::analyzer, JsonpValueParser.stringParser(), "analyzer");
+		op.add(Builder::boostTerms, JsonpValueParser.numberParser(), "boost_terms");
+		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "fields");
+		op.add(Builder::include, JsonpValueParser.booleanParser(), "include");
+		op.add(Builder::like, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "like");
+		op.add(Builder::maxDocFreq, JsonpValueParser.numberParser(), "max_doc_freq");
+		op.add(Builder::maxQueryTerms, JsonpValueParser.numberParser(), "max_query_terms");
+		op.add(Builder::maxWordLength, JsonpValueParser.numberParser(), "max_word_length");
+		op.add(Builder::minDocFreq, JsonpValueParser.numberParser(), "min_doc_freq");
+		op.add(Builder::minimumShouldMatch, JsonpValueParser.jsonValueParser(), "minimum_should_match");
+		op.add(Builder::minTermFreq, JsonpValueParser.numberParser(), "min_term_freq");
+		op.add(Builder::minWordLength, JsonpValueParser.numberParser(), "min_word_length");
+		op.add(Builder::perFieldAnalyzer, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
+				"per_field_analyzer");
+		op.add(Builder::routing, JsonpValueParser.jsonValueParser(), "routing");
+		op.add(Builder::stopWords, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "stop_words");
+		op.add(Builder::unlike, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "unlike");
+		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
+		op.add(Builder::versionType, JsonpValueParser.jsonValueParser(), "version_type");
+
+	}
+
+}

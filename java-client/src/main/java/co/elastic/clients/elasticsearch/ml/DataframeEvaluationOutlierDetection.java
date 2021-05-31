@@ -1,0 +1,204 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ml;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: ml._types.DataframeEvaluationOutlierDetection
+public final class DataframeEvaluationOutlierDetection implements ToJsonp {
+	private final String actualField;
+
+	private final String predictedProbabilityField;
+
+	@Nullable
+	private final DataframeEvaluationOutlierDetectionMetrics metrics;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected DataframeEvaluationOutlierDetection(Builder builder) {
+
+		this.actualField = Objects.requireNonNull(builder.actualField, "actual_field");
+		this.predictedProbabilityField = Objects.requireNonNull(builder.predictedProbabilityField,
+				"predicted_probability_field");
+		this.metrics = builder.metrics;
+
+	}
+
+	/**
+	 * The field of the index which contains the ground truth. The data type of this
+	 * field can be boolean or integer. If the data type is integer, the value has
+	 * to be either 0 (false) or 1 (true).
+	 *
+	 * API name: {@code actual_field}
+	 */
+	public String actualField() {
+		return this.actualField;
+	}
+
+	/**
+	 * The field of the index that defines the probability of whether the item
+	 * belongs to the class in question or not. It’s the field that contains the
+	 * results of the analysis.
+	 *
+	 * API name: {@code predicted_probability_field}
+	 */
+	public String predictedProbabilityField() {
+		return this.predictedProbabilityField;
+	}
+
+	/**
+	 * Specifies the metrics that are used for the evaluation.
+	 *
+	 * API name: {@code metrics}
+	 */
+	@Nullable
+	public DataframeEvaluationOutlierDetectionMetrics metrics() {
+		return this.metrics;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("actual_field");
+		generator.write(this.actualField);
+
+		generator.writeKey("predicted_probability_field");
+		generator.write(this.predictedProbabilityField);
+
+		if (this.metrics != null) {
+
+			generator.writeKey("metrics");
+			this.metrics.toJsonp(generator, mapper);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link DataframeEvaluationOutlierDetection}.
+	 */
+	public static class Builder implements ObjectBuilder<DataframeEvaluationOutlierDetection> {
+		private String actualField;
+
+		private String predictedProbabilityField;
+
+		@Nullable
+		private DataframeEvaluationOutlierDetectionMetrics metrics;
+
+		/**
+		 * The field of the index which contains the ground truth. The data type of this
+		 * field can be boolean or integer. If the data type is integer, the value has
+		 * to be either 0 (false) or 1 (true).
+		 *
+		 * API name: {@code actual_field}
+		 */
+		public Builder actualField(String value) {
+			this.actualField = value;
+			return this;
+		}
+
+		/**
+		 * The field of the index that defines the probability of whether the item
+		 * belongs to the class in question or not. It’s the field that contains the
+		 * results of the analysis.
+		 *
+		 * API name: {@code predicted_probability_field}
+		 */
+		public Builder predictedProbabilityField(String value) {
+			this.predictedProbabilityField = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the metrics that are used for the evaluation.
+		 *
+		 * API name: {@code metrics}
+		 */
+		public Builder metrics(@Nullable DataframeEvaluationOutlierDetectionMetrics value) {
+			this.metrics = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the metrics that are used for the evaluation.
+		 *
+		 * API name: {@code metrics}
+		 */
+		public Builder metrics(
+				Function<DataframeEvaluationOutlierDetectionMetrics.Builder, ObjectBuilder<DataframeEvaluationOutlierDetectionMetrics>> fn) {
+			return this.metrics(fn.apply(new DataframeEvaluationOutlierDetectionMetrics.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link DataframeEvaluationOutlierDetection}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public DataframeEvaluationOutlierDetection build() {
+
+			return new DataframeEvaluationOutlierDetection(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for DataframeEvaluationOutlierDetection
+	 */
+	public static final JsonpValueParser<DataframeEvaluationOutlierDetection> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new,
+					DataframeEvaluationOutlierDetection::setupDataframeEvaluationOutlierDetectionParser);
+
+	protected static void setupDataframeEvaluationOutlierDetectionParser(
+			DelegatingJsonpValueParser<DataframeEvaluationOutlierDetection.Builder> op) {
+
+		op.add(Builder::actualField, JsonpValueParser.stringParser(), "actual_field");
+		op.add(Builder::predictedProbabilityField, JsonpValueParser.stringParser(), "predicted_probability_field");
+		op.add(Builder::metrics, DataframeEvaluationOutlierDetectionMetrics.JSONP_PARSER, "metrics");
+
+	}
+
+}

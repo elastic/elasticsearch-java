@@ -1,0 +1,166 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.cat;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+
+// typedef: cat.aliases.Request
+public final class AliasesRequest extends CatRequestBase {
+	@Nullable
+	private final List<String> name;
+
+	@Nullable
+	private final JsonValue expandWildcards;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected AliasesRequest(Builder builder) {
+
+		this.name = builder.name;
+		this.expandWildcards = builder.expandWildcards;
+
+	}
+
+	/**
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public List<String> name() {
+		return this.name;
+	}
+
+	/**
+	 * API name: {@code expand_wildcards}
+	 */
+	@Nullable
+	public JsonValue expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link AliasesRequest}.
+	 */
+	public static class Builder implements ObjectBuilder<AliasesRequest> {
+		@Nullable
+		private List<String> name;
+
+		@Nullable
+		private JsonValue expandWildcards;
+
+		/**
+		 * API name: {@code name}
+		 */
+		public Builder name(@Nullable List<String> value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code name}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(@Nullable JsonValue value) {
+			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link AliasesRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public AliasesRequest build() {
+
+			return new AliasesRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code cat.aliases}".
+	 */
+	public static final Endpoint<AliasesRequest, AliasesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "GET",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				buf.append("/_cat");
+				buf.append("/aliases");
+				if (request.name != null) {
+					buf.append("/");
+					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				if (request.expandWildcards != null) {
+					params.put("expand_wildcards", request.expandWildcards.toString());
+				}
+				return params;
+
+			}, Endpoint.Simple.emptyMap(), false, AliasesResponse.JSONP_PARSER);
+}

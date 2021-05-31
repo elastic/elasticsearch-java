@@ -1,0 +1,226 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ml.info;
+
+import co.elastic.clients.elasticsearch.ml.CategorizationAnalyzer;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: ml.info.AnomalyDetectors
+public final class AnomalyDetectors implements ToJsonp {
+	private final CategorizationAnalyzer categorizationAnalyzer;
+
+	private final Number categorizationExamplesLimit;
+
+	private final JsonValue modelMemoryLimit;
+
+	private final Number modelSnapshotRetentionDays;
+
+	private final Number dailyModelSnapshotRetentionAfterDays;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected AnomalyDetectors(Builder builder) {
+
+		this.categorizationAnalyzer = Objects.requireNonNull(builder.categorizationAnalyzer, "categorization_analyzer");
+		this.categorizationExamplesLimit = Objects.requireNonNull(builder.categorizationExamplesLimit,
+				"categorization_examples_limit");
+		this.modelMemoryLimit = Objects.requireNonNull(builder.modelMemoryLimit, "model_memory_limit");
+		this.modelSnapshotRetentionDays = Objects.requireNonNull(builder.modelSnapshotRetentionDays,
+				"model_snapshot_retention_days");
+		this.dailyModelSnapshotRetentionAfterDays = Objects.requireNonNull(builder.dailyModelSnapshotRetentionAfterDays,
+				"daily_model_snapshot_retention_after_days");
+
+	}
+
+	/**
+	 * API name: {@code categorization_analyzer}
+	 */
+	public CategorizationAnalyzer categorizationAnalyzer() {
+		return this.categorizationAnalyzer;
+	}
+
+	/**
+	 * API name: {@code categorization_examples_limit}
+	 */
+	public Number categorizationExamplesLimit() {
+		return this.categorizationExamplesLimit;
+	}
+
+	/**
+	 * API name: {@code model_memory_limit}
+	 */
+	public JsonValue modelMemoryLimit() {
+		return this.modelMemoryLimit;
+	}
+
+	/**
+	 * API name: {@code model_snapshot_retention_days}
+	 */
+	public Number modelSnapshotRetentionDays() {
+		return this.modelSnapshotRetentionDays;
+	}
+
+	/**
+	 * API name: {@code daily_model_snapshot_retention_after_days}
+	 */
+	public Number dailyModelSnapshotRetentionAfterDays() {
+		return this.dailyModelSnapshotRetentionAfterDays;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("categorization_analyzer");
+		this.categorizationAnalyzer.toJsonp(generator, mapper);
+
+		generator.writeKey("categorization_examples_limit");
+		generator.write(this.categorizationExamplesLimit.doubleValue());
+
+		generator.writeKey("model_memory_limit");
+		generator.write(this.modelMemoryLimit);
+
+		generator.writeKey("model_snapshot_retention_days");
+		generator.write(this.modelSnapshotRetentionDays.doubleValue());
+
+		generator.writeKey("daily_model_snapshot_retention_after_days");
+		generator.write(this.dailyModelSnapshotRetentionAfterDays.doubleValue());
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link AnomalyDetectors}.
+	 */
+	public static class Builder implements ObjectBuilder<AnomalyDetectors> {
+		private CategorizationAnalyzer categorizationAnalyzer;
+
+		private Number categorizationExamplesLimit;
+
+		private JsonValue modelMemoryLimit;
+
+		private Number modelSnapshotRetentionDays;
+
+		private Number dailyModelSnapshotRetentionAfterDays;
+
+		/**
+		 * API name: {@code categorization_analyzer}
+		 */
+		public Builder categorizationAnalyzer(CategorizationAnalyzer value) {
+			this.categorizationAnalyzer = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code categorization_analyzer}
+		 */
+		public Builder categorizationAnalyzer(
+				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
+			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code categorization_examples_limit}
+		 */
+		public Builder categorizationExamplesLimit(Number value) {
+			this.categorizationExamplesLimit = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code model_memory_limit}
+		 */
+		public Builder modelMemoryLimit(JsonValue value) {
+			this.modelMemoryLimit = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code model_snapshot_retention_days}
+		 */
+		public Builder modelSnapshotRetentionDays(Number value) {
+			this.modelSnapshotRetentionDays = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code daily_model_snapshot_retention_after_days}
+		 */
+		public Builder dailyModelSnapshotRetentionAfterDays(Number value) {
+			this.dailyModelSnapshotRetentionAfterDays = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link AnomalyDetectors}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public AnomalyDetectors build() {
+
+			return new AnomalyDetectors(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for AnomalyDetectors
+	 */
+	public static final JsonpValueParser<AnomalyDetectors> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, AnomalyDetectors::setupAnomalyDetectorsParser);
+
+	protected static void setupAnomalyDetectorsParser(DelegatingJsonpValueParser<AnomalyDetectors.Builder> op) {
+
+		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer.JSONP_PARSER, "categorization_analyzer");
+		op.add(Builder::categorizationExamplesLimit, JsonpValueParser.numberParser(), "categorization_examples_limit");
+		op.add(Builder::modelMemoryLimit, JsonpValueParser.jsonValueParser(), "model_memory_limit");
+		op.add(Builder::modelSnapshotRetentionDays, JsonpValueParser.numberParser(), "model_snapshot_retention_days");
+		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpValueParser.numberParser(),
+				"daily_model_snapshot_retention_after_days");
+
+	}
+
+}

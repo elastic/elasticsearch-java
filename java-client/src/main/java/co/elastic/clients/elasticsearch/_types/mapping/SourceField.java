@@ -1,0 +1,289 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch._types.mapping;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: _types.mapping.SourceField
+public final class SourceField implements ToJsonp {
+	@Nullable
+	private final Boolean compress;
+
+	@Nullable
+	private final String compressThreshold;
+
+	private final Boolean enabled;
+
+	@Nullable
+	private final List<String> excludes;
+
+	@Nullable
+	private final List<String> includes;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected SourceField(Builder builder) {
+
+		this.compress = builder.compress;
+		this.compressThreshold = builder.compressThreshold;
+		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.excludes = builder.excludes;
+		this.includes = builder.includes;
+
+	}
+
+	/**
+	 * API name: {@code compress}
+	 */
+	@Nullable
+	public Boolean compress() {
+		return this.compress;
+	}
+
+	/**
+	 * API name: {@code compress_threshold}
+	 */
+	@Nullable
+	public String compressThreshold() {
+		return this.compressThreshold;
+	}
+
+	/**
+	 * API name: {@code enabled}
+	 */
+	public Boolean enabled() {
+		return this.enabled;
+	}
+
+	/**
+	 * API name: {@code excludes}
+	 */
+	@Nullable
+	public List<String> excludes() {
+		return this.excludes;
+	}
+
+	/**
+	 * API name: {@code includes}
+	 */
+	@Nullable
+	public List<String> includes() {
+		return this.includes;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.compress != null) {
+
+			generator.writeKey("compress");
+			generator.write(this.compress);
+
+		}
+		if (this.compressThreshold != null) {
+
+			generator.writeKey("compress_threshold");
+			generator.write(this.compressThreshold);
+
+		}
+
+		generator.writeKey("enabled");
+		generator.write(this.enabled);
+
+		if (this.excludes != null) {
+
+			generator.writeKey("excludes");
+			generator.writeStartArray();
+			for (String item0 : this.excludes) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.includes != null) {
+
+			generator.writeKey("includes");
+			generator.writeStartArray();
+			for (String item0 : this.includes) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link SourceField}.
+	 */
+	public static class Builder implements ObjectBuilder<SourceField> {
+		@Nullable
+		private Boolean compress;
+
+		@Nullable
+		private String compressThreshold;
+
+		private Boolean enabled;
+
+		@Nullable
+		private List<String> excludes;
+
+		@Nullable
+		private List<String> includes;
+
+		/**
+		 * API name: {@code compress}
+		 */
+		public Builder compress(@Nullable Boolean value) {
+			this.compress = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code compress_threshold}
+		 */
+		public Builder compressThreshold(@Nullable String value) {
+			this.compressThreshold = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code enabled}
+		 */
+		public Builder enabled(Boolean value) {
+			this.enabled = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code excludes}
+		 */
+		public Builder excludes(@Nullable List<String> value) {
+			this.excludes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code excludes}
+		 */
+		public Builder excludes(String... value) {
+			this.excludes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #excludes(List)}, creating the list if needed.
+		 */
+		public Builder addExcludes(String value) {
+			if (this.excludes == null) {
+				this.excludes = new ArrayList<>();
+			}
+			this.excludes.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code includes}
+		 */
+		public Builder includes(@Nullable List<String> value) {
+			this.includes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code includes}
+		 */
+		public Builder includes(String... value) {
+			this.includes = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #includes(List)}, creating the list if needed.
+		 */
+		public Builder addIncludes(String value) {
+			if (this.includes == null) {
+				this.includes = new ArrayList<>();
+			}
+			this.includes.add(value);
+			return this;
+		}
+
+		/**
+		 * Builds a {@link SourceField}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public SourceField build() {
+
+			return new SourceField(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for SourceField
+	 */
+	public static final JsonpValueParser<SourceField> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, SourceField::setupSourceFieldParser);
+
+	protected static void setupSourceFieldParser(DelegatingJsonpValueParser<SourceField.Builder> op) {
+
+		op.add(Builder::compress, JsonpValueParser.booleanParser(), "compress");
+		op.add(Builder::compressThreshold, JsonpValueParser.stringParser(), "compress_threshold");
+		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
+		op.add(Builder::excludes, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "excludes");
+		op.add(Builder::includes, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "includes");
+
+	}
+
+}

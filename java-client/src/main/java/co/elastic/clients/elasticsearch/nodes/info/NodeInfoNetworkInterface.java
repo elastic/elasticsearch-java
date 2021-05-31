@@ -1,0 +1,164 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.nodes.info;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: nodes.info.NodeInfoNetworkInterface
+public final class NodeInfoNetworkInterface implements ToJsonp {
+	private final String address;
+
+	private final String macAddress;
+
+	private final String name;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected NodeInfoNetworkInterface(Builder builder) {
+
+		this.address = Objects.requireNonNull(builder.address, "address");
+		this.macAddress = Objects.requireNonNull(builder.macAddress, "mac_address");
+		this.name = Objects.requireNonNull(builder.name, "name");
+
+	}
+
+	/**
+	 * API name: {@code address}
+	 */
+	public String address() {
+		return this.address;
+	}
+
+	/**
+	 * API name: {@code mac_address}
+	 */
+	public String macAddress() {
+		return this.macAddress;
+	}
+
+	/**
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("address");
+		generator.write(this.address);
+
+		generator.writeKey("mac_address");
+		generator.write(this.macAddress);
+
+		generator.writeKey("name");
+		generator.write(this.name);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link NodeInfoNetworkInterface}.
+	 */
+	public static class Builder implements ObjectBuilder<NodeInfoNetworkInterface> {
+		private String address;
+
+		private String macAddress;
+
+		private String name;
+
+		/**
+		 * API name: {@code address}
+		 */
+		public Builder address(String value) {
+			this.address = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code mac_address}
+		 */
+		public Builder macAddress(String value) {
+			this.macAddress = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link NodeInfoNetworkInterface}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public NodeInfoNetworkInterface build() {
+
+			return new NodeInfoNetworkInterface(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for NodeInfoNetworkInterface
+	 */
+	public static final JsonpValueParser<NodeInfoNetworkInterface> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, NodeInfoNetworkInterface::setupNodeInfoNetworkInterfaceParser);
+
+	protected static void setupNodeInfoNetworkInterfaceParser(
+			DelegatingJsonpValueParser<NodeInfoNetworkInterface.Builder> op) {
+
+		op.add(Builder::address, JsonpValueParser.stringParser(), "address");
+		op.add(Builder::macAddress, JsonpValueParser.stringParser(), "mac_address");
+		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+
+	}
+
+}

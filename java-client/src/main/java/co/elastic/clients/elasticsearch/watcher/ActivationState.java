@@ -1,0 +1,140 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.watcher;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: watcher._types.ActivationState
+public final class ActivationState implements ToJsonp {
+	private final Boolean active;
+
+	private final String timestamp;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected ActivationState(Builder builder) {
+
+		this.active = Objects.requireNonNull(builder.active, "active");
+		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+
+	}
+
+	/**
+	 * API name: {@code active}
+	 */
+	public Boolean active() {
+		return this.active;
+	}
+
+	/**
+	 * API name: {@code timestamp}
+	 */
+	public String timestamp() {
+		return this.timestamp;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("active");
+		generator.write(this.active);
+
+		generator.writeKey("timestamp");
+		generator.write(this.timestamp);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ActivationState}.
+	 */
+	public static class Builder implements ObjectBuilder<ActivationState> {
+		private Boolean active;
+
+		private String timestamp;
+
+		/**
+		 * API name: {@code active}
+		 */
+		public Builder active(Boolean value) {
+			this.active = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code timestamp}
+		 */
+		public Builder timestamp(String value) {
+			this.timestamp = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ActivationState}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ActivationState build() {
+
+			return new ActivationState(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for ActivationState
+	 */
+	public static final JsonpValueParser<ActivationState> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, ActivationState::setupActivationStateParser);
+
+	protected static void setupActivationStateParser(DelegatingJsonpValueParser<ActivationState.Builder> op) {
+
+		op.add(Builder::active, JsonpValueParser.booleanParser(), "active");
+		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp");
+
+	}
+
+}

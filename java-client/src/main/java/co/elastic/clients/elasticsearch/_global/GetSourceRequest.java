@@ -1,0 +1,192 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch._global;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Collections;
+import javax.annotation.Nullable;
+
+// typedef: _global.get_source.Request
+public final class GetSourceRequest extends GetRequest {
+	@Nullable
+	private final String index;
+
+	@Nullable
+	private final String id;
+
+	@Nullable
+	private final String type;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected GetSourceRequest(Builder builder) {
+		super(builder);
+		this.index = builder.index;
+		this.id = builder.id;
+		this.type = builder.type;
+
+	}
+
+	/**
+	 * Auto generated - missing in the input spec
+	 *
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public String index() {
+		return this.index;
+	}
+
+	/**
+	 * Auto generated - missing in the input spec
+	 *
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public String id() {
+		return this.id;
+	}
+
+	/**
+	 * Auto generated - missing in the input spec
+	 *
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link GetSourceRequest}.
+	 */
+	public static class Builder extends GetRequest.AbstractBuilder<Builder> implements ObjectBuilder<GetSourceRequest> {
+		@Nullable
+		private String index;
+
+		@Nullable
+		private String id;
+
+		@Nullable
+		private String type;
+
+		/**
+		 * Auto generated - missing in the input spec
+		 *
+		 * API name: {@code index}
+		 */
+		public Builder index(@Nullable String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Auto generated - missing in the input spec
+		 *
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Auto generated - missing in the input spec
+		 *
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link GetSourceRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public GetSourceRequest build() {
+
+			return new GetSourceRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code get_source}".
+	 */
+	private static final Endpoint.Simple<GetSourceRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "GET",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				if (request.index != null) {
+					buf.append("/");
+					buf.append(request.index);
+				}
+				if (request.type != null) {
+					buf.append("/");
+					buf.append(request.type);
+				}
+				if (request.id != null) {
+					buf.append("/");
+					buf.append(request.id);
+				}
+				buf.append("/_source");
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				return Collections.emptyMap();
+
+			}, Endpoint.Simple.emptyMap(), false, null);
+
+	/**
+	 * Create an "{@code get_source}" endpoint.
+	 */
+	public static <TDocument> Endpoint<GetSourceRequest, GetSourceResponse<TDocument>, ElasticsearchError> createGetSourceEndpoint(
+			JsonpValueParser<TDocument> tDocumentParser) {
+		return ENDPOINT.withResponseParser(GetSourceResponse.createGetSourceResponseParser(tDocumentParser));
+	}
+}

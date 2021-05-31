@@ -1,0 +1,199 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.snapshot.restore;
+
+import co.elastic.clients.elasticsearch._types.ShardStatistics;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: snapshot.restore.SnapshotRestore
+public final class SnapshotRestore implements ToJsonp {
+	private final List<String> indices;
+
+	private final String snapshot;
+
+	private final ShardStatistics shards;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected SnapshotRestore(Builder builder) {
+
+		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
+		this.shards = Objects.requireNonNull(builder.shards, "shards");
+
+	}
+
+	/**
+	 * API name: {@code indices}
+	 */
+	public List<String> indices() {
+		return this.indices;
+	}
+
+	/**
+	 * API name: {@code snapshot}
+	 */
+	public String snapshot() {
+		return this.snapshot;
+	}
+
+	/**
+	 * API name: {@code shards}
+	 */
+	public ShardStatistics shards() {
+		return this.shards;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("indices");
+		generator.writeStartArray();
+		for (String item0 : this.indices) {
+			generator.write(item0);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("snapshot");
+		generator.write(this.snapshot);
+
+		generator.writeKey("shards");
+		this.shards.toJsonp(generator, mapper);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link SnapshotRestore}.
+	 */
+	public static class Builder implements ObjectBuilder<SnapshotRestore> {
+		private List<String> indices;
+
+		private String snapshot;
+
+		private ShardStatistics shards;
+
+		/**
+		 * API name: {@code indices}
+		 */
+		public Builder indices(List<String> value) {
+			this.indices = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code indices}
+		 */
+		public Builder indices(String... value) {
+			this.indices = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 */
+		public Builder addIndices(String value) {
+			if (this.indices == null) {
+				this.indices = new ArrayList<>();
+			}
+			this.indices.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code snapshot}
+		 */
+		public Builder snapshot(String value) {
+			this.snapshot = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards}
+		 */
+		public Builder shards(ShardStatistics value) {
+			this.shards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards}
+		 */
+		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link SnapshotRestore}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public SnapshotRestore build() {
+
+			return new SnapshotRestore(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for SnapshotRestore
+	 */
+	public static final JsonpValueParser<SnapshotRestore> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, SnapshotRestore::setupSnapshotRestoreParser);
+
+	protected static void setupSnapshotRestoreParser(DelegatingJsonpValueParser<SnapshotRestore.Builder> op) {
+
+		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
+		op.add(Builder::snapshot, JsonpValueParser.stringParser(), "snapshot");
+		op.add(Builder::shards, ShardStatistics.JSONP_PARSER, "shards");
+
+	}
+
+}

@@ -1,0 +1,286 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ingest;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.ingest.simulate_pipeline.Document;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: ingest.simulate_pipeline.Request
+public final class SimulatePipelineRequest extends RequestBase implements ToJsonp {
+	@Nullable
+	private final String id;
+
+	@Nullable
+	private final Boolean verbose;
+
+	@Nullable
+	private final List<Document> docs;
+
+	@Nullable
+	private final Pipeline pipeline;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected SimulatePipelineRequest(Builder builder) {
+
+		this.id = builder.id;
+		this.verbose = builder.verbose;
+		this.docs = builder.docs;
+		this.pipeline = builder.pipeline;
+
+	}
+
+	/**
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public String id() {
+		return this.id;
+	}
+
+	/**
+	 * API name: {@code verbose}
+	 */
+	@Nullable
+	public Boolean verbose() {
+		return this.verbose;
+	}
+
+	/**
+	 * API name: {@code docs}
+	 */
+	@Nullable
+	public List<Document> docs() {
+		return this.docs;
+	}
+
+	/**
+	 * API name: {@code pipeline}
+	 */
+	@Nullable
+	public Pipeline pipeline() {
+		return this.pipeline;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.docs != null) {
+
+			generator.writeKey("docs");
+			generator.writeStartArray();
+			for (Document item0 : this.docs) {
+				item0.toJsonp(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.pipeline != null) {
+
+			generator.writeKey("pipeline");
+			this.pipeline.toJsonp(generator, mapper);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link SimulatePipelineRequest}.
+	 */
+	public static class Builder implements ObjectBuilder<SimulatePipelineRequest> {
+		@Nullable
+		private String id;
+
+		@Nullable
+		private Boolean verbose;
+
+		@Nullable
+		private List<Document> docs;
+
+		@Nullable
+		private Pipeline pipeline;
+
+		/**
+		 * API name: {@code id}
+		 */
+		public Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code verbose}
+		 */
+		public Builder verbose(@Nullable Boolean value) {
+			this.verbose = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code docs}
+		 */
+		public Builder docs(@Nullable List<Document> value) {
+			this.docs = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code docs}
+		 */
+		public Builder docs(Document... value) {
+			this.docs = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 */
+		public Builder addDocs(Document value) {
+			if (this.docs == null) {
+				this.docs = new ArrayList<>();
+			}
+			this.docs.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #docs(List)} to a singleton list.
+		 */
+		public Builder docs(Function<Document.Builder, ObjectBuilder<Document>> fn) {
+			return this.docs(fn.apply(new Document.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 */
+		public Builder addDocs(Function<Document.Builder, ObjectBuilder<Document>> fn) {
+			return this.addDocs(fn.apply(new Document.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code pipeline}
+		 */
+		public Builder pipeline(@Nullable Pipeline value) {
+			this.pipeline = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code pipeline}
+		 */
+		public Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
+			return this.pipeline(fn.apply(new Pipeline.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link SimulatePipelineRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public SimulatePipelineRequest build() {
+
+			return new SimulatePipelineRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for SimulatePipelineRequest
+	 */
+	public static final JsonpValueParser<SimulatePipelineRequest> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, SimulatePipelineRequest::setupSimulatePipelineRequestParser);
+
+	protected static void setupSimulatePipelineRequestParser(
+			DelegatingJsonpValueParser<SimulatePipelineRequest.Builder> op) {
+
+		op.add(Builder::docs, JsonpValueParser.arrayParser(Document.JSONP_PARSER), "docs");
+		op.add(Builder::pipeline, Pipeline.JSONP_PARSER, "pipeline");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code ingest.simulate}".
+	 */
+	public static final Endpoint<SimulatePipelineRequest, SimulatePipelineResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "POST",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				buf.append("/_ingest");
+				buf.append("/pipeline");
+				if (request.id != null) {
+					buf.append("/");
+					buf.append(request.id);
+				}
+				buf.append("/_simulate");
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				if (request.verbose != null) {
+					params.put("verbose", String.valueOf(request.verbose));
+				}
+				return params;
+
+			}, Endpoint.Simple.emptyMap(), true, SimulatePipelineResponse.JSONP_PARSER);
+}

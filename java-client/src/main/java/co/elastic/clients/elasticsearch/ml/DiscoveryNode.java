@@ -1,0 +1,230 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ml;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: ml._types.DiscoveryNode
+public final class DiscoveryNode implements ToJsonp {
+	private final Map<String, String> attributes;
+
+	private final String ephemeralId;
+
+	private final String id;
+
+	private final String name;
+
+	private final String transportAddress;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected DiscoveryNode(Builder builder) {
+
+		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.ephemeralId = Objects.requireNonNull(builder.ephemeralId, "ephemeral_id");
+		this.id = Objects.requireNonNull(builder.id, "id");
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
+
+	}
+
+	/**
+	 * API name: {@code attributes}
+	 */
+	public Map<String, String> attributes() {
+		return this.attributes;
+	}
+
+	/**
+	 * API name: {@code ephemeral_id}
+	 */
+	public String ephemeralId() {
+		return this.ephemeralId;
+	}
+
+	/**
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
+	}
+
+	/**
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
+	}
+
+	/**
+	 * API name: {@code transport_address}
+	 */
+	public String transportAddress() {
+		return this.transportAddress;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("attributes");
+		generator.writeStartObject();
+		for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
+			generator.writeKey(item0.getKey());
+			generator.write(item0.getValue());
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("ephemeral_id");
+		generator.write(this.ephemeralId);
+
+		generator.writeKey("id");
+		generator.write(this.id);
+
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		generator.writeKey("transport_address");
+		generator.write(this.transportAddress);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link DiscoveryNode}.
+	 */
+	public static class Builder implements ObjectBuilder<DiscoveryNode> {
+		private Map<String, String> attributes;
+
+		private String ephemeralId;
+
+		private String id;
+
+		private String name;
+
+		private String transportAddress;
+
+		/**
+		 * API name: {@code attributes}
+		 */
+		public Builder attributes(Map<String, String> value) {
+			this.attributes = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #attributes(Map)}, creating the map if needed.
+		 */
+		public Builder putAttributes(String key, String value) {
+			if (this.attributes == null) {
+				this.attributes = new HashMap<>();
+			}
+			this.attributes.put(key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code ephemeral_id}
+		 */
+		public Builder ephemeralId(String value) {
+			this.ephemeralId = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code transport_address}
+		 */
+		public Builder transportAddress(String value) {
+			this.transportAddress = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link DiscoveryNode}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public DiscoveryNode build() {
+
+			return new DiscoveryNode(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for DiscoveryNode
+	 */
+	public static final JsonpValueParser<DiscoveryNode> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, DiscoveryNode::setupDiscoveryNodeParser);
+
+	protected static void setupDiscoveryNodeParser(DelegatingJsonpValueParser<DiscoveryNode.Builder> op) {
+
+		op.add(Builder::attributes, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "attributes");
+		op.add(Builder::ephemeralId, JsonpValueParser.stringParser(), "ephemeral_id");
+		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
+		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::transportAddress, JsonpValueParser.stringParser(), "transport_address");
+
+	}
+
+}

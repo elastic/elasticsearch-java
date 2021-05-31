@@ -1,0 +1,283 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ml;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: ml.update_filter.Request
+public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
+	private final String filterId;
+
+	@Nullable
+	private final List<String> addItems;
+
+	@Nullable
+	private final String description;
+
+	@Nullable
+	private final List<String> removeItems;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected UpdateFilterRequest(Builder builder) {
+
+		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
+		this.addItems = builder.addItems;
+		this.description = builder.description;
+		this.removeItems = builder.removeItems;
+
+	}
+
+	/**
+	 * API name: {@code filter_id}
+	 */
+	public String filterId() {
+		return this.filterId;
+	}
+
+	/**
+	 * API name: {@code add_items}
+	 */
+	@Nullable
+	public List<String> addItems() {
+		return this.addItems;
+	}
+
+	/**
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public String description() {
+		return this.description;
+	}
+
+	/**
+	 * API name: {@code remove_items}
+	 */
+	@Nullable
+	public List<String> removeItems() {
+		return this.removeItems;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.addItems != null) {
+
+			generator.writeKey("add_items");
+			generator.writeStartArray();
+			for (String item0 : this.addItems) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.description != null) {
+
+			generator.writeKey("description");
+			generator.write(this.description);
+
+		}
+		if (this.removeItems != null) {
+
+			generator.writeKey("remove_items");
+			generator.writeStartArray();
+			for (String item0 : this.removeItems) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link UpdateFilterRequest}.
+	 */
+	public static class Builder implements ObjectBuilder<UpdateFilterRequest> {
+		private String filterId;
+
+		@Nullable
+		private List<String> addItems;
+
+		@Nullable
+		private String description;
+
+		@Nullable
+		private List<String> removeItems;
+
+		/**
+		 * API name: {@code filter_id}
+		 */
+		public Builder filterId(String value) {
+			this.filterId = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code add_items}
+		 */
+		public Builder addItems(@Nullable List<String> value) {
+			this.addItems = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code add_items}
+		 */
+		public Builder addItems(String... value) {
+			this.addItems = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #addItems(List)}, creating the list if needed.
+		 */
+		public Builder addAddItems(String value) {
+			if (this.addItems == null) {
+				this.addItems = new ArrayList<>();
+			}
+			this.addItems.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code description}
+		 */
+		public Builder description(@Nullable String value) {
+			this.description = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code remove_items}
+		 */
+		public Builder removeItems(@Nullable List<String> value) {
+			this.removeItems = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code remove_items}
+		 */
+		public Builder removeItems(String... value) {
+			this.removeItems = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #removeItems(List)}, creating the list if needed.
+		 */
+		public Builder addRemoveItems(String value) {
+			if (this.removeItems == null) {
+				this.removeItems = new ArrayList<>();
+			}
+			this.removeItems.add(value);
+			return this;
+		}
+
+		/**
+		 * Builds a {@link UpdateFilterRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public UpdateFilterRequest build() {
+
+			return new UpdateFilterRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for UpdateFilterRequest
+	 */
+	public static final JsonpValueParser<UpdateFilterRequest> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, UpdateFilterRequest::setupUpdateFilterRequestParser);
+
+	protected static void setupUpdateFilterRequestParser(DelegatingJsonpValueParser<UpdateFilterRequest.Builder> op) {
+
+		op.add(Builder::addItems, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "add_items");
+		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
+		op.add(Builder::removeItems, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "remove_items");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code ml.update_filter}".
+	 */
+	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "POST",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				buf.append("/_ml");
+				buf.append("/filters");
+				buf.append("/");
+				buf.append(request.filterId);
+				buf.append("/_update");
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				return Collections.emptyMap();
+
+			}, Endpoint.Simple.emptyMap(), true, UpdateFilterResponse.JSONP_PARSER);
+}

@@ -1,0 +1,307 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ccr.stats;
+
+import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: ccr.stats.AutoFollowStats
+public final class AutoFollowStats implements ToJsonp {
+	private final List<AutoFollowedCluster> autoFollowedClusters;
+
+	private final Number numberOfFailedFollowIndices;
+
+	private final Number numberOfFailedRemoteClusterStateRequests;
+
+	private final Number numberOfSuccessfulFollowIndices;
+
+	private final List<ErrorCause> recentAutoFollowErrors;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected AutoFollowStats(Builder builder) {
+
+		this.autoFollowedClusters = Objects.requireNonNull(builder.autoFollowedClusters, "auto_followed_clusters");
+		this.numberOfFailedFollowIndices = Objects.requireNonNull(builder.numberOfFailedFollowIndices,
+				"number_of_failed_follow_indices");
+		this.numberOfFailedRemoteClusterStateRequests = Objects.requireNonNull(
+				builder.numberOfFailedRemoteClusterStateRequests, "number_of_failed_remote_cluster_state_requests");
+		this.numberOfSuccessfulFollowIndices = Objects.requireNonNull(builder.numberOfSuccessfulFollowIndices,
+				"number_of_successful_follow_indices");
+		this.recentAutoFollowErrors = Objects.requireNonNull(builder.recentAutoFollowErrors,
+				"recent_auto_follow_errors");
+
+	}
+
+	/**
+	 * API name: {@code auto_followed_clusters}
+	 */
+	public List<AutoFollowedCluster> autoFollowedClusters() {
+		return this.autoFollowedClusters;
+	}
+
+	/**
+	 * API name: {@code number_of_failed_follow_indices}
+	 */
+	public Number numberOfFailedFollowIndices() {
+		return this.numberOfFailedFollowIndices;
+	}
+
+	/**
+	 * API name: {@code number_of_failed_remote_cluster_state_requests}
+	 */
+	public Number numberOfFailedRemoteClusterStateRequests() {
+		return this.numberOfFailedRemoteClusterStateRequests;
+	}
+
+	/**
+	 * API name: {@code number_of_successful_follow_indices}
+	 */
+	public Number numberOfSuccessfulFollowIndices() {
+		return this.numberOfSuccessfulFollowIndices;
+	}
+
+	/**
+	 * API name: {@code recent_auto_follow_errors}
+	 */
+	public List<ErrorCause> recentAutoFollowErrors() {
+		return this.recentAutoFollowErrors;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("auto_followed_clusters");
+		generator.writeStartArray();
+		for (AutoFollowedCluster item0 : this.autoFollowedClusters) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("number_of_failed_follow_indices");
+		generator.write(this.numberOfFailedFollowIndices.doubleValue());
+
+		generator.writeKey("number_of_failed_remote_cluster_state_requests");
+		generator.write(this.numberOfFailedRemoteClusterStateRequests.doubleValue());
+
+		generator.writeKey("number_of_successful_follow_indices");
+		generator.write(this.numberOfSuccessfulFollowIndices.doubleValue());
+
+		generator.writeKey("recent_auto_follow_errors");
+		generator.writeStartArray();
+		for (ErrorCause item0 : this.recentAutoFollowErrors) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link AutoFollowStats}.
+	 */
+	public static class Builder implements ObjectBuilder<AutoFollowStats> {
+		private List<AutoFollowedCluster> autoFollowedClusters;
+
+		private Number numberOfFailedFollowIndices;
+
+		private Number numberOfFailedRemoteClusterStateRequests;
+
+		private Number numberOfSuccessfulFollowIndices;
+
+		private List<ErrorCause> recentAutoFollowErrors;
+
+		/**
+		 * API name: {@code auto_followed_clusters}
+		 */
+		public Builder autoFollowedClusters(List<AutoFollowedCluster> value) {
+			this.autoFollowedClusters = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code auto_followed_clusters}
+		 */
+		public Builder autoFollowedClusters(AutoFollowedCluster... value) {
+			this.autoFollowedClusters = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #autoFollowedClusters(List)}, creating the list if
+		 * needed.
+		 */
+		public Builder addAutoFollowedClusters(AutoFollowedCluster value) {
+			if (this.autoFollowedClusters == null) {
+				this.autoFollowedClusters = new ArrayList<>();
+			}
+			this.autoFollowedClusters.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #autoFollowedClusters(List)} to a singleton list.
+		 */
+		public Builder autoFollowedClusters(
+				Function<AutoFollowedCluster.Builder, ObjectBuilder<AutoFollowedCluster>> fn) {
+			return this.autoFollowedClusters(fn.apply(new AutoFollowedCluster.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #autoFollowedClusters(List)}, creating the list if
+		 * needed.
+		 */
+		public Builder addAutoFollowedClusters(
+				Function<AutoFollowedCluster.Builder, ObjectBuilder<AutoFollowedCluster>> fn) {
+			return this.addAutoFollowedClusters(fn.apply(new AutoFollowedCluster.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code number_of_failed_follow_indices}
+		 */
+		public Builder numberOfFailedFollowIndices(Number value) {
+			this.numberOfFailedFollowIndices = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code number_of_failed_remote_cluster_state_requests}
+		 */
+		public Builder numberOfFailedRemoteClusterStateRequests(Number value) {
+			this.numberOfFailedRemoteClusterStateRequests = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code number_of_successful_follow_indices}
+		 */
+		public Builder numberOfSuccessfulFollowIndices(Number value) {
+			this.numberOfSuccessfulFollowIndices = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code recent_auto_follow_errors}
+		 */
+		public Builder recentAutoFollowErrors(List<ErrorCause> value) {
+			this.recentAutoFollowErrors = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code recent_auto_follow_errors}
+		 */
+		public Builder recentAutoFollowErrors(ErrorCause... value) {
+			this.recentAutoFollowErrors = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #recentAutoFollowErrors(List)}, creating the list if
+		 * needed.
+		 */
+		public Builder addRecentAutoFollowErrors(ErrorCause value) {
+			if (this.recentAutoFollowErrors == null) {
+				this.recentAutoFollowErrors = new ArrayList<>();
+			}
+			this.recentAutoFollowErrors.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #recentAutoFollowErrors(List)} to a singleton list.
+		 */
+		public Builder recentAutoFollowErrors(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.recentAutoFollowErrors(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #recentAutoFollowErrors(List)}, creating the list if
+		 * needed.
+		 */
+		public Builder addRecentAutoFollowErrors(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.addRecentAutoFollowErrors(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link AutoFollowStats}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public AutoFollowStats build() {
+
+			return new AutoFollowStats(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for AutoFollowStats
+	 */
+	public static final JsonpValueParser<AutoFollowStats> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, AutoFollowStats::setupAutoFollowStatsParser);
+
+	protected static void setupAutoFollowStatsParser(DelegatingJsonpValueParser<AutoFollowStats.Builder> op) {
+
+		op.add(Builder::autoFollowedClusters, JsonpValueParser.arrayParser(AutoFollowedCluster.JSONP_PARSER),
+				"auto_followed_clusters");
+		op.add(Builder::numberOfFailedFollowIndices, JsonpValueParser.numberParser(),
+				"number_of_failed_follow_indices");
+		op.add(Builder::numberOfFailedRemoteClusterStateRequests, JsonpValueParser.numberParser(),
+				"number_of_failed_remote_cluster_state_requests");
+		op.add(Builder::numberOfSuccessfulFollowIndices, JsonpValueParser.numberParser(),
+				"number_of_successful_follow_indices");
+		op.add(Builder::recentAutoFollowErrors, JsonpValueParser.arrayParser(ErrorCause.JSONP_PARSER),
+				"recent_auto_follow_errors");
+
+	}
+
+}

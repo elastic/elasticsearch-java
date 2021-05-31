@@ -1,0 +1,446 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ccr;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.lang.String;
+import java.util.Collections;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: ccr.resume_follow_index.Request
+public final class ResumeFollowIndexRequest extends RequestBase implements ToJsonp {
+	private final String index;
+
+	@Nullable
+	private final Number maxOutstandingReadRequests;
+
+	@Nullable
+	private final Number maxOutstandingWriteRequests;
+
+	@Nullable
+	private final Number maxReadRequestOperationCount;
+
+	@Nullable
+	private final String maxReadRequestSize;
+
+	@Nullable
+	private final JsonValue maxRetryDelay;
+
+	@Nullable
+	private final Number maxWriteBufferCount;
+
+	@Nullable
+	private final String maxWriteBufferSize;
+
+	@Nullable
+	private final Number maxWriteRequestOperationCount;
+
+	@Nullable
+	private final String maxWriteRequestSize;
+
+	@Nullable
+	private final JsonValue readPollTimeout;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected ResumeFollowIndexRequest(Builder builder) {
+
+		this.index = Objects.requireNonNull(builder.index, "index");
+		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
+		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
+		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
+		this.maxReadRequestSize = builder.maxReadRequestSize;
+		this.maxRetryDelay = builder.maxRetryDelay;
+		this.maxWriteBufferCount = builder.maxWriteBufferCount;
+		this.maxWriteBufferSize = builder.maxWriteBufferSize;
+		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
+		this.maxWriteRequestSize = builder.maxWriteRequestSize;
+		this.readPollTimeout = builder.readPollTimeout;
+
+	}
+
+	/**
+	 * API name: {@code index}
+	 */
+	public String index() {
+		return this.index;
+	}
+
+	/**
+	 * API name: {@code max_outstanding_read_requests}
+	 */
+	@Nullable
+	public Number maxOutstandingReadRequests() {
+		return this.maxOutstandingReadRequests;
+	}
+
+	/**
+	 * API name: {@code max_outstanding_write_requests}
+	 */
+	@Nullable
+	public Number maxOutstandingWriteRequests() {
+		return this.maxOutstandingWriteRequests;
+	}
+
+	/**
+	 * API name: {@code max_read_request_operation_count}
+	 */
+	@Nullable
+	public Number maxReadRequestOperationCount() {
+		return this.maxReadRequestOperationCount;
+	}
+
+	/**
+	 * API name: {@code max_read_request_size}
+	 */
+	@Nullable
+	public String maxReadRequestSize() {
+		return this.maxReadRequestSize;
+	}
+
+	/**
+	 * API name: {@code max_retry_delay}
+	 */
+	@Nullable
+	public JsonValue maxRetryDelay() {
+		return this.maxRetryDelay;
+	}
+
+	/**
+	 * API name: {@code max_write_buffer_count}
+	 */
+	@Nullable
+	public Number maxWriteBufferCount() {
+		return this.maxWriteBufferCount;
+	}
+
+	/**
+	 * API name: {@code max_write_buffer_size}
+	 */
+	@Nullable
+	public String maxWriteBufferSize() {
+		return this.maxWriteBufferSize;
+	}
+
+	/**
+	 * API name: {@code max_write_request_operation_count}
+	 */
+	@Nullable
+	public Number maxWriteRequestOperationCount() {
+		return this.maxWriteRequestOperationCount;
+	}
+
+	/**
+	 * API name: {@code max_write_request_size}
+	 */
+	@Nullable
+	public String maxWriteRequestSize() {
+		return this.maxWriteRequestSize;
+	}
+
+	/**
+	 * API name: {@code read_poll_timeout}
+	 */
+	@Nullable
+	public JsonValue readPollTimeout() {
+		return this.readPollTimeout;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.maxOutstandingReadRequests != null) {
+
+			generator.writeKey("max_outstanding_read_requests");
+			generator.write(this.maxOutstandingReadRequests.doubleValue());
+
+		}
+		if (this.maxOutstandingWriteRequests != null) {
+
+			generator.writeKey("max_outstanding_write_requests");
+			generator.write(this.maxOutstandingWriteRequests.doubleValue());
+
+		}
+		if (this.maxReadRequestOperationCount != null) {
+
+			generator.writeKey("max_read_request_operation_count");
+			generator.write(this.maxReadRequestOperationCount.doubleValue());
+
+		}
+		if (this.maxReadRequestSize != null) {
+
+			generator.writeKey("max_read_request_size");
+			generator.write(this.maxReadRequestSize);
+
+		}
+		if (this.maxRetryDelay != null) {
+
+			generator.writeKey("max_retry_delay");
+			generator.write(this.maxRetryDelay);
+
+		}
+		if (this.maxWriteBufferCount != null) {
+
+			generator.writeKey("max_write_buffer_count");
+			generator.write(this.maxWriteBufferCount.doubleValue());
+
+		}
+		if (this.maxWriteBufferSize != null) {
+
+			generator.writeKey("max_write_buffer_size");
+			generator.write(this.maxWriteBufferSize);
+
+		}
+		if (this.maxWriteRequestOperationCount != null) {
+
+			generator.writeKey("max_write_request_operation_count");
+			generator.write(this.maxWriteRequestOperationCount.doubleValue());
+
+		}
+		if (this.maxWriteRequestSize != null) {
+
+			generator.writeKey("max_write_request_size");
+			generator.write(this.maxWriteRequestSize);
+
+		}
+		if (this.readPollTimeout != null) {
+
+			generator.writeKey("read_poll_timeout");
+			generator.write(this.readPollTimeout);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ResumeFollowIndexRequest}.
+	 */
+	public static class Builder implements ObjectBuilder<ResumeFollowIndexRequest> {
+		private String index;
+
+		@Nullable
+		private Number maxOutstandingReadRequests;
+
+		@Nullable
+		private Number maxOutstandingWriteRequests;
+
+		@Nullable
+		private Number maxReadRequestOperationCount;
+
+		@Nullable
+		private String maxReadRequestSize;
+
+		@Nullable
+		private JsonValue maxRetryDelay;
+
+		@Nullable
+		private Number maxWriteBufferCount;
+
+		@Nullable
+		private String maxWriteBufferSize;
+
+		@Nullable
+		private Number maxWriteRequestOperationCount;
+
+		@Nullable
+		private String maxWriteRequestSize;
+
+		@Nullable
+		private JsonValue readPollTimeout;
+
+		/**
+		 * API name: {@code index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_outstanding_read_requests}
+		 */
+		public Builder maxOutstandingReadRequests(@Nullable Number value) {
+			this.maxOutstandingReadRequests = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_outstanding_write_requests}
+		 */
+		public Builder maxOutstandingWriteRequests(@Nullable Number value) {
+			this.maxOutstandingWriteRequests = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_read_request_operation_count}
+		 */
+		public Builder maxReadRequestOperationCount(@Nullable Number value) {
+			this.maxReadRequestOperationCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_read_request_size}
+		 */
+		public Builder maxReadRequestSize(@Nullable String value) {
+			this.maxReadRequestSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_retry_delay}
+		 */
+		public Builder maxRetryDelay(@Nullable JsonValue value) {
+			this.maxRetryDelay = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_write_buffer_count}
+		 */
+		public Builder maxWriteBufferCount(@Nullable Number value) {
+			this.maxWriteBufferCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_write_buffer_size}
+		 */
+		public Builder maxWriteBufferSize(@Nullable String value) {
+			this.maxWriteBufferSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_write_request_operation_count}
+		 */
+		public Builder maxWriteRequestOperationCount(@Nullable Number value) {
+			this.maxWriteRequestOperationCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_write_request_size}
+		 */
+		public Builder maxWriteRequestSize(@Nullable String value) {
+			this.maxWriteRequestSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code read_poll_timeout}
+		 */
+		public Builder readPollTimeout(@Nullable JsonValue value) {
+			this.readPollTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ResumeFollowIndexRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ResumeFollowIndexRequest build() {
+
+			return new ResumeFollowIndexRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for ResumeFollowIndexRequest
+	 */
+	public static final JsonpValueParser<ResumeFollowIndexRequest> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, ResumeFollowIndexRequest::setupResumeFollowIndexRequestParser);
+
+	protected static void setupResumeFollowIndexRequestParser(
+			DelegatingJsonpValueParser<ResumeFollowIndexRequest.Builder> op) {
+
+		op.add(Builder::maxOutstandingReadRequests, JsonpValueParser.numberParser(), "max_outstanding_read_requests");
+		op.add(Builder::maxOutstandingWriteRequests, JsonpValueParser.numberParser(), "max_outstanding_write_requests");
+		op.add(Builder::maxReadRequestOperationCount, JsonpValueParser.numberParser(),
+				"max_read_request_operation_count");
+		op.add(Builder::maxReadRequestSize, JsonpValueParser.stringParser(), "max_read_request_size");
+		op.add(Builder::maxRetryDelay, JsonpValueParser.jsonValueParser(), "max_retry_delay");
+		op.add(Builder::maxWriteBufferCount, JsonpValueParser.numberParser(), "max_write_buffer_count");
+		op.add(Builder::maxWriteBufferSize, JsonpValueParser.stringParser(), "max_write_buffer_size");
+		op.add(Builder::maxWriteRequestOperationCount, JsonpValueParser.numberParser(),
+				"max_write_request_operation_count");
+		op.add(Builder::maxWriteRequestSize, JsonpValueParser.stringParser(), "max_write_request_size");
+		op.add(Builder::readPollTimeout, JsonpValueParser.jsonValueParser(), "read_poll_timeout");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code ccr.resume_follow}".
+	 */
+	public static final Endpoint<ResumeFollowIndexRequest, ResumeFollowIndexResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "POST",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				buf.append("/");
+				buf.append(request.index);
+				buf.append("/_ccr");
+				buf.append("/resume_follow");
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				return Collections.emptyMap();
+
+			}, Endpoint.Simple.emptyMap(), true, ResumeFollowIndexResponse.JSONP_PARSER);
+}

@@ -1,0 +1,571 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch._types.aggregations;
+
+import co.elastic.clients.elasticsearch._global.search.Highlight;
+import co.elastic.clients.elasticsearch._types.ScriptField;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Number;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: _types.aggregations.TopHitsAggregation
+public final class TopHitsAggregation extends MetricAggregationBase {
+	@Nullable
+	private final List<String> docvalueFields;
+
+	@Nullable
+	private final Boolean explain;
+
+	@Nullable
+	private final Number from;
+
+	@Nullable
+	private final Highlight highlight;
+
+	@Nullable
+	private final Map<String, ScriptField> scriptFields;
+
+	@Nullable
+	private final Number size;
+
+	@Nullable
+	private final List<JsonValue> sort;
+
+	@Nullable
+	private final JsonValue _source;
+
+	@Nullable
+	private final List<String> storedFields;
+
+	@Nullable
+	private final Boolean trackScores;
+
+	@Nullable
+	private final Boolean version;
+
+	@Nullable
+	private final Boolean seqNoPrimaryTerm;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected TopHitsAggregation(Builder builder) {
+		super(builder);
+		this.docvalueFields = builder.docvalueFields;
+		this.explain = builder.explain;
+		this.from = builder.from;
+		this.highlight = builder.highlight;
+		this.scriptFields = builder.scriptFields;
+		this.size = builder.size;
+		this.sort = builder.sort;
+		this._source = builder._source;
+		this.storedFields = builder.storedFields;
+		this.trackScores = builder.trackScores;
+		this.version = builder.version;
+		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
+
+	}
+
+	/**
+	 * API name: {@code docvalue_fields}
+	 */
+	@Nullable
+	public List<String> docvalueFields() {
+		return this.docvalueFields;
+	}
+
+	/**
+	 * API name: {@code explain}
+	 */
+	@Nullable
+	public Boolean explain() {
+		return this.explain;
+	}
+
+	/**
+	 * API name: {@code from}
+	 */
+	@Nullable
+	public Number from() {
+		return this.from;
+	}
+
+	/**
+	 * API name: {@code highlight}
+	 */
+	@Nullable
+	public Highlight highlight() {
+		return this.highlight;
+	}
+
+	/**
+	 * API name: {@code script_fields}
+	 */
+	@Nullable
+	public Map<String, ScriptField> scriptFields() {
+		return this.scriptFields;
+	}
+
+	/**
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public Number size() {
+		return this.size;
+	}
+
+	/**
+	 * API name: {@code sort}
+	 */
+	@Nullable
+	public List<JsonValue> sort() {
+		return this.sort;
+	}
+
+	/**
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public JsonValue _source() {
+		return this._source;
+	}
+
+	/**
+	 * API name: {@code stored_fields}
+	 */
+	@Nullable
+	public List<String> storedFields() {
+		return this.storedFields;
+	}
+
+	/**
+	 * API name: {@code track_scores}
+	 */
+	@Nullable
+	public Boolean trackScores() {
+		return this.trackScores;
+	}
+
+	/**
+	 * API name: {@code version}
+	 */
+	@Nullable
+	public Boolean version() {
+		return this.version;
+	}
+
+	/**
+	 * API name: {@code seq_no_primary_term}
+	 */
+	@Nullable
+	public Boolean seqNoPrimaryTerm() {
+		return this.seqNoPrimaryTerm;
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+		super.toJsonpInternal(generator, mapper);
+		if (this.docvalueFields != null) {
+
+			generator.writeKey("docvalue_fields");
+			generator.writeStartArray();
+			for (String item0 : this.docvalueFields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.explain != null) {
+
+			generator.writeKey("explain");
+			generator.write(this.explain);
+
+		}
+		if (this.from != null) {
+
+			generator.writeKey("from");
+			generator.write(this.from.doubleValue());
+
+		}
+		if (this.highlight != null) {
+
+			generator.writeKey("highlight");
+			this.highlight.toJsonp(generator, mapper);
+
+		}
+		if (this.scriptFields != null) {
+
+			generator.writeKey("script_fields");
+			generator.writeStartObject();
+			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().toJsonp(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.size != null) {
+
+			generator.writeKey("size");
+			generator.write(this.size.doubleValue());
+
+		}
+		if (this.sort != null) {
+
+			generator.writeKey("sort");
+			generator.writeStartArray();
+			for (JsonValue item0 : this.sort) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this._source != null) {
+
+			generator.writeKey("_source");
+			generator.write(this._source);
+
+		}
+		if (this.storedFields != null) {
+
+			generator.writeKey("stored_fields");
+			generator.writeStartArray();
+			for (String item0 : this.storedFields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.trackScores != null) {
+
+			generator.writeKey("track_scores");
+			generator.write(this.trackScores);
+
+		}
+		if (this.version != null) {
+
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
+		if (this.seqNoPrimaryTerm != null) {
+
+			generator.writeKey("seq_no_primary_term");
+			generator.write(this.seqNoPrimaryTerm);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link TopHitsAggregation}.
+	 */
+	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<TopHitsAggregation> {
+		@Nullable
+		private List<String> docvalueFields;
+
+		@Nullable
+		private Boolean explain;
+
+		@Nullable
+		private Number from;
+
+		@Nullable
+		private Highlight highlight;
+
+		@Nullable
+		private Map<String, ScriptField> scriptFields;
+
+		@Nullable
+		private Number size;
+
+		@Nullable
+		private List<JsonValue> sort;
+
+		@Nullable
+		private JsonValue _source;
+
+		@Nullable
+		private List<String> storedFields;
+
+		@Nullable
+		private Boolean trackScores;
+
+		@Nullable
+		private Boolean version;
+
+		@Nullable
+		private Boolean seqNoPrimaryTerm;
+
+		/**
+		 * API name: {@code docvalue_fields}
+		 */
+		public Builder docvalueFields(@Nullable List<String> value) {
+			this.docvalueFields = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code docvalue_fields}
+		 */
+		public Builder docvalueFields(String... value) {
+			this.docvalueFields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
+		 */
+		public Builder addDocvalueFields(String value) {
+			if (this.docvalueFields == null) {
+				this.docvalueFields = new ArrayList<>();
+			}
+			this.docvalueFields.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code explain}
+		 */
+		public Builder explain(@Nullable Boolean value) {
+			this.explain = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code from}
+		 */
+		public Builder from(@Nullable Number value) {
+			this.from = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code highlight}
+		 */
+		public Builder highlight(@Nullable Highlight value) {
+			this.highlight = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code highlight}
+		 */
+		public Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
+			return this.highlight(fn.apply(new Highlight.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code script_fields}
+		 */
+		public Builder scriptFields(@Nullable Map<String, ScriptField> value) {
+			this.scriptFields = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
+		 */
+		public Builder putScriptFields(String key, ScriptField value) {
+			if (this.scriptFields == null) {
+				this.scriptFields = new HashMap<>();
+			}
+			this.scriptFields.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #scriptFields(Map)} to a singleton map.
+		 */
+		public Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return this.scriptFields(Collections.singletonMap(key, fn.apply(new ScriptField.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
+		 */
+		public Builder putScriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return this.putScriptFields(key, fn.apply(new ScriptField.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code size}
+		 */
+		public Builder size(@Nullable Number value) {
+			this.size = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 */
+		public Builder sort(@Nullable List<JsonValue> value) {
+			this.sort = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 */
+		public Builder sort(JsonValue... value) {
+			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 */
+		public Builder addSort(JsonValue value) {
+			if (this.sort == null) {
+				this.sort = new ArrayList<>();
+			}
+			this.sort.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _source}
+		 */
+		public Builder _source(@Nullable JsonValue value) {
+			this._source = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code stored_fields}
+		 */
+		public Builder storedFields(@Nullable List<String> value) {
+			this.storedFields = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code stored_fields}
+		 */
+		public Builder storedFields(String... value) {
+			this.storedFields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 */
+		public Builder addStoredFields(String value) {
+			if (this.storedFields == null) {
+				this.storedFields = new ArrayList<>();
+			}
+			this.storedFields.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code track_scores}
+		 */
+		public Builder trackScores(@Nullable Boolean value) {
+			this.trackScores = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code version}
+		 */
+		public Builder version(@Nullable Boolean value) {
+			this.version = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code seq_no_primary_term}
+		 */
+		public Builder seqNoPrimaryTerm(@Nullable Boolean value) {
+			this.seqNoPrimaryTerm = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link TopHitsAggregation}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public TopHitsAggregation build() {
+
+			return new TopHitsAggregation(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for TopHitsAggregation
+	 */
+	public static final JsonpValueParser<TopHitsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, TopHitsAggregation::setupTopHitsAggregationParser);
+
+	protected static void setupTopHitsAggregationParser(DelegatingJsonpValueParser<TopHitsAggregation.Builder> op) {
+		MetricAggregationBase.setupMetricAggregationBaseParser(op);
+		op.add(Builder::docvalueFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+				"docvalue_fields");
+		op.add(Builder::explain, JsonpValueParser.booleanParser(), "explain");
+		op.add(Builder::from, JsonpValueParser.numberParser(), "from");
+		op.add(Builder::highlight, Highlight.JSONP_PARSER, "highlight");
+		op.add(Builder::scriptFields, JsonpValueParser.stringMapParser(ScriptField.JSONP_PARSER), "script_fields");
+		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+		op.add(Builder::sort, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "sort");
+		op.add(Builder::_source, JsonpValueParser.jsonValueParser(), "_source");
+		op.add(Builder::storedFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "stored_fields");
+		op.add(Builder::trackScores, JsonpValueParser.booleanParser(), "track_scores");
+		op.add(Builder::version, JsonpValueParser.booleanParser(), "version");
+		op.add(Builder::seqNoPrimaryTerm, JsonpValueParser.booleanParser(), "seq_no_primary_term");
+
+	}
+
+}

@@ -1,0 +1,284 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.security;
+
+import co.elastic.clients.elasticsearch.security.get_token.AuthenticatedUser;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: security.get_token.Response
+public final class GetTokenResponse implements ToJsonp {
+	private final String accessToken;
+
+	private final Number expiresIn;
+
+	@Nullable
+	private final String scope;
+
+	private final String type;
+
+	private final String refreshToken;
+
+	@Nullable
+	private final String kerberosAuthenticationResponseToken;
+
+	private final AuthenticatedUser authentication;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected GetTokenResponse(Builder builder) {
+
+		this.accessToken = Objects.requireNonNull(builder.accessToken, "access_token");
+		this.expiresIn = Objects.requireNonNull(builder.expiresIn, "expires_in");
+		this.scope = builder.scope;
+		this.type = Objects.requireNonNull(builder.type, "type");
+		this.refreshToken = Objects.requireNonNull(builder.refreshToken, "refresh_token");
+		this.kerberosAuthenticationResponseToken = builder.kerberosAuthenticationResponseToken;
+		this.authentication = Objects.requireNonNull(builder.authentication, "authentication");
+
+	}
+
+	/**
+	 * API name: {@code access_token}
+	 */
+	public String accessToken() {
+		return this.accessToken;
+	}
+
+	/**
+	 * API name: {@code expires_in}
+	 */
+	public Number expiresIn() {
+		return this.expiresIn;
+	}
+
+	/**
+	 * API name: {@code scope}
+	 */
+	@Nullable
+	public String scope() {
+		return this.scope;
+	}
+
+	/**
+	 * API name: {@code type}
+	 */
+	public String type() {
+		return this.type;
+	}
+
+	/**
+	 * API name: {@code refresh_token}
+	 */
+	public String refreshToken() {
+		return this.refreshToken;
+	}
+
+	/**
+	 * API name: {@code kerberos_authentication_response_token}
+	 */
+	@Nullable
+	public String kerberosAuthenticationResponseToken() {
+		return this.kerberosAuthenticationResponseToken;
+	}
+
+	/**
+	 * API name: {@code authentication}
+	 */
+	public AuthenticatedUser authentication() {
+		return this.authentication;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("access_token");
+		generator.write(this.accessToken);
+
+		generator.writeKey("expires_in");
+		generator.write(this.expiresIn.doubleValue());
+
+		if (this.scope != null) {
+
+			generator.writeKey("scope");
+			generator.write(this.scope);
+
+		}
+
+		generator.writeKey("type");
+		generator.write(this.type);
+
+		generator.writeKey("refresh_token");
+		generator.write(this.refreshToken);
+
+		if (this.kerberosAuthenticationResponseToken != null) {
+
+			generator.writeKey("kerberos_authentication_response_token");
+			generator.write(this.kerberosAuthenticationResponseToken);
+
+		}
+
+		generator.writeKey("authentication");
+		this.authentication.toJsonp(generator, mapper);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link GetTokenResponse}.
+	 */
+	public static class Builder implements ObjectBuilder<GetTokenResponse> {
+		private String accessToken;
+
+		private Number expiresIn;
+
+		@Nullable
+		private String scope;
+
+		private String type;
+
+		private String refreshToken;
+
+		@Nullable
+		private String kerberosAuthenticationResponseToken;
+
+		private AuthenticatedUser authentication;
+
+		/**
+		 * API name: {@code access_token}
+		 */
+		public Builder accessToken(String value) {
+			this.accessToken = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code expires_in}
+		 */
+		public Builder expiresIn(Number value) {
+			this.expiresIn = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code scope}
+		 */
+		public Builder scope(@Nullable String value) {
+			this.scope = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code type}
+		 */
+		public Builder type(String value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code refresh_token}
+		 */
+		public Builder refreshToken(String value) {
+			this.refreshToken = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code kerberos_authentication_response_token}
+		 */
+		public Builder kerberosAuthenticationResponseToken(@Nullable String value) {
+			this.kerberosAuthenticationResponseToken = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code authentication}
+		 */
+		public Builder authentication(AuthenticatedUser value) {
+			this.authentication = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code authentication}
+		 */
+		public Builder authentication(Function<AuthenticatedUser.Builder, ObjectBuilder<AuthenticatedUser>> fn) {
+			return this.authentication(fn.apply(new AuthenticatedUser.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link GetTokenResponse}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public GetTokenResponse build() {
+
+			return new GetTokenResponse(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for GetTokenResponse
+	 */
+	public static final JsonpValueParser<GetTokenResponse> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, GetTokenResponse::setupGetTokenResponseParser);
+
+	protected static void setupGetTokenResponseParser(DelegatingJsonpValueParser<GetTokenResponse.Builder> op) {
+
+		op.add(Builder::accessToken, JsonpValueParser.stringParser(), "access_token");
+		op.add(Builder::expiresIn, JsonpValueParser.numberParser(), "expires_in");
+		op.add(Builder::scope, JsonpValueParser.stringParser(), "scope");
+		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::refreshToken, JsonpValueParser.stringParser(), "refresh_token");
+		op.add(Builder::kerberosAuthenticationResponseToken, JsonpValueParser.stringParser(),
+				"kerberos_authentication_response_token");
+		op.add(Builder::authentication, AuthenticatedUser.JSONP_PARSER, "authentication");
+
+	}
+
+}

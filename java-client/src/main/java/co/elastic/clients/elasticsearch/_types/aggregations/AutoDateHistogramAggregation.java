@@ -1,0 +1,380 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch._types.aggregations;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Nullable;
+
+// typedef: _types.aggregations.AutoDateHistogramAggregation
+public final class AutoDateHistogramAggregation extends BucketAggregationBase {
+	@Nullable
+	private final Number buckets;
+
+	@Nullable
+	private final String field;
+
+	@Nullable
+	private final String format;
+
+	@Nullable
+	private final JsonValue minimumInterval;
+
+	@Nullable
+	private final String missing;
+
+	@Nullable
+	private final String offset;
+
+	@Nullable
+	private final Map<String, JsonValue> params;
+
+	@Nullable
+	private final JsonValue script;
+
+	@Nullable
+	private final String timeZone;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected AutoDateHistogramAggregation(Builder builder) {
+		super(builder);
+		this.buckets = builder.buckets;
+		this.field = builder.field;
+		this.format = builder.format;
+		this.minimumInterval = builder.minimumInterval;
+		this.missing = builder.missing;
+		this.offset = builder.offset;
+		this.params = builder.params;
+		this.script = builder.script;
+		this.timeZone = builder.timeZone;
+
+	}
+
+	/**
+	 * API name: {@code buckets}
+	 */
+	@Nullable
+	public Number buckets() {
+		return this.buckets;
+	}
+
+	/**
+	 * API name: {@code field}
+	 */
+	@Nullable
+	public String field() {
+		return this.field;
+	}
+
+	/**
+	 * API name: {@code format}
+	 */
+	@Nullable
+	public String format() {
+		return this.format;
+	}
+
+	/**
+	 * API name: {@code minimum_interval}
+	 */
+	@Nullable
+	public JsonValue minimumInterval() {
+		return this.minimumInterval;
+	}
+
+	/**
+	 * API name: {@code missing}
+	 */
+	@Nullable
+	public String missing() {
+		return this.missing;
+	}
+
+	/**
+	 * API name: {@code offset}
+	 */
+	@Nullable
+	public String offset() {
+		return this.offset;
+	}
+
+	/**
+	 * API name: {@code params}
+	 */
+	@Nullable
+	public Map<String, JsonValue> params() {
+		return this.params;
+	}
+
+	/**
+	 * API name: {@code script}
+	 */
+	@Nullable
+	public JsonValue script() {
+		return this.script;
+	}
+
+	/**
+	 * API name: {@code time_zone}
+	 */
+	@Nullable
+	public String timeZone() {
+		return this.timeZone;
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+		super.toJsonpInternal(generator, mapper);
+		if (this.buckets != null) {
+
+			generator.writeKey("buckets");
+			generator.write(this.buckets.doubleValue());
+
+		}
+		if (this.field != null) {
+
+			generator.writeKey("field");
+			generator.write(this.field);
+
+		}
+		if (this.format != null) {
+
+			generator.writeKey("format");
+			generator.write(this.format);
+
+		}
+		if (this.minimumInterval != null) {
+
+			generator.writeKey("minimum_interval");
+			generator.write(this.minimumInterval);
+
+		}
+		if (this.missing != null) {
+
+			generator.writeKey("missing");
+			generator.write(this.missing);
+
+		}
+		if (this.offset != null) {
+
+			generator.writeKey("offset");
+			generator.write(this.offset);
+
+		}
+		if (this.params != null) {
+
+			generator.writeKey("params");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonValue> item0 : this.params.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.script != null) {
+
+			generator.writeKey("script");
+			generator.write(this.script);
+
+		}
+		if (this.timeZone != null) {
+
+			generator.writeKey("time_zone");
+			generator.write(this.timeZone);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link AutoDateHistogramAggregation}.
+	 */
+	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<AutoDateHistogramAggregation> {
+		@Nullable
+		private Number buckets;
+
+		@Nullable
+		private String field;
+
+		@Nullable
+		private String format;
+
+		@Nullable
+		private JsonValue minimumInterval;
+
+		@Nullable
+		private String missing;
+
+		@Nullable
+		private String offset;
+
+		@Nullable
+		private Map<String, JsonValue> params;
+
+		@Nullable
+		private JsonValue script;
+
+		@Nullable
+		private String timeZone;
+
+		/**
+		 * API name: {@code buckets}
+		 */
+		public Builder buckets(@Nullable Number value) {
+			this.buckets = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code field}
+		 */
+		public Builder field(@Nullable String value) {
+			this.field = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code format}
+		 */
+		public Builder format(@Nullable String value) {
+			this.format = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code minimum_interval}
+		 */
+		public Builder minimumInterval(@Nullable JsonValue value) {
+			this.minimumInterval = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public Builder missing(@Nullable String value) {
+			this.missing = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code offset}
+		 */
+		public Builder offset(@Nullable String value) {
+			this.offset = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code params}
+		 */
+		public Builder params(@Nullable Map<String, JsonValue> value) {
+			this.params = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
+		 */
+		public Builder putParams(String key, JsonValue value) {
+			if (this.params == null) {
+				this.params = new HashMap<>();
+			}
+			this.params.put(key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public Builder script(@Nullable JsonValue value) {
+			this.script = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code time_zone}
+		 */
+		public Builder timeZone(@Nullable String value) {
+			this.timeZone = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link AutoDateHistogramAggregation}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public AutoDateHistogramAggregation build() {
+
+			return new AutoDateHistogramAggregation(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for AutoDateHistogramAggregation
+	 */
+	public static final JsonpValueParser<AutoDateHistogramAggregation> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationParser);
+
+	protected static void setupAutoDateHistogramAggregationParser(
+			DelegatingJsonpValueParser<AutoDateHistogramAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseParser(op);
+		op.add(Builder::buckets, JsonpValueParser.numberParser(), "buckets");
+		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
+		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
+		op.add(Builder::minimumInterval, JsonpValueParser.jsonValueParser(), "minimum_interval");
+		op.add(Builder::missing, JsonpValueParser.stringParser(), "missing");
+		op.add(Builder::offset, JsonpValueParser.stringParser(), "offset");
+		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
+		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
+		op.add(Builder::timeZone, JsonpValueParser.stringParser(), "time_zone");
+
+	}
+
+}

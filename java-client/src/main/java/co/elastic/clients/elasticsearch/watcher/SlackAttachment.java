@@ -1,0 +1,574 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.watcher;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: watcher._types.SlackAttachment
+public final class SlackAttachment implements ToJsonp {
+	@Nullable
+	private final String authorIcon;
+
+	@Nullable
+	private final String authorLink;
+
+	private final String authorName;
+
+	@Nullable
+	private final String color;
+
+	@Nullable
+	private final String fallback;
+
+	@Nullable
+	private final List<SlackAttachmentField> fields;
+
+	@Nullable
+	private final String footer;
+
+	@Nullable
+	private final String footerIcon;
+
+	@Nullable
+	private final String imageUrl;
+
+	@Nullable
+	private final String pretext;
+
+	@Nullable
+	private final String text;
+
+	@Nullable
+	private final String thumbUrl;
+
+	private final String title;
+
+	@Nullable
+	private final String titleLink;
+
+	@Nullable
+	private final String ts;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected SlackAttachment(Builder builder) {
+
+		this.authorIcon = builder.authorIcon;
+		this.authorLink = builder.authorLink;
+		this.authorName = Objects.requireNonNull(builder.authorName, "author_name");
+		this.color = builder.color;
+		this.fallback = builder.fallback;
+		this.fields = builder.fields;
+		this.footer = builder.footer;
+		this.footerIcon = builder.footerIcon;
+		this.imageUrl = builder.imageUrl;
+		this.pretext = builder.pretext;
+		this.text = builder.text;
+		this.thumbUrl = builder.thumbUrl;
+		this.title = Objects.requireNonNull(builder.title, "title");
+		this.titleLink = builder.titleLink;
+		this.ts = builder.ts;
+
+	}
+
+	/**
+	 * API name: {@code author_icon}
+	 */
+	@Nullable
+	public String authorIcon() {
+		return this.authorIcon;
+	}
+
+	/**
+	 * API name: {@code author_link}
+	 */
+	@Nullable
+	public String authorLink() {
+		return this.authorLink;
+	}
+
+	/**
+	 * API name: {@code author_name}
+	 */
+	public String authorName() {
+		return this.authorName;
+	}
+
+	/**
+	 * API name: {@code color}
+	 */
+	@Nullable
+	public String color() {
+		return this.color;
+	}
+
+	/**
+	 * API name: {@code fallback}
+	 */
+	@Nullable
+	public String fallback() {
+		return this.fallback;
+	}
+
+	/**
+	 * API name: {@code fields}
+	 */
+	@Nullable
+	public List<SlackAttachmentField> fields() {
+		return this.fields;
+	}
+
+	/**
+	 * API name: {@code footer}
+	 */
+	@Nullable
+	public String footer() {
+		return this.footer;
+	}
+
+	/**
+	 * API name: {@code footer_icon}
+	 */
+	@Nullable
+	public String footerIcon() {
+		return this.footerIcon;
+	}
+
+	/**
+	 * API name: {@code image_url}
+	 */
+	@Nullable
+	public String imageUrl() {
+		return this.imageUrl;
+	}
+
+	/**
+	 * API name: {@code pretext}
+	 */
+	@Nullable
+	public String pretext() {
+		return this.pretext;
+	}
+
+	/**
+	 * API name: {@code text}
+	 */
+	@Nullable
+	public String text() {
+		return this.text;
+	}
+
+	/**
+	 * API name: {@code thumb_url}
+	 */
+	@Nullable
+	public String thumbUrl() {
+		return this.thumbUrl;
+	}
+
+	/**
+	 * API name: {@code title}
+	 */
+	public String title() {
+		return this.title;
+	}
+
+	/**
+	 * API name: {@code title_link}
+	 */
+	@Nullable
+	public String titleLink() {
+		return this.titleLink;
+	}
+
+	/**
+	 * API name: {@code ts}
+	 */
+	@Nullable
+	public String ts() {
+		return this.ts;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.authorIcon != null) {
+
+			generator.writeKey("author_icon");
+			generator.write(this.authorIcon);
+
+		}
+		if (this.authorLink != null) {
+
+			generator.writeKey("author_link");
+			generator.write(this.authorLink);
+
+		}
+
+		generator.writeKey("author_name");
+		generator.write(this.authorName);
+
+		if (this.color != null) {
+
+			generator.writeKey("color");
+			generator.write(this.color);
+
+		}
+		if (this.fallback != null) {
+
+			generator.writeKey("fallback");
+			generator.write(this.fallback);
+
+		}
+		if (this.fields != null) {
+
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (SlackAttachmentField item0 : this.fields) {
+				item0.toJsonp(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.footer != null) {
+
+			generator.writeKey("footer");
+			generator.write(this.footer);
+
+		}
+		if (this.footerIcon != null) {
+
+			generator.writeKey("footer_icon");
+			generator.write(this.footerIcon);
+
+		}
+		if (this.imageUrl != null) {
+
+			generator.writeKey("image_url");
+			generator.write(this.imageUrl);
+
+		}
+		if (this.pretext != null) {
+
+			generator.writeKey("pretext");
+			generator.write(this.pretext);
+
+		}
+		if (this.text != null) {
+
+			generator.writeKey("text");
+			generator.write(this.text);
+
+		}
+		if (this.thumbUrl != null) {
+
+			generator.writeKey("thumb_url");
+			generator.write(this.thumbUrl);
+
+		}
+
+		generator.writeKey("title");
+		generator.write(this.title);
+
+		if (this.titleLink != null) {
+
+			generator.writeKey("title_link");
+			generator.write(this.titleLink);
+
+		}
+		if (this.ts != null) {
+
+			generator.writeKey("ts");
+			generator.write(this.ts);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link SlackAttachment}.
+	 */
+	public static class Builder implements ObjectBuilder<SlackAttachment> {
+		@Nullable
+		private String authorIcon;
+
+		@Nullable
+		private String authorLink;
+
+		private String authorName;
+
+		@Nullable
+		private String color;
+
+		@Nullable
+		private String fallback;
+
+		@Nullable
+		private List<SlackAttachmentField> fields;
+
+		@Nullable
+		private String footer;
+
+		@Nullable
+		private String footerIcon;
+
+		@Nullable
+		private String imageUrl;
+
+		@Nullable
+		private String pretext;
+
+		@Nullable
+		private String text;
+
+		@Nullable
+		private String thumbUrl;
+
+		private String title;
+
+		@Nullable
+		private String titleLink;
+
+		@Nullable
+		private String ts;
+
+		/**
+		 * API name: {@code author_icon}
+		 */
+		public Builder authorIcon(@Nullable String value) {
+			this.authorIcon = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code author_link}
+		 */
+		public Builder authorLink(@Nullable String value) {
+			this.authorLink = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code author_name}
+		 */
+		public Builder authorName(String value) {
+			this.authorName = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code color}
+		 */
+		public Builder color(@Nullable String value) {
+			this.color = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fallback}
+		 */
+		public Builder fallback(@Nullable String value) {
+			this.fallback = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 */
+		public Builder fields(@Nullable List<SlackAttachmentField> value) {
+			this.fields = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 */
+		public Builder fields(SlackAttachmentField... value) {
+			this.fields = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 */
+		public Builder addFields(SlackAttachmentField value) {
+			if (this.fields == null) {
+				this.fields = new ArrayList<>();
+			}
+			this.fields.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #fields(List)} to a singleton list.
+		 */
+		public Builder fields(Function<SlackAttachmentField.Builder, ObjectBuilder<SlackAttachmentField>> fn) {
+			return this.fields(fn.apply(new SlackAttachmentField.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 */
+		public Builder addFields(Function<SlackAttachmentField.Builder, ObjectBuilder<SlackAttachmentField>> fn) {
+			return this.addFields(fn.apply(new SlackAttachmentField.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code footer}
+		 */
+		public Builder footer(@Nullable String value) {
+			this.footer = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code footer_icon}
+		 */
+		public Builder footerIcon(@Nullable String value) {
+			this.footerIcon = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code image_url}
+		 */
+		public Builder imageUrl(@Nullable String value) {
+			this.imageUrl = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code pretext}
+		 */
+		public Builder pretext(@Nullable String value) {
+			this.pretext = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code text}
+		 */
+		public Builder text(@Nullable String value) {
+			this.text = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code thumb_url}
+		 */
+		public Builder thumbUrl(@Nullable String value) {
+			this.thumbUrl = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code title}
+		 */
+		public Builder title(String value) {
+			this.title = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code title_link}
+		 */
+		public Builder titleLink(@Nullable String value) {
+			this.titleLink = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ts}
+		 */
+		public Builder ts(@Nullable String value) {
+			this.ts = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link SlackAttachment}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public SlackAttachment build() {
+
+			return new SlackAttachment(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for SlackAttachment
+	 */
+	public static final JsonpValueParser<SlackAttachment> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, SlackAttachment::setupSlackAttachmentParser);
+
+	protected static void setupSlackAttachmentParser(DelegatingJsonpValueParser<SlackAttachment.Builder> op) {
+
+		op.add(Builder::authorIcon, JsonpValueParser.stringParser(), "author_icon");
+		op.add(Builder::authorLink, JsonpValueParser.stringParser(), "author_link");
+		op.add(Builder::authorName, JsonpValueParser.stringParser(), "author_name");
+		op.add(Builder::color, JsonpValueParser.stringParser(), "color");
+		op.add(Builder::fallback, JsonpValueParser.stringParser(), "fallback");
+		op.add(Builder::fields, JsonpValueParser.arrayParser(SlackAttachmentField.JSONP_PARSER), "fields");
+		op.add(Builder::footer, JsonpValueParser.stringParser(), "footer");
+		op.add(Builder::footerIcon, JsonpValueParser.stringParser(), "footer_icon");
+		op.add(Builder::imageUrl, JsonpValueParser.stringParser(), "image_url");
+		op.add(Builder::pretext, JsonpValueParser.stringParser(), "pretext");
+		op.add(Builder::text, JsonpValueParser.stringParser(), "text");
+		op.add(Builder::thumbUrl, JsonpValueParser.stringParser(), "thumb_url");
+		op.add(Builder::title, JsonpValueParser.stringParser(), "title");
+		op.add(Builder::titleLink, JsonpValueParser.stringParser(), "title_link");
+		op.add(Builder::ts, JsonpValueParser.stringParser(), "ts");
+
+	}
+
+}

@@ -1,0 +1,159 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch._types;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: _types.ScriptTransform
+public final class ScriptTransform implements ToJsonp {
+	private final String lang;
+
+	private final Map<String, JsonValue> params;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected ScriptTransform(Builder builder) {
+
+		this.lang = Objects.requireNonNull(builder.lang, "lang");
+		this.params = Objects.requireNonNull(builder.params, "params");
+
+	}
+
+	/**
+	 * API name: {@code lang}
+	 */
+	public String lang() {
+		return this.lang;
+	}
+
+	/**
+	 * API name: {@code params}
+	 */
+	public Map<String, JsonValue> params() {
+		return this.params;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("lang");
+		generator.write(this.lang);
+
+		generator.writeKey("params");
+		generator.writeStartObject();
+		for (Map.Entry<String, JsonValue> item0 : this.params.entrySet()) {
+			generator.writeKey(item0.getKey());
+			generator.write(item0.getValue());
+
+		}
+		generator.writeEnd();
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ScriptTransform}.
+	 */
+	public static class Builder implements ObjectBuilder<ScriptTransform> {
+		private String lang;
+
+		private Map<String, JsonValue> params;
+
+		/**
+		 * API name: {@code lang}
+		 */
+		public Builder lang(String value) {
+			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code params}
+		 */
+		public Builder params(Map<String, JsonValue> value) {
+			this.params = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
+		 */
+		public Builder putParams(String key, JsonValue value) {
+			if (this.params == null) {
+				this.params = new HashMap<>();
+			}
+			this.params.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ScriptTransform}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ScriptTransform build() {
+
+			return new ScriptTransform(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for ScriptTransform
+	 */
+	public static final JsonpValueParser<ScriptTransform> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, ScriptTransform::setupScriptTransformParser);
+
+	protected static void setupScriptTransformParser(DelegatingJsonpValueParser<ScriptTransform.Builder> op) {
+
+		op.add(Builder::lang, JsonpValueParser.stringParser(), "lang");
+		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
+
+	}
+
+}

@@ -1,0 +1,147 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ccr.get_auto_follow_pattern;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: ccr.get_auto_follow_pattern.AutoFollowPattern
+public final class AutoFollowPattern implements ToJsonp {
+	private final String name;
+
+	private final AutoFollowPatternSummary pattern;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected AutoFollowPattern(Builder builder) {
+
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
+
+	}
+
+	/**
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
+	}
+
+	/**
+	 * API name: {@code pattern}
+	 */
+	public AutoFollowPatternSummary pattern() {
+		return this.pattern;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		generator.writeKey("pattern");
+		this.pattern.toJsonp(generator, mapper);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link AutoFollowPattern}.
+	 */
+	public static class Builder implements ObjectBuilder<AutoFollowPattern> {
+		private String name;
+
+		private AutoFollowPatternSummary pattern;
+
+		/**
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code pattern}
+		 */
+		public Builder pattern(AutoFollowPatternSummary value) {
+			this.pattern = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code pattern}
+		 */
+		public Builder pattern(Function<AutoFollowPatternSummary.Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
+			return this.pattern(fn.apply(new AutoFollowPatternSummary.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link AutoFollowPattern}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public AutoFollowPattern build() {
+
+			return new AutoFollowPattern(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for AutoFollowPattern
+	 */
+	public static final JsonpValueParser<AutoFollowPattern> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, AutoFollowPattern::setupAutoFollowPatternParser);
+
+	protected static void setupAutoFollowPatternParser(DelegatingJsonpValueParser<AutoFollowPattern.Builder> op) {
+
+		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::pattern, AutoFollowPatternSummary.JSONP_PARSER, "pattern");
+
+	}
+
+}

@@ -1,0 +1,353 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch._types;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.lang.String;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: _types.GetStats
+public final class GetStats implements ToJsonp {
+	private final Number current;
+
+	@Nullable
+	private final String existsTime;
+
+	private final Number existsTimeInMillis;
+
+	private final Number existsTotal;
+
+	@Nullable
+	private final String missingTime;
+
+	private final Number missingTimeInMillis;
+
+	private final Number missingTotal;
+
+	@Nullable
+	private final String time;
+
+	private final Number timeInMillis;
+
+	private final Number total;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected GetStats(Builder builder) {
+
+		this.current = Objects.requireNonNull(builder.current, "current");
+		this.existsTime = builder.existsTime;
+		this.existsTimeInMillis = Objects.requireNonNull(builder.existsTimeInMillis, "exists_time_in_millis");
+		this.existsTotal = Objects.requireNonNull(builder.existsTotal, "exists_total");
+		this.missingTime = builder.missingTime;
+		this.missingTimeInMillis = Objects.requireNonNull(builder.missingTimeInMillis, "missing_time_in_millis");
+		this.missingTotal = Objects.requireNonNull(builder.missingTotal, "missing_total");
+		this.time = builder.time;
+		this.timeInMillis = Objects.requireNonNull(builder.timeInMillis, "time_in_millis");
+		this.total = Objects.requireNonNull(builder.total, "total");
+
+	}
+
+	/**
+	 * API name: {@code current}
+	 */
+	public Number current() {
+		return this.current;
+	}
+
+	/**
+	 * API name: {@code exists_time}
+	 */
+	@Nullable
+	public String existsTime() {
+		return this.existsTime;
+	}
+
+	/**
+	 * API name: {@code exists_time_in_millis}
+	 */
+	public Number existsTimeInMillis() {
+		return this.existsTimeInMillis;
+	}
+
+	/**
+	 * API name: {@code exists_total}
+	 */
+	public Number existsTotal() {
+		return this.existsTotal;
+	}
+
+	/**
+	 * API name: {@code missing_time}
+	 */
+	@Nullable
+	public String missingTime() {
+		return this.missingTime;
+	}
+
+	/**
+	 * API name: {@code missing_time_in_millis}
+	 */
+	public Number missingTimeInMillis() {
+		return this.missingTimeInMillis;
+	}
+
+	/**
+	 * API name: {@code missing_total}
+	 */
+	public Number missingTotal() {
+		return this.missingTotal;
+	}
+
+	/**
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public String time() {
+		return this.time;
+	}
+
+	/**
+	 * API name: {@code time_in_millis}
+	 */
+	public Number timeInMillis() {
+		return this.timeInMillis;
+	}
+
+	/**
+	 * API name: {@code total}
+	 */
+	public Number total() {
+		return this.total;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("current");
+		generator.write(this.current.doubleValue());
+
+		if (this.existsTime != null) {
+
+			generator.writeKey("exists_time");
+			generator.write(this.existsTime);
+
+		}
+
+		generator.writeKey("exists_time_in_millis");
+		generator.write(this.existsTimeInMillis.doubleValue());
+
+		generator.writeKey("exists_total");
+		generator.write(this.existsTotal.doubleValue());
+
+		if (this.missingTime != null) {
+
+			generator.writeKey("missing_time");
+			generator.write(this.missingTime);
+
+		}
+
+		generator.writeKey("missing_time_in_millis");
+		generator.write(this.missingTimeInMillis.doubleValue());
+
+		generator.writeKey("missing_total");
+		generator.write(this.missingTotal.doubleValue());
+
+		if (this.time != null) {
+
+			generator.writeKey("time");
+			generator.write(this.time);
+
+		}
+
+		generator.writeKey("time_in_millis");
+		generator.write(this.timeInMillis.doubleValue());
+
+		generator.writeKey("total");
+		generator.write(this.total.doubleValue());
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link GetStats}.
+	 */
+	public static class Builder implements ObjectBuilder<GetStats> {
+		private Number current;
+
+		@Nullable
+		private String existsTime;
+
+		private Number existsTimeInMillis;
+
+		private Number existsTotal;
+
+		@Nullable
+		private String missingTime;
+
+		private Number missingTimeInMillis;
+
+		private Number missingTotal;
+
+		@Nullable
+		private String time;
+
+		private Number timeInMillis;
+
+		private Number total;
+
+		/**
+		 * API name: {@code current}
+		 */
+		public Builder current(Number value) {
+			this.current = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code exists_time}
+		 */
+		public Builder existsTime(@Nullable String value) {
+			this.existsTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code exists_time_in_millis}
+		 */
+		public Builder existsTimeInMillis(Number value) {
+			this.existsTimeInMillis = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code exists_total}
+		 */
+		public Builder existsTotal(Number value) {
+			this.existsTotal = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing_time}
+		 */
+		public Builder missingTime(@Nullable String value) {
+			this.missingTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing_time_in_millis}
+		 */
+		public Builder missingTimeInMillis(Number value) {
+			this.missingTimeInMillis = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing_total}
+		 */
+		public Builder missingTotal(Number value) {
+			this.missingTotal = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code time}
+		 */
+		public Builder time(@Nullable String value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code time_in_millis}
+		 */
+		public Builder timeInMillis(Number value) {
+			this.timeInMillis = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total}
+		 */
+		public Builder total(Number value) {
+			this.total = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link GetStats}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public GetStats build() {
+
+			return new GetStats(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for GetStats
+	 */
+	public static final JsonpValueParser<GetStats> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
+			GetStats::setupGetStatsParser);
+
+	protected static void setupGetStatsParser(DelegatingJsonpValueParser<GetStats.Builder> op) {
+
+		op.add(Builder::current, JsonpValueParser.numberParser(), "current");
+		op.add(Builder::existsTime, JsonpValueParser.stringParser(), "exists_time");
+		op.add(Builder::existsTimeInMillis, JsonpValueParser.numberParser(), "exists_time_in_millis");
+		op.add(Builder::existsTotal, JsonpValueParser.numberParser(), "exists_total");
+		op.add(Builder::missingTime, JsonpValueParser.stringParser(), "missing_time");
+		op.add(Builder::missingTimeInMillis, JsonpValueParser.numberParser(), "missing_time_in_millis");
+		op.add(Builder::missingTotal, JsonpValueParser.numberParser(), "missing_total");
+		op.add(Builder::time, JsonpValueParser.stringParser(), "time");
+		op.add(Builder::timeInMillis, JsonpValueParser.numberParser(), "time_in_millis");
+		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
+
+	}
+
+}

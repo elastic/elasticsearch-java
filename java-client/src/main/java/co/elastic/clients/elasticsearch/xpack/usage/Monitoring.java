@@ -1,0 +1,157 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.xpack.usage;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Number;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: xpack.usage.Monitoring
+public final class Monitoring extends Base {
+	private final Boolean collectionEnabled;
+
+	private final Map<String, Number> enabledExporters;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected Monitoring(Builder builder) {
+		super(builder);
+		this.collectionEnabled = Objects.requireNonNull(builder.collectionEnabled, "collection_enabled");
+		this.enabledExporters = Objects.requireNonNull(builder.enabledExporters, "enabled_exporters");
+
+	}
+
+	/**
+	 * API name: {@code collection_enabled}
+	 */
+	public Boolean collectionEnabled() {
+		return this.collectionEnabled;
+	}
+
+	/**
+	 * API name: {@code enabled_exporters}
+	 */
+	public Map<String, Number> enabledExporters() {
+		return this.enabledExporters;
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+		super.toJsonpInternal(generator, mapper);
+
+		generator.writeKey("collection_enabled");
+		generator.write(this.collectionEnabled);
+
+		generator.writeKey("enabled_exporters");
+		generator.writeStartObject();
+		for (Map.Entry<String, Number> item0 : this.enabledExporters.entrySet()) {
+			generator.writeKey(item0.getKey());
+			generator.write(item0.getValue().doubleValue());
+
+		}
+		generator.writeEnd();
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link Monitoring}.
+	 */
+	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Monitoring> {
+		private Boolean collectionEnabled;
+
+		private Map<String, Number> enabledExporters;
+
+		/**
+		 * API name: {@code collection_enabled}
+		 */
+		public Builder collectionEnabled(Boolean value) {
+			this.collectionEnabled = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code enabled_exporters}
+		 */
+		public Builder enabledExporters(Map<String, Number> value) {
+			this.enabledExporters = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #enabledExporters(Map)}, creating the map if
+		 * needed.
+		 */
+		public Builder putEnabledExporters(String key, Number value) {
+			if (this.enabledExporters == null) {
+				this.enabledExporters = new HashMap<>();
+			}
+			this.enabledExporters.put(key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link Monitoring}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public Monitoring build() {
+
+			return new Monitoring(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for Monitoring
+	 */
+	public static final JsonpValueParser<Monitoring> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, Monitoring::setupMonitoringParser);
+
+	protected static void setupMonitoringParser(DelegatingJsonpValueParser<Monitoring.Builder> op) {
+		Base.setupBaseParser(op);
+		op.add(Builder::collectionEnabled, JsonpValueParser.booleanParser(), "collection_enabled");
+		op.add(Builder::enabledExporters, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()),
+				"enabled_exporters");
+
+	}
+
+}

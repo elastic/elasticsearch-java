@@ -1,0 +1,154 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ml;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: ml._types.TimingStats
+public final class TimingStats implements ToJsonp {
+	private final Number elapsedTime;
+
+	@Nullable
+	private final Number iterationTime;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected TimingStats(Builder builder) {
+
+		this.elapsedTime = Objects.requireNonNull(builder.elapsedTime, "elapsed_time");
+		this.iterationTime = builder.iterationTime;
+
+	}
+
+	/**
+	 * Runtime of the analysis in milliseconds.
+	 *
+	 * API name: {@code elapsed_time}
+	 */
+	public Number elapsedTime() {
+		return this.elapsedTime;
+	}
+
+	/**
+	 * Runtime of the latest iteration of the analysis in milliseconds.
+	 *
+	 * API name: {@code iteration_time}
+	 */
+	@Nullable
+	public Number iterationTime() {
+		return this.iterationTime;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("elapsed_time");
+		generator.write(this.elapsedTime.doubleValue());
+
+		if (this.iterationTime != null) {
+
+			generator.writeKey("iteration_time");
+			generator.write(this.iterationTime.doubleValue());
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link TimingStats}.
+	 */
+	public static class Builder implements ObjectBuilder<TimingStats> {
+		private Number elapsedTime;
+
+		@Nullable
+		private Number iterationTime;
+
+		/**
+		 * Runtime of the analysis in milliseconds.
+		 *
+		 * API name: {@code elapsed_time}
+		 */
+		public Builder elapsedTime(Number value) {
+			this.elapsedTime = value;
+			return this;
+		}
+
+		/**
+		 * Runtime of the latest iteration of the analysis in milliseconds.
+		 *
+		 * API name: {@code iteration_time}
+		 */
+		public Builder iterationTime(@Nullable Number value) {
+			this.iterationTime = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link TimingStats}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public TimingStats build() {
+
+			return new TimingStats(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for TimingStats
+	 */
+	public static final JsonpValueParser<TimingStats> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, TimingStats::setupTimingStatsParser);
+
+	protected static void setupTimingStatsParser(DelegatingJsonpValueParser<TimingStats.Builder> op) {
+
+		op.add(Builder::elapsedTime, JsonpValueParser.numberParser(), "elapsed_time");
+		op.add(Builder::iterationTime, JsonpValueParser.numberParser(), "iteration_time");
+
+	}
+
+}

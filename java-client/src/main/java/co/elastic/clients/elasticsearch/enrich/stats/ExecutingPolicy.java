@@ -1,0 +1,148 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.enrich.stats;
+
+import co.elastic.clients.elasticsearch.task.Info;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: enrich.stats.ExecutingPolicy
+public final class ExecutingPolicy implements ToJsonp {
+	private final String name;
+
+	private final Info task;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected ExecutingPolicy(Builder builder) {
+
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.task = Objects.requireNonNull(builder.task, "task");
+
+	}
+
+	/**
+	 * API name: {@code name}
+	 */
+	public String name() {
+		return this.name;
+	}
+
+	/**
+	 * API name: {@code task}
+	 */
+	public Info task() {
+		return this.task;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("name");
+		generator.write(this.name);
+
+		generator.writeKey("task");
+		this.task.toJsonp(generator, mapper);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ExecutingPolicy}.
+	 */
+	public static class Builder implements ObjectBuilder<ExecutingPolicy> {
+		private String name;
+
+		private Info task;
+
+		/**
+		 * API name: {@code name}
+		 */
+		public Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code task}
+		 */
+		public Builder task(Info value) {
+			this.task = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code task}
+		 */
+		public Builder task(Function<Info.Builder, ObjectBuilder<Info>> fn) {
+			return this.task(fn.apply(new Info.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link ExecutingPolicy}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ExecutingPolicy build() {
+
+			return new ExecutingPolicy(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for ExecutingPolicy
+	 */
+	public static final JsonpValueParser<ExecutingPolicy> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, ExecutingPolicy::setupExecutingPolicyParser);
+
+	protected static void setupExecutingPolicyParser(DelegatingJsonpValueParser<ExecutingPolicy.Builder> op) {
+
+		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::task, Info.JSONP_PARSER, "task");
+
+	}
+
+}

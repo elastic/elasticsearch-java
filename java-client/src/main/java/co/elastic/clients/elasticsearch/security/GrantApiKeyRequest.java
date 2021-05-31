@@ -1,0 +1,268 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.security;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKey;
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: security.grant_api_key.Request
+public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
+	private final ApiKey apiKey;
+
+	private final JsonValue grantType;
+
+	@Nullable
+	private final String accessToken;
+
+	@Nullable
+	private final String username;
+
+	@Nullable
+	private final String password;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected GrantApiKeyRequest(Builder builder) {
+
+		this.apiKey = Objects.requireNonNull(builder.apiKey, "api_key");
+		this.grantType = Objects.requireNonNull(builder.grantType, "grant_type");
+		this.accessToken = builder.accessToken;
+		this.username = builder.username;
+		this.password = builder.password;
+
+	}
+
+	/**
+	 * API name: {@code api_key}
+	 */
+	public ApiKey apiKey() {
+		return this.apiKey;
+	}
+
+	/**
+	 * API name: {@code grant_type}
+	 */
+	public JsonValue grantType() {
+		return this.grantType;
+	}
+
+	/**
+	 * API name: {@code access_token}
+	 */
+	@Nullable
+	public String accessToken() {
+		return this.accessToken;
+	}
+
+	/**
+	 * API name: {@code username}
+	 */
+	@Nullable
+	public String username() {
+		return this.username;
+	}
+
+	/**
+	 * API name: {@code password}
+	 */
+	@Nullable
+	public String password() {
+		return this.password;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("api_key");
+		this.apiKey.toJsonp(generator, mapper);
+
+		generator.writeKey("grant_type");
+		generator.write(this.grantType);
+
+		if (this.accessToken != null) {
+
+			generator.writeKey("access_token");
+			generator.write(this.accessToken);
+
+		}
+		if (this.username != null) {
+
+			generator.writeKey("username");
+			generator.write(this.username);
+
+		}
+		if (this.password != null) {
+
+			generator.writeKey("password");
+			generator.write(this.password);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link GrantApiKeyRequest}.
+	 */
+	public static class Builder implements ObjectBuilder<GrantApiKeyRequest> {
+		private ApiKey apiKey;
+
+		private JsonValue grantType;
+
+		@Nullable
+		private String accessToken;
+
+		@Nullable
+		private String username;
+
+		@Nullable
+		private String password;
+
+		/**
+		 * API name: {@code api_key}
+		 */
+		public Builder apiKey(ApiKey value) {
+			this.apiKey = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code api_key}
+		 */
+		public Builder apiKey(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
+			return this.apiKey(fn.apply(new ApiKey.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code grant_type}
+		 */
+		public Builder grantType(JsonValue value) {
+			this.grantType = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code access_token}
+		 */
+		public Builder accessToken(@Nullable String value) {
+			this.accessToken = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code username}
+		 */
+		public Builder username(@Nullable String value) {
+			this.username = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code password}
+		 */
+		public Builder password(@Nullable String value) {
+			this.password = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link GrantApiKeyRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public GrantApiKeyRequest build() {
+
+			return new GrantApiKeyRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for GrantApiKeyRequest
+	 */
+	public static final JsonpValueParser<GrantApiKeyRequest> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, GrantApiKeyRequest::setupGrantApiKeyRequestParser);
+
+	protected static void setupGrantApiKeyRequestParser(DelegatingJsonpValueParser<GrantApiKeyRequest.Builder> op) {
+
+		op.add(Builder::apiKey, ApiKey.JSONP_PARSER, "api_key");
+		op.add(Builder::grantType, JsonpValueParser.jsonValueParser(), "grant_type");
+		op.add(Builder::accessToken, JsonpValueParser.stringParser(), "access_token");
+		op.add(Builder::username, JsonpValueParser.stringParser(), "username");
+		op.add(Builder::password, JsonpValueParser.stringParser(), "password");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code security.grant_api_key}".
+	 */
+	public static final Endpoint<GrantApiKeyRequest, GrantApiKeyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "POST",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				buf.append("/_security");
+				buf.append("/api_key");
+				buf.append("/grant");
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				return Collections.emptyMap();
+
+			}, Endpoint.Simple.emptyMap(), true, GrantApiKeyResponse.JSONP_PARSER);
+}

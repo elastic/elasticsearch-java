@@ -1,0 +1,388 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.license.get;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.lang.String;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: license.get.LicenseInformation
+public final class LicenseInformation implements ToJsonp {
+	private final String expiryDate;
+
+	private final JsonValue expiryDateInMillis;
+
+	private final String issueDate;
+
+	private final JsonValue issueDateInMillis;
+
+	private final String issuedTo;
+
+	private final String issuer;
+
+	private final Number maxNodes;
+
+	@Nullable
+	private final Number maxResourceUnits;
+
+	private final JsonValue status;
+
+	private final JsonValue type;
+
+	private final String uid;
+
+	private final JsonValue startDateInMillis;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected LicenseInformation(Builder builder) {
+
+		this.expiryDate = Objects.requireNonNull(builder.expiryDate, "expiry_date");
+		this.expiryDateInMillis = Objects.requireNonNull(builder.expiryDateInMillis, "expiry_date_in_millis");
+		this.issueDate = Objects.requireNonNull(builder.issueDate, "issue_date");
+		this.issueDateInMillis = Objects.requireNonNull(builder.issueDateInMillis, "issue_date_in_millis");
+		this.issuedTo = Objects.requireNonNull(builder.issuedTo, "issued_to");
+		this.issuer = Objects.requireNonNull(builder.issuer, "issuer");
+		this.maxNodes = Objects.requireNonNull(builder.maxNodes, "max_nodes");
+		this.maxResourceUnits = builder.maxResourceUnits;
+		this.status = Objects.requireNonNull(builder.status, "status");
+		this.type = Objects.requireNonNull(builder.type, "type");
+		this.uid = Objects.requireNonNull(builder.uid, "uid");
+		this.startDateInMillis = Objects.requireNonNull(builder.startDateInMillis, "start_date_in_millis");
+
+	}
+
+	/**
+	 * API name: {@code expiry_date}
+	 */
+	public String expiryDate() {
+		return this.expiryDate;
+	}
+
+	/**
+	 * API name: {@code expiry_date_in_millis}
+	 */
+	public JsonValue expiryDateInMillis() {
+		return this.expiryDateInMillis;
+	}
+
+	/**
+	 * API name: {@code issue_date}
+	 */
+	public String issueDate() {
+		return this.issueDate;
+	}
+
+	/**
+	 * API name: {@code issue_date_in_millis}
+	 */
+	public JsonValue issueDateInMillis() {
+		return this.issueDateInMillis;
+	}
+
+	/**
+	 * API name: {@code issued_to}
+	 */
+	public String issuedTo() {
+		return this.issuedTo;
+	}
+
+	/**
+	 * API name: {@code issuer}
+	 */
+	public String issuer() {
+		return this.issuer;
+	}
+
+	/**
+	 * API name: {@code max_nodes}
+	 */
+	public Number maxNodes() {
+		return this.maxNodes;
+	}
+
+	/**
+	 * API name: {@code max_resource_units}
+	 */
+	@Nullable
+	public Number maxResourceUnits() {
+		return this.maxResourceUnits;
+	}
+
+	/**
+	 * API name: {@code status}
+	 */
+	public JsonValue status() {
+		return this.status;
+	}
+
+	/**
+	 * API name: {@code type}
+	 */
+	public JsonValue type() {
+		return this.type;
+	}
+
+	/**
+	 * API name: {@code uid}
+	 */
+	public String uid() {
+		return this.uid;
+	}
+
+	/**
+	 * API name: {@code start_date_in_millis}
+	 */
+	public JsonValue startDateInMillis() {
+		return this.startDateInMillis;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("expiry_date");
+		generator.write(this.expiryDate);
+
+		generator.writeKey("expiry_date_in_millis");
+		generator.write(this.expiryDateInMillis);
+
+		generator.writeKey("issue_date");
+		generator.write(this.issueDate);
+
+		generator.writeKey("issue_date_in_millis");
+		generator.write(this.issueDateInMillis);
+
+		generator.writeKey("issued_to");
+		generator.write(this.issuedTo);
+
+		generator.writeKey("issuer");
+		generator.write(this.issuer);
+
+		generator.writeKey("max_nodes");
+		generator.write(this.maxNodes.doubleValue());
+
+		if (this.maxResourceUnits != null) {
+
+			generator.writeKey("max_resource_units");
+			generator.write(this.maxResourceUnits.doubleValue());
+
+		}
+
+		generator.writeKey("status");
+		generator.write(this.status);
+
+		generator.writeKey("type");
+		generator.write(this.type);
+
+		generator.writeKey("uid");
+		generator.write(this.uid);
+
+		generator.writeKey("start_date_in_millis");
+		generator.write(this.startDateInMillis);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link LicenseInformation}.
+	 */
+	public static class Builder implements ObjectBuilder<LicenseInformation> {
+		private String expiryDate;
+
+		private JsonValue expiryDateInMillis;
+
+		private String issueDate;
+
+		private JsonValue issueDateInMillis;
+
+		private String issuedTo;
+
+		private String issuer;
+
+		private Number maxNodes;
+
+		@Nullable
+		private Number maxResourceUnits;
+
+		private JsonValue status;
+
+		private JsonValue type;
+
+		private String uid;
+
+		private JsonValue startDateInMillis;
+
+		/**
+		 * API name: {@code expiry_date}
+		 */
+		public Builder expiryDate(String value) {
+			this.expiryDate = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code expiry_date_in_millis}
+		 */
+		public Builder expiryDateInMillis(JsonValue value) {
+			this.expiryDateInMillis = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code issue_date}
+		 */
+		public Builder issueDate(String value) {
+			this.issueDate = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code issue_date_in_millis}
+		 */
+		public Builder issueDateInMillis(JsonValue value) {
+			this.issueDateInMillis = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code issued_to}
+		 */
+		public Builder issuedTo(String value) {
+			this.issuedTo = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code issuer}
+		 */
+		public Builder issuer(String value) {
+			this.issuer = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_nodes}
+		 */
+		public Builder maxNodes(Number value) {
+			this.maxNodes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_resource_units}
+		 */
+		public Builder maxResourceUnits(@Nullable Number value) {
+			this.maxResourceUnits = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code status}
+		 */
+		public Builder status(JsonValue value) {
+			this.status = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code type}
+		 */
+		public Builder type(JsonValue value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code uid}
+		 */
+		public Builder uid(String value) {
+			this.uid = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code start_date_in_millis}
+		 */
+		public Builder startDateInMillis(JsonValue value) {
+			this.startDateInMillis = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link LicenseInformation}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public LicenseInformation build() {
+
+			return new LicenseInformation(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for LicenseInformation
+	 */
+	public static final JsonpValueParser<LicenseInformation> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, LicenseInformation::setupLicenseInformationParser);
+
+	protected static void setupLicenseInformationParser(DelegatingJsonpValueParser<LicenseInformation.Builder> op) {
+
+		op.add(Builder::expiryDate, JsonpValueParser.stringParser(), "expiry_date");
+		op.add(Builder::expiryDateInMillis, JsonpValueParser.jsonValueParser(), "expiry_date_in_millis");
+		op.add(Builder::issueDate, JsonpValueParser.stringParser(), "issue_date");
+		op.add(Builder::issueDateInMillis, JsonpValueParser.jsonValueParser(), "issue_date_in_millis");
+		op.add(Builder::issuedTo, JsonpValueParser.stringParser(), "issued_to");
+		op.add(Builder::issuer, JsonpValueParser.stringParser(), "issuer");
+		op.add(Builder::maxNodes, JsonpValueParser.numberParser(), "max_nodes");
+		op.add(Builder::maxResourceUnits, JsonpValueParser.numberParser(), "max_resource_units");
+		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
+		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
+		op.add(Builder::uid, JsonpValueParser.stringParser(), "uid");
+		op.add(Builder::startDateInMillis, JsonpValueParser.jsonValueParser(), "start_date_in_millis");
+
+	}
+
+}

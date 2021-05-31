@@ -1,0 +1,138 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ilm;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Collections;
+import javax.annotation.Nullable;
+
+// typedef: ilm.get_lifecycle.Request
+public final class GetLifecycleRequest extends RequestBase {
+	@Nullable
+	private final String policy;
+
+	@Nullable
+	private final String policyId;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected GetLifecycleRequest(Builder builder) {
+
+		this.policy = builder.policy;
+		this.policyId = builder.policyId;
+
+	}
+
+	/**
+	 * API name: {@code policy}
+	 */
+	@Nullable
+	public String policy() {
+		return this.policy;
+	}
+
+	/**
+	 * API name: {@code policy_id}
+	 */
+	@Nullable
+	public String policyId() {
+		return this.policyId;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link GetLifecycleRequest}.
+	 */
+	public static class Builder implements ObjectBuilder<GetLifecycleRequest> {
+		@Nullable
+		private String policy;
+
+		@Nullable
+		private String policyId;
+
+		/**
+		 * API name: {@code policy}
+		 */
+		public Builder policy(@Nullable String value) {
+			this.policy = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code policy_id}
+		 */
+		public Builder policyId(@Nullable String value) {
+			this.policyId = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link GetLifecycleRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public GetLifecycleRequest build() {
+
+			return new GetLifecycleRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code ilm.get_lifecycle}".
+	 */
+	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "GET",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				buf.append("/_ilm");
+				buf.append("/policy");
+				if (request.policy != null) {
+					buf.append("/");
+					buf.append(request.policy);
+				}
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				return Collections.emptyMap();
+
+			}, Endpoint.Simple.emptyMap(), false, GetLifecycleResponse.JSONP_PARSER);
+}

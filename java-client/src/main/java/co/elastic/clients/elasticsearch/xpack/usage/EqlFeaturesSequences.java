@@ -1,0 +1,236 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.xpack.usage;
+
+import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: xpack.usage.EqlFeaturesSequences
+public final class EqlFeaturesSequences implements ToJsonp {
+	private final Number sequenceQueriesThree;
+
+	private final Number sequenceQueriesFour;
+
+	private final Number sequenceQueriesTwo;
+
+	private final Number sequenceUntil;
+
+	private final Number sequenceQueriesFiveOrMore;
+
+	private final Number sequenceMaxspan;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected EqlFeaturesSequences(Builder builder) {
+
+		this.sequenceQueriesThree = Objects.requireNonNull(builder.sequenceQueriesThree, "sequence_queries_three");
+		this.sequenceQueriesFour = Objects.requireNonNull(builder.sequenceQueriesFour, "sequence_queries_four");
+		this.sequenceQueriesTwo = Objects.requireNonNull(builder.sequenceQueriesTwo, "sequence_queries_two");
+		this.sequenceUntil = Objects.requireNonNull(builder.sequenceUntil, "sequence_until");
+		this.sequenceQueriesFiveOrMore = Objects.requireNonNull(builder.sequenceQueriesFiveOrMore,
+				"sequence_queries_five_or_more");
+		this.sequenceMaxspan = Objects.requireNonNull(builder.sequenceMaxspan, "sequence_maxspan");
+
+	}
+
+	/**
+	 * API name: {@code sequence_queries_three}
+	 */
+	public Number sequenceQueriesThree() {
+		return this.sequenceQueriesThree;
+	}
+
+	/**
+	 * API name: {@code sequence_queries_four}
+	 */
+	public Number sequenceQueriesFour() {
+		return this.sequenceQueriesFour;
+	}
+
+	/**
+	 * API name: {@code sequence_queries_two}
+	 */
+	public Number sequenceQueriesTwo() {
+		return this.sequenceQueriesTwo;
+	}
+
+	/**
+	 * API name: {@code sequence_until}
+	 */
+	public Number sequenceUntil() {
+		return this.sequenceUntil;
+	}
+
+	/**
+	 * API name: {@code sequence_queries_five_or_more}
+	 */
+	public Number sequenceQueriesFiveOrMore() {
+		return this.sequenceQueriesFiveOrMore;
+	}
+
+	/**
+	 * API name: {@code sequence_maxspan}
+	 */
+	public Number sequenceMaxspan() {
+		return this.sequenceMaxspan;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("sequence_queries_three");
+		generator.write(this.sequenceQueriesThree.doubleValue());
+
+		generator.writeKey("sequence_queries_four");
+		generator.write(this.sequenceQueriesFour.doubleValue());
+
+		generator.writeKey("sequence_queries_two");
+		generator.write(this.sequenceQueriesTwo.doubleValue());
+
+		generator.writeKey("sequence_until");
+		generator.write(this.sequenceUntil.doubleValue());
+
+		generator.writeKey("sequence_queries_five_or_more");
+		generator.write(this.sequenceQueriesFiveOrMore.doubleValue());
+
+		generator.writeKey("sequence_maxspan");
+		generator.write(this.sequenceMaxspan.doubleValue());
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link EqlFeaturesSequences}.
+	 */
+	public static class Builder implements ObjectBuilder<EqlFeaturesSequences> {
+		private Number sequenceQueriesThree;
+
+		private Number sequenceQueriesFour;
+
+		private Number sequenceQueriesTwo;
+
+		private Number sequenceUntil;
+
+		private Number sequenceQueriesFiveOrMore;
+
+		private Number sequenceMaxspan;
+
+		/**
+		 * API name: {@code sequence_queries_three}
+		 */
+		public Builder sequenceQueriesThree(Number value) {
+			this.sequenceQueriesThree = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sequence_queries_four}
+		 */
+		public Builder sequenceQueriesFour(Number value) {
+			this.sequenceQueriesFour = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sequence_queries_two}
+		 */
+		public Builder sequenceQueriesTwo(Number value) {
+			this.sequenceQueriesTwo = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sequence_until}
+		 */
+		public Builder sequenceUntil(Number value) {
+			this.sequenceUntil = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sequence_queries_five_or_more}
+		 */
+		public Builder sequenceQueriesFiveOrMore(Number value) {
+			this.sequenceQueriesFiveOrMore = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sequence_maxspan}
+		 */
+		public Builder sequenceMaxspan(Number value) {
+			this.sequenceMaxspan = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link EqlFeaturesSequences}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public EqlFeaturesSequences build() {
+
+			return new EqlFeaturesSequences(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json parser for EqlFeaturesSequences
+	 */
+	public static final JsonpValueParser<EqlFeaturesSequences> JSONP_PARSER = JsonpObjectBuilderParser
+			.createForObject(Builder::new, EqlFeaturesSequences::setupEqlFeaturesSequencesParser);
+
+	protected static void setupEqlFeaturesSequencesParser(DelegatingJsonpValueParser<EqlFeaturesSequences.Builder> op) {
+
+		op.add(Builder::sequenceQueriesThree, JsonpValueParser.numberParser(), "sequence_queries_three");
+		op.add(Builder::sequenceQueriesFour, JsonpValueParser.numberParser(), "sequence_queries_four");
+		op.add(Builder::sequenceQueriesTwo, JsonpValueParser.numberParser(), "sequence_queries_two");
+		op.add(Builder::sequenceUntil, JsonpValueParser.numberParser(), "sequence_until");
+		op.add(Builder::sequenceQueriesFiveOrMore, JsonpValueParser.numberParser(), "sequence_queries_five_or_more");
+		op.add(Builder::sequenceMaxspan, JsonpValueParser.numberParser(), "sequence_maxspan");
+
+	}
+
+}

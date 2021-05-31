@@ -1,0 +1,209 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ml;
+
+import co.elastic.clients.base.ElasticsearchError;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import javax.annotation.Nullable;
+
+// typedef: ml.upgrade_job_snapshot.Request
+public final class UpgradeJobSnapshotRequest extends RequestBase {
+	private final String jobId;
+
+	private final String snapshotId;
+
+	@Nullable
+	private final Boolean waitForCompletion;
+
+	@Nullable
+	private final JsonValue timeout;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected UpgradeJobSnapshotRequest(Builder builder) {
+
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
+		this.waitForCompletion = builder.waitForCompletion;
+		this.timeout = builder.timeout;
+
+	}
+
+	/**
+	 * Identifier for the anomaly detection job.
+	 *
+	 * API name: {@code job_id}
+	 */
+	public String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * A numerical character string that uniquely identifies the model snapshot.
+	 *
+	 * API name: {@code snapshot_id}
+	 */
+	public String snapshotId() {
+		return this.snapshotId;
+	}
+
+	/**
+	 * When true, the API won’t respond until the upgrade is complete. Otherwise, it
+	 * responds as soon as the upgrade task is assigned to a node.
+	 *
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public Boolean waitForCompletion() {
+		return this.waitForCompletion;
+	}
+
+	/**
+	 * Controls the time to wait for the request to complete.
+	 *
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public JsonValue timeout() {
+		return this.timeout;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link UpgradeJobSnapshotRequest}.
+	 */
+	public static class Builder implements ObjectBuilder<UpgradeJobSnapshotRequest> {
+		private String jobId;
+
+		private String snapshotId;
+
+		@Nullable
+		private Boolean waitForCompletion;
+
+		@Nullable
+		private JsonValue timeout;
+
+		/**
+		 * Identifier for the anomaly detection job.
+		 *
+		 * API name: {@code job_id}
+		 */
+		public Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
+		 * A numerical character string that uniquely identifies the model snapshot.
+		 *
+		 * API name: {@code snapshot_id}
+		 */
+		public Builder snapshotId(String value) {
+			this.snapshotId = value;
+			return this;
+		}
+
+		/**
+		 * When true, the API won’t respond until the upgrade is complete. Otherwise, it
+		 * responds as soon as the upgrade task is assigned to a node.
+		 *
+		 * API name: {@code wait_for_completion}
+		 */
+		public Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
+			return this;
+		}
+
+		/**
+		 * Controls the time to wait for the request to complete.
+		 *
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable JsonValue value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link UpgradeJobSnapshotRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public UpgradeJobSnapshotRequest build() {
+
+			return new UpgradeJobSnapshotRequest(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code ml.upgrade_job_snapshot}".
+	 */
+	public static final Endpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+			// Request method
+			request -> "POST",
+
+			// Request path
+			request -> {
+				StringBuilder buf = new StringBuilder();
+				buf.append("/_ml");
+				buf.append("/anomaly_detectors");
+				buf.append("/");
+				buf.append(request.jobId);
+				buf.append("/model_snapshots");
+				buf.append("/");
+				buf.append(request.snapshotId);
+				buf.append("/_upgrade");
+				return buf.toString();
+
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout.toString());
+				}
+				return params;
+
+			}, Endpoint.Simple.emptyMap(), false, UpgradeJobSnapshotResponse.JSONP_PARSER);
+}
