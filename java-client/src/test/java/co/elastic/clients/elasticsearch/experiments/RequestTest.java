@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._global.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.CreateResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import jakarta.json.JsonValue;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
@@ -102,26 +103,21 @@ public class RequestTest extends Assert {
         BooleanResponse existsResponse = client.indices().exists(b -> b.index("test"));
         assertTrue(existsResponse.value());
 
-        // Would be nice to have index tagged as "preferred field" to generate this:
-        // BooleanResponse existsResponse = client.indices().exists("test");
-
-
         // Ingest some data
         AppData appData = new AppData();
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        String docId = client.create(b -> b
+        String docId = client.index(b -> b
             .index("test")
-            .type("_doc") // needed for now because of how paths are generated
             .id("myId")
             .value(appData)
+            .refresh(JsonValue.TRUE) // Make it visible for search
         )._id();
 
         // Query by id
         AppData esData = client.get(b -> b
                 .index("test")
-                .type("_doc")
                 .id(docId)
             , AppData.class
         )._source();
@@ -129,23 +125,24 @@ public class RequestTest extends Assert {
         assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
 
-        // Search, adding some options
+        // Search, adding some request options
         RequestOptions options = RequestOptions.DEFAULT.toBuilder()
             .addHeader("x-super-header", "bar")
             .build();
 
-        SearchResponse<String> search = client
+        SearchResponse<AppData> search = client
             .withRequestOptions(options)
             .search(b -> b
-                .index("test")//, "foo", "bar")
-                .allowNoIndices(true)
-                .explain(true),
-                String.class
+                .index("test")
+                , AppData.class
         );
 
-        System.out.println(search.hits().total().asJsonObject().getInt("value") + " hits");
+        int hits = search.hits().total().asJsonObject().getInt("value"); // union types not handled yet
+        assertEquals(1, hits);
 
-
+        esData = search.hits().hits().get(0)._source();
+        assertEquals(1337, esData.getIntValue());
+        assertEquals("foo", esData.getMsg());
     }
 
     public static class AppData {
