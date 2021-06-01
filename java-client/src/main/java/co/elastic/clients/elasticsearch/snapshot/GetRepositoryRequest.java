@@ -165,36 +165,25 @@ public final class GetRepositoryRequest extends RequestBase {
 	public static final Endpoint<GetRepositoryRequest, GetRepositoryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int repository = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.repository() != null)
-					propsSet |= repository;
-
-				if (propsSet == (0))
-					return "GET";
-				if (propsSet == (0 | repository))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int repository = 1 << 0;
+				final int _repository = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.repository() != null)
-					propsSet |= repository;
+					propsSet |= _repository;
 
-				if (propsSet == (0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					return buf.toString();
 				}
-				if (propsSet == (0 | repository)) {
+				if (propsSet == (_repository)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");

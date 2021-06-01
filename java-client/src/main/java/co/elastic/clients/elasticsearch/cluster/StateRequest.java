@@ -346,45 +346,29 @@ public final class StateRequest extends RequestBase {
 	public static final Endpoint<StateRequest, StateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int metric = 1 << 0;
-				final int index = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.metric() != null)
-					propsSet |= metric;
-				if (request.index() != null)
-					propsSet |= index;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | metric))
-					return "GET";
-				if (propsSet == (0 | 0 | metric | index))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int metric = 1 << 0;
-				final int index = 1 << 1;
+				final int _metric = 1 << 0;
+				final int _index = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.metric() != null)
-					propsSet |= metric;
+					propsSet |= _metric;
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cluster");
 					buf.append("/state");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | metric)) {
+				if (propsSet == (_metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cluster");
 					buf.append("/state");
@@ -392,7 +376,7 @@ public final class StateRequest extends RequestBase {
 					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | metric | index)) {
+				if (propsSet == (_metric | _index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cluster");
 					buf.append("/state");

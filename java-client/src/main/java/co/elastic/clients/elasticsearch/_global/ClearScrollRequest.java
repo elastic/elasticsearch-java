@@ -144,37 +144,26 @@ public final class ClearScrollRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<ClearScrollRequest, ClearScrollResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int scrollId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.scrollId() != null)
-					propsSet |= scrollId;
-
-				if (propsSet == (0 | 0))
-					return "DELETE";
-				if (propsSet == (0 | 0 | scrollId))
-					return "DELETE";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int scrollId = 1 << 0;
+				final int _scrollId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.scrollId() != null)
-					propsSet |= scrollId;
+					propsSet |= _scrollId;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_search");
 					buf.append("/scroll");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | scrollId)) {
+				if (propsSet == (_scrollId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_search");
 					buf.append("/scroll");

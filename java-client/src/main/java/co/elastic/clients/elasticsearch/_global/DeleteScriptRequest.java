@@ -139,29 +139,20 @@ public final class DeleteScriptRequest extends RequestBase {
 	public static final Endpoint<DeleteScriptRequest, DeleteScriptResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int id = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.id() != null)
-					propsSet |= id;
-
-				if (propsSet == (0 | id))
-					return "DELETE";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int id = 1 << 0;
+				final int _id = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.id() != null)
-					propsSet |= id;
+					propsSet |= _id;
 
-				if (propsSet == (0 | id)) {
+				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_scripts");
 					buf.append("/");

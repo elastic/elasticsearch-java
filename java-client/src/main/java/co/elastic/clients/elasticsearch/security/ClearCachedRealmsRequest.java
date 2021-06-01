@@ -157,29 +157,20 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 	public static final Endpoint<ClearCachedRealmsRequest, ClearCachedRealmsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int realms = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.realms() != null)
-					propsSet |= realms;
-
-				if (propsSet == (0 | 0 | realms | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int realms = 1 << 0;
+				final int _realms = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.realms() != null)
-					propsSet |= realms;
+					propsSet |= _realms;
 
-				if (propsSet == (0 | 0 | realms | 0)) {
+				if (propsSet == (_realms)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/realm");

@@ -116,29 +116,20 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 	public static final Endpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int ids = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.ids() != null)
-					propsSet |= ids;
-
-				if (propsSet == (0 | 0 | ids | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int ids = 1 << 0;
+				final int _ids = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.ids() != null)
-					propsSet |= ids;
+					propsSet |= _ids;
 
-				if (propsSet == (0 | 0 | ids | 0)) {
+				if (propsSet == (_ids)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/api_key");

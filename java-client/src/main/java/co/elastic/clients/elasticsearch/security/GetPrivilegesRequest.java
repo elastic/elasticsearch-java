@@ -116,45 +116,29 @@ public final class GetPrivilegesRequest extends RequestBase {
 	public static final Endpoint<GetPrivilegesRequest, GetPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int application = 1 << 0;
-				final int name = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.application() != null)
-					propsSet |= application;
-				if (request.name() != null)
-					propsSet |= name;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | application))
-					return "GET";
-				if (propsSet == (0 | 0 | application | name))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int application = 1 << 0;
-				final int name = 1 << 1;
+				final int _application = 1 << 0;
+				final int _name = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.application() != null)
-					propsSet |= application;
+					propsSet |= _application;
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/privilege");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | application)) {
+				if (propsSet == (_application)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/privilege");
@@ -162,7 +146,7 @@ public final class GetPrivilegesRequest extends RequestBase {
 					buf.append(request.application);
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | application | name)) {
+				if (propsSet == (_application | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/privilege");

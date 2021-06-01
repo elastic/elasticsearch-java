@@ -229,35 +229,23 @@ public final class AddBlockRequest extends RequestBase {
 	public static final Endpoint<AddBlockRequest, AddBlockResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int index = 1 << 0;
-				final int block = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.index() != null)
-					propsSet |= index;
-				if (request.block() != null)
-					propsSet |= block;
-
-				if (propsSet == (index | 0 | block))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int index = 1 << 0;
-				final int block = 1 << 1;
+				final int _index = 1 << 0;
+				final int _block = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 				if (request.block() != null)
-					propsSet |= block;
+					propsSet |= _block;
 
-				if (propsSet == (index | 0 | block)) {
+				if (propsSet == (_index | _block)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);

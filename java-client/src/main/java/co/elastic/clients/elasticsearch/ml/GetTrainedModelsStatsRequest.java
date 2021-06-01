@@ -187,31 +187,20 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	public static final Endpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int modelId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.modelId() != null)
-					propsSet |= modelId;
-
-				if (propsSet == (0 | 0 | modelId | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int modelId = 1 << 0;
+				final int _modelId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.modelId() != null)
-					propsSet |= modelId;
+					propsSet |= _modelId;
 
-				if (propsSet == (0 | 0 | modelId | 0)) {
+				if (propsSet == (_modelId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/trained_models");
@@ -220,7 +209,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/trained_models");

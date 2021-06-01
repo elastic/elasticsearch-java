@@ -91,29 +91,20 @@ public final class DeleteFilterRequest extends RequestBase {
 	public static final Endpoint<DeleteFilterRequest, DeleteFilterResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int filterId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.filterId() != null)
-					propsSet |= filterId;
-
-				if (propsSet == (0 | 0 | filterId))
-					return "DELETE";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int filterId = 1 << 0;
+				final int _filterId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.filterId() != null)
-					propsSet |= filterId;
+					propsSet |= _filterId;
 
-				if (propsSet == (0 | 0 | filterId)) {
+				if (propsSet == (_filterId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/filters");

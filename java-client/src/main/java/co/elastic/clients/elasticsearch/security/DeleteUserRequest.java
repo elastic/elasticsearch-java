@@ -116,29 +116,20 @@ public final class DeleteUserRequest extends RequestBase {
 	public static final Endpoint<DeleteUserRequest, DeleteUserResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int username = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.username() != null)
-					propsSet |= username;
-
-				if (propsSet == (0 | 0 | username))
-					return "DELETE";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int username = 1 << 0;
+				final int _username = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.username() != null)
-					propsSet |= username;
+					propsSet |= _username;
 
-				if (propsSet == (0 | 0 | username)) {
+				if (propsSet == (_username)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/user");

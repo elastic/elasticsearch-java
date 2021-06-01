@@ -322,38 +322,27 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int user = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.user() != null)
-					propsSet |= user;
-
-				if (propsSet == (0 | 0 | 0))
-					return "POST";
-				if (propsSet == (0 | 0 | user | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int user = 1 << 0;
+				final int _user = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.user() != null)
-					propsSet |= user;
+					propsSet |= _user;
 
-				if (propsSet == (0 | 0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/_has_privileges");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | user | 0)) {
+				if (propsSet == (_user)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/user");

@@ -192,43 +192,29 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<BulkRequest, BulkResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int stubA = 1 << 0;
-				final int type = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.stubA() != null)
-					propsSet |= stubA;
-				if (request.type() != null)
-					propsSet |= type;
-
-				if (propsSet == (0 | 0))
-					return "POST";
-				if (propsSet == (0 | type | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int stubA = 1 << 0;
-				final int type = 1 << 1;
+				final int _stubA = 1 << 0;
+				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.stubA() != null)
-					propsSet |= stubA;
+					propsSet |= _stubA;
 				if (request.type() != null)
-					propsSet |= type;
+					propsSet |= _type;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_monitoring");
 					buf.append("/bulk");
 					return buf.toString();
 				}
-				if (propsSet == (0 | type | 0)) {
+				if (propsSet == (_type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_monitoring");
 					buf.append("/");

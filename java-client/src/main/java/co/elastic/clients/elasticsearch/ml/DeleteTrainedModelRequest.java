@@ -91,29 +91,20 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 	public static final Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int modelId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.modelId() != null)
-					propsSet |= modelId;
-
-				if (propsSet == (0 | 0 | modelId))
-					return "DELETE";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int modelId = 1 << 0;
+				final int _modelId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.modelId() != null)
-					propsSet |= modelId;
+					propsSet |= _modelId;
 
-				if (propsSet == (0 | 0 | modelId)) {
+				if (propsSet == (_modelId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/trained_models");

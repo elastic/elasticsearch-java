@@ -151,29 +151,20 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PutCalendarRequest, PutCalendarResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int calendarId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.calendarId() != null)
-					propsSet |= calendarId;
-
-				if (propsSet == (0 | 0 | calendarId))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int calendarId = 1 << 0;
+				final int _calendarId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.calendarId() != null)
-					propsSet |= calendarId;
+					propsSet |= _calendarId;
 
-				if (propsSet == (0 | 0 | calendarId)) {
+				if (propsSet == (_calendarId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/calendars");

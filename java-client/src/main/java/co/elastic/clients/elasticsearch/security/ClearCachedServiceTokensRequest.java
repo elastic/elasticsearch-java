@@ -154,41 +154,26 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	public static final Endpoint<ClearCachedServiceTokensRequest, ClearCachedServiceTokensResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int namespace = 1 << 0;
-				final int service = 1 << 1;
-				final int name = 1 << 2;
-
-				int propsSet = 0;
-
-				if (request.namespace() != null)
-					propsSet |= namespace;
-				if (request.service() != null)
-					propsSet |= service;
-				if (request.name() != null)
-					propsSet |= name;
-
-				if (propsSet == (0 | 0 | namespace | service | 0 | 0 | name | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int namespace = 1 << 0;
-				final int service = 1 << 1;
-				final int name = 1 << 2;
+				final int _namespace = 1 << 0;
+				final int _service = 1 << 1;
+				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
 				if (request.namespace() != null)
-					propsSet |= namespace;
+					propsSet |= _namespace;
 				if (request.service() != null)
-					propsSet |= service;
+					propsSet |= _service;
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0 | 0 | namespace | service | 0 | 0 | name | 0)) {
+				if (propsSet == (_namespace | _service | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/service");

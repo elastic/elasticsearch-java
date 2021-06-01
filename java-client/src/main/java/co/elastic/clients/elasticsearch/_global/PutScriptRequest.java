@@ -231,44 +231,30 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PutScriptRequest, PutScriptResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int id = 1 << 0;
-				final int context = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.id() != null)
-					propsSet |= id;
-				if (request.context() != null)
-					propsSet |= context;
-
-				if (propsSet == (0 | id))
-					return "PUT";
-				if (propsSet == (0 | id | context))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int id = 1 << 0;
-				final int context = 1 << 1;
+				final int _id = 1 << 0;
+				final int _context = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.id() != null)
-					propsSet |= id;
+					propsSet |= _id;
 				if (request.context() != null)
-					propsSet |= context;
+					propsSet |= _context;
 
-				if (propsSet == (0 | id)) {
+				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_scripts");
 					buf.append("/");
 					buf.append(request.id);
 					return buf.toString();
 				}
-				if (propsSet == (0 | id | context)) {
+				if (propsSet == (_id | _context)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_scripts");
 					buf.append("/");

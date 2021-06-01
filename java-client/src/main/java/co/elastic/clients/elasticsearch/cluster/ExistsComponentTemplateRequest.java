@@ -193,35 +193,23 @@ public final class ExistsComponentTemplateRequest extends RequestBase implements
 	public static final Endpoint<ExistsComponentTemplateRequest, ExistsComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int stubA = 1 << 0;
-				final int name = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.stubA() != null)
-					propsSet |= stubA;
-				if (request.name() != null)
-					propsSet |= name;
-
-				if (propsSet == (0 | name))
-					return "HEAD";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "HEAD";
 
 			},
 
 			// Request path
 			request -> {
-				final int stubA = 1 << 0;
-				final int name = 1 << 1;
+				final int _stubA = 1 << 0;
+				final int _name = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.stubA() != null)
-					propsSet |= stubA;
+					propsSet |= _stubA;
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0 | name)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_component_template");
 					buf.append("/");

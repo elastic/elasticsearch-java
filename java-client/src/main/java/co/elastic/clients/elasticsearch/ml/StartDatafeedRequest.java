@@ -213,29 +213,20 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<StartDatafeedRequest, StartDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int datafeedId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.datafeedId() != null)
-					propsSet |= datafeedId;
-
-				if (propsSet == (0 | 0 | datafeedId | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int datafeedId = 1 << 0;
+				final int _datafeedId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.datafeedId() != null)
-					propsSet |= datafeedId;
+					propsSet |= _datafeedId;
 
-				if (propsSet == (0 | 0 | datafeedId | 0)) {
+				if (propsSet == (_datafeedId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/datafeeds");

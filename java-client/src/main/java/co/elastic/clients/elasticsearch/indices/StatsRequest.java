@@ -486,60 +486,42 @@ public final class StatsRequest extends RequestBase {
 	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int metric = 1 << 0;
-				final int index = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.metric() != null)
-					propsSet |= metric;
-				if (request.index() != null)
-					propsSet |= index;
-
-				if (propsSet == (0))
-					return "GET";
-				if (propsSet == (0 | metric))
-					return "GET";
-				if (propsSet == (index | 0))
-					return "GET";
-				if (propsSet == (index | 0 | metric))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int metric = 1 << 0;
-				final int index = 1 << 1;
+				final int _metric = 1 << 0;
+				final int _index = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.metric() != null)
-					propsSet |= metric;
+					propsSet |= _metric;
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 
-				if (propsSet == (0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				if (propsSet == (0 | metric)) {
+				if (propsSet == (_metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_stats");
 					buf.append("/");
 					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
-				if (propsSet == (index | 0)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				if (propsSet == (index | 0 | metric)) {
+				if (propsSet == (_index | _metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));

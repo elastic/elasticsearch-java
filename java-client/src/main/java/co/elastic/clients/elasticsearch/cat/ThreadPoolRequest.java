@@ -141,37 +141,26 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int threadPoolPatterns = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.threadPoolPatterns() != null)
-					propsSet |= threadPoolPatterns;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | threadPoolPatterns))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int threadPoolPatterns = 1 << 0;
+				final int _threadPoolPatterns = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.threadPoolPatterns() != null)
-					propsSet |= threadPoolPatterns;
+					propsSet |= _threadPoolPatterns;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cat");
 					buf.append("/thread_pool");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | threadPoolPatterns)) {
+				if (propsSet == (_threadPoolPatterns)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cat");
 					buf.append("/thread_pool");

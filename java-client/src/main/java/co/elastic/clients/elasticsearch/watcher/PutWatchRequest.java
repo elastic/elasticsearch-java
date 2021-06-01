@@ -506,29 +506,20 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PutWatchRequest, PutWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int id = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.id() != null)
-					propsSet |= id;
-
-				if (propsSet == (0 | 0 | id))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int id = 1 << 0;
+				final int _id = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.id() != null)
-					propsSet |= id;
+					propsSet |= _id;
 
-				if (propsSet == (0 | 0 | id)) {
+				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/watch");

@@ -192,35 +192,23 @@ public final class IndexDeleteRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<IndexDeleteRequest, IndexDeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int stubA = 1 << 0;
-				final int indexUuid = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.stubA() != null)
-					propsSet |= stubA;
-				if (request.indexUuid() != null)
-					propsSet |= indexUuid;
-
-				if (propsSet == (0 | indexUuid))
-					return "DELETE";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int stubA = 1 << 0;
-				final int indexUuid = 1 << 1;
+				final int _stubA = 1 << 0;
+				final int _indexUuid = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.stubA() != null)
-					propsSet |= stubA;
+					propsSet |= _stubA;
 				if (request.indexUuid() != null)
-					propsSet |= indexUuid;
+					propsSet |= _indexUuid;
 
-				if (propsSet == (0 | indexUuid)) {
+				if (propsSet == (_indexUuid)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_dangling");
 					buf.append("/");

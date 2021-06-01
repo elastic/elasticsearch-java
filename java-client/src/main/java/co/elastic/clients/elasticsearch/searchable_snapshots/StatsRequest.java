@@ -193,43 +193,29 @@ public final class StatsRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int stubA = 1 << 0;
-				final int index = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.stubA() != null)
-					propsSet |= stubA;
-				if (request.index() != null)
-					propsSet |= index;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (index | 0 | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int stubA = 1 << 0;
-				final int index = 1 << 1;
+				final int _stubA = 1 << 0;
+				final int _index = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.stubA() != null)
-					propsSet |= stubA;
+					propsSet |= _stubA;
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_searchable_snapshots");
 					buf.append("/stats");
 					return buf.toString();
 				}
-				if (propsSet == (index | 0 | 0)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);

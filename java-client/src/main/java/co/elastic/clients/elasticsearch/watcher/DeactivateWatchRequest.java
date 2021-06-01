@@ -91,29 +91,20 @@ public final class DeactivateWatchRequest extends RequestBase {
 	public static final Endpoint<DeactivateWatchRequest, DeactivateWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int watchId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.watchId() != null)
-					propsSet |= watchId;
-
-				if (propsSet == (0 | 0 | watchId | 0))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int watchId = 1 << 0;
+				final int _watchId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.watchId() != null)
-					propsSet |= watchId;
+					propsSet |= _watchId;
 
-				if (propsSet == (0 | 0 | watchId | 0)) {
+				if (propsSet == (_watchId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/watch");

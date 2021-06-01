@@ -233,37 +233,26 @@ public final class IndicesRequest extends CatRequestBase {
 	public static final Endpoint<IndicesRequest, IndicesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int index = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.index() != null)
-					propsSet |= index;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | index))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int index = 1 << 0;
+				final int _index = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cat");
 					buf.append("/indices");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | index)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cat");
 					buf.append("/indices");

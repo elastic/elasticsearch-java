@@ -139,36 +139,25 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	public static final Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int index = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.index() != null)
-					propsSet |= index;
-
-				if (propsSet == (0))
-					return "POST";
-				if (propsSet == (index | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int index = 1 << 0;
+				final int _index = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 
-				if (propsSet == (0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_pit");
 					return buf.toString();
 				}
-				if (propsSet == (index | 0)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));

@@ -240,60 +240,42 @@ public final class InfoRequest extends RequestBase {
 	public static final Endpoint<InfoRequest, InfoResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int nodeId = 1 << 0;
-				final int metric = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.nodeId() != null)
-					propsSet |= nodeId;
-				if (request.metric() != null)
-					propsSet |= metric;
-
-				if (propsSet == (0))
-					return "GET";
-				if (propsSet == (0 | nodeId))
-					return "GET";
-				if (propsSet == (0 | metric))
-					return "GET";
-				if (propsSet == (0 | nodeId | metric))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int nodeId = 1 << 0;
-				final int metric = 1 << 1;
+				final int _nodeId = 1 << 0;
+				final int _metric = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.nodeId() != null)
-					propsSet |= nodeId;
+					propsSet |= _nodeId;
 				if (request.metric() != null)
-					propsSet |= metric;
+					propsSet |= _metric;
 
-				if (propsSet == (0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					return buf.toString();
 				}
-				if (propsSet == (0 | nodeId)) {
+				if (propsSet == (_nodeId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
 					buf.append(request.nodeId);
 					return buf.toString();
 				}
-				if (propsSet == (0 | metric)) {
+				if (propsSet == (_metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
 					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
-				if (propsSet == (0 | nodeId | metric)) {
+				if (propsSet == (_nodeId | _metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");

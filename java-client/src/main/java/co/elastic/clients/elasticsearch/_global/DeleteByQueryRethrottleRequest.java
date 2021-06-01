@@ -116,29 +116,20 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 	public static final Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int taskId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.taskId() != null)
-					propsSet |= taskId;
-
-				if (propsSet == (0 | taskId | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int taskId = 1 << 0;
+				final int _taskId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.taskId() != null)
-					propsSet |= taskId;
+					propsSet |= _taskId;
 
-				if (propsSet == (0 | taskId | 0)) {
+				if (propsSet == (_taskId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_delete_by_query");
 					buf.append("/");

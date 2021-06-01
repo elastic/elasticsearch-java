@@ -194,35 +194,23 @@ public final class RepositoryStatsRequest extends RequestBase implements ToJsonp
 	public static final Endpoint<RepositoryStatsRequest, RepositoryStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int stubA = 1 << 0;
-				final int repository = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.stubA() != null)
-					propsSet |= stubA;
-				if (request.repository() != null)
-					propsSet |= repository;
-
-				if (propsSet == (0 | repository | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int stubA = 1 << 0;
-				final int repository = 1 << 1;
+				final int _stubA = 1 << 0;
+				final int _repository = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.stubA() != null)
-					propsSet |= stubA;
+					propsSet |= _stubA;
 				if (request.repository() != null)
-					propsSet |= repository;
+					propsSet |= _repository;
 
-				if (propsSet == (0 | repository | 0)) {
+				if (propsSet == (_repository)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");

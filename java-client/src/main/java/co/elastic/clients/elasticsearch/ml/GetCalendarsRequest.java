@@ -221,37 +221,26 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int calendarId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.calendarId() != null)
-					propsSet |= calendarId;
-
-				if (propsSet == (0 | 0))
-					return "POST";
-				if (propsSet == (0 | 0 | calendarId))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int calendarId = 1 << 0;
+				final int _calendarId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.calendarId() != null)
-					propsSet |= calendarId;
+					propsSet |= _calendarId;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/calendars");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | calendarId)) {
+				if (propsSet == (_calendarId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/calendars");

@@ -928,56 +928,30 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PutMappingRequest, PutMappingResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int index = 1 << 0;
-				final int type = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.index() != null)
-					propsSet |= index;
-				if (request.type() != null)
-					propsSet |= type;
-
-				if (propsSet == (index | 0))
-					return "PUT";
-				if (propsSet == (index | type | 0))
-					return "PUT";
-				if (propsSet == (index | 0 | type))
-					return "PUT";
-				if (propsSet == (index | type | 0))
-					return "PUT";
-				if (propsSet == (index | 0 | type))
-					return "PUT";
-				if (propsSet == (0 | type))
-					return "PUT";
-				if (propsSet == (index | 0))
-					return "PUT";
-				if (propsSet == (0 | type))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int index = 1 << 0;
-				final int type = 1 << 1;
+				final int _index = 1 << 0;
+				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 				if (request.type() != null)
-					propsSet |= type;
+					propsSet |= _type;
 
-				if (propsSet == (index | 0)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_mapping");
 					return buf.toString();
 				}
-				if (propsSet == (index | type | 0)) {
+				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -986,7 +960,7 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 					buf.append("/_mapping");
 					return buf.toString();
 				}
-				if (propsSet == (index | 0 | type)) {
+				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -995,7 +969,7 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 					buf.append(request.type);
 					return buf.toString();
 				}
-				if (propsSet == (index | type | 0)) {
+				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -1004,7 +978,7 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 					buf.append("/_mappings");
 					return buf.toString();
 				}
-				if (propsSet == (index | 0 | type)) {
+				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -1013,21 +987,21 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 					buf.append(request.type);
 					return buf.toString();
 				}
-				if (propsSet == (0 | type)) {
+				if (propsSet == (_type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_mappings");
 					buf.append("/");
 					buf.append(request.type);
 					return buf.toString();
 				}
-				if (propsSet == (index | 0)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_mappings");
 					return buf.toString();
 				}
-				if (propsSet == (0 | type)) {
+				if (propsSet == (_type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_mapping");
 					buf.append("/");

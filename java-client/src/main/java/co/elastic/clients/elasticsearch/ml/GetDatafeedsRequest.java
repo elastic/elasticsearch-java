@@ -141,31 +141,20 @@ public final class GetDatafeedsRequest extends RequestBase {
 	public static final Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int datafeedId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.datafeedId() != null)
-					propsSet |= datafeedId;
-
-				if (propsSet == (0 | 0 | datafeedId))
-					return "GET";
-				if (propsSet == (0 | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int datafeedId = 1 << 0;
+				final int _datafeedId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.datafeedId() != null)
-					propsSet |= datafeedId;
+					propsSet |= _datafeedId;
 
-				if (propsSet == (0 | 0 | datafeedId)) {
+				if (propsSet == (_datafeedId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/datafeeds");
@@ -173,7 +162,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 					buf.append(request.datafeedId);
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/datafeeds");

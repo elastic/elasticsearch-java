@@ -252,44 +252,30 @@ public final class ExistsAliasRequest extends RequestBase {
 	public static final Endpoint<ExistsAliasRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
 			request -> {
-				final int name = 1 << 0;
-				final int index = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.name() != null)
-					propsSet |= name;
-				if (request.index() != null)
-					propsSet |= index;
-
-				if (propsSet == (0 | name))
-					return "HEAD";
-				if (propsSet == (index | 0 | name))
-					return "HEAD";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "HEAD";
 
 			},
 
 			// Request path
 			request -> {
-				final int name = 1 << 0;
-				final int index = 1 << 1;
+				final int _name = 1 << 0;
+				final int _index = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 
-				if (propsSet == (0 | name)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_alias");
 					buf.append("/");
 					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
-				if (propsSet == (index | 0 | name)) {
+				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));

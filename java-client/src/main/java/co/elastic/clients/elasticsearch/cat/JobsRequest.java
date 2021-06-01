@@ -141,38 +141,27 @@ public final class JobsRequest extends CatRequestBase {
 	public static final Endpoint<JobsRequest, JobsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int jobId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.jobId() != null)
-					propsSet |= jobId;
-
-				if (propsSet == (0 | 0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | 0 | jobId))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int jobId = 1 << 0;
+				final int _jobId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.jobId() != null)
-					propsSet |= jobId;
+					propsSet |= _jobId;
 
-				if (propsSet == (0 | 0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cat");
 					buf.append("/ml");
 					buf.append("/anomaly_detectors");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | 0 | jobId)) {
+				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cat");
 					buf.append("/ml");

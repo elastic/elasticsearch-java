@@ -322,35 +322,23 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<ShrinkRequest, ShrinkResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int index = 1 << 0;
-				final int target = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.index() != null)
-					propsSet |= index;
-				if (request.target() != null)
-					propsSet |= target;
-
-				if (propsSet == (index | 0 | target))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int index = 1 << 0;
-				final int target = 1 << 1;
+				final int _index = 1 << 0;
+				final int _target = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 				if (request.target() != null)
-					propsSet |= target;
+					propsSet |= _target;
 
-				if (propsSet == (index | 0 | target)) {
+				if (propsSet == (_index | _target)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);

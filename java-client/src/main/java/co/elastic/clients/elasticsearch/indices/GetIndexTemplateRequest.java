@@ -266,36 +266,25 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	public static final Endpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int name = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.name() != null)
-					propsSet |= name;
-
-				if (propsSet == (0))
-					return "GET";
-				if (propsSet == (0 | name))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int name = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					return buf.toString();
 				}
-				if (propsSet == (0 | name)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					buf.append("/");

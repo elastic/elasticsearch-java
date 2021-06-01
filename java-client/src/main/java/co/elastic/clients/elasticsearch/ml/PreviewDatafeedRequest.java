@@ -91,31 +91,20 @@ public final class PreviewDatafeedRequest extends RequestBase {
 	private static final Endpoint.Simple<PreviewDatafeedRequest, Void> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int datafeedId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.datafeedId() != null)
-					propsSet |= datafeedId;
-
-				if (propsSet == (0 | 0 | datafeedId | 0))
-					return "POST";
-				if (propsSet == (0 | 0 | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int datafeedId = 1 << 0;
+				final int _datafeedId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.datafeedId() != null)
-					propsSet |= datafeedId;
+					propsSet |= _datafeedId;
 
-				if (propsSet == (0 | 0 | datafeedId | 0)) {
+				if (propsSet == (_datafeedId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/datafeeds");
@@ -124,7 +113,7 @@ public final class PreviewDatafeedRequest extends RequestBase {
 					buf.append("/_preview");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/datafeeds");

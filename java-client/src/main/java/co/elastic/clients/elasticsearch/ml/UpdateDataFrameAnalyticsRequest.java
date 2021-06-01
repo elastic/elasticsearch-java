@@ -289,29 +289,20 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	public static final Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int id = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.id() != null)
-					propsSet |= id;
-
-				if (propsSet == (0 | 0 | 0 | id | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int id = 1 << 0;
+				final int _id = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.id() != null)
-					propsSet |= id;
+					propsSet |= _id;
 
-				if (propsSet == (0 | 0 | 0 | id | 0)) {
+				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/data_frame");

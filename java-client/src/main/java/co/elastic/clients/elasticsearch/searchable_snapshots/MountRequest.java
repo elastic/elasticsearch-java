@@ -374,35 +374,23 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<MountRequest, MountResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int repository = 1 << 0;
-				final int snapshot = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.repository() != null)
-					propsSet |= repository;
-				if (request.snapshot() != null)
-					propsSet |= snapshot;
-
-				if (propsSet == (0 | repository | snapshot | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int repository = 1 << 0;
-				final int snapshot = 1 << 1;
+				final int _repository = 1 << 0;
+				final int _snapshot = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.repository() != null)
-					propsSet |= repository;
+					propsSet |= _repository;
 				if (request.snapshot() != null)
-					propsSet |= snapshot;
+					propsSet |= _snapshot;
 
-				if (propsSet == (0 | repository | snapshot | 0)) {
+				if (propsSet == (_repository | _snapshot)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");

@@ -220,41 +220,26 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<RollupRequest, RollupResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int stubb = 1 << 0;
-				final int index = 1 << 1;
-				final int rollupIndex = 1 << 2;
-
-				int propsSet = 0;
-
-				if (request.stubb() != null)
-					propsSet |= stubb;
-				if (request.index() != null)
-					propsSet |= index;
-				if (request.rollupIndex() != null)
-					propsSet |= rollupIndex;
-
-				if (propsSet == (index | 0 | rollupIndex))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int stubb = 1 << 0;
-				final int index = 1 << 1;
-				final int rollupIndex = 1 << 2;
+				final int _stubb = 1 << 0;
+				final int _index = 1 << 1;
+				final int _rollupIndex = 1 << 2;
 
 				int propsSet = 0;
 
 				if (request.stubb() != null)
-					propsSet |= stubb;
+					propsSet |= _stubb;
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 				if (request.rollupIndex() != null)
-					propsSet |= rollupIndex;
+					propsSet |= _rollupIndex;
 
-				if (propsSet == (index | 0 | rollupIndex)) {
+				if (propsSet == (_index | _rollupIndex)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);

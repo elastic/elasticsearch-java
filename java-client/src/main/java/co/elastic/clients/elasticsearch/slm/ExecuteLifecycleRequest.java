@@ -91,29 +91,20 @@ public final class ExecuteLifecycleRequest extends RequestBase {
 	public static final Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int policyId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.policyId() != null)
-					propsSet |= policyId;
-
-				if (propsSet == (0 | 0 | policyId | 0))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int policyId = 1 << 0;
+				final int _policyId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.policyId() != null)
-					propsSet |= policyId;
+					propsSet |= _policyId;
 
-				if (propsSet == (0 | 0 | policyId | 0)) {
+				if (propsSet == (_policyId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_slm");
 					buf.append("/policy");

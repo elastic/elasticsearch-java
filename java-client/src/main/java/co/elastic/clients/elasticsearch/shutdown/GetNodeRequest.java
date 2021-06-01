@@ -151,37 +151,26 @@ public final class GetNodeRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<GetNodeRequest, GetNodeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int nodeId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.nodeId() != null)
-					propsSet |= nodeId;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (0 | nodeId | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int nodeId = 1 << 0;
+				final int _nodeId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.nodeId() != null)
-					propsSet |= nodeId;
+					propsSet |= _nodeId;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/shutdown");
 					return buf.toString();
 				}
-				if (propsSet == (0 | nodeId | 0)) {
+				if (propsSet == (_nodeId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");

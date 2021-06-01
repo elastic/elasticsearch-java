@@ -111,35 +111,23 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	public static final Endpoint<GetServiceCredentialsRequest, GetServiceCredentialsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int namespace = 1 << 0;
-				final int service = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.namespace() != null)
-					propsSet |= namespace;
-				if (request.service() != null)
-					propsSet |= service;
-
-				if (propsSet == (0 | 0 | namespace | service | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int namespace = 1 << 0;
-				final int service = 1 << 1;
+				final int _namespace = 1 << 0;
+				final int _service = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.namespace() != null)
-					propsSet |= namespace;
+					propsSet |= _namespace;
 				if (request.service() != null)
-					propsSet |= service;
+					propsSet |= _service;
 
-				if (propsSet == (0 | 0 | namespace | service | 0)) {
+				if (propsSet == (_namespace | _service)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/service");

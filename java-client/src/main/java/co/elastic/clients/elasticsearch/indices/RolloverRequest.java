@@ -440,44 +440,30 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<RolloverRequest, RolloverResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int alias = 1 << 0;
-				final int newIndex = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.alias() != null)
-					propsSet |= alias;
-				if (request.newIndex() != null)
-					propsSet |= newIndex;
-
-				if (propsSet == (alias | 0))
-					return "POST";
-				if (propsSet == (alias | 0 | newIndex))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int alias = 1 << 0;
-				final int newIndex = 1 << 1;
+				final int _alias = 1 << 0;
+				final int _newIndex = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.alias() != null)
-					propsSet |= alias;
+					propsSet |= _alias;
 				if (request.newIndex() != null)
-					propsSet |= newIndex;
+					propsSet |= _newIndex;
 
-				if (propsSet == (alias | 0)) {
+				if (propsSet == (_alias)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.alias);
 					buf.append("/_rollover");
 					return buf.toString();
 				}
-				if (propsSet == (alias | 0 | newIndex)) {
+				if (propsSet == (_alias | _newIndex)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.alias);

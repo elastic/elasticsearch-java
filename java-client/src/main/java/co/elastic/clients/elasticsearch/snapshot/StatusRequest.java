@@ -188,45 +188,29 @@ public final class StatusRequest extends RequestBase {
 	public static final Endpoint<StatusRequest, StatusResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int repository = 1 << 0;
-				final int snapshot = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.repository() != null)
-					propsSet |= repository;
-				if (request.snapshot() != null)
-					propsSet |= snapshot;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (0 | repository | 0))
-					return "GET";
-				if (propsSet == (0 | repository | snapshot | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int repository = 1 << 0;
-				final int snapshot = 1 << 1;
+				final int _repository = 1 << 0;
+				final int _snapshot = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.repository() != null)
-					propsSet |= repository;
+					propsSet |= _repository;
 				if (request.snapshot() != null)
-					propsSet |= snapshot;
+					propsSet |= _snapshot;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/_status");
 					return buf.toString();
 				}
-				if (propsSet == (0 | repository | 0)) {
+				if (propsSet == (_repository)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
@@ -234,7 +218,7 @@ public final class StatusRequest extends RequestBase {
 					buf.append("/_status");
 					return buf.toString();
 				}
-				if (propsSet == (0 | repository | snapshot | 0)) {
+				if (propsSet == (_repository | _snapshot)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");

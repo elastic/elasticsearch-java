@@ -418,31 +418,20 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int id = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.id() != null)
-					propsSet |= id;
-
-				if (propsSet == (0 | 0 | id | 0))
-					return "PUT";
-				if (propsSet == (0 | 0 | 0))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int id = 1 << 0;
+				final int _id = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.id() != null)
-					propsSet |= id;
+					propsSet |= _id;
 
-				if (propsSet == (0 | 0 | id | 0)) {
+				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/watch");
@@ -451,7 +440,7 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 					buf.append("/_execute");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/watch");

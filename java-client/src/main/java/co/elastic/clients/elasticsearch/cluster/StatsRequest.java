@@ -158,37 +158,26 @@ public final class StatsRequest extends RequestBase {
 	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int nodeId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.nodeId() != null)
-					propsSet |= nodeId;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | 0 | nodeId))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int nodeId = 1 << 0;
+				final int _nodeId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.nodeId() != null)
-					propsSet |= nodeId;
+					propsSet |= _nodeId;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cluster");
 					buf.append("/stats");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | 0 | nodeId)) {
+				if (propsSet == (_nodeId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cluster");
 					buf.append("/stats");

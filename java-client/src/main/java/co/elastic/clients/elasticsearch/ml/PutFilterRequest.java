@@ -208,29 +208,20 @@ public final class PutFilterRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PutFilterRequest, PutFilterResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int filterId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.filterId() != null)
-					propsSet |= filterId;
-
-				if (propsSet == (0 | 0 | filterId))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int filterId = 1 << 0;
+				final int _filterId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.filterId() != null)
-					propsSet |= filterId;
+					propsSet |= _filterId;
 
-				if (propsSet == (0 | 0 | filterId)) {
+				if (propsSet == (_filterId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/filters");

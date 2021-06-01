@@ -322,53 +322,35 @@ public final class GetSettingsRequest extends RequestBase {
 	public static final Endpoint<GetSettingsRequest, GetSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int index = 1 << 0;
-				final int name = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.index() != null)
-					propsSet |= index;
-				if (request.name() != null)
-					propsSet |= name;
-
-				if (propsSet == (0))
-					return "GET";
-				if (propsSet == (index | 0))
-					return "GET";
-				if (propsSet == (index | 0 | name))
-					return "GET";
-				if (propsSet == (0 | name))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int index = 1 << 0;
-				final int name = 1 << 1;
+				final int _index = 1 << 0;
+				final int _name = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_settings");
 					return buf.toString();
 				}
-				if (propsSet == (index | 0)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_settings");
 					return buf.toString();
 				}
-				if (propsSet == (index | 0 | name)) {
+				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -377,7 +359,7 @@ public final class GetSettingsRequest extends RequestBase {
 					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
-				if (propsSet == (0 | name)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_settings");
 					buf.append("/");

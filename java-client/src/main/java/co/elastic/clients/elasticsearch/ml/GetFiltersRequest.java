@@ -141,37 +141,26 @@ public final class GetFiltersRequest extends RequestBase {
 	public static final Endpoint<GetFiltersRequest, GetFiltersResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int filterId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.filterId() != null)
-					propsSet |= filterId;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | filterId))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int filterId = 1 << 0;
+				final int _filterId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.filterId() != null)
-					propsSet |= filterId;
+					propsSet |= _filterId;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/filters");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | filterId)) {
+				if (propsSet == (_filterId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/filters");

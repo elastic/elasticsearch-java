@@ -163,37 +163,23 @@ public final class DeleteForecastRequest extends RequestBase {
 	public static final Endpoint<DeleteForecastRequest, DeleteForecastResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int jobId = 1 << 0;
-				final int forecastId = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.jobId() != null)
-					propsSet |= jobId;
-				if (request.forecastId() != null)
-					propsSet |= forecastId;
-
-				if (propsSet == (0 | 0 | jobId | 0))
-					return "DELETE";
-				if (propsSet == (0 | 0 | jobId | 0 | forecastId))
-					return "DELETE";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int jobId = 1 << 0;
-				final int forecastId = 1 << 1;
+				final int _jobId = 1 << 0;
+				final int _forecastId = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.jobId() != null)
-					propsSet |= jobId;
+					propsSet |= _jobId;
 				if (request.forecastId() != null)
-					propsSet |= forecastId;
+					propsSet |= _forecastId;
 
-				if (propsSet == (0 | 0 | jobId | 0)) {
+				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
@@ -202,7 +188,7 @@ public final class DeleteForecastRequest extends RequestBase {
 					buf.append("/_forecast");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | jobId | 0 | forecastId)) {
+				if (propsSet == (_jobId | _forecastId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");

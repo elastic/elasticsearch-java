@@ -287,29 +287,20 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int policyId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.policyId() != null)
-					propsSet |= policyId;
-
-				if (propsSet == (0 | 0 | policyId))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int policyId = 1 << 0;
+				final int _policyId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.policyId() != null)
-					propsSet |= policyId;
+					propsSet |= _policyId;
 
-				if (propsSet == (0 | 0 | policyId)) {
+				if (propsSet == (_policyId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_slm");
 					buf.append("/policy");

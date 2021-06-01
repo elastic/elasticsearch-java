@@ -139,29 +139,20 @@ public final class VerifyRepositoryRequest extends RequestBase {
 	public static final Endpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int repository = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.repository() != null)
-					propsSet |= repository;
-
-				if (propsSet == (0 | repository | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int repository = 1 << 0;
+				final int _repository = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.repository() != null)
-					propsSet |= repository;
+					propsSet |= _repository;
 
-				if (propsSet == (0 | repository | 0)) {
+				if (propsSet == (_repository)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");

@@ -267,29 +267,20 @@ public final class GetCalendarEventsRequest extends RequestBase implements ToJso
 	public static final Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int calendarId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.calendarId() != null)
-					propsSet |= calendarId;
-
-				if (propsSet == (0 | 0 | calendarId | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int calendarId = 1 << 0;
+				final int _calendarId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.calendarId() != null)
-					propsSet |= calendarId;
+					propsSet |= _calendarId;
 
-				if (propsSet == (0 | 0 | calendarId | 0)) {
+				if (propsSet == (_calendarId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/calendars");

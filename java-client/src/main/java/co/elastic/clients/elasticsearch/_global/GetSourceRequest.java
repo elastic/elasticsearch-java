@@ -155,43 +155,26 @@ public final class GetSourceRequest extends GetRequest {
 	private static final Endpoint.Simple<GetSourceRequest, Void> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int index = 1 << 0;
-				final int id = 1 << 1;
-				final int type = 1 << 2;
-
-				int propsSet = 0;
-
-				if (request.index() != null)
-					propsSet |= index;
-				if (request.id() != null)
-					propsSet |= id;
-				if (request.type() != null)
-					propsSet |= type;
-
-				if (propsSet == (index | 0 | id))
-					return "GET";
-				if (propsSet == (index | type | id | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int index = 1 << 0;
-				final int id = 1 << 1;
-				final int type = 1 << 2;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
+				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 				if (request.id() != null)
-					propsSet |= id;
+					propsSet |= _id;
 				if (request.type() != null)
-					propsSet |= type;
+					propsSet |= _type;
 
-				if (propsSet == (index | 0 | id)) {
+				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
@@ -200,7 +183,7 @@ public final class GetSourceRequest extends GetRequest {
 					buf.append(request.id);
 					return buf.toString();
 				}
-				if (propsSet == (index | type | id | 0)) {
+				if (propsSet == (_index | _type | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);

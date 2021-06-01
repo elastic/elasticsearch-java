@@ -140,29 +140,20 @@ public final class GetRequest extends RequestBase {
 	public static final Endpoint<GetRequest, GetResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int taskId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.taskId() != null)
-					propsSet |= taskId;
-
-				if (propsSet == (0 | taskId))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int taskId = 1 << 0;
+				final int _taskId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.taskId() != null)
-					propsSet |= taskId;
+					propsSet |= _taskId;
 
-				if (propsSet == (0 | taskId)) {
+				if (propsSet == (_taskId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_tasks");
 					buf.append("/");

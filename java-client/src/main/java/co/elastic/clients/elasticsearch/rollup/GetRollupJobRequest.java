@@ -93,31 +93,20 @@ public final class GetRollupJobRequest extends RequestBase {
 	public static final Endpoint<GetRollupJobRequest, GetRollupJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int id = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.id() != null)
-					propsSet |= id;
-
-				if (propsSet == (0 | 0 | id))
-					return "GET";
-				if (propsSet == (0 | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int id = 1 << 0;
+				final int _id = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.id() != null)
-					propsSet |= id;
+					propsSet |= _id;
 
-				if (propsSet == (0 | 0 | id)) {
+				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_rollup");
 					buf.append("/job");
@@ -125,7 +114,7 @@ public final class GetRollupJobRequest extends RequestBase {
 					buf.append(request.id);
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_rollup");
 					buf.append("/job");

@@ -139,29 +139,20 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 	public static final Endpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int name = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.name() != null)
-					propsSet |= name;
-
-				if (propsSet == (0 | name))
-					return "DELETE";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int name = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0 | name)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_component_template");
 					buf.append("/");

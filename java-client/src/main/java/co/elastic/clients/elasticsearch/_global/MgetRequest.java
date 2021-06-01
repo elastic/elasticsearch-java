@@ -518,51 +518,35 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	private static final Endpoint.Simple<MgetRequest, Void> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int index = 1 << 0;
-				final int type = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.index() != null)
-					propsSet |= index;
-				if (request.type() != null)
-					propsSet |= type;
-
-				if (propsSet == (0))
-					return "POST";
-				if (propsSet == (index | 0))
-					return "POST";
-				if (propsSet == (index | type | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int index = 1 << 0;
-				final int type = 1 << 1;
+				final int _index = 1 << 0;
+				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 				if (request.type() != null)
-					propsSet |= type;
+					propsSet |= _type;
 
-				if (propsSet == (0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_mget");
 					return buf.toString();
 				}
-				if (propsSet == (index | 0)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
 					buf.append("/_mget");
 					return buf.toString();
 				}
-				if (propsSet == (index | type | 0)) {
+				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);

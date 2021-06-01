@@ -188,38 +188,27 @@ public final class TrainedModelsRequest extends CatRequestBase {
 	public static final Endpoint<TrainedModelsRequest, TrainedModelsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int modelId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.modelId() != null)
-					propsSet |= modelId;
-
-				if (propsSet == (0 | 0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | 0 | modelId))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int modelId = 1 << 0;
+				final int _modelId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.modelId() != null)
-					propsSet |= modelId;
+					propsSet |= _modelId;
 
-				if (propsSet == (0 | 0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cat");
 					buf.append("/ml");
 					buf.append("/trained_models");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | 0 | modelId)) {
+				if (propsSet == (_modelId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_cat");
 					buf.append("/ml");

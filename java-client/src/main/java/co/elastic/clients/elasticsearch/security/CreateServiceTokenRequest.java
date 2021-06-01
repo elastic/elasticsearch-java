@@ -131,22 +131,22 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int namespace = 1 << 0;
-				final int service = 1 << 1;
-				final int name = 1 << 2;
+				final int _namespace = 1 << 0;
+				final int _service = 1 << 1;
+				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
 				if (request.namespace() != null)
-					propsSet |= namespace;
+					propsSet |= _namespace;
 				if (request.service() != null)
-					propsSet |= service;
+					propsSet |= _service;
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0 | 0 | namespace | service | 0 | 0 | name))
+				if (propsSet == (_namespace | _service | _name))
 					return "PUT";
-				if (propsSet == (0 | 0 | namespace | service | 0 | 0))
+				if (propsSet == (_namespace | _service))
 					return "POST";
 				throw Endpoint.Simple.noPathTemplateFound("method");
 
@@ -154,20 +154,20 @@ public final class CreateServiceTokenRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int namespace = 1 << 0;
-				final int service = 1 << 1;
-				final int name = 1 << 2;
+				final int _namespace = 1 << 0;
+				final int _service = 1 << 1;
+				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
 				if (request.namespace() != null)
-					propsSet |= namespace;
+					propsSet |= _namespace;
 				if (request.service() != null)
-					propsSet |= service;
+					propsSet |= _service;
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0 | 0 | namespace | service | 0 | 0 | name)) {
+				if (propsSet == (_namespace | _service | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/service");
@@ -181,7 +181,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 					buf.append(request.name);
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | namespace | service | 0 | 0)) {
+				if (propsSet == (_namespace | _service)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/service");

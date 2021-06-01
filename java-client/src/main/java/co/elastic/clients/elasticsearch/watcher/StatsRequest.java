@@ -141,37 +141,26 @@ public final class StatsRequest extends RequestBase {
 	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int metric = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.metric() != null)
-					propsSet |= metric;
-
-				if (propsSet == (0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | metric))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int metric = 1 << 0;
+				final int _metric = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.metric() != null)
-					propsSet |= metric;
+					propsSet |= _metric;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/stats");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | metric)) {
+				if (propsSet == (_metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/stats");

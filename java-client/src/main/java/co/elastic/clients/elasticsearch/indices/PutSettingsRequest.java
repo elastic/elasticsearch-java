@@ -341,36 +341,25 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int index = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.index() != null)
-					propsSet |= index;
-
-				if (propsSet == (0))
-					return "PUT";
-				if (propsSet == (index | 0))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int index = 1 << 0;
+				final int _index = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
-					propsSet |= index;
+					propsSet |= _index;
 
-				if (propsSet == (0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_settings");
 					return buf.toString();
 				}
-				if (propsSet == (index | 0)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));

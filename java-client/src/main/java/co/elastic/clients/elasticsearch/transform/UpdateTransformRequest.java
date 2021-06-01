@@ -118,29 +118,20 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 	public static final Endpoint<UpdateTransformRequest, UpdateTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int transformId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.transformId() != null)
-					propsSet |= transformId;
-
-				if (propsSet == (0 | transformId | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int transformId = 1 << 0;
+				final int _transformId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.transformId() != null)
-					propsSet |= transformId;
+					propsSet |= _transformId;
 
-				if (propsSet == (0 | transformId | 0)) {
+				if (propsSet == (_transformId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");

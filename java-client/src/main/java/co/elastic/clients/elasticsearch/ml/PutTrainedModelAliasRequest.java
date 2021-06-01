@@ -152,35 +152,23 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	public static final Endpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int modelAlias = 1 << 0;
-				final int modelId = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.modelAlias() != null)
-					propsSet |= modelAlias;
-				if (request.modelId() != null)
-					propsSet |= modelId;
-
-				if (propsSet == (0 | 0 | modelId | 0 | modelAlias))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int modelAlias = 1 << 0;
-				final int modelId = 1 << 1;
+				final int _modelAlias = 1 << 0;
+				final int _modelId = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.modelAlias() != null)
-					propsSet |= modelAlias;
+					propsSet |= _modelAlias;
 				if (request.modelId() != null)
-					propsSet |= modelId;
+					propsSet |= _modelId;
 
-				if (propsSet == (0 | 0 | modelId | 0 | modelAlias)) {
+				if (propsSet == (_modelId | _modelAlias)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/trained_models");

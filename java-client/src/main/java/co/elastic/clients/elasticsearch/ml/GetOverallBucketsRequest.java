@@ -357,29 +357,20 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int jobId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.jobId() != null)
-					propsSet |= jobId;
-
-				if (propsSet == (0 | 0 | jobId | 0 | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int jobId = 1 << 0;
+				final int _jobId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.jobId() != null)
-					propsSet |= jobId;
+					propsSet |= _jobId;
 
-				if (propsSet == (0 | 0 | jobId | 0 | 0)) {
+				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");

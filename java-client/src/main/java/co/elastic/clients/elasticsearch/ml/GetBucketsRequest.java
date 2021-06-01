@@ -441,37 +441,23 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<GetBucketsRequest, GetBucketsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int jobId = 1 << 0;
-				final int timestamp = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.jobId() != null)
-					propsSet |= jobId;
-				if (request.timestamp() != null)
-					propsSet |= timestamp;
-
-				if (propsSet == (0 | 0 | jobId | 0 | 0 | timestamp))
-					return "POST";
-				if (propsSet == (0 | 0 | jobId | 0 | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int jobId = 1 << 0;
-				final int timestamp = 1 << 1;
+				final int _jobId = 1 << 0;
+				final int _timestamp = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.jobId() != null)
-					propsSet |= jobId;
+					propsSet |= _jobId;
 				if (request.timestamp() != null)
-					propsSet |= timestamp;
+					propsSet |= _timestamp;
 
-				if (propsSet == (0 | 0 | jobId | 0 | 0 | timestamp)) {
+				if (propsSet == (_jobId | _timestamp)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
@@ -483,7 +469,7 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 					buf.append(request.timestamp);
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | jobId | 0 | 0)) {
+				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");

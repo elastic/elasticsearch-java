@@ -118,38 +118,27 @@ public final class GetJobStatsRequest extends RequestBase {
 	public static final Endpoint<GetJobStatsRequest, GetJobStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int jobId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.jobId() != null)
-					propsSet |= jobId;
-
-				if (propsSet == (0 | 0 | 0))
-					return "GET";
-				if (propsSet == (0 | 0 | jobId | 0))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int jobId = 1 << 0;
+				final int _jobId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.jobId() != null)
-					propsSet |= jobId;
+					propsSet |= _jobId;
 
-				if (propsSet == (0 | 0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | jobId | 0)) {
+				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");

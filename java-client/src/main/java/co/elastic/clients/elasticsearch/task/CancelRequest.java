@@ -230,37 +230,26 @@ public final class CancelRequest extends RequestBase {
 	public static final Endpoint<CancelRequest, CancelResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int taskId = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.taskId() != null)
-					propsSet |= taskId;
-
-				if (propsSet == (0 | 0))
-					return "POST";
-				if (propsSet == (0 | taskId | 0))
-					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int taskId = 1 << 0;
+				final int _taskId = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.taskId() != null)
-					propsSet |= taskId;
+					propsSet |= _taskId;
 
-				if (propsSet == (0 | 0)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_tasks");
 					buf.append("/_cancel");
 					return buf.toString();
 				}
-				if (propsSet == (0 | taskId | 0)) {
+				if (propsSet == (_taskId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_tasks");
 					buf.append("/");

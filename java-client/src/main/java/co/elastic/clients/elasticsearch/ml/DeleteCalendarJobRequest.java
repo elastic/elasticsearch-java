@@ -111,35 +111,23 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	public static final Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int calendarId = 1 << 0;
-				final int jobId = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.calendarId() != null)
-					propsSet |= calendarId;
-				if (request.jobId() != null)
-					propsSet |= jobId;
-
-				if (propsSet == (0 | 0 | calendarId | 0 | jobId))
-					return "DELETE";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int calendarId = 1 << 0;
-				final int jobId = 1 << 1;
+				final int _calendarId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.calendarId() != null)
-					propsSet |= calendarId;
+					propsSet |= _calendarId;
 				if (request.jobId() != null)
-					propsSet |= jobId;
+					propsSet |= _jobId;
 
-				if (propsSet == (0 | 0 | calendarId | 0 | jobId)) {
+				if (propsSet == (_calendarId | _jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/calendars");

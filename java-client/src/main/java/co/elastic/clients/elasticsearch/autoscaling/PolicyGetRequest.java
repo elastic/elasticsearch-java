@@ -192,35 +192,23 @@ public final class PolicyGetRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PolicyGetRequest, PolicyGetResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int stubA = 1 << 0;
-				final int name = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.stubA() != null)
-					propsSet |= stubA;
-				if (request.name() != null)
-					propsSet |= name;
-
-				if (propsSet == (0 | 0 | name))
-					return "GET";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "GET";
 
 			},
 
 			// Request path
 			request -> {
-				final int stubA = 1 << 0;
-				final int name = 1 << 1;
+				final int _stubA = 1 << 0;
+				final int _name = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.stubA() != null)
-					propsSet |= stubA;
+					propsSet |= _stubA;
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0 | 0 | name)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_autoscaling");
 					buf.append("/policy");

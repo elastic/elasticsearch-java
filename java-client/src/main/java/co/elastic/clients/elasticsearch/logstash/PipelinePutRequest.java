@@ -192,35 +192,23 @@ public final class PipelinePutRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PipelinePutRequest, PipelinePutResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int stubA = 1 << 0;
-				final int id = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.stubA() != null)
-					propsSet |= stubA;
-				if (request.id() != null)
-					propsSet |= id;
-
-				if (propsSet == (0 | 0 | id))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int stubA = 1 << 0;
-				final int id = 1 << 1;
+				final int _stubA = 1 << 0;
+				final int _id = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.stubA() != null)
-					propsSet |= stubA;
+					propsSet |= _stubA;
 				if (request.id() != null)
-					propsSet |= id;
+					propsSet |= _id;
 
-				if (propsSet == (0 | 0 | id)) {
+				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_logstash");
 					buf.append("/pipeline");

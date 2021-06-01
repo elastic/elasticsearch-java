@@ -137,37 +137,23 @@ public final class AckWatchRequest extends RequestBase {
 	public static final Endpoint<AckWatchRequest, AckWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int watchId = 1 << 0;
-				final int actionId = 1 << 1;
-
-				int propsSet = 0;
-
-				if (request.watchId() != null)
-					propsSet |= watchId;
-				if (request.actionId() != null)
-					propsSet |= actionId;
-
-				if (propsSet == (0 | 0 | watchId | 0))
-					return "PUT";
-				if (propsSet == (0 | 0 | watchId | 0 | actionId))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int watchId = 1 << 0;
-				final int actionId = 1 << 1;
+				final int _watchId = 1 << 0;
+				final int _actionId = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.watchId() != null)
-					propsSet |= watchId;
+					propsSet |= _watchId;
 				if (request.actionId() != null)
-					propsSet |= actionId;
+					propsSet |= _actionId;
 
-				if (propsSet == (0 | 0 | watchId | 0)) {
+				if (propsSet == (_watchId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/watch");
@@ -176,7 +162,7 @@ public final class AckWatchRequest extends RequestBase {
 					buf.append("/_ack");
 					return buf.toString();
 				}
-				if (propsSet == (0 | 0 | watchId | 0 | actionId)) {
+				if (propsSet == (_watchId | _actionId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/watch");

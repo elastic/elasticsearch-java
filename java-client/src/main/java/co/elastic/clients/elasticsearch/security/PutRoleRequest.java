@@ -527,29 +527,20 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	public static final Endpoint<PutRoleRequest, PutRoleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
-				final int name = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.name() != null)
-					propsSet |= name;
-
-				if (propsSet == (0 | 0 | name))
-					return "PUT";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				return "PUT";
 
 			},
 
 			// Request path
 			request -> {
-				final int name = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
 				if (request.name() != null)
-					propsSet |= name;
+					propsSet |= _name;
 
-				if (propsSet == (0 | 0 | name)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/role");
