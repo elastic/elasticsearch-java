@@ -1,4 +1,4 @@
-<img alt="Elastic logo" style="float: right; width: 200px; height: 200px" src="https://www.elastic.co/static-res/images/elastic-logo-200.png">
+<img alt="Elastic logo" align="right" width="auto" height="auto" src="https://www.elastic.co/static-res/images/elastic-logo-200.png">
 
 # Elasticsearch Java Client
 
@@ -8,7 +8,7 @@ The official Java client for [Elasticsearch](https://github.com/elastic/elastics
 
 **Note: this project is still a work in progress.** This client is meant to replace the existing [Java High Level Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-high.html) and remove all dependencies to the Elasticsearch server code base.
 
-<hr style="clear:both">
+---
 
 The Java client for Elasticsearch provides strongly typed requests and responses for all Elasticsearch APIs. It delegates protocol handling to an http client such as the [Elasticsearch Low Level REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-low.html) that takes care of all transport-level concerns (http connection establishment and pooling, retries, etc).
 
