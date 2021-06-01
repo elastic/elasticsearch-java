@@ -162,6 +162,11 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
           newResponseParser
       );
     }
+
+    public static RuntimeException noPathTemplateFound(String what) {
+      return new RuntimeException("Could not find a request " + what + " with this set of properties. " +
+          "Please check the API documentation, or raise an issue if this should be a valid request.");
+    }
   }
 
   class Boolean<RequestT> extends Simple<RequestT, BooleanResponse> {
