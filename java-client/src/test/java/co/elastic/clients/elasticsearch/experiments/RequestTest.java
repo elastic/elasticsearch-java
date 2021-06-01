@@ -137,7 +137,11 @@ public class RequestTest extends Assert {
                 , AppData.class
         );
 
-        int hits = search.hits().total().asJsonObject().getInt("value"); /* union types not handled yet*/assertEquals(1, hits);esData = search.hits().hits().get(0)._source();assertEquals(1337, esData.getIntValue());
+        int hits = search.hits().total().asJsonObject().getInt("value"); // union types not handled yet
+        assertEquals(1, hits);
+
+        esData = search.hits().hits().get(0)._source();
+        assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
     }
 
