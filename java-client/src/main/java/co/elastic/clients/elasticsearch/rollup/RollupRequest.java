@@ -219,21 +219,51 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<RollupRequest, RollupResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int stubb = 1 << 0;
+				final int index = 1 << 1;
+				final int rollupIndex = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.stubb() != null)
+					propsSet |= stubb;
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.rollupIndex() != null)
+					propsSet |= rollupIndex;
+
+				if (propsSet == (index | 0 | rollupIndex))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				if (request.index != null) {
+				final int stubb = 1 << 0;
+				final int index = 1 << 1;
+				final int rollupIndex = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.stubb() != null)
+					propsSet |= stubb;
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.rollupIndex() != null)
+					propsSet |= rollupIndex;
+
+				if (propsSet == (index | 0 | rollupIndex)) {
+					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
-				}
-				buf.append("/_rollup");
-				if (request.rollupIndex != null) {
+					buf.append("/_rollup");
 					buf.append("/");
 					buf.append(request.rollupIndex);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

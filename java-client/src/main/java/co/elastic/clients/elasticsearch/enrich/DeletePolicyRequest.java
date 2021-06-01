@@ -90,16 +90,38 @@ public final class DeletePolicyRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeletePolicyRequest, DeletePolicyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_enrich");
-				buf.append("/policy");
-				buf.append("/");
-				buf.append(request.name);
-				return buf.toString();
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_enrich");
+					buf.append("/policy");
+					buf.append("/");
+					buf.append(request.name);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

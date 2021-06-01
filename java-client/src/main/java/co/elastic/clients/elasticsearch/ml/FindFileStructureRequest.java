@@ -90,14 +90,14 @@ public final class FindFileStructureRequest extends RequestBase {
 	 */
 	public static final Endpoint<FindFileStructureRequest, FindFileStructureResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/find_file_structure");
-				return buf.toString();
+				return "/_ml/find_file_structure";
 
 			},
 

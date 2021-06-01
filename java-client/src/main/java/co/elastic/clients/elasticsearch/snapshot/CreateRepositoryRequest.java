@@ -248,15 +248,37 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	 */
 	public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int repository = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+
+				if (propsSet == (0 | repository))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_snapshot");
-				buf.append("/");
-				buf.append(request.repository);
-				return buf.toString();
+				final int repository = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+
+				if (propsSet == (0 | repository)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_snapshot");
+					buf.append("/");
+					buf.append(request.repository);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

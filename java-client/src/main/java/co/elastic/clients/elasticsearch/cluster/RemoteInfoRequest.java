@@ -123,14 +123,14 @@ public final class RemoteInfoRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<RemoteInfoRequest, RemoteInfoResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_remote");
-				buf.append("/info");
-				return buf.toString();
+				return "/_remote/info";
 
 			},
 

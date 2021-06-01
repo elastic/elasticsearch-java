@@ -110,19 +110,47 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int jobId = 1 << 0;
+				final int snapshotId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+				if (request.snapshotId() != null)
+					propsSet |= snapshotId;
+
+				if (propsSet == (0 | 0 | jobId | 0 | snapshotId))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/anomaly_detectors");
-				buf.append("/");
-				buf.append(request.jobId);
-				buf.append("/model_snapshots");
-				buf.append("/");
-				buf.append(request.snapshotId);
-				return buf.toString();
+				final int jobId = 1 << 0;
+				final int snapshotId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+				if (request.snapshotId() != null)
+					propsSet |= snapshotId;
+
+				if (propsSet == (0 | 0 | jobId | 0 | snapshotId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/anomaly_detectors");
+					buf.append("/");
+					buf.append(request.jobId);
+					buf.append("/model_snapshots");
+					buf.append("/");
+					buf.append(request.snapshotId);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

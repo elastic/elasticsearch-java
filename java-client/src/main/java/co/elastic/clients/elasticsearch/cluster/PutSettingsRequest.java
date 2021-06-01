@@ -264,14 +264,14 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "PUT",
+			request -> {
+				return "PUT";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cluster");
-				buf.append("/settings");
-				return buf.toString();
+				return "/_cluster/settings";
 
 			},
 

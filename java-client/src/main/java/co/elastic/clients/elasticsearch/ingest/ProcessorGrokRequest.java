@@ -53,15 +53,14 @@ public final class ProcessorGrokRequest extends RequestBase {
 	 */
 	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ingest");
-				buf.append("/processor");
-				buf.append("/grok");
-				return buf.toString();
+				return "/_ingest/processor/grok";
 
 			},
 

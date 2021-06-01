@@ -417,19 +417,48 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int id = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+
+				if (propsSet == (0 | 0 | id | 0))
+					return "PUT";
+				if (propsSet == (0 | 0 | 0))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_watcher");
-				buf.append("/watch");
-				if (request.id != null) {
+				final int id = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+
+				if (propsSet == (0 | 0 | id | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_watcher");
+					buf.append("/watch");
 					buf.append("/");
 					buf.append(request.id);
+					buf.append("/_execute");
+					return buf.toString();
 				}
-				buf.append("/_execute");
-				return buf.toString();
+				if (propsSet == (0 | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_watcher");
+					buf.append("/watch");
+					buf.append("/_execute");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

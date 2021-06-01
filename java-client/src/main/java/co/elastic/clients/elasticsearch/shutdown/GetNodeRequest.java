@@ -150,18 +150,46 @@ public final class GetNodeRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<GetNodeRequest, GetNodeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int nodeId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.nodeId() != null)
+					propsSet |= nodeId;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (0 | nodeId | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_nodes");
-				if (request.nodeId != null) {
+				final int nodeId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.nodeId() != null)
+					propsSet |= nodeId;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/shutdown");
+					return buf.toString();
+				}
+				if (propsSet == (0 | nodeId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
 					buf.append("/");
 					buf.append(request.nodeId);
+					buf.append("/shutdown");
+					return buf.toString();
 				}
-				buf.append("/shutdown");
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

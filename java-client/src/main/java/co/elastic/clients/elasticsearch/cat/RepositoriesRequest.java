@@ -52,14 +52,14 @@ public final class RepositoriesRequest extends CatRequestBase {
 	 */
 	public static final Endpoint<RepositoriesRequest, RepositoriesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cat");
-				buf.append("/repositories");
-				return buf.toString();
+				return "/_cat/repositories";
 
 			},
 

@@ -192,18 +192,52 @@ public final class StatsRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int stubA = 1 << 0;
+				final int index = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stubA() != null)
+					propsSet |= stubA;
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (index | 0 | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				if (request.index != null) {
+				final int stubA = 1 << 0;
+				final int index = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stubA() != null)
+					propsSet |= stubA;
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_searchable_snapshots");
+					buf.append("/stats");
+					return buf.toString();
+				}
+				if (propsSet == (index | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
+					buf.append("/_searchable_snapshots");
+					buf.append("/stats");
+					return buf.toString();
 				}
-				buf.append("/_searchable_snapshots");
-				buf.append("/stats");
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

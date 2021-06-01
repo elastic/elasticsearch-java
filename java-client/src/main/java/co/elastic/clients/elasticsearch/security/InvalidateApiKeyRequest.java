@@ -308,14 +308,14 @@ public final class InvalidateApiKeyRequest extends RequestBase implements ToJson
 	 */
 	public static final Endpoint<InvalidateApiKeyRequest, InvalidateApiKeyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				return "DELETE";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/api_key");
-				return buf.toString();
+				return "/_security/api_key";
 
 			},
 

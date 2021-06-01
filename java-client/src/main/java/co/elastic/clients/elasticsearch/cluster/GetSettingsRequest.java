@@ -163,14 +163,14 @@ public final class GetSettingsRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetSettingsRequest, GetSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cluster");
-				buf.append("/settings");
-				return buf.toString();
+				return "/_cluster/settings";
 
 			},
 

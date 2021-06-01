@@ -53,12 +53,14 @@ public final class PingRequest extends RequestBase {
 	 */
 	public static final Endpoint<PingRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
-			request -> "HEAD",
+			request -> {
+				return "HEAD";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				return buf.toString();
+				return "/";
 
 			},
 

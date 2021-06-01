@@ -161,15 +161,37 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int repository = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+
+				if (propsSet == (0 | repository))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_snapshot");
-				buf.append("/");
-				buf.append(request.repository.stream().map(v -> v).collect(Collectors.joining(",")));
-				return buf.toString();
+				final int repository = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+
+				if (propsSet == (0 | repository)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_snapshot");
+					buf.append("/");
+					buf.append(request.repository.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

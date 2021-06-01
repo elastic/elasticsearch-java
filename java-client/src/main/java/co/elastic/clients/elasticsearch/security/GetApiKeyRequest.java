@@ -186,14 +186,14 @@ public final class GetApiKeyRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetApiKeyRequest, GetApiKeyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/api_key");
-				return buf.toString();
+				return "/_security/api_key";
 
 			},
 

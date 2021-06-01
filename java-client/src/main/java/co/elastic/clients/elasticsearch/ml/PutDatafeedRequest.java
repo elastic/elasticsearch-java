@@ -682,16 +682,38 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PutDatafeedRequest, PutDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "PUT",
+			request -> {
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | datafeedId))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/datafeeds");
-				buf.append("/");
-				buf.append(request.datafeedId);
-				return buf.toString();
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | datafeedId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/datafeeds");
+					buf.append("/");
+					buf.append(request.datafeedId);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

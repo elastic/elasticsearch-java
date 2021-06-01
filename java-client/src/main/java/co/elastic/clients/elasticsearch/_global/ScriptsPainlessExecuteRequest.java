@@ -207,15 +207,14 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	 */
 	private static final Endpoint.Simple<ScriptsPainlessExecuteRequest, Void> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_scripts");
-				buf.append("/painless");
-				buf.append("/_execute");
-				return buf.toString();
+				return "/_scripts/painless/_execute";
 
 			},
 

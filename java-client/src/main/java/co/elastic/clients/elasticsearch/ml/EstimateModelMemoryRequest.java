@@ -238,15 +238,14 @@ public final class EstimateModelMemoryRequest extends RequestBase implements ToJ
 	 */
 	public static final Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/anomaly_detectors");
-				buf.append("/_estimate_model_memory");
-				return buf.toString();
+				return "/_ml/anomaly_detectors/_estimate_model_memory";
 
 			},
 

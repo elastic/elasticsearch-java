@@ -261,17 +261,39 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int filterId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.filterId() != null)
+					propsSet |= filterId;
+
+				if (propsSet == (0 | 0 | filterId | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/filters");
-				buf.append("/");
-				buf.append(request.filterId);
-				buf.append("/_update");
-				return buf.toString();
+				final int filterId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.filterId() != null)
+					propsSet |= filterId;
+
+				if (propsSet == (0 | 0 | filterId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/filters");
+					buf.append("/");
+					buf.append(request.filterId);
+					buf.append("/_update");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

@@ -191,18 +191,52 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<BulkRequest, BulkResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int stubA = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stubA() != null)
+					propsSet |= stubA;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (0 | 0))
+					return "POST";
+				if (propsSet == (0 | type | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_monitoring");
-				if (request.type != null) {
+				final int stubA = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stubA() != null)
+					propsSet |= stubA;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_monitoring");
+					buf.append("/bulk");
+					return buf.toString();
+				}
+				if (propsSet == (0 | type | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_monitoring");
 					buf.append("/");
 					buf.append(request.type);
+					buf.append("/bulk");
+					return buf.toString();
 				}
-				buf.append("/bulk");
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

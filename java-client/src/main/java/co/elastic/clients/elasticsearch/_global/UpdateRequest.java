@@ -740,21 +740,64 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 */
 	private static final Endpoint.Simple<UpdateRequest<?, ?>, Void> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int id = 1 << 0;
+				final int index = 1 << 1;
+				final int type = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0 | id))
+					return "POST";
+				if (propsSet == (index | type | id | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index);
-				if (request.type != null) {
+				final int id = 1 << 0;
+				final int index = 1 << 1;
+				final int type = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0 | id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index);
+					buf.append("/_update");
+					buf.append("/");
+					buf.append(request.id);
+					return buf.toString();
+				}
+				if (propsSet == (index | type | id | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index);
 					buf.append("/");
 					buf.append(request.type);
+					buf.append("/");
+					buf.append(request.id);
+					buf.append("/_update");
+					return buf.toString();
 				}
-				buf.append("/");
-				buf.append(request.id);
-				buf.append("/_update");
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

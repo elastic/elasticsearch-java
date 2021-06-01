@@ -115,17 +115,39 @@ public final class ExecutePolicyRequest extends RequestBase {
 	 */
 	public static final Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "PUT",
+			request -> {
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name | 0))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_enrich");
-				buf.append("/policy");
-				buf.append("/");
-				buf.append(request.name);
-				buf.append("/_execute");
-				return buf.toString();
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_enrich");
+					buf.append("/policy");
+					buf.append("/");
+					buf.append(request.name);
+					buf.append("/_execute");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

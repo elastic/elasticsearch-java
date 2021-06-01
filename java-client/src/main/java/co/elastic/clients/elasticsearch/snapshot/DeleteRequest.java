@@ -135,17 +135,45 @@ public final class DeleteRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int repository = 1 << 0;
+				final int snapshot = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+				if (request.snapshot() != null)
+					propsSet |= snapshot;
+
+				if (propsSet == (0 | repository | snapshot))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_snapshot");
-				buf.append("/");
-				buf.append(request.repository);
-				buf.append("/");
-				buf.append(request.snapshot);
-				return buf.toString();
+				final int repository = 1 << 0;
+				final int snapshot = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+				if (request.snapshot() != null)
+					propsSet |= snapshot;
+
+				if (propsSet == (0 | repository | snapshot)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_snapshot");
+					buf.append("/");
+					buf.append(request.repository);
+					buf.append("/");
+					buf.append(request.snapshot);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

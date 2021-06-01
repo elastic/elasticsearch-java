@@ -115,22 +115,64 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetServiceAccountsRequest, GetServiceAccountsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int namespace = 1 << 0;
+				final int service = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.namespace() != null)
+					propsSet |= namespace;
+				if (request.service() != null)
+					propsSet |= service;
+
+				if (propsSet == (0 | 0 | namespace | service))
+					return "GET";
+				if (propsSet == (0 | 0 | namespace))
+					return "GET";
+				if (propsSet == (0 | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/service");
-				if (request.namespace != null) {
+				final int namespace = 1 << 0;
+				final int service = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.namespace() != null)
+					propsSet |= namespace;
+				if (request.service() != null)
+					propsSet |= service;
+
+				if (propsSet == (0 | 0 | namespace | service)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/service");
 					buf.append("/");
 					buf.append(request.namespace);
-				}
-				if (request.service != null) {
 					buf.append("/");
 					buf.append(request.service);
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0 | 0 | namespace)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/service");
+					buf.append("/");
+					buf.append(request.namespace);
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/service");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

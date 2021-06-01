@@ -123,14 +123,14 @@ public final class StartRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<StartRequest, StartResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ilm");
-				buf.append("/start");
-				return buf.toString();
+				return "/_ilm/start";
 
 			},
 

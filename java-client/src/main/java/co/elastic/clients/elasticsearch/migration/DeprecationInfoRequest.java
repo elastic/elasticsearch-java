@@ -98,18 +98,46 @@ public final class DeprecationInfoRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeprecationInfoRequest, DeprecationInfoResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (index | 0 | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				if (request.index != null) {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_migration");
+					buf.append("/deprecations");
+					return buf.toString();
+				}
+				if (propsSet == (index | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
+					buf.append("/_migration");
+					buf.append("/deprecations");
+					return buf.toString();
 				}
-				buf.append("/_migration");
-				buf.append("/deprecations");
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

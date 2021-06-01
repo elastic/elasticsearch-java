@@ -162,21 +162,58 @@ public final class DeleteForecastRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteForecastRequest, DeleteForecastResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int jobId = 1 << 0;
+				final int forecastId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+				if (request.forecastId() != null)
+					propsSet |= forecastId;
+
+				if (propsSet == (0 | 0 | jobId | 0))
+					return "DELETE";
+				if (propsSet == (0 | 0 | jobId | 0 | forecastId))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/anomaly_detectors");
-				buf.append("/");
-				buf.append(request.jobId);
-				buf.append("/_forecast");
-				if (request.forecastId != null) {
+				final int jobId = 1 << 0;
+				final int forecastId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+				if (request.forecastId() != null)
+					propsSet |= forecastId;
+
+				if (propsSet == (0 | 0 | jobId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/anomaly_detectors");
+					buf.append("/");
+					buf.append(request.jobId);
+					buf.append("/_forecast");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | jobId | 0 | forecastId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/anomaly_detectors");
+					buf.append("/");
+					buf.append(request.jobId);
+					buf.append("/_forecast");
 					buf.append("/");
 					buf.append(request.forecastId);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

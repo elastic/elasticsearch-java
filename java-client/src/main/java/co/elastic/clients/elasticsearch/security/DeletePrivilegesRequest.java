@@ -135,18 +135,46 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeletePrivilegesRequest, DeletePrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int application = 1 << 0;
+				final int name = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.application() != null)
+					propsSet |= application;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | application | name))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/privilege");
-				buf.append("/");
-				buf.append(request.application);
-				buf.append("/");
-				buf.append(request.name);
-				return buf.toString();
+				final int application = 1 << 0;
+				final int name = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.application() != null)
+					propsSet |= application;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | application | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/privilege");
+					buf.append("/");
+					buf.append(request.application);
+					buf.append("/");
+					buf.append(request.name);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

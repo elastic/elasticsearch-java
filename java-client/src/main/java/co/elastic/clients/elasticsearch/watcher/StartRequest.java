@@ -53,14 +53,14 @@ public final class StartRequest extends RequestBase {
 	 */
 	public static final Endpoint<StartRequest, StartResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_watcher");
-				buf.append("/_start");
-				return buf.toString();
+				return "/_watcher/_start";
 
 			},
 

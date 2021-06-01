@@ -140,18 +140,46 @@ public final class GetDatafeedsRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | datafeedId))
+					return "GET";
+				if (propsSet == (0 | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/datafeeds");
-				if (request.datafeedId != null) {
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | datafeedId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/datafeeds");
 					buf.append("/");
 					buf.append(request.datafeedId);
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/datafeeds");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

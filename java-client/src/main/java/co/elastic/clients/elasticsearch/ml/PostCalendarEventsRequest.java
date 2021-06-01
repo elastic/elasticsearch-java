@@ -205,19 +205,39 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	 */
 	public static final Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int calendarId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+
+				if (propsSet == (0 | 0 | calendarId | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/calendars");
-				if (request.calendarId != null) {
+				final int calendarId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+
+				if (propsSet == (0 | 0 | calendarId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/calendars");
 					buf.append("/");
 					buf.append(request.calendarId);
+					buf.append("/events");
+					return buf.toString();
 				}
-				buf.append("/events");
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

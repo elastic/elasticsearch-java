@@ -451,18 +451,46 @@ public final class HealthRequest extends RequestBase {
 	 */
 	public static final Endpoint<HealthRequest, HealthResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (0 | 0 | index))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cluster");
-				buf.append("/health");
-				if (request.index != null) {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cluster");
+					buf.append("/health");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | index)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cluster");
+					buf.append("/health");
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

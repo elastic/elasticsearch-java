@@ -200,17 +200,56 @@ public final class DeleteAliasRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int index = 1 << 0;
+				final int name = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (index | 0 | name))
+					return "DELETE";
+				if (propsSet == (index | 0 | name))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-				buf.append("/_alias");
-				buf.append("/");
-				buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
-				return buf.toString();
+				final int index = 1 << 0;
+				final int name = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (index | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_alias");
+					buf.append("/");
+					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				if (propsSet == (index | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_aliases");
+					buf.append("/");
+					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

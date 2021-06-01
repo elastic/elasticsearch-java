@@ -231,14 +231,36 @@ public final class DeleteRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-				return buf.toString();
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

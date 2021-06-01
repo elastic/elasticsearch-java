@@ -338,24 +338,88 @@ public final class GetFieldMappingRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetFieldMappingRequest, GetFieldMappingResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int fields = 1 << 0;
+				final int index = 1 << 1;
+				final int type = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.fields() != null)
+					propsSet |= fields;
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (0 | 0 | fields))
+					return "GET";
+				if (propsSet == (index | 0 | 0 | fields))
+					return "GET";
+				if (propsSet == (0 | type | 0 | fields))
+					return "GET";
+				if (propsSet == (index | 0 | type | 0 | fields))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				if (request.index != null) {
+				final int fields = 1 << 0;
+				final int index = 1 << 1;
+				final int type = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.fields() != null)
+					propsSet |= fields;
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (0 | 0 | fields)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_mapping");
+					buf.append("/field");
+					buf.append("/");
+					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				if (propsSet == (index | 0 | 0 | fields)) {
+					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_mapping");
+					buf.append("/field");
+					buf.append("/");
+					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				buf.append("/_mapping");
-				if (request.type != null) {
+				if (propsSet == (0 | type | 0 | fields)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_mapping");
 					buf.append("/");
 					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/field");
+					buf.append("/");
+					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				buf.append("/field");
-				buf.append("/");
-				buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
-				return buf.toString();
+				if (propsSet == (index | 0 | type | 0 | fields)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_mapping");
+					buf.append("/");
+					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/field");
+					buf.append("/");
+					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

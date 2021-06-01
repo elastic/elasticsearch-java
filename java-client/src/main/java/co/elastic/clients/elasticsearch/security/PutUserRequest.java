@@ -400,16 +400,38 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PutUserRequest, PutUserResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int username = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.username() != null)
+					propsSet |= username;
+
+				if (propsSet == (0 | 0 | username))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/user");
-				buf.append("/");
-				buf.append(request.username);
-				return buf.toString();
+				final int username = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.username() != null)
+					propsSet |= username;
+
+				if (propsSet == (0 | 0 | username)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/user");
+					buf.append("/");
+					buf.append(request.username);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

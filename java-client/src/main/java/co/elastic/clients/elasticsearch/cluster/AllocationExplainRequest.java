@@ -295,15 +295,14 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 	 */
 	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cluster");
-				buf.append("/allocation");
-				buf.append("/explain");
-				return buf.toString();
+				return "/_cluster/allocation/explain";
 
 			},
 

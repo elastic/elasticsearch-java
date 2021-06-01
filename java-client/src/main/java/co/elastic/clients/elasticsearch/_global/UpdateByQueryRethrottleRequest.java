@@ -115,16 +115,38 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 	 */
 	public static final Endpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int taskId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.taskId() != null)
+					propsSet |= taskId;
+
+				if (propsSet == (0 | taskId | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_update_by_query");
-				buf.append("/");
-				buf.append(request.taskId);
-				buf.append("/_rethrottle");
-				return buf.toString();
+				final int taskId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.taskId() != null)
+					propsSet |= taskId;
+
+				if (propsSet == (0 | taskId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_update_by_query");
+					buf.append("/");
+					buf.append(request.taskId);
+					buf.append("/_rethrottle");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

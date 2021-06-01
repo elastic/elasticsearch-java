@@ -53,7 +53,10 @@ public final class GetScriptLanguagesRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetScriptLanguagesRequest, GetScriptLanguagesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {

@@ -391,16 +391,38 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PutJobRequest, PutJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "PUT",
+			request -> {
+				final int jobId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+
+				if (propsSet == (0 | 0 | jobId))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/anomaly_detectors");
-				buf.append("/");
-				buf.append(request.jobId);
-				return buf.toString();
+				final int jobId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+
+				if (propsSet == (0 | 0 | jobId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/anomaly_detectors");
+					buf.append("/");
+					buf.append(request.jobId);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

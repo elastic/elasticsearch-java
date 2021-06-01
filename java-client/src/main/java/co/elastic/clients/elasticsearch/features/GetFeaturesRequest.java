@@ -164,7 +164,10 @@ public final class GetFeaturesRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<GetFeaturesRequest, GetFeaturesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {

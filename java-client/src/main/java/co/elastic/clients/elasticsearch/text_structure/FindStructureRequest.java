@@ -638,14 +638,14 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 */
 	public static final Endpoint<FindStructureRequest<?>, FindStructureResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_text_structure");
-				buf.append("/find_structure");
-				return buf.toString();
+				return "/_text_structure/find_structure";
 
 			},
 

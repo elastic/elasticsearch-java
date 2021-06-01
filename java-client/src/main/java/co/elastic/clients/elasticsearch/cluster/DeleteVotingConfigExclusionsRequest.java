@@ -125,14 +125,14 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase imple
 	 */
 	public static final Endpoint<DeleteVotingConfigExclusionsRequest, DeleteVotingConfigExclusionsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				return "DELETE";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cluster");
-				buf.append("/voting_config_exclusions");
-				return buf.toString();
+				return "/_cluster/voting_config_exclusions";
 
 			},
 

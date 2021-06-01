@@ -136,21 +136,58 @@ public final class AckWatchRequest extends RequestBase {
 	 */
 	public static final Endpoint<AckWatchRequest, AckWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int watchId = 1 << 0;
+				final int actionId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.watchId() != null)
+					propsSet |= watchId;
+				if (request.actionId() != null)
+					propsSet |= actionId;
+
+				if (propsSet == (0 | 0 | watchId | 0))
+					return "PUT";
+				if (propsSet == (0 | 0 | watchId | 0 | actionId))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_watcher");
-				buf.append("/watch");
-				buf.append("/");
-				buf.append(request.watchId);
-				buf.append("/_ack");
-				if (request.actionId != null) {
+				final int watchId = 1 << 0;
+				final int actionId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.watchId() != null)
+					propsSet |= watchId;
+				if (request.actionId() != null)
+					propsSet |= actionId;
+
+				if (propsSet == (0 | 0 | watchId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_watcher");
+					buf.append("/watch");
+					buf.append("/");
+					buf.append(request.watchId);
+					buf.append("/_ack");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | watchId | 0 | actionId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_watcher");
+					buf.append("/watch");
+					buf.append("/");
+					buf.append(request.watchId);
+					buf.append("/_ack");
 					buf.append("/");
 					buf.append(request.actionId.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

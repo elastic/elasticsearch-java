@@ -331,14 +331,14 @@ public final class CreateApiKeyRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<CreateApiKeyRequest, CreateApiKeyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "PUT";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/api_key");
-				return buf.toString();
+				return "/_security/api_key";
 
 			},
 

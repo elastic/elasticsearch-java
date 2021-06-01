@@ -53,15 +53,14 @@ public final class GeoIpStatsRequest extends RequestBase {
 	 */
 	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ingest");
-				buf.append("/geoip");
-				buf.append("/stats");
-				return buf.toString();
+				return "/_ingest/geoip/stats";
 
 			},
 

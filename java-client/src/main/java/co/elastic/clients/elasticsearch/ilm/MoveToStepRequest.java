@@ -196,16 +196,38 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0 | 0 | index))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ilm");
-				buf.append("/move");
-				buf.append("/");
-				buf.append(request.index);
-				return buf.toString();
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0 | 0 | index)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ilm");
+					buf.append("/move");
+					buf.append("/");
+					buf.append(request.index);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

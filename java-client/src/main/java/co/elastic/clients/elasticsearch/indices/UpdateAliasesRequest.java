@@ -203,7 +203,10 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<UpdateAliasesRequest, UpdateAliasesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {

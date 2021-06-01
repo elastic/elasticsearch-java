@@ -185,15 +185,37 @@ public final class ReloadSearchAnalyzersRequest extends RequestBase {
 	 */
 	public static final Endpoint<ReloadSearchAnalyzersRequest, ReloadSearchAnalyzersResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-				buf.append("/_reload_search_analyzers");
-				return buf.toString();
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_reload_search_analyzers");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

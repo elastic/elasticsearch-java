@@ -93,14 +93,14 @@ public final class PostStartBasicRequest extends RequestBase {
 	 */
 	public static final Endpoint<PostStartBasicRequest, PostStartBasicResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_license");
-				buf.append("/start_basic");
-				return buf.toString();
+				return "/_license/start_basic";
 
 			},
 

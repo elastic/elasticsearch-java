@@ -211,19 +211,48 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetDataFrameAnalyticsRequest, GetDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int id = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+
+				if (propsSet == (0 | 0 | 0 | id))
+					return "GET";
+				if (propsSet == (0 | 0 | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/data_frame");
-				buf.append("/analytics");
-				if (request.id != null) {
+				final int id = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+
+				if (propsSet == (0 | 0 | 0 | id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/data_frame");
+					buf.append("/analytics");
 					buf.append("/");
 					buf.append(request.id);
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0 | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/data_frame");
+					buf.append("/analytics");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

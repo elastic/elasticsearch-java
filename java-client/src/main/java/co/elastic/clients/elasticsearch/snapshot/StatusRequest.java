@@ -187,22 +187,64 @@ public final class StatusRequest extends RequestBase {
 	 */
 	public static final Endpoint<StatusRequest, StatusResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int repository = 1 << 0;
+				final int snapshot = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+				if (request.snapshot() != null)
+					propsSet |= snapshot;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (0 | repository | 0))
+					return "GET";
+				if (propsSet == (0 | repository | snapshot | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_snapshot");
-				if (request.repository != null) {
+				final int repository = 1 << 0;
+				final int snapshot = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+				if (request.snapshot() != null)
+					propsSet |= snapshot;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_snapshot");
+					buf.append("/_status");
+					return buf.toString();
+				}
+				if (propsSet == (0 | repository | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_snapshot");
 					buf.append("/");
 					buf.append(request.repository);
+					buf.append("/_status");
+					return buf.toString();
 				}
-				if (request.snapshot != null) {
+				if (propsSet == (0 | repository | snapshot | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_snapshot");
+					buf.append("/");
+					buf.append(request.repository);
 					buf.append("/");
 					buf.append(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_status");
+					return buf.toString();
 				}
-				buf.append("/_status");
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

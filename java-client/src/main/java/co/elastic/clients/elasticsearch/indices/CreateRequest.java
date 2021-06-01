@@ -355,14 +355,36 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<CreateRequest, CreateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "PUT",
+			request -> {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index);
-				return buf.toString();
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

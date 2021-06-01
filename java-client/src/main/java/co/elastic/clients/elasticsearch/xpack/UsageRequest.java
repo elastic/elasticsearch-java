@@ -93,14 +93,14 @@ public final class UsageRequest extends RequestBase {
 	 */
 	public static final Endpoint<UsageRequest, UsageResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_xpack");
-				buf.append("/usage");
-				return buf.toString();
+				return "/_xpack/usage";
 
 			},
 

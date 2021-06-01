@@ -129,16 +129,14 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 	 */
 	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/anomaly_detectors");
-				buf.append("/_validate");
-				buf.append("/detector");
-				return buf.toString();
+				return "/_ml/anomaly_detectors/_validate/detector";
 
 			},
 

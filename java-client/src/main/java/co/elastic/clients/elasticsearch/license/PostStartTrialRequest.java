@@ -117,14 +117,14 @@ public final class PostStartTrialRequest extends RequestBase {
 	 */
 	public static final Endpoint<PostStartTrialRequest, PostStartTrialResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_license");
-				buf.append("/start_trial");
-				return buf.toString();
+				return "/_license/start_trial";
 
 			},
 

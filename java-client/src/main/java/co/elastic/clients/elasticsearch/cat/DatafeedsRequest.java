@@ -116,19 +116,48 @@ public final class DatafeedsRequest extends CatRequestBase {
 	 */
 	public static final Endpoint<DatafeedsRequest, DatafeedsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | 0))
+					return "GET";
+				if (propsSet == (0 | 0 | 0 | datafeedId))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cat");
-				buf.append("/ml");
-				buf.append("/datafeeds");
-				if (request.datafeedId != null) {
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cat");
+					buf.append("/ml");
+					buf.append("/datafeeds");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | 0 | datafeedId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cat");
+					buf.append("/ml");
+					buf.append("/datafeeds");
 					buf.append("/");
 					buf.append(request.datafeedId);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

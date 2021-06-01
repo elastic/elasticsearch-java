@@ -440,22 +440,60 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<GetBucketsRequest, GetBucketsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int jobId = 1 << 0;
+				final int timestamp = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+				if (request.timestamp() != null)
+					propsSet |= timestamp;
+
+				if (propsSet == (0 | 0 | jobId | 0 | 0 | timestamp))
+					return "POST";
+				if (propsSet == (0 | 0 | jobId | 0 | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/anomaly_detectors");
-				buf.append("/");
-				buf.append(request.jobId);
-				buf.append("/results");
-				buf.append("/buckets");
-				if (request.timestamp != null) {
+				final int jobId = 1 << 0;
+				final int timestamp = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+				if (request.timestamp() != null)
+					propsSet |= timestamp;
+
+				if (propsSet == (0 | 0 | jobId | 0 | 0 | timestamp)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/anomaly_detectors");
+					buf.append("/");
+					buf.append(request.jobId);
+					buf.append("/results");
+					buf.append("/buckets");
 					buf.append("/");
 					buf.append(request.timestamp);
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0 | 0 | jobId | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/anomaly_detectors");
+					buf.append("/");
+					buf.append(request.jobId);
+					buf.append("/results");
+					buf.append("/buckets");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

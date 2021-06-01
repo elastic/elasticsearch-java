@@ -255,14 +255,36 @@ public final class ExistsRequest extends RequestBase {
 	 */
 	public static final Endpoint<ExistsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
-			request -> "HEAD",
+			request -> {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index))
+					return "HEAD";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-				return buf.toString();
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

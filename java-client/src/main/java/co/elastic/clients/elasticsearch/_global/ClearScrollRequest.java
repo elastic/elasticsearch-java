@@ -143,18 +143,46 @@ public final class ClearScrollRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<ClearScrollRequest, ClearScrollResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int scrollId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.scrollId() != null)
+					propsSet |= scrollId;
+
+				if (propsSet == (0 | 0))
+					return "DELETE";
+				if (propsSet == (0 | 0 | scrollId))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_search");
-				buf.append("/scroll");
-				if (request.scrollId != null) {
+				final int scrollId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.scrollId() != null)
+					propsSet |= scrollId;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_search");
+					buf.append("/scroll");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | scrollId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_search");
+					buf.append("/scroll");
 					buf.append("/");
 					buf.append(request.scrollId.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

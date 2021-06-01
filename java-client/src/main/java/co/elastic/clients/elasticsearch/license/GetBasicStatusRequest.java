@@ -53,14 +53,14 @@ public final class GetBasicStatusRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetBasicStatusRequest, GetBasicStatusResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_license");
-				buf.append("/basic_status");
-				return buf.toString();
+				return "/_license/basic_status";
 
 			},
 

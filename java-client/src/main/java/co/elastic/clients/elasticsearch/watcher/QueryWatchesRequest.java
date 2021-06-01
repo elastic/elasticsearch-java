@@ -164,15 +164,14 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<QueryWatchesRequest, QueryWatchesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_watcher");
-				buf.append("/_query");
-				buf.append("/watches");
-				return buf.toString();
+				return "/_watcher/_query/watches";
 
 			},
 

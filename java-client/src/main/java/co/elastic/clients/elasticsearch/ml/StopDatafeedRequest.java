@@ -229,17 +229,39 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | datafeedId | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/datafeeds");
-				buf.append("/");
-				buf.append(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")));
-				buf.append("/_stop");
-				return buf.toString();
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | datafeedId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/datafeeds");
+					buf.append("/");
+					buf.append(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_stop");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

@@ -272,22 +272,60 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<GetCategoriesRequest, GetCategoriesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int jobId = 1 << 0;
+				final int categoryId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+				if (request.categoryId() != null)
+					propsSet |= categoryId;
+
+				if (propsSet == (0 | 0 | jobId | 0 | 0 | categoryId))
+					return "POST";
+				if (propsSet == (0 | 0 | jobId | 0 | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/anomaly_detectors");
-				buf.append("/");
-				buf.append(request.jobId);
-				buf.append("/results");
-				buf.append("/categories");
-				if (request.categoryId != null) {
+				final int jobId = 1 << 0;
+				final int categoryId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+				if (request.categoryId() != null)
+					propsSet |= categoryId;
+
+				if (propsSet == (0 | 0 | jobId | 0 | 0 | categoryId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/anomaly_detectors");
+					buf.append("/");
+					buf.append(request.jobId);
+					buf.append("/results");
+					buf.append("/categories");
 					buf.append("/");
 					buf.append(request.categoryId);
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0 | 0 | jobId | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/anomaly_detectors");
+					buf.append("/");
+					buf.append(request.jobId);
+					buf.append("/results");
+					buf.append("/categories");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

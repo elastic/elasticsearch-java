@@ -248,17 +248,45 @@ public final class ExistsTypeRequest extends RequestBase {
 	 */
 	public static final Endpoint<ExistsTypeRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
-			request -> "HEAD",
+			request -> {
+				final int index = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0 | type))
+					return "HEAD";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-				buf.append("/_mapping");
-				buf.append("/");
-				buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
-				return buf.toString();
+				final int index = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0 | type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_mapping");
+					buf.append("/");
+					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

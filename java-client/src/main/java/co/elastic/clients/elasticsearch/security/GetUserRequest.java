@@ -127,18 +127,46 @@ public final class GetUserRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetUserRequest, GetUserResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int username = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.username() != null)
+					propsSet |= username;
+
+				if (propsSet == (0 | 0 | username))
+					return "GET";
+				if (propsSet == (0 | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/user");
-				if (request.username != null) {
+				final int username = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.username() != null)
+					propsSet |= username;
+
+				if (propsSet == (0 | 0 | username)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/user");
 					buf.append("/");
 					buf.append(request.username.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/user");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

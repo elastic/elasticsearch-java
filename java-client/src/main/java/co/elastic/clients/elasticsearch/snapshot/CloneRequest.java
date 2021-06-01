@@ -231,20 +231,54 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<CloneRequest, CloneResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "PUT",
+			request -> {
+				final int repository = 1 << 0;
+				final int snapshot = 1 << 1;
+				final int targetSnapshot = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+				if (request.snapshot() != null)
+					propsSet |= snapshot;
+				if (request.targetSnapshot() != null)
+					propsSet |= targetSnapshot;
+
+				if (propsSet == (0 | repository | snapshot | 0 | targetSnapshot))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_snapshot");
-				buf.append("/");
-				buf.append(request.repository);
-				buf.append("/");
-				buf.append(request.snapshot);
-				buf.append("/_clone");
-				buf.append("/");
-				buf.append(request.targetSnapshot);
-				return buf.toString();
+				final int repository = 1 << 0;
+				final int snapshot = 1 << 1;
+				final int targetSnapshot = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.repository() != null)
+					propsSet |= repository;
+				if (request.snapshot() != null)
+					propsSet |= snapshot;
+				if (request.targetSnapshot() != null)
+					propsSet |= targetSnapshot;
+
+				if (propsSet == (0 | repository | snapshot | 0 | targetSnapshot)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_snapshot");
+					buf.append("/");
+					buf.append(request.repository);
+					buf.append("/");
+					buf.append(request.snapshot);
+					buf.append("/_clone");
+					buf.append("/");
+					buf.append(request.targetSnapshot);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

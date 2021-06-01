@@ -501,14 +501,14 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	 */
 	private static final Endpoint.Simple<PreviewTransformRequest, Void> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_transform");
-				buf.append("/_preview");
-				return buf.toString();
+				return "/_transform/_preview";
 
 			},
 

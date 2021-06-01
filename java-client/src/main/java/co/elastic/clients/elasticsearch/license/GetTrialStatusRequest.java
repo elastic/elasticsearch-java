@@ -53,14 +53,14 @@ public final class GetTrialStatusRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetTrialStatusRequest, GetTrialStatusResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_license");
-				buf.append("/trial_status");
-				return buf.toString();
+				return "/_license/trial_status";
 
 			},
 

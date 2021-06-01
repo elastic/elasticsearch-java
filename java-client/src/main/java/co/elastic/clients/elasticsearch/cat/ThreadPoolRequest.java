@@ -140,18 +140,46 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	 */
 	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int threadPoolPatterns = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.threadPoolPatterns() != null)
+					propsSet |= threadPoolPatterns;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (0 | 0 | threadPoolPatterns))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cat");
-				buf.append("/thread_pool");
-				if (request.threadPoolPatterns != null) {
+				final int threadPoolPatterns = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.threadPoolPatterns() != null)
+					propsSet |= threadPoolPatterns;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cat");
+					buf.append("/thread_pool");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | threadPoolPatterns)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cat");
+					buf.append("/thread_pool");
 					buf.append("/");
 					buf.append(request.threadPoolPatterns.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

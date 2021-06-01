@@ -210,17 +210,44 @@ public final class GetTemplateRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetTemplateRequest, GetTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0))
+					return "GET";
+				if (propsSet == (0 | name))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_template");
-				if (request.name != null) {
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_template");
+					return buf.toString();
+				}
+				if (propsSet == (0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_template");
 					buf.append("/");
 					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

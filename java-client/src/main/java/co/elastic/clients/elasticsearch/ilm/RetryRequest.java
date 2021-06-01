@@ -90,16 +90,38 @@ public final class RetryRequest extends RequestBase {
 	 */
 	public static final Endpoint<RetryRequest, RetryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index | 0 | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index);
-				buf.append("/_ilm");
-				buf.append("/retry");
-				return buf.toString();
+				final int index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (index | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index);
+					buf.append("/_ilm");
+					buf.append("/retry");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

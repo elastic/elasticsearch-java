@@ -90,16 +90,38 @@ public final class DeleteCalendarRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteCalendarRequest, DeleteCalendarResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int calendarId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+
+				if (propsSet == (0 | 0 | calendarId))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/calendars");
-				buf.append("/");
-				buf.append(request.calendarId);
-				return buf.toString();
+				final int calendarId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+
+				if (propsSet == (0 | 0 | calendarId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/calendars");
+					buf.append("/");
+					buf.append(request.calendarId);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

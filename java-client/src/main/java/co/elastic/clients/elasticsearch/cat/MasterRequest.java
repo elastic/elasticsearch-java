@@ -52,14 +52,14 @@ public final class MasterRequest extends CatRequestBase {
 	 */
 	public static final Endpoint<MasterRequest, MasterResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cat");
-				buf.append("/master");
-				return buf.toString();
+				return "/_cat/master";
 
 			},
 

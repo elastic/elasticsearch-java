@@ -120,19 +120,47 @@ public final class PutCalendarJobRequest extends RequestBase {
 	 */
 	public static final Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "PUT",
+			request -> {
+				final int calendarId = 1 << 0;
+				final int jobId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+				if (request.jobId() != null)
+					propsSet |= jobId;
+
+				if (propsSet == (0 | 0 | calendarId | 0 | jobId))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/calendars");
-				buf.append("/");
-				buf.append(request.calendarId);
-				buf.append("/jobs");
-				buf.append("/");
-				buf.append(request.jobId);
-				return buf.toString();
+				final int calendarId = 1 << 0;
+				final int jobId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+				if (request.jobId() != null)
+					propsSet |= jobId;
+
+				if (propsSet == (0 | 0 | calendarId | 0 | jobId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/calendars");
+					buf.append("/");
+					buf.append(request.calendarId);
+					buf.append("/jobs");
+					buf.append("/");
+					buf.append(request.jobId);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

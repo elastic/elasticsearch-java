@@ -232,7 +232,10 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PostRequest, PostResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "PUT";
+
+			},
 
 			// Request path
 			request -> {

@@ -52,14 +52,14 @@ public final class InfoRequest extends RequestBase {
 	 */
 	public static final Endpoint<InfoRequest, InfoResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/info");
-				return buf.toString();
+				return "/_ml/info";
 
 			},
 

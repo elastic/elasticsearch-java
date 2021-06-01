@@ -191,18 +191,44 @@ public final class PolicyDeleteRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PolicyDeleteRequest, PolicyDeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int stubA = 1 << 0;
+				final int name = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stubA() != null)
+					propsSet |= stubA;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_autoscaling");
-				buf.append("/policy");
-				if (request.name != null) {
+				final int stubA = 1 << 0;
+				final int name = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stubA() != null)
+					propsSet |= stubA;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_autoscaling");
+					buf.append("/policy");
 					buf.append("/");
 					buf.append(request.name);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

@@ -110,19 +110,47 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int modelAlias = 1 << 0;
+				final int modelId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.modelAlias() != null)
+					propsSet |= modelAlias;
+				if (request.modelId() != null)
+					propsSet |= modelId;
+
+				if (propsSet == (0 | 0 | modelId | 0 | modelAlias))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/trained_models");
-				buf.append("/");
-				buf.append(request.modelId);
-				buf.append("/model_aliases");
-				buf.append("/");
-				buf.append(request.modelAlias);
-				return buf.toString();
+				final int modelAlias = 1 << 0;
+				final int modelId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.modelAlias() != null)
+					propsSet |= modelAlias;
+				if (request.modelId() != null)
+					propsSet |= modelId;
+
+				if (propsSet == (0 | 0 | modelId | 0 | modelAlias)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/trained_models");
+					buf.append("/");
+					buf.append(request.modelId);
+					buf.append("/model_aliases");
+					buf.append("/");
+					buf.append(request.modelAlias);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

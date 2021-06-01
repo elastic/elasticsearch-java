@@ -90,17 +90,48 @@ public final class PreviewDatafeedRequest extends RequestBase {
 	 */
 	private static final Endpoint.Simple<PreviewDatafeedRequest, Void> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | datafeedId | 0))
+					return "POST";
+				if (propsSet == (0 | 0 | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/datafeeds");
-				buf.append("/");
-				buf.append(request.datafeedId);
-				buf.append("/_preview");
-				return buf.toString();
+				final int datafeedId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.datafeedId() != null)
+					propsSet |= datafeedId;
+
+				if (propsSet == (0 | 0 | datafeedId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/datafeeds");
+					buf.append("/");
+					buf.append(request.datafeedId);
+					buf.append("/_preview");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/datafeeds");
+					buf.append("/_preview");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

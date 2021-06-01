@@ -157,19 +157,47 @@ public final class StatsRequest extends RequestBase {
 	 */
 	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int nodeId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.nodeId() != null)
+					propsSet |= nodeId;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (0 | 0 | 0 | nodeId))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cluster");
-				buf.append("/stats");
-				buf.append("/nodes");
-				if (request.nodeId != null) {
+				final int nodeId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.nodeId() != null)
+					propsSet |= nodeId;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cluster");
+					buf.append("/stats");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | 0 | nodeId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cluster");
+					buf.append("/stats");
+					buf.append("/nodes");
 					buf.append("/");
 					buf.append(request.nodeId);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

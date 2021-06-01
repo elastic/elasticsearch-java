@@ -130,15 +130,14 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/user");
-				buf.append("/_privileges");
-				return buf.toString();
+				return "/_security/user/_privileges";
 
 			},
 

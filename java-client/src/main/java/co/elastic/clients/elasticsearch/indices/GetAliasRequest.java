@@ -252,21 +252,70 @@ public final class GetAliasRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetAliasRequest, GetAliasResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int name = 1 << 0;
+				final int index = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0))
+					return "GET";
+				if (propsSet == (0 | name))
+					return "GET";
+				if (propsSet == (index | 0 | name))
+					return "GET";
+				if (propsSet == (index | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				if (request.index != null) {
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+				final int name = 1 << 0;
+				final int index = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+				if (request.index() != null)
+					propsSet |= index;
+
+				if (propsSet == (0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_alias");
+					return buf.toString();
 				}
-				buf.append("/_alias");
-				if (request.name != null) {
+				if (propsSet == (0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_alias");
 					buf.append("/");
 					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (index | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_alias");
+					buf.append("/");
+					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				if (propsSet == (index | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_alias");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

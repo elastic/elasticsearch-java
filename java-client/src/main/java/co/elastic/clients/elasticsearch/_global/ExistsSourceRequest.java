@@ -387,21 +387,64 @@ public final class ExistsSourceRequest extends RequestBase {
 	 */
 	public static final Endpoint<ExistsSourceRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
-			request -> "HEAD",
+			request -> {
+				final int id = 1 << 0;
+				final int index = 1 << 1;
+				final int type = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0 | id))
+					return "HEAD";
+				if (propsSet == (index | type | id | 0))
+					return "HEAD";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index);
-				if (request.type != null) {
+				final int id = 1 << 0;
+				final int index = 1 << 1;
+				final int type = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0 | id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index);
+					buf.append("/_source");
+					buf.append("/");
+					buf.append(request.id);
+					return buf.toString();
+				}
+				if (propsSet == (index | type | id | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index);
 					buf.append("/");
 					buf.append(request.type);
+					buf.append("/");
+					buf.append(request.id);
+					buf.append("/_source");
+					return buf.toString();
 				}
-				buf.append("/");
-				buf.append(request.id);
-				buf.append("/_source");
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

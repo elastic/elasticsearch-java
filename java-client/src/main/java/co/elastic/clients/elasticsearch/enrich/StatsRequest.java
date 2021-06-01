@@ -53,14 +53,14 @@ public final class StatsRequest extends RequestBase {
 	 */
 	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_enrich");
-				buf.append("/_stats");
-				return buf.toString();
+				return "/_enrich/_stats";
 
 			},
 

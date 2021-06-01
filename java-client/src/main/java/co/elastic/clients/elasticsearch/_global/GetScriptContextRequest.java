@@ -53,7 +53,10 @@ public final class GetScriptContextRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {

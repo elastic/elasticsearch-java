@@ -298,21 +298,70 @@ public final class GetMappingRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetMappingRequest, GetMappingResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int index = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (0))
+					return "GET";
+				if (propsSet == (index | 0))
+					return "GET";
+				if (propsSet == (0 | type))
+					return "GET";
+				if (propsSet == (index | 0 | type))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				if (request.index != null) {
+				final int index = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_mapping");
+					return buf.toString();
+				}
+				if (propsSet == (index | 0)) {
+					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_mapping");
+					return buf.toString();
 				}
-				buf.append("/_mapping");
-				if (request.type != null) {
+				if (propsSet == (0 | type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_mapping");
 					buf.append("/");
 					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (index | 0 | type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_mapping");
+					buf.append("/");
+					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

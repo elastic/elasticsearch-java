@@ -230,19 +230,54 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PutScriptRequest, PutScriptResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int id = 1 << 0;
+				final int context = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+				if (request.context() != null)
+					propsSet |= context;
+
+				if (propsSet == (0 | id))
+					return "PUT";
+				if (propsSet == (0 | id | context))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_scripts");
-				buf.append("/");
-				buf.append(request.id);
-				if (request.context != null) {
+				final int id = 1 << 0;
+				final int context = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.id() != null)
+					propsSet |= id;
+				if (request.context() != null)
+					propsSet |= context;
+
+				if (propsSet == (0 | id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_scripts");
+					buf.append("/");
+					buf.append(request.id);
+					return buf.toString();
+				}
+				if (propsSet == (0 | id | context)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_scripts");
+					buf.append("/");
+					buf.append(request.id);
 					buf.append("/");
 					buf.append(request.context);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

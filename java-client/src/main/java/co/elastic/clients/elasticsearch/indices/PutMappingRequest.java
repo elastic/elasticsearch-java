@@ -927,21 +927,114 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PutMappingRequest, PutMappingResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int index = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0))
+					return "PUT";
+				if (propsSet == (index | type | 0))
+					return "PUT";
+				if (propsSet == (index | 0 | type))
+					return "PUT";
+				if (propsSet == (index | type | 0))
+					return "PUT";
+				if (propsSet == (index | 0 | type))
+					return "PUT";
+				if (propsSet == (0 | type))
+					return "PUT";
+				if (propsSet == (index | 0))
+					return "PUT";
+				if (propsSet == (0 | type))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				if (request.index != null) {
+				final int index = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0)) {
+					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_mapping");
+					return buf.toString();
 				}
-				if (request.type != null) {
+				if (propsSet == (index | type | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/");
 					buf.append(request.type);
+					buf.append("/_mapping");
+					return buf.toString();
 				}
-				buf.append("/_mapping");
-				return buf.toString();
+				if (propsSet == (index | 0 | type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_mapping");
+					buf.append("/");
+					buf.append(request.type);
+					return buf.toString();
+				}
+				if (propsSet == (index | type | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/");
+					buf.append(request.type);
+					buf.append("/_mappings");
+					return buf.toString();
+				}
+				if (propsSet == (index | 0 | type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_mappings");
+					buf.append("/");
+					buf.append(request.type);
+					return buf.toString();
+				}
+				if (propsSet == (0 | type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_mappings");
+					buf.append("/");
+					buf.append(request.type);
+					return buf.toString();
+				}
+				if (propsSet == (index | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_mappings");
+					return buf.toString();
+				}
+				if (propsSet == (0 | type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_mapping");
+					buf.append("/");
+					buf.append(request.type);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

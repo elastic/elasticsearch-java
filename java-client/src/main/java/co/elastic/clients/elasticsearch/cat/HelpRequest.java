@@ -51,7 +51,10 @@ public final class HelpRequest extends CatRequestBase {
 	 */
 	public static final Endpoint<HelpRequest, HelpResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {

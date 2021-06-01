@@ -371,17 +371,56 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PutAliasRequest, PutAliasResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int index = 1 << 0;
+				final int name = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (index | 0 | name))
+					return "PUT";
+				if (propsSet == (index | 0 | name))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-				buf.append("/_alias");
-				buf.append("/");
-				buf.append(request.name);
-				return buf.toString();
+				final int index = 1 << 0;
+				final int name = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (index | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_alias");
+					buf.append("/");
+					buf.append(request.name);
+					return buf.toString();
+				}
+				if (propsSet == (index | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/_aliases");
+					buf.append("/");
+					buf.append(request.name);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

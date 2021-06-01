@@ -90,17 +90,39 @@ public final class ActivateWatchRequest extends RequestBase {
 	 */
 	public static final Endpoint<ActivateWatchRequest, ActivateWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int watchId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.watchId() != null)
+					propsSet |= watchId;
+
+				if (propsSet == (0 | 0 | watchId | 0))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_watcher");
-				buf.append("/watch");
-				buf.append("/");
-				buf.append(request.watchId);
-				buf.append("/_activate");
-				return buf.toString();
+				final int watchId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.watchId() != null)
+					propsSet |= watchId;
+
+				if (propsSet == (0 | 0 | watchId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_watcher");
+					buf.append("/watch");
+					buf.append("/");
+					buf.append(request.watchId);
+					buf.append("/_activate");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

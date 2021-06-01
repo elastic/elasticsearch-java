@@ -53,14 +53,14 @@ public final class ExecuteRetentionRequest extends RequestBase {
 	 */
 	public static final Endpoint<ExecuteRetentionRequest, ExecuteRetentionResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_slm");
-				buf.append("/_execute_retention");
-				return buf.toString();
+				return "/_slm/_execute_retention";
 
 			},
 

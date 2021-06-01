@@ -164,7 +164,10 @@ public final class IndicesListRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<IndicesListRequest, IndicesListResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {

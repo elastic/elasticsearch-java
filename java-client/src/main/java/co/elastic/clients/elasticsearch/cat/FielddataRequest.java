@@ -139,18 +139,46 @@ public final class FielddataRequest extends CatRequestBase {
 	 */
 	public static final Endpoint<FielddataRequest, FielddataResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int fields = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.fields() != null)
+					propsSet |= fields;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (0 | 0 | fields))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cat");
-				buf.append("/fielddata");
-				if (request.fields != null) {
+				final int fields = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.fields() != null)
+					propsSet |= fields;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cat");
+					buf.append("/fielddata");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | fields)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cat");
+					buf.append("/fielddata");
 					buf.append("/");
 					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

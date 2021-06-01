@@ -53,7 +53,10 @@ public final class DeleteRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				return "DELETE";
+
+			},
 
 			// Request path
 			request -> {

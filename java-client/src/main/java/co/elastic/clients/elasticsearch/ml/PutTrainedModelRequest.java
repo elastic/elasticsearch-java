@@ -147,18 +147,44 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	 */
 	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "PUT",
+			request -> {
+				final int stub = 1 << 0;
+				final int modelId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stub() != null)
+					propsSet |= stub;
+				if (request.modelId() != null)
+					propsSet |= modelId;
+
+				if (propsSet == (0 | 0 | modelId))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/trained_models");
-				if (request.modelId != null) {
+				final int stub = 1 << 0;
+				final int modelId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stub() != null)
+					propsSet |= stub;
+				if (request.modelId() != null)
+					propsSet |= modelId;
+
+				if (propsSet == (0 | 0 | modelId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/trained_models");
 					buf.append("/");
 					buf.append(request.modelId);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

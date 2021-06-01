@@ -168,14 +168,14 @@ public final class PutPrivilegesRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<PutPrivilegesRequest, PutPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "PUT";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/privilege");
-				return buf.toString();
+				return "/_security/privilege/";
 
 			},
 

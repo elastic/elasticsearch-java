@@ -275,7 +275,10 @@ public final class ListRequest extends RequestBase {
 	 */
 	public static final Endpoint<ListRequest, ListResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {

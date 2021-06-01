@@ -110,19 +110,47 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetServiceCredentialsRequest, GetServiceCredentialsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int namespace = 1 << 0;
+				final int service = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.namespace() != null)
+					propsSet |= namespace;
+				if (request.service() != null)
+					propsSet |= service;
+
+				if (propsSet == (0 | 0 | namespace | service | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/service");
-				buf.append("/");
-				buf.append(request.namespace);
-				buf.append("/");
-				buf.append(request.service);
-				buf.append("/credential");
-				return buf.toString();
+				final int namespace = 1 << 0;
+				final int service = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.namespace() != null)
+					propsSet |= namespace;
+				if (request.service() != null)
+					propsSet |= service;
+
+				if (propsSet == (0 | 0 | namespace | service | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/service");
+					buf.append("/");
+					buf.append(request.namespace);
+					buf.append("/");
+					buf.append(request.service);
+					buf.append("/credential");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

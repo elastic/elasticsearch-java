@@ -164,14 +164,14 @@ public final class CapacityGetRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<CapacityGetRequest, CapacityGetResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_autoscaling");
-				buf.append("/capacity");
-				return buf.toString();
+				return "/_autoscaling/capacity";
 
 			},
 

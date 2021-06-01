@@ -115,18 +115,46 @@ public final class GetLifecycleRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int policyId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.policyId() != null)
+					propsSet |= policyId;
+
+				if (propsSet == (0 | 0 | policyId))
+					return "GET";
+				if (propsSet == (0 | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_slm");
-				buf.append("/policy");
-				if (request.policyId != null) {
+				final int policyId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.policyId() != null)
+					propsSet |= policyId;
+
+				if (propsSet == (0 | 0 | policyId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_slm");
+					buf.append("/policy");
 					buf.append("/");
 					buf.append(request.policyId.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_slm");
+					buf.append("/policy");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

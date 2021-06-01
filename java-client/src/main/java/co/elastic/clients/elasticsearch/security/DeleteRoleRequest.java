@@ -115,16 +115,38 @@ public final class DeleteRoleRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteRoleRequest, DeleteRoleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/role");
-				buf.append("/");
-				buf.append(request.name);
-				return buf.toString();
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/role");
+					buf.append("/");
+					buf.append(request.name);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

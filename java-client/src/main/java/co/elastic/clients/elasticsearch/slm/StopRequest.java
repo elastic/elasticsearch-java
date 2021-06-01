@@ -52,14 +52,14 @@ public final class StopRequest extends RequestBase {
 	 */
 	public static final Endpoint<StopRequest, StopResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_slm");
-				buf.append("/stop");
-				return buf.toString();
+				return "/_slm/stop";
 
 			},
 

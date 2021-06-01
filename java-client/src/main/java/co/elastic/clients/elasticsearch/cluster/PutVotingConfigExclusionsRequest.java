@@ -206,14 +206,14 @@ public final class PutVotingConfigExclusionsRequest extends RequestBase {
 	 */
 	public static final Endpoint<PutVotingConfigExclusionsRequest, PutVotingConfigExclusionsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cluster");
-				buf.append("/voting_config_exclusions");
-				return buf.toString();
+				return "/_cluster/voting_config_exclusions";
 
 			},
 

@@ -248,15 +248,14 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<GrantApiKeyRequest, GrantApiKeyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/api_key");
-				buf.append("/grant");
-				return buf.toString();
+				return "/_security/api_key/grant";
 
 			},
 

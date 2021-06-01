@@ -124,7 +124,10 @@ public final class ClosePointInTimeRequest extends RequestBase implements ToJson
 	 */
 	public static final Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				return "DELETE";
+
+			},
 
 			// Request path
 			request -> {

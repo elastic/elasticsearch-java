@@ -164,14 +164,14 @@ public final class ResetFeaturesRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<ResetFeaturesRequest, ResetFeaturesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_features");
-				buf.append("/_reset");
-				return buf.toString();
+				return "/_features/_reset";
 
 			},
 

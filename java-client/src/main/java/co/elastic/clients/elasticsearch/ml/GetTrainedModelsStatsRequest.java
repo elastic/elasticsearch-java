@@ -186,19 +186,48 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int modelId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.modelId() != null)
+					propsSet |= modelId;
+
+				if (propsSet == (0 | 0 | modelId | 0))
+					return "GET";
+				if (propsSet == (0 | 0 | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/trained_models");
-				if (request.modelId != null) {
+				final int modelId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.modelId() != null)
+					propsSet |= modelId;
+
+				if (propsSet == (0 | 0 | modelId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/trained_models");
 					buf.append("/");
 					buf.append(request.modelId);
+					buf.append("/_stats");
+					return buf.toString();
 				}
-				buf.append("/_stats");
-				return buf.toString();
+				if (propsSet == (0 | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/trained_models");
+					buf.append("/_stats");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

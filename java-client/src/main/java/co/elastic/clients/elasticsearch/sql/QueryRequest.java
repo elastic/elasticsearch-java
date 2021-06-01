@@ -441,7 +441,10 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<QueryRequest, QueryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {

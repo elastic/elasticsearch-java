@@ -369,15 +369,14 @@ public final class ValidateJobRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<ValidateJobRequest, ValidateJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/anomaly_detectors");
-				buf.append("/_validate");
-				return buf.toString();
+				return "/_ml/anomaly_detectors/_validate";
 
 			},
 

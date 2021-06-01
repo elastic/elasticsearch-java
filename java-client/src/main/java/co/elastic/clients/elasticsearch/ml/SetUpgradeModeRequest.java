@@ -117,14 +117,14 @@ public final class SetUpgradeModeRequest extends RequestBase {
 	 */
 	public static final Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/set_upgrade_mode");
-				return buf.toString();
+				return "/_ml/set_upgrade_mode";
 
 			},
 

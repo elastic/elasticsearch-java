@@ -483,7 +483,10 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<ReindexRequest, ReindexResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {

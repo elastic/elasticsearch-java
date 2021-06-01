@@ -220,18 +220,46 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int calendarId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+
+				if (propsSet == (0 | 0))
+					return "POST";
+				if (propsSet == (0 | 0 | calendarId))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/calendars");
-				if (request.calendarId != null) {
+				final int calendarId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/calendars");
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | calendarId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/calendars");
 					buf.append("/");
 					buf.append(request.calendarId);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

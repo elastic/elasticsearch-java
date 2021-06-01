@@ -178,19 +178,48 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 	 */
 	public static final Endpoint<ChangePasswordRequest, ChangePasswordResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int username = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.username() != null)
+					propsSet |= username;
+
+				if (propsSet == (0 | 0 | username | 0))
+					return "PUT";
+				if (propsSet == (0 | 0 | 0))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/user");
-				if (request.username != null) {
+				final int username = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.username() != null)
+					propsSet |= username;
+
+				if (propsSet == (0 | 0 | username | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/user");
 					buf.append("/");
 					buf.append(request.username);
+					buf.append("/_password");
+					return buf.toString();
 				}
-				buf.append("/_password");
-				return buf.toString();
+				if (propsSet == (0 | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/user");
+					buf.append("/_password");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

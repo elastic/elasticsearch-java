@@ -321,17 +321,45 @@ public final class SplitRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<SplitRequest, SplitResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int index = 1 << 0;
+				final int target = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.target() != null)
+					propsSet |= target;
+
+				if (propsSet == (index | 0 | target))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/");
-				buf.append(request.index);
-				buf.append("/_split");
-				buf.append("/");
-				buf.append(request.target);
-				return buf.toString();
+				final int index = 1 << 0;
+				final int target = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.target() != null)
+					propsSet |= target;
+
+				if (propsSet == (index | 0 | target)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index);
+					buf.append("/_split");
+					buf.append("/");
+					buf.append(request.target);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

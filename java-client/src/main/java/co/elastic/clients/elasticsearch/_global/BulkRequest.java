@@ -478,21 +478,61 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<BulkRequest<?>, BulkResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int index = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (0))
+					return "POST";
+				if (propsSet == (index | 0))
+					return "POST";
+				if (propsSet == (index | type | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				if (request.index != null) {
+				final int index = 1 << 0;
+				final int type = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_bulk");
+					return buf.toString();
+				}
+				if (propsSet == (index | 0)) {
+					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
+					buf.append("/_bulk");
+					return buf.toString();
 				}
-				if (request.type != null) {
+				if (propsSet == (index | type | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index);
 					buf.append("/");
 					buf.append(request.type);
+					buf.append("/_bulk");
+					return buf.toString();
 				}
-				buf.append("/_bulk");
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

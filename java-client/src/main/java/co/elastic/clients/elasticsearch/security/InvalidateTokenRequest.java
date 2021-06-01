@@ -220,15 +220,14 @@ public final class InvalidateTokenRequest extends RequestBase implements ToJsonp
 	 */
 	public static final Endpoint<InvalidateTokenRequest, InvalidateTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				return "DELETE";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/oauth2");
-				buf.append("/token");
-				return buf.toString();
+				return "/_security/oauth2/token";
 
 			},
 

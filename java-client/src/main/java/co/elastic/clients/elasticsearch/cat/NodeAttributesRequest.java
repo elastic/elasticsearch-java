@@ -52,14 +52,14 @@ public final class NodeAttributesRequest extends CatRequestBase {
 	 */
 	public static final Endpoint<NodeAttributesRequest, NodeAttributesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cat");
-				buf.append("/nodeattrs");
-				return buf.toString();
+				return "/_cat/nodeattrs";
 
 			},
 

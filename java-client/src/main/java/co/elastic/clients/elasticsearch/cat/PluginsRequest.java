@@ -52,14 +52,14 @@ public final class PluginsRequest extends CatRequestBase {
 	 */
 	public static final Endpoint<PluginsRequest, PluginsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cat");
-				buf.append("/plugins");
-				return buf.toString();
+				return "/_cat/plugins";
 
 			},
 

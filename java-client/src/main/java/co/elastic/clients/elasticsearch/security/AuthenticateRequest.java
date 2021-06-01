@@ -53,14 +53,14 @@ public final class AuthenticateRequest extends RequestBase {
 	 */
 	public static final Endpoint<AuthenticateRequest, AuthenticateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/_authenticate");
-				return buf.toString();
+				return "/_security/_authenticate";
 
 			},
 

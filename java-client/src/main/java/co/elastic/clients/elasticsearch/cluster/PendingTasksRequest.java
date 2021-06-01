@@ -117,14 +117,14 @@ public final class PendingTasksRequest extends RequestBase {
 	 */
 	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_cluster");
-				buf.append("/pending_tasks");
-				return buf.toString();
+				return "/_cluster/pending_tasks";
 
 			},
 

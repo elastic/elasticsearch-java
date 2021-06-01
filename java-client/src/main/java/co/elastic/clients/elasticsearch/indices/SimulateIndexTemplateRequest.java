@@ -353,18 +353,38 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	 */
 	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_index_template");
-				buf.append("/_simulate_index");
-				if (request.name != null) {
+				final int name = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_index_template");
+					buf.append("/_simulate_index");
 					buf.append("/");
 					buf.append(request.name);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

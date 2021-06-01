@@ -212,15 +212,14 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 	 */
 	public static final Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/data_frame");
-				buf.append("/_evaluate");
-				return buf.toString();
+				return "/_ml/data_frame/_evaluate";
 
 			},
 

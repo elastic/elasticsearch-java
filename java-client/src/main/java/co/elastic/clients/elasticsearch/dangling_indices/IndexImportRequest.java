@@ -191,17 +191,43 @@ public final class IndexImportRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<IndexImportRequest, IndexImportResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int stubA = 1 << 0;
+				final int indexUuid = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stubA() != null)
+					propsSet |= stubA;
+				if (request.indexUuid() != null)
+					propsSet |= indexUuid;
+
+				if (propsSet == (0 | indexUuid))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_dangling");
-				if (request.indexUuid != null) {
+				final int stubA = 1 << 0;
+				final int indexUuid = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.stubA() != null)
+					propsSet |= stubA;
+				if (request.indexUuid() != null)
+					propsSet |= indexUuid;
+
+				if (propsSet == (0 | indexUuid)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_dangling");
 					buf.append("/");
 					buf.append(request.indexUuid);
+					return buf.toString();
 				}
-				return buf.toString();
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

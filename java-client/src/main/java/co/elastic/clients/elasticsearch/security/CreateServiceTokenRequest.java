@@ -130,22 +130,70 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	 */
 	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int namespace = 1 << 0;
+				final int service = 1 << 1;
+				final int name = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.namespace() != null)
+					propsSet |= namespace;
+				if (request.service() != null)
+					propsSet |= service;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | namespace | service | 0 | 0 | name))
+					return "PUT";
+				if (propsSet == (0 | 0 | namespace | service | 0 | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/service");
-				buf.append("/");
-				buf.append(request.namespace);
-				buf.append("/");
-				buf.append(request.service);
-				buf.append("/credential");
-				buf.append("/token");
-				buf.append("/");
-				buf.append(request.name);
-				return buf.toString();
+				final int namespace = 1 << 0;
+				final int service = 1 << 1;
+				final int name = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.namespace() != null)
+					propsSet |= namespace;
+				if (request.service() != null)
+					propsSet |= service;
+				if (request.name() != null)
+					propsSet |= name;
+
+				if (propsSet == (0 | 0 | namespace | service | 0 | 0 | name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/service");
+					buf.append("/");
+					buf.append(request.namespace);
+					buf.append("/");
+					buf.append(request.service);
+					buf.append("/credential");
+					buf.append("/token");
+					buf.append("/");
+					buf.append(request.name);
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | namespace | service | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/service");
+					buf.append("/");
+					buf.append(request.namespace);
+					buf.append("/");
+					buf.append(request.service);
+					buf.append("/credential");
+					buf.append("/token");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

@@ -123,14 +123,14 @@ public final class ClearCursorRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<ClearCursorRequest, ClearCursorResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_sql");
-				buf.append("/close");
-				return buf.toString();
+				return "/_sql/close";
 
 			},
 

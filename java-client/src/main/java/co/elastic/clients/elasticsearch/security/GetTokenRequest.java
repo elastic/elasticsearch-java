@@ -280,15 +280,14 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<GetTokenRequest, GetTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/oauth2");
-				buf.append("/token");
-				return buf.toString();
+				return "/_security/oauth2/token";
 
 			},
 

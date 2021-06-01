@@ -388,18 +388,40 @@ public final class GetAnomalyRecordsRequest extends RequestBase implements ToJso
 	 */
 	public static final Endpoint<GetAnomalyRecordsRequest, GetAnomalyRecordsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				final int jobId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+
+				if (propsSet == (0 | 0 | jobId | 0 | 0))
+					return "POST";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/anomaly_detectors");
-				buf.append("/");
-				buf.append(request.jobId);
-				buf.append("/results");
-				buf.append("/records");
-				return buf.toString();
+				final int jobId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.jobId() != null)
+					propsSet |= jobId;
+
+				if (propsSet == (0 | 0 | jobId | 0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/anomaly_detectors");
+					buf.append("/");
+					buf.append(request.jobId);
+					buf.append("/results");
+					buf.append("/records");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

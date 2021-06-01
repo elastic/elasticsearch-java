@@ -225,14 +225,14 @@ public final class TranslateRequest extends RequestBase implements ToJsonp {
 	 */
 	public static final Endpoint<TranslateRequest, TranslateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "POST",
+			request -> {
+				return "POST";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_sql");
-				buf.append("/translate");
-				return buf.toString();
+				return "/_sql/translate";
 
 			},
 

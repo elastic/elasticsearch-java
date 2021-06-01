@@ -154,25 +154,64 @@ public final class GetSourceRequest extends GetRequest {
 	 */
 	private static final Endpoint.Simple<GetSourceRequest, Void> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int index = 1 << 0;
+				final int id = 1 << 1;
+				final int type = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.id() != null)
+					propsSet |= id;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0 | id))
+					return "GET";
+				if (propsSet == (index | type | id | 0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				if (request.index != null) {
+				final int index = 1 << 0;
+				final int id = 1 << 1;
+				final int type = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.index() != null)
+					propsSet |= index;
+				if (request.id() != null)
+					propsSet |= id;
+				if (request.type() != null)
+					propsSet |= type;
+
+				if (propsSet == (index | 0 | id)) {
+					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
-				}
-				if (request.type != null) {
-					buf.append("/");
-					buf.append(request.type);
-				}
-				if (request.id != null) {
+					buf.append("/_source");
 					buf.append("/");
 					buf.append(request.id);
+					return buf.toString();
 				}
-				buf.append("/_source");
-				return buf.toString();
+				if (propsSet == (index | type | id | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					buf.append(request.index);
+					buf.append("/");
+					buf.append(request.type);
+					buf.append("/");
+					buf.append(request.id);
+					buf.append("/_source");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

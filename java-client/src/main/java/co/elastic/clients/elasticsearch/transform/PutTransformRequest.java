@@ -155,15 +155,37 @@ public class PutTransformRequest extends PreviewTransformRequest {
 	 */
 	public static final Endpoint<PutTransformRequest, PutTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "PUT",
+			request -> {
+				final int transformId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.transformId() != null)
+					propsSet |= transformId;
+
+				if (propsSet == (0 | transformId))
+					return "PUT";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_transform");
-				buf.append("/");
-				buf.append(request.transformId);
-				return buf.toString();
+				final int transformId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.transformId() != null)
+					propsSet |= transformId;
+
+				if (propsSet == (0 | transformId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_transform");
+					buf.append("/");
+					buf.append(request.transformId);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

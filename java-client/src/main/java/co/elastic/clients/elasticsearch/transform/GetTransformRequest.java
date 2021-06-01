@@ -187,17 +187,44 @@ public final class GetTransformRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetTransformRequest, GetTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int transformId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.transformId() != null)
+					propsSet |= transformId;
+
+				if (propsSet == (0 | transformId))
+					return "GET";
+				if (propsSet == (0))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_transform");
-				if (request.transformId != null) {
+				final int transformId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.transformId() != null)
+					propsSet |= transformId;
+
+				if (propsSet == (0 | transformId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_transform");
 					buf.append("/");
 					buf.append(request.transformId);
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_transform");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

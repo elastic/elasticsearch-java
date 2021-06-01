@@ -163,22 +163,74 @@ public final class UsageRequest extends RequestBase {
 	 */
 	public static final Endpoint<UsageRequest, UsageResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int nodeId = 1 << 0;
+				final int metric = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.nodeId() != null)
+					propsSet |= nodeId;
+				if (request.metric() != null)
+					propsSet |= metric;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (0 | nodeId | 0))
+					return "GET";
+				if (propsSet == (0 | 0 | metric))
+					return "GET";
+				if (propsSet == (0 | nodeId | 0 | metric))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_nodes");
-				if (request.nodeId != null) {
+				final int nodeId = 1 << 0;
+				final int metric = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.nodeId() != null)
+					propsSet |= nodeId;
+				if (request.metric() != null)
+					propsSet |= metric;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/usage");
+					return buf.toString();
+				}
+				if (propsSet == (0 | nodeId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
 					buf.append("/");
 					buf.append(request.nodeId);
+					buf.append("/usage");
+					return buf.toString();
 				}
-				buf.append("/usage");
-				if (request.metric != null) {
+				if (propsSet == (0 | 0 | metric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/usage");
 					buf.append("/");
 					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0 | nodeId | 0 | metric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/");
+					buf.append(request.nodeId);
+					buf.append("/usage");
+					buf.append("/");
+					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

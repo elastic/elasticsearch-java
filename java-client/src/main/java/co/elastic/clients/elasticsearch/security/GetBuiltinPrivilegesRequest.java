@@ -53,15 +53,14 @@ public final class GetBuiltinPrivilegesRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetBuiltinPrivilegesRequest, GetBuiltinPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_security");
-				buf.append("/privilege");
-				buf.append("/_builtin");
-				return buf.toString();
+				return "/_security/privilege/_builtin";
 
 			},
 

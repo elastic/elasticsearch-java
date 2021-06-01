@@ -110,19 +110,47 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "DELETE",
+			request -> {
+				final int calendarId = 1 << 0;
+				final int eventId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+				if (request.eventId() != null)
+					propsSet |= eventId;
+
+				if (propsSet == (0 | 0 | calendarId | 0 | eventId))
+					return "DELETE";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ml");
-				buf.append("/calendars");
-				buf.append("/");
-				buf.append(request.calendarId);
-				buf.append("/events");
-				buf.append("/");
-				buf.append(request.eventId);
-				return buf.toString();
+				final int calendarId = 1 << 0;
+				final int eventId = 1 << 1;
+
+				int propsSet = 0;
+
+				if (request.calendarId() != null)
+					propsSet |= calendarId;
+				if (request.eventId() != null)
+					propsSet |= eventId;
+
+				if (propsSet == (0 | 0 | calendarId | 0 | eventId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/calendars");
+					buf.append("/");
+					buf.append(request.calendarId);
+					buf.append("/events");
+					buf.append("/");
+					buf.append(request.eventId);
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

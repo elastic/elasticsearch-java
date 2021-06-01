@@ -563,26 +563,106 @@ public final class StatsRequest extends RequestBase {
 	 */
 	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				final int nodeId = 1 << 0;
+				final int metric = 1 << 1;
+				final int indexMetric = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.nodeId() != null)
+					propsSet |= nodeId;
+				if (request.metric() != null)
+					propsSet |= metric;
+				if (request.indexMetric() != null)
+					propsSet |= indexMetric;
+
+				if (propsSet == (0 | 0))
+					return "GET";
+				if (propsSet == (0 | nodeId | 0))
+					return "GET";
+				if (propsSet == (0 | 0 | metric))
+					return "GET";
+				if (propsSet == (0 | nodeId | 0 | metric))
+					return "GET";
+				if (propsSet == (0 | 0 | metric | indexMetric))
+					return "GET";
+				if (propsSet == (0 | nodeId | 0 | metric | indexMetric))
+					return "GET";
+				throw Endpoint.Simple.noPathTemplateFound("method");
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_nodes");
-				if (request.nodeId != null) {
+				final int nodeId = 1 << 0;
+				final int metric = 1 << 1;
+				final int indexMetric = 1 << 2;
+
+				int propsSet = 0;
+
+				if (request.nodeId() != null)
+					propsSet |= nodeId;
+				if (request.metric() != null)
+					propsSet |= metric;
+				if (request.indexMetric() != null)
+					propsSet |= indexMetric;
+
+				if (propsSet == (0 | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/stats");
+					return buf.toString();
+				}
+				if (propsSet == (0 | nodeId | 0)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
 					buf.append("/");
 					buf.append(request.nodeId);
+					buf.append("/stats");
+					return buf.toString();
 				}
-				buf.append("/stats");
-				if (request.metric != null) {
+				if (propsSet == (0 | 0 | metric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/stats");
 					buf.append("/");
 					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				if (request.indexMetric != null) {
+				if (propsSet == (0 | nodeId | 0 | metric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/");
+					buf.append(request.nodeId);
+					buf.append("/stats");
+					buf.append("/");
+					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				if (propsSet == (0 | 0 | metric | indexMetric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/stats");
+					buf.append("/");
+					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/");
 					buf.append(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
 				}
-				return buf.toString();
+				if (propsSet == (0 | nodeId | 0 | metric | indexMetric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/");
+					buf.append(request.nodeId);
+					buf.append("/stats");
+					buf.append("/");
+					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append("/");
+					buf.append(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

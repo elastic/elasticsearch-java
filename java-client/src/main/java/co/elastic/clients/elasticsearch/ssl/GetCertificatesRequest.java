@@ -53,14 +53,14 @@ public final class GetCertificatesRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetCertificatesRequest, GetCertificatesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
-			request -> "GET",
+			request -> {
+				return "GET";
+
+			},
 
 			// Request path
 			request -> {
-				StringBuilder buf = new StringBuilder();
-				buf.append("/_ssl");
-				buf.append("/certificates");
-				return buf.toString();
+				return "/_ssl/certificates";
 
 			},
 
