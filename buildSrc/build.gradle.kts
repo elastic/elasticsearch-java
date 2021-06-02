@@ -17,24 +17,10 @@
  * under the License.
  */
 
-group = "co.elastic.clients"
-version = "1.0-SNAPSHOT"
-
-
-subprojects {
-    apply(plugin = "checkstyle")
+dependencies {
+    implementation("org.ajoberstar.grgit:grgit-gradle:4.0.1")
 }
 
-val grgit = org.ajoberstar.grgit.Grgit.open(mapOf("currentDir" to project.rootDir))
-try {
-    allprojects {
-        project.extra["gitHashFull"] = grgit.head().id
-        project.extra["gitCommitTime"] = grgit.head().dateTime.withZoneSameLocal(java.time.ZoneOffset.UTC)
-    }
-} finally {
-    grgit.close()
-}
-
-allprojects {
-    project.extra["buildTime"] = java.time.Instant.now().atZone(java.time.ZoneOffset.UTC)
+repositories {
+    maven("https://plugins.gradle.org/m2/")
 }

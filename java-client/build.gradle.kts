@@ -31,6 +31,22 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
+tasks.withType<Jar> {
+    manifest {
+        attributes["Implementation-Title"] = "Elasticsearch Java client"
+        attributes["Implementation-Vendor"] = "Elastic"
+        attributes["Implementation-URL"] = "https://github.com/elastic/elasticsearch-java/"
+        attributes["Build-Date"] = project.extra["buildTime"]
+        attributes["X-Git-Revision"] = project.extra["gitHashFull"]
+        attributes["X-Git-Commit-Time"] = project.extra["gitCommitTime"]
+    }
+
+    metaInf {
+        into(".").from("../LICENSE.txt")
+        into(".").from("../NOTICE.txt")
+    }
+}
+
 publishing {
     repositories {
         maven {
