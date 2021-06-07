@@ -42,8 +42,8 @@ tasks.withType<Jar> {
     }
 
     metaInf {
-        into(".").from("../LICENSE.txt")
-        into(".").from("../NOTICE.txt")
+        from("../LICENSE.txt")
+        from("../NOTICE.txt")
     }
 }
 
