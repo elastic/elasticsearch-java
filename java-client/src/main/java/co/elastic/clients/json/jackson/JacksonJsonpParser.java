@@ -36,13 +36,17 @@ import java.util.stream.Stream;
 
 /**
  * A JSONP parser implementation on top of Jackson.
+ * <p>
+ * <b>Warning:</b> this implementation isn't fully compliant with the JSONP specification: calling {@link #hasNext()}
+ * moves forward the underlying Jackson parser as Jackson doesn't provide an equivalent method. This means no value
+ * getter method (e.g. {@link #getInt()} or {@link #getString()} should be called until the next call to {@link #next()}.
+ * Such calls will throw an {@code IllegalStateException}.
  */
 public class JacksonJsonpParser implements JsonParser {
 
     private final com.fasterxml.jackson.core.JsonParser parser;
 
-    private JsonToken nextToken;
-    private boolean hadFirstToken = false;
+    private boolean hasNextWasCalled = false;
 
     private static final EnumMap<JsonToken, Event> tokenToEvent;
 
@@ -80,46 +84,55 @@ public class JacksonJsonpParser implements JsonParser {
         return new JsonParsingException("Jackson exception", ioe, getLocation());
     }
 
-    private void fetchNextToken() {
+    private JsonToken fetchNextToken() {
         try {
-            nextToken = parser.nextToken();
+            return parser.nextToken();
         } catch(IOException e) {
             throw convertException(e);
         }
     }
 
+    private void ensureTokenIsCurrent() {
+        if (hasNextWasCalled) {
+            throw new IllegalStateException("Cannot get event data as parser as already been moved to the next event");
+        }
+    }
+
     @Override
     public boolean hasNext() {
-        if (!hadFirstToken) {
-            hadFirstToken = true;
-            fetchNextToken();
+        if (hasNextWasCalled) {
+            return parser.currentToken() != null;
+        } else {
+            hasNextWasCalled = true;
+            return fetchNextToken() != null;
         }
-
-        return nextToken != null;
     }
 
     @Override
     public Event next() {
-        if (!hadFirstToken) {
-            hadFirstToken = true;
-            fetchNextToken();
+        JsonToken token;
+        if (hasNextWasCalled) {
+            token = parser.getCurrentToken();
+            hasNextWasCalled = false;
+        } else {
+            token = fetchNextToken();
         }
 
-        if (nextToken == null) {
+        if (token == null) {
             throw new NoSuchElementException();
         }
 
-        Event result = tokenToEvent.get(nextToken);
+        Event result = tokenToEvent.get(token);
         if (result == null) {
-            throw new JsonParsingException("Unsupported Jackson event type "+ nextToken.toString(), getLocation());
+            throw new JsonParsingException("Unsupported Jackson event type "+ token.toString(), getLocation());
         }
 
-        fetchNextToken();
         return result;
     }
 
     @Override
     public String getString() {
+        ensureTokenIsCurrent();
         try {
             return parser.getValueAsString();
         } catch (IOException e) {
@@ -129,11 +142,13 @@ public class JacksonJsonpParser implements JsonParser {
 
     @Override
     public boolean isIntegralNumber() {
+        ensureTokenIsCurrent();
         return parser.isExpectedNumberIntToken();
     }
 
     @Override
     public int getInt() {
+        ensureTokenIsCurrent();
         try {
             return parser.getIntValue();
         } catch (IOException e) {
@@ -143,6 +158,7 @@ public class JacksonJsonpParser implements JsonParser {
 
     @Override
     public long getLong() {
+        ensureTokenIsCurrent();
         try {
             return parser.getLongValue();
         } catch (IOException e) {
@@ -152,6 +168,7 @@ public class JacksonJsonpParser implements JsonParser {
 
     @Override
     public BigDecimal getBigDecimal() {
+        ensureTokenIsCurrent();
         try {
             return parser.getDecimalValue();
         } catch (IOException e) {
@@ -177,6 +194,11 @@ public class JacksonJsonpParser implements JsonParser {
 
     @Override
     public JsonObject getObject() {
+        ensureTokenIsCurrent();
+        if (parser.currentToken() != JsonToken.START_OBJECT) {
+            throw new IllegalStateException("Unexpected token " + parser.currentToken() +
+                " at " + parser.getTokenLocation());
+        }
         if (valueParser == null) {
             valueParser = new JsonValueParser();
         }
@@ -189,8 +211,13 @@ public class JacksonJsonpParser implements JsonParser {
 
     @Override
     public JsonArray getArray() {
+        ensureTokenIsCurrent();
         if (valueParser == null) {
             valueParser = new JsonValueParser();
+        }
+        if (parser.currentToken() != JsonToken.START_ARRAY) {
+            throw new IllegalStateException("Unexpected token " + parser.currentToken() +
+                " at " + parser.getTokenLocation());
         }
         try {
             return valueParser.parseArray(parser);
@@ -201,6 +228,7 @@ public class JacksonJsonpParser implements JsonParser {
 
     @Override
     public JsonValue getValue() {
+        ensureTokenIsCurrent();
         if (valueParser == null) {
             valueParser = new JsonValueParser();
         }
@@ -213,6 +241,7 @@ public class JacksonJsonpParser implements JsonParser {
 
     @Override
     public void skipObject() {
+        ensureTokenIsCurrent();
         if (parser.currentToken() != JsonToken.START_OBJECT) {
             return;
         }
@@ -238,6 +267,7 @@ public class JacksonJsonpParser implements JsonParser {
 
     @Override
     public void skipArray() {
+        ensureTokenIsCurrent();
         if (parser.currentToken() != JsonToken.START_ARRAY) {
             return;
         }

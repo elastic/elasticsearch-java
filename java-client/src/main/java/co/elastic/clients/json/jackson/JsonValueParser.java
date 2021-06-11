@@ -31,6 +31,10 @@ import jakarta.json.stream.JsonParsingException;
 
 import java.io.IOException;
 
+/**
+ * Reads a Jsonp value/object/array from a Jackson parser. The parser's current token should be the start of the
+ * object (e.g. START_OBJECT, VALUE_NUMBER, etc).
+ */
 class JsonValueParser {
     JsonProvider provider = JsonProvider.provider();
 
@@ -43,7 +47,9 @@ class JsonValueParser {
             if (token != JsonToken.FIELD_NAME) {
                 throw new JsonParsingException("Expected a property name", new JacksonJsonpLocation(parser));
             }
-            ob.add(token.name(), parseValue(parser));
+            String name = token.name();
+            parser.nextToken();
+            ob.add(name, parseValue(parser));
         }
         return ob.build();
     }
@@ -58,7 +64,7 @@ class JsonValueParser {
     }
 
     public JsonValue parseValue(JsonParser parser) throws IOException {
-        switch (parser.nextToken()) {
+        switch (parser.currentToken()) {
             case START_OBJECT:
                 return parseObject(parser);
 
