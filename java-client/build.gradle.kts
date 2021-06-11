@@ -51,12 +51,9 @@ publishing {
     repositories {
         maven {
             // See https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry
-            name = "GitHubPackages"
+            name = "ESJavaGithubPackages"
             url = uri("https://maven.pkg.github.com/elastic/elasticsearch-java")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
-            }
+            credentials(PasswordCredentials::class)
         }
 
         maven {

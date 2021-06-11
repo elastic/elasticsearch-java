@@ -22,7 +22,12 @@ The `docs/design` folder contains records of the major decisions in the design o
 
 ### Installing the library
 
-While it's a work in progress, snapshots of this library are published on a Maven repository hosted on [GitHub Packages](https://github.com/elastic/elasticsearch-java/packages/).
+While it's a work in progress, snapshots of this library are published to a Maven repository hosted on [GitHub Packages](https://github.com/elastic/elasticsearch-java/packages/). To access it [you need a personal access token](https://github.com/settings/tokens) on your GitHub account that has the `read:packages` permission. This token should then be added to `~/.gradle/gradle.properties`:
+
+```properties
+ESJavaGithubPackagesUsername=YOUR_GITHUB_USERNAME
+ESJavaGithubPackagesPassword=YOUR_GITHUB_TOKEN
+```
 
 Along with this library, you also need a JSON/object mapping library. `elasticsearch-java` has built-in support for [Jackson](https://github.com/FasterXML/jackson) and [JSON-B](http://json-b.net/) implementations such as [Eclipse Yasson](https://github.com/eclipse-ee4j/yasson).
 
@@ -34,8 +39,9 @@ Gradle project (Groovy flavor) setup using Jackson:
 repositories {
     mavenCentral()
     maven {
-        name = "GitHubPackages"
+        name = "ESJavaGithubPackages"
         url = uri("https://maven.pkg.github.com/elastic/elasticsearch-java")
+        credentials(PasswordCredentials)
     }
 }
 
