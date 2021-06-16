@@ -65,7 +65,7 @@ If you are using Maven, you need to add the credentials in your `~/.m2/settings.
 </settings>
 ```
 
-In the `pom.xml` for your project add the following repository definition and dependency:
+In the `pom.xml` for your project add the following repository definition and dependencies:
 
 ```xml
 <project>
