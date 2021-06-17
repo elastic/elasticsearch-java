@@ -51,6 +51,51 @@ dependencies {
 }
 ```
 
+If you are using Maven, you need to add the credentials in your `~/.m2/settings.xml`:
+
+```xml
+<settings>
+  <servers>
+    <server>
+      <id>ESJavaGithubPackages</id>
+      <username>YOUR_GITHUB_USERNAME</username>
+      <password>YOUR_GITHUB_TOKEN</password>
+    </server>
+  </servers>
+</settings>
+```
+
+In the `pom.xml` for your project add the following repository definition and dependencies:
+
+```xml
+<project>
+    
+  <repositories>
+    <repository>
+      <id>ESJavaGithubPackages</id>
+      <url>https://maven.pkg.github.com/elastic/elasticsearch-java</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      </repository>
+  </repositories>
+    
+  <dependencies>
+    <dependency>
+      <groupId>co.elastic.clients</groupId>
+      <artifactId>elasticsearch-java</artifactId>
+      <version>8.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.12.3</version>
+    </dependency>
+  </dependencies>
+    
+</project>
+```
+
 ### Your first request
 
 ```java
