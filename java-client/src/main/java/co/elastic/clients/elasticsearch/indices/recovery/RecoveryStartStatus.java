@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,15 +125,15 @@ public final class RecoveryStartStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RecoveryStartStatus
+	 * Json deserializer for RecoveryStartStatus
 	 */
-	public static final JsonpValueParser<RecoveryStartStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RecoveryStartStatus::setupRecoveryStartStatusParser);
+	public static final JsonpDeserializer<RecoveryStartStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RecoveryStartStatus::setupRecoveryStartStatusDeserializer);
 
-	protected static void setupRecoveryStartStatusParser(DelegatingJsonpValueParser<RecoveryStartStatus.Builder> op) {
+	protected static void setupRecoveryStartStatusDeserializer(DelegatingDeserializer<RecoveryStartStatus.Builder> op) {
 
-		op.add(Builder::checkIndexTime, JsonpValueParser.numberParser(), "check_index_time");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.stringParser(), "total_time_in_millis");
+		op.add(Builder::checkIndexTime, JsonpDeserializer.numberDeserializer(), "check_index_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
 
 	}
 

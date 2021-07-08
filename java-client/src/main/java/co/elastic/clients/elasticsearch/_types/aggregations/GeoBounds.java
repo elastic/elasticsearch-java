@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.LatLon;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -139,15 +139,15 @@ public final class GeoBounds implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoBounds
+	 * Json deserializer for GeoBounds
 	 */
-	public static final JsonpValueParser<GeoBounds> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoBounds::setupGeoBoundsParser);
+	public static final JsonpDeserializer<GeoBounds> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoBounds::setupGeoBoundsDeserializer);
 
-	protected static void setupGeoBoundsParser(DelegatingJsonpValueParser<GeoBounds.Builder> op) {
+	protected static void setupGeoBoundsDeserializer(DelegatingDeserializer<GeoBounds.Builder> op) {
 
-		op.add(Builder::bottomRight, LatLon.JSONP_PARSER, "bottom_right");
-		op.add(Builder::topLeft, LatLon.JSONP_PARSER, "top_left");
+		op.add(Builder::bottomRight, LatLon.DESERIALIZER, "bottom_right");
+		op.add(Builder::topLeft, LatLon.DESERIALIZER, "top_left");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class DeleteUserResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteUserResponse
+	 * Json deserializer for DeleteUserResponse
 	 */
-	public static final JsonpValueParser<DeleteUserResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeleteUserResponse::setupDeleteUserResponseParser);
+	public static final JsonpDeserializer<DeleteUserResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DeleteUserResponse::setupDeleteUserResponseDeserializer);
 
-	protected static void setupDeleteUserResponseParser(DelegatingJsonpValueParser<DeleteUserResponse.Builder> op) {
+	protected static void setupDeleteUserResponseDeserializer(DelegatingDeserializer<DeleteUserResponse.Builder> op) {
 
-		op.add(Builder::found, JsonpValueParser.booleanParser(), "found");
+		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 
 	}
 

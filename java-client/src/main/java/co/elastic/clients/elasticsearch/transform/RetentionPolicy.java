@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -137,15 +137,15 @@ public final class RetentionPolicy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RetentionPolicy
+	 * Json deserializer for RetentionPolicy
 	 */
-	public static final JsonpValueParser<RetentionPolicy> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RetentionPolicy::setupRetentionPolicyParser);
+	public static final JsonpDeserializer<RetentionPolicy> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RetentionPolicy::setupRetentionPolicyDeserializer);
 
-	protected static void setupRetentionPolicyParser(DelegatingJsonpValueParser<RetentionPolicy.Builder> op) {
+	protected static void setupRetentionPolicyDeserializer(DelegatingDeserializer<RetentionPolicy.Builder> op) {
 
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::maxAge, JsonpValueParser.jsonValueParser(), "max_age");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::maxAge, JsonpDeserializer.jsonValueDeserializer(), "max_age");
 
 	}
 

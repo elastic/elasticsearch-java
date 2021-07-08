@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -376,20 +376,21 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutUserRequest
+	 * Json deserializer for PutUserRequest
 	 */
-	public static final JsonpValueParser<PutUserRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutUserRequest::setupPutUserRequestParser);
+	public static final JsonpDeserializer<PutUserRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutUserRequest::setupPutUserRequestDeserializer);
 
-	protected static void setupPutUserRequestParser(DelegatingJsonpValueParser<PutUserRequest.Builder> op) {
+	protected static void setupPutUserRequestDeserializer(DelegatingDeserializer<PutUserRequest.Builder> op) {
 
-		op.add(Builder::email, JsonpValueParser.jsonValueParser(), "email");
-		op.add(Builder::fullName, JsonpValueParser.jsonValueParser(), "full_name");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::password, JsonpValueParser.stringParser(), "password");
-		op.add(Builder::passwordHash, JsonpValueParser.stringParser(), "password_hash");
-		op.add(Builder::roles, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "roles");
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
+		op.add(Builder::email, JsonpDeserializer.jsonValueDeserializer(), "email");
+		op.add(Builder::fullName, JsonpDeserializer.jsonValueDeserializer(), "full_name");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
+		op.add(Builder::passwordHash, JsonpDeserializer.stringDeserializer(), "password_hash");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 
@@ -434,5 +435,5 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutUserResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutUserResponse.DESERIALIZER);
 }

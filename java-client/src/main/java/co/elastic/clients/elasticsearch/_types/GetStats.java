@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -330,23 +330,23 @@ public final class GetStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetStats
+	 * Json deserializer for GetStats
 	 */
-	public static final JsonpValueParser<GetStats> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			GetStats::setupGetStatsParser);
+	public static final JsonpDeserializer<GetStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetStats::setupGetStatsDeserializer);
 
-	protected static void setupGetStatsParser(DelegatingJsonpValueParser<GetStats.Builder> op) {
+	protected static void setupGetStatsDeserializer(DelegatingDeserializer<GetStats.Builder> op) {
 
-		op.add(Builder::current, JsonpValueParser.numberParser(), "current");
-		op.add(Builder::existsTime, JsonpValueParser.stringParser(), "exists_time");
-		op.add(Builder::existsTimeInMillis, JsonpValueParser.numberParser(), "exists_time_in_millis");
-		op.add(Builder::existsTotal, JsonpValueParser.numberParser(), "exists_total");
-		op.add(Builder::missingTime, JsonpValueParser.stringParser(), "missing_time");
-		op.add(Builder::missingTimeInMillis, JsonpValueParser.numberParser(), "missing_time_in_millis");
-		op.add(Builder::missingTotal, JsonpValueParser.numberParser(), "missing_total");
-		op.add(Builder::time, JsonpValueParser.stringParser(), "time");
-		op.add(Builder::timeInMillis, JsonpValueParser.numberParser(), "time_in_millis");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
+		op.add(Builder::current, JsonpDeserializer.numberDeserializer(), "current");
+		op.add(Builder::existsTime, JsonpDeserializer.stringDeserializer(), "exists_time");
+		op.add(Builder::existsTimeInMillis, JsonpDeserializer.numberDeserializer(), "exists_time_in_millis");
+		op.add(Builder::existsTotal, JsonpDeserializer.numberDeserializer(), "exists_total");
+		op.add(Builder::missingTime, JsonpDeserializer.stringDeserializer(), "missing_time");
+		op.add(Builder::missingTimeInMillis, JsonpDeserializer.numberDeserializer(), "missing_time_in_millis");
+		op.add(Builder::missingTotal, JsonpDeserializer.numberDeserializer(), "missing_total");
+		op.add(Builder::time, JsonpDeserializer.stringDeserializer(), "time");
+		op.add(Builder::timeInMillis, JsonpDeserializer.numberDeserializer(), "time_in_millis");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
 
 	}
 

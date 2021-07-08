@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -139,15 +139,15 @@ public final class ClusterProcess implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterProcess
+	 * Json deserializer for ClusterProcess
 	 */
-	public static final JsonpValueParser<ClusterProcess> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterProcess::setupClusterProcessParser);
+	public static final JsonpDeserializer<ClusterProcess> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterProcess::setupClusterProcessDeserializer);
 
-	protected static void setupClusterProcessParser(DelegatingJsonpValueParser<ClusterProcess.Builder> op) {
+	protected static void setupClusterProcessDeserializer(DelegatingDeserializer<ClusterProcess.Builder> op) {
 
-		op.add(Builder::cpu, ClusterProcessCpu.JSONP_PARSER, "cpu");
-		op.add(Builder::openFileDescriptors, ClusterProcessOpenFileDescriptors.JSONP_PARSER, "open_file_descriptors");
+		op.add(Builder::cpu, ClusterProcessCpu.DESERIALIZER, "cpu");
+		op.add(Builder::openFileDescriptors, ClusterProcessOpenFileDescriptors.DESERIALIZER, "open_file_descriptors");
 
 	}
 

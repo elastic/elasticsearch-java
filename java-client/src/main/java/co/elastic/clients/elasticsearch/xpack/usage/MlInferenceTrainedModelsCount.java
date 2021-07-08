@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -193,19 +193,20 @@ public final class MlInferenceTrainedModelsCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MlInferenceTrainedModelsCount
+	 * Json deserializer for MlInferenceTrainedModelsCount
 	 */
-	public static final JsonpValueParser<MlInferenceTrainedModelsCount> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MlInferenceTrainedModelsCount::setupMlInferenceTrainedModelsCountParser);
+	public static final JsonpDeserializer<MlInferenceTrainedModelsCount> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					MlInferenceTrainedModelsCount::setupMlInferenceTrainedModelsCountDeserializer);
 
-	protected static void setupMlInferenceTrainedModelsCountParser(
-			DelegatingJsonpValueParser<MlInferenceTrainedModelsCount.Builder> op) {
+	protected static void setupMlInferenceTrainedModelsCountDeserializer(
+			DelegatingDeserializer<MlInferenceTrainedModelsCount.Builder> op) {
 
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::prepackaged, JsonpValueParser.numberParser(), "prepackaged");
-		op.add(Builder::other, JsonpValueParser.numberParser(), "other");
-		op.add(Builder::regression, JsonpValueParser.numberParser(), "regression");
-		op.add(Builder::classification, JsonpValueParser.numberParser(), "classification");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::prepackaged, JsonpDeserializer.numberDeserializer(), "prepackaged");
+		op.add(Builder::other, JsonpDeserializer.numberDeserializer(), "other");
+		op.add(Builder::regression, JsonpDeserializer.numberDeserializer(), "regression");
+		op.add(Builder::classification, JsonpDeserializer.numberDeserializer(), "classification");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -132,17 +132,17 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalysisFeatureProcessorOneHotEncoding
+	 * Json deserializer for DataframeAnalysisFeatureProcessorOneHotEncoding
 	 */
-	public static final JsonpValueParser<DataframeAnalysisFeatureProcessorOneHotEncoding> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeAnalysisFeatureProcessorOneHotEncoding::setupDataframeAnalysisFeatureProcessorOneHotEncodingParser);
+					DataframeAnalysisFeatureProcessorOneHotEncoding::setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer);
 
-	protected static void setupDataframeAnalysisFeatureProcessorOneHotEncodingParser(
-			DelegatingJsonpValueParser<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder> op) {
+	protected static void setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer(
+			DelegatingDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder> op) {
 
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::hotMap, JsonpValueParser.stringParser(), "hot_map");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::hotMap, JsonpDeserializer.stringDeserializer(), "hot_map");
 
 	}
 

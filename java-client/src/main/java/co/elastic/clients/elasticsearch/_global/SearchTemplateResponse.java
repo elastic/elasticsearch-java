@@ -25,12 +25,12 @@ package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.search.HitsMetadata;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -208,22 +208,22 @@ public final class SearchTemplateResponse<TDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for SearchTemplateResponse
+	 * Create a json deserializer for SearchTemplateResponse
 	 */
-	public static <TDocument> JsonpValueParser<SearchTemplateResponse<TDocument>> createSearchTemplateResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> SearchTemplateResponse.setupSearchTemplateResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<SearchTemplateResponse<TDocument>> createSearchTemplateResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> SearchTemplateResponse.setupSearchTemplateResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupSearchTemplateResponseParser(
-			DelegatingJsonpValueParser<SearchTemplateResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupSearchTemplateResponseDeserializer(
+			DelegatingDeserializer<SearchTemplateResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
-		op.add(Builder::timedOut, JsonpValueParser.booleanParser(), "timed_out");
-		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
-		op.add(Builder::hits, HitsMetadata.createHitsMetadataParser(tDocumentParser), "hits");
+		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
+		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
 
 	}
 

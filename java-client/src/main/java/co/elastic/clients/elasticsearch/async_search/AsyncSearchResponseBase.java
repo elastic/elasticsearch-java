@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -188,15 +188,15 @@ public abstract class AsyncSearchResponseBase implements ToJsonp {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAsyncSearchResponseBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAsyncSearchResponseBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::id, JsonpValueParser.stringParser(), "id");
-		op.add(AbstractBuilder::isPartial, JsonpValueParser.booleanParser(), "is_partial");
-		op.add(AbstractBuilder::isRunning, JsonpValueParser.booleanParser(), "is_running");
-		op.add(AbstractBuilder::expirationTimeInMillis, JsonpValueParser.jsonValueParser(),
+		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
+		op.add(AbstractBuilder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
+		op.add(AbstractBuilder::expirationTimeInMillis, JsonpDeserializer.jsonValueDeserializer(),
 				"expiration_time_in_millis");
-		op.add(AbstractBuilder::startTimeInMillis, JsonpValueParser.jsonValueParser(), "start_time_in_millis");
+		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_time_in_millis");
 
 	}
 

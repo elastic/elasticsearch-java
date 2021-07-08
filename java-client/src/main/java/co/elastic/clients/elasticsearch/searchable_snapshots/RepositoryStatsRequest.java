@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -174,15 +174,15 @@ public final class RepositoryStatsRequest extends RequestBase implements ToJsonp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RepositoryStatsRequest
+	 * Json deserializer for RepositoryStatsRequest
 	 */
-	public static final JsonpValueParser<RepositoryStatsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RepositoryStatsRequest::setupRepositoryStatsRequestParser);
+	public static final JsonpDeserializer<RepositoryStatsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RepositoryStatsRequest::setupRepositoryStatsRequestDeserializer);
 
-	protected static void setupRepositoryStatsRequestParser(
-			DelegatingJsonpValueParser<RepositoryStatsRequest.Builder> op) {
+	protected static void setupRepositoryStatsRequestDeserializer(
+			DelegatingDeserializer<RepositoryStatsRequest.Builder> op) {
 
-		op.add(Builder::stubC, JsonpValueParser.numberParser(), "stub_c");
+		op.add(Builder::stubC, JsonpDeserializer.numberDeserializer(), "stub_c");
 
 	}
 
@@ -228,5 +228,5 @@ public final class RepositoryStatsRequest extends RequestBase implements ToJsonp
 				params.put("stub_b", request.stubB.toString());
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RepositoryStatsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, RepositoryStatsResponse.DESERIALIZER);
 }

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.UnassignedInformation;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -337,23 +337,23 @@ public final class NodeShard implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeShard
+	 * Json deserializer for NodeShard
 	 */
-	public static final JsonpValueParser<NodeShard> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeShard::setupNodeShardParser);
+	public static final JsonpDeserializer<NodeShard> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeShard::setupNodeShardDeserializer);
 
-	protected static void setupNodeShardParser(DelegatingJsonpValueParser<NodeShard.Builder> op) {
+	protected static void setupNodeShardDeserializer(DelegatingDeserializer<NodeShard.Builder> op) {
 
-		op.add(Builder::state, JsonpValueParser.jsonValueParser(), "state");
-		op.add(Builder::primary, JsonpValueParser.booleanParser(), "primary");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::shard, JsonpValueParser.numberParser(), "shard");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::allocationId, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
+		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
+		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::allocationId, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"allocation_id");
-		op.add(Builder::recoverySource, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
+		op.add(Builder::recoverySource, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"recovery_source");
-		op.add(Builder::unassignedInfo, UnassignedInformation.JSONP_PARSER, "unassigned_info");
+		op.add(Builder::unassignedInfo, UnassignedInformation.DESERIALIZER, "unassigned_info");
 
 	}
 

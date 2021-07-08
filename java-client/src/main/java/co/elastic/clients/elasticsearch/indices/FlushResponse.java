@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,13 @@ public final class FlushResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FlushResponse
+	 * Json deserializer for FlushResponse
 	 */
-	public static final JsonpValueParser<FlushResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FlushResponse::setupFlushResponseParser);
+	public static final JsonpDeserializer<FlushResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FlushResponse::setupFlushResponseDeserializer);
 
-	protected static void setupFlushResponseParser(DelegatingJsonpValueParser<FlushResponse.Builder> op) {
-		ShardsOperationResponseBase.setupShardsOperationResponseBaseParser(op);
+	protected static void setupFlushResponseDeserializer(DelegatingDeserializer<FlushResponse.Builder> op) {
+		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
 	}
 

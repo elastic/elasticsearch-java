@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -134,16 +134,17 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalysisClassification
+	 * Json deserializer for DataframeAnalysisClassification
 	 */
-	public static final JsonpValueParser<DataframeAnalysisClassification> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataframeAnalysisClassification::setupDataframeAnalysisClassificationParser);
+	public static final JsonpDeserializer<DataframeAnalysisClassification> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					DataframeAnalysisClassification::setupDataframeAnalysisClassificationDeserializer);
 
-	protected static void setupDataframeAnalysisClassificationParser(
-			DelegatingJsonpValueParser<DataframeAnalysisClassification.Builder> op) {
-		DataframeAnalysis.setupDataframeAnalysisParser(op);
-		op.add(Builder::classAssignmentObjective, JsonpValueParser.stringParser(), "class_assignment_objective");
-		op.add(Builder::numTopClasses, JsonpValueParser.numberParser(), "num_top_classes");
+	protected static void setupDataframeAnalysisClassificationDeserializer(
+			DelegatingDeserializer<DataframeAnalysisClassification.Builder> op) {
+		DataframeAnalysis.setupDataframeAnalysisDeserializer(op);
+		op.add(Builder::classAssignmentObjective, JsonpDeserializer.stringDeserializer(), "class_assignment_objective");
+		op.add(Builder::numTopClasses, JsonpDeserializer.numberDeserializer(), "num_top_classes");
 
 	}
 

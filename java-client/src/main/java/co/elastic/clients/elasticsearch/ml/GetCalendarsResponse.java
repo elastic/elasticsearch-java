@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch.ml.get_calendars.Calendar;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -167,15 +167,16 @@ public final class GetCalendarsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetCalendarsResponse
+	 * Json deserializer for GetCalendarsResponse
 	 */
-	public static final JsonpValueParser<GetCalendarsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetCalendarsResponse::setupGetCalendarsResponseParser);
+	public static final JsonpDeserializer<GetCalendarsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetCalendarsResponse::setupGetCalendarsResponseDeserializer);
 
-	protected static void setupGetCalendarsResponseParser(DelegatingJsonpValueParser<GetCalendarsResponse.Builder> op) {
+	protected static void setupGetCalendarsResponseDeserializer(
+			DelegatingDeserializer<GetCalendarsResponse.Builder> op) {
 
-		op.add(Builder::calendars, JsonpValueParser.arrayParser(Calendar.JSONP_PARSER), "calendars");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
+		op.add(Builder::calendars, JsonpDeserializer.arrayDeserializer(Calendar.DESERIALIZER), "calendars");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
 
 	}
 

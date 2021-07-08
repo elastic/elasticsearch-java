@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ccr.follow_info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -210,18 +210,18 @@ public final class FollowerIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FollowerIndex
+	 * Json deserializer for FollowerIndex
 	 */
-	public static final JsonpValueParser<FollowerIndex> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FollowerIndex::setupFollowerIndexParser);
+	public static final JsonpDeserializer<FollowerIndex> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FollowerIndex::setupFollowerIndexDeserializer);
 
-	protected static void setupFollowerIndexParser(DelegatingJsonpValueParser<FollowerIndex.Builder> op) {
+	protected static void setupFollowerIndexDeserializer(DelegatingDeserializer<FollowerIndex.Builder> op) {
 
-		op.add(Builder::followerIndex, JsonpValueParser.stringParser(), "follower_index");
-		op.add(Builder::leaderIndex, JsonpValueParser.stringParser(), "leader_index");
-		op.add(Builder::parameters, FollowerIndexParameters.JSONP_PARSER, "parameters");
-		op.add(Builder::remoteCluster, JsonpValueParser.stringParser(), "remote_cluster");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
+		op.add(Builder::followerIndex, JsonpDeserializer.stringDeserializer(), "follower_index");
+		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
+		op.add(Builder::parameters, FollowerIndexParameters.DESERIALIZER, "parameters");
+		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
 
 	}
 

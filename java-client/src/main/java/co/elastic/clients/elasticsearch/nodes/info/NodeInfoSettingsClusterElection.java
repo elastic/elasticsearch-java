@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,16 @@ public final class NodeInfoSettingsClusterElection implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoSettingsClusterElection
+	 * Json deserializer for NodeInfoSettingsClusterElection
 	 */
-	public static final JsonpValueParser<NodeInfoSettingsClusterElection> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionParser);
+	public static final JsonpDeserializer<NodeInfoSettingsClusterElection> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer);
 
-	protected static void setupNodeInfoSettingsClusterElectionParser(
-			DelegatingJsonpValueParser<NodeInfoSettingsClusterElection.Builder> op) {
+	protected static void setupNodeInfoSettingsClusterElectionDeserializer(
+			DelegatingDeserializer<NodeInfoSettingsClusterElection.Builder> op) {
 
-		op.add(Builder::strategy, JsonpValueParser.stringParser(), "strategy");
+		op.add(Builder::strategy, JsonpDeserializer.stringDeserializer(), "strategy");
 
 	}
 

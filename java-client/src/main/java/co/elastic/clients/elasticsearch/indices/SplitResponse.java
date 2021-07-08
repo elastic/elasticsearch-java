@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -124,15 +124,15 @@ public final class SplitResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SplitResponse
+	 * Json deserializer for SplitResponse
 	 */
-	public static final JsonpValueParser<SplitResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SplitResponse::setupSplitResponseParser);
+	public static final JsonpDeserializer<SplitResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SplitResponse::setupSplitResponseDeserializer);
 
-	protected static void setupSplitResponseParser(DelegatingJsonpValueParser<SplitResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::shardsAcknowledged, JsonpValueParser.booleanParser(), "shards_acknowledged");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
+	protected static void setupSplitResponseDeserializer(DelegatingDeserializer<SplitResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 
 	}
 

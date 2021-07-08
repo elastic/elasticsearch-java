@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -325,21 +325,22 @@ public final class Cpu implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Cpu
+	 * Json deserializer for Cpu
 	 */
-	public static final JsonpValueParser<Cpu> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Cpu::setupCpuParser);
+	public static final JsonpDeserializer<Cpu> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Cpu::setupCpuDeserializer);
 
-	protected static void setupCpuParser(DelegatingJsonpValueParser<Cpu.Builder> op) {
+	protected static void setupCpuDeserializer(DelegatingDeserializer<Cpu.Builder> op) {
 
-		op.add(Builder::percent, JsonpValueParser.numberParser(), "percent");
-		op.add(Builder::sys, JsonpValueParser.stringParser(), "sys");
-		op.add(Builder::sysInMillis, JsonpValueParser.numberParser(), "sys_in_millis");
-		op.add(Builder::total, JsonpValueParser.stringParser(), "total");
-		op.add(Builder::totalInMillis, JsonpValueParser.numberParser(), "total_in_millis");
-		op.add(Builder::user, JsonpValueParser.stringParser(), "user");
-		op.add(Builder::userInMillis, JsonpValueParser.numberParser(), "user_in_millis");
-		op.add(Builder::loadAverage, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()), "load_average");
+		op.add(Builder::percent, JsonpDeserializer.numberDeserializer(), "percent");
+		op.add(Builder::sys, JsonpDeserializer.stringDeserializer(), "sys");
+		op.add(Builder::sysInMillis, JsonpDeserializer.numberDeserializer(), "sys_in_millis");
+		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
+		op.add(Builder::totalInMillis, JsonpDeserializer.numberDeserializer(), "total_in_millis");
+		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
+		op.add(Builder::userInMillis, JsonpDeserializer.numberDeserializer(), "user_in_millis");
+		op.add(Builder::loadAverage, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+				"load_average");
 
 	}
 

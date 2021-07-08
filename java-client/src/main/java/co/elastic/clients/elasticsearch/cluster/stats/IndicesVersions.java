@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -171,17 +171,17 @@ public final class IndicesVersions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndicesVersions
+	 * Json deserializer for IndicesVersions
 	 */
-	public static final JsonpValueParser<IndicesVersions> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndicesVersions::setupIndicesVersionsParser);
+	public static final JsonpDeserializer<IndicesVersions> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndicesVersions::setupIndicesVersionsDeserializer);
 
-	protected static void setupIndicesVersionsParser(DelegatingJsonpValueParser<IndicesVersions.Builder> op) {
+	protected static void setupIndicesVersionsDeserializer(DelegatingDeserializer<IndicesVersions.Builder> op) {
 
-		op.add(Builder::indexCount, JsonpValueParser.numberParser(), "index_count");
-		op.add(Builder::primaryShardCount, JsonpValueParser.numberParser(), "primary_shard_count");
-		op.add(Builder::totalPrimaryBytes, JsonpValueParser.numberParser(), "total_primary_bytes");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
+		op.add(Builder::indexCount, JsonpDeserializer.numberDeserializer(), "index_count");
+		op.add(Builder::primaryShardCount, JsonpDeserializer.numberDeserializer(), "primary_shard_count");
+		op.add(Builder::totalPrimaryBytes, JsonpDeserializer.numberDeserializer(), "total_primary_bytes");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}
 

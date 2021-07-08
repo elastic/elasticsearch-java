@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch.license.get.LicenseInformation;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,14 +109,14 @@ public final class GetResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetResponse
+	 * Json deserializer for GetResponse
 	 */
-	public static final JsonpValueParser<GetResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetResponse::setupGetResponseParser);
+	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);
 
-	protected static void setupGetResponseParser(DelegatingJsonpValueParser<GetResponse.Builder> op) {
+	protected static void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder> op) {
 
-		op.add(Builder::license, LicenseInformation.JSONP_PARSER, "license");
+		op.add(Builder::license, LicenseInformation.DESERIALIZER, "license");
 
 	}
 

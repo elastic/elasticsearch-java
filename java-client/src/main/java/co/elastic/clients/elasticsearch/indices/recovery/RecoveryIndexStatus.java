@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -337,24 +337,24 @@ public final class RecoveryIndexStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RecoveryIndexStatus
+	 * Json deserializer for RecoveryIndexStatus
 	 */
-	public static final JsonpValueParser<RecoveryIndexStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RecoveryIndexStatus::setupRecoveryIndexStatusParser);
+	public static final JsonpDeserializer<RecoveryIndexStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RecoveryIndexStatus::setupRecoveryIndexStatusDeserializer);
 
-	protected static void setupRecoveryIndexStatusParser(DelegatingJsonpValueParser<RecoveryIndexStatus.Builder> op) {
+	protected static void setupRecoveryIndexStatusDeserializer(DelegatingDeserializer<RecoveryIndexStatus.Builder> op) {
 
-		op.add(Builder::bytes, RecoveryBytes.JSONP_PARSER, "bytes");
-		op.add(Builder::files, RecoveryFiles.JSONP_PARSER, "files");
-		op.add(Builder::size, RecoveryBytes.JSONP_PARSER, "size");
-		op.add(Builder::sourceThrottleTime, JsonpValueParser.jsonValueParser(), "source_throttle_time");
-		op.add(Builder::sourceThrottleTimeInMillis, JsonpValueParser.jsonValueParser(),
+		op.add(Builder::bytes, RecoveryBytes.DESERIALIZER, "bytes");
+		op.add(Builder::files, RecoveryFiles.DESERIALIZER, "files");
+		op.add(Builder::size, RecoveryBytes.DESERIALIZER, "size");
+		op.add(Builder::sourceThrottleTime, JsonpDeserializer.jsonValueDeserializer(), "source_throttle_time");
+		op.add(Builder::sourceThrottleTimeInMillis, JsonpDeserializer.jsonValueDeserializer(),
 				"source_throttle_time_in_millis");
-		op.add(Builder::targetThrottleTime, JsonpValueParser.jsonValueParser(), "target_throttle_time");
-		op.add(Builder::targetThrottleTimeInMillis, JsonpValueParser.jsonValueParser(),
+		op.add(Builder::targetThrottleTime, JsonpDeserializer.jsonValueDeserializer(), "target_throttle_time");
+		op.add(Builder::targetThrottleTimeInMillis, JsonpDeserializer.jsonValueDeserializer(),
 				"target_throttle_time_in_millis");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.jsonValueParser(), "total_time_in_millis");
-		op.add(Builder::totalTime, JsonpValueParser.jsonValueParser(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "total_time_in_millis");
+		op.add(Builder::totalTime, JsonpDeserializer.jsonValueDeserializer(), "total_time");
 
 	}
 

@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch.ml.evaluate_data_frame.DataframeClassificationSummary;
 import co.elastic.clients.elasticsearch.ml.evaluate_data_frame.DataframeOutlierDetectionSummary;
 import co.elastic.clients.elasticsearch.ml.evaluate_data_frame.DataframeRegressionSummary;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -192,17 +192,17 @@ public final class EvaluateDataFrameResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for EvaluateDataFrameResponse
+	 * Json deserializer for EvaluateDataFrameResponse
 	 */
-	public static final JsonpValueParser<EvaluateDataFrameResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, EvaluateDataFrameResponse::setupEvaluateDataFrameResponseParser);
+	public static final JsonpDeserializer<EvaluateDataFrameResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, EvaluateDataFrameResponse::setupEvaluateDataFrameResponseDeserializer);
 
-	protected static void setupEvaluateDataFrameResponseParser(
-			DelegatingJsonpValueParser<EvaluateDataFrameResponse.Builder> op) {
+	protected static void setupEvaluateDataFrameResponseDeserializer(
+			DelegatingDeserializer<EvaluateDataFrameResponse.Builder> op) {
 
-		op.add(Builder::classification, DataframeClassificationSummary.JSONP_PARSER, "classification");
-		op.add(Builder::outlierDetection, DataframeOutlierDetectionSummary.JSONP_PARSER, "outlier_detection");
-		op.add(Builder::regression, DataframeRegressionSummary.JSONP_PARSER, "regression");
+		op.add(Builder::classification, DataframeClassificationSummary.DESERIALIZER, "classification");
+		op.add(Builder::outlierDetection, DataframeOutlierDetectionSummary.DESERIALIZER, "outlier_detection");
+		op.add(Builder::regression, DataframeRegressionSummary.DESERIALIZER, "regression");
 
 	}
 

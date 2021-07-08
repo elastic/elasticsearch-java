@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -144,14 +144,15 @@ public final class NodeInfoIngest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoIngest
+	 * Json deserializer for NodeInfoIngest
 	 */
-	public static final JsonpValueParser<NodeInfoIngest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoIngest::setupNodeInfoIngestParser);
+	public static final JsonpDeserializer<NodeInfoIngest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoIngest::setupNodeInfoIngestDeserializer);
 
-	protected static void setupNodeInfoIngestParser(DelegatingJsonpValueParser<NodeInfoIngest.Builder> op) {
+	protected static void setupNodeInfoIngestDeserializer(DelegatingDeserializer<NodeInfoIngest.Builder> op) {
 
-		op.add(Builder::processors, JsonpValueParser.arrayParser(NodeInfoIngestProcessor.JSONP_PARSER), "processors");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(NodeInfoIngestProcessor.DESERIALIZER),
+				"processors");
 
 	}
 

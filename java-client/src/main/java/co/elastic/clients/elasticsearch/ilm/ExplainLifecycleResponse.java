@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -101,15 +101,15 @@ public final class ExplainLifecycleResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExplainLifecycleResponse
+	 * Json deserializer for ExplainLifecycleResponse
 	 */
-	public static final JsonpValueParser<ExplainLifecycleResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExplainLifecycleResponse::setupExplainLifecycleResponseParser);
+	public static final JsonpDeserializer<ExplainLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExplainLifecycleResponse::setupExplainLifecycleResponseDeserializer);
 
-	protected static void setupExplainLifecycleResponseParser(
-			DelegatingJsonpValueParser<ExplainLifecycleResponse.Builder> op) {
+	protected static void setupExplainLifecycleResponseDeserializer(
+			DelegatingDeserializer<ExplainLifecycleResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpValueParser.jsonValueParser(), "indices");
+		op.add(Builder::indices, JsonpDeserializer.jsonValueDeserializer(), "indices");
 
 	}
 

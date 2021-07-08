@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class Datafeed implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Datafeed
+	 * Json deserializer for Datafeed
 	 */
-	public static final JsonpValueParser<Datafeed> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Datafeed::setupDatafeedParser);
+	public static final JsonpDeserializer<Datafeed> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Datafeed::setupDatafeedDeserializer);
 
-	protected static void setupDatafeedParser(DelegatingJsonpValueParser<Datafeed.Builder> op) {
+	protected static void setupDatafeedDeserializer(DelegatingDeserializer<Datafeed.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
 
 	}
 

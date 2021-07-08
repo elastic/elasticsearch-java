@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch.license.post.Acknowledgement;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -164,16 +164,16 @@ public final class PostResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PostResponse
+	 * Json deserializer for PostResponse
 	 */
-	public static final JsonpValueParser<PostResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PostResponse::setupPostResponseParser);
+	public static final JsonpDeserializer<PostResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PostResponse::setupPostResponseDeserializer);
 
-	protected static void setupPostResponseParser(DelegatingJsonpValueParser<PostResponse.Builder> op) {
+	protected static void setupPostResponseDeserializer(DelegatingDeserializer<PostResponse.Builder> op) {
 
-		op.add(Builder::acknowledge, Acknowledgement.JSONP_PARSER, "acknowledge");
-		op.add(Builder::acknowledged, JsonpValueParser.booleanParser(), "acknowledged");
-		op.add(Builder::licenseStatus, JsonpValueParser.jsonValueParser(), "license_status");
+		op.add(Builder::acknowledge, Acknowledgement.DESERIALIZER, "acknowledge");
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
+		op.add(Builder::licenseStatus, JsonpDeserializer.jsonValueDeserializer(), "license_status");
 
 	}
 

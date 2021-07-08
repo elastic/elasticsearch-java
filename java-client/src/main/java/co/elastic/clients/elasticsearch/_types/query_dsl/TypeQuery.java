@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -97,14 +97,14 @@ public final class TypeQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TypeQuery
+	 * Json deserializer for TypeQuery
 	 */
-	public static final JsonpValueParser<TypeQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TypeQuery::setupTypeQueryParser);
+	public static final JsonpDeserializer<TypeQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TypeQuery::setupTypeQueryDeserializer);
 
-	protected static void setupTypeQueryParser(DelegatingJsonpValueParser<TypeQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::value, JsonpValueParser.stringParser(), "value");
+	protected static void setupTypeQueryDeserializer(DelegatingDeserializer<TypeQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 
 	}
 

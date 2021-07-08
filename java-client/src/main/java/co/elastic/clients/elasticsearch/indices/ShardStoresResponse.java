@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.shard_stores.IndicesShardStores;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -137,14 +137,14 @@ public final class ShardStoresResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardStoresResponse
+	 * Json deserializer for ShardStoresResponse
 	 */
-	public static final JsonpValueParser<ShardStoresResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardStoresResponse::setupShardStoresResponseParser);
+	public static final JsonpDeserializer<ShardStoresResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardStoresResponse::setupShardStoresResponseDeserializer);
 
-	protected static void setupShardStoresResponseParser(DelegatingJsonpValueParser<ShardStoresResponse.Builder> op) {
+	protected static void setupShardStoresResponseDeserializer(DelegatingDeserializer<ShardStoresResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpValueParser.stringMapParser(IndicesShardStores.JSONP_PARSER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndicesShardStores.DESERIALIZER), "indices");
 
 	}
 

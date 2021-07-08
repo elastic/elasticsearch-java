@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -414,22 +414,22 @@ public final class DataframeAnalytics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalytics
+	 * Json deserializer for DataframeAnalytics
 	 */
-	public static final JsonpValueParser<DataframeAnalytics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataframeAnalytics::setupDataframeAnalyticsParser);
+	public static final JsonpDeserializer<DataframeAnalytics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataframeAnalytics::setupDataframeAnalyticsDeserializer);
 
-	protected static void setupDataframeAnalyticsParser(DelegatingJsonpValueParser<DataframeAnalytics.Builder> op) {
+	protected static void setupDataframeAnalyticsDeserializer(DelegatingDeserializer<DataframeAnalytics.Builder> op) {
 
-		op.add(Builder::analysisStats, DataframeAnalyticsStatsContainer.JSONP_PARSER, "analysis_stats");
-		op.add(Builder::assignmentExplanation, JsonpValueParser.stringParser(), "assignment_explanation");
-		op.add(Builder::dataCounts, DataframeAnalyticsStatsDataCounts.JSONP_PARSER, "data_counts");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::memoryUsage, DataframeAnalyticsStatsMemoryUsage.JSONP_PARSER, "memory_usage");
-		op.add(Builder::node, NodeAttributes.JSONP_PARSER, "node");
-		op.add(Builder::progress, JsonpValueParser.arrayParser(DataframeAnalyticsStatsProgress.JSONP_PARSER),
+		op.add(Builder::analysisStats, DataframeAnalyticsStatsContainer.DESERIALIZER, "analysis_stats");
+		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
+		op.add(Builder::dataCounts, DataframeAnalyticsStatsDataCounts.DESERIALIZER, "data_counts");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::memoryUsage, DataframeAnalyticsStatsMemoryUsage.DESERIALIZER, "memory_usage");
+		op.add(Builder::node, NodeAttributes.DESERIALIZER, "node");
+		op.add(Builder::progress, JsonpDeserializer.arrayDeserializer(DataframeAnalyticsStatsProgress.DESERIALIZER),
 				"progress");
-		op.add(Builder::state, JsonpValueParser.jsonValueParser(), "state");
+		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
 
 	}
 

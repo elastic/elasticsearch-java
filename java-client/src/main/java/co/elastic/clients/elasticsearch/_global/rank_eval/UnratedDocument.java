@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class UnratedDocument implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UnratedDocument
+	 * Json deserializer for UnratedDocument
 	 */
-	public static final JsonpValueParser<UnratedDocument> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UnratedDocument::setupUnratedDocumentParser);
+	public static final JsonpDeserializer<UnratedDocument> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UnratedDocument::setupUnratedDocumentDeserializer);
 
-	protected static void setupUnratedDocumentParser(DelegatingJsonpValueParser<UnratedDocument.Builder> op) {
+	protected static void setupUnratedDocumentDeserializer(DelegatingDeserializer<UnratedDocument.Builder> op) {
 
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::_index, JsonpValueParser.stringParser(), "_index");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,16 +124,16 @@ public final class HttpInputBasicAuthentication implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HttpInputBasicAuthentication
+	 * Json deserializer for HttpInputBasicAuthentication
 	 */
-	public static final JsonpValueParser<HttpInputBasicAuthentication> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HttpInputBasicAuthentication::setupHttpInputBasicAuthenticationParser);
+	public static final JsonpDeserializer<HttpInputBasicAuthentication> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HttpInputBasicAuthentication::setupHttpInputBasicAuthenticationDeserializer);
 
-	protected static void setupHttpInputBasicAuthenticationParser(
-			DelegatingJsonpValueParser<HttpInputBasicAuthentication.Builder> op) {
+	protected static void setupHttpInputBasicAuthenticationDeserializer(
+			DelegatingDeserializer<HttpInputBasicAuthentication.Builder> op) {
 
-		op.add(Builder::password, JsonpValueParser.stringParser(), "password");
-		op.add(Builder::username, JsonpValueParser.stringParser(), "username");
+		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
 

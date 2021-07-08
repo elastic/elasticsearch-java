@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -104,15 +104,16 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExtendedStatsBucketAggregation
+	 * Json deserializer for ExtendedStatsBucketAggregation
 	 */
-	public static final JsonpValueParser<ExtendedStatsBucketAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExtendedStatsBucketAggregation::setupExtendedStatsBucketAggregationParser);
+	public static final JsonpDeserializer<ExtendedStatsBucketAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					ExtendedStatsBucketAggregation::setupExtendedStatsBucketAggregationDeserializer);
 
-	protected static void setupExtendedStatsBucketAggregationParser(
-			DelegatingJsonpValueParser<ExtendedStatsBucketAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseParser(op);
-		op.add(Builder::sigma, JsonpValueParser.numberParser(), "sigma");
+	protected static void setupExtendedStatsBucketAggregationDeserializer(
+			DelegatingDeserializer<ExtendedStatsBucketAggregation.Builder> op) {
+		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+		op.add(Builder::sigma, JsonpDeserializer.numberDeserializer(), "sigma");
 
 	}
 

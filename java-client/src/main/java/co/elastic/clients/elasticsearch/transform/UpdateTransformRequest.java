@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -99,14 +99,14 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateTransformRequest
+	 * Json deserializer for UpdateTransformRequest
 	 */
-	public static final JsonpValueParser<UpdateTransformRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateTransformRequest::setupUpdateTransformRequestParser);
+	public static final JsonpDeserializer<UpdateTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpdateTransformRequest::setupUpdateTransformRequestDeserializer);
 
-	protected static void setupUpdateTransformRequestParser(
-			DelegatingJsonpValueParser<UpdateTransformRequest.Builder> op) {
-		PutTransformRequest.setupPutTransformRequestParser(op);
+	protected static void setupUpdateTransformRequestDeserializer(
+			DelegatingDeserializer<UpdateTransformRequest.Builder> op) {
+		PutTransformRequest.setupPutTransformRequestDeserializer(op);
 
 	}
 
@@ -147,5 +147,5 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateTransformResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, UpdateTransformResponse.DESERIALIZER);
 }

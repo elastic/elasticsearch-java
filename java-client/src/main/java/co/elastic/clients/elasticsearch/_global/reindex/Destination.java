@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.reindex;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -219,18 +219,18 @@ public final class Destination implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Destination
+	 * Json deserializer for Destination
 	 */
-	public static final JsonpValueParser<Destination> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Destination::setupDestinationParser);
+	public static final JsonpDeserializer<Destination> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Destination::setupDestinationDeserializer);
 
-	protected static void setupDestinationParser(DelegatingJsonpValueParser<Destination.Builder> op) {
+	protected static void setupDestinationDeserializer(DelegatingDeserializer<Destination.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::opType, JsonpValueParser.jsonValueParser(), "op_type");
-		op.add(Builder::pipeline, JsonpValueParser.stringParser(), "pipeline");
-		op.add(Builder::routing, JsonpValueParser.jsonValueParser(), "routing");
-		op.add(Builder::versionType, JsonpValueParser.jsonValueParser(), "version_type");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::opType, JsonpDeserializer.jsonValueDeserializer(), "op_type");
+		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
+		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::versionType, JsonpDeserializer.jsonValueDeserializer(), "version_type");
 
 	}
 

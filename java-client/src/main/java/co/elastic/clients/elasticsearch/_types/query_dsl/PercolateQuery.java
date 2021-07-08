@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -334,21 +334,22 @@ public final class PercolateQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PercolateQuery
+	 * Json deserializer for PercolateQuery
 	 */
-	public static final JsonpValueParser<PercolateQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PercolateQuery::setupPercolateQueryParser);
+	public static final JsonpDeserializer<PercolateQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PercolateQuery::setupPercolateQueryDeserializer);
 
-	protected static void setupPercolateQueryParser(DelegatingJsonpValueParser<PercolateQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::document, JsonpValueParser.jsonValueParser(), "document");
-		op.add(Builder::documents, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "documents");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::preference, JsonpValueParser.stringParser(), "preference");
-		op.add(Builder::routing, JsonpValueParser.jsonValueParser(), "routing");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
+	protected static void setupPercolateQueryDeserializer(DelegatingDeserializer<PercolateQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::document, JsonpDeserializer.jsonValueDeserializer(), "document");
+		op.add(Builder::documents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"documents");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
+		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 
 	}
 

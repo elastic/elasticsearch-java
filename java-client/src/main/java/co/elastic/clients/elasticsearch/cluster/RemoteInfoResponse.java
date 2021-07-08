@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.cluster.remote_info.ClusterRemoteInfo;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -72,14 +72,14 @@ public final class RemoteInfoResponse extends AdditionalProperties<String, Clust
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RemoteInfoResponse
+	 * Json deserializer for RemoteInfoResponse
 	 */
-	public static final JsonpValueParser<RemoteInfoResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RemoteInfoResponse::setupRemoteInfoResponseParser);
+	public static final JsonpDeserializer<RemoteInfoResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RemoteInfoResponse::setupRemoteInfoResponseDeserializer);
 
-	protected static void setupRemoteInfoResponseParser(DelegatingJsonpValueParser<RemoteInfoResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				ClusterRemoteInfo.JSONP_PARSER);
+	protected static void setupRemoteInfoResponseDeserializer(DelegatingDeserializer<RemoteInfoResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				ClusterRemoteInfo.DESERIALIZER);
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -131,15 +131,16 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PercentilesBucketAggregation
+	 * Json deserializer for PercentilesBucketAggregation
 	 */
-	public static final JsonpValueParser<PercentilesBucketAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PercentilesBucketAggregation::setupPercentilesBucketAggregationParser);
+	public static final JsonpDeserializer<PercentilesBucketAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PercentilesBucketAggregation::setupPercentilesBucketAggregationDeserializer);
 
-	protected static void setupPercentilesBucketAggregationParser(
-			DelegatingJsonpValueParser<PercentilesBucketAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseParser(op);
-		op.add(Builder::percents, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "percents");
+	protected static void setupPercentilesBucketAggregationDeserializer(
+			DelegatingDeserializer<PercentilesBucketAggregation.Builder> op) {
+		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+		op.add(Builder::percents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
+				"percents");
 
 	}
 

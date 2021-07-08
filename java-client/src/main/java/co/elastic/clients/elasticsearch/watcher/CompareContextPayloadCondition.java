@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -223,19 +223,20 @@ public final class CompareContextPayloadCondition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CompareContextPayloadCondition
+	 * Json deserializer for CompareContextPayloadCondition
 	 */
-	public static final JsonpValueParser<CompareContextPayloadCondition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CompareContextPayloadCondition::setupCompareContextPayloadConditionParser);
+	public static final JsonpDeserializer<CompareContextPayloadCondition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					CompareContextPayloadCondition::setupCompareContextPayloadConditionDeserializer);
 
-	protected static void setupCompareContextPayloadConditionParser(
-			DelegatingJsonpValueParser<CompareContextPayloadCondition.Builder> op) {
+	protected static void setupCompareContextPayloadConditionDeserializer(
+			DelegatingDeserializer<CompareContextPayloadCondition.Builder> op) {
 
-		op.add(Builder::eq, JsonpValueParser.jsonValueParser(), "eq");
-		op.add(Builder::lt, JsonpValueParser.jsonValueParser(), "lt");
-		op.add(Builder::gt, JsonpValueParser.jsonValueParser(), "gt");
-		op.add(Builder::lte, JsonpValueParser.jsonValueParser(), "lte");
-		op.add(Builder::gte, JsonpValueParser.jsonValueParser(), "gte");
+		op.add(Builder::eq, JsonpDeserializer.jsonValueDeserializer(), "eq");
+		op.add(Builder::lt, JsonpDeserializer.jsonValueDeserializer(), "lt");
+		op.add(Builder::gt, JsonpDeserializer.jsonValueDeserializer(), "gt");
+		op.add(Builder::lte, JsonpDeserializer.jsonValueDeserializer(), "lte");
+		op.add(Builder::gte, JsonpDeserializer.jsonValueDeserializer(), "gte");
 
 	}
 

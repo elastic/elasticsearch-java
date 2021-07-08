@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -207,17 +207,18 @@ public final class NodeInfoHttp implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoHttp
+	 * Json deserializer for NodeInfoHttp
 	 */
-	public static final JsonpValueParser<NodeInfoHttp> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoHttp::setupNodeInfoHttpParser);
+	public static final JsonpDeserializer<NodeInfoHttp> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoHttp::setupNodeInfoHttpDeserializer);
 
-	protected static void setupNodeInfoHttpParser(DelegatingJsonpValueParser<NodeInfoHttp.Builder> op) {
+	protected static void setupNodeInfoHttpDeserializer(DelegatingDeserializer<NodeInfoHttp.Builder> op) {
 
-		op.add(Builder::boundAddress, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "bound_address");
-		op.add(Builder::maxContentLength, JsonpValueParser.jsonValueParser(), "max_content_length");
-		op.add(Builder::maxContentLengthInBytes, JsonpValueParser.numberParser(), "max_content_length_in_bytes");
-		op.add(Builder::publishAddress, JsonpValueParser.stringParser(), "publish_address");
+		op.add(Builder::boundAddress, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"bound_address");
+		op.add(Builder::maxContentLength, JsonpDeserializer.jsonValueDeserializer(), "max_content_length");
+		op.add(Builder::maxContentLengthInBytes, JsonpDeserializer.numberDeserializer(), "max_content_length_in_bytes");
+		op.add(Builder::publishAddress, JsonpDeserializer.stringDeserializer(), "publish_address");
 
 	}
 

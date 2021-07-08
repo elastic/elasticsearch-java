@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -172,16 +172,17 @@ public final class GetOverallBucketsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetOverallBucketsResponse
+	 * Json deserializer for GetOverallBucketsResponse
 	 */
-	public static final JsonpValueParser<GetOverallBucketsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetOverallBucketsResponse::setupGetOverallBucketsResponseParser);
+	public static final JsonpDeserializer<GetOverallBucketsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetOverallBucketsResponse::setupGetOverallBucketsResponseDeserializer);
 
-	protected static void setupGetOverallBucketsResponseParser(
-			DelegatingJsonpValueParser<GetOverallBucketsResponse.Builder> op) {
+	protected static void setupGetOverallBucketsResponseDeserializer(
+			DelegatingDeserializer<GetOverallBucketsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::overallBuckets, JsonpValueParser.arrayParser(OverallBucket.JSONP_PARSER), "overall_buckets");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::overallBuckets, JsonpDeserializer.arrayDeserializer(OverallBucket.DESERIALIZER),
+				"overall_buckets");
 
 	}
 

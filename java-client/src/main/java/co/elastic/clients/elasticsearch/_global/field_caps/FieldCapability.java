@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.field_caps;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -366,24 +366,25 @@ public final class FieldCapability implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldCapability
+	 * Json deserializer for FieldCapability
 	 */
-	public static final JsonpValueParser<FieldCapability> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldCapability::setupFieldCapabilityParser);
+	public static final JsonpDeserializer<FieldCapability> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldCapability::setupFieldCapabilityDeserializer);
 
-	protected static void setupFieldCapabilityParser(DelegatingJsonpValueParser<FieldCapability.Builder> op) {
+	protected static void setupFieldCapabilityDeserializer(DelegatingDeserializer<FieldCapability.Builder> op) {
 
-		op.add(Builder::aggregatable, JsonpValueParser.booleanParser(), "aggregatable");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::meta,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(JsonpValueParser.stringParser())),
-				"meta");
-		op.add(Builder::nonAggregatableIndices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::aggregatable, JsonpDeserializer.booleanDeserializer(), "aggregatable");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "meta");
+		op.add(Builder::nonAggregatableIndices,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"non_aggregatable_indices");
-		op.add(Builder::nonSearchableIndices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"non_searchable_indices");
-		op.add(Builder::searchable, JsonpValueParser.booleanParser(), "searchable");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::nonSearchableIndices,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "non_searchable_indices");
+		op.add(Builder::searchable, JsonpDeserializer.booleanDeserializer(), "searchable");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

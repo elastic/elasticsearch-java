@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -144,16 +144,16 @@ public final class RegressionInferenceOptions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RegressionInferenceOptions
+	 * Json deserializer for RegressionInferenceOptions
 	 */
-	public static final JsonpValueParser<RegressionInferenceOptions> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsParser);
+	public static final JsonpDeserializer<RegressionInferenceOptions> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer);
 
-	protected static void setupRegressionInferenceOptionsParser(
-			DelegatingJsonpValueParser<RegressionInferenceOptions.Builder> op) {
+	protected static void setupRegressionInferenceOptionsDeserializer(
+			DelegatingDeserializer<RegressionInferenceOptions.Builder> op) {
 
-		op.add(Builder::resultsField, JsonpValueParser.stringParser(), "results_field");
-		op.add(Builder::numTopFeatureImportanceValues, JsonpValueParser.numberParser(),
+		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
+		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.numberDeserializer(),
 				"num_top_feature_importance_values");
 
 	}

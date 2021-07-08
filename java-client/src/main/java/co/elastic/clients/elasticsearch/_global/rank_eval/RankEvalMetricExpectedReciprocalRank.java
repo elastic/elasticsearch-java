@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -103,16 +103,16 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalMetricExpectedReciprocalRank
+	 * Json deserializer for RankEvalMetricExpectedReciprocalRank
 	 */
-	public static final JsonpValueParser<RankEvalMetricExpectedReciprocalRank> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<RankEvalMetricExpectedReciprocalRank> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					RankEvalMetricExpectedReciprocalRank::setupRankEvalMetricExpectedReciprocalRankParser);
+					RankEvalMetricExpectedReciprocalRank::setupRankEvalMetricExpectedReciprocalRankDeserializer);
 
-	protected static void setupRankEvalMetricExpectedReciprocalRankParser(
-			DelegatingJsonpValueParser<RankEvalMetricExpectedReciprocalRank.Builder> op) {
-		RankEvalMetricBase.setupRankEvalMetricBaseParser(op);
-		op.add(Builder::maximumRelevance, JsonpValueParser.numberParser(), "maximum_relevance");
+	protected static void setupRankEvalMetricExpectedReciprocalRankDeserializer(
+			DelegatingDeserializer<RankEvalMetricExpectedReciprocalRank.Builder> op) {
+		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
+		op.add(Builder::maximumRelevance, JsonpDeserializer.numberDeserializer(), "maximum_relevance");
 
 	}
 

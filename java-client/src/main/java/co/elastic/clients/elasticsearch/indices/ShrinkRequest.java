@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -302,15 +302,16 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShrinkRequest
+	 * Json deserializer for ShrinkRequest
 	 */
-	public static final JsonpValueParser<ShrinkRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShrinkRequest::setupShrinkRequestParser);
+	public static final JsonpDeserializer<ShrinkRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShrinkRequest::setupShrinkRequestDeserializer);
 
-	protected static void setupShrinkRequestParser(DelegatingJsonpValueParser<ShrinkRequest.Builder> op) {
+	protected static void setupShrinkRequestDeserializer(DelegatingDeserializer<ShrinkRequest.Builder> op) {
 
-		op.add(Builder::aliases, JsonpValueParser.stringMapParser(Alias.JSONP_PARSER), "aliases");
-		op.add(Builder::settings, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "settings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"settings");
 
 	}
 
@@ -365,5 +366,5 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ShrinkResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, ShrinkResponse.DESERIALIZER);
 }

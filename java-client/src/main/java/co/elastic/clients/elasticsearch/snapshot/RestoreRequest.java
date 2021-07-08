@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -485,23 +485,24 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RestoreRequest
+	 * Json deserializer for RestoreRequest
 	 */
-	public static final JsonpValueParser<RestoreRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RestoreRequest::setupRestoreRequestParser);
+	public static final JsonpDeserializer<RestoreRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RestoreRequest::setupRestoreRequestDeserializer);
 
-	protected static void setupRestoreRequestParser(DelegatingJsonpValueParser<RestoreRequest.Builder> op) {
+	protected static void setupRestoreRequestDeserializer(DelegatingDeserializer<RestoreRequest.Builder> op) {
 
-		op.add(Builder::ignoreIndexSettings, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"ignore_index_settings");
-		op.add(Builder::ignoreUnavailable, JsonpValueParser.booleanParser(), "ignore_unavailable");
-		op.add(Builder::includeAliases, JsonpValueParser.booleanParser(), "include_aliases");
-		op.add(Builder::includeGlobalState, JsonpValueParser.booleanParser(), "include_global_state");
-		op.add(Builder::indexSettings, JsonpValueParser.jsonValueParser(), "index_settings");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::partial, JsonpValueParser.booleanParser(), "partial");
-		op.add(Builder::renamePattern, JsonpValueParser.stringParser(), "rename_pattern");
-		op.add(Builder::renameReplacement, JsonpValueParser.stringParser(), "rename_replacement");
+		op.add(Builder::ignoreIndexSettings,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ignore_index_settings");
+		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
+		op.add(Builder::includeAliases, JsonpDeserializer.booleanDeserializer(), "include_aliases");
+		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
+		op.add(Builder::indexSettings, JsonpDeserializer.jsonValueDeserializer(), "index_settings");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
+		op.add(Builder::renamePattern, JsonpDeserializer.stringDeserializer(), "rename_pattern");
+		op.add(Builder::renameReplacement, JsonpDeserializer.stringDeserializer(), "rename_replacement");
 
 	}
 
@@ -554,5 +555,5 @@ public final class RestoreRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RestoreResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, RestoreResponse.DESERIALIZER);
 }

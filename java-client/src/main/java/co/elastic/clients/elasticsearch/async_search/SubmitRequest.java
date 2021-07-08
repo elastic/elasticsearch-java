@@ -34,11 +34,11 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -2021,69 +2021,78 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SubmitRequest
+	 * Json deserializer for SubmitRequest
 	 */
-	public static final JsonpValueParser<SubmitRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SubmitRequest::setupSubmitRequestParser);
+	public static final JsonpDeserializer<SubmitRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SubmitRequest::setupSubmitRequestDeserializer);
 
-	protected static void setupSubmitRequestParser(DelegatingJsonpValueParser<SubmitRequest.Builder> op) {
+	protected static void setupSubmitRequestDeserializer(DelegatingDeserializer<SubmitRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpValueParser.stringMapParser(AggregationContainer.JSONP_PARSER), "aggs");
-		op.add(Builder::allowNoIndices, JsonpValueParser.booleanParser(), "allow_no_indices");
-		op.add(Builder::allowPartialSearchResults, JsonpValueParser.booleanParser(), "allow_partial_search_results");
-		op.add(Builder::analyzer, JsonpValueParser.stringParser(), "analyzer");
-		op.add(Builder::analyzeWildcard, JsonpValueParser.booleanParser(), "analyze_wildcard");
-		op.add(Builder::batchedReduceSize, JsonpValueParser.numberParser(), "batched_reduce_size");
-		op.add(Builder::collapse, FieldCollapse.JSONP_PARSER, "collapse");
-		op.add(Builder::defaultOperator, JsonpValueParser.jsonValueParser(), "default_operator");
-		op.add(Builder::df, JsonpValueParser.stringParser(), "df");
-		op.add(Builder::docvalueFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER), "aggs");
+		op.add(Builder::allowNoIndices, JsonpDeserializer.booleanDeserializer(), "allow_no_indices");
+		op.add(Builder::allowPartialSearchResults, JsonpDeserializer.booleanDeserializer(),
+				"allow_partial_search_results");
+		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
+		op.add(Builder::analyzeWildcard, JsonpDeserializer.booleanDeserializer(), "analyze_wildcard");
+		op.add(Builder::batchedReduceSize, JsonpDeserializer.numberDeserializer(), "batched_reduce_size");
+		op.add(Builder::collapse, FieldCollapse.DESERIALIZER, "collapse");
+		op.add(Builder::defaultOperator, JsonpDeserializer.jsonValueDeserializer(), "default_operator");
+		op.add(Builder::df, JsonpDeserializer.stringDeserializer(), "df");
+		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"docvalue_fields");
-		op.add(Builder::expandWildcards, JsonpValueParser.jsonValueParser(), "expand_wildcards");
-		op.add(Builder::explain, JsonpValueParser.booleanParser(), "explain");
-		op.add(Builder::from, JsonpValueParser.numberParser(), "from");
-		op.add(Builder::highlight, Highlight.JSONP_PARSER, "highlight");
-		op.add(Builder::ignoreThrottled, JsonpValueParser.booleanParser(), "ignore_throttled");
-		op.add(Builder::ignoreUnavailable, JsonpValueParser.booleanParser(), "ignore_unavailable");
+		op.add(Builder::expandWildcards, JsonpDeserializer.jsonValueDeserializer(), "expand_wildcards");
+		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
+		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
+		op.add(Builder::highlight, Highlight.DESERIALIZER, "highlight");
+		op.add(Builder::ignoreThrottled, JsonpDeserializer.booleanDeserializer(), "ignore_throttled");
+		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::indicesBoost,
-				JsonpValueParser.arrayParser(JsonpValueParser.stringMapParser(JsonpValueParser.numberParser())),
+				JsonpDeserializer.arrayDeserializer(
+						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer())),
 				"indices_boost");
-		op.add(Builder::keepAlive, JsonpValueParser.jsonValueParser(), "keep_alive");
-		op.add(Builder::keepOnCompletion, JsonpValueParser.booleanParser(), "keep_on_completion");
-		op.add(Builder::lenient, JsonpValueParser.booleanParser(), "lenient");
-		op.add(Builder::maxConcurrentShardRequests, JsonpValueParser.numberParser(), "max_concurrent_shard_requests");
-		op.add(Builder::minScore, JsonpValueParser.numberParser(), "min_score");
-		op.add(Builder::postFilter, QueryContainer.JSONP_PARSER, "post_filter");
-		op.add(Builder::preference, JsonpValueParser.stringParser(), "preference");
-		op.add(Builder::profile, JsonpValueParser.booleanParser(), "profile");
-		op.add(Builder::pit, PointInTimeReference.JSONP_PARSER, "pit");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::queryOnQueryString, JsonpValueParser.stringParser(), "query_on_query_string");
-		op.add(Builder::requestCache, JsonpValueParser.booleanParser(), "request_cache");
-		op.add(Builder::rescore, JsonpValueParser.arrayParser(Rescore.JSONP_PARSER), "rescore");
-		op.add(Builder::routing, JsonpValueParser.jsonValueParser(), "routing");
-		op.add(Builder::scriptFields, JsonpValueParser.stringMapParser(ScriptField.JSONP_PARSER), "script_fields");
-		op.add(Builder::searchAfter, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "search_after");
-		op.add(Builder::searchType, JsonpValueParser.jsonValueParser(), "search_type");
-		op.add(Builder::sequenceNumberPrimaryTerm, JsonpValueParser.booleanParser(), "sequence_number_primary_term");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::sort, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "sort");
-		op.add(Builder::_source, JsonpValueParser.jsonValueParser(), "_source");
-		op.add(Builder::stats, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "stats");
-		op.add(Builder::storedFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "stored_fields");
-		op.add(Builder::suggest, JsonpValueParser.stringMapParser(SuggestContainer.JSONP_PARSER), "suggest");
-		op.add(Builder::suggestField, JsonpValueParser.stringParser(), "suggest_field");
-		op.add(Builder::suggestMode, JsonpValueParser.jsonValueParser(), "suggest_mode");
-		op.add(Builder::suggestSize, JsonpValueParser.numberParser(), "suggest_size");
-		op.add(Builder::suggestText, JsonpValueParser.stringParser(), "suggest_text");
-		op.add(Builder::terminateAfter, JsonpValueParser.numberParser(), "terminate_after");
-		op.add(Builder::timeout, JsonpValueParser.stringParser(), "timeout");
-		op.add(Builder::trackScores, JsonpValueParser.booleanParser(), "track_scores");
-		op.add(Builder::trackTotalHits, JsonpValueParser.booleanParser(), "track_total_hits");
-		op.add(Builder::typedKeys, JsonpValueParser.booleanParser(), "typed_keys");
-		op.add(Builder::version, JsonpValueParser.booleanParser(), "version");
-		op.add(Builder::waitForCompletionTimeout, JsonpValueParser.jsonValueParser(), "wait_for_completion_timeout");
-		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "fields");
+		op.add(Builder::keepAlive, JsonpDeserializer.jsonValueDeserializer(), "keep_alive");
+		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
+		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
+		op.add(Builder::maxConcurrentShardRequests, JsonpDeserializer.numberDeserializer(),
+				"max_concurrent_shard_requests");
+		op.add(Builder::minScore, JsonpDeserializer.numberDeserializer(), "min_score");
+		op.add(Builder::postFilter, QueryContainer.DESERIALIZER, "post_filter");
+		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
+		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
+		op.add(Builder::pit, PointInTimeReference.DESERIALIZER, "pit");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::queryOnQueryString, JsonpDeserializer.stringDeserializer(), "query_on_query_string");
+		op.add(Builder::requestCache, JsonpDeserializer.booleanDeserializer(), "request_cache");
+		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore.DESERIALIZER), "rescore");
+		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+				"script_fields");
+		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"search_after");
+		op.add(Builder::searchType, JsonpDeserializer.jsonValueDeserializer(), "search_type");
+		op.add(Builder::sequenceNumberPrimaryTerm, JsonpDeserializer.booleanDeserializer(),
+				"sequence_number_primary_term");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stats");
+		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"stored_fields");
+		op.add(Builder::suggest, JsonpDeserializer.stringMapDeserializer(SuggestContainer.DESERIALIZER), "suggest");
+		op.add(Builder::suggestField, JsonpDeserializer.stringDeserializer(), "suggest_field");
+		op.add(Builder::suggestMode, JsonpDeserializer.jsonValueDeserializer(), "suggest_mode");
+		op.add(Builder::suggestSize, JsonpDeserializer.numberDeserializer(), "suggest_size");
+		op.add(Builder::suggestText, JsonpDeserializer.stringDeserializer(), "suggest_text");
+		op.add(Builder::terminateAfter, JsonpDeserializer.numberDeserializer(), "terminate_after");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
+		op.add(Builder::trackTotalHits, JsonpDeserializer.booleanDeserializer(), "track_total_hits");
+		op.add(Builder::typedKeys, JsonpDeserializer.booleanDeserializer(), "typed_keys");
+		op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
+		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.jsonValueDeserializer(),
+				"wait_for_completion_timeout");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"fields");
 
 	}
 
@@ -2135,7 +2144,8 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * Create an "{@code async_search.submit}" endpoint.
 	 */
 	public static <TDocument> Endpoint<SubmitRequest, SubmitResponse<TDocument>, ElasticsearchError> createSubmitEndpoint(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return ENDPOINT.withResponseParser(SubmitResponse.createSubmitResponseParser(tDocumentParser));
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ENDPOINT
+				.withResponseDeserializer(SubmitResponse.createSubmitResponseDeserializer(tDocumentDeserializer));
 	}
 }

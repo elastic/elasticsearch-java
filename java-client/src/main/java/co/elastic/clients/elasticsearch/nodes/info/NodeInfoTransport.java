@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -193,16 +193,18 @@ public final class NodeInfoTransport implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoTransport
+	 * Json deserializer for NodeInfoTransport
 	 */
-	public static final JsonpValueParser<NodeInfoTransport> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoTransport::setupNodeInfoTransportParser);
+	public static final JsonpDeserializer<NodeInfoTransport> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoTransport::setupNodeInfoTransportDeserializer);
 
-	protected static void setupNodeInfoTransportParser(DelegatingJsonpValueParser<NodeInfoTransport.Builder> op) {
+	protected static void setupNodeInfoTransportDeserializer(DelegatingDeserializer<NodeInfoTransport.Builder> op) {
 
-		op.add(Builder::boundAddress, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "bound_address");
-		op.add(Builder::publishAddress, JsonpValueParser.stringParser(), "publish_address");
-		op.add(Builder::profiles, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "profiles");
+		op.add(Builder::boundAddress, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"bound_address");
+		op.add(Builder::publishAddress, JsonpDeserializer.stringDeserializer(), "publish_address");
+		op.add(Builder::profiles, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"profiles");
 
 	}
 

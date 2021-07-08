@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -132,16 +132,16 @@ public final class SlackDynamicAttachment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SlackDynamicAttachment
+	 * Json deserializer for SlackDynamicAttachment
 	 */
-	public static final JsonpValueParser<SlackDynamicAttachment> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SlackDynamicAttachment::setupSlackDynamicAttachmentParser);
+	public static final JsonpDeserializer<SlackDynamicAttachment> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SlackDynamicAttachment::setupSlackDynamicAttachmentDeserializer);
 
-	protected static void setupSlackDynamicAttachmentParser(
-			DelegatingJsonpValueParser<SlackDynamicAttachment.Builder> op) {
+	protected static void setupSlackDynamicAttachmentDeserializer(
+			DelegatingDeserializer<SlackDynamicAttachment.Builder> op) {
 
-		op.add(Builder::attachmentTemplate, SlackAttachment.JSONP_PARSER, "attachment_template");
-		op.add(Builder::listPath, JsonpValueParser.stringParser(), "list_path");
+		op.add(Builder::attachmentTemplate, SlackAttachment.DESERIALIZER, "attachment_template");
+		op.add(Builder::listPath, JsonpDeserializer.stringDeserializer(), "list_path");
 
 	}
 

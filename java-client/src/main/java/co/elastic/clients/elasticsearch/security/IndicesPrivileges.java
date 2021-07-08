@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -274,18 +274,19 @@ public final class IndicesPrivileges implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndicesPrivileges
+	 * Json deserializer for IndicesPrivileges
 	 */
-	public static final JsonpValueParser<IndicesPrivileges> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndicesPrivileges::setupIndicesPrivilegesParser);
+	public static final JsonpDeserializer<IndicesPrivileges> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndicesPrivileges::setupIndicesPrivilegesDeserializer);
 
-	protected static void setupIndicesPrivilegesParser(DelegatingJsonpValueParser<IndicesPrivileges.Builder> op) {
+	protected static void setupIndicesPrivilegesDeserializer(DelegatingDeserializer<IndicesPrivileges.Builder> op) {
 
-		op.add(Builder::fieldSecurity, FieldSecurity.JSONP_PARSER, "field_security");
-		op.add(Builder::names, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "names");
-		op.add(Builder::privileges, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "privileges");
-		op.add(Builder::query, JsonpValueParser.jsonValueParser(), "query");
-		op.add(Builder::allowRestrictedIndices, JsonpValueParser.booleanParser(), "allow_restricted_indices");
+		op.add(Builder::fieldSecurity, FieldSecurity.DESERIALIZER, "field_security");
+		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
+		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"privileges");
+		op.add(Builder::query, JsonpDeserializer.jsonValueDeserializer(), "query");
+		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -104,16 +104,16 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MedianAbsoluteDeviationAggregation
+	 * Json deserializer for MedianAbsoluteDeviationAggregation
 	 */
-	public static final JsonpValueParser<MedianAbsoluteDeviationAggregation> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<MedianAbsoluteDeviationAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					MedianAbsoluteDeviationAggregation::setupMedianAbsoluteDeviationAggregationParser);
+					MedianAbsoluteDeviationAggregation::setupMedianAbsoluteDeviationAggregationDeserializer);
 
-	protected static void setupMedianAbsoluteDeviationAggregationParser(
-			DelegatingJsonpValueParser<MedianAbsoluteDeviationAggregation.Builder> op) {
-		FormatMetricAggregationBase.setupFormatMetricAggregationBaseParser(op);
-		op.add(Builder::compression, JsonpValueParser.numberParser(), "compression");
+	protected static void setupMedianAbsoluteDeviationAggregationDeserializer(
+			DelegatingDeserializer<MedianAbsoluteDeviationAggregation.Builder> op) {
+		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
+		op.add(Builder::compression, JsonpDeserializer.numberDeserializer(), "compression");
 
 	}
 

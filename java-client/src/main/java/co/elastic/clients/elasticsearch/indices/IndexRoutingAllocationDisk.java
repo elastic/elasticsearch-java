@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -101,15 +101,15 @@ public final class IndexRoutingAllocationDisk implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexRoutingAllocationDisk
+	 * Json deserializer for IndexRoutingAllocationDisk
 	 */
-	public static final JsonpValueParser<IndexRoutingAllocationDisk> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexRoutingAllocationDisk::setupIndexRoutingAllocationDiskParser);
+	public static final JsonpDeserializer<IndexRoutingAllocationDisk> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexRoutingAllocationDisk::setupIndexRoutingAllocationDiskDeserializer);
 
-	protected static void setupIndexRoutingAllocationDiskParser(
-			DelegatingJsonpValueParser<IndexRoutingAllocationDisk.Builder> op) {
+	protected static void setupIndexRoutingAllocationDiskDeserializer(
+			DelegatingDeserializer<IndexRoutingAllocationDisk.Builder> op) {
 
-		op.add(Builder::thresholdEnabled, JsonpValueParser.jsonValueParser(), "threshold_enabled");
+		op.add(Builder::thresholdEnabled, JsonpDeserializer.jsonValueDeserializer(), "threshold_enabled");
 
 	}
 

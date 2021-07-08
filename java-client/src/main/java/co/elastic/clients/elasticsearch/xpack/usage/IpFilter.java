@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class IpFilter implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IpFilter
+	 * Json deserializer for IpFilter
 	 */
-	public static final JsonpValueParser<IpFilter> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			IpFilter::setupIpFilterParser);
+	public static final JsonpDeserializer<IpFilter> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IpFilter::setupIpFilterDeserializer);
 
-	protected static void setupIpFilterParser(DelegatingJsonpValueParser<IpFilter.Builder> op) {
+	protected static void setupIpFilterDeserializer(DelegatingDeserializer<IpFilter.Builder> op) {
 
-		op.add(Builder::http, JsonpValueParser.booleanParser(), "http");
-		op.add(Builder::transport, JsonpValueParser.booleanParser(), "transport");
+		op.add(Builder::http, JsonpDeserializer.booleanDeserializer(), "http");
+		op.add(Builder::transport, JsonpDeserializer.booleanDeserializer(), "transport");
 
 	}
 

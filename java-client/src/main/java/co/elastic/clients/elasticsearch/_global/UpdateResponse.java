@@ -25,12 +25,12 @@ package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._types.InlineGet;
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
@@ -132,19 +132,19 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for UpdateResponse
+	 * Create a json deserializer for UpdateResponse
 	 */
-	public static <TDocument> JsonpValueParser<UpdateResponse<TDocument>> createUpdateResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> UpdateResponse.setupUpdateResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<UpdateResponse<TDocument>> createUpdateResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> UpdateResponse.setupUpdateResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupUpdateResponseParser(
-			DelegatingJsonpValueParser<UpdateResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
-		WriteResponseBase.setupWriteResponseBaseParser(op);
-		op.add(Builder::get, InlineGet.createInlineGetParser(tDocumentParser), "get");
+	protected static <TDocument> void setupUpdateResponseDeserializer(
+			DelegatingDeserializer<UpdateResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
+		op.add(Builder::get, InlineGet.createInlineGetDeserializer(tDocumentDeserializer), "get");
 
 	}
 

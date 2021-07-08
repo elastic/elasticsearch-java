@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -184,16 +184,17 @@ public final class SimulatedActions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SimulatedActions
+	 * Json deserializer for SimulatedActions
 	 */
-	public static final JsonpValueParser<SimulatedActions> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SimulatedActions::setupSimulatedActionsParser);
+	public static final JsonpDeserializer<SimulatedActions> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SimulatedActions::setupSimulatedActionsDeserializer);
 
-	protected static void setupSimulatedActionsParser(DelegatingJsonpValueParser<SimulatedActions.Builder> op) {
+	protected static void setupSimulatedActionsDeserializer(DelegatingDeserializer<SimulatedActions.Builder> op) {
 
-		op.add(Builder::actions, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "actions");
-		op.add(Builder::all, co.elastic.clients.elasticsearch.watcher.SimulatedActions.JSONP_PARSER, "all");
-		op.add(Builder::useAll, JsonpValueParser.booleanParser(), "use_all");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"actions");
+		op.add(Builder::all, co.elastic.clients.elasticsearch.watcher.SimulatedActions.DESERIALIZER, "all");
+		op.add(Builder::useAll, JsonpDeserializer.booleanDeserializer(), "use_all");
 
 	}
 

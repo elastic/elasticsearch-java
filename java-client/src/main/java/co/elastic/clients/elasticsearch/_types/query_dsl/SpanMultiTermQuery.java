@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
@@ -111,14 +111,14 @@ public final class SpanMultiTermQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SpanMultiTermQuery
+	 * Json deserializer for SpanMultiTermQuery
 	 */
-	public static final JsonpValueParser<SpanMultiTermQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SpanMultiTermQuery::setupSpanMultiTermQueryParser);
+	public static final JsonpDeserializer<SpanMultiTermQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SpanMultiTermQuery::setupSpanMultiTermQueryDeserializer);
 
-	protected static void setupSpanMultiTermQueryParser(DelegatingJsonpValueParser<SpanMultiTermQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::match, QueryContainer.JSONP_PARSER, "match");
+	protected static void setupSpanMultiTermQueryDeserializer(DelegatingDeserializer<SpanMultiTermQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::match, QueryContainer.DESERIALIZER, "match");
 
 	}
 

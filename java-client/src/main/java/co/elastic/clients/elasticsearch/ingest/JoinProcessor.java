@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -150,16 +150,16 @@ public final class JoinProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for JoinProcessor
+	 * Json deserializer for JoinProcessor
 	 */
-	public static final JsonpValueParser<JoinProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, JoinProcessor::setupJoinProcessorParser);
+	public static final JsonpDeserializer<JoinProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, JoinProcessor::setupJoinProcessorDeserializer);
 
-	protected static void setupJoinProcessorParser(DelegatingJsonpValueParser<JoinProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::separator, JsonpValueParser.stringParser(), "separator");
-		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
+	protected static void setupJoinProcessorDeserializer(DelegatingDeserializer<JoinProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}
 

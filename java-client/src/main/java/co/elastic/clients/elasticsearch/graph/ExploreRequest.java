@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -393,17 +393,17 @@ public final class ExploreRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExploreRequest
+	 * Json deserializer for ExploreRequest
 	 */
-	public static final JsonpValueParser<ExploreRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExploreRequest::setupExploreRequestParser);
+	public static final JsonpDeserializer<ExploreRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExploreRequest::setupExploreRequestDeserializer);
 
-	protected static void setupExploreRequestParser(DelegatingJsonpValueParser<ExploreRequest.Builder> op) {
+	protected static void setupExploreRequestDeserializer(DelegatingDeserializer<ExploreRequest.Builder> op) {
 
-		op.add(Builder::connections, Hop.JSONP_PARSER, "connections");
-		op.add(Builder::controls, ExploreControls.JSONP_PARSER, "controls");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::vertices, JsonpValueParser.arrayParser(VertexDefinition.JSONP_PARSER), "vertices");
+		op.add(Builder::connections, Hop.DESERIALIZER, "connections");
+		op.add(Builder::controls, ExploreControls.DESERIALIZER, "controls");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(VertexDefinition.DESERIALIZER), "vertices");
 
 	}
 
@@ -464,5 +464,5 @@ public final class ExploreRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ExploreResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, ExploreResponse.DESERIALIZER);
 }

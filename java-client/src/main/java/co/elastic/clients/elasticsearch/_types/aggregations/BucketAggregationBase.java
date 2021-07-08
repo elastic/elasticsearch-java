@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -119,11 +119,11 @@ public abstract class BucketAggregationBase extends Aggregation {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBucketAggregationBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
-		Aggregation.setupAggregationParser(op);
-		op.add(AbstractBuilder::aggregations, JsonpValueParser.stringMapParser(AggregationContainer.JSONP_PARSER),
-				"aggregations");
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBucketAggregationBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
+		Aggregation.setupAggregationDeserializer(op);
+		op.add(AbstractBuilder::aggregations,
+				JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER), "aggregations");
 
 	}
 

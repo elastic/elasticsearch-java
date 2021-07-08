@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -189,16 +189,17 @@ public final class ShardRetentionLeases implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardRetentionLeases
+	 * Json deserializer for ShardRetentionLeases
 	 */
-	public static final JsonpValueParser<ShardRetentionLeases> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardRetentionLeases::setupShardRetentionLeasesParser);
+	public static final JsonpDeserializer<ShardRetentionLeases> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardRetentionLeases::setupShardRetentionLeasesDeserializer);
 
-	protected static void setupShardRetentionLeasesParser(DelegatingJsonpValueParser<ShardRetentionLeases.Builder> op) {
+	protected static void setupShardRetentionLeasesDeserializer(
+			DelegatingDeserializer<ShardRetentionLeases.Builder> op) {
 
-		op.add(Builder::primaryTerm, JsonpValueParser.numberParser(), "primary_term");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::leases, JsonpValueParser.arrayParser(ShardLease.JSONP_PARSER), "leases");
+		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "primary_term");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::leases, JsonpDeserializer.arrayDeserializer(ShardLease.DESERIALIZER), "leases");
 
 	}
 

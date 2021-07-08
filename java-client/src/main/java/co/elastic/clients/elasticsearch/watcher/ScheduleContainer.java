@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -68,7 +68,7 @@ public class ScheduleContainer extends TaggedUnion<ScheduleContainer.Tag, Object
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private ScheduleContainer(Builder builder) {
@@ -304,25 +304,26 @@ public class ScheduleContainer extends TaggedUnion<ScheduleContainer.Tag, Object
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<ScheduleContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(ScheduleContainer::buildJsonpParser);
+	public static final JsonpDeserializer<ScheduleContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(ScheduleContainer::buildDeserializer);
 
-	private static JsonpValueParser<ScheduleContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<ScheduleContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::cron, JsonpValueParser.jsonValueParser(), "cron");
-		op.add(Builder::daily, DailySchedule.JSONP_PARSER, "daily");
-		op.add(Builder::hourly, HourlySchedule.JSONP_PARSER, "hourly");
-		op.add(Builder::interval, JsonpValueParser.jsonValueParser(), "interval");
-		op.add(Builder::monthly, JsonpValueParser.arrayParser(TimeOfMonth.JSONP_PARSER), "monthly");
-		op.add(Builder::weekly, JsonpValueParser.arrayParser(TimeOfWeek.JSONP_PARSER), "weekly");
-		op.add(Builder::yearly, JsonpValueParser.arrayParser(TimeOfYear.JSONP_PARSER), "yearly");
+		op.add(Builder::cron, JsonpDeserializer.jsonValueDeserializer(), "cron");
+		op.add(Builder::daily, DailySchedule.DESERIALIZER, "daily");
+		op.add(Builder::hourly, HourlySchedule.DESERIALIZER, "hourly");
+		op.add(Builder::interval, JsonpDeserializer.jsonValueDeserializer(), "interval");
+		op.add(Builder::monthly, JsonpDeserializer.arrayDeserializer(TimeOfMonth.DESERIALIZER), "monthly");
+		op.add(Builder::weekly, JsonpDeserializer.arrayDeserializer(TimeOfWeek.DESERIALIZER), "weekly");
+		op.add(Builder::yearly, JsonpDeserializer.arrayDeserializer(TimeOfYear.DESERIALIZER), "yearly");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

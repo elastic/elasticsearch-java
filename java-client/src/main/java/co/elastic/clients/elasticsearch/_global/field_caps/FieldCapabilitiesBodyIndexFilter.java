@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.field_caps;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -182,18 +182,18 @@ public final class FieldCapabilitiesBodyIndexFilter implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldCapabilitiesBodyIndexFilter
+	 * Json deserializer for FieldCapabilitiesBodyIndexFilter
 	 */
-	public static final JsonpValueParser<FieldCapabilitiesBodyIndexFilter> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilter> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					FieldCapabilitiesBodyIndexFilter::setupFieldCapabilitiesBodyIndexFilterParser);
+					FieldCapabilitiesBodyIndexFilter::setupFieldCapabilitiesBodyIndexFilterDeserializer);
 
-	protected static void setupFieldCapabilitiesBodyIndexFilterParser(
-			DelegatingJsonpValueParser<FieldCapabilitiesBodyIndexFilter.Builder> op) {
+	protected static void setupFieldCapabilitiesBodyIndexFilterDeserializer(
+			DelegatingDeserializer<FieldCapabilitiesBodyIndexFilter.Builder> op) {
 
-		op.add(Builder::range, FieldCapabilitiesBodyIndexFilterRange.JSONP_PARSER, "range");
-		op.add(Builder::matchNone, JsonpValueParser.jsonValueParser(), "match_none");
-		op.add(Builder::term, FieldCapabilitiesBodyIndexFilterTerm.JSONP_PARSER, "term");
+		op.add(Builder::range, FieldCapabilitiesBodyIndexFilterRange.DESERIALIZER, "range");
+		op.add(Builder::matchNone, JsonpDeserializer.jsonValueDeserializer(), "match_none");
+		op.add(Builder::term, FieldCapabilitiesBodyIndexFilterTerm.DESERIALIZER, "term");
 
 	}
 

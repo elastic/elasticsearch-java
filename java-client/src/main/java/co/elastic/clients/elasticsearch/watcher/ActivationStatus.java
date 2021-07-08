@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -189,16 +189,16 @@ public final class ActivationStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ActivationStatus
+	 * Json deserializer for ActivationStatus
 	 */
-	public static final JsonpValueParser<ActivationStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ActivationStatus::setupActivationStatusParser);
+	public static final JsonpDeserializer<ActivationStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ActivationStatus::setupActivationStatusDeserializer);
 
-	protected static void setupActivationStatusParser(DelegatingJsonpValueParser<ActivationStatus.Builder> op) {
+	protected static void setupActivationStatusDeserializer(DelegatingDeserializer<ActivationStatus.Builder> op) {
 
-		op.add(Builder::actions, JsonpValueParser.stringMapParser(ActionStatus.JSONP_PARSER), "actions");
-		op.add(Builder::state, ActivationState.JSONP_PARSER, "state");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus.DESERIALIZER), "actions");
+		op.add(Builder::state, ActivationState.DESERIALIZER, "state");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -172,15 +172,16 @@ public final class Sql extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Sql
+	 * Json deserializer for Sql
 	 */
-	public static final JsonpValueParser<Sql> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Sql::setupSqlParser);
+	public static final JsonpDeserializer<Sql> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Sql::setupSqlDeserializer);
 
-	protected static void setupSqlParser(DelegatingJsonpValueParser<Sql.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::features, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()), "features");
-		op.add(Builder::queries, JsonpValueParser.stringMapParser(Query.JSONP_PARSER), "queries");
+	protected static void setupSqlDeserializer(DelegatingDeserializer<Sql.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::features, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+				"features");
+		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query.DESERIALIZER), "queries");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -222,17 +222,17 @@ public final class Phases implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Phases
+	 * Json deserializer for Phases
 	 */
-	public static final JsonpValueParser<Phases> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Phases::setupPhasesParser);
+	public static final JsonpDeserializer<Phases> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Phases::setupPhasesDeserializer);
 
-	protected static void setupPhasesParser(DelegatingJsonpValueParser<Phases.Builder> op) {
+	protected static void setupPhasesDeserializer(DelegatingDeserializer<Phases.Builder> op) {
 
-		op.add(Builder::cold, Phase.JSONP_PARSER, "cold");
-		op.add(Builder::delete, Phase.JSONP_PARSER, "delete");
-		op.add(Builder::hot, Phase.JSONP_PARSER, "hot");
-		op.add(Builder::warm, Phase.JSONP_PARSER, "warm");
+		op.add(Builder::cold, Phase.DESERIALIZER, "cold");
+		op.add(Builder::delete, Phase.DESERIALIZER, "delete");
+		op.add(Builder::hot, Phase.DESERIALIZER, "hot");
+		op.add(Builder::warm, Phase.DESERIALIZER, "warm");
 
 	}
 

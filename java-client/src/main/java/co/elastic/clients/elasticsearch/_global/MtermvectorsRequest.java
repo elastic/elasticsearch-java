@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._global.mtermvectors.Operation;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -530,15 +530,15 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MtermvectorsRequest
+	 * Json deserializer for MtermvectorsRequest
 	 */
-	public static final JsonpValueParser<MtermvectorsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MtermvectorsRequest::setupMtermvectorsRequestParser);
+	public static final JsonpDeserializer<MtermvectorsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MtermvectorsRequest::setupMtermvectorsRequestDeserializer);
 
-	protected static void setupMtermvectorsRequestParser(DelegatingJsonpValueParser<MtermvectorsRequest.Builder> op) {
+	protected static void setupMtermvectorsRequestDeserializer(DelegatingDeserializer<MtermvectorsRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpValueParser.arrayParser(Operation.JSONP_PARSER), "docs");
-		op.add(Builder::ids, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "ids");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation.DESERIALIZER), "docs");
+		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
 
 	}
 
@@ -629,5 +629,5 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, MtermvectorsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, MtermvectorsResponse.DESERIALIZER);
 }

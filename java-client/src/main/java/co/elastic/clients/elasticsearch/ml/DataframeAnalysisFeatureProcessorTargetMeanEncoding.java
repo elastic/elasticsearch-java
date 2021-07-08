@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -207,19 +207,20 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding implement
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalysisFeatureProcessorTargetMeanEncoding
+	 * Json deserializer for DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 */
-	public static final JsonpValueParser<DataframeAnalysisFeatureProcessorTargetMeanEncoding> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeAnalysisFeatureProcessorTargetMeanEncoding::setupDataframeAnalysisFeatureProcessorTargetMeanEncodingParser);
+					DataframeAnalysisFeatureProcessorTargetMeanEncoding::setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer);
 
-	protected static void setupDataframeAnalysisFeatureProcessorTargetMeanEncodingParser(
-			DelegatingJsonpValueParser<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> op) {
+	protected static void setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer(
+			DelegatingDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> op) {
 
-		op.add(Builder::defaultValue, JsonpValueParser.numberParser(), "default_value");
-		op.add(Builder::featureName, JsonpValueParser.stringParser(), "feature_name");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::targetMap, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "target_map");
+		op.add(Builder::defaultValue, JsonpDeserializer.numberDeserializer(), "default_value");
+		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::targetMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"target_map");
 
 	}
 

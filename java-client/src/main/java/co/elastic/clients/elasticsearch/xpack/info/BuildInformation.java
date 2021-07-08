@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class BuildInformation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BuildInformation
+	 * Json deserializer for BuildInformation
 	 */
-	public static final JsonpValueParser<BuildInformation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BuildInformation::setupBuildInformationParser);
+	public static final JsonpDeserializer<BuildInformation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BuildInformation::setupBuildInformationDeserializer);
 
-	protected static void setupBuildInformationParser(DelegatingJsonpValueParser<BuildInformation.Builder> op) {
+	protected static void setupBuildInformationDeserializer(DelegatingDeserializer<BuildInformation.Builder> op) {
 
-		op.add(Builder::date, JsonpValueParser.stringParser(), "date");
-		op.add(Builder::hash, JsonpValueParser.stringParser(), "hash");
+		op.add(Builder::date, JsonpDeserializer.stringDeserializer(), "date");
+		op.add(Builder::hash, JsonpDeserializer.stringDeserializer(), "hash");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -263,18 +263,19 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DateRangeAggregation
+	 * Json deserializer for DateRangeAggregation
 	 */
-	public static final JsonpValueParser<DateRangeAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DateRangeAggregation::setupDateRangeAggregationParser);
+	public static final JsonpDeserializer<DateRangeAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DateRangeAggregation::setupDateRangeAggregationDeserializer);
 
-	protected static void setupDateRangeAggregationParser(DelegatingJsonpValueParser<DateRangeAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
-		op.add(Builder::missing, JsonpValueParser.jsonValueParser(), "missing");
-		op.add(Builder::ranges, JsonpValueParser.arrayParser(DateRangeExpression.JSONP_PARSER), "ranges");
-		op.add(Builder::timeZone, JsonpValueParser.stringParser(), "time_zone");
+	protected static void setupDateRangeAggregationDeserializer(
+			DelegatingDeserializer<DateRangeAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(DateRangeExpression.DESERIALIZER), "ranges");
+		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
 	}
 

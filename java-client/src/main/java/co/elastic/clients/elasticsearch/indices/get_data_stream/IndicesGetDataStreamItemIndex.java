@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.get_data_stream;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,16 +124,17 @@ public final class IndicesGetDataStreamItemIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndicesGetDataStreamItemIndex
+	 * Json deserializer for IndicesGetDataStreamItemIndex
 	 */
-	public static final JsonpValueParser<IndicesGetDataStreamItemIndex> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndicesGetDataStreamItemIndex::setupIndicesGetDataStreamItemIndexParser);
+	public static final JsonpDeserializer<IndicesGetDataStreamItemIndex> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					IndicesGetDataStreamItemIndex::setupIndicesGetDataStreamItemIndexDeserializer);
 
-	protected static void setupIndicesGetDataStreamItemIndexParser(
-			DelegatingJsonpValueParser<IndicesGetDataStreamItemIndex.Builder> op) {
+	protected static void setupIndicesGetDataStreamItemIndexDeserializer(
+			DelegatingDeserializer<IndicesGetDataStreamItemIndex.Builder> op) {
 
-		op.add(Builder::indexName, JsonpValueParser.stringParser(), "index_name");
-		op.add(Builder::indexUuid, JsonpValueParser.stringParser(), "index_uuid");
+		op.add(Builder::indexName, JsonpDeserializer.stringDeserializer(), "index_name");
+		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
 
 	}
 

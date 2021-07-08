@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -104,14 +104,14 @@ public final class NestedAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NestedAggregation
+	 * Json deserializer for NestedAggregation
 	 */
-	public static final JsonpValueParser<NestedAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NestedAggregation::setupNestedAggregationParser);
+	public static final JsonpDeserializer<NestedAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NestedAggregation::setupNestedAggregationDeserializer);
 
-	protected static void setupNestedAggregationParser(DelegatingJsonpValueParser<NestedAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::path, JsonpValueParser.stringParser(), "path");
+	protected static void setupNestedAggregationDeserializer(DelegatingDeserializer<NestedAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 
 	}
 

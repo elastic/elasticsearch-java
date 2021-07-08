@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.indices.get_alias.IndexAliases;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -72,14 +72,14 @@ public final class GetAliasResponse extends AdditionalProperties<String, IndexAl
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetAliasResponse
+	 * Json deserializer for GetAliasResponse
 	 */
-	public static final JsonpValueParser<GetAliasResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetAliasResponse::setupGetAliasResponseParser);
+	public static final JsonpDeserializer<GetAliasResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetAliasResponse::setupGetAliasResponseDeserializer);
 
-	protected static void setupGetAliasResponseParser(DelegatingJsonpValueParser<GetAliasResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				IndexAliases.JSONP_PARSER);
+	protected static void setupGetAliasResponseDeserializer(DelegatingDeserializer<GetAliasResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				IndexAliases.DESERIALIZER);
 
 	}
 

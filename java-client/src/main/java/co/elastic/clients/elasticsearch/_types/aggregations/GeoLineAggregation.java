@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -229,18 +229,18 @@ public final class GeoLineAggregation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoLineAggregation
+	 * Json deserializer for GeoLineAggregation
 	 */
-	public static final JsonpValueParser<GeoLineAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoLineAggregation::setupGeoLineAggregationParser);
+	public static final JsonpDeserializer<GeoLineAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoLineAggregation::setupGeoLineAggregationDeserializer);
 
-	protected static void setupGeoLineAggregationParser(DelegatingJsonpValueParser<GeoLineAggregation.Builder> op) {
+	protected static void setupGeoLineAggregationDeserializer(DelegatingDeserializer<GeoLineAggregation.Builder> op) {
 
-		op.add(Builder::point, GeoLinePoint.JSONP_PARSER, "point");
-		op.add(Builder::sort, GeoLineSort.JSONP_PARSER, "sort");
-		op.add(Builder::includeSort, JsonpValueParser.booleanParser(), "include_sort");
-		op.add(Builder::sortOrder, JsonpValueParser.jsonValueParser(), "sort_order");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+		op.add(Builder::point, GeoLinePoint.DESERIALIZER, "point");
+		op.add(Builder::sort, GeoLineSort.DESERIALIZER, "sort");
+		op.add(Builder::includeSort, JsonpDeserializer.booleanDeserializer(), "include_sort");
+		op.add(Builder::sortOrder, JsonpDeserializer.jsonValueDeserializer(), "sort_order");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}
 

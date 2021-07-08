@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.AdditionalProperties;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -71,15 +71,15 @@ public final class GetRoleMappingResponse extends AdditionalProperties<String, R
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetRoleMappingResponse
+	 * Json deserializer for GetRoleMappingResponse
 	 */
-	public static final JsonpValueParser<GetRoleMappingResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetRoleMappingResponse::setupGetRoleMappingResponseParser);
+	public static final JsonpDeserializer<GetRoleMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetRoleMappingResponse::setupGetRoleMappingResponseDeserializer);
 
-	protected static void setupGetRoleMappingResponseParser(
-			DelegatingJsonpValueParser<GetRoleMappingResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				RoleMapping.JSONP_PARSER);
+	protected static void setupGetRoleMappingResponseDeserializer(
+			DelegatingDeserializer<GetRoleMappingResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				RoleMapping.DESERIALIZER);
 
 	}
 

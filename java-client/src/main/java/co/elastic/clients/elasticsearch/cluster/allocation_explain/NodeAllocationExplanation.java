@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -339,23 +339,23 @@ public final class NodeAllocationExplanation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeAllocationExplanation
+	 * Json deserializer for NodeAllocationExplanation
 	 */
-	public static final JsonpValueParser<NodeAllocationExplanation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeAllocationExplanation::setupNodeAllocationExplanationParser);
+	public static final JsonpDeserializer<NodeAllocationExplanation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeAllocationExplanation::setupNodeAllocationExplanationDeserializer);
 
-	protected static void setupNodeAllocationExplanationParser(
-			DelegatingJsonpValueParser<NodeAllocationExplanation.Builder> op) {
+	protected static void setupNodeAllocationExplanationDeserializer(
+			DelegatingDeserializer<NodeAllocationExplanation.Builder> op) {
 
-		op.add(Builder::deciders, JsonpValueParser.arrayParser(AllocationDecision.JSONP_PARSER), "deciders");
-		op.add(Builder::nodeAttributes, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
+		op.add(Builder::deciders, JsonpDeserializer.arrayDeserializer(AllocationDecision.DESERIALIZER), "deciders");
+		op.add(Builder::nodeAttributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"node_attributes");
-		op.add(Builder::nodeDecision, JsonpValueParser.jsonValueParser(), "node_decision");
-		op.add(Builder::nodeId, JsonpValueParser.stringParser(), "node_id");
-		op.add(Builder::nodeName, JsonpValueParser.stringParser(), "node_name");
-		op.add(Builder::store, AllocationStore.JSONP_PARSER, "store");
-		op.add(Builder::transportAddress, JsonpValueParser.stringParser(), "transport_address");
-		op.add(Builder::weightRanking, JsonpValueParser.numberParser(), "weight_ranking");
+		op.add(Builder::nodeDecision, JsonpDeserializer.jsonValueDeserializer(), "node_decision");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
+		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
+		op.add(Builder::store, AllocationStore.DESERIALIZER, "store");
+		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+		op.add(Builder::weightRanking, JsonpDeserializer.numberDeserializer(), "weight_ranking");
 
 	}
 

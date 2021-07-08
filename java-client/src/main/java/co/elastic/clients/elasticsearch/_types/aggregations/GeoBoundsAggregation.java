@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -104,14 +104,15 @@ public final class GeoBoundsAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoBoundsAggregation
+	 * Json deserializer for GeoBoundsAggregation
 	 */
-	public static final JsonpValueParser<GeoBoundsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoBoundsAggregation::setupGeoBoundsAggregationParser);
+	public static final JsonpDeserializer<GeoBoundsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoBoundsAggregation::setupGeoBoundsAggregationDeserializer);
 
-	protected static void setupGeoBoundsAggregationParser(DelegatingJsonpValueParser<GeoBoundsAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseParser(op);
-		op.add(Builder::wrapLongitude, JsonpValueParser.booleanParser(), "wrap_longitude");
+	protected static void setupGeoBoundsAggregationDeserializer(
+			DelegatingDeserializer<GeoBoundsAggregation.Builder> op) {
+		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+		op.add(Builder::wrapLongitude, JsonpDeserializer.booleanDeserializer(), "wrap_longitude");
 
 	}
 

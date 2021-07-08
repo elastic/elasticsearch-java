@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -141,16 +141,16 @@ public final class Monitoring extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Monitoring
+	 * Json deserializer for Monitoring
 	 */
-	public static final JsonpValueParser<Monitoring> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Monitoring::setupMonitoringParser);
+	public static final JsonpDeserializer<Monitoring> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Monitoring::setupMonitoringDeserializer);
 
-	protected static void setupMonitoringParser(DelegatingJsonpValueParser<Monitoring.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::collectionEnabled, JsonpValueParser.booleanParser(), "collection_enabled");
-		op.add(Builder::enabledExporters, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()),
-				"enabled_exporters");
+	protected static void setupMonitoringDeserializer(DelegatingDeserializer<Monitoring.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::collectionEnabled, JsonpDeserializer.booleanDeserializer(), "collection_enabled");
+		op.add(Builder::enabledExporters,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()), "enabled_exporters");
 
 	}
 

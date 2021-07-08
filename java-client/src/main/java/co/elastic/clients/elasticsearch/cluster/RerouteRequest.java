@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.cluster.reroute.Command;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -357,14 +357,14 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RerouteRequest
+	 * Json deserializer for RerouteRequest
 	 */
-	public static final JsonpValueParser<RerouteRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RerouteRequest::setupRerouteRequestParser);
+	public static final JsonpDeserializer<RerouteRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RerouteRequest::setupRerouteRequestDeserializer);
 
-	protected static void setupRerouteRequestParser(DelegatingJsonpValueParser<RerouteRequest.Builder> op) {
+	protected static void setupRerouteRequestDeserializer(DelegatingDeserializer<RerouteRequest.Builder> op) {
 
-		op.add(Builder::commands, JsonpValueParser.arrayParser(Command.JSONP_PARSER), "commands");
+		op.add(Builder::commands, JsonpDeserializer.arrayDeserializer(Command.DESERIALIZER), "commands");
 
 	}
 
@@ -409,5 +409,5 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RerouteResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, RerouteResponse.DESERIALIZER);
 }

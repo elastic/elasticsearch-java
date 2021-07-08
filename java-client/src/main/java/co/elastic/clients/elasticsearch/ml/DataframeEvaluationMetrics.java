@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -215,13 +215,14 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeEvaluationMetricsParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeEvaluationMetricsDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::aucRoc, DataframeEvaluationClassificationMetricsAucRoc.JSONP_PARSER, "auc_roc");
-		op.add(AbstractBuilder::precision, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"precision");
-		op.add(AbstractBuilder::recall, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "recall");
+		op.add(AbstractBuilder::aucRoc, DataframeEvaluationClassificationMetricsAucRoc.DESERIALIZER, "auc_roc");
+		op.add(AbstractBuilder::precision,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "precision");
+		op.add(AbstractBuilder::recall,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "recall");
 
 	}
 

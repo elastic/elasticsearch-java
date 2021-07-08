@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -132,16 +132,16 @@ public final class DelayedDataCheckConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DelayedDataCheckConfig
+	 * Json deserializer for DelayedDataCheckConfig
 	 */
-	public static final JsonpValueParser<DelayedDataCheckConfig> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DelayedDataCheckConfig::setupDelayedDataCheckConfigParser);
+	public static final JsonpDeserializer<DelayedDataCheckConfig> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DelayedDataCheckConfig::setupDelayedDataCheckConfigDeserializer);
 
-	protected static void setupDelayedDataCheckConfigParser(
-			DelegatingJsonpValueParser<DelayedDataCheckConfig.Builder> op) {
+	protected static void setupDelayedDataCheckConfigDeserializer(
+			DelegatingDeserializer<DelayedDataCheckConfig.Builder> op) {
 
-		op.add(Builder::checkWindow, JsonpValueParser.jsonValueParser(), "check_window");
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
+		op.add(Builder::checkWindow, JsonpDeserializer.jsonValueDeserializer(), "check_window");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 

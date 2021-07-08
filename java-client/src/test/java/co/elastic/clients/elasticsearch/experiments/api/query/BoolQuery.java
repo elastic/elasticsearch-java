@@ -20,9 +20,9 @@
 package co.elastic.clients.elasticsearch.experiments.api.query;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.Union2;
@@ -134,24 +134,24 @@ public class BoolQuery implements ToJsonp {
         }
     }
 
-    private static final JsonpValueParser<BoolQuery> PARSER;
+    private static final JsonpDeserializer<BoolQuery> PARSER;
 
-    public static JsonpValueParser<BoolQuery> parser() {
+    public static JsonpDeserializer<BoolQuery> parser() {
         return PARSER;
     }
 
     static {
-        JsonpObjectParser<BoolQuery.Builder> op = new JsonpObjectParser<>(Builder::new);
+        ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-        op.add(Builder::must, JsonpValueParser.arrayParser(Query.parser()), "must");
-        op.add(Builder::should, JsonpValueParser.arrayParser(Query.parser()), "should");
+        op.add(Builder::must, JsonpDeserializer.arrayDeserializer(Query.parser()), "must");
+        op.add(Builder::should, JsonpDeserializer.arrayDeserializer(Query.parser()), "should");
 
         op.add(Builder::minimumShouldMatch, new Union2.JsonpParser<>(
-            JsonpValueParser.integerParser(),
-            JsonpValueParser.stringParser()
+            JsonpDeserializer.integerDeserializer(),
+            JsonpDeserializer.stringDeserializer()
         ), "minimum_should_match");
 
-        PARSER = new JsonpObjectBuilderParser<>(op);
+        PARSER = new ObjectBuilderDeserializer<>(op);
     }
 
 }

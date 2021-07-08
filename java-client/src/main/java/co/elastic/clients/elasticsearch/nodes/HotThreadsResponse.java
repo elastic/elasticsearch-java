@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch.nodes.hot_threads.HotThread;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,14 +143,14 @@ public final class HotThreadsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HotThreadsResponse
+	 * Json deserializer for HotThreadsResponse
 	 */
-	public static final JsonpValueParser<HotThreadsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HotThreadsResponse::setupHotThreadsResponseParser);
+	public static final JsonpDeserializer<HotThreadsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HotThreadsResponse::setupHotThreadsResponseDeserializer);
 
-	protected static void setupHotThreadsResponseParser(DelegatingJsonpValueParser<HotThreadsResponse.Builder> op) {
+	protected static void setupHotThreadsResponseDeserializer(DelegatingDeserializer<HotThreadsResponse.Builder> op) {
 
-		op.add(Builder::hotThreads, JsonpValueParser.arrayParser(HotThread.JSONP_PARSER), "hot_threads");
+		op.add(Builder::hotThreads, JsonpDeserializer.arrayDeserializer(HotThread.DESERIALIZER), "hot_threads");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -132,15 +132,16 @@ public final class SnapshotShardsStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SnapshotShardsStatus
+	 * Json deserializer for SnapshotShardsStatus
 	 */
-	public static final JsonpValueParser<SnapshotShardsStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SnapshotShardsStatus::setupSnapshotShardsStatusParser);
+	public static final JsonpDeserializer<SnapshotShardsStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SnapshotShardsStatus::setupSnapshotShardsStatusDeserializer);
 
-	protected static void setupSnapshotShardsStatusParser(DelegatingJsonpValueParser<SnapshotShardsStatus.Builder> op) {
+	protected static void setupSnapshotShardsStatusDeserializer(
+			DelegatingDeserializer<SnapshotShardsStatus.Builder> op) {
 
-		op.add(Builder::stage, JsonpValueParser.jsonValueParser(), "stage");
-		op.add(Builder::stats, ShardsStatsSummary.JSONP_PARSER, "stats");
+		op.add(Builder::stage, JsonpDeserializer.jsonValueDeserializer(), "stage");
+		op.add(Builder::stats, ShardsStatsSummary.DESERIALIZER, "stats");
 
 	}
 

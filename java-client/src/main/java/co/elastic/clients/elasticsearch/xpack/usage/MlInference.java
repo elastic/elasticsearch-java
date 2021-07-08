@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -171,16 +171,16 @@ public final class MlInference implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MlInference
+	 * Json deserializer for MlInference
 	 */
-	public static final JsonpValueParser<MlInference> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MlInference::setupMlInferenceParser);
+	public static final JsonpDeserializer<MlInference> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MlInference::setupMlInferenceDeserializer);
 
-	protected static void setupMlInferenceParser(DelegatingJsonpValueParser<MlInference.Builder> op) {
+	protected static void setupMlInferenceDeserializer(DelegatingDeserializer<MlInference.Builder> op) {
 
-		op.add(Builder::ingestProcessors, JsonpValueParser.stringMapParser(MlInferenceIngestProcessor.JSONP_PARSER),
-				"ingest_processors");
-		op.add(Builder::trainedModels, MlInferenceTrainedModels.JSONP_PARSER, "trained_models");
+		op.add(Builder::ingestProcessors,
+				JsonpDeserializer.stringMapDeserializer(MlInferenceIngestProcessor.DESERIALIZER), "ingest_processors");
+		op.add(Builder::trainedModels, MlInferenceTrainedModels.DESERIALIZER, "trained_models");
 
 	}
 

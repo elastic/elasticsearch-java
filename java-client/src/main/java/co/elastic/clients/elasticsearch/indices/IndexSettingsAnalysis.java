@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -126,15 +126,15 @@ public final class IndexSettingsAnalysis implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexSettingsAnalysis
+	 * Json deserializer for IndexSettingsAnalysis
 	 */
-	public static final JsonpValueParser<IndexSettingsAnalysis> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexSettingsAnalysis::setupIndexSettingsAnalysisParser);
+	public static final JsonpDeserializer<IndexSettingsAnalysis> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexSettingsAnalysis::setupIndexSettingsAnalysisDeserializer);
 
-	protected static void setupIndexSettingsAnalysisParser(
-			DelegatingJsonpValueParser<IndexSettingsAnalysis.Builder> op) {
+	protected static void setupIndexSettingsAnalysisDeserializer(
+			DelegatingDeserializer<IndexSettingsAnalysis.Builder> op) {
 
-		op.add(Builder::charFilter, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::charFilter, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"char_filter");
 
 	}

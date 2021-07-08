@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -424,25 +424,25 @@ public final class TermSuggester extends SuggesterBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TermSuggester
+	 * Json deserializer for TermSuggester
 	 */
-	public static final JsonpValueParser<TermSuggester> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TermSuggester::setupTermSuggesterParser);
+	public static final JsonpDeserializer<TermSuggester> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TermSuggester::setupTermSuggesterDeserializer);
 
-	protected static void setupTermSuggesterParser(DelegatingJsonpValueParser<TermSuggester.Builder> op) {
-		SuggesterBase.setupSuggesterBaseParser(op);
-		op.add(Builder::lowercaseTerms, JsonpValueParser.booleanParser(), "lowercase_terms");
-		op.add(Builder::maxEdits, JsonpValueParser.numberParser(), "max_edits");
-		op.add(Builder::maxInspections, JsonpValueParser.numberParser(), "max_inspections");
-		op.add(Builder::maxTermFreq, JsonpValueParser.numberParser(), "max_term_freq");
-		op.add(Builder::minDocFreq, JsonpValueParser.numberParser(), "min_doc_freq");
-		op.add(Builder::minWordLength, JsonpValueParser.numberParser(), "min_word_length");
-		op.add(Builder::prefixLength, JsonpValueParser.numberParser(), "prefix_length");
-		op.add(Builder::shardSize, JsonpValueParser.numberParser(), "shard_size");
-		op.add(Builder::sort, JsonpValueParser.jsonValueParser(), "sort");
-		op.add(Builder::stringDistance, JsonpValueParser.jsonValueParser(), "string_distance");
-		op.add(Builder::suggestMode, JsonpValueParser.jsonValueParser(), "suggest_mode");
-		op.add(Builder::text, JsonpValueParser.stringParser(), "text");
+	protected static void setupTermSuggesterDeserializer(DelegatingDeserializer<TermSuggester.Builder> op) {
+		SuggesterBase.setupSuggesterBaseDeserializer(op);
+		op.add(Builder::lowercaseTerms, JsonpDeserializer.booleanDeserializer(), "lowercase_terms");
+		op.add(Builder::maxEdits, JsonpDeserializer.numberDeserializer(), "max_edits");
+		op.add(Builder::maxInspections, JsonpDeserializer.numberDeserializer(), "max_inspections");
+		op.add(Builder::maxTermFreq, JsonpDeserializer.numberDeserializer(), "max_term_freq");
+		op.add(Builder::minDocFreq, JsonpDeserializer.numberDeserializer(), "min_doc_freq");
+		op.add(Builder::minWordLength, JsonpDeserializer.numberDeserializer(), "min_word_length");
+		op.add(Builder::prefixLength, JsonpDeserializer.numberDeserializer(), "prefix_length");
+		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::sort, JsonpDeserializer.jsonValueDeserializer(), "sort");
+		op.add(Builder::stringDistance, JsonpDeserializer.jsonValueDeserializer(), "string_distance");
+		op.add(Builder::suggestMode, JsonpDeserializer.jsonValueDeserializer(), "suggest_mode");
+		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
 	}
 

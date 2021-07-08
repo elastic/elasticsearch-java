@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,13 @@ public final class CloneResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CloneResponse
+	 * Json deserializer for CloneResponse
 	 */
-	public static final JsonpValueParser<CloneResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CloneResponse::setupCloneResponseParser);
+	public static final JsonpDeserializer<CloneResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CloneResponse::setupCloneResponseDeserializer);
 
-	protected static void setupCloneResponseParser(DelegatingJsonpValueParser<CloneResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupCloneResponseDeserializer(DelegatingDeserializer<CloneResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

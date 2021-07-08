@@ -28,11 +28,11 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -1169,18 +1169,19 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateByQueryRequest
+	 * Json deserializer for UpdateByQueryRequest
 	 */
-	public static final JsonpValueParser<UpdateByQueryRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateByQueryRequest::setupUpdateByQueryRequestParser);
+	public static final JsonpDeserializer<UpdateByQueryRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpdateByQueryRequest::setupUpdateByQueryRequestDeserializer);
 
-	protected static void setupUpdateByQueryRequestParser(DelegatingJsonpValueParser<UpdateByQueryRequest.Builder> op) {
+	protected static void setupUpdateByQueryRequestDeserializer(
+			DelegatingDeserializer<UpdateByQueryRequest.Builder> op) {
 
-		op.add(Builder::maxDocs, JsonpValueParser.numberParser(), "max_docs");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::slice, SlicedScroll.JSONP_PARSER, "slice");
-		op.add(Builder::conflicts, JsonpValueParser.jsonValueParser(), "conflicts");
+		op.add(Builder::maxDocs, JsonpDeserializer.numberDeserializer(), "max_docs");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::slice, SlicedScroll.DESERIALIZER, "slice");
+		op.add(Builder::conflicts, JsonpDeserializer.jsonValueDeserializer(), "conflicts");
 
 	}
 
@@ -1334,5 +1335,5 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateByQueryResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, UpdateByQueryResponse.DESERIALIZER);
 }

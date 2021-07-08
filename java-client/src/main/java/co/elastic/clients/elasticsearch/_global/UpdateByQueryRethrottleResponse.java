@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.update_by_query_rethrottle.UpdateByQueryRethrottleNode;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -139,15 +139,17 @@ public final class UpdateByQueryRethrottleResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateByQueryRethrottleResponse
+	 * Json deserializer for UpdateByQueryRethrottleResponse
 	 */
-	public static final JsonpValueParser<UpdateByQueryRethrottleResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateByQueryRethrottleResponse::setupUpdateByQueryRethrottleResponseParser);
+	public static final JsonpDeserializer<UpdateByQueryRethrottleResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					UpdateByQueryRethrottleResponse::setupUpdateByQueryRethrottleResponseDeserializer);
 
-	protected static void setupUpdateByQueryRethrottleResponseParser(
-			DelegatingJsonpValueParser<UpdateByQueryRethrottleResponse.Builder> op) {
+	protected static void setupUpdateByQueryRethrottleResponseDeserializer(
+			DelegatingDeserializer<UpdateByQueryRethrottleResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(UpdateByQueryRethrottleNode.JSONP_PARSER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(UpdateByQueryRethrottleNode.DESERIALIZER),
+				"nodes");
 
 	}
 

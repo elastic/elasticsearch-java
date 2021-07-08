@@ -40,11 +40,11 @@ import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -815,30 +815,30 @@ public final class IndexStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexStats
+	 * Json deserializer for IndexStats
 	 */
-	public static final JsonpValueParser<IndexStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexStats::setupIndexStatsParser);
+	public static final JsonpDeserializer<IndexStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexStats::setupIndexStatsDeserializer);
 
-	protected static void setupIndexStatsParser(DelegatingJsonpValueParser<IndexStats.Builder> op) {
+	protected static void setupIndexStatsDeserializer(DelegatingDeserializer<IndexStats.Builder> op) {
 
-		op.add(Builder::completion, CompletionStats.JSONP_PARSER, "completion");
-		op.add(Builder::docs, DocStats.JSONP_PARSER, "docs");
-		op.add(Builder::fielddata, FielddataStats.JSONP_PARSER, "fielddata");
-		op.add(Builder::flush, FlushStats.JSONP_PARSER, "flush");
-		op.add(Builder::get, GetStats.JSONP_PARSER, "get");
-		op.add(Builder::indexing, IndexingStats.JSONP_PARSER, "indexing");
-		op.add(Builder::merges, MergesStats.JSONP_PARSER, "merges");
-		op.add(Builder::queryCache, QueryCacheStats.JSONP_PARSER, "query_cache");
-		op.add(Builder::recovery, RecoveryStats.JSONP_PARSER, "recovery");
-		op.add(Builder::refresh, RefreshStats.JSONP_PARSER, "refresh");
-		op.add(Builder::requestCache, RequestCacheStats.JSONP_PARSER, "request_cache");
-		op.add(Builder::search, SearchStats.JSONP_PARSER, "search");
-		op.add(Builder::segments, SegmentsStats.JSONP_PARSER, "segments");
-		op.add(Builder::store, StoreStats.JSONP_PARSER, "store");
-		op.add(Builder::translog, TranslogStats.JSONP_PARSER, "translog");
-		op.add(Builder::warmer, WarmerStats.JSONP_PARSER, "warmer");
-		op.add(Builder::bulk, BulkStats.JSONP_PARSER, "bulk");
+		op.add(Builder::completion, CompletionStats.DESERIALIZER, "completion");
+		op.add(Builder::docs, DocStats.DESERIALIZER, "docs");
+		op.add(Builder::fielddata, FielddataStats.DESERIALIZER, "fielddata");
+		op.add(Builder::flush, FlushStats.DESERIALIZER, "flush");
+		op.add(Builder::get, GetStats.DESERIALIZER, "get");
+		op.add(Builder::indexing, IndexingStats.DESERIALIZER, "indexing");
+		op.add(Builder::merges, MergesStats.DESERIALIZER, "merges");
+		op.add(Builder::queryCache, QueryCacheStats.DESERIALIZER, "query_cache");
+		op.add(Builder::recovery, RecoveryStats.DESERIALIZER, "recovery");
+		op.add(Builder::refresh, RefreshStats.DESERIALIZER, "refresh");
+		op.add(Builder::requestCache, RequestCacheStats.DESERIALIZER, "request_cache");
+		op.add(Builder::search, SearchStats.DESERIALIZER, "search");
+		op.add(Builder::segments, SegmentsStats.DESERIALIZER, "segments");
+		op.add(Builder::store, StoreStats.DESERIALIZER, "store");
+		op.add(Builder::translog, TranslogStats.DESERIALIZER, "translog");
+		op.add(Builder::warmer, WarmerStats.DESERIALIZER, "warmer");
+		op.add(Builder::bulk, BulkStats.DESERIALIZER, "bulk");
 
 	}
 

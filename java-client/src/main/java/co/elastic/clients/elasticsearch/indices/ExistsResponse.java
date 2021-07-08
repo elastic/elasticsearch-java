@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -39,7 +39,7 @@ public final class ExistsResponse {
 	 */
 	public static final ExistsResponse INSTANCE = new ExistsResponse();
 
-	public static final JsonpValueParser<ExistsResponse> JSONP_PARSER = JsonpValueParser
+	public static final JsonpDeserializer<ExistsResponse> DESERIALIZER = JsonpDeserializer
 			.fixedValue(ExistsResponse.INSTANCE);
 
 }

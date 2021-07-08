@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -492,27 +492,28 @@ public final class AnomalyCause implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AnomalyCause
+	 * Json deserializer for AnomalyCause
 	 */
-	public static final JsonpValueParser<AnomalyCause> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AnomalyCause::setupAnomalyCauseParser);
+	public static final JsonpDeserializer<AnomalyCause> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AnomalyCause::setupAnomalyCauseDeserializer);
 
-	protected static void setupAnomalyCauseParser(DelegatingJsonpValueParser<AnomalyCause.Builder> op) {
+	protected static void setupAnomalyCauseDeserializer(DelegatingDeserializer<AnomalyCause.Builder> op) {
 
-		op.add(Builder::actual, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "actual");
-		op.add(Builder::byFieldName, JsonpValueParser.stringParser(), "by_field_name");
-		op.add(Builder::byFieldValue, JsonpValueParser.stringParser(), "by_field_value");
-		op.add(Builder::correlatedByFieldValue, JsonpValueParser.stringParser(), "correlated_by_field_value");
-		op.add(Builder::fieldName, JsonpValueParser.stringParser(), "field_name");
-		op.add(Builder::function, JsonpValueParser.stringParser(), "function");
-		op.add(Builder::functionDescription, JsonpValueParser.stringParser(), "function_description");
-		op.add(Builder::influencers, JsonpValueParser.arrayParser(Influence.JSONP_PARSER), "influencers");
-		op.add(Builder::overFieldName, JsonpValueParser.stringParser(), "over_field_name");
-		op.add(Builder::overFieldValue, JsonpValueParser.stringParser(), "over_field_value");
-		op.add(Builder::partitionFieldName, JsonpValueParser.stringParser(), "partition_field_name");
-		op.add(Builder::partitionFieldValue, JsonpValueParser.stringParser(), "partition_field_value");
-		op.add(Builder::probability, JsonpValueParser.numberParser(), "probability");
-		op.add(Builder::typical, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "typical");
+		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "actual");
+		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
+		op.add(Builder::byFieldValue, JsonpDeserializer.stringDeserializer(), "by_field_value");
+		op.add(Builder::correlatedByFieldValue, JsonpDeserializer.stringDeserializer(), "correlated_by_field_value");
+		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
+		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
+		op.add(Builder::functionDescription, JsonpDeserializer.stringDeserializer(), "function_description");
+		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence.DESERIALIZER), "influencers");
+		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
+		op.add(Builder::overFieldValue, JsonpDeserializer.stringDeserializer(), "over_field_value");
+		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
+		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
+		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
+		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
+				"typical");
 
 	}
 

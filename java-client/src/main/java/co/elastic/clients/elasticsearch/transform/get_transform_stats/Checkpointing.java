@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -229,19 +229,19 @@ public final class Checkpointing implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Checkpointing
+	 * Json deserializer for Checkpointing
 	 */
-	public static final JsonpValueParser<Checkpointing> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Checkpointing::setupCheckpointingParser);
+	public static final JsonpDeserializer<Checkpointing> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Checkpointing::setupCheckpointingDeserializer);
 
-	protected static void setupCheckpointingParser(DelegatingJsonpValueParser<Checkpointing.Builder> op) {
+	protected static void setupCheckpointingDeserializer(DelegatingDeserializer<Checkpointing.Builder> op) {
 
-		op.add(Builder::changesLastDetectedAt, JsonpValueParser.numberParser(), "changes_last_detected_at");
-		op.add(Builder::changesLastDetectedAtDateTime, JsonpValueParser.stringParser(),
+		op.add(Builder::changesLastDetectedAt, JsonpDeserializer.numberDeserializer(), "changes_last_detected_at");
+		op.add(Builder::changesLastDetectedAtDateTime, JsonpDeserializer.stringDeserializer(),
 				"changes_last_detected_at_date_time");
-		op.add(Builder::last, CheckpointStats.JSONP_PARSER, "last");
-		op.add(Builder::next, CheckpointStats.JSONP_PARSER, "next");
-		op.add(Builder::operationsBehind, JsonpValueParser.numberParser(), "operations_behind");
+		op.add(Builder::last, CheckpointStats.DESERIALIZER, "last");
+		op.add(Builder::next, CheckpointStats.DESERIALIZER, "next");
+		op.add(Builder::operationsBehind, JsonpDeserializer.numberDeserializer(), "operations_behind");
 
 	}
 

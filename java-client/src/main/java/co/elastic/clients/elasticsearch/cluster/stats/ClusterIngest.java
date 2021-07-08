@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -161,15 +161,15 @@ public final class ClusterIngest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterIngest
+	 * Json deserializer for ClusterIngest
 	 */
-	public static final JsonpValueParser<ClusterIngest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterIngest::setupClusterIngestParser);
+	public static final JsonpDeserializer<ClusterIngest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterIngest::setupClusterIngestDeserializer);
 
-	protected static void setupClusterIngestParser(DelegatingJsonpValueParser<ClusterIngest.Builder> op) {
+	protected static void setupClusterIngestDeserializer(DelegatingDeserializer<ClusterIngest.Builder> op) {
 
-		op.add(Builder::numberOfPipelines, JsonpValueParser.numberParser(), "number_of_pipelines");
-		op.add(Builder::processorStats, JsonpValueParser.stringMapParser(ClusterProcessor.JSONP_PARSER),
+		op.add(Builder::numberOfPipelines, JsonpDeserializer.numberDeserializer(), "number_of_pipelines");
+		op.add(Builder::processorStats, JsonpDeserializer.stringMapDeserializer(ClusterProcessor.DESERIALIZER),
 				"processor_stats");
 
 	}

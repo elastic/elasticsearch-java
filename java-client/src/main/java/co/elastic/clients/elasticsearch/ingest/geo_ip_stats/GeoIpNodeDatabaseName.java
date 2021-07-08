@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest.geo_ip_stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -105,15 +105,15 @@ public final class GeoIpNodeDatabaseName implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoIpNodeDatabaseName
+	 * Json deserializer for GeoIpNodeDatabaseName
 	 */
-	public static final JsonpValueParser<GeoIpNodeDatabaseName> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoIpNodeDatabaseName::setupGeoIpNodeDatabaseNameParser);
+	public static final JsonpDeserializer<GeoIpNodeDatabaseName> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoIpNodeDatabaseName::setupGeoIpNodeDatabaseNameDeserializer);
 
-	protected static void setupGeoIpNodeDatabaseNameParser(
-			DelegatingJsonpValueParser<GeoIpNodeDatabaseName.Builder> op) {
+	protected static void setupGeoIpNodeDatabaseNameDeserializer(
+			DelegatingDeserializer<GeoIpNodeDatabaseName.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

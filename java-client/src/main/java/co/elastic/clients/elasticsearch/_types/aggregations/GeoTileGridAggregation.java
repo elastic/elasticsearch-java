@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -229,19 +229,19 @@ public final class GeoTileGridAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoTileGridAggregation
+	 * Json deserializer for GeoTileGridAggregation
 	 */
-	public static final JsonpValueParser<GeoTileGridAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoTileGridAggregation::setupGeoTileGridAggregationParser);
+	public static final JsonpDeserializer<GeoTileGridAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoTileGridAggregation::setupGeoTileGridAggregationDeserializer);
 
-	protected static void setupGeoTileGridAggregationParser(
-			DelegatingJsonpValueParser<GeoTileGridAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::precision, JsonpValueParser.numberParser(), "precision");
-		op.add(Builder::shardSize, JsonpValueParser.numberParser(), "shard_size");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::bounds, GeoBounds.JSONP_PARSER, "bounds");
+	protected static void setupGeoTileGridAggregationDeserializer(
+			DelegatingDeserializer<GeoTileGridAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::precision, JsonpDeserializer.numberDeserializer(), "precision");
+		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::bounds, GeoBounds.DESERIALIZER, "bounds");
 
 	}
 

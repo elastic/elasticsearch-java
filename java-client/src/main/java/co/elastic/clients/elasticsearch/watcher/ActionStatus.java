@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -217,17 +217,17 @@ public final class ActionStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ActionStatus
+	 * Json deserializer for ActionStatus
 	 */
-	public static final JsonpValueParser<ActionStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ActionStatus::setupActionStatusParser);
+	public static final JsonpDeserializer<ActionStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ActionStatus::setupActionStatusDeserializer);
 
-	protected static void setupActionStatusParser(DelegatingJsonpValueParser<ActionStatus.Builder> op) {
+	protected static void setupActionStatusDeserializer(DelegatingDeserializer<ActionStatus.Builder> op) {
 
-		op.add(Builder::ack, AcknowledgeState.JSONP_PARSER, "ack");
-		op.add(Builder::lastExecution, ExecutionState.JSONP_PARSER, "last_execution");
-		op.add(Builder::lastSuccessfulExecution, ExecutionState.JSONP_PARSER, "last_successful_execution");
-		op.add(Builder::lastThrottle, ThrottleState.JSONP_PARSER, "last_throttle");
+		op.add(Builder::ack, AcknowledgeState.DESERIALIZER, "ack");
+		op.add(Builder::lastExecution, ExecutionState.DESERIALIZER, "last_execution");
+		op.add(Builder::lastSuccessfulExecution, ExecutionState.DESERIALIZER, "last_successful_execution");
+		op.add(Builder::lastThrottle, ThrottleState.DESERIALIZER, "last_throttle");
 
 	}
 

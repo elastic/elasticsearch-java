@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -54,7 +54,7 @@ public class SyncContainer extends TaggedUnion<SyncContainer.Tag, Object> implem
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private SyncContainer(Builder builder) {
@@ -109,19 +109,20 @@ public class SyncContainer extends TaggedUnion<SyncContainer.Tag, Object> implem
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<SyncContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(SyncContainer::buildJsonpParser);
+	public static final JsonpDeserializer<SyncContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(SyncContainer::buildDeserializer);
 
-	private static JsonpValueParser<SyncContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<SyncContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::time, TimeSync.JSONP_PARSER, "time");
+		op.add(Builder::time, TimeSync.DESERIALIZER, "time");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

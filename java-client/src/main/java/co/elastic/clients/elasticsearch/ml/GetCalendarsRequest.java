@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -202,14 +202,14 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetCalendarsRequest
+	 * Json deserializer for GetCalendarsRequest
 	 */
-	public static final JsonpValueParser<GetCalendarsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestParser);
+	public static final JsonpDeserializer<GetCalendarsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestDeserializer);
 
-	protected static void setupGetCalendarsRequestParser(DelegatingJsonpValueParser<GetCalendarsRequest.Builder> op) {
+	protected static void setupGetCalendarsRequestDeserializer(DelegatingDeserializer<GetCalendarsRequest.Builder> op) {
 
-		op.add(Builder::page, Page.JSONP_PARSER, "page");
+		op.add(Builder::page, Page.DESERIALIZER, "page");
 
 	}
 
@@ -263,5 +263,5 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetCalendarsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GetCalendarsResponse.DESERIALIZER);
 }

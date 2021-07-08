@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -97,14 +97,14 @@ public final class InlineScript extends ScriptBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InlineScript
+	 * Json deserializer for InlineScript
 	 */
-	public static final JsonpValueParser<InlineScript> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InlineScript::setupInlineScriptParser);
+	public static final JsonpDeserializer<InlineScript> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InlineScript::setupInlineScriptDeserializer);
 
-	protected static void setupInlineScriptParser(DelegatingJsonpValueParser<InlineScript.Builder> op) {
-		ScriptBase.setupScriptBaseParser(op);
-		op.add(Builder::source, JsonpValueParser.stringParser(), "source");
+	protected static void setupInlineScriptDeserializer(DelegatingDeserializer<InlineScript.Builder> op) {
+		ScriptBase.setupScriptBaseDeserializer(op);
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}
 

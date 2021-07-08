@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ilm.move_to_step;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,16 +147,16 @@ public final class StepKey implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StepKey
+	 * Json deserializer for StepKey
 	 */
-	public static final JsonpValueParser<StepKey> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			StepKey::setupStepKeyParser);
+	public static final JsonpDeserializer<StepKey> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StepKey::setupStepKeyDeserializer);
 
-	protected static void setupStepKeyParser(DelegatingJsonpValueParser<StepKey.Builder> op) {
+	protected static void setupStepKeyDeserializer(DelegatingDeserializer<StepKey.Builder> op) {
 
-		op.add(Builder::action, JsonpValueParser.stringParser(), "action");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::phase, JsonpValueParser.stringParser(), "phase");
+		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::phase, JsonpDeserializer.stringDeserializer(), "phase");
 
 	}
 

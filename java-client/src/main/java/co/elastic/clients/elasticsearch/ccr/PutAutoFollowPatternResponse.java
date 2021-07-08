@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,14 +68,14 @@ public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutAutoFollowPatternResponse
+	 * Json deserializer for PutAutoFollowPatternResponse
 	 */
-	public static final JsonpValueParser<PutAutoFollowPatternResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutAutoFollowPatternResponse::setupPutAutoFollowPatternResponseParser);
+	public static final JsonpDeserializer<PutAutoFollowPatternResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutAutoFollowPatternResponse::setupPutAutoFollowPatternResponseDeserializer);
 
-	protected static void setupPutAutoFollowPatternResponseParser(
-			DelegatingJsonpValueParser<PutAutoFollowPatternResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupPutAutoFollowPatternResponseDeserializer(
+			DelegatingDeserializer<PutAutoFollowPatternResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

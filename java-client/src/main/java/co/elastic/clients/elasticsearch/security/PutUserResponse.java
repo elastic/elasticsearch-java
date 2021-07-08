@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class PutUserResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutUserResponse
+	 * Json deserializer for PutUserResponse
 	 */
-	public static final JsonpValueParser<PutUserResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutUserResponse::setupPutUserResponseParser);
+	public static final JsonpDeserializer<PutUserResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutUserResponse::setupPutUserResponseDeserializer);
 
-	protected static void setupPutUserResponseParser(DelegatingJsonpValueParser<PutUserResponse.Builder> op) {
+	protected static void setupPutUserResponseDeserializer(DelegatingDeserializer<PutUserResponse.Builder> op) {
 
-		op.add(Builder::created, JsonpValueParser.booleanParser(), "created");
+		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 
 	}
 

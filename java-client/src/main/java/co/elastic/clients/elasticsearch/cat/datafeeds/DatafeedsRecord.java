@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.datafeeds;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -475,28 +475,28 @@ public final class DatafeedsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DatafeedsRecord
+	 * Json deserializer for DatafeedsRecord
 	 */
-	public static final JsonpValueParser<DatafeedsRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DatafeedsRecord::setupDatafeedsRecordParser);
+	public static final JsonpDeserializer<DatafeedsRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DatafeedsRecord::setupDatafeedsRecordDeserializer);
 
-	protected static void setupDatafeedsRecordParser(DelegatingJsonpValueParser<DatafeedsRecord.Builder> op) {
+	protected static void setupDatafeedsRecordDeserializer(DelegatingDeserializer<DatafeedsRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::state, JsonpValueParser.jsonValueParser(), "state", "s");
-		op.add(Builder::assignmentExplanation, JsonpValueParser.stringParser(), "assignment_explanation", "ae");
-		op.add(Builder::buckets_count, JsonpValueParser.stringParser(), "buckets.count", "bc", "bucketsCount");
-		op.add(Builder::search_count, JsonpValueParser.stringParser(), "search.count", "sc", "searchCount");
-		op.add(Builder::search_time, JsonpValueParser.stringParser(), "search.time", "st", "searchTime");
-		op.add(Builder::search_bucketAvg, JsonpValueParser.stringParser(), "search.bucket_avg", "sba",
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state", "s");
+		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation", "ae");
+		op.add(Builder::buckets_count, JsonpDeserializer.stringDeserializer(), "buckets.count", "bc", "bucketsCount");
+		op.add(Builder::search_count, JsonpDeserializer.stringDeserializer(), "search.count", "sc", "searchCount");
+		op.add(Builder::search_time, JsonpDeserializer.stringDeserializer(), "search.time", "st", "searchTime");
+		op.add(Builder::search_bucketAvg, JsonpDeserializer.stringDeserializer(), "search.bucket_avg", "sba",
 				"searchBucketAvg");
-		op.add(Builder::search_expAvgHour, JsonpValueParser.stringParser(), "search.exp_avg_hour", "seah",
+		op.add(Builder::search_expAvgHour, JsonpDeserializer.stringDeserializer(), "search.exp_avg_hour", "seah",
 				"searchExpAvgHour");
-		op.add(Builder::node_id, JsonpValueParser.stringParser(), "node.id", "ni", "nodeId");
-		op.add(Builder::node_name, JsonpValueParser.stringParser(), "node.name", "nn", "nodeName");
-		op.add(Builder::node_ephemeralId, JsonpValueParser.stringParser(), "node.ephemeral_id", "ne",
+		op.add(Builder::node_id, JsonpDeserializer.stringDeserializer(), "node.id", "ni", "nodeId");
+		op.add(Builder::node_name, JsonpDeserializer.stringDeserializer(), "node.name", "nn", "nodeName");
+		op.add(Builder::node_ephemeralId, JsonpDeserializer.stringDeserializer(), "node.ephemeral_id", "ne",
 				"nodeEphemeralId");
-		op.add(Builder::node_address, JsonpValueParser.stringParser(), "node.address", "na", "nodeAddress");
+		op.add(Builder::node_address, JsonpDeserializer.stringDeserializer(), "node.address", "na", "nodeAddress");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -178,17 +178,17 @@ public final class RankEvalHit implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalHit
+	 * Json deserializer for RankEvalHit
 	 */
-	public static final JsonpValueParser<RankEvalHit> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RankEvalHit::setupRankEvalHitParser);
+	public static final JsonpDeserializer<RankEvalHit> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RankEvalHit::setupRankEvalHitDeserializer);
 
-	protected static void setupRankEvalHitParser(DelegatingJsonpValueParser<RankEvalHit.Builder> op) {
+	protected static void setupRankEvalHitDeserializer(DelegatingDeserializer<RankEvalHit.Builder> op) {
 
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::_index, JsonpValueParser.stringParser(), "_index");
-		op.add(Builder::_type, JsonpValueParser.stringParser(), "_type");
-		op.add(Builder::_score, JsonpValueParser.numberParser(), "_score");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::_score, JsonpDeserializer.numberDeserializer(), "_score");
 
 	}
 

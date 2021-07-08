@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -104,15 +104,15 @@ public final class StringStatsAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StringStatsAggregation
+	 * Json deserializer for StringStatsAggregation
 	 */
-	public static final JsonpValueParser<StringStatsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StringStatsAggregation::setupStringStatsAggregationParser);
+	public static final JsonpDeserializer<StringStatsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StringStatsAggregation::setupStringStatsAggregationDeserializer);
 
-	protected static void setupStringStatsAggregationParser(
-			DelegatingJsonpValueParser<StringStatsAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseParser(op);
-		op.add(Builder::showDistribution, JsonpValueParser.booleanParser(), "show_distribution");
+	protected static void setupStringStatsAggregationDeserializer(
+			DelegatingDeserializer<StringStatsAggregation.Builder> op) {
+		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+		op.add(Builder::showDistribution, JsonpDeserializer.booleanDeserializer(), "show_distribution");
 
 	}
 

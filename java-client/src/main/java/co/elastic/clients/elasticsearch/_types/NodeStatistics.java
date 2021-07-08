@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -233,17 +233,17 @@ public final class NodeStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeStatistics
+	 * Json deserializer for NodeStatistics
 	 */
-	public static final JsonpValueParser<NodeStatistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeStatistics::setupNodeStatisticsParser);
+	public static final JsonpDeserializer<NodeStatistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeStatistics::setupNodeStatisticsDeserializer);
 
-	protected static void setupNodeStatisticsParser(DelegatingJsonpValueParser<NodeStatistics.Builder> op) {
+	protected static void setupNodeStatisticsDeserializer(DelegatingDeserializer<NodeStatistics.Builder> op) {
 
-		op.add(Builder::failures, JsonpValueParser.arrayParser(ErrorCause.JSONP_PARSER), "failures");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::successful, JsonpValueParser.numberParser(), "successful");
-		op.add(Builder::failed, JsonpValueParser.numberParser(), "failed");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "failures");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
+		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
 
 	}
 

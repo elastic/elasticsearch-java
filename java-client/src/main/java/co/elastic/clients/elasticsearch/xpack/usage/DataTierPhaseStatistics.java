@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -311,25 +311,27 @@ public final class DataTierPhaseStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataTierPhaseStatistics
+	 * Json deserializer for DataTierPhaseStatistics
 	 */
-	public static final JsonpValueParser<DataTierPhaseStatistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataTierPhaseStatistics::setupDataTierPhaseStatisticsParser);
+	public static final JsonpDeserializer<DataTierPhaseStatistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataTierPhaseStatistics::setupDataTierPhaseStatisticsDeserializer);
 
-	protected static void setupDataTierPhaseStatisticsParser(
-			DelegatingJsonpValueParser<DataTierPhaseStatistics.Builder> op) {
+	protected static void setupDataTierPhaseStatisticsDeserializer(
+			DelegatingDeserializer<DataTierPhaseStatistics.Builder> op) {
 
-		op.add(Builder::nodeCount, JsonpValueParser.numberParser(), "node_count");
-		op.add(Builder::indexCount, JsonpValueParser.numberParser(), "index_count");
-		op.add(Builder::totalShardCount, JsonpValueParser.numberParser(), "total_shard_count");
-		op.add(Builder::primaryShardCount, JsonpValueParser.numberParser(), "primary_shard_count");
-		op.add(Builder::docCount, JsonpValueParser.numberParser(), "doc_count");
-		op.add(Builder::totalSizeBytes, JsonpValueParser.numberParser(), "total_size_bytes");
-		op.add(Builder::primarySizeBytes, JsonpValueParser.numberParser(), "primary_size_bytes");
-		op.add(Builder::primaryShardSizeAvgBytes, JsonpValueParser.numberParser(), "primary_shard_size_avg_bytes");
-		op.add(Builder::primaryShardSizeMedianBytes, JsonpValueParser.numberParser(),
+		op.add(Builder::nodeCount, JsonpDeserializer.numberDeserializer(), "node_count");
+		op.add(Builder::indexCount, JsonpDeserializer.numberDeserializer(), "index_count");
+		op.add(Builder::totalShardCount, JsonpDeserializer.numberDeserializer(), "total_shard_count");
+		op.add(Builder::primaryShardCount, JsonpDeserializer.numberDeserializer(), "primary_shard_count");
+		op.add(Builder::docCount, JsonpDeserializer.numberDeserializer(), "doc_count");
+		op.add(Builder::totalSizeBytes, JsonpDeserializer.numberDeserializer(), "total_size_bytes");
+		op.add(Builder::primarySizeBytes, JsonpDeserializer.numberDeserializer(), "primary_size_bytes");
+		op.add(Builder::primaryShardSizeAvgBytes, JsonpDeserializer.numberDeserializer(),
+				"primary_shard_size_avg_bytes");
+		op.add(Builder::primaryShardSizeMedianBytes, JsonpDeserializer.numberDeserializer(),
 				"primary_shard_size_median_bytes");
-		op.add(Builder::primaryShardSizeMadBytes, JsonpValueParser.numberParser(), "primary_shard_size_mad_bytes");
+		op.add(Builder::primaryShardSizeMadBytes, JsonpDeserializer.numberDeserializer(),
+				"primary_shard_size_mad_bytes");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -132,15 +132,15 @@ public final class FlushJobResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FlushJobResponse
+	 * Json deserializer for FlushJobResponse
 	 */
-	public static final JsonpValueParser<FlushJobResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FlushJobResponse::setupFlushJobResponseParser);
+	public static final JsonpDeserializer<FlushJobResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FlushJobResponse::setupFlushJobResponseDeserializer);
 
-	protected static void setupFlushJobResponseParser(DelegatingJsonpValueParser<FlushJobResponse.Builder> op) {
+	protected static void setupFlushJobResponseDeserializer(DelegatingDeserializer<FlushJobResponse.Builder> op) {
 
-		op.add(Builder::flushed, JsonpValueParser.booleanParser(), "flushed");
-		op.add(Builder::lastFinalizedBucketEnd, JsonpValueParser.numberParser(), "last_finalized_bucket_end");
+		op.add(Builder::flushed, JsonpDeserializer.booleanDeserializer(), "flushed");
+		op.add(Builder::lastFinalizedBucketEnd, JsonpDeserializer.numberDeserializer(), "last_finalized_bucket_end");
 
 	}
 

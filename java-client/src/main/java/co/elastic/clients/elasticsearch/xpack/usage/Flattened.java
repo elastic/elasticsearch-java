@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -97,14 +97,14 @@ public final class Flattened extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Flattened
+	 * Json deserializer for Flattened
 	 */
-	public static final JsonpValueParser<Flattened> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Flattened::setupFlattenedParser);
+	public static final JsonpDeserializer<Flattened> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Flattened::setupFlattenedDeserializer);
 
-	protected static void setupFlattenedParser(DelegatingJsonpValueParser<Flattened.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::fieldCount, JsonpValueParser.numberParser(), "field_count");
+	protected static void setupFlattenedDeserializer(DelegatingDeserializer<Flattened.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::fieldCount, JsonpDeserializer.numberDeserializer(), "field_count");
 
 	}
 

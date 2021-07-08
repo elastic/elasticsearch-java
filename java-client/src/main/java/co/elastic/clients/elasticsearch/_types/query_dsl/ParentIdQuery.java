@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -161,16 +161,16 @@ public final class ParentIdQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ParentIdQuery
+	 * Json deserializer for ParentIdQuery
 	 */
-	public static final JsonpValueParser<ParentIdQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ParentIdQuery::setupParentIdQueryParser);
+	public static final JsonpDeserializer<ParentIdQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ParentIdQuery::setupParentIdQueryDeserializer);
 
-	protected static void setupParentIdQueryParser(DelegatingJsonpValueParser<ParentIdQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::ignoreUnmapped, JsonpValueParser.booleanParser(), "ignore_unmapped");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+	protected static void setupParentIdQueryDeserializer(DelegatingDeserializer<ParentIdQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

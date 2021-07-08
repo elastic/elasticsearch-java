@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.get_calendars;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -191,16 +191,16 @@ public final class Calendar implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Calendar
+	 * Json deserializer for Calendar
 	 */
-	public static final JsonpValueParser<Calendar> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Calendar::setupCalendarParser);
+	public static final JsonpDeserializer<Calendar> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Calendar::setupCalendarDeserializer);
 
-	protected static void setupCalendarParser(DelegatingJsonpValueParser<Calendar.Builder> op) {
+	protected static void setupCalendarDeserializer(DelegatingDeserializer<Calendar.Builder> op) {
 
-		op.add(Builder::calendarId, JsonpValueParser.stringParser(), "calendar_id");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::jobIds, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "job_ids");
+		op.add(Builder::calendarId, JsonpDeserializer.stringDeserializer(), "calendar_id");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::jobIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "job_ids");
 
 	}
 

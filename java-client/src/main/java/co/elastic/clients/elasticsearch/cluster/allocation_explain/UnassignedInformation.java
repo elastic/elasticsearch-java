@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -274,21 +274,21 @@ public final class UnassignedInformation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UnassignedInformation
+	 * Json deserializer for UnassignedInformation
 	 */
-	public static final JsonpValueParser<UnassignedInformation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UnassignedInformation::setupUnassignedInformationParser);
+	public static final JsonpDeserializer<UnassignedInformation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UnassignedInformation::setupUnassignedInformationDeserializer);
 
-	protected static void setupUnassignedInformationParser(
-			DelegatingJsonpValueParser<UnassignedInformation.Builder> op) {
+	protected static void setupUnassignedInformationDeserializer(
+			DelegatingDeserializer<UnassignedInformation.Builder> op) {
 
-		op.add(Builder::at, JsonpValueParser.stringParser(), "at");
-		op.add(Builder::lastAllocationStatus, JsonpValueParser.stringParser(), "last_allocation_status");
-		op.add(Builder::reason, JsonpValueParser.jsonValueParser(), "reason");
-		op.add(Builder::details, JsonpValueParser.stringParser(), "details");
-		op.add(Builder::failedAllocationAttempts, JsonpValueParser.numberParser(), "failed_allocation_attempts");
-		op.add(Builder::delayed, JsonpValueParser.booleanParser(), "delayed");
-		op.add(Builder::allocationStatus, JsonpValueParser.stringParser(), "allocation_status");
+		op.add(Builder::at, JsonpDeserializer.stringDeserializer(), "at");
+		op.add(Builder::lastAllocationStatus, JsonpDeserializer.stringDeserializer(), "last_allocation_status");
+		op.add(Builder::reason, JsonpDeserializer.jsonValueDeserializer(), "reason");
+		op.add(Builder::details, JsonpDeserializer.stringDeserializer(), "details");
+		op.add(Builder::failedAllocationAttempts, JsonpDeserializer.numberDeserializer(), "failed_allocation_attempts");
+		op.add(Builder::delayed, JsonpDeserializer.booleanDeserializer(), "delayed");
+		op.add(Builder::allocationStatus, JsonpDeserializer.stringDeserializer(), "allocation_status");
 
 	}
 

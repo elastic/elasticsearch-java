@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -134,16 +134,16 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalysisRegression
+	 * Json deserializer for DataframeAnalysisRegression
 	 */
-	public static final JsonpValueParser<DataframeAnalysisRegression> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataframeAnalysisRegression::setupDataframeAnalysisRegressionParser);
+	public static final JsonpDeserializer<DataframeAnalysisRegression> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataframeAnalysisRegression::setupDataframeAnalysisRegressionDeserializer);
 
-	protected static void setupDataframeAnalysisRegressionParser(
-			DelegatingJsonpValueParser<DataframeAnalysisRegression.Builder> op) {
-		DataframeAnalysis.setupDataframeAnalysisParser(op);
-		op.add(Builder::lossFunction, JsonpValueParser.stringParser(), "loss_function");
-		op.add(Builder::lossFunctionParameter, JsonpValueParser.numberParser(), "loss_function_parameter");
+	protected static void setupDataframeAnalysisRegressionDeserializer(
+			DelegatingDeserializer<DataframeAnalysisRegression.Builder> op) {
+		DataframeAnalysis.setupDataframeAnalysisDeserializer(op);
+		op.add(Builder::lossFunction, JsonpDeserializer.stringDeserializer(), "loss_function");
+		op.add(Builder::lossFunctionParameter, JsonpDeserializer.numberDeserializer(), "loss_function_parameter");
 
 	}
 

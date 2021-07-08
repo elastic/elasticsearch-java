@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.license;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -213,15 +213,15 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PostRequest
+	 * Json deserializer for PostRequest
 	 */
-	public static final JsonpValueParser<PostRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PostRequest::setupPostRequestParser);
+	public static final JsonpDeserializer<PostRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PostRequest::setupPostRequestDeserializer);
 
-	protected static void setupPostRequestParser(DelegatingJsonpValueParser<PostRequest.Builder> op) {
+	protected static void setupPostRequestDeserializer(DelegatingDeserializer<PostRequest.Builder> op) {
 
-		op.add(Builder::license, License.JSONP_PARSER, "license");
-		op.add(Builder::licenses, JsonpValueParser.arrayParser(License.JSONP_PARSER), "licenses");
+		op.add(Builder::license, License.DESERIALIZER, "license");
+		op.add(Builder::licenses, JsonpDeserializer.arrayDeserializer(License.DESERIALIZER), "licenses");
 
 	}
 
@@ -251,5 +251,5 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PostResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PostResponse.DESERIALIZER);
 }

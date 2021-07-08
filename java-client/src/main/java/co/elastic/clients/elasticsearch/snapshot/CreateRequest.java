@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -361,18 +361,20 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateRequest
+	 * Json deserializer for CreateRequest
 	 */
-	public static final JsonpValueParser<CreateRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateRequest::setupCreateRequestParser);
+	public static final JsonpDeserializer<CreateRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateRequest::setupCreateRequestDeserializer);
 
-	protected static void setupCreateRequestParser(DelegatingJsonpValueParser<CreateRequest.Builder> op) {
+	protected static void setupCreateRequestDeserializer(DelegatingDeserializer<CreateRequest.Builder> op) {
 
-		op.add(Builder::ignoreUnavailable, JsonpValueParser.booleanParser(), "ignore_unavailable");
-		op.add(Builder::includeGlobalState, JsonpValueParser.booleanParser(), "include_global_state");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::partial, JsonpValueParser.booleanParser(), "partial");
+		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
+		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
 
 	}
 
@@ -424,5 +426,5 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, CreateResponse.DESERIALIZER);
 }

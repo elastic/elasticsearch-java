@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -227,16 +227,17 @@ public final class ShardProfile implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardProfile
+	 * Json deserializer for ShardProfile
 	 */
-	public static final JsonpValueParser<ShardProfile> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardProfile::setupShardProfileParser);
+	public static final JsonpDeserializer<ShardProfile> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardProfile::setupShardProfileDeserializer);
 
-	protected static void setupShardProfileParser(DelegatingJsonpValueParser<ShardProfile.Builder> op) {
+	protected static void setupShardProfileDeserializer(DelegatingDeserializer<ShardProfile.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpValueParser.arrayParser(AggregationProfile.JSONP_PARSER), "aggregations");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::searches, JsonpValueParser.arrayParser(SearchProfile.JSONP_PARSER), "searches");
+		op.add(Builder::aggregations, JsonpDeserializer.arrayDeserializer(AggregationProfile.DESERIALIZER),
+				"aggregations");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::searches, JsonpDeserializer.arrayDeserializer(SearchProfile.DESERIALIZER), "searches");
 
 	}
 

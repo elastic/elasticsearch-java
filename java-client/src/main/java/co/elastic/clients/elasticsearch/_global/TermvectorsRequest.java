@@ -27,13 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._global.termvectors.Filter;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -563,22 +563,22 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for TermvectorsRequest
+	 * Create a json deserializer for TermvectorsRequest
 	 */
-	public static <TDocument> JsonpValueParser<TermvectorsRequest<TDocument>> createTermvectorsRequestParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> TermvectorsRequest.setupTermvectorsRequestParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<TermvectorsRequest<TDocument>> createTermvectorsRequestDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> TermvectorsRequest.setupTermvectorsRequestDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupTermvectorsRequestParser(
-			DelegatingJsonpValueParser<TermvectorsRequest.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupTermvectorsRequestDeserializer(
+			DelegatingDeserializer<TermvectorsRequest.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::doc, tDocumentParser, "doc");
-		op.add(Builder::filter, Filter.JSONP_PARSER, "filter");
-		op.add(Builder::perFieldAnalyzer, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
-				"per_field_analyzer");
+		op.add(Builder::doc, tDocumentDeserializer, "doc");
+		op.add(Builder::filter, Filter.DESERIALIZER, "filter");
+		op.add(Builder::perFieldAnalyzer,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "per_field_analyzer");
 
 	}
 
@@ -687,5 +687,5 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, TermvectorsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, TermvectorsResponse.DESERIALIZER);
 }

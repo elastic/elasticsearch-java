@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch.cluster.stats.ClusterIndices;
 import co.elastic.clients.elasticsearch.cluster.stats.ClusterNodes;
 import co.elastic.clients.elasticsearch.nodes.NodesResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -266,19 +266,19 @@ public final class StatsResponse extends NodesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StatsResponse
+	 * Json deserializer for StatsResponse
 	 */
-	public static final JsonpValueParser<StatsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseParser);
+	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
 
-	protected static void setupStatsResponseParser(DelegatingJsonpValueParser<StatsResponse.Builder> op) {
-		NodesResponseBase.setupNodesResponseBaseParser(op);
-		op.add(Builder::clusterName, JsonpValueParser.stringParser(), "cluster_name");
-		op.add(Builder::clusterUuid, JsonpValueParser.stringParser(), "cluster_uuid");
-		op.add(Builder::indices, ClusterIndices.JSONP_PARSER, "indices");
-		op.add(Builder::nodes, ClusterNodes.JSONP_PARSER, "nodes");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
-		op.add(Builder::timestamp, JsonpValueParser.numberParser(), "timestamp");
+	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
+		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
+		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
+		op.add(Builder::indices, ClusterIndices.DESERIALIZER, "indices");
+		op.add(Builder::nodes, ClusterNodes.DESERIALIZER, "nodes");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
 
 	}
 

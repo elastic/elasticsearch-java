@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,13 @@ public final class RefreshResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RefreshResponse
+	 * Json deserializer for RefreshResponse
 	 */
-	public static final JsonpValueParser<RefreshResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RefreshResponse::setupRefreshResponseParser);
+	public static final JsonpDeserializer<RefreshResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RefreshResponse::setupRefreshResponseDeserializer);
 
-	protected static void setupRefreshResponseParser(DelegatingJsonpValueParser<RefreshResponse.Builder> op) {
-		ShardsOperationResponseBase.setupShardsOperationResponseBaseParser(op);
+	protected static void setupRefreshResponseDeserializer(DelegatingDeserializer<RefreshResponse.Builder> op) {
+		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -354,20 +354,23 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TrainedModelConfigMetadata
+	 * Json deserializer for TrainedModelConfigMetadata
 	 */
-	public static final JsonpValueParser<TrainedModelConfigMetadata> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TrainedModelConfigMetadata::setupTrainedModelConfigMetadataParser);
+	public static final JsonpDeserializer<TrainedModelConfigMetadata> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TrainedModelConfigMetadata::setupTrainedModelConfigMetadataDeserializer);
 
-	protected static void setupTrainedModelConfigMetadataParser(
-			DelegatingJsonpValueParser<TrainedModelConfigMetadata.Builder> op) {
+	protected static void setupTrainedModelConfigMetadataDeserializer(
+			DelegatingDeserializer<TrainedModelConfigMetadata.Builder> op) {
 
-		op.add(Builder::modelAliases, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "model_aliases");
-		op.add(Builder::featureImportanceBaseline, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
+		op.add(Builder::modelAliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"model_aliases");
+		op.add(Builder::featureImportanceBaseline,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"feature_importance_baseline");
-		op.add(Builder::hyperparameters, JsonpValueParser.arrayParser(Hyperparameter.JSONP_PARSER), "hyperparameters");
-		op.add(Builder::totalFeatureImportance, JsonpValueParser.arrayParser(TotalFeatureImportance.JSONP_PARSER),
-				"total_feature_importance");
+		op.add(Builder::hyperparameters, JsonpDeserializer.arrayDeserializer(Hyperparameter.DESERIALIZER),
+				"hyperparameters");
+		op.add(Builder::totalFeatureImportance,
+				JsonpDeserializer.arrayDeserializer(TotalFeatureImportance.DESERIALIZER), "total_feature_importance");
 
 	}
 

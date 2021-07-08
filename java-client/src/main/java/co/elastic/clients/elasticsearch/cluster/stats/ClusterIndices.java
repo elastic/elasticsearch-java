@@ -29,11 +29,11 @@ import co.elastic.clients.elasticsearch._types.FielddataStats;
 import co.elastic.clients.elasticsearch._types.QueryCacheStats;
 import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -510,24 +510,24 @@ public final class ClusterIndices implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterIndices
+	 * Json deserializer for ClusterIndices
 	 */
-	public static final JsonpValueParser<ClusterIndices> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterIndices::setupClusterIndicesParser);
+	public static final JsonpDeserializer<ClusterIndices> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterIndices::setupClusterIndicesDeserializer);
 
-	protected static void setupClusterIndicesParser(DelegatingJsonpValueParser<ClusterIndices.Builder> op) {
+	protected static void setupClusterIndicesDeserializer(DelegatingDeserializer<ClusterIndices.Builder> op) {
 
-		op.add(Builder::completion, CompletionStats.JSONP_PARSER, "completion");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::docs, DocStats.JSONP_PARSER, "docs");
-		op.add(Builder::fielddata, FielddataStats.JSONP_PARSER, "fielddata");
-		op.add(Builder::queryCache, QueryCacheStats.JSONP_PARSER, "query_cache");
-		op.add(Builder::segments, SegmentsStats.JSONP_PARSER, "segments");
-		op.add(Builder::shards, ClusterIndicesShards.JSONP_PARSER, "shards");
-		op.add(Builder::store, StoreStats.JSONP_PARSER, "store");
-		op.add(Builder::mappings, FieldTypesMappings.JSONP_PARSER, "mappings");
-		op.add(Builder::analysis, CharFilterTypes.JSONP_PARSER, "analysis");
-		op.add(Builder::versions, JsonpValueParser.arrayParser(IndicesVersions.JSONP_PARSER), "versions");
+		op.add(Builder::completion, CompletionStats.DESERIALIZER, "completion");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::docs, DocStats.DESERIALIZER, "docs");
+		op.add(Builder::fielddata, FielddataStats.DESERIALIZER, "fielddata");
+		op.add(Builder::queryCache, QueryCacheStats.DESERIALIZER, "query_cache");
+		op.add(Builder::segments, SegmentsStats.DESERIALIZER, "segments");
+		op.add(Builder::shards, ClusterIndicesShards.DESERIALIZER, "shards");
+		op.add(Builder::store, StoreStats.DESERIALIZER, "store");
+		op.add(Builder::mappings, FieldTypesMappings.DESERIALIZER, "mappings");
+		op.add(Builder::analysis, CharFilterTypes.DESERIALIZER, "analysis");
+		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(IndicesVersions.DESERIALIZER), "versions");
 
 	}
 

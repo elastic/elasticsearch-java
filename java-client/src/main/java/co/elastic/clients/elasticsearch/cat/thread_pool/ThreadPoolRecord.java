@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.thread_pool;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -738,33 +738,33 @@ public final class ThreadPoolRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ThreadPoolRecord
+	 * Json deserializer for ThreadPoolRecord
 	 */
-	public static final JsonpValueParser<ThreadPoolRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ThreadPoolRecord::setupThreadPoolRecordParser);
+	public static final JsonpDeserializer<ThreadPoolRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ThreadPoolRecord::setupThreadPoolRecordDeserializer);
 
-	protected static void setupThreadPoolRecordParser(DelegatingJsonpValueParser<ThreadPoolRecord.Builder> op) {
+	protected static void setupThreadPoolRecordDeserializer(DelegatingDeserializer<ThreadPoolRecord.Builder> op) {
 
-		op.add(Builder::nodeName, JsonpValueParser.stringParser(), "node_name", "nn");
-		op.add(Builder::nodeId, JsonpValueParser.stringParser(), "node_id", "id");
-		op.add(Builder::ephemeralNodeId, JsonpValueParser.stringParser(), "ephemeral_node_id", "eid");
-		op.add(Builder::pid, JsonpValueParser.stringParser(), "pid", "p");
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host", "h");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip", "i");
-		op.add(Builder::port, JsonpValueParser.stringParser(), "port", "po");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name", "n");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type", "t");
-		op.add(Builder::active, JsonpValueParser.stringParser(), "active", "a");
-		op.add(Builder::poolSize, JsonpValueParser.stringParser(), "pool_size", "psz");
-		op.add(Builder::queue, JsonpValueParser.stringParser(), "queue", "q");
-		op.add(Builder::queueSize, JsonpValueParser.stringParser(), "queue_size", "qs");
-		op.add(Builder::rejected, JsonpValueParser.stringParser(), "rejected", "r");
-		op.add(Builder::largest, JsonpValueParser.stringParser(), "largest", "l");
-		op.add(Builder::completed, JsonpValueParser.stringParser(), "completed", "c");
-		op.add(Builder::core, JsonpValueParser.stringParser(), "core", "cr");
-		op.add(Builder::max, JsonpValueParser.stringParser(), "max", "mx");
-		op.add(Builder::size, JsonpValueParser.stringParser(), "size", "sz");
-		op.add(Builder::keepAlive, JsonpValueParser.stringParser(), "keep_alive", "ka");
+		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name", "nn");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id", "id");
+		op.add(Builder::ephemeralNodeId, JsonpDeserializer.stringDeserializer(), "ephemeral_node_id", "eid");
+		op.add(Builder::pid, JsonpDeserializer.stringDeserializer(), "pid", "p");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip", "i");
+		op.add(Builder::port, JsonpDeserializer.stringDeserializer(), "port", "po");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name", "n");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");
+		op.add(Builder::active, JsonpDeserializer.stringDeserializer(), "active", "a");
+		op.add(Builder::poolSize, JsonpDeserializer.stringDeserializer(), "pool_size", "psz");
+		op.add(Builder::queue, JsonpDeserializer.stringDeserializer(), "queue", "q");
+		op.add(Builder::queueSize, JsonpDeserializer.stringDeserializer(), "queue_size", "qs");
+		op.add(Builder::rejected, JsonpDeserializer.stringDeserializer(), "rejected", "r");
+		op.add(Builder::largest, JsonpDeserializer.stringDeserializer(), "largest", "l");
+		op.add(Builder::completed, JsonpDeserializer.stringDeserializer(), "completed", "c");
+		op.add(Builder::core, JsonpDeserializer.stringDeserializer(), "core", "cr");
+		op.add(Builder::max, JsonpDeserializer.stringDeserializer(), "max", "mx");
+		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size", "sz");
+		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive", "ka");
 
 	}
 

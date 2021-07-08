@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -108,15 +108,16 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StartDataFrameAnalyticsResponse
+	 * Json deserializer for StartDataFrameAnalyticsResponse
 	 */
-	public static final JsonpValueParser<StartDataFrameAnalyticsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StartDataFrameAnalyticsResponse::setupStartDataFrameAnalyticsResponseParser);
+	public static final JsonpDeserializer<StartDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					StartDataFrameAnalyticsResponse::setupStartDataFrameAnalyticsResponseDeserializer);
 
-	protected static void setupStartDataFrameAnalyticsResponseParser(
-			DelegatingJsonpValueParser<StartDataFrameAnalyticsResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
+	protected static void setupStartDataFrameAnalyticsResponseDeserializer(
+			DelegatingDeserializer<StartDataFrameAnalyticsResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -203,19 +203,19 @@ public final class DataframeAnalyticsStatsMemoryUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalyticsStatsMemoryUsage
+	 * Json deserializer for DataframeAnalyticsStatsMemoryUsage
 	 */
-	public static final JsonpValueParser<DataframeAnalyticsStatsMemoryUsage> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeAnalyticsStatsMemoryUsage> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeAnalyticsStatsMemoryUsage::setupDataframeAnalyticsStatsMemoryUsageParser);
+					DataframeAnalyticsStatsMemoryUsage::setupDataframeAnalyticsStatsMemoryUsageDeserializer);
 
-	protected static void setupDataframeAnalyticsStatsMemoryUsageParser(
-			DelegatingJsonpValueParser<DataframeAnalyticsStatsMemoryUsage.Builder> op) {
+	protected static void setupDataframeAnalyticsStatsMemoryUsageDeserializer(
+			DelegatingDeserializer<DataframeAnalyticsStatsMemoryUsage.Builder> op) {
 
-		op.add(Builder::memoryReestimateBytes, JsonpValueParser.numberParser(), "memory_reestimate_bytes");
-		op.add(Builder::peakUsageBytes, JsonpValueParser.numberParser(), "peak_usage_bytes");
-		op.add(Builder::status, JsonpValueParser.stringParser(), "status");
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp");
+		op.add(Builder::memoryReestimateBytes, JsonpDeserializer.numberDeserializer(), "memory_reestimate_bytes");
+		op.add(Builder::peakUsageBytes, JsonpDeserializer.numberDeserializer(), "peak_usage_bytes");
+		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}
 

@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -186,20 +186,20 @@ public final class NamedQuery<TQuery> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for NamedQuery
+	 * Create a json deserializer for NamedQuery
 	 */
-	public static <TQuery> JsonpValueParser<NamedQuery<TQuery>> createNamedQueryParser(
-			JsonpValueParser<TQuery> tQueryParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TQuery>>) Builder::new,
-				op -> NamedQuery.setupNamedQueryParser(op, tQueryParser));
+	public static <TQuery> JsonpDeserializer<NamedQuery<TQuery>> createNamedQueryDeserializer(
+			JsonpDeserializer<TQuery> tQueryDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TQuery>>) Builder::new,
+				op -> NamedQuery.setupNamedQueryDeserializer(op, tQueryDeserializer));
 	};
 
-	protected static <TQuery> void setupNamedQueryParser(DelegatingJsonpValueParser<NamedQuery.Builder<TQuery>> op,
-			JsonpValueParser<TQuery> tQueryParser) {
+	protected static <TQuery> void setupNamedQueryDeserializer(DelegatingDeserializer<NamedQuery.Builder<TQuery>> op,
+			JsonpDeserializer<TQuery> tQueryDeserializer) {
 
-		op.add(Builder::boost, JsonpValueParser.numberParser(), "boost");
-		op.add(Builder::_name, JsonpValueParser.stringParser(), "_name");
-		op.add(Builder::ignoreUnmapped, JsonpValueParser.booleanParser(), "ignore_unmapped");
+		op.add(Builder::boost, JsonpDeserializer.numberDeserializer(), "boost");
+		op.add(Builder::_name, JsonpDeserializer.stringDeserializer(), "_name");
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
 	}
 

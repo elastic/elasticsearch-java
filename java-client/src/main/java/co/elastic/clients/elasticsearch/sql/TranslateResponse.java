@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -230,19 +230,18 @@ public final class TranslateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TranslateResponse
+	 * Json deserializer for TranslateResponse
 	 */
-	public static final JsonpValueParser<TranslateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TranslateResponse::setupTranslateResponseParser);
+	public static final JsonpDeserializer<TranslateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TranslateResponse::setupTranslateResponseDeserializer);
 
-	protected static void setupTranslateResponseParser(DelegatingJsonpValueParser<TranslateResponse.Builder> op) {
+	protected static void setupTranslateResponseDeserializer(DelegatingDeserializer<TranslateResponse.Builder> op) {
 
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::_source, JsonpValueParser.jsonValueParser(), "_source");
-		op.add(Builder::fields,
-				JsonpValueParser.arrayParser(JsonpValueParser.stringMapParser(JsonpValueParser.stringParser())),
-				"fields");
-		op.add(Builder::sort, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "sort");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())), "fields");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 
 	}
 

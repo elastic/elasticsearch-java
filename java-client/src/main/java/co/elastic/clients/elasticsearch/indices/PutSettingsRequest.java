@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.put_settings.IndexSettingsBody;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -322,14 +322,14 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutSettingsRequest
+	 * Json deserializer for PutSettingsRequest
 	 */
-	public static final JsonpValueParser<PutSettingsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutSettingsRequest::setupPutSettingsRequestParser);
+	public static final JsonpDeserializer<PutSettingsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutSettingsRequest::setupPutSettingsRequestDeserializer);
 
-	protected static void setupPutSettingsRequestParser(DelegatingJsonpValueParser<PutSettingsRequest.Builder> op) {
+	protected static void setupPutSettingsRequestDeserializer(DelegatingDeserializer<PutSettingsRequest.Builder> op) {
 
-		op.add(Builder::value, IndexSettingsBody.JSONP_PARSER, "value");
+		op.add(Builder::value, IndexSettingsBody.DESERIALIZER, "value");
 
 	}
 
@@ -396,5 +396,5 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutSettingsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutSettingsResponse.DESERIALIZER);
 }

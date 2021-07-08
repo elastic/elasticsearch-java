@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -459,25 +459,26 @@ public final class AnalysisConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AnalysisConfig
+	 * Json deserializer for AnalysisConfig
 	 */
-	public static final JsonpValueParser<AnalysisConfig> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AnalysisConfig::setupAnalysisConfigParser);
+	public static final JsonpDeserializer<AnalysisConfig> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AnalysisConfig::setupAnalysisConfigDeserializer);
 
-	protected static void setupAnalysisConfigParser(DelegatingJsonpValueParser<AnalysisConfig.Builder> op) {
+	protected static void setupAnalysisConfigDeserializer(DelegatingDeserializer<AnalysisConfig.Builder> op) {
 
-		op.add(Builder::bucketSpan, JsonpValueParser.stringParser(), "bucket_span");
-		op.add(Builder::categorizationFieldName, JsonpValueParser.stringParser(), "categorization_field_name");
-		op.add(Builder::categorizationFilters, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"categorization_filters");
-		op.add(Builder::detectors, JsonpValueParser.arrayParser(Detector.JSONP_PARSER), "detectors");
-		op.add(Builder::influencers, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "influencers");
-		op.add(Builder::latency, JsonpValueParser.jsonValueParser(), "latency");
-		op.add(Builder::multivariateByFields, JsonpValueParser.booleanParser(), "multivariate_by_fields");
-		op.add(Builder::perPartitionCategorization, PerPartitionCategorization.JSONP_PARSER,
+		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
+		op.add(Builder::categorizationFieldName, JsonpDeserializer.stringDeserializer(), "categorization_field_name");
+		op.add(Builder::categorizationFilters,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
+		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector.DESERIALIZER), "detectors");
+		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"influencers");
+		op.add(Builder::latency, JsonpDeserializer.jsonValueDeserializer(), "latency");
+		op.add(Builder::multivariateByFields, JsonpDeserializer.booleanDeserializer(), "multivariate_by_fields");
+		op.add(Builder::perPartitionCategorization, PerPartitionCategorization.DESERIALIZER,
 				"per_partition_categorization");
-		op.add(Builder::summaryCountFieldName, JsonpValueParser.stringParser(), "summary_count_field_name");
-		op.add(Builder::categorizationAnalyzer, JsonpValueParser.jsonValueParser(), "categorization_analyzer");
+		op.add(Builder::summaryCountFieldName, JsonpDeserializer.stringDeserializer(), "summary_count_field_name");
+		op.add(Builder::categorizationAnalyzer, JsonpDeserializer.jsonValueDeserializer(), "categorization_analyzer");
 
 	}
 

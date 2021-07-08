@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_token.AuthenticatedUser;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -263,21 +263,21 @@ public final class GetTokenResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetTokenResponse
+	 * Json deserializer for GetTokenResponse
 	 */
-	public static final JsonpValueParser<GetTokenResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetTokenResponse::setupGetTokenResponseParser);
+	public static final JsonpDeserializer<GetTokenResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetTokenResponse::setupGetTokenResponseDeserializer);
 
-	protected static void setupGetTokenResponseParser(DelegatingJsonpValueParser<GetTokenResponse.Builder> op) {
+	protected static void setupGetTokenResponseDeserializer(DelegatingDeserializer<GetTokenResponse.Builder> op) {
 
-		op.add(Builder::accessToken, JsonpValueParser.stringParser(), "access_token");
-		op.add(Builder::expiresIn, JsonpValueParser.numberParser(), "expires_in");
-		op.add(Builder::scope, JsonpValueParser.stringParser(), "scope");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
-		op.add(Builder::refreshToken, JsonpValueParser.stringParser(), "refresh_token");
-		op.add(Builder::kerberosAuthenticationResponseToken, JsonpValueParser.stringParser(),
+		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
+		op.add(Builder::expiresIn, JsonpDeserializer.numberDeserializer(), "expires_in");
+		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
+		op.add(Builder::kerberosAuthenticationResponseToken, JsonpDeserializer.stringDeserializer(),
 				"kerberos_authentication_response_token");
-		op.add(Builder::authentication, AuthenticatedUser.JSONP_PARSER, "authentication");
+		op.add(Builder::authentication, AuthenticatedUser.DESERIALIZER, "authentication");
 
 	}
 

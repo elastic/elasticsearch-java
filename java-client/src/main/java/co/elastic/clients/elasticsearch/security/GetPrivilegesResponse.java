@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.security.put_privileges.Actions;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -73,15 +73,15 @@ public final class GetPrivilegesResponse extends AdditionalProperties<String, Ma
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetPrivilegesResponse
+	 * Json deserializer for GetPrivilegesResponse
 	 */
-	public static final JsonpValueParser<GetPrivilegesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetPrivilegesResponse::setupGetPrivilegesResponseParser);
+	public static final JsonpDeserializer<GetPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetPrivilegesResponse::setupGetPrivilegesResponseDeserializer);
 
-	protected static void setupGetPrivilegesResponseParser(
-			DelegatingJsonpValueParser<GetPrivilegesResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				JsonpValueParser.stringMapParser(Actions.JSONP_PARSER));
+	protected static void setupGetPrivilegesResponseDeserializer(
+			DelegatingDeserializer<GetPrivilegesResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				JsonpDeserializer.stringMapDeserializer(Actions.DESERIALIZER));
 
 	}
 

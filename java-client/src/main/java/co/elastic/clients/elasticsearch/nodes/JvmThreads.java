@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class JvmThreads implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for JvmThreads
+	 * Json deserializer for JvmThreads
 	 */
-	public static final JsonpValueParser<JvmThreads> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, JvmThreads::setupJvmThreadsParser);
+	public static final JsonpDeserializer<JvmThreads> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, JvmThreads::setupJvmThreadsDeserializer);
 
-	protected static void setupJvmThreadsParser(DelegatingJsonpValueParser<JvmThreads.Builder> op) {
+	protected static void setupJvmThreadsDeserializer(DelegatingDeserializer<JvmThreads.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::peakCount, JsonpValueParser.numberParser(), "peak_count");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::peakCount, JsonpDeserializer.numberDeserializer(), "peak_count");
 
 	}
 

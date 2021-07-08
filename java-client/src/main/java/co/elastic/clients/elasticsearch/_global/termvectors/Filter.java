@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.termvectors;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -281,20 +281,20 @@ public final class Filter implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Filter
+	 * Json deserializer for Filter
 	 */
-	public static final JsonpValueParser<Filter> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Filter::setupFilterParser);
+	public static final JsonpDeserializer<Filter> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Filter::setupFilterDeserializer);
 
-	protected static void setupFilterParser(DelegatingJsonpValueParser<Filter.Builder> op) {
+	protected static void setupFilterDeserializer(DelegatingDeserializer<Filter.Builder> op) {
 
-		op.add(Builder::maxDocFreq, JsonpValueParser.numberParser(), "max_doc_freq");
-		op.add(Builder::maxNumTerms, JsonpValueParser.numberParser(), "max_num_terms");
-		op.add(Builder::maxTermFreq, JsonpValueParser.numberParser(), "max_term_freq");
-		op.add(Builder::maxWordLength, JsonpValueParser.numberParser(), "max_word_length");
-		op.add(Builder::minDocFreq, JsonpValueParser.numberParser(), "min_doc_freq");
-		op.add(Builder::minTermFreq, JsonpValueParser.numberParser(), "min_term_freq");
-		op.add(Builder::minWordLength, JsonpValueParser.numberParser(), "min_word_length");
+		op.add(Builder::maxDocFreq, JsonpDeserializer.numberDeserializer(), "max_doc_freq");
+		op.add(Builder::maxNumTerms, JsonpDeserializer.numberDeserializer(), "max_num_terms");
+		op.add(Builder::maxTermFreq, JsonpDeserializer.numberDeserializer(), "max_term_freq");
+		op.add(Builder::maxWordLength, JsonpDeserializer.numberDeserializer(), "max_word_length");
+		op.add(Builder::minDocFreq, JsonpDeserializer.numberDeserializer(), "min_doc_freq");
+		op.add(Builder::minTermFreq, JsonpDeserializer.numberDeserializer(), "min_term_freq");
+		op.add(Builder::minWordLength, JsonpDeserializer.numberDeserializer(), "min_word_length");
 
 	}
 

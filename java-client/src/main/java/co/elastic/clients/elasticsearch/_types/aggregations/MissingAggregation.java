@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -134,15 +134,15 @@ public final class MissingAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MissingAggregation
+	 * Json deserializer for MissingAggregation
 	 */
-	public static final JsonpValueParser<MissingAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MissingAggregation::setupMissingAggregationParser);
+	public static final JsonpDeserializer<MissingAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MissingAggregation::setupMissingAggregationDeserializer);
 
-	protected static void setupMissingAggregationParser(DelegatingJsonpValueParser<MissingAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::missing, JsonpValueParser.jsonValueParser(), "missing");
+	protected static void setupMissingAggregationDeserializer(DelegatingDeserializer<MissingAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
 
 	}
 

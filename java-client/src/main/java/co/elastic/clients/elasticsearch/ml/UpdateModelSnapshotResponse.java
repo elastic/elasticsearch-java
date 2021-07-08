@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -107,15 +107,15 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateModelSnapshotResponse
+	 * Json deserializer for UpdateModelSnapshotResponse
 	 */
-	public static final JsonpValueParser<UpdateModelSnapshotResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateModelSnapshotResponse::setupUpdateModelSnapshotResponseParser);
+	public static final JsonpDeserializer<UpdateModelSnapshotResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpdateModelSnapshotResponse::setupUpdateModelSnapshotResponseDeserializer);
 
-	protected static void setupUpdateModelSnapshotResponseParser(
-			DelegatingJsonpValueParser<UpdateModelSnapshotResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::model, ModelSnapshot.JSONP_PARSER, "model");
+	protected static void setupUpdateModelSnapshotResponseDeserializer(
+			DelegatingDeserializer<UpdateModelSnapshotResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::model, ModelSnapshot.DESERIALIZER, "model");
 
 	}
 

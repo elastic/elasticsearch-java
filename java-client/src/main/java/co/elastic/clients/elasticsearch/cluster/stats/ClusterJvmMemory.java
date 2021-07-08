@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class ClusterJvmMemory implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterJvmMemory
+	 * Json deserializer for ClusterJvmMemory
 	 */
-	public static final JsonpValueParser<ClusterJvmMemory> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterJvmMemory::setupClusterJvmMemoryParser);
+	public static final JsonpDeserializer<ClusterJvmMemory> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterJvmMemory::setupClusterJvmMemoryDeserializer);
 
-	protected static void setupClusterJvmMemoryParser(DelegatingJsonpValueParser<ClusterJvmMemory.Builder> op) {
+	protected static void setupClusterJvmMemoryDeserializer(DelegatingDeserializer<ClusterJvmMemory.Builder> op) {
 
-		op.add(Builder::heapMaxInBytes, JsonpValueParser.numberParser(), "heap_max_in_bytes");
-		op.add(Builder::heapUsedInBytes, JsonpValueParser.numberParser(), "heap_used_in_bytes");
+		op.add(Builder::heapMaxInBytes, JsonpDeserializer.numberDeserializer(), "heap_max_in_bytes");
+		op.add(Builder::heapUsedInBytes, JsonpDeserializer.numberDeserializer(), "heap_used_in_bytes");
 
 	}
 

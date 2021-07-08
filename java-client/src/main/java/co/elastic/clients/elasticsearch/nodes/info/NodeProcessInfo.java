@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -161,16 +161,16 @@ public final class NodeProcessInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeProcessInfo
+	 * Json deserializer for NodeProcessInfo
 	 */
-	public static final JsonpValueParser<NodeProcessInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeProcessInfo::setupNodeProcessInfoParser);
+	public static final JsonpDeserializer<NodeProcessInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeProcessInfo::setupNodeProcessInfoDeserializer);
 
-	protected static void setupNodeProcessInfoParser(DelegatingJsonpValueParser<NodeProcessInfo.Builder> op) {
+	protected static void setupNodeProcessInfoDeserializer(DelegatingDeserializer<NodeProcessInfo.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.numberParser(), "id");
-		op.add(Builder::mlockall, JsonpValueParser.booleanParser(), "mlockall");
-		op.add(Builder::refreshIntervalInMillis, JsonpValueParser.numberParser(), "refresh_interval_in_millis");
+		op.add(Builder::id, JsonpDeserializer.numberDeserializer(), "id");
+		op.add(Builder::mlockall, JsonpDeserializer.booleanDeserializer(), "mlockall");
+		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.numberDeserializer(), "refresh_interval_in_millis");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,15 +125,15 @@ public final class OverallBucketJob implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for OverallBucketJob
+	 * Json deserializer for OverallBucketJob
 	 */
-	public static final JsonpValueParser<OverallBucketJob> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, OverallBucketJob::setupOverallBucketJobParser);
+	public static final JsonpDeserializer<OverallBucketJob> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, OverallBucketJob::setupOverallBucketJobDeserializer);
 
-	protected static void setupOverallBucketJobParser(DelegatingJsonpValueParser<OverallBucketJob.Builder> op) {
+	protected static void setupOverallBucketJobDeserializer(DelegatingDeserializer<OverallBucketJob.Builder> op) {
 
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::maxAnomalyScore, JsonpValueParser.numberParser(), "max_anomaly_score");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::maxAnomalyScore, JsonpDeserializer.numberDeserializer(), "max_anomaly_score");
 
 	}
 

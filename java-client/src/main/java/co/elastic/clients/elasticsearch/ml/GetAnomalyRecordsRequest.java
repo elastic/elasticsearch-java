@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -363,21 +363,21 @@ public final class GetAnomalyRecordsRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetAnomalyRecordsRequest
+	 * Json deserializer for GetAnomalyRecordsRequest
 	 */
-	public static final JsonpValueParser<GetAnomalyRecordsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetAnomalyRecordsRequest::setupGetAnomalyRecordsRequestParser);
+	public static final JsonpDeserializer<GetAnomalyRecordsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetAnomalyRecordsRequest::setupGetAnomalyRecordsRequestDeserializer);
 
-	protected static void setupGetAnomalyRecordsRequestParser(
-			DelegatingJsonpValueParser<GetAnomalyRecordsRequest.Builder> op) {
+	protected static void setupGetAnomalyRecordsRequestDeserializer(
+			DelegatingDeserializer<GetAnomalyRecordsRequest.Builder> op) {
 
-		op.add(Builder::desc, JsonpValueParser.booleanParser(), "desc");
-		op.add(Builder::excludeInterim, JsonpValueParser.booleanParser(), "exclude_interim");
-		op.add(Builder::page, Page.JSONP_PARSER, "page");
-		op.add(Builder::recordScore, JsonpValueParser.numberParser(), "record_score");
-		op.add(Builder::sort, JsonpValueParser.stringParser(), "sort");
-		op.add(Builder::start, JsonpValueParser.stringParser(), "start");
-		op.add(Builder::end, JsonpValueParser.stringParser(), "end");
+		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
+		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
+		op.add(Builder::page, Page.DESERIALIZER, "page");
+		op.add(Builder::recordScore, JsonpDeserializer.numberDeserializer(), "record_score");
+		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
+		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 
 	}
 
@@ -427,5 +427,5 @@ public final class GetAnomalyRecordsRequest extends RequestBase implements ToJso
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetAnomalyRecordsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GetAnomalyRecordsResponse.DESERIALIZER);
 }

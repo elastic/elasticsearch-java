@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -161,15 +161,16 @@ public final class Latest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Latest
+	 * Json deserializer for Latest
 	 */
-	public static final JsonpValueParser<Latest> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Latest::setupLatestParser);
+	public static final JsonpDeserializer<Latest> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Latest::setupLatestDeserializer);
 
-	protected static void setupLatestParser(DelegatingJsonpValueParser<Latest.Builder> op) {
+	protected static void setupLatestDeserializer(DelegatingDeserializer<Latest.Builder> op) {
 
-		op.add(Builder::sort, JsonpValueParser.stringParser(), "sort");
-		op.add(Builder::uniqueKey, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "unique_key");
+		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
+		op.add(Builder::uniqueKey, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"unique_key");
 
 	}
 

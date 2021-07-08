@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -265,21 +265,22 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DateIndexNameProcessor
+	 * Json deserializer for DateIndexNameProcessor
 	 */
-	public static final JsonpValueParser<DateIndexNameProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DateIndexNameProcessor::setupDateIndexNameProcessorParser);
+	public static final JsonpDeserializer<DateIndexNameProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DateIndexNameProcessor::setupDateIndexNameProcessorDeserializer);
 
-	protected static void setupDateIndexNameProcessorParser(
-			DelegatingJsonpValueParser<DateIndexNameProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::dateFormats, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "date_formats");
-		op.add(Builder::dateRounding, JsonpValueParser.jsonValueParser(), "date_rounding");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::indexNameFormat, JsonpValueParser.stringParser(), "index_name_format");
-		op.add(Builder::indexNamePrefix, JsonpValueParser.stringParser(), "index_name_prefix");
-		op.add(Builder::locale, JsonpValueParser.stringParser(), "locale");
-		op.add(Builder::timezone, JsonpValueParser.stringParser(), "timezone");
+	protected static void setupDateIndexNameProcessorDeserializer(
+			DelegatingDeserializer<DateIndexNameProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::dateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"date_formats");
+		op.add(Builder::dateRounding, JsonpDeserializer.jsonValueDeserializer(), "date_rounding");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::indexNameFormat, JsonpDeserializer.stringDeserializer(), "index_name_format");
+		op.add(Builder::indexNamePrefix, JsonpDeserializer.stringDeserializer(), "index_name_prefix");
+		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
+		op.add(Builder::timezone, JsonpDeserializer.stringDeserializer(), "timezone");
 
 	}
 

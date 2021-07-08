@@ -20,7 +20,7 @@
 package co.elastic.clients.util;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 
 import jakarta.json.stream.JsonGenerator;
@@ -41,10 +41,10 @@ public interface StringEnum extends ToJsonp {
         generator.write(jsonValue());
     }
 
-    class JsonpParser<T extends Enum<T> & StringEnum> extends JsonpValueParser<T> {
+    class Deserializer<T extends Enum<T> & StringEnum> extends JsonpDeserializer<T> {
         private final Map<String, T> lookupTable;
 
-        public JsonpParser(T[] values) {
+        public Deserializer(T[] values) {
             super(EnumSet.of(JsonParser.Event.VALUE_STRING));
 
             // Use the same size calculation as in java.lang.Enum.enumConstantDirectory
@@ -55,9 +55,9 @@ public interface StringEnum extends ToJsonp {
         }
 
         @Override
-        public T parse(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+        public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
             String value = parser.getString();
-            return parse(value, parser);
+            return deserialize(value, parser);
         }
 
         /**
@@ -68,7 +68,7 @@ public interface StringEnum extends ToJsonp {
          * @return the enum member
          * @throws JsonParsingException if no matching enum was found
          */
-        public T parse(String value, JsonParser parser) {
+        public T deserialize(String value, JsonParser parser) {
             T result = this.lookupTable.get(value);
             if (result == null) {
                 throw new JsonParsingException("Invalid enum [" + value + "]", parser.getLocation());

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -224,19 +224,19 @@ public final class IndexSettingBlocks implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexSettingBlocks
+	 * Json deserializer for IndexSettingBlocks
 	 */
-	public static final JsonpValueParser<IndexSettingBlocks> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexSettingBlocks::setupIndexSettingBlocksParser);
+	public static final JsonpDeserializer<IndexSettingBlocks> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexSettingBlocks::setupIndexSettingBlocksDeserializer);
 
-	protected static void setupIndexSettingBlocksParser(DelegatingJsonpValueParser<IndexSettingBlocks.Builder> op) {
+	protected static void setupIndexSettingBlocksDeserializer(DelegatingDeserializer<IndexSettingBlocks.Builder> op) {
 
-		op.add(Builder::readOnly, JsonpValueParser.booleanParser(), "read_only", "index.blocks.read_only");
-		op.add(Builder::readOnlyAllowDelete, JsonpValueParser.booleanParser(), "read_only_allow_delete",
+		op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only", "index.blocks.read_only");
+		op.add(Builder::readOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(), "read_only_allow_delete",
 				"index.blocks.read_only_allow_delete");
-		op.add(Builder::read, JsonpValueParser.booleanParser(), "read", "index.blocks.read");
-		op.add(Builder::write, JsonpValueParser.jsonValueParser(), "write", "index.blocks.write");
-		op.add(Builder::metadata, JsonpValueParser.booleanParser(), "metadata", "index.blocks.metadata");
+		op.add(Builder::read, JsonpDeserializer.booleanDeserializer(), "read", "index.blocks.read");
+		op.add(Builder::write, JsonpDeserializer.jsonValueDeserializer(), "write", "index.blocks.write");
+		op.add(Builder::metadata, JsonpDeserializer.booleanDeserializer(), "metadata", "index.blocks.metadata");
 
 	}
 

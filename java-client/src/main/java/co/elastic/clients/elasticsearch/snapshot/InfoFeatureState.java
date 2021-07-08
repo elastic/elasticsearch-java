@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -151,15 +151,16 @@ public final class InfoFeatureState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InfoFeatureState
+	 * Json deserializer for InfoFeatureState
 	 */
-	public static final JsonpValueParser<InfoFeatureState> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InfoFeatureState::setupInfoFeatureStateParser);
+	public static final JsonpDeserializer<InfoFeatureState> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InfoFeatureState::setupInfoFeatureStateDeserializer);
 
-	protected static void setupInfoFeatureStateParser(DelegatingJsonpValueParser<InfoFeatureState.Builder> op) {
+	protected static void setupInfoFeatureStateDeserializer(DelegatingDeserializer<InfoFeatureState.Builder> op) {
 
-		op.add(Builder::featureName, JsonpValueParser.stringParser(), "feature_name");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
+		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
 
 	}
 

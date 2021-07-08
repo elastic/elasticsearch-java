@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -190,17 +190,17 @@ public final class DataDescription implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataDescription
+	 * Json deserializer for DataDescription
 	 */
-	public static final JsonpValueParser<DataDescription> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataDescription::setupDataDescriptionParser);
+	public static final JsonpDeserializer<DataDescription> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataDescription::setupDataDescriptionDeserializer);
 
-	protected static void setupDataDescriptionParser(DelegatingJsonpValueParser<DataDescription.Builder> op) {
+	protected static void setupDataDescriptionDeserializer(DelegatingDeserializer<DataDescription.Builder> op) {
 
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
-		op.add(Builder::timeField, JsonpValueParser.stringParser(), "time_field");
-		op.add(Builder::timeFormat, JsonpValueParser.stringParser(), "time_format");
-		op.add(Builder::fieldDelimiter, JsonpValueParser.stringParser(), "field_delimiter");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::timeField, JsonpDeserializer.stringDeserializer(), "time_field");
+		op.add(Builder::timeFormat, JsonpDeserializer.stringDeserializer(), "time_format");
+		op.add(Builder::fieldDelimiter, JsonpDeserializer.stringDeserializer(), "field_delimiter");
 
 	}
 

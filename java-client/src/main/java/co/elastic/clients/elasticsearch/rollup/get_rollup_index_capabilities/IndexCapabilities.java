@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_index_capabilities;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -142,14 +142,14 @@ public final class IndexCapabilities implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexCapabilities
+	 * Json deserializer for IndexCapabilities
 	 */
-	public static final JsonpValueParser<IndexCapabilities> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexCapabilities::setupIndexCapabilitiesParser);
+	public static final JsonpDeserializer<IndexCapabilities> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexCapabilities::setupIndexCapabilitiesDeserializer);
 
-	protected static void setupIndexCapabilitiesParser(DelegatingJsonpValueParser<IndexCapabilities.Builder> op) {
+	protected static void setupIndexCapabilitiesDeserializer(DelegatingDeserializer<IndexCapabilities.Builder> op) {
 
-		op.add(Builder::rollupJobs, JsonpValueParser.arrayParser(RollupJobSummary.JSONP_PARSER), "rollup_jobs");
+		op.add(Builder::rollupJobs, JsonpDeserializer.arrayDeserializer(RollupJobSummary.DESERIALIZER), "rollup_jobs");
 
 	}
 

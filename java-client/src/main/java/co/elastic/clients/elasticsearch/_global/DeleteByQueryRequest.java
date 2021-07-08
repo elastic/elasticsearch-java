@@ -28,11 +28,11 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -1088,16 +1088,17 @@ public final class DeleteByQueryRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteByQueryRequest
+	 * Json deserializer for DeleteByQueryRequest
 	 */
-	public static final JsonpValueParser<DeleteByQueryRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeleteByQueryRequest::setupDeleteByQueryRequestParser);
+	public static final JsonpDeserializer<DeleteByQueryRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DeleteByQueryRequest::setupDeleteByQueryRequestDeserializer);
 
-	protected static void setupDeleteByQueryRequestParser(DelegatingJsonpValueParser<DeleteByQueryRequest.Builder> op) {
+	protected static void setupDeleteByQueryRequestDeserializer(
+			DelegatingDeserializer<DeleteByQueryRequest.Builder> op) {
 
-		op.add(Builder::maxDocs, JsonpValueParser.numberParser(), "max_docs");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::slice, SlicedScroll.JSONP_PARSER, "slice");
+		op.add(Builder::maxDocs, JsonpDeserializer.numberDeserializer(), "max_docs");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::slice, SlicedScroll.DESERIALIZER, "slice");
 
 	}
 
@@ -1248,5 +1249,5 @@ public final class DeleteByQueryRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, DeleteByQueryResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, DeleteByQueryResponse.DESERIALIZER);
 }

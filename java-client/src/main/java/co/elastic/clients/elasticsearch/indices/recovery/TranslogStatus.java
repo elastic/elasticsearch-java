@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -225,19 +225,19 @@ public final class TranslogStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TranslogStatus
+	 * Json deserializer for TranslogStatus
 	 */
-	public static final JsonpValueParser<TranslogStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TranslogStatus::setupTranslogStatusParser);
+	public static final JsonpDeserializer<TranslogStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TranslogStatus::setupTranslogStatusDeserializer);
 
-	protected static void setupTranslogStatusParser(DelegatingJsonpValueParser<TranslogStatus.Builder> op) {
+	protected static void setupTranslogStatusDeserializer(DelegatingDeserializer<TranslogStatus.Builder> op) {
 
-		op.add(Builder::percent, JsonpValueParser.jsonValueParser(), "percent");
-		op.add(Builder::recovered, JsonpValueParser.numberParser(), "recovered");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::totalOnStart, JsonpValueParser.numberParser(), "total_on_start");
-		op.add(Builder::totalTime, JsonpValueParser.stringParser(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.jsonValueParser(), "total_time_in_millis");
+		op.add(Builder::percent, JsonpDeserializer.jsonValueDeserializer(), "percent");
+		op.add(Builder::recovered, JsonpDeserializer.numberDeserializer(), "recovered");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::totalOnStart, JsonpDeserializer.numberDeserializer(), "total_on_start");
+		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "total_time_in_millis");
 
 	}
 

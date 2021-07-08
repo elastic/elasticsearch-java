@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.cleanup_repository.CleanupRepositoryResults;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,15 +109,15 @@ public final class CleanupRepositoryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CleanupRepositoryResponse
+	 * Json deserializer for CleanupRepositoryResponse
 	 */
-	public static final JsonpValueParser<CleanupRepositoryResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CleanupRepositoryResponse::setupCleanupRepositoryResponseParser);
+	public static final JsonpDeserializer<CleanupRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CleanupRepositoryResponse::setupCleanupRepositoryResponseDeserializer);
 
-	protected static void setupCleanupRepositoryResponseParser(
-			DelegatingJsonpValueParser<CleanupRepositoryResponse.Builder> op) {
+	protected static void setupCleanupRepositoryResponseDeserializer(
+			DelegatingDeserializer<CleanupRepositoryResponse.Builder> op) {
 
-		op.add(Builder::results, CleanupRepositoryResults.JSONP_PARSER, "results");
+		op.add(Builder::results, CleanupRepositoryResults.DESERIALIZER, "results");
 
 	}
 

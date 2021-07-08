@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -207,16 +207,19 @@ public final class GetSettingsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetSettingsResponse
+	 * Json deserializer for GetSettingsResponse
 	 */
-	public static final JsonpValueParser<GetSettingsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetSettingsResponse::setupGetSettingsResponseParser);
+	public static final JsonpDeserializer<GetSettingsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer);
 
-	protected static void setupGetSettingsResponseParser(DelegatingJsonpValueParser<GetSettingsResponse.Builder> op) {
+	protected static void setupGetSettingsResponseDeserializer(DelegatingDeserializer<GetSettingsResponse.Builder> op) {
 
-		op.add(Builder::persistent, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "persistent");
-		op.add(Builder::transient_, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "transient");
-		op.add(Builder::defaults, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "defaults");
+		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"persistent");
+		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"transient");
+		op.add(Builder::defaults, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"defaults");
 
 	}
 

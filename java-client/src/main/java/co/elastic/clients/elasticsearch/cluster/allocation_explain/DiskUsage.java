@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -217,19 +217,19 @@ public final class DiskUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DiskUsage
+	 * Json deserializer for DiskUsage
 	 */
-	public static final JsonpValueParser<DiskUsage> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DiskUsage::setupDiskUsageParser);
+	public static final JsonpDeserializer<DiskUsage> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DiskUsage::setupDiskUsageDeserializer);
 
-	protected static void setupDiskUsageParser(DelegatingJsonpValueParser<DiskUsage.Builder> op) {
+	protected static void setupDiskUsageDeserializer(DelegatingDeserializer<DiskUsage.Builder> op) {
 
-		op.add(Builder::path, JsonpValueParser.stringParser(), "path");
-		op.add(Builder::totalBytes, JsonpValueParser.numberParser(), "total_bytes");
-		op.add(Builder::usedBytes, JsonpValueParser.numberParser(), "used_bytes");
-		op.add(Builder::freeBytes, JsonpValueParser.numberParser(), "free_bytes");
-		op.add(Builder::freeDiskPercent, JsonpValueParser.numberParser(), "free_disk_percent");
-		op.add(Builder::usedDiskPercent, JsonpValueParser.numberParser(), "used_disk_percent");
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::totalBytes, JsonpDeserializer.numberDeserializer(), "total_bytes");
+		op.add(Builder::usedBytes, JsonpDeserializer.numberDeserializer(), "used_bytes");
+		op.add(Builder::freeBytes, JsonpDeserializer.numberDeserializer(), "free_bytes");
+		op.add(Builder::freeDiskPercent, JsonpDeserializer.numberDeserializer(), "free_disk_percent");
+		op.add(Builder::usedDiskPercent, JsonpDeserializer.numberDeserializer(), "used_disk_percent");
 
 	}
 

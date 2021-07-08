@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -300,19 +300,20 @@ public final class FunctionScoreQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FunctionScoreQuery
+	 * Json deserializer for FunctionScoreQuery
 	 */
-	public static final JsonpValueParser<FunctionScoreQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FunctionScoreQuery::setupFunctionScoreQueryParser);
+	public static final JsonpDeserializer<FunctionScoreQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FunctionScoreQuery::setupFunctionScoreQueryDeserializer);
 
-	protected static void setupFunctionScoreQueryParser(DelegatingJsonpValueParser<FunctionScoreQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::boostMode, JsonpValueParser.jsonValueParser(), "boost_mode");
-		op.add(Builder::functions, JsonpValueParser.arrayParser(FunctionScoreContainer.JSONP_PARSER), "functions");
-		op.add(Builder::maxBoost, JsonpValueParser.numberParser(), "max_boost");
-		op.add(Builder::minScore, JsonpValueParser.numberParser(), "min_score");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::scoreMode, JsonpValueParser.jsonValueParser(), "score_mode");
+	protected static void setupFunctionScoreQueryDeserializer(DelegatingDeserializer<FunctionScoreQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::boostMode, JsonpDeserializer.jsonValueDeserializer(), "boost_mode");
+		op.add(Builder::functions, JsonpDeserializer.arrayDeserializer(FunctionScoreContainer.DESERIALIZER),
+				"functions");
+		op.add(Builder::maxBoost, JsonpDeserializer.numberDeserializer(), "max_boost");
+		op.add(Builder::minScore, JsonpDeserializer.numberDeserializer(), "min_score");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::scoreMode, JsonpDeserializer.jsonValueDeserializer(), "score_mode");
 
 	}
 

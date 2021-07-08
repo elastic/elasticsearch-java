@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -492,25 +492,25 @@ public final class Security extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Security
+	 * Json deserializer for Security
 	 */
-	public static final JsonpValueParser<Security> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Security::setupSecurityParser);
+	public static final JsonpDeserializer<Security> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Security::setupSecurityDeserializer);
 
-	protected static void setupSecurityParser(DelegatingJsonpValueParser<Security.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::apiKeyService, FeatureToggle.JSONP_PARSER, "api_key_service");
-		op.add(Builder::anonymous, FeatureToggle.JSONP_PARSER, "anonymous");
-		op.add(Builder::audit, Audit.JSONP_PARSER, "audit");
-		op.add(Builder::fips140, FeatureToggle.JSONP_PARSER, "fips_140");
-		op.add(Builder::ipfilter, IpFilter.JSONP_PARSER, "ipfilter");
-		op.add(Builder::realms, JsonpValueParser.stringMapParser(Realm.JSONP_PARSER), "realms");
-		op.add(Builder::roleMapping, JsonpValueParser.stringMapParser(RoleMapping.JSONP_PARSER), "role_mapping");
-		op.add(Builder::roles, SecurityRoles.JSONP_PARSER, "roles");
-		op.add(Builder::ssl, Ssl.JSONP_PARSER, "ssl");
-		op.add(Builder::systemKey, FeatureToggle.JSONP_PARSER, "system_key");
-		op.add(Builder::tokenService, FeatureToggle.JSONP_PARSER, "token_service");
-		op.add(Builder::operatorPrivileges, Base.JSONP_PARSER, "operator_privileges");
+	protected static void setupSecurityDeserializer(DelegatingDeserializer<Security.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::apiKeyService, FeatureToggle.DESERIALIZER, "api_key_service");
+		op.add(Builder::anonymous, FeatureToggle.DESERIALIZER, "anonymous");
+		op.add(Builder::audit, Audit.DESERIALIZER, "audit");
+		op.add(Builder::fips140, FeatureToggle.DESERIALIZER, "fips_140");
+		op.add(Builder::ipfilter, IpFilter.DESERIALIZER, "ipfilter");
+		op.add(Builder::realms, JsonpDeserializer.stringMapDeserializer(Realm.DESERIALIZER), "realms");
+		op.add(Builder::roleMapping, JsonpDeserializer.stringMapDeserializer(RoleMapping.DESERIALIZER), "role_mapping");
+		op.add(Builder::roles, SecurityRoles.DESERIALIZER, "roles");
+		op.add(Builder::ssl, Ssl.DESERIALIZER, "ssl");
+		op.add(Builder::systemKey, FeatureToggle.DESERIALIZER, "system_key");
+		op.add(Builder::tokenService, FeatureToggle.DESERIALIZER, "token_service");
+		op.add(Builder::operatorPrivileges, Base.DESERIALIZER, "operator_privileges");
 
 	}
 

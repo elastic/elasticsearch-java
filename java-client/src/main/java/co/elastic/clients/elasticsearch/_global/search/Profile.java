@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -142,14 +142,14 @@ public final class Profile implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Profile
+	 * Json deserializer for Profile
 	 */
-	public static final JsonpValueParser<Profile> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Profile::setupProfileParser);
+	public static final JsonpDeserializer<Profile> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Profile::setupProfileDeserializer);
 
-	protected static void setupProfileParser(DelegatingJsonpValueParser<Profile.Builder> op) {
+	protected static void setupProfileDeserializer(DelegatingDeserializer<Profile.Builder> op) {
 
-		op.add(Builder::shards, JsonpValueParser.arrayParser(ShardProfile.JSONP_PARSER), "shards");
+		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardProfile.DESERIALIZER), "shards");
 
 	}
 

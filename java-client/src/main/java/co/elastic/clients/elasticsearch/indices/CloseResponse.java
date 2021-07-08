@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.indices.close.CloseIndexResult;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -159,15 +159,15 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CloseResponse
+	 * Json deserializer for CloseResponse
 	 */
-	public static final JsonpValueParser<CloseResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CloseResponse::setupCloseResponseParser);
+	public static final JsonpDeserializer<CloseResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CloseResponse::setupCloseResponseDeserializer);
 
-	protected static void setupCloseResponseParser(DelegatingJsonpValueParser<CloseResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::indices, JsonpValueParser.stringMapParser(CloseIndexResult.JSONP_PARSER), "indices");
-		op.add(Builder::shardsAcknowledged, JsonpValueParser.booleanParser(), "shards_acknowledged");
+	protected static void setupCloseResponseDeserializer(DelegatingDeserializer<CloseResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(CloseIndexResult.DESERIALIZER), "indices");
+		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 
 	}
 

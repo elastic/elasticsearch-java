@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -136,16 +136,17 @@ public final class IndexRoutingAllocationInclude implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexRoutingAllocationInclude
+	 * Json deserializer for IndexRoutingAllocationInclude
 	 */
-	public static final JsonpValueParser<IndexRoutingAllocationInclude> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexRoutingAllocationInclude::setupIndexRoutingAllocationIncludeParser);
+	public static final JsonpDeserializer<IndexRoutingAllocationInclude> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					IndexRoutingAllocationInclude::setupIndexRoutingAllocationIncludeDeserializer);
 
-	protected static void setupIndexRoutingAllocationIncludeParser(
-			DelegatingJsonpValueParser<IndexRoutingAllocationInclude.Builder> op) {
+	protected static void setupIndexRoutingAllocationIncludeDeserializer(
+			DelegatingDeserializer<IndexRoutingAllocationInclude.Builder> op) {
 
-		op.add(Builder::_tierPreference, JsonpValueParser.stringParser(), "_tier_preference");
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
+		op.add(Builder::_tierPreference, JsonpDeserializer.stringDeserializer(), "_tier_preference");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
 
 	}
 

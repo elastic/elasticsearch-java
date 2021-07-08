@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -199,17 +199,17 @@ public final class ExploreControls implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExploreControls
+	 * Json deserializer for ExploreControls
 	 */
-	public static final JsonpValueParser<ExploreControls> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExploreControls::setupExploreControlsParser);
+	public static final JsonpDeserializer<ExploreControls> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExploreControls::setupExploreControlsDeserializer);
 
-	protected static void setupExploreControlsParser(DelegatingJsonpValueParser<ExploreControls.Builder> op) {
+	protected static void setupExploreControlsDeserializer(DelegatingDeserializer<ExploreControls.Builder> op) {
 
-		op.add(Builder::sampleDiversity, SampleDiversity.JSONP_PARSER, "sample_diversity");
-		op.add(Builder::sampleSize, JsonpValueParser.numberParser(), "sample_size");
-		op.add(Builder::timeout, JsonpValueParser.jsonValueParser(), "timeout");
-		op.add(Builder::useSignificance, JsonpValueParser.booleanParser(), "use_significance");
+		op.add(Builder::sampleDiversity, SampleDiversity.DESERIALIZER, "sample_diversity");
+		op.add(Builder::sampleSize, JsonpDeserializer.numberDeserializer(), "sample_size");
+		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::useSignificance, JsonpDeserializer.booleanDeserializer(), "use_significance");
 
 	}
 

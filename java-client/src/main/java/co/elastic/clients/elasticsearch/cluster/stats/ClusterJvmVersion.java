@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -241,20 +241,20 @@ public final class ClusterJvmVersion implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterJvmVersion
+	 * Json deserializer for ClusterJvmVersion
 	 */
-	public static final JsonpValueParser<ClusterJvmVersion> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterJvmVersion::setupClusterJvmVersionParser);
+	public static final JsonpDeserializer<ClusterJvmVersion> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterJvmVersion::setupClusterJvmVersionDeserializer);
 
-	protected static void setupClusterJvmVersionParser(DelegatingJsonpValueParser<ClusterJvmVersion.Builder> op) {
+	protected static void setupClusterJvmVersionDeserializer(DelegatingDeserializer<ClusterJvmVersion.Builder> op) {
 
-		op.add(Builder::bundledJdk, JsonpValueParser.booleanParser(), "bundled_jdk");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::usingBundledJdk, JsonpValueParser.booleanParser(), "using_bundled_jdk");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
-		op.add(Builder::vmName, JsonpValueParser.stringParser(), "vm_name");
-		op.add(Builder::vmVendor, JsonpValueParser.stringParser(), "vm_vendor");
-		op.add(Builder::vmVersion, JsonpValueParser.stringParser(), "vm_version");
+		op.add(Builder::bundledJdk, JsonpDeserializer.booleanDeserializer(), "bundled_jdk");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::vmName, JsonpDeserializer.stringDeserializer(), "vm_name");
+		op.add(Builder::vmVendor, JsonpDeserializer.stringDeserializer(), "vm_vendor");
+		op.add(Builder::vmVersion, JsonpDeserializer.stringDeserializer(), "vm_version");
 
 	}
 

@@ -19,9 +19,9 @@
 
 package co.elastic.clients.elasticsearch.experiments.inheritance.base;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 
 import jakarta.json.stream.JsonGenerator;
@@ -71,7 +71,7 @@ public abstract class BaseClass implements ToJsonp {
 
     //---------------------------------------------------------------------------------------------
 
-    protected static <T extends AbstractBuilder<T>> void setupBaseClassParser(DelegatingJsonpValueParser<T> op) {
-        op.add(AbstractBuilder::baseField, JsonpValueParser.stringParser(), "baseField");
+    protected static <T extends AbstractBuilder<T>> void setupBaseClassParser(DelegatingDeserializer<T> op) {
+        op.add(AbstractBuilder::baseField, JsonpDeserializer.stringDeserializer(), "baseField");
     }
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,16 +101,16 @@ public final class GoogleNormalizedDistanceHeuristic implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GoogleNormalizedDistanceHeuristic
+	 * Json deserializer for GoogleNormalizedDistanceHeuristic
 	 */
-	public static final JsonpValueParser<GoogleNormalizedDistanceHeuristic> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<GoogleNormalizedDistanceHeuristic> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					GoogleNormalizedDistanceHeuristic::setupGoogleNormalizedDistanceHeuristicParser);
+					GoogleNormalizedDistanceHeuristic::setupGoogleNormalizedDistanceHeuristicDeserializer);
 
-	protected static void setupGoogleNormalizedDistanceHeuristicParser(
-			DelegatingJsonpValueParser<GoogleNormalizedDistanceHeuristic.Builder> op) {
+	protected static void setupGoogleNormalizedDistanceHeuristicDeserializer(
+			DelegatingDeserializer<GoogleNormalizedDistanceHeuristic.Builder> op) {
 
-		op.add(Builder::backgroundIsSuperset, JsonpValueParser.booleanParser(), "background_is_superset");
+		op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
 
 	}
 

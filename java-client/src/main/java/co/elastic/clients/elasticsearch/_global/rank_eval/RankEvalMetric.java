@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -247,18 +247,18 @@ public final class RankEvalMetric implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalMetric
+	 * Json deserializer for RankEvalMetric
 	 */
-	public static final JsonpValueParser<RankEvalMetric> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RankEvalMetric::setupRankEvalMetricParser);
+	public static final JsonpDeserializer<RankEvalMetric> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RankEvalMetric::setupRankEvalMetricDeserializer);
 
-	protected static void setupRankEvalMetricParser(DelegatingJsonpValueParser<RankEvalMetric.Builder> op) {
+	protected static void setupRankEvalMetricDeserializer(DelegatingDeserializer<RankEvalMetric.Builder> op) {
 
-		op.add(Builder::precision, RankEvalMetricPrecision.JSONP_PARSER, "precision");
-		op.add(Builder::recall, JsonpValueParser.jsonValueParser(), "recall");
-		op.add(Builder::meanReciprocalRank, JsonpValueParser.jsonValueParser(), "mean_reciprocal_rank");
-		op.add(Builder::dcg, RankEvalMetricDiscountedCumulativeGain.JSONP_PARSER, "dcg");
-		op.add(Builder::expectedReciprocalRank, RankEvalMetricExpectedReciprocalRank.JSONP_PARSER,
+		op.add(Builder::precision, RankEvalMetricPrecision.DESERIALIZER, "precision");
+		op.add(Builder::recall, JsonpDeserializer.jsonValueDeserializer(), "recall");
+		op.add(Builder::meanReciprocalRank, JsonpDeserializer.jsonValueDeserializer(), "mean_reciprocal_rank");
+		op.add(Builder::dcg, RankEvalMetricDiscountedCumulativeGain.DESERIALIZER, "dcg");
+		op.add(Builder::expectedReciprocalRank, RankEvalMetricExpectedReciprocalRank.DESERIALIZER,
 				"expected_reciprocal_rank");
 
 	}

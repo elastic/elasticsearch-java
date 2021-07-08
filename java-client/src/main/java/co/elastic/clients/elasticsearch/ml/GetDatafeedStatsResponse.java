@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -166,16 +166,16 @@ public final class GetDatafeedStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetDatafeedStatsResponse
+	 * Json deserializer for GetDatafeedStatsResponse
 	 */
-	public static final JsonpValueParser<GetDatafeedStatsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetDatafeedStatsResponse::setupGetDatafeedStatsResponseParser);
+	public static final JsonpDeserializer<GetDatafeedStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetDatafeedStatsResponse::setupGetDatafeedStatsResponseDeserializer);
 
-	protected static void setupGetDatafeedStatsResponseParser(
-			DelegatingJsonpValueParser<GetDatafeedStatsResponse.Builder> op) {
+	protected static void setupGetDatafeedStatsResponseDeserializer(
+			DelegatingDeserializer<GetDatafeedStatsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::datafeeds, JsonpValueParser.arrayParser(DatafeedStats.JSONP_PARSER), "datafeeds");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::datafeeds, JsonpDeserializer.arrayDeserializer(DatafeedStats.DESERIALIZER), "datafeeds");
 
 	}
 

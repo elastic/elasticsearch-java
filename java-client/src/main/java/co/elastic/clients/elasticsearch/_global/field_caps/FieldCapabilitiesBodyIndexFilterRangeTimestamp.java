@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.field_caps;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -194,19 +194,19 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldCapabilitiesBodyIndexFilterRangeTimestamp
+	 * Json deserializer for FieldCapabilitiesBodyIndexFilterRangeTimestamp
 	 */
-	public static final JsonpValueParser<FieldCapabilitiesBodyIndexFilterRangeTimestamp> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilterRangeTimestamp> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					FieldCapabilitiesBodyIndexFilterRangeTimestamp::setupFieldCapabilitiesBodyIndexFilterRangeTimestampParser);
+					FieldCapabilitiesBodyIndexFilterRangeTimestamp::setupFieldCapabilitiesBodyIndexFilterRangeTimestampDeserializer);
 
-	protected static void setupFieldCapabilitiesBodyIndexFilterRangeTimestampParser(
-			DelegatingJsonpValueParser<FieldCapabilitiesBodyIndexFilterRangeTimestamp.Builder> op) {
+	protected static void setupFieldCapabilitiesBodyIndexFilterRangeTimestampDeserializer(
+			DelegatingDeserializer<FieldCapabilitiesBodyIndexFilterRangeTimestamp.Builder> op) {
 
-		op.add(Builder::gte, JsonpValueParser.numberParser(), "gte");
-		op.add(Builder::gt, JsonpValueParser.numberParser(), "gt");
-		op.add(Builder::lte, JsonpValueParser.numberParser(), "lte");
-		op.add(Builder::lt, JsonpValueParser.numberParser(), "lt");
+		op.add(Builder::gte, JsonpDeserializer.numberDeserializer(), "gte");
+		op.add(Builder::gt, JsonpDeserializer.numberDeserializer(), "gt");
+		op.add(Builder::lte, JsonpDeserializer.numberDeserializer(), "lte");
+		op.add(Builder::lt, JsonpDeserializer.numberDeserializer(), "lt");
 
 	}
 

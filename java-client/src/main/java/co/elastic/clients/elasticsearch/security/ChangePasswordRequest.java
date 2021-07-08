@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -159,15 +159,15 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ChangePasswordRequest
+	 * Json deserializer for ChangePasswordRequest
 	 */
-	public static final JsonpValueParser<ChangePasswordRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ChangePasswordRequest::setupChangePasswordRequestParser);
+	public static final JsonpDeserializer<ChangePasswordRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ChangePasswordRequest::setupChangePasswordRequestDeserializer);
 
-	protected static void setupChangePasswordRequestParser(
-			DelegatingJsonpValueParser<ChangePasswordRequest.Builder> op) {
+	protected static void setupChangePasswordRequestDeserializer(
+			DelegatingDeserializer<ChangePasswordRequest.Builder> op) {
 
-		op.add(Builder::password, JsonpValueParser.stringParser(), "password");
+		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 
 	}
 
@@ -220,5 +220,5 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ChangePasswordResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, ChangePasswordResponse.DESERIALIZER);
 }

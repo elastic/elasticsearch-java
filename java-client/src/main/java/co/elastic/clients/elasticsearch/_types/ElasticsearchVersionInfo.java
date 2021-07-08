@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -288,25 +288,25 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ElasticsearchVersionInfo
+	 * Json deserializer for ElasticsearchVersionInfo
 	 */
-	public static final JsonpValueParser<ElasticsearchVersionInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoParser);
+	public static final JsonpDeserializer<ElasticsearchVersionInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
 
-	protected static void setupElasticsearchVersionInfoParser(
-			DelegatingJsonpValueParser<ElasticsearchVersionInfo.Builder> op) {
+	protected static void setupElasticsearchVersionInfoDeserializer(
+			DelegatingDeserializer<ElasticsearchVersionInfo.Builder> op) {
 
-		op.add(Builder::buildDate, JsonpValueParser.stringParser(), "build_date");
-		op.add(Builder::buildFlavor, JsonpValueParser.stringParser(), "build_flavor");
-		op.add(Builder::buildHash, JsonpValueParser.stringParser(), "build_hash");
-		op.add(Builder::buildSnapshot, JsonpValueParser.booleanParser(), "build_snapshot");
-		op.add(Builder::buildType, JsonpValueParser.stringParser(), "build_type");
-		op.add(Builder::luceneVersion, JsonpValueParser.stringParser(), "lucene_version");
-		op.add(Builder::minimumIndexCompatibilityVersion, JsonpValueParser.stringParser(),
+		op.add(Builder::buildDate, JsonpDeserializer.stringDeserializer(), "build_date");
+		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");
+		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
+		op.add(Builder::buildSnapshot, JsonpDeserializer.booleanDeserializer(), "build_snapshot");
+		op.add(Builder::buildType, JsonpDeserializer.stringDeserializer(), "build_type");
+		op.add(Builder::luceneVersion, JsonpDeserializer.stringDeserializer(), "lucene_version");
+		op.add(Builder::minimumIndexCompatibilityVersion, JsonpDeserializer.stringDeserializer(),
 				"minimum_index_compatibility_version");
-		op.add(Builder::minimumWireCompatibilityVersion, JsonpValueParser.stringParser(),
+		op.add(Builder::minimumWireCompatibilityVersion, JsonpDeserializer.stringDeserializer(),
 				"minimum_wire_compatibility_version");
-		op.add(Builder::number, JsonpValueParser.stringParser(), "number");
+		op.add(Builder::number, JsonpDeserializer.stringDeserializer(), "number");
 
 	}
 

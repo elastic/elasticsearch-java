@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,15 +109,15 @@ public final class SearchInputRequestBody implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchInputRequestBody
+	 * Json deserializer for SearchInputRequestBody
 	 */
-	public static final JsonpValueParser<SearchInputRequestBody> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchInputRequestBody::setupSearchInputRequestBodyParser);
+	public static final JsonpDeserializer<SearchInputRequestBody> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchInputRequestBody::setupSearchInputRequestBodyDeserializer);
 
-	protected static void setupSearchInputRequestBodyParser(
-			DelegatingJsonpValueParser<SearchInputRequestBody.Builder> op) {
+	protected static void setupSearchInputRequestBodyDeserializer(
+			DelegatingDeserializer<SearchInputRequestBody.Builder> op) {
 
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
 
 	}
 

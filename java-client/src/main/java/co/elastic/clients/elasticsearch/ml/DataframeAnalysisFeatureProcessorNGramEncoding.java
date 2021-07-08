@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -301,21 +301,21 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalysisFeatureProcessorNGramEncoding
+	 * Json deserializer for DataframeAnalysisFeatureProcessorNGramEncoding
 	 */
-	public static final JsonpValueParser<DataframeAnalysisFeatureProcessorNGramEncoding> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeAnalysisFeatureProcessorNGramEncoding::setupDataframeAnalysisFeatureProcessorNGramEncodingParser);
+					DataframeAnalysisFeatureProcessorNGramEncoding::setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer);
 
-	protected static void setupDataframeAnalysisFeatureProcessorNGramEncodingParser(
-			DelegatingJsonpValueParser<DataframeAnalysisFeatureProcessorNGramEncoding.Builder> op) {
+	protected static void setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer(
+			DelegatingDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder> op) {
 
-		op.add(Builder::featurePrefix, JsonpValueParser.stringParser(), "feature_prefix");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::length, JsonpValueParser.numberParser(), "length");
-		op.add(Builder::nGrams, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "n_grams");
-		op.add(Builder::start, JsonpValueParser.numberParser(), "start");
-		op.add(Builder::custom, JsonpValueParser.booleanParser(), "custom");
+		op.add(Builder::featurePrefix, JsonpDeserializer.stringDeserializer(), "feature_prefix");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::length, JsonpDeserializer.numberDeserializer(), "length");
+		op.add(Builder::nGrams, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "n_grams");
+		op.add(Builder::start, JsonpDeserializer.numberDeserializer(), "start");
+		op.add(Builder::custom, JsonpDeserializer.booleanDeserializer(), "custom");
 
 	}
 

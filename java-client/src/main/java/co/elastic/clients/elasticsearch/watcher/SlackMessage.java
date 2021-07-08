@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -304,19 +304,19 @@ public final class SlackMessage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SlackMessage
+	 * Json deserializer for SlackMessage
 	 */
-	public static final JsonpValueParser<SlackMessage> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SlackMessage::setupSlackMessageParser);
+	public static final JsonpDeserializer<SlackMessage> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SlackMessage::setupSlackMessageDeserializer);
 
-	protected static void setupSlackMessageParser(DelegatingJsonpValueParser<SlackMessage.Builder> op) {
+	protected static void setupSlackMessageDeserializer(DelegatingDeserializer<SlackMessage.Builder> op) {
 
-		op.add(Builder::attachments, JsonpValueParser.arrayParser(SlackAttachment.JSONP_PARSER), "attachments");
-		op.add(Builder::dynamicAttachments, SlackDynamicAttachment.JSONP_PARSER, "dynamic_attachments");
-		op.add(Builder::from, JsonpValueParser.stringParser(), "from");
-		op.add(Builder::icon, JsonpValueParser.stringParser(), "icon");
-		op.add(Builder::text, JsonpValueParser.stringParser(), "text");
-		op.add(Builder::to, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "to");
+		op.add(Builder::attachments, JsonpDeserializer.arrayDeserializer(SlackAttachment.DESERIALIZER), "attachments");
+		op.add(Builder::dynamicAttachments, SlackDynamicAttachment.DESERIALIZER, "dynamic_attachments");
+		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
+		op.add(Builder::icon, JsonpDeserializer.stringDeserializer(), "icon");
+		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
+		op.add(Builder::to, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "to");
 
 	}
 

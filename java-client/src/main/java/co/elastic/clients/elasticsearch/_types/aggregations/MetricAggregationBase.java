@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -151,12 +151,12 @@ public abstract class MetricAggregationBase implements ToJsonp {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMetricAggregationBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMetricAggregationBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::field, JsonpValueParser.stringParser(), "field");
-		op.add(AbstractBuilder::missing, JsonpValueParser.jsonValueParser(), "missing");
-		op.add(AbstractBuilder::script, JsonpValueParser.jsonValueParser(), "script");
+		op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(AbstractBuilder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
+		op.add(AbstractBuilder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}
 

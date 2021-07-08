@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class StatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StatsResponse
+	 * Json deserializer for StatsResponse
 	 */
-	public static final JsonpValueParser<StatsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseParser);
+	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
 
-	protected static void setupStatsResponseParser(DelegatingJsonpValueParser<StatsResponse.Builder> op) {
+	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.numberParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
 
 	}
 

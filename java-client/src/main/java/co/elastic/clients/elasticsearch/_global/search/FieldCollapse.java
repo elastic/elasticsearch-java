@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -203,16 +203,17 @@ public final class FieldCollapse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldCollapse
+	 * Json deserializer for FieldCollapse
 	 */
-	public static final JsonpValueParser<FieldCollapse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldCollapse::setupFieldCollapseParser);
+	public static final JsonpDeserializer<FieldCollapse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldCollapse::setupFieldCollapseDeserializer);
 
-	protected static void setupFieldCollapseParser(DelegatingJsonpValueParser<FieldCollapse.Builder> op) {
+	protected static void setupFieldCollapseDeserializer(DelegatingDeserializer<FieldCollapse.Builder> op) {
 
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::innerHits, JsonpValueParser.arrayParser(InnerHits.JSONP_PARSER), "inner_hits");
-		op.add(Builder::maxConcurrentGroupSearches, JsonpValueParser.numberParser(), "max_concurrent_group_searches");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::innerHits, JsonpDeserializer.arrayDeserializer(InnerHits.DESERIALIZER), "inner_hits");
+		op.add(Builder::maxConcurrentGroupSearches, JsonpDeserializer.numberDeserializer(),
+				"max_concurrent_group_searches");
 
 	}
 

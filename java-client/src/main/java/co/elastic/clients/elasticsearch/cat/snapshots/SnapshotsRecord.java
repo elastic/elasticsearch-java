@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.snapshots;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -508,26 +508,26 @@ public final class SnapshotsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SnapshotsRecord
+	 * Json deserializer for SnapshotsRecord
 	 */
-	public static final JsonpValueParser<SnapshotsRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SnapshotsRecord::setupSnapshotsRecordParser);
+	public static final JsonpDeserializer<SnapshotsRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SnapshotsRecord::setupSnapshotsRecordDeserializer);
 
-	protected static void setupSnapshotsRecordParser(DelegatingJsonpValueParser<SnapshotsRecord.Builder> op) {
+	protected static void setupSnapshotsRecordDeserializer(DelegatingDeserializer<SnapshotsRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id", "snapshot");
-		op.add(Builder::repository, JsonpValueParser.stringParser(), "repository", "re", "repo");
-		op.add(Builder::status, JsonpValueParser.stringParser(), "status", "s");
-		op.add(Builder::startEpoch, JsonpValueParser.jsonValueParser(), "start_epoch", "ste", "startEpoch");
-		op.add(Builder::startTime, JsonpValueParser.stringParser(), "start_time", "sti", "startTime");
-		op.add(Builder::endEpoch, JsonpValueParser.jsonValueParser(), "end_epoch", "ete", "endEpoch");
-		op.add(Builder::endTime, JsonpValueParser.stringParser(), "end_time", "eti", "endTime");
-		op.add(Builder::duration, JsonpValueParser.jsonValueParser(), "duration", "dur");
-		op.add(Builder::indices, JsonpValueParser.stringParser(), "indices", "i");
-		op.add(Builder::successfulShards, JsonpValueParser.stringParser(), "successful_shards", "ss");
-		op.add(Builder::failedShards, JsonpValueParser.stringParser(), "failed_shards", "fs");
-		op.add(Builder::totalShards, JsonpValueParser.stringParser(), "total_shards", "ts");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason", "r");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "snapshot");
+		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository", "re", "repo");
+		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status", "s");
+		op.add(Builder::startEpoch, JsonpDeserializer.jsonValueDeserializer(), "start_epoch", "ste", "startEpoch");
+		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time", "sti", "startTime");
+		op.add(Builder::endEpoch, JsonpDeserializer.jsonValueDeserializer(), "end_epoch", "ete", "endEpoch");
+		op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time", "eti", "endTime");
+		op.add(Builder::duration, JsonpDeserializer.jsonValueDeserializer(), "duration", "dur");
+		op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices", "i");
+		op.add(Builder::successfulShards, JsonpDeserializer.stringDeserializer(), "successful_shards", "ss");
+		op.add(Builder::failedShards, JsonpDeserializer.stringDeserializer(), "failed_shards", "fs");
+		op.add(Builder::totalShards, JsonpDeserializer.stringDeserializer(), "total_shards", "ts");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason", "r");
 
 	}
 

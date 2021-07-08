@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -148,16 +148,16 @@ public final class ShardPath implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardPath
+	 * Json deserializer for ShardPath
 	 */
-	public static final JsonpValueParser<ShardPath> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardPath::setupShardPathParser);
+	public static final JsonpDeserializer<ShardPath> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardPath::setupShardPathDeserializer);
 
-	protected static void setupShardPathParser(DelegatingJsonpValueParser<ShardPath.Builder> op) {
+	protected static void setupShardPathDeserializer(DelegatingDeserializer<ShardPath.Builder> op) {
 
-		op.add(Builder::dataPath, JsonpValueParser.stringParser(), "data_path");
-		op.add(Builder::isCustomDataPath, JsonpValueParser.booleanParser(), "is_custom_data_path");
-		op.add(Builder::statePath, JsonpValueParser.stringParser(), "state_path");
+		op.add(Builder::dataPath, JsonpDeserializer.stringDeserializer(), "data_path");
+		op.add(Builder::isCustomDataPath, JsonpDeserializer.booleanDeserializer(), "is_custom_data_path");
+		op.add(Builder::statePath, JsonpDeserializer.stringDeserializer(), "state_path");
 
 	}
 

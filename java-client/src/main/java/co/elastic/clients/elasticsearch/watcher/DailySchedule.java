@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -101,14 +101,14 @@ public final class DailySchedule implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DailySchedule
+	 * Json deserializer for DailySchedule
 	 */
-	public static final JsonpValueParser<DailySchedule> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DailySchedule::setupDailyScheduleParser);
+	public static final JsonpDeserializer<DailySchedule> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DailySchedule::setupDailyScheduleDeserializer);
 
-	protected static void setupDailyScheduleParser(DelegatingJsonpValueParser<DailySchedule.Builder> op) {
+	protected static void setupDailyScheduleDeserializer(DelegatingDeserializer<DailySchedule.Builder> op) {
 
-		op.add(Builder::at, JsonpValueParser.jsonValueParser(), "at");
+		op.add(Builder::at, JsonpDeserializer.jsonValueDeserializer(), "at");
 
 	}
 

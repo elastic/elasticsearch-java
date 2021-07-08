@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class NodeInfoSettingsNetwork implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoSettingsNetwork
+	 * Json deserializer for NodeInfoSettingsNetwork
 	 */
-	public static final JsonpValueParser<NodeInfoSettingsNetwork> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoSettingsNetwork::setupNodeInfoSettingsNetworkParser);
+	public static final JsonpDeserializer<NodeInfoSettingsNetwork> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoSettingsNetwork::setupNodeInfoSettingsNetworkDeserializer);
 
-	protected static void setupNodeInfoSettingsNetworkParser(
-			DelegatingJsonpValueParser<NodeInfoSettingsNetwork.Builder> op) {
+	protected static void setupNodeInfoSettingsNetworkDeserializer(
+			DelegatingDeserializer<NodeInfoSettingsNetwork.Builder> op) {
 
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
 
 	}
 

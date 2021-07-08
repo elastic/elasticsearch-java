@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.allocation.AllocationRecord;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -141,14 +141,14 @@ public final class AllocationResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AllocationResponse
+	 * Json deserializer for AllocationResponse
 	 */
-	public static final JsonpValueParser<AllocationResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AllocationResponse::setupAllocationResponseParser);
+	public static final JsonpDeserializer<AllocationResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AllocationResponse::setupAllocationResponseDeserializer);
 
-	protected static void setupAllocationResponseParser(DelegatingJsonpValueParser<AllocationResponse.Builder> op) {
+	protected static void setupAllocationResponseDeserializer(DelegatingDeserializer<AllocationResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(AllocationRecord.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(AllocationRecord.DESERIALIZER), "value");
 
 	}
 

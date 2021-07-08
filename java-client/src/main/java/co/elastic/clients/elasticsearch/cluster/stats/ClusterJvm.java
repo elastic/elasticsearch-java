@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -219,17 +219,17 @@ public final class ClusterJvm implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterJvm
+	 * Json deserializer for ClusterJvm
 	 */
-	public static final JsonpValueParser<ClusterJvm> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterJvm::setupClusterJvmParser);
+	public static final JsonpDeserializer<ClusterJvm> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterJvm::setupClusterJvmDeserializer);
 
-	protected static void setupClusterJvmParser(DelegatingJsonpValueParser<ClusterJvm.Builder> op) {
+	protected static void setupClusterJvmDeserializer(DelegatingDeserializer<ClusterJvm.Builder> op) {
 
-		op.add(Builder::maxUptimeInMillis, JsonpValueParser.numberParser(), "max_uptime_in_millis");
-		op.add(Builder::mem, ClusterJvmMemory.JSONP_PARSER, "mem");
-		op.add(Builder::threads, JsonpValueParser.numberParser(), "threads");
-		op.add(Builder::versions, JsonpValueParser.arrayParser(ClusterJvmVersion.JSONP_PARSER), "versions");
+		op.add(Builder::maxUptimeInMillis, JsonpDeserializer.numberDeserializer(), "max_uptime_in_millis");
+		op.add(Builder::mem, ClusterJvmMemory.DESERIALIZER, "mem");
+		op.add(Builder::threads, JsonpDeserializer.numberDeserializer(), "threads");
+		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(ClusterJvmVersion.DESERIALIZER), "versions");
 
 	}
 

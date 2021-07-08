@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.sql.query;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class Column implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Column
+	 * Json deserializer for Column
 	 */
-	public static final JsonpValueParser<Column> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Column::setupColumnParser);
+	public static final JsonpDeserializer<Column> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Column::setupColumnDeserializer);
 
-	protected static void setupColumnParser(DelegatingJsonpValueParser<Column.Builder> op) {
+	protected static void setupColumnDeserializer(DelegatingDeserializer<Column.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

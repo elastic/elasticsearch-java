@@ -23,14 +23,14 @@ import jakarta.json.stream.JsonParser;
 import java.util.EnumSet;
 import java.util.function.BiConsumer;
 
-public abstract class DelegatingJsonpValueParser<ObjectType> extends JsonpValueParser<ObjectType> {
-    public DelegatingJsonpValueParser(EnumSet<JsonParser.Event> acceptedEvents) {
+public abstract class DelegatingDeserializer<ObjectType> extends JsonpDeserializer<ObjectType> {
+    public DelegatingDeserializer(EnumSet<JsonParser.Event> acceptedEvents) {
         super(acceptedEvents);
     }
 
     public abstract <FieldType> void add(
         BiConsumer<ObjectType, FieldType> setter,
-        JsonpValueParser<FieldType> valueParser,
+        JsonpDeserializer<FieldType> valueParser,
         String name, String... deprecatedNames
     );
 }

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.elasticsearch._types.ShardFailure;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -313,18 +313,18 @@ public final class ExploreResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExploreResponse
+	 * Json deserializer for ExploreResponse
 	 */
-	public static final JsonpValueParser<ExploreResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExploreResponse::setupExploreResponseParser);
+	public static final JsonpDeserializer<ExploreResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExploreResponse::setupExploreResponseDeserializer);
 
-	protected static void setupExploreResponseParser(DelegatingJsonpValueParser<ExploreResponse.Builder> op) {
+	protected static void setupExploreResponseDeserializer(DelegatingDeserializer<ExploreResponse.Builder> op) {
 
-		op.add(Builder::connections, JsonpValueParser.arrayParser(Connection.JSONP_PARSER), "connections");
-		op.add(Builder::failures, JsonpValueParser.arrayParser(ShardFailure.JSONP_PARSER), "failures");
-		op.add(Builder::timedOut, JsonpValueParser.booleanParser(), "timed_out");
-		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
-		op.add(Builder::vertices, JsonpValueParser.arrayParser(Vertex.JSONP_PARSER), "vertices");
+		op.add(Builder::connections, JsonpDeserializer.arrayDeserializer(Connection.DESERIALIZER), "connections");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure.DESERIALIZER), "failures");
+		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
+		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(Vertex.DESERIALIZER), "vertices");
 
 	}
 

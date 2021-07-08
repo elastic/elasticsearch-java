@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -306,21 +306,21 @@ public final class RangeQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RangeQuery
+	 * Json deserializer for RangeQuery
 	 */
-	public static final JsonpValueParser<RangeQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RangeQuery::setupRangeQueryParser);
+	public static final JsonpDeserializer<RangeQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RangeQuery::setupRangeQueryDeserializer);
 
-	protected static void setupRangeQueryParser(DelegatingJsonpValueParser<RangeQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::gt, JsonpValueParser.jsonValueParser(), "gt");
-		op.add(Builder::gte, JsonpValueParser.jsonValueParser(), "gte");
-		op.add(Builder::lt, JsonpValueParser.jsonValueParser(), "lt");
-		op.add(Builder::lte, JsonpValueParser.jsonValueParser(), "lte");
-		op.add(Builder::relation, JsonpValueParser.jsonValueParser(), "relation");
-		op.add(Builder::timeZone, JsonpValueParser.stringParser(), "time_zone");
-		op.add(Builder::from, JsonpValueParser.jsonValueParser(), "from");
-		op.add(Builder::to, JsonpValueParser.jsonValueParser(), "to");
+	protected static void setupRangeQueryDeserializer(DelegatingDeserializer<RangeQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::gt, JsonpDeserializer.jsonValueDeserializer(), "gt");
+		op.add(Builder::gte, JsonpDeserializer.jsonValueDeserializer(), "gte");
+		op.add(Builder::lt, JsonpDeserializer.jsonValueDeserializer(), "lt");
+		op.add(Builder::lte, JsonpDeserializer.jsonValueDeserializer(), "lte");
+		op.add(Builder::relation, JsonpDeserializer.jsonValueDeserializer(), "relation");
+		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
+		op.add(Builder::from, JsonpDeserializer.jsonValueDeserializer(), "from");
+		op.add(Builder::to, JsonpDeserializer.jsonValueDeserializer(), "to");
 
 	}
 

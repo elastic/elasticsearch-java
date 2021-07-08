@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class ClearCacheResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClearCacheResponse
+	 * Json deserializer for ClearCacheResponse
 	 */
-	public static final JsonpValueParser<ClearCacheResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClearCacheResponse::setupClearCacheResponseParser);
+	public static final JsonpDeserializer<ClearCacheResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClearCacheResponse::setupClearCacheResponseDeserializer);
 
-	protected static void setupClearCacheResponseParser(DelegatingJsonpValueParser<ClearCacheResponse.Builder> op) {
+	protected static void setupClearCacheResponseDeserializer(DelegatingDeserializer<ClearCacheResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.numberParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
 
 	}
 

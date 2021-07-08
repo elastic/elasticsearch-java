@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -188,16 +188,18 @@ public final class PhraseSuggestCollate implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PhraseSuggestCollate
+	 * Json deserializer for PhraseSuggestCollate
 	 */
-	public static final JsonpValueParser<PhraseSuggestCollate> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PhraseSuggestCollate::setupPhraseSuggestCollateParser);
+	public static final JsonpDeserializer<PhraseSuggestCollate> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PhraseSuggestCollate::setupPhraseSuggestCollateDeserializer);
 
-	protected static void setupPhraseSuggestCollateParser(DelegatingJsonpValueParser<PhraseSuggestCollate.Builder> op) {
+	protected static void setupPhraseSuggestCollateDeserializer(
+			DelegatingDeserializer<PhraseSuggestCollate.Builder> op) {
 
-		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
-		op.add(Builder::prune, JsonpValueParser.booleanParser(), "prune");
-		op.add(Builder::query, PhraseSuggestCollateQuery.JSONP_PARSER, "query");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"params");
+		op.add(Builder::prune, JsonpDeserializer.booleanDeserializer(), "prune");
+		op.add(Builder::query, PhraseSuggestCollateQuery.DESERIALIZER, "query");
 
 	}
 

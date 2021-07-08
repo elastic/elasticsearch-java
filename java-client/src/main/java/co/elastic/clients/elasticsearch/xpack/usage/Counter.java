@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -134,16 +134,16 @@ public class Counter implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Counter
+	 * Json deserializer for Counter
 	 */
-	public static final JsonpValueParser<Counter> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Counter::setupCounterParser);
+	public static final JsonpDeserializer<Counter> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Counter::setupCounterDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCounterParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCounterDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::active, JsonpValueParser.numberParser(), "active");
-		op.add(AbstractBuilder::total, JsonpValueParser.numberParser(), "total");
+		op.add(AbstractBuilder::active, JsonpDeserializer.numberDeserializer(), "active");
+		op.add(AbstractBuilder::total, JsonpDeserializer.numberDeserializer(), "total");
 
 	}
 

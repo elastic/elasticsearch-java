@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -104,15 +104,15 @@ public final class BucketSelectorAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BucketSelectorAggregation
+	 * Json deserializer for BucketSelectorAggregation
 	 */
-	public static final JsonpValueParser<BucketSelectorAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BucketSelectorAggregation::setupBucketSelectorAggregationParser);
+	public static final JsonpDeserializer<BucketSelectorAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BucketSelectorAggregation::setupBucketSelectorAggregationDeserializer);
 
-	protected static void setupBucketSelectorAggregationParser(
-			DelegatingJsonpValueParser<BucketSelectorAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseParser(op);
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
+	protected static void setupBucketSelectorAggregationDeserializer(
+			DelegatingDeserializer<BucketSelectorAggregation.Builder> op) {
+		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}
 

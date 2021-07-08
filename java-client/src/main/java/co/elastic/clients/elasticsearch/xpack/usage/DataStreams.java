@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -120,15 +120,15 @@ public final class DataStreams extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataStreams
+	 * Json deserializer for DataStreams
 	 */
-	public static final JsonpValueParser<DataStreams> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataStreams::setupDataStreamsParser);
+	public static final JsonpDeserializer<DataStreams> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataStreams::setupDataStreamsDeserializer);
 
-	protected static void setupDataStreamsParser(DelegatingJsonpValueParser<DataStreams.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::dataStreams, JsonpValueParser.numberParser(), "data_streams");
-		op.add(Builder::indicesCount, JsonpValueParser.numberParser(), "indices_count");
+	protected static void setupDataStreamsDeserializer(DelegatingDeserializer<DataStreams.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::dataStreams, JsonpDeserializer.numberDeserializer(), "data_streams");
+		op.add(Builder::indicesCount, JsonpDeserializer.numberDeserializer(), "indices_count");
 
 	}
 

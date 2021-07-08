@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -165,16 +165,16 @@ public final class NestedIdentity implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NestedIdentity
+	 * Json deserializer for NestedIdentity
 	 */
-	public static final JsonpValueParser<NestedIdentity> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NestedIdentity::setupNestedIdentityParser);
+	public static final JsonpDeserializer<NestedIdentity> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NestedIdentity::setupNestedIdentityDeserializer);
 
-	protected static void setupNestedIdentityParser(DelegatingJsonpValueParser<NestedIdentity.Builder> op) {
+	protected static void setupNestedIdentityDeserializer(DelegatingDeserializer<NestedIdentity.Builder> op) {
 
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::offset, JsonpValueParser.numberParser(), "offset");
-		op.add(Builder::_nested, co.elastic.clients.elasticsearch._global.search.NestedIdentity.JSONP_PARSER,
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::offset, JsonpDeserializer.numberDeserializer(), "offset");
+		op.add(Builder::_nested, co.elastic.clients.elasticsearch._global.search.NestedIdentity.DESERIALIZER,
 				"_nested");
 
 	}

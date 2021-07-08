@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.indices.recovery.RecoveryStatus;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -72,14 +72,14 @@ public final class RecoveryResponse extends AdditionalProperties<String, Recover
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RecoveryResponse
+	 * Json deserializer for RecoveryResponse
 	 */
-	public static final JsonpValueParser<RecoveryResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RecoveryResponse::setupRecoveryResponseParser);
+	public static final JsonpDeserializer<RecoveryResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RecoveryResponse::setupRecoveryResponseDeserializer);
 
-	protected static void setupRecoveryResponseParser(DelegatingJsonpValueParser<RecoveryResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				RecoveryStatus.JSONP_PARSER);
+	protected static void setupRecoveryResponseDeserializer(DelegatingDeserializer<RecoveryResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				RecoveryStatus.DESERIALIZER);
 
 	}
 

@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -153,15 +153,16 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RevertModelSnapshotRequest
+	 * Json deserializer for RevertModelSnapshotRequest
 	 */
-	public static final JsonpValueParser<RevertModelSnapshotRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RevertModelSnapshotRequest::setupRevertModelSnapshotRequestParser);
+	public static final JsonpDeserializer<RevertModelSnapshotRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RevertModelSnapshotRequest::setupRevertModelSnapshotRequestDeserializer);
 
-	protected static void setupRevertModelSnapshotRequestParser(
-			DelegatingJsonpValueParser<RevertModelSnapshotRequest.Builder> op) {
+	protected static void setupRevertModelSnapshotRequestDeserializer(
+			DelegatingDeserializer<RevertModelSnapshotRequest.Builder> op) {
 
-		op.add(Builder::deleteInterveningResults, JsonpValueParser.booleanParser(), "delete_intervening_results");
+		op.add(Builder::deleteInterveningResults, JsonpDeserializer.booleanDeserializer(),
+				"delete_intervening_results");
 
 	}
 
@@ -209,5 +210,5 @@ public final class RevertModelSnapshotRequest extends RequestBase implements ToJ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, RevertModelSnapshotResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, RevertModelSnapshotResponse.DESERIALIZER);
 }

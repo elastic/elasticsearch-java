@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._global.msearch_template.TemplateItem;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -350,15 +350,15 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MsearchTemplateRequest
+	 * Json deserializer for MsearchTemplateRequest
 	 */
-	public static final JsonpValueParser<MsearchTemplateRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MsearchTemplateRequest::setupMsearchTemplateRequestParser);
+	public static final JsonpDeserializer<MsearchTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MsearchTemplateRequest::setupMsearchTemplateRequestDeserializer);
 
-	protected static void setupMsearchTemplateRequestParser(
-			DelegatingJsonpValueParser<MsearchTemplateRequest.Builder> op) {
+	protected static void setupMsearchTemplateRequestDeserializer(
+			DelegatingDeserializer<MsearchTemplateRequest.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(TemplateItem.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TemplateItem.DESERIALIZER), "value");
 
 	}
 
@@ -440,8 +440,8 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	 * Create an "{@code msearch_template}" endpoint.
 	 */
 	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ElasticsearchError> createMsearchTemplateEndpoint(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return ENDPOINT
-				.withResponseParser(MsearchTemplateResponse.createMsearchTemplateResponseParser(tDocumentParser));
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ENDPOINT.withResponseDeserializer(
+				MsearchTemplateResponse.createMsearchTemplateResponseDeserializer(tDocumentDeserializer));
 	}
 }

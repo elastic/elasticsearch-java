@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest.geo_ip_stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -208,15 +208,17 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoIpNodeDatabases
+	 * Json deserializer for GeoIpNodeDatabases
 	 */
-	public static final JsonpValueParser<GeoIpNodeDatabases> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoIpNodeDatabases::setupGeoIpNodeDatabasesParser);
+	public static final JsonpDeserializer<GeoIpNodeDatabases> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoIpNodeDatabases::setupGeoIpNodeDatabasesDeserializer);
 
-	protected static void setupGeoIpNodeDatabasesParser(DelegatingJsonpValueParser<GeoIpNodeDatabases.Builder> op) {
+	protected static void setupGeoIpNodeDatabasesDeserializer(DelegatingDeserializer<GeoIpNodeDatabases.Builder> op) {
 
-		op.add(Builder::databases, JsonpValueParser.arrayParser(GeoIpNodeDatabaseName.JSONP_PARSER), "databases");
-		op.add(Builder::filesInTemp, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "files_in_temp");
+		op.add(Builder::databases, JsonpDeserializer.arrayDeserializer(GeoIpNodeDatabaseName.DESERIALIZER),
+				"databases");
+		op.add(Builder::filesInTemp, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"files_in_temp");
 
 	}
 

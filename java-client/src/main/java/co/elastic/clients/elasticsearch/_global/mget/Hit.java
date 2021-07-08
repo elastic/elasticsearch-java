@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch._global.mget;
 
 import co.elastic.clients.elasticsearch._types.MainError;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -438,28 +438,29 @@ public final class Hit<TDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for Hit
+	 * Create a json deserializer for Hit
 	 */
-	public static <TDocument> JsonpValueParser<Hit<TDocument>> createHitParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> Hit.setupHitParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<Hit<TDocument>> createHitDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> Hit.setupHitDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupHitParser(DelegatingJsonpValueParser<Hit.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupHitDeserializer(DelegatingDeserializer<Hit.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::error, MainError.JSONP_PARSER, "error");
-		op.add(Builder::fields, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "fields");
-		op.add(Builder::found, JsonpValueParser.booleanParser(), "found");
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::_index, JsonpValueParser.stringParser(), "_index");
-		op.add(Builder::_primaryTerm, JsonpValueParser.numberParser(), "_primary_term");
-		op.add(Builder::_routing, JsonpValueParser.jsonValueParser(), "_routing");
-		op.add(Builder::_seqNo, JsonpValueParser.numberParser(), "_seq_no");
-		op.add(Builder::_source, tDocumentParser, "_source");
-		op.add(Builder::_type, JsonpValueParser.stringParser(), "_type");
-		op.add(Builder::_version, JsonpValueParser.numberParser(), "_version");
+		op.add(Builder::error, MainError.DESERIALIZER, "error");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"fields");
+		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::_primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(Builder::_routing, JsonpDeserializer.jsonValueDeserializer(), "_routing");
+		op.add(Builder::_seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
+		op.add(Builder::_source, tDocumentDeserializer, "_source");
+		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::_version, JsonpDeserializer.numberDeserializer(), "_version");
 
 	}
 

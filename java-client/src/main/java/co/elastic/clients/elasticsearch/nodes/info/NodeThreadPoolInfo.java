@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -243,19 +243,19 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeThreadPoolInfo
+	 * Json deserializer for NodeThreadPoolInfo
 	 */
-	public static final JsonpValueParser<NodeThreadPoolInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoParser);
+	public static final JsonpDeserializer<NodeThreadPoolInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer);
 
-	protected static void setupNodeThreadPoolInfoParser(DelegatingJsonpValueParser<NodeThreadPoolInfo.Builder> op) {
+	protected static void setupNodeThreadPoolInfoDeserializer(DelegatingDeserializer<NodeThreadPoolInfo.Builder> op) {
 
-		op.add(Builder::core, JsonpValueParser.numberParser(), "core");
-		op.add(Builder::keepAlive, JsonpValueParser.stringParser(), "keep_alive");
-		op.add(Builder::max, JsonpValueParser.numberParser(), "max");
-		op.add(Builder::queueSize, JsonpValueParser.numberParser(), "queue_size");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::core, JsonpDeserializer.numberDeserializer(), "core");
+		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
+		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
+		op.add(Builder::queueSize, JsonpDeserializer.numberDeserializer(), "queue_size");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

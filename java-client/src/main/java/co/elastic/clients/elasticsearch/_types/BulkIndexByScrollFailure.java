@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -202,19 +202,19 @@ public final class BulkIndexByScrollFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BulkIndexByScrollFailure
+	 * Json deserializer for BulkIndexByScrollFailure
 	 */
-	public static final JsonpValueParser<BulkIndexByScrollFailure> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BulkIndexByScrollFailure::setupBulkIndexByScrollFailureParser);
+	public static final JsonpDeserializer<BulkIndexByScrollFailure> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BulkIndexByScrollFailure::setupBulkIndexByScrollFailureDeserializer);
 
-	protected static void setupBulkIndexByScrollFailureParser(
-			DelegatingJsonpValueParser<BulkIndexByScrollFailure.Builder> op) {
+	protected static void setupBulkIndexByScrollFailureDeserializer(
+			DelegatingDeserializer<BulkIndexByScrollFailure.Builder> op) {
 
-		op.add(Builder::cause, MainError.JSONP_PARSER, "cause");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::status, JsonpValueParser.numberParser(), "status");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::cause, MainError.DESERIALIZER, "cause");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::status, JsonpDeserializer.numberDeserializer(), "status");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

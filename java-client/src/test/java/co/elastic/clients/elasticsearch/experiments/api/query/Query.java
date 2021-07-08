@@ -20,10 +20,10 @@
 package co.elastic.clients.elasticsearch.experiments.api.query;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.StringEnum;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
@@ -52,8 +52,8 @@ public class Query extends TaggedUnion<Query.Tag, ToJsonp> implements ToJsonp {
             return this.jsonValue;
         }
 
-        public static StringEnum.JsonpParser<Tag> PARSER =
-            new StringEnum.JsonpParser<>(Tag.values());
+        public static Deserializer<Tag> PARSER =
+            new Deserializer<>(Tag.values());
     }
 
     // A container-level property that lives besides the variant, like "meta" and "aggs" in aggregations
@@ -160,16 +160,16 @@ public class Query extends TaggedUnion<Query.Tag, ToJsonp> implements ToJsonp {
         }
     }
 
-    private static volatile JsonpValueParser<Query> PARSER;
+    private static volatile JsonpDeserializer<Query> PARSER;
 
-    public static JsonpValueParser<Query> parser() {
+    public static JsonpDeserializer<Query> parser() {
         if (PARSER == null) {
-            JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+            ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
             op.add(Builder::bool, BoolQuery.parser(), "bool");
             op.add(Builder::terms, TermsQuery.parser(), "terms");
             // parser for "meta" (a map)
 
-            PARSER = new JsonpObjectBuildFuncParser<>(op, Builder::build);
+            PARSER = new BuildFunctionDeserializer<>(op, Builder::build);
         }
 
         return PARSER;

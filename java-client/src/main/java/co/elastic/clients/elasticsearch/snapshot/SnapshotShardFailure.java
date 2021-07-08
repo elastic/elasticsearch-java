@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -193,18 +193,19 @@ public final class SnapshotShardFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SnapshotShardFailure
+	 * Json deserializer for SnapshotShardFailure
 	 */
-	public static final JsonpValueParser<SnapshotShardFailure> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureParser);
+	public static final JsonpDeserializer<SnapshotShardFailure> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureDeserializer);
 
-	protected static void setupSnapshotShardFailureParser(DelegatingJsonpValueParser<SnapshotShardFailure.Builder> op) {
+	protected static void setupSnapshotShardFailureDeserializer(
+			DelegatingDeserializer<SnapshotShardFailure.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::nodeId, JsonpValueParser.stringParser(), "node_id");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
-		op.add(Builder::shardId, JsonpValueParser.stringParser(), "shard_id");
-		op.add(Builder::status, JsonpValueParser.stringParser(), "status");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(Builder::shardId, JsonpDeserializer.stringDeserializer(), "shard_id");
+		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
 
 	}
 

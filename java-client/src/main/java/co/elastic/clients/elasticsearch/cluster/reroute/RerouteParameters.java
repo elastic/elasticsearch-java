@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -231,19 +231,19 @@ public final class RerouteParameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RerouteParameters
+	 * Json deserializer for RerouteParameters
 	 */
-	public static final JsonpValueParser<RerouteParameters> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RerouteParameters::setupRerouteParametersParser);
+	public static final JsonpDeserializer<RerouteParameters> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RerouteParameters::setupRerouteParametersDeserializer);
 
-	protected static void setupRerouteParametersParser(DelegatingJsonpValueParser<RerouteParameters.Builder> op) {
+	protected static void setupRerouteParametersDeserializer(DelegatingDeserializer<RerouteParameters.Builder> op) {
 
-		op.add(Builder::allowPrimary, JsonpValueParser.booleanParser(), "allow_primary");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::shard, JsonpValueParser.numberParser(), "shard");
-		op.add(Builder::fromNode, JsonpValueParser.stringParser(), "from_node");
-		op.add(Builder::toNode, JsonpValueParser.stringParser(), "to_node");
+		op.add(Builder::allowPrimary, JsonpDeserializer.booleanDeserializer(), "allow_primary");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::fromNode, JsonpDeserializer.stringDeserializer(), "from_node");
+		op.add(Builder::toNode, JsonpDeserializer.stringDeserializer(), "to_node");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.mtermvectors.TermVectorsResult;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,14 +143,15 @@ public final class MtermvectorsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MtermvectorsResponse
+	 * Json deserializer for MtermvectorsResponse
 	 */
-	public static final JsonpValueParser<MtermvectorsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MtermvectorsResponse::setupMtermvectorsResponseParser);
+	public static final JsonpDeserializer<MtermvectorsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MtermvectorsResponse::setupMtermvectorsResponseDeserializer);
 
-	protected static void setupMtermvectorsResponseParser(DelegatingJsonpValueParser<MtermvectorsResponse.Builder> op) {
+	protected static void setupMtermvectorsResponseDeserializer(
+			DelegatingDeserializer<MtermvectorsResponse.Builder> op) {
 
-		op.add(Builder::docs, JsonpValueParser.arrayParser(TermVectorsResult.JSONP_PARSER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(TermVectorsResult.DESERIALIZER), "docs");
 
 	}
 

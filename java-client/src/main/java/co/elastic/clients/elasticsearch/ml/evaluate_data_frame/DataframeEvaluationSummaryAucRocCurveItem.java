@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,18 +147,18 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeEvaluationSummaryAucRocCurveItem
+	 * Json deserializer for DataframeEvaluationSummaryAucRocCurveItem
 	 */
-	public static final JsonpValueParser<DataframeEvaluationSummaryAucRocCurveItem> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeEvaluationSummaryAucRocCurveItem> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeEvaluationSummaryAucRocCurveItem::setupDataframeEvaluationSummaryAucRocCurveItemParser);
+					DataframeEvaluationSummaryAucRocCurveItem::setupDataframeEvaluationSummaryAucRocCurveItemDeserializer);
 
-	protected static void setupDataframeEvaluationSummaryAucRocCurveItemParser(
-			DelegatingJsonpValueParser<DataframeEvaluationSummaryAucRocCurveItem.Builder> op) {
+	protected static void setupDataframeEvaluationSummaryAucRocCurveItemDeserializer(
+			DelegatingDeserializer<DataframeEvaluationSummaryAucRocCurveItem.Builder> op) {
 
-		op.add(Builder::tpr, JsonpValueParser.numberParser(), "tpr");
-		op.add(Builder::fpr, JsonpValueParser.numberParser(), "fpr");
-		op.add(Builder::threshold, JsonpValueParser.numberParser(), "threshold");
+		op.add(Builder::tpr, JsonpDeserializer.numberDeserializer(), "tpr");
+		op.add(Builder::fpr, JsonpDeserializer.numberDeserializer(), "fpr");
+		op.add(Builder::threshold, JsonpDeserializer.numberDeserializer(), "threshold");
 
 	}
 

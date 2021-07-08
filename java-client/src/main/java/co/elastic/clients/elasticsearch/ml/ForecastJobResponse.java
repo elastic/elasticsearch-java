@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -100,14 +100,14 @@ public final class ForecastJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ForecastJobResponse
+	 * Json deserializer for ForecastJobResponse
 	 */
-	public static final JsonpValueParser<ForecastJobResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ForecastJobResponse::setupForecastJobResponseParser);
+	public static final JsonpDeserializer<ForecastJobResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ForecastJobResponse::setupForecastJobResponseDeserializer);
 
-	protected static void setupForecastJobResponseParser(DelegatingJsonpValueParser<ForecastJobResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::forecastId, JsonpValueParser.stringParser(), "forecast_id");
+	protected static void setupForecastJobResponseDeserializer(DelegatingDeserializer<ForecastJobResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::forecastId, JsonpDeserializer.stringDeserializer(), "forecast_id");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.close;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -166,15 +166,15 @@ public final class CloseIndexResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CloseIndexResult
+	 * Json deserializer for CloseIndexResult
 	 */
-	public static final JsonpValueParser<CloseIndexResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CloseIndexResult::setupCloseIndexResultParser);
+	public static final JsonpDeserializer<CloseIndexResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CloseIndexResult::setupCloseIndexResultDeserializer);
 
-	protected static void setupCloseIndexResultParser(DelegatingJsonpValueParser<CloseIndexResult.Builder> op) {
+	protected static void setupCloseIndexResultDeserializer(DelegatingDeserializer<CloseIndexResult.Builder> op) {
 
-		op.add(Builder::closed, JsonpValueParser.booleanParser(), "closed");
-		op.add(Builder::shards, JsonpValueParser.stringMapParser(CloseShardResult.JSONP_PARSER), "shards");
+		op.add(Builder::closed, JsonpDeserializer.booleanDeserializer(), "closed");
+		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(CloseShardResult.DESERIALIZER), "shards");
 
 	}
 

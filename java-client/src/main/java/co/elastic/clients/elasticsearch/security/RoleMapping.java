@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -218,17 +218,18 @@ public final class RoleMapping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RoleMapping
+	 * Json deserializer for RoleMapping
 	 */
-	public static final JsonpValueParser<RoleMapping> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RoleMapping::setupRoleMappingParser);
+	public static final JsonpDeserializer<RoleMapping> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RoleMapping::setupRoleMappingDeserializer);
 
-	protected static void setupRoleMappingParser(DelegatingJsonpValueParser<RoleMapping.Builder> op) {
+	protected static void setupRoleMappingDeserializer(DelegatingDeserializer<RoleMapping.Builder> op) {
 
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::roles, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "roles");
-		op.add(Builder::rules, JsonpValueParser.jsonValueParser(), "rules");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
+		op.add(Builder::rules, JsonpDeserializer.jsonValueDeserializer(), "rules");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.security.create_api_key;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -260,16 +260,18 @@ public final class RoleDescriptor implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RoleDescriptor
+	 * Json deserializer for RoleDescriptor
 	 */
-	public static final JsonpValueParser<RoleDescriptor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RoleDescriptor::setupRoleDescriptorParser);
+	public static final JsonpDeserializer<RoleDescriptor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RoleDescriptor::setupRoleDescriptorDeserializer);
 
-	protected static void setupRoleDescriptorParser(DelegatingJsonpValueParser<RoleDescriptor.Builder> op) {
+	protected static void setupRoleDescriptorDeserializer(DelegatingDeserializer<RoleDescriptor.Builder> op) {
 
-		op.add(Builder::cluster, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "cluster");
-		op.add(Builder::index, JsonpValueParser.arrayParser(IndexPrivileges.JSONP_PARSER), "index");
-		op.add(Builder::applications, JsonpValueParser.arrayParser(ApplicationPrivileges.JSONP_PARSER), "applications");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"cluster");
+		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivileges.DESERIALIZER), "index");
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+				"applications");
 
 	}
 

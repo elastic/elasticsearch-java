@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.plugins.PluginsRecord;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -141,14 +141,14 @@ public final class PluginsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PluginsResponse
+	 * Json deserializer for PluginsResponse
 	 */
-	public static final JsonpValueParser<PluginsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PluginsResponse::setupPluginsResponseParser);
+	public static final JsonpDeserializer<PluginsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PluginsResponse::setupPluginsResponseDeserializer);
 
-	protected static void setupPluginsResponseParser(DelegatingJsonpValueParser<PluginsResponse.Builder> op) {
+	protected static void setupPluginsResponseDeserializer(DelegatingDeserializer<PluginsResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(PluginsRecord.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(PluginsRecord.DESERIALIZER), "value");
 
 	}
 

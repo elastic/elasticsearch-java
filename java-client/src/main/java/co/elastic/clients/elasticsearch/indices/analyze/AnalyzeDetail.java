@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.analyze;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -313,18 +313,18 @@ public final class AnalyzeDetail implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AnalyzeDetail
+	 * Json deserializer for AnalyzeDetail
 	 */
-	public static final JsonpValueParser<AnalyzeDetail> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AnalyzeDetail::setupAnalyzeDetailParser);
+	public static final JsonpDeserializer<AnalyzeDetail> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AnalyzeDetail::setupAnalyzeDetailDeserializer);
 
-	protected static void setupAnalyzeDetailParser(DelegatingJsonpValueParser<AnalyzeDetail.Builder> op) {
+	protected static void setupAnalyzeDetailDeserializer(DelegatingDeserializer<AnalyzeDetail.Builder> op) {
 
-		op.add(Builder::analyzer, AnalyzerDetail.JSONP_PARSER, "analyzer");
-		op.add(Builder::charfilters, JsonpValueParser.arrayParser(CharFilterDetail.JSONP_PARSER), "charfilters");
-		op.add(Builder::customAnalyzer, JsonpValueParser.booleanParser(), "custom_analyzer");
-		op.add(Builder::tokenfilters, JsonpValueParser.arrayParser(TokenDetail.JSONP_PARSER), "tokenfilters");
-		op.add(Builder::tokenizer, TokenDetail.JSONP_PARSER, "tokenizer");
+		op.add(Builder::analyzer, AnalyzerDetail.DESERIALIZER, "analyzer");
+		op.add(Builder::charfilters, JsonpDeserializer.arrayDeserializer(CharFilterDetail.DESERIALIZER), "charfilters");
+		op.add(Builder::customAnalyzer, JsonpDeserializer.booleanDeserializer(), "custom_analyzer");
+		op.add(Builder::tokenfilters, JsonpDeserializer.arrayDeserializer(TokenDetail.DESERIALIZER), "tokenfilters");
+		op.add(Builder::tokenizer, TokenDetail.DESERIALIZER, "tokenizer");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -128,14 +128,14 @@ public final class NodeInfoAggregation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoAggregation
+	 * Json deserializer for NodeInfoAggregation
 	 */
-	public static final JsonpValueParser<NodeInfoAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoAggregation::setupNodeInfoAggregationParser);
+	public static final JsonpDeserializer<NodeInfoAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoAggregation::setupNodeInfoAggregationDeserializer);
 
-	protected static void setupNodeInfoAggregationParser(DelegatingJsonpValueParser<NodeInfoAggregation.Builder> op) {
+	protected static void setupNodeInfoAggregationDeserializer(DelegatingDeserializer<NodeInfoAggregation.Builder> op) {
 
-		op.add(Builder::types, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "types");
+		op.add(Builder::types, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "types");
 
 	}
 

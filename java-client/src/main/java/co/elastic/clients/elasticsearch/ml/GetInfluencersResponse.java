@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -172,16 +172,16 @@ public final class GetInfluencersResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetInfluencersResponse
+	 * Json deserializer for GetInfluencersResponse
 	 */
-	public static final JsonpValueParser<GetInfluencersResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetInfluencersResponse::setupGetInfluencersResponseParser);
+	public static final JsonpDeserializer<GetInfluencersResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetInfluencersResponse::setupGetInfluencersResponseDeserializer);
 
-	protected static void setupGetInfluencersResponseParser(
-			DelegatingJsonpValueParser<GetInfluencersResponse.Builder> op) {
+	protected static void setupGetInfluencersResponseDeserializer(
+			DelegatingDeserializer<GetInfluencersResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::influencers, JsonpValueParser.arrayParser(BucketInfluencer.JSONP_PARSER), "influencers");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer.DESERIALIZER), "influencers");
 
 	}
 

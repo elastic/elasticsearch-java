@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -144,15 +144,15 @@ public final class GetComponentTemplateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetComponentTemplateResponse
+	 * Json deserializer for GetComponentTemplateResponse
 	 */
-	public static final JsonpValueParser<GetComponentTemplateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetComponentTemplateResponse::setupGetComponentTemplateResponseParser);
+	public static final JsonpDeserializer<GetComponentTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetComponentTemplateResponse::setupGetComponentTemplateResponseDeserializer);
 
-	protected static void setupGetComponentTemplateResponseParser(
-			DelegatingJsonpValueParser<GetComponentTemplateResponse.Builder> op) {
+	protected static void setupGetComponentTemplateResponseDeserializer(
+			DelegatingDeserializer<GetComponentTemplateResponse.Builder> op) {
 
-		op.add(Builder::componentTemplates, JsonpValueParser.arrayParser(ComponentTemplate.JSONP_PARSER),
+		op.add(Builder::componentTemplates, JsonpDeserializer.arrayDeserializer(ComponentTemplate.DESERIALIZER),
 				"component_templates");
 
 	}

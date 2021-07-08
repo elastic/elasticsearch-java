@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -426,28 +426,29 @@ public final class PostJobDataResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PostJobDataResponse
+	 * Json deserializer for PostJobDataResponse
 	 */
-	public static final JsonpValueParser<PostJobDataResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PostJobDataResponse::setupPostJobDataResponseParser);
+	public static final JsonpDeserializer<PostJobDataResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PostJobDataResponse::setupPostJobDataResponseDeserializer);
 
-	protected static void setupPostJobDataResponseParser(DelegatingJsonpValueParser<PostJobDataResponse.Builder> op) {
+	protected static void setupPostJobDataResponseDeserializer(DelegatingDeserializer<PostJobDataResponse.Builder> op) {
 
-		op.add(Builder::bucketCount, JsonpValueParser.numberParser(), "bucket_count");
-		op.add(Builder::earliestRecordTimestamp, JsonpValueParser.numberParser(), "earliest_record_timestamp");
-		op.add(Builder::emptyBucketCount, JsonpValueParser.numberParser(), "empty_bucket_count");
-		op.add(Builder::inputBytes, JsonpValueParser.numberParser(), "input_bytes");
-		op.add(Builder::inputFieldCount, JsonpValueParser.numberParser(), "input_field_count");
-		op.add(Builder::inputRecordCount, JsonpValueParser.numberParser(), "input_record_count");
-		op.add(Builder::invalidDateCount, JsonpValueParser.numberParser(), "invalid_date_count");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::lastDataTime, JsonpValueParser.numberParser(), "last_data_time");
-		op.add(Builder::latestRecordTimestamp, JsonpValueParser.numberParser(), "latest_record_timestamp");
-		op.add(Builder::missingFieldCount, JsonpValueParser.numberParser(), "missing_field_count");
-		op.add(Builder::outOfOrderTimestampCount, JsonpValueParser.numberParser(), "out_of_order_timestamp_count");
-		op.add(Builder::processedFieldCount, JsonpValueParser.numberParser(), "processed_field_count");
-		op.add(Builder::processedRecordCount, JsonpValueParser.numberParser(), "processed_record_count");
-		op.add(Builder::sparseBucketCount, JsonpValueParser.numberParser(), "sparse_bucket_count");
+		op.add(Builder::bucketCount, JsonpDeserializer.numberDeserializer(), "bucket_count");
+		op.add(Builder::earliestRecordTimestamp, JsonpDeserializer.numberDeserializer(), "earliest_record_timestamp");
+		op.add(Builder::emptyBucketCount, JsonpDeserializer.numberDeserializer(), "empty_bucket_count");
+		op.add(Builder::inputBytes, JsonpDeserializer.numberDeserializer(), "input_bytes");
+		op.add(Builder::inputFieldCount, JsonpDeserializer.numberDeserializer(), "input_field_count");
+		op.add(Builder::inputRecordCount, JsonpDeserializer.numberDeserializer(), "input_record_count");
+		op.add(Builder::invalidDateCount, JsonpDeserializer.numberDeserializer(), "invalid_date_count");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::lastDataTime, JsonpDeserializer.numberDeserializer(), "last_data_time");
+		op.add(Builder::latestRecordTimestamp, JsonpDeserializer.numberDeserializer(), "latest_record_timestamp");
+		op.add(Builder::missingFieldCount, JsonpDeserializer.numberDeserializer(), "missing_field_count");
+		op.add(Builder::outOfOrderTimestampCount, JsonpDeserializer.numberDeserializer(),
+				"out_of_order_timestamp_count");
+		op.add(Builder::processedFieldCount, JsonpDeserializer.numberDeserializer(), "processed_field_count");
+		op.add(Builder::processedRecordCount, JsonpDeserializer.numberDeserializer(), "processed_record_count");
+		op.add(Builder::sparseBucketCount, JsonpDeserializer.numberDeserializer(), "sparse_bucket_count");
 
 	}
 

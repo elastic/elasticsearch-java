@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -64,7 +64,7 @@ public class DataframeAnalysisFeatureProcessor extends TaggedUnion<DataframeAnal
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private DataframeAnalysisFeatureProcessor(Builder builder) {
@@ -248,26 +248,27 @@ public class DataframeAnalysisFeatureProcessor extends TaggedUnion<DataframeAnal
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<DataframeAnalysisFeatureProcessor> JSONP_PARSER = JsonpValueParser
-			.lazy(DataframeAnalysisFeatureProcessor::buildJsonpParser);
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessor> DESERIALIZER = JsonpDeserializer
+			.lazy(DataframeAnalysisFeatureProcessor::buildDeserializer);
 
-	private static JsonpValueParser<DataframeAnalysisFeatureProcessor> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<DataframeAnalysisFeatureProcessor> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::frequencyEncoding, DataframeAnalysisFeatureProcessorFrequencyEncoding.JSONP_PARSER,
+		op.add(Builder::frequencyEncoding, DataframeAnalysisFeatureProcessorFrequencyEncoding.DESERIALIZER,
 				"frequency_encoding");
-		op.add(Builder::multiEncoding, DataframeAnalysisFeatureProcessorMultiEncoding.JSONP_PARSER, "multi_encoding");
-		op.add(Builder::nGramEncoding, DataframeAnalysisFeatureProcessorNGramEncoding.JSONP_PARSER, "n_gram_encoding");
-		op.add(Builder::oneHotEncoding, DataframeAnalysisFeatureProcessorOneHotEncoding.JSONP_PARSER,
+		op.add(Builder::multiEncoding, DataframeAnalysisFeatureProcessorMultiEncoding.DESERIALIZER, "multi_encoding");
+		op.add(Builder::nGramEncoding, DataframeAnalysisFeatureProcessorNGramEncoding.DESERIALIZER, "n_gram_encoding");
+		op.add(Builder::oneHotEncoding, DataframeAnalysisFeatureProcessorOneHotEncoding.DESERIALIZER,
 				"one_hot_encoding");
-		op.add(Builder::targetMeanEncoding, DataframeAnalysisFeatureProcessorTargetMeanEncoding.JSONP_PARSER,
+		op.add(Builder::targetMeanEncoding, DataframeAnalysisFeatureProcessorTargetMeanEncoding.DESERIALIZER,
 				"target_mean_encoding");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

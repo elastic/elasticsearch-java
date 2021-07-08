@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -108,14 +108,14 @@ public final class NodeInfoSearch implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoSearch
+	 * Json deserializer for NodeInfoSearch
 	 */
-	public static final JsonpValueParser<NodeInfoSearch> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoSearch::setupNodeInfoSearchParser);
+	public static final JsonpDeserializer<NodeInfoSearch> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoSearch::setupNodeInfoSearchDeserializer);
 
-	protected static void setupNodeInfoSearchParser(DelegatingJsonpValueParser<NodeInfoSearch.Builder> op) {
+	protected static void setupNodeInfoSearchDeserializer(DelegatingDeserializer<NodeInfoSearch.Builder> op) {
 
-		op.add(Builder::remote, NodeInfoSearchRemote.JSONP_PARSER, "remote");
+		op.add(Builder::remote, NodeInfoSearchRemote.DESERIALIZER, "remote");
 
 	}
 

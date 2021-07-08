@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.mget;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -334,21 +334,22 @@ public final class Operation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Operation
+	 * Json deserializer for Operation
 	 */
-	public static final JsonpValueParser<Operation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Operation::setupOperationParser);
+	public static final JsonpDeserializer<Operation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Operation::setupOperationDeserializer);
 
-	protected static void setupOperationParser(DelegatingJsonpValueParser<Operation.Builder> op) {
+	protected static void setupOperationDeserializer(DelegatingDeserializer<Operation.Builder> op) {
 
-		op.add(Builder::_id, JsonpValueParser.jsonValueParser(), "_id");
-		op.add(Builder::_index, JsonpValueParser.stringParser(), "_index");
-		op.add(Builder::routing, JsonpValueParser.jsonValueParser(), "routing");
-		op.add(Builder::_source, JsonpValueParser.jsonValueParser(), "_source");
-		op.add(Builder::storedFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "stored_fields");
-		op.add(Builder::_type, JsonpValueParser.stringParser(), "_type");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::versionType, JsonpValueParser.jsonValueParser(), "version_type");
+		op.add(Builder::_id, JsonpDeserializer.jsonValueDeserializer(), "_id");
+		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"stored_fields");
+		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::versionType, JsonpDeserializer.jsonValueDeserializer(), "version_type");
 
 	}
 

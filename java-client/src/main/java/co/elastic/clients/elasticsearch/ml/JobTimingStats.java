@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -293,26 +293,26 @@ public final class JobTimingStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for JobTimingStats
+	 * Json deserializer for JobTimingStats
 	 */
-	public static final JsonpValueParser<JobTimingStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, JobTimingStats::setupJobTimingStatsParser);
+	public static final JsonpDeserializer<JobTimingStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, JobTimingStats::setupJobTimingStatsDeserializer);
 
-	protected static void setupJobTimingStatsParser(DelegatingJsonpValueParser<JobTimingStats.Builder> op) {
+	protected static void setupJobTimingStatsDeserializer(DelegatingDeserializer<JobTimingStats.Builder> op) {
 
-		op.add(Builder::averageBucketProcessingTimeMs, JsonpValueParser.numberParser(),
+		op.add(Builder::averageBucketProcessingTimeMs, JsonpDeserializer.numberDeserializer(),
 				"average_bucket_processing_time_ms");
-		op.add(Builder::bucketCount, JsonpValueParser.numberParser(), "bucket_count");
-		op.add(Builder::exponentialAverageBucketProcessingTimeMs, JsonpValueParser.numberParser(),
+		op.add(Builder::bucketCount, JsonpDeserializer.numberDeserializer(), "bucket_count");
+		op.add(Builder::exponentialAverageBucketProcessingTimeMs, JsonpDeserializer.numberDeserializer(),
 				"exponential_average_bucket_processing_time_ms");
-		op.add(Builder::exponentialAverageBucketProcessingTimePerHourMs, JsonpValueParser.numberParser(),
+		op.add(Builder::exponentialAverageBucketProcessingTimePerHourMs, JsonpDeserializer.numberDeserializer(),
 				"exponential_average_bucket_processing_time_per_hour_ms");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::totalBucketProcessingTimeMs, JsonpValueParser.numberParser(),
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::totalBucketProcessingTimeMs, JsonpDeserializer.numberDeserializer(),
 				"total_bucket_processing_time_ms");
-		op.add(Builder::maximumBucketProcessingTimeMs, JsonpValueParser.numberParser(),
+		op.add(Builder::maximumBucketProcessingTimeMs, JsonpDeserializer.numberDeserializer(),
 				"maximum_bucket_processing_time_ms");
-		op.add(Builder::minimumBucketProcessingTimeMs, JsonpValueParser.numberParser(),
+		op.add(Builder::minimumBucketProcessingTimeMs, JsonpDeserializer.numberDeserializer(),
 				"minimum_bucket_processing_time_ms");
 
 	}

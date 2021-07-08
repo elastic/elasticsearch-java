@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.xpack;
 import co.elastic.clients.elasticsearch.xpack.info.BuildInformation;
 import co.elastic.clients.elasticsearch.xpack.info.Features;
 import co.elastic.clients.elasticsearch.xpack.info.MinimalLicenseInformation;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -196,17 +196,17 @@ public final class InfoResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InfoResponse
+	 * Json deserializer for InfoResponse
 	 */
-	public static final JsonpValueParser<InfoResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InfoResponse::setupInfoResponseParser);
+	public static final JsonpDeserializer<InfoResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InfoResponse::setupInfoResponseDeserializer);
 
-	protected static void setupInfoResponseParser(DelegatingJsonpValueParser<InfoResponse.Builder> op) {
+	protected static void setupInfoResponseDeserializer(DelegatingDeserializer<InfoResponse.Builder> op) {
 
-		op.add(Builder::build, BuildInformation.JSONP_PARSER, "build");
-		op.add(Builder::features, Features.JSONP_PARSER, "features");
-		op.add(Builder::license, MinimalLicenseInformation.JSONP_PARSER, "license");
-		op.add(Builder::tagline, JsonpValueParser.stringParser(), "tagline");
+		op.add(Builder::build, BuildInformation.DESERIALIZER, "build");
+		op.add(Builder::features, Features.DESERIALIZER, "features");
+		op.add(Builder::license, MinimalLicenseInformation.DESERIALIZER, "license");
+		op.add(Builder::tagline, JsonpDeserializer.stringDeserializer(), "tagline");
 
 	}
 

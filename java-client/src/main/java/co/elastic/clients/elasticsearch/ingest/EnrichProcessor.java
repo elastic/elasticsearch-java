@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -266,20 +266,20 @@ public final class EnrichProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for EnrichProcessor
+	 * Json deserializer for EnrichProcessor
 	 */
-	public static final JsonpValueParser<EnrichProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, EnrichProcessor::setupEnrichProcessorParser);
+	public static final JsonpDeserializer<EnrichProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, EnrichProcessor::setupEnrichProcessorDeserializer);
 
-	protected static void setupEnrichProcessorParser(DelegatingJsonpValueParser<EnrichProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::maxMatches, JsonpValueParser.numberParser(), "max_matches");
-		op.add(Builder::override, JsonpValueParser.booleanParser(), "override");
-		op.add(Builder::policyName, JsonpValueParser.stringParser(), "policy_name");
-		op.add(Builder::shapeRelation, JsonpValueParser.jsonValueParser(), "shape_relation");
-		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
+	protected static void setupEnrichProcessorDeserializer(DelegatingDeserializer<EnrichProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::maxMatches, JsonpDeserializer.numberDeserializer(), "max_matches");
+		op.add(Builder::override, JsonpDeserializer.booleanDeserializer(), "override");
+		op.add(Builder::policyName, JsonpDeserializer.stringDeserializer(), "policy_name");
+		op.add(Builder::shapeRelation, JsonpDeserializer.jsonValueDeserializer(), "shape_relation");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}
 

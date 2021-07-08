@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -170,17 +170,17 @@ public final class Connection implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Connection
+	 * Json deserializer for Connection
 	 */
-	public static final JsonpValueParser<Connection> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Connection::setupConnectionParser);
+	public static final JsonpDeserializer<Connection> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Connection::setupConnectionDeserializer);
 
-	protected static void setupConnectionParser(DelegatingJsonpValueParser<Connection.Builder> op) {
+	protected static void setupConnectionDeserializer(DelegatingDeserializer<Connection.Builder> op) {
 
-		op.add(Builder::docCount, JsonpValueParser.numberParser(), "doc_count");
-		op.add(Builder::source, JsonpValueParser.numberParser(), "source");
-		op.add(Builder::target, JsonpValueParser.numberParser(), "target");
-		op.add(Builder::weight, JsonpValueParser.numberParser(), "weight");
+		op.add(Builder::docCount, JsonpDeserializer.numberDeserializer(), "doc_count");
+		op.add(Builder::source, JsonpDeserializer.numberDeserializer(), "source");
+		op.add(Builder::target, JsonpDeserializer.numberDeserializer(), "target");
+		op.add(Builder::weight, JsonpDeserializer.numberDeserializer(), "weight");
 
 	}
 

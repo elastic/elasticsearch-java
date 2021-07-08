@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -175,15 +175,15 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IpRangeAggregation
+	 * Json deserializer for IpRangeAggregation
 	 */
-	public static final JsonpValueParser<IpRangeAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IpRangeAggregation::setupIpRangeAggregationParser);
+	public static final JsonpDeserializer<IpRangeAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IpRangeAggregation::setupIpRangeAggregationDeserializer);
 
-	protected static void setupIpRangeAggregationParser(DelegatingJsonpValueParser<IpRangeAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ranges, JsonpValueParser.arrayParser(IpRangeAggregationRange.JSONP_PARSER), "ranges");
+	protected static void setupIpRangeAggregationDeserializer(DelegatingDeserializer<IpRangeAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(IpRangeAggregationRange.DESERIALIZER), "ranges");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,16 @@ public final class NodeInfoXpackSecurityAuthcToken implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoXpackSecurityAuthcToken
+	 * Json deserializer for NodeInfoXpackSecurityAuthcToken
 	 */
-	public static final JsonpValueParser<NodeInfoXpackSecurityAuthcToken> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoXpackSecurityAuthcToken::setupNodeInfoXpackSecurityAuthcTokenParser);
+	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcToken> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					NodeInfoXpackSecurityAuthcToken::setupNodeInfoXpackSecurityAuthcTokenDeserializer);
 
-	protected static void setupNodeInfoXpackSecurityAuthcTokenParser(
-			DelegatingJsonpValueParser<NodeInfoXpackSecurityAuthcToken.Builder> op) {
+	protected static void setupNodeInfoXpackSecurityAuthcTokenDeserializer(
+			DelegatingDeserializer<NodeInfoXpackSecurityAuthcToken.Builder> op) {
 
-		op.add(Builder::enabled, JsonpValueParser.stringParser(), "enabled");
+		op.add(Builder::enabled, JsonpDeserializer.stringDeserializer(), "enabled");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -229,17 +229,17 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TopMetricsAggregation
+	 * Json deserializer for TopMetricsAggregation
 	 */
-	public static final JsonpValueParser<TopMetricsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TopMetricsAggregation::setupTopMetricsAggregationParser);
+	public static final JsonpDeserializer<TopMetricsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TopMetricsAggregation::setupTopMetricsAggregationDeserializer);
 
-	protected static void setupTopMetricsAggregationParser(
-			DelegatingJsonpValueParser<TopMetricsAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseParser(op);
-		op.add(Builder::metrics, JsonpValueParser.arrayParser(TopMetricsValue.JSONP_PARSER), "metrics");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::sort, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "sort");
+	protected static void setupTopMetricsAggregationDeserializer(
+			DelegatingDeserializer<TopMetricsAggregation.Builder> op) {
+		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(TopMetricsValue.DESERIALIZER), "metrics");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 
 	}
 

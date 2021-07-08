@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -104,15 +104,15 @@ public final class MatrixStatsAggregation extends MatrixAggregation {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MatrixStatsAggregation
+	 * Json deserializer for MatrixStatsAggregation
 	 */
-	public static final JsonpValueParser<MatrixStatsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MatrixStatsAggregation::setupMatrixStatsAggregationParser);
+	public static final JsonpDeserializer<MatrixStatsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MatrixStatsAggregation::setupMatrixStatsAggregationDeserializer);
 
-	protected static void setupMatrixStatsAggregationParser(
-			DelegatingJsonpValueParser<MatrixStatsAggregation.Builder> op) {
-		MatrixAggregation.setupMatrixAggregationParser(op);
-		op.add(Builder::mode, JsonpValueParser.jsonValueParser(), "mode");
+	protected static void setupMatrixStatsAggregationDeserializer(
+			DelegatingDeserializer<MatrixStatsAggregation.Builder> op) {
+		MatrixAggregation.setupMatrixAggregationDeserializer(op);
+		op.add(Builder::mode, JsonpDeserializer.jsonValueDeserializer(), "mode");
 
 	}
 

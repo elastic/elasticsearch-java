@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -153,16 +153,16 @@ public final class RenameProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RenameProcessor
+	 * Json deserializer for RenameProcessor
 	 */
-	public static final JsonpValueParser<RenameProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RenameProcessor::setupRenameProcessorParser);
+	public static final JsonpDeserializer<RenameProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RenameProcessor::setupRenameProcessorDeserializer);
 
-	protected static void setupRenameProcessorParser(DelegatingJsonpValueParser<RenameProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
+	protected static void setupRenameProcessorDeserializer(DelegatingDeserializer<RenameProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class LaplaceSmoothingModel implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for LaplaceSmoothingModel
+	 * Json deserializer for LaplaceSmoothingModel
 	 */
-	public static final JsonpValueParser<LaplaceSmoothingModel> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, LaplaceSmoothingModel::setupLaplaceSmoothingModelParser);
+	public static final JsonpDeserializer<LaplaceSmoothingModel> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, LaplaceSmoothingModel::setupLaplaceSmoothingModelDeserializer);
 
-	protected static void setupLaplaceSmoothingModelParser(
-			DelegatingJsonpValueParser<LaplaceSmoothingModel.Builder> op) {
+	protected static void setupLaplaceSmoothingModelDeserializer(
+			DelegatingDeserializer<LaplaceSmoothingModel.Builder> op) {
 
-		op.add(Builder::alpha, JsonpValueParser.numberParser(), "alpha");
+		op.add(Builder::alpha, JsonpDeserializer.numberDeserializer(), "alpha");
 
 	}
 

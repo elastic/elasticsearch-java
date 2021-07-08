@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -148,16 +148,16 @@ public final class AllocationDecision implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AllocationDecision
+	 * Json deserializer for AllocationDecision
 	 */
-	public static final JsonpValueParser<AllocationDecision> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AllocationDecision::setupAllocationDecisionParser);
+	public static final JsonpDeserializer<AllocationDecision> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AllocationDecision::setupAllocationDecisionDeserializer);
 
-	protected static void setupAllocationDecisionParser(DelegatingJsonpValueParser<AllocationDecision.Builder> op) {
+	protected static void setupAllocationDecisionDeserializer(DelegatingDeserializer<AllocationDecision.Builder> op) {
 
-		op.add(Builder::decider, JsonpValueParser.stringParser(), "decider");
-		op.add(Builder::decision, JsonpValueParser.jsonValueParser(), "decision");
-		op.add(Builder::explanation, JsonpValueParser.stringParser(), "explanation");
+		op.add(Builder::decider, JsonpDeserializer.stringDeserializer(), "decider");
+		op.add(Builder::decision, JsonpDeserializer.jsonValueDeserializer(), "decision");
+		op.add(Builder::explanation, JsonpDeserializer.stringDeserializer(), "explanation");
 
 	}
 

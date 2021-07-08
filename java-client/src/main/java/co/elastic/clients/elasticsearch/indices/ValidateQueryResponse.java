@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.validate_query.IndicesValidationExplanation;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -244,19 +244,19 @@ public final class ValidateQueryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ValidateQueryResponse
+	 * Json deserializer for ValidateQueryResponse
 	 */
-	public static final JsonpValueParser<ValidateQueryResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ValidateQueryResponse::setupValidateQueryResponseParser);
+	public static final JsonpDeserializer<ValidateQueryResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ValidateQueryResponse::setupValidateQueryResponseDeserializer);
 
-	protected static void setupValidateQueryResponseParser(
-			DelegatingJsonpValueParser<ValidateQueryResponse.Builder> op) {
+	protected static void setupValidateQueryResponseDeserializer(
+			DelegatingDeserializer<ValidateQueryResponse.Builder> op) {
 
-		op.add(Builder::explanations, JsonpValueParser.arrayParser(IndicesValidationExplanation.JSONP_PARSER),
+		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(IndicesValidationExplanation.DESERIALIZER),
 				"explanations");
-		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
-		op.add(Builder::valid, JsonpValueParser.booleanParser(), "valid");
-		op.add(Builder::error, JsonpValueParser.stringParser(), "error");
+		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::valid, JsonpDeserializer.booleanDeserializer(), "valid");
+		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.NodeShard;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -190,16 +190,17 @@ public final class ClusterStateRoutingNodes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateRoutingNodes
+	 * Json deserializer for ClusterStateRoutingNodes
 	 */
-	public static final JsonpValueParser<ClusterStateRoutingNodes> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterStateRoutingNodes::setupClusterStateRoutingNodesParser);
+	public static final JsonpDeserializer<ClusterStateRoutingNodes> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterStateRoutingNodes::setupClusterStateRoutingNodesDeserializer);
 
-	protected static void setupClusterStateRoutingNodesParser(
-			DelegatingJsonpValueParser<ClusterStateRoutingNodes.Builder> op) {
+	protected static void setupClusterStateRoutingNodesDeserializer(
+			DelegatingDeserializer<ClusterStateRoutingNodes.Builder> op) {
 
-		op.add(Builder::unassigned, JsonpValueParser.arrayParser(NodeShard.JSONP_PARSER), "unassigned");
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(NodeShard.JSONP_PARSER)),
+		op.add(Builder::unassigned, JsonpDeserializer.arrayDeserializer(NodeShard.DESERIALIZER), "unassigned");
+		op.add(Builder::nodes,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(NodeShard.DESERIALIZER)),
 				"nodes");
 
 	}

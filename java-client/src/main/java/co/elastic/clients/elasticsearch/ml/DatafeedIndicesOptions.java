@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -195,18 +195,18 @@ public final class DatafeedIndicesOptions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DatafeedIndicesOptions
+	 * Json deserializer for DatafeedIndicesOptions
 	 */
-	public static final JsonpValueParser<DatafeedIndicesOptions> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DatafeedIndicesOptions::setupDatafeedIndicesOptionsParser);
+	public static final JsonpDeserializer<DatafeedIndicesOptions> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DatafeedIndicesOptions::setupDatafeedIndicesOptionsDeserializer);
 
-	protected static void setupDatafeedIndicesOptionsParser(
-			DelegatingJsonpValueParser<DatafeedIndicesOptions.Builder> op) {
+	protected static void setupDatafeedIndicesOptionsDeserializer(
+			DelegatingDeserializer<DatafeedIndicesOptions.Builder> op) {
 
-		op.add(Builder::allowNoIndices, JsonpValueParser.booleanParser(), "allow_no_indices");
-		op.add(Builder::expandWildcards, JsonpValueParser.jsonValueParser(), "expand_wildcards");
-		op.add(Builder::ignoreUnavailable, JsonpValueParser.booleanParser(), "ignore_unavailable");
-		op.add(Builder::ignoreThrottled, JsonpValueParser.booleanParser(), "ignore_throttled");
+		op.add(Builder::allowNoIndices, JsonpDeserializer.booleanDeserializer(), "allow_no_indices");
+		op.add(Builder::expandWildcards, JsonpDeserializer.jsonValueDeserializer(), "expand_wildcards");
+		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
+		op.add(Builder::ignoreThrottled, JsonpDeserializer.booleanDeserializer(), "ignore_throttled");
 
 	}
 

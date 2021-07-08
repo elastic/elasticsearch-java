@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -178,17 +178,17 @@ public final class FieldTypes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldTypes
+	 * Json deserializer for FieldTypes
 	 */
-	public static final JsonpValueParser<FieldTypes> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldTypes::setupFieldTypesParser);
+	public static final JsonpDeserializer<FieldTypes> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldTypes::setupFieldTypesDeserializer);
 
-	protected static void setupFieldTypesParser(DelegatingJsonpValueParser<FieldTypes.Builder> op) {
+	protected static void setupFieldTypesDeserializer(DelegatingDeserializer<FieldTypes.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::indexCount, JsonpValueParser.numberParser(), "index_count");
-		op.add(Builder::scriptCount, JsonpValueParser.numberParser(), "script_count");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::indexCount, JsonpDeserializer.numberDeserializer(), "index_count");
+		op.add(Builder::scriptCount, JsonpDeserializer.numberDeserializer(), "script_count");
 
 	}
 

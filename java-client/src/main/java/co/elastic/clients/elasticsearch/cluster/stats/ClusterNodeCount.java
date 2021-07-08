@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -407,27 +407,27 @@ public final class ClusterNodeCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterNodeCount
+	 * Json deserializer for ClusterNodeCount
 	 */
-	public static final JsonpValueParser<ClusterNodeCount> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterNodeCount::setupClusterNodeCountParser);
+	public static final JsonpDeserializer<ClusterNodeCount> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterNodeCount::setupClusterNodeCountDeserializer);
 
-	protected static void setupClusterNodeCountParser(DelegatingJsonpValueParser<ClusterNodeCount.Builder> op) {
+	protected static void setupClusterNodeCountDeserializer(DelegatingDeserializer<ClusterNodeCount.Builder> op) {
 
-		op.add(Builder::coordinatingOnly, JsonpValueParser.numberParser(), "coordinating_only");
-		op.add(Builder::data, JsonpValueParser.numberParser(), "data");
-		op.add(Builder::ingest, JsonpValueParser.numberParser(), "ingest");
-		op.add(Builder::master, JsonpValueParser.numberParser(), "master");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::votingOnly, JsonpValueParser.numberParser(), "voting_only");
-		op.add(Builder::dataCold, JsonpValueParser.numberParser(), "data_cold");
-		op.add(Builder::dataFrozen, JsonpValueParser.numberParser(), "data_frozen");
-		op.add(Builder::dataContent, JsonpValueParser.numberParser(), "data_content");
-		op.add(Builder::dataWarm, JsonpValueParser.numberParser(), "data_warm");
-		op.add(Builder::dataHot, JsonpValueParser.numberParser(), "data_hot");
-		op.add(Builder::ml, JsonpValueParser.numberParser(), "ml");
-		op.add(Builder::remoteClusterClient, JsonpValueParser.numberParser(), "remote_cluster_client");
-		op.add(Builder::transform, JsonpValueParser.numberParser(), "transform");
+		op.add(Builder::coordinatingOnly, JsonpDeserializer.numberDeserializer(), "coordinating_only");
+		op.add(Builder::data, JsonpDeserializer.numberDeserializer(), "data");
+		op.add(Builder::ingest, JsonpDeserializer.numberDeserializer(), "ingest");
+		op.add(Builder::master, JsonpDeserializer.numberDeserializer(), "master");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::votingOnly, JsonpDeserializer.numberDeserializer(), "voting_only");
+		op.add(Builder::dataCold, JsonpDeserializer.numberDeserializer(), "data_cold");
+		op.add(Builder::dataFrozen, JsonpDeserializer.numberDeserializer(), "data_frozen");
+		op.add(Builder::dataContent, JsonpDeserializer.numberDeserializer(), "data_content");
+		op.add(Builder::dataWarm, JsonpDeserializer.numberDeserializer(), "data_warm");
+		op.add(Builder::dataHot, JsonpDeserializer.numberDeserializer(), "data_hot");
+		op.add(Builder::ml, JsonpDeserializer.numberDeserializer(), "ml");
+		op.add(Builder::remoteClusterClient, JsonpDeserializer.numberDeserializer(), "remote_cluster_client");
+		op.add(Builder::transform, JsonpDeserializer.numberDeserializer(), "transform");
 
 	}
 

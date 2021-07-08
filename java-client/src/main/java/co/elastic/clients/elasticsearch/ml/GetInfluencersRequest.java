@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -367,15 +367,15 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetInfluencersRequest
+	 * Json deserializer for GetInfluencersRequest
 	 */
-	public static final JsonpValueParser<GetInfluencersRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetInfluencersRequest::setupGetInfluencersRequestParser);
+	public static final JsonpDeserializer<GetInfluencersRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetInfluencersRequest::setupGetInfluencersRequestDeserializer);
 
-	protected static void setupGetInfluencersRequestParser(
-			DelegatingJsonpValueParser<GetInfluencersRequest.Builder> op) {
+	protected static void setupGetInfluencersRequestDeserializer(
+			DelegatingDeserializer<GetInfluencersRequest.Builder> op) {
 
-		op.add(Builder::page, Page.JSONP_PARSER, "page");
+		op.add(Builder::page, Page.DESERIALIZER, "page");
 
 	}
 
@@ -443,5 +443,5 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetInfluencersResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GetInfluencersResponse.DESERIALIZER);
 }

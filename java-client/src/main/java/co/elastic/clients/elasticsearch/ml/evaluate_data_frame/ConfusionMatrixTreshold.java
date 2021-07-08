@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -186,18 +186,18 @@ public final class ConfusionMatrixTreshold implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ConfusionMatrixTreshold
+	 * Json deserializer for ConfusionMatrixTreshold
 	 */
-	public static final JsonpValueParser<ConfusionMatrixTreshold> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ConfusionMatrixTreshold::setupConfusionMatrixTresholdParser);
+	public static final JsonpDeserializer<ConfusionMatrixTreshold> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ConfusionMatrixTreshold::setupConfusionMatrixTresholdDeserializer);
 
-	protected static void setupConfusionMatrixTresholdParser(
-			DelegatingJsonpValueParser<ConfusionMatrixTreshold.Builder> op) {
+	protected static void setupConfusionMatrixTresholdDeserializer(
+			DelegatingDeserializer<ConfusionMatrixTreshold.Builder> op) {
 
-		op.add(Builder::truePositive, JsonpValueParser.numberParser(), "tp");
-		op.add(Builder::falsePositive, JsonpValueParser.numberParser(), "fp");
-		op.add(Builder::trueNegative, JsonpValueParser.numberParser(), "tn");
-		op.add(Builder::falseNegative, JsonpValueParser.numberParser(), "fn");
+		op.add(Builder::truePositive, JsonpDeserializer.numberDeserializer(), "tp");
+		op.add(Builder::falsePositive, JsonpDeserializer.numberDeserializer(), "fp");
+		op.add(Builder::trueNegative, JsonpDeserializer.numberDeserializer(), "tn");
+		op.add(Builder::falseNegative, JsonpDeserializer.numberDeserializer(), "fn");
 
 	}
 

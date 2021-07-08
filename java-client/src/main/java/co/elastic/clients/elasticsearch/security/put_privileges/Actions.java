@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security.put_privileges;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -236,17 +236,19 @@ public final class Actions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Actions
+	 * Json deserializer for Actions
 	 */
-	public static final JsonpValueParser<Actions> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Actions::setupActionsParser);
+	public static final JsonpDeserializer<Actions> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Actions::setupActionsDeserializer);
 
-	protected static void setupActionsParser(DelegatingJsonpValueParser<Actions.Builder> op) {
+	protected static void setupActionsDeserializer(DelegatingDeserializer<Actions.Builder> op) {
 
-		op.add(Builder::actions, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "actions");
-		op.add(Builder::application, JsonpValueParser.stringParser(), "application");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"actions");
+		op.add(Builder::application, JsonpDeserializer.stringDeserializer(), "application");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
 
 	}
 

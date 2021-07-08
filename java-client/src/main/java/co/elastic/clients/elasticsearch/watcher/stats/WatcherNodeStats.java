@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.watcher.stats;
 
 import co.elastic.clients.elasticsearch.watcher.ExecutionThreadPool;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -323,20 +323,21 @@ public final class WatcherNodeStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WatcherNodeStats
+	 * Json deserializer for WatcherNodeStats
 	 */
-	public static final JsonpValueParser<WatcherNodeStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WatcherNodeStats::setupWatcherNodeStatsParser);
+	public static final JsonpDeserializer<WatcherNodeStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WatcherNodeStats::setupWatcherNodeStatsDeserializer);
 
-	protected static void setupWatcherNodeStatsParser(DelegatingJsonpValueParser<WatcherNodeStats.Builder> op) {
+	protected static void setupWatcherNodeStatsDeserializer(DelegatingDeserializer<WatcherNodeStats.Builder> op) {
 
-		op.add(Builder::currentWatches, JsonpValueParser.arrayParser(WatchRecordStats.JSONP_PARSER), "current_watches");
-		op.add(Builder::executionThreadPool, ExecutionThreadPool.JSONP_PARSER, "execution_thread_pool");
-		op.add(Builder::queuedWatches, JsonpValueParser.arrayParser(WatchRecordQueuedStats.JSONP_PARSER),
+		op.add(Builder::currentWatches, JsonpDeserializer.arrayDeserializer(WatchRecordStats.DESERIALIZER),
+				"current_watches");
+		op.add(Builder::executionThreadPool, ExecutionThreadPool.DESERIALIZER, "execution_thread_pool");
+		op.add(Builder::queuedWatches, JsonpDeserializer.arrayDeserializer(WatchRecordQueuedStats.DESERIALIZER),
 				"queued_watches");
-		op.add(Builder::watchCount, JsonpValueParser.numberParser(), "watch_count");
-		op.add(Builder::watcherState, JsonpValueParser.jsonValueParser(), "watcher_state");
-		op.add(Builder::nodeId, JsonpValueParser.stringParser(), "node_id");
+		op.add(Builder::watchCount, JsonpDeserializer.numberDeserializer(), "watch_count");
+		op.add(Builder::watcherState, JsonpDeserializer.jsonValueDeserializer(), "watcher_state");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 
 	}
 

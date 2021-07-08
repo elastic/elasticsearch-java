@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,16 +147,16 @@ public final class JvmClasses implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for JvmClasses
+	 * Json deserializer for JvmClasses
 	 */
-	public static final JsonpValueParser<JvmClasses> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, JvmClasses::setupJvmClassesParser);
+	public static final JsonpDeserializer<JvmClasses> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, JvmClasses::setupJvmClassesDeserializer);
 
-	protected static void setupJvmClassesParser(DelegatingJsonpValueParser<JvmClasses.Builder> op) {
+	protected static void setupJvmClassesDeserializer(DelegatingDeserializer<JvmClasses.Builder> op) {
 
-		op.add(Builder::currentLoadedCount, JsonpValueParser.numberParser(), "current_loaded_count");
-		op.add(Builder::totalLoadedCount, JsonpValueParser.numberParser(), "total_loaded_count");
-		op.add(Builder::totalUnloadedCount, JsonpValueParser.numberParser(), "total_unloaded_count");
+		op.add(Builder::currentLoadedCount, JsonpDeserializer.numberDeserializer(), "current_loaded_count");
+		op.add(Builder::totalLoadedCount, JsonpDeserializer.numberDeserializer(), "total_loaded_count");
+		op.add(Builder::totalUnloadedCount, JsonpDeserializer.numberDeserializer(), "total_unloaded_count");
 
 	}
 

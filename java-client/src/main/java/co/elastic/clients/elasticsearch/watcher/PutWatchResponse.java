@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -195,18 +195,18 @@ public final class PutWatchResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutWatchResponse
+	 * Json deserializer for PutWatchResponse
 	 */
-	public static final JsonpValueParser<PutWatchResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutWatchResponse::setupPutWatchResponseParser);
+	public static final JsonpDeserializer<PutWatchResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutWatchResponse::setupPutWatchResponseDeserializer);
 
-	protected static void setupPutWatchResponseParser(DelegatingJsonpValueParser<PutWatchResponse.Builder> op) {
+	protected static void setupPutWatchResponseDeserializer(DelegatingDeserializer<PutWatchResponse.Builder> op) {
 
-		op.add(Builder::created, JsonpValueParser.booleanParser(), "created");
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::_primaryTerm, JsonpValueParser.numberParser(), "_primary_term");
-		op.add(Builder::_seqNo, JsonpValueParser.numberParser(), "_seq_no");
-		op.add(Builder::_version, JsonpValueParser.numberParser(), "_version");
+		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::_primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(Builder::_seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
+		op.add(Builder::_version, JsonpDeserializer.numberDeserializer(), "_version");
 
 	}
 

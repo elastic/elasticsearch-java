@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,13 @@ public final class CreateResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateResponse
+	 * Json deserializer for CreateResponse
 	 */
-	public static final JsonpValueParser<CreateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateResponse::setupCreateResponseParser);
+	public static final JsonpDeserializer<CreateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateResponse::setupCreateResponseDeserializer);
 
-	protected static void setupCreateResponseParser(DelegatingJsonpValueParser<CreateResponse.Builder> op) {
-		WriteResponseBase.setupWriteResponseBaseParser(op);
+	protected static void setupCreateResponseDeserializer(DelegatingDeserializer<CreateResponse.Builder> op) {
+		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 
 	}
 

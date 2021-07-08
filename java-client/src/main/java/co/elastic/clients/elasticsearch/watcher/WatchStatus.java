@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -279,19 +279,19 @@ public final class WatchStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WatchStatus
+	 * Json deserializer for WatchStatus
 	 */
-	public static final JsonpValueParser<WatchStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WatchStatus::setupWatchStatusParser);
+	public static final JsonpDeserializer<WatchStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WatchStatus::setupWatchStatusDeserializer);
 
-	protected static void setupWatchStatusParser(DelegatingJsonpValueParser<WatchStatus.Builder> op) {
+	protected static void setupWatchStatusDeserializer(DelegatingDeserializer<WatchStatus.Builder> op) {
 
-		op.add(Builder::actions, JsonpValueParser.stringMapParser(ActionStatus.JSONP_PARSER), "actions");
-		op.add(Builder::lastChecked, JsonpValueParser.stringParser(), "last_checked");
-		op.add(Builder::lastMetCondition, JsonpValueParser.stringParser(), "last_met_condition");
-		op.add(Builder::state, ActivationState.JSONP_PARSER, "state");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::executionState, JsonpValueParser.stringParser(), "execution_state");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus.DESERIALIZER), "actions");
+		op.add(Builder::lastChecked, JsonpDeserializer.stringDeserializer(), "last_checked");
+		op.add(Builder::lastMetCondition, JsonpDeserializer.stringDeserializer(), "last_met_condition");
+		op.add(Builder::state, ActivationState.DESERIALIZER, "state");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::executionState, JsonpDeserializer.stringDeserializer(), "execution_state");
 
 	}
 

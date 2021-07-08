@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -102,14 +102,14 @@ public final class IdsQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IdsQuery
+	 * Json deserializer for IdsQuery
 	 */
-	public static final JsonpValueParser<IdsQuery> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			IdsQuery::setupIdsQueryParser);
+	public static final JsonpDeserializer<IdsQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IdsQuery::setupIdsQueryDeserializer);
 
-	protected static void setupIdsQueryParser(DelegatingJsonpValueParser<IdsQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::values, JsonpValueParser.jsonValueParser(), "values");
+	protected static void setupIdsQueryDeserializer(DelegatingDeserializer<IdsQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::values, JsonpDeserializer.jsonValueDeserializer(), "values");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices.get_mapping;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -146,15 +146,15 @@ public final class IndexMappingRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexMappingRecord
+	 * Json deserializer for IndexMappingRecord
 	 */
-	public static final JsonpValueParser<IndexMappingRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexMappingRecord::setupIndexMappingRecordParser);
+	public static final JsonpDeserializer<IndexMappingRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexMappingRecord::setupIndexMappingRecordDeserializer);
 
-	protected static void setupIndexMappingRecordParser(DelegatingJsonpValueParser<IndexMappingRecord.Builder> op) {
+	protected static void setupIndexMappingRecordDeserializer(DelegatingDeserializer<IndexMappingRecord.Builder> op) {
 
-		op.add(Builder::item, TypeMapping.JSONP_PARSER, "item");
-		op.add(Builder::mappings, TypeMapping.JSONP_PARSER, "mappings");
+		op.add(Builder::item, TypeMapping.DESERIALIZER, "item");
+		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
 
 	}
 

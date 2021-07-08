@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -140,15 +140,15 @@ public final class MultiTermsAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MultiTermsAggregation
+	 * Json deserializer for MultiTermsAggregation
 	 */
-	public static final JsonpValueParser<MultiTermsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationParser);
+	public static final JsonpDeserializer<MultiTermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationDeserializer);
 
-	protected static void setupMultiTermsAggregationParser(
-			DelegatingJsonpValueParser<MultiTermsAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::terms, JsonpValueParser.arrayParser(MultiTermLookup.JSONP_PARSER), "terms");
+	protected static void setupMultiTermsAggregationDeserializer(
+			DelegatingDeserializer<MultiTermsAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(MultiTermLookup.DESERIALIZER), "terms");
 
 	}
 

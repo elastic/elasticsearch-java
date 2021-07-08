@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.StoredScript;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -212,14 +212,14 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutScriptRequest
+	 * Json deserializer for PutScriptRequest
 	 */
-	public static final JsonpValueParser<PutScriptRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutScriptRequest::setupPutScriptRequestParser);
+	public static final JsonpDeserializer<PutScriptRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutScriptRequest::setupPutScriptRequestDeserializer);
 
-	protected static void setupPutScriptRequestParser(DelegatingJsonpValueParser<PutScriptRequest.Builder> op) {
+	protected static void setupPutScriptRequestDeserializer(DelegatingDeserializer<PutScriptRequest.Builder> op) {
 
-		op.add(Builder::script, StoredScript.JSONP_PARSER, "script");
+		op.add(Builder::script, StoredScript.DESERIALIZER, "script");
 
 	}
 
@@ -278,5 +278,5 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutScriptResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutScriptResponse.DESERIALIZER);
 }

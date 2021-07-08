@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Supplier;
@@ -87,17 +87,17 @@ public final class GetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for GetResponse
+	 * Create a json deserializer for GetResponse
 	 */
-	public static <TEvent> JsonpValueParser<GetResponse<TEvent>> createGetResponseParser(
-			JsonpValueParser<TEvent> tEventParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TEvent>>) Builder::new,
-				op -> GetResponse.setupGetResponseParser(op, tEventParser));
+	public static <TEvent> JsonpDeserializer<GetResponse<TEvent>> createGetResponseDeserializer(
+			JsonpDeserializer<TEvent> tEventDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TEvent>>) Builder::new,
+				op -> GetResponse.setupGetResponseDeserializer(op, tEventDeserializer));
 	};
 
-	protected static <TEvent> void setupGetResponseParser(DelegatingJsonpValueParser<GetResponse.Builder<TEvent>> op,
-			JsonpValueParser<TEvent> tEventParser) {
-		EqlSearchResponseBase.setupEqlSearchResponseBaseParser(op, tEventParser);
+	protected static <TEvent> void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder<TEvent>> op,
+			JsonpDeserializer<TEvent> tEventDeserializer) {
+		EqlSearchResponseBase.setupEqlSearchResponseBaseDeserializer(op, tEventDeserializer);
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -162,17 +162,17 @@ public final class ClusterStateIndexLifecycle implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateIndexLifecycle
+	 * Json deserializer for ClusterStateIndexLifecycle
 	 */
-	public static final JsonpValueParser<ClusterStateIndexLifecycle> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterStateIndexLifecycle::setupClusterStateIndexLifecycleParser);
+	public static final JsonpDeserializer<ClusterStateIndexLifecycle> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterStateIndexLifecycle::setupClusterStateIndexLifecycleDeserializer);
 
-	protected static void setupClusterStateIndexLifecycleParser(
-			DelegatingJsonpValueParser<ClusterStateIndexLifecycle.Builder> op) {
+	protected static void setupClusterStateIndexLifecycleDeserializer(
+			DelegatingDeserializer<ClusterStateIndexLifecycle.Builder> op) {
 
-		op.add(Builder::policies, JsonpValueParser.stringMapParser(ClusterStateIndexLifecycleSummary.JSONP_PARSER),
-				"policies");
-		op.add(Builder::operationMode, JsonpValueParser.jsonValueParser(), "operation_mode");
+		op.add(Builder::policies,
+				JsonpDeserializer.stringMapDeserializer(ClusterStateIndexLifecycleSummary.DESERIALIZER), "policies");
+		op.add(Builder::operationMode, JsonpDeserializer.jsonValueDeserializer(), "operation_mode");
 
 	}
 

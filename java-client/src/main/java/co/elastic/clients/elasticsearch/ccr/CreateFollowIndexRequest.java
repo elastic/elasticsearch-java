@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ccr;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -477,28 +477,30 @@ public final class CreateFollowIndexRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateFollowIndexRequest
+	 * Json deserializer for CreateFollowIndexRequest
 	 */
-	public static final JsonpValueParser<CreateFollowIndexRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateFollowIndexRequest::setupCreateFollowIndexRequestParser);
+	public static final JsonpDeserializer<CreateFollowIndexRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateFollowIndexRequest::setupCreateFollowIndexRequestDeserializer);
 
-	protected static void setupCreateFollowIndexRequestParser(
-			DelegatingJsonpValueParser<CreateFollowIndexRequest.Builder> op) {
+	protected static void setupCreateFollowIndexRequestDeserializer(
+			DelegatingDeserializer<CreateFollowIndexRequest.Builder> op) {
 
-		op.add(Builder::leaderIndex, JsonpValueParser.stringParser(), "leader_index");
-		op.add(Builder::maxOutstandingReadRequests, JsonpValueParser.numberParser(), "max_outstanding_read_requests");
-		op.add(Builder::maxOutstandingWriteRequests, JsonpValueParser.numberParser(), "max_outstanding_write_requests");
-		op.add(Builder::maxReadRequestOperationCount, JsonpValueParser.numberParser(),
+		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
+		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.numberDeserializer(),
+				"max_outstanding_read_requests");
+		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.numberDeserializer(),
+				"max_outstanding_write_requests");
+		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.numberDeserializer(),
 				"max_read_request_operation_count");
-		op.add(Builder::maxReadRequestSize, JsonpValueParser.stringParser(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpValueParser.jsonValueParser(), "max_retry_delay");
-		op.add(Builder::maxWriteBufferCount, JsonpValueParser.numberParser(), "max_write_buffer_count");
-		op.add(Builder::maxWriteBufferSize, JsonpValueParser.stringParser(), "max_write_buffer_size");
-		op.add(Builder::maxWriteRequestOperationCount, JsonpValueParser.numberParser(),
+		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
+		op.add(Builder::maxRetryDelay, JsonpDeserializer.jsonValueDeserializer(), "max_retry_delay");
+		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.numberDeserializer(), "max_write_buffer_count");
+		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
+		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.numberDeserializer(),
 				"max_write_request_operation_count");
-		op.add(Builder::maxWriteRequestSize, JsonpValueParser.stringParser(), "max_write_request_size");
-		op.add(Builder::readPollTimeout, JsonpValueParser.jsonValueParser(), "read_poll_timeout");
-		op.add(Builder::remoteCluster, JsonpValueParser.stringParser(), "remote_cluster");
+		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
+		op.add(Builder::readPollTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_poll_timeout");
+		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
 
 	}
 
@@ -543,5 +545,5 @@ public final class CreateFollowIndexRequest extends RequestBase implements ToJso
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateFollowIndexResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, CreateFollowIndexResponse.DESERIALIZER);
 }

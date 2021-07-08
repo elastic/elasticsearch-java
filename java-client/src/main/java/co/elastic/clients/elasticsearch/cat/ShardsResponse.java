@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.shards.ShardsRecord;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -141,14 +141,14 @@ public final class ShardsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardsResponse
+	 * Json deserializer for ShardsResponse
 	 */
-	public static final JsonpValueParser<ShardsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardsResponse::setupShardsResponseParser);
+	public static final JsonpDeserializer<ShardsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardsResponse::setupShardsResponseDeserializer);
 
-	protected static void setupShardsResponseParser(DelegatingJsonpValueParser<ShardsResponse.Builder> op) {
+	protected static void setupShardsResponseDeserializer(DelegatingDeserializer<ShardsResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(ShardsRecord.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(ShardsRecord.DESERIALIZER), "value");
 
 	}
 

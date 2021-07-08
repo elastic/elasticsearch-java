@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -108,14 +108,14 @@ public final class InnerHitsResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InnerHitsResult
+	 * Json deserializer for InnerHitsResult
 	 */
-	public static final JsonpValueParser<InnerHitsResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InnerHitsResult::setupInnerHitsResultParser);
+	public static final JsonpDeserializer<InnerHitsResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InnerHitsResult::setupInnerHitsResultDeserializer);
 
-	protected static void setupInnerHitsResultParser(DelegatingJsonpValueParser<InnerHitsResult.Builder> op) {
+	protected static void setupInnerHitsResultDeserializer(DelegatingDeserializer<InnerHitsResult.Builder> op) {
 
-		op.add(Builder::hits, InnerHitsMetadata.JSONP_PARSER, "hits");
+		op.add(Builder::hits, InnerHitsMetadata.DESERIALIZER, "hits");
 
 	}
 

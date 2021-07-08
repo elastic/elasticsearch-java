@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -193,19 +193,19 @@ public final class OperatingSystemMemoryInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for OperatingSystemMemoryInfo
+	 * Json deserializer for OperatingSystemMemoryInfo
 	 */
-	public static final JsonpValueParser<OperatingSystemMemoryInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, OperatingSystemMemoryInfo::setupOperatingSystemMemoryInfoParser);
+	public static final JsonpDeserializer<OperatingSystemMemoryInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, OperatingSystemMemoryInfo::setupOperatingSystemMemoryInfoDeserializer);
 
-	protected static void setupOperatingSystemMemoryInfoParser(
-			DelegatingJsonpValueParser<OperatingSystemMemoryInfo.Builder> op) {
+	protected static void setupOperatingSystemMemoryInfoDeserializer(
+			DelegatingDeserializer<OperatingSystemMemoryInfo.Builder> op) {
 
-		op.add(Builder::freeInBytes, JsonpValueParser.numberParser(), "free_in_bytes");
-		op.add(Builder::freePercent, JsonpValueParser.numberParser(), "free_percent");
-		op.add(Builder::totalInBytes, JsonpValueParser.numberParser(), "total_in_bytes");
-		op.add(Builder::usedInBytes, JsonpValueParser.numberParser(), "used_in_bytes");
-		op.add(Builder::usedPercent, JsonpValueParser.numberParser(), "used_percent");
+		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
+		op.add(Builder::freePercent, JsonpDeserializer.numberDeserializer(), "free_percent");
+		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::usedInBytes, JsonpDeserializer.numberDeserializer(), "used_in_bytes");
+		op.add(Builder::usedPercent, JsonpDeserializer.numberDeserializer(), "used_percent");
 
 	}
 

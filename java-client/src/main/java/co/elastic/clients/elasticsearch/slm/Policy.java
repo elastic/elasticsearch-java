@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -209,18 +209,18 @@ public final class Policy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Policy
+	 * Json deserializer for Policy
 	 */
-	public static final JsonpValueParser<Policy> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Policy::setupPolicyParser);
+	public static final JsonpDeserializer<Policy> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Policy::setupPolicyDeserializer);
 
-	protected static void setupPolicyParser(DelegatingJsonpValueParser<Policy.Builder> op) {
+	protected static void setupPolicyDeserializer(DelegatingDeserializer<Policy.Builder> op) {
 
-		op.add(Builder::config, Configuration.JSONP_PARSER, "config");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::repository, JsonpValueParser.stringParser(), "repository");
-		op.add(Builder::retention, Retention.JSONP_PARSER, "retention");
-		op.add(Builder::schedule, JsonpValueParser.jsonValueParser(), "schedule");
+		op.add(Builder::config, Configuration.DESERIALIZER, "config");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
+		op.add(Builder::retention, Retention.DESERIALIZER, "retention");
+		op.add(Builder::schedule, JsonpDeserializer.jsonValueDeserializer(), "schedule");
 
 	}
 

@@ -35,11 +35,11 @@ import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -2148,48 +2148,53 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchRequest
+	 * Json deserializer for SearchRequest
 	 */
-	public static final JsonpValueParser<SearchRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchRequest::setupSearchRequestParser);
+	public static final JsonpDeserializer<SearchRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchRequest::setupSearchRequestDeserializer);
 
-	protected static void setupSearchRequestParser(DelegatingJsonpValueParser<SearchRequest.Builder> op) {
+	protected static void setupSearchRequestDeserializer(DelegatingDeserializer<SearchRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpValueParser.stringMapParser(AggregationContainer.JSONP_PARSER), "aggs");
-		op.add(Builder::aggregations, JsonpValueParser.stringMapParser(AggregationContainer.JSONP_PARSER),
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER), "aggs");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER),
 				"aggregations");
-		op.add(Builder::collapse, FieldCollapse.JSONP_PARSER, "collapse");
-		op.add(Builder::explain, JsonpValueParser.booleanParser(), "explain");
-		op.add(Builder::from, JsonpValueParser.numberParser(), "from");
-		op.add(Builder::highlight, Highlight.JSONP_PARSER, "highlight");
-		op.add(Builder::trackTotalHits, JsonpValueParser.jsonValueParser(), "track_total_hits");
+		op.add(Builder::collapse, FieldCollapse.DESERIALIZER, "collapse");
+		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
+		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
+		op.add(Builder::highlight, Highlight.DESERIALIZER, "highlight");
+		op.add(Builder::trackTotalHits, JsonpDeserializer.jsonValueDeserializer(), "track_total_hits");
 		op.add(Builder::indicesBoost,
-				JsonpValueParser.arrayParser(JsonpValueParser.stringMapParser(JsonpValueParser.numberParser())),
+				JsonpDeserializer.arrayDeserializer(
+						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer())),
 				"indices_boost");
-		op.add(Builder::docvalueFields, JsonpValueParser.jsonValueParser(), "docvalue_fields");
-		op.add(Builder::minScore, JsonpValueParser.numberParser(), "min_score");
-		op.add(Builder::postFilter, QueryContainer.JSONP_PARSER, "post_filter");
-		op.add(Builder::profile, JsonpValueParser.booleanParser(), "profile");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::rescore, JsonpValueParser.arrayParser(Rescore.JSONP_PARSER), "rescore");
-		op.add(Builder::scriptFields, JsonpValueParser.stringMapParser(ScriptField.JSONP_PARSER), "script_fields");
-		op.add(Builder::searchAfter, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "search_after");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::slice, SlicedScroll.JSONP_PARSER, "slice");
-		op.add(Builder::sort, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "sort");
-		op.add(Builder::_source, JsonpValueParser.jsonValueParser(), "_source");
-		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "fields");
-		op.add(Builder::suggest, JsonpValueParser.jsonValueParser(), "suggest");
-		op.add(Builder::terminateAfter, JsonpValueParser.numberParser(), "terminate_after");
-		op.add(Builder::timeout, JsonpValueParser.stringParser(), "timeout");
-		op.add(Builder::trackScores, JsonpValueParser.booleanParser(), "track_scores");
-		op.add(Builder::version, JsonpValueParser.booleanParser(), "version");
-		op.add(Builder::seqNoPrimaryTerm, JsonpValueParser.booleanParser(), "seq_no_primary_term");
-		op.add(Builder::storedFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "stored_fields");
-		op.add(Builder::pit, PointInTimeReference.JSONP_PARSER, "pit");
-		op.add(Builder::runtimeMappings, JsonpValueParser.stringMapParser(RuntimeField.JSONP_PARSER),
+		op.add(Builder::docvalueFields, JsonpDeserializer.jsonValueDeserializer(), "docvalue_fields");
+		op.add(Builder::minScore, JsonpDeserializer.numberDeserializer(), "min_score");
+		op.add(Builder::postFilter, QueryContainer.DESERIALIZER, "post_filter");
+		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore.DESERIALIZER), "rescore");
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+				"script_fields");
+		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"search_after");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::slice, SlicedScroll.DESERIALIZER, "slice");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"fields");
+		op.add(Builder::suggest, JsonpDeserializer.jsonValueDeserializer(), "suggest");
+		op.add(Builder::terminateAfter, JsonpDeserializer.numberDeserializer(), "terminate_after");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
+		op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
+		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
+		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"stored_fields");
+		op.add(Builder::pit, PointInTimeReference.DESERIALIZER, "pit");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
 				"runtime_mappings");
-		op.add(Builder::stats, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "stats");
+		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stats");
 
 	}
 
@@ -2342,7 +2347,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	 * Create an "{@code search}" endpoint.
 	 */
 	public static <TDocument> Endpoint<SearchRequest, SearchResponse<TDocument>, ElasticsearchError> createSearchEndpoint(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return ENDPOINT.withResponseParser(SearchResponse.createSearchResponseParser(tDocumentParser));
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ENDPOINT
+				.withResponseDeserializer(SearchResponse.createSearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

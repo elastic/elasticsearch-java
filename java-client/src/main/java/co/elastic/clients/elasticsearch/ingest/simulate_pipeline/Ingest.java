@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate_pipeline;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -131,15 +131,15 @@ public final class Ingest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Ingest
+	 * Json deserializer for Ingest
 	 */
-	public static final JsonpValueParser<Ingest> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Ingest::setupIngestParser);
+	public static final JsonpDeserializer<Ingest> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Ingest::setupIngestDeserializer);
 
-	protected static void setupIngestParser(DelegatingJsonpValueParser<Ingest.Builder> op) {
+	protected static void setupIngestDeserializer(DelegatingDeserializer<Ingest.Builder> op) {
 
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp");
-		op.add(Builder::pipeline, JsonpValueParser.stringParser(), "pipeline");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 
 	}
 

@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.data_streams_stats.DataStreamsStatsItem;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -275,20 +275,21 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataStreamsStatsResponse
+	 * Json deserializer for DataStreamsStatsResponse
 	 */
-	public static final JsonpValueParser<DataStreamsStatsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataStreamsStatsResponse::setupDataStreamsStatsResponseParser);
+	public static final JsonpDeserializer<DataStreamsStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataStreamsStatsResponse::setupDataStreamsStatsResponseDeserializer);
 
-	protected static void setupDataStreamsStatsResponseParser(
-			DelegatingJsonpValueParser<DataStreamsStatsResponse.Builder> op) {
+	protected static void setupDataStreamsStatsResponseDeserializer(
+			DelegatingDeserializer<DataStreamsStatsResponse.Builder> op) {
 
-		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
-		op.add(Builder::backingIndices, JsonpValueParser.numberParser(), "backing_indices");
-		op.add(Builder::dataStreamCount, JsonpValueParser.numberParser(), "data_stream_count");
-		op.add(Builder::totalStoreSizes, JsonpValueParser.jsonValueParser(), "total_store_sizes");
-		op.add(Builder::totalStoreSizeBytes, JsonpValueParser.numberParser(), "total_store_size_bytes");
-		op.add(Builder::dataStreams, JsonpValueParser.arrayParser(DataStreamsStatsItem.JSONP_PARSER), "data_streams");
+		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::backingIndices, JsonpDeserializer.numberDeserializer(), "backing_indices");
+		op.add(Builder::dataStreamCount, JsonpDeserializer.numberDeserializer(), "data_stream_count");
+		op.add(Builder::totalStoreSizes, JsonpDeserializer.jsonValueDeserializer(), "total_store_sizes");
+		op.add(Builder::totalStoreSizeBytes, JsonpDeserializer.numberDeserializer(), "total_store_size_bytes");
+		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(DataStreamsStatsItem.DESERIALIZER),
+				"data_streams");
 
 	}
 

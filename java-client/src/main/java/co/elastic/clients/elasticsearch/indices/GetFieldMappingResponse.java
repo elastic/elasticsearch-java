@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.indices.get_field_mapping.TypeFieldMappings;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -72,15 +72,15 @@ public final class GetFieldMappingResponse extends AdditionalProperties<String, 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetFieldMappingResponse
+	 * Json deserializer for GetFieldMappingResponse
 	 */
-	public static final JsonpValueParser<GetFieldMappingResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetFieldMappingResponse::setupGetFieldMappingResponseParser);
+	public static final JsonpDeserializer<GetFieldMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetFieldMappingResponse::setupGetFieldMappingResponseDeserializer);
 
-	protected static void setupGetFieldMappingResponseParser(
-			DelegatingJsonpValueParser<GetFieldMappingResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				TypeFieldMappings.JSONP_PARSER);
+	protected static void setupGetFieldMappingResponseDeserializer(
+			DelegatingDeserializer<GetFieldMappingResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				TypeFieldMappings.DESERIALIZER);
 
 	}
 

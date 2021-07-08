@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,18 +143,19 @@ public final class ExtendedBounds<T> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for ExtendedBounds
+	 * Create a json deserializer for ExtendedBounds
 	 */
-	public static <T> JsonpValueParser<ExtendedBounds<T>> createExtendedBoundsParser(JsonpValueParser<T> tParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<T>>) Builder::new,
-				op -> ExtendedBounds.setupExtendedBoundsParser(op, tParser));
+	public static <T> JsonpDeserializer<ExtendedBounds<T>> createExtendedBoundsDeserializer(
+			JsonpDeserializer<T> tDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<T>>) Builder::new,
+				op -> ExtendedBounds.setupExtendedBoundsDeserializer(op, tDeserializer));
 	};
 
-	protected static <T> void setupExtendedBoundsParser(DelegatingJsonpValueParser<ExtendedBounds.Builder<T>> op,
-			JsonpValueParser<T> tParser) {
+	protected static <T> void setupExtendedBoundsDeserializer(DelegatingDeserializer<ExtendedBounds.Builder<T>> op,
+			JsonpDeserializer<T> tDeserializer) {
 
-		op.add(Builder::max, tParser, "max");
-		op.add(Builder::min, tParser, "min");
+		op.add(Builder::max, tDeserializer, "max");
+		op.add(Builder::min, tDeserializer, "min");
 
 	}
 

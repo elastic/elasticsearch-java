@@ -26,13 +26,13 @@ package co.elastic.clients.elasticsearch._global;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -444,19 +444,19 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for IndexRequest
+	 * Create a json deserializer for IndexRequest
 	 */
-	public static <TDocument> JsonpValueParser<IndexRequest<TDocument>> createIndexRequestParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForValue((Supplier<Builder<TDocument>>) Builder::new,
-				op -> IndexRequest.setupIndexRequestParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<IndexRequest<TDocument>> createIndexRequestDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TDocument>>) Builder::new,
+				op -> IndexRequest.setupIndexRequestDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupIndexRequestParser(
-			DelegatingJsonpValueParser<IndexRequest.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupIndexRequestDeserializer(
+			DelegatingDeserializer<IndexRequest.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::value, tDocumentParser, "value");
+		op.add(Builder::value, tDocumentDeserializer, "value");
 
 	}
 
@@ -584,5 +584,5 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, IndexResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, IndexResponse.DESERIALIZER);
 }

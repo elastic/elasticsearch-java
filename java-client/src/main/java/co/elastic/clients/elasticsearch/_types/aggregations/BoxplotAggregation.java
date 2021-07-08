@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -104,14 +104,14 @@ public final class BoxplotAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BoxplotAggregation
+	 * Json deserializer for BoxplotAggregation
 	 */
-	public static final JsonpValueParser<BoxplotAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BoxplotAggregation::setupBoxplotAggregationParser);
+	public static final JsonpDeserializer<BoxplotAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BoxplotAggregation::setupBoxplotAggregationDeserializer);
 
-	protected static void setupBoxplotAggregationParser(DelegatingJsonpValueParser<BoxplotAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseParser(op);
-		op.add(Builder::compression, JsonpValueParser.numberParser(), "compression");
+	protected static void setupBoxplotAggregationDeserializer(DelegatingDeserializer<BoxplotAggregation.Builder> op) {
+		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+		op.add(Builder::compression, JsonpDeserializer.numberDeserializer(), "compression");
 
 	}
 

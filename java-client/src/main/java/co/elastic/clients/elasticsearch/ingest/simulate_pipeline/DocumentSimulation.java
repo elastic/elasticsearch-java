@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate_pipeline;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -287,20 +287,21 @@ public final class DocumentSimulation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DocumentSimulation
+	 * Json deserializer for DocumentSimulation
 	 */
-	public static final JsonpValueParser<DocumentSimulation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DocumentSimulation::setupDocumentSimulationParser);
+	public static final JsonpDeserializer<DocumentSimulation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DocumentSimulation::setupDocumentSimulationDeserializer);
 
-	protected static void setupDocumentSimulationParser(DelegatingJsonpValueParser<DocumentSimulation.Builder> op) {
+	protected static void setupDocumentSimulationDeserializer(DelegatingDeserializer<DocumentSimulation.Builder> op) {
 
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::_index, JsonpValueParser.stringParser(), "_index");
-		op.add(Builder::_ingest, Ingest.JSONP_PARSER, "_ingest");
-		op.add(Builder::_parent, JsonpValueParser.stringParser(), "_parent");
-		op.add(Builder::_routing, JsonpValueParser.stringParser(), "_routing");
-		op.add(Builder::_source, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "_source");
-		op.add(Builder::_type, JsonpValueParser.stringParser(), "_type");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::_ingest, Ingest.DESERIALIZER, "_ingest");
+		op.add(Builder::_parent, JsonpDeserializer.stringDeserializer(), "_parent");
+		op.add(Builder::_routing, JsonpDeserializer.stringDeserializer(), "_routing");
+		op.add(Builder::_source, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"_source");
+		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
 
 	}
 

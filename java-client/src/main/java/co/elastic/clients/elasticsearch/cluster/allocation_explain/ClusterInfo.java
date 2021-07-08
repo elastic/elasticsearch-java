@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -329,19 +329,23 @@ public final class ClusterInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterInfo
+	 * Json deserializer for ClusterInfo
 	 */
-	public static final JsonpValueParser<ClusterInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterInfo::setupClusterInfoParser);
+	public static final JsonpDeserializer<ClusterInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterInfo::setupClusterInfoDeserializer);
 
-	protected static void setupClusterInfoParser(DelegatingJsonpValueParser<ClusterInfo.Builder> op) {
+	protected static void setupClusterInfoDeserializer(DelegatingDeserializer<ClusterInfo.Builder> op) {
 
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(NodeDiskUsage.JSONP_PARSER), "nodes");
-		op.add(Builder::shardSizes, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()), "shard_sizes");
-		op.add(Builder::shardDataSetSizes, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeDiskUsage.DESERIALIZER), "nodes");
+		op.add(Builder::shardSizes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+				"shard_sizes");
+		op.add(Builder::shardDataSetSizes,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"shard_data_set_sizes");
-		op.add(Builder::shardPaths, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "shard_paths");
-		op.add(Builder::reservedSizes, JsonpValueParser.arrayParser(ReservedSize.JSONP_PARSER), "reserved_sizes");
+		op.add(Builder::shardPaths, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"shard_paths");
+		op.add(Builder::reservedSizes, JsonpDeserializer.arrayDeserializer(ReservedSize.DESERIALIZER),
+				"reserved_sizes");
 
 	}
 

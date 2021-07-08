@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch._global;
 import co.elastic.clients.elasticsearch._global.search_shards.ShardStoreIndex;
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.elasticsearch._types.NodeShard;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -247,17 +247,19 @@ public final class SearchShardsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchShardsResponse
+	 * Json deserializer for SearchShardsResponse
 	 */
-	public static final JsonpValueParser<SearchShardsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchShardsResponse::setupSearchShardsResponseParser);
+	public static final JsonpDeserializer<SearchShardsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchShardsResponse::setupSearchShardsResponseDeserializer);
 
-	protected static void setupSearchShardsResponseParser(DelegatingJsonpValueParser<SearchShardsResponse.Builder> op) {
+	protected static void setupSearchShardsResponseDeserializer(
+			DelegatingDeserializer<SearchShardsResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(NodeAttributes.JSONP_PARSER), "nodes");
-		op.add(Builder::shards, JsonpValueParser.arrayParser(JsonpValueParser.arrayParser(NodeShard.JSONP_PARSER)),
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes.DESERIALIZER), "nodes");
+		op.add(Builder::shards,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(NodeShard.DESERIALIZER)),
 				"shards");
-		op.add(Builder::indices, JsonpValueParser.stringMapParser(ShardStoreIndex.JSONP_PARSER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(ShardStoreIndex.DESERIALIZER), "indices");
 
 	}
 

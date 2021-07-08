@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -224,16 +224,16 @@ public final class TimeOfYear implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TimeOfYear
+	 * Json deserializer for TimeOfYear
 	 */
-	public static final JsonpValueParser<TimeOfYear> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TimeOfYear::setupTimeOfYearParser);
+	public static final JsonpDeserializer<TimeOfYear> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TimeOfYear::setupTimeOfYearDeserializer);
 
-	protected static void setupTimeOfYearParser(DelegatingJsonpValueParser<TimeOfYear.Builder> op) {
+	protected static void setupTimeOfYearDeserializer(DelegatingDeserializer<TimeOfYear.Builder> op) {
 
-		op.add(Builder::at, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "at");
-		op.add(Builder::int_, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "int");
-		op.add(Builder::on, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "on");
+		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
+		op.add(Builder::int_, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "int");
+		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "on");
 
 	}
 

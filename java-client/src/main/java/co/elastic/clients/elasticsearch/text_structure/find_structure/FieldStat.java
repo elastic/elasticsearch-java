@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.text_structure.find_structure;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -365,22 +365,22 @@ public final class FieldStat implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldStat
+	 * Json deserializer for FieldStat
 	 */
-	public static final JsonpValueParser<FieldStat> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldStat::setupFieldStatParser);
+	public static final JsonpDeserializer<FieldStat> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldStat::setupFieldStatDeserializer);
 
-	protected static void setupFieldStatParser(DelegatingJsonpValueParser<FieldStat.Builder> op) {
+	protected static void setupFieldStatDeserializer(DelegatingDeserializer<FieldStat.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::cardinality, JsonpValueParser.numberParser(), "cardinality");
-		op.add(Builder::topHits, JsonpValueParser.arrayParser(TopHit.JSONP_PARSER), "top_hits");
-		op.add(Builder::meanValue, JsonpValueParser.numberParser(), "mean_value");
-		op.add(Builder::medianValue, JsonpValueParser.numberParser(), "median_value");
-		op.add(Builder::maxValue, JsonpValueParser.numberParser(), "max_value");
-		op.add(Builder::minValue, JsonpValueParser.numberParser(), "min_value");
-		op.add(Builder::earliest, JsonpValueParser.stringParser(), "earliest");
-		op.add(Builder::latest, JsonpValueParser.stringParser(), "latest");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::cardinality, JsonpDeserializer.numberDeserializer(), "cardinality");
+		op.add(Builder::topHits, JsonpDeserializer.arrayDeserializer(TopHit.DESERIALIZER), "top_hits");
+		op.add(Builder::meanValue, JsonpDeserializer.numberDeserializer(), "mean_value");
+		op.add(Builder::medianValue, JsonpDeserializer.numberDeserializer(), "median_value");
+		op.add(Builder::maxValue, JsonpDeserializer.numberDeserializer(), "max_value");
+		op.add(Builder::minValue, JsonpDeserializer.numberDeserializer(), "min_value");
+		op.add(Builder::earliest, JsonpDeserializer.stringDeserializer(), "earliest");
+		op.add(Builder::latest, JsonpDeserializer.stringDeserializer(), "latest");
 
 	}
 

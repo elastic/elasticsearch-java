@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -162,16 +162,16 @@ public final class NodeDiskUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeDiskUsage
+	 * Json deserializer for NodeDiskUsage
 	 */
-	public static final JsonpValueParser<NodeDiskUsage> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeDiskUsage::setupNodeDiskUsageParser);
+	public static final JsonpDeserializer<NodeDiskUsage> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeDiskUsage::setupNodeDiskUsageDeserializer);
 
-	protected static void setupNodeDiskUsageParser(DelegatingJsonpValueParser<NodeDiskUsage.Builder> op) {
+	protected static void setupNodeDiskUsageDeserializer(DelegatingDeserializer<NodeDiskUsage.Builder> op) {
 
-		op.add(Builder::nodeName, JsonpValueParser.stringParser(), "node_name");
-		op.add(Builder::leastAvailable, DiskUsage.JSONP_PARSER, "least_available");
-		op.add(Builder::mostAvailable, DiskUsage.JSONP_PARSER, "most_available");
+		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
+		op.add(Builder::leastAvailable, DiskUsage.DESERIALIZER, "least_available");
+		op.add(Builder::mostAvailable, DiskUsage.DESERIALIZER, "most_available");
 
 	}
 

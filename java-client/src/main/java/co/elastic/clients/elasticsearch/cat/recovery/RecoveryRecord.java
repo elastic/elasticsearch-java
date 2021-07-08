@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -937,39 +937,39 @@ public final class RecoveryRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RecoveryRecord
+	 * Json deserializer for RecoveryRecord
 	 */
-	public static final JsonpValueParser<RecoveryRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RecoveryRecord::setupRecoveryRecordParser);
+	public static final JsonpDeserializer<RecoveryRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RecoveryRecord::setupRecoveryRecordDeserializer);
 
-	protected static void setupRecoveryRecordParser(DelegatingJsonpValueParser<RecoveryRecord.Builder> op) {
+	protected static void setupRecoveryRecordDeserializer(DelegatingDeserializer<RecoveryRecord.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index", "i", "idx");
-		op.add(Builder::shard, JsonpValueParser.stringParser(), "shard", "s", "sh");
-		op.add(Builder::startTime, JsonpValueParser.stringParser(), "start_time", "start");
-		op.add(Builder::startTimeMillis, JsonpValueParser.stringParser(), "start_time_millis", "start_millis");
-		op.add(Builder::stopTime, JsonpValueParser.stringParser(), "stop_time", "stop");
-		op.add(Builder::stopTimeMillis, JsonpValueParser.stringParser(), "stop_time_millis", "stop_millis");
-		op.add(Builder::time, JsonpValueParser.stringParser(), "time", "t", "ti");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type", "ty");
-		op.add(Builder::stage, JsonpValueParser.stringParser(), "stage", "st");
-		op.add(Builder::sourceHost, JsonpValueParser.stringParser(), "source_host", "shost");
-		op.add(Builder::sourceNode, JsonpValueParser.stringParser(), "source_node", "snode");
-		op.add(Builder::targetHost, JsonpValueParser.stringParser(), "target_host", "thost");
-		op.add(Builder::targetNode, JsonpValueParser.stringParser(), "target_node", "tnode");
-		op.add(Builder::repository, JsonpValueParser.stringParser(), "repository", "rep");
-		op.add(Builder::snapshot, JsonpValueParser.stringParser(), "snapshot", "snap");
-		op.add(Builder::files, JsonpValueParser.stringParser(), "files", "f");
-		op.add(Builder::filesRecovered, JsonpValueParser.stringParser(), "files_recovered", "fr");
-		op.add(Builder::filesPercent, JsonpValueParser.jsonValueParser(), "files_percent", "fp");
-		op.add(Builder::filesTotal, JsonpValueParser.stringParser(), "files_total", "tf");
-		op.add(Builder::bytes, JsonpValueParser.stringParser(), "bytes", "b");
-		op.add(Builder::bytesRecovered, JsonpValueParser.stringParser(), "bytes_recovered", "br");
-		op.add(Builder::bytesPercent, JsonpValueParser.jsonValueParser(), "bytes_percent", "bp");
-		op.add(Builder::bytesTotal, JsonpValueParser.stringParser(), "bytes_total", "tb");
-		op.add(Builder::translogOps, JsonpValueParser.stringParser(), "translog_ops", "to");
-		op.add(Builder::translogOpsRecovered, JsonpValueParser.stringParser(), "translog_ops_recovered", "tor");
-		op.add(Builder::translogOpsPercent, JsonpValueParser.jsonValueParser(), "translog_ops_percent", "top");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "i", "idx");
+		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "shard", "s", "sh");
+		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time", "start");
+		op.add(Builder::startTimeMillis, JsonpDeserializer.stringDeserializer(), "start_time_millis", "start_millis");
+		op.add(Builder::stopTime, JsonpDeserializer.stringDeserializer(), "stop_time", "stop");
+		op.add(Builder::stopTimeMillis, JsonpDeserializer.stringDeserializer(), "stop_time_millis", "stop_millis");
+		op.add(Builder::time, JsonpDeserializer.stringDeserializer(), "time", "t", "ti");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "ty");
+		op.add(Builder::stage, JsonpDeserializer.stringDeserializer(), "stage", "st");
+		op.add(Builder::sourceHost, JsonpDeserializer.stringDeserializer(), "source_host", "shost");
+		op.add(Builder::sourceNode, JsonpDeserializer.stringDeserializer(), "source_node", "snode");
+		op.add(Builder::targetHost, JsonpDeserializer.stringDeserializer(), "target_host", "thost");
+		op.add(Builder::targetNode, JsonpDeserializer.stringDeserializer(), "target_node", "tnode");
+		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository", "rep");
+		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot", "snap");
+		op.add(Builder::files, JsonpDeserializer.stringDeserializer(), "files", "f");
+		op.add(Builder::filesRecovered, JsonpDeserializer.stringDeserializer(), "files_recovered", "fr");
+		op.add(Builder::filesPercent, JsonpDeserializer.jsonValueDeserializer(), "files_percent", "fp");
+		op.add(Builder::filesTotal, JsonpDeserializer.stringDeserializer(), "files_total", "tf");
+		op.add(Builder::bytes, JsonpDeserializer.stringDeserializer(), "bytes", "b");
+		op.add(Builder::bytesRecovered, JsonpDeserializer.stringDeserializer(), "bytes_recovered", "br");
+		op.add(Builder::bytesPercent, JsonpDeserializer.jsonValueDeserializer(), "bytes_percent", "bp");
+		op.add(Builder::bytesTotal, JsonpDeserializer.stringDeserializer(), "bytes_total", "tb");
+		op.add(Builder::translogOps, JsonpDeserializer.stringDeserializer(), "translog_ops", "to");
+		op.add(Builder::translogOpsRecovered, JsonpDeserializer.stringDeserializer(), "translog_ops_recovered", "tor");
+		op.add(Builder::translogOpsPercent, JsonpDeserializer.jsonValueDeserializer(), "translog_ops_percent", "top");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.searchable_snapshots.mount;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -183,16 +183,17 @@ public final class MountedSnapshot implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MountedSnapshot
+	 * Json deserializer for MountedSnapshot
 	 */
-	public static final JsonpValueParser<MountedSnapshot> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MountedSnapshot::setupMountedSnapshotParser);
+	public static final JsonpDeserializer<MountedSnapshot> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MountedSnapshot::setupMountedSnapshotDeserializer);
 
-	protected static void setupMountedSnapshotParser(DelegatingJsonpValueParser<MountedSnapshot.Builder> op) {
+	protected static void setupMountedSnapshotDeserializer(DelegatingDeserializer<MountedSnapshot.Builder> op) {
 
-		op.add(Builder::snapshot, JsonpValueParser.stringParser(), "snapshot");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::shards, ShardStatistics.JSONP_PARSER, "shards");
+		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "shards");
 
 	}
 

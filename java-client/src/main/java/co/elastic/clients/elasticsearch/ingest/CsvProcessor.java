@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -313,21 +313,22 @@ public final class CsvProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CsvProcessor
+	 * Json deserializer for CsvProcessor
 	 */
-	public static final JsonpValueParser<CsvProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CsvProcessor::setupCsvProcessorParser);
+	public static final JsonpDeserializer<CsvProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CsvProcessor::setupCsvProcessorDeserializer);
 
-	protected static void setupCsvProcessorParser(DelegatingJsonpValueParser<CsvProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::emptyValue, JsonpValueParser.jsonValueParser(), "empty_value");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::quote, JsonpValueParser.stringParser(), "quote");
-		op.add(Builder::separator, JsonpValueParser.stringParser(), "separator");
-		op.add(Builder::targetFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "target_fields");
-		op.add(Builder::trim, JsonpValueParser.booleanParser(), "trim");
+	protected static void setupCsvProcessorDeserializer(DelegatingDeserializer<CsvProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::emptyValue, JsonpDeserializer.jsonValueDeserializer(), "empty_value");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::quote, JsonpDeserializer.stringDeserializer(), "quote");
+		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
+		op.add(Builder::targetFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"target_fields");
+		op.add(Builder::trim, JsonpDeserializer.booleanDeserializer(), "trim");
 
 	}
 

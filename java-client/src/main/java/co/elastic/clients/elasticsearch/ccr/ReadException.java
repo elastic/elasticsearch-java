@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -156,16 +156,16 @@ public final class ReadException implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReadException
+	 * Json deserializer for ReadException
 	 */
-	public static final JsonpValueParser<ReadException> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReadException::setupReadExceptionParser);
+	public static final JsonpDeserializer<ReadException> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReadException::setupReadExceptionDeserializer);
 
-	protected static void setupReadExceptionParser(DelegatingJsonpValueParser<ReadException.Builder> op) {
+	protected static void setupReadExceptionDeserializer(DelegatingDeserializer<ReadException.Builder> op) {
 
-		op.add(Builder::exception, ErrorCause.JSONP_PARSER, "exception");
-		op.add(Builder::fromSeqNo, JsonpValueParser.numberParser(), "from_seq_no");
-		op.add(Builder::retries, JsonpValueParser.numberParser(), "retries");
+		op.add(Builder::exception, ErrorCause.DESERIALIZER, "exception");
+		op.add(Builder::fromSeqNo, JsonpDeserializer.numberDeserializer(), "from_seq_no");
+		op.add(Builder::retries, JsonpDeserializer.numberDeserializer(), "retries");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ccr.stats;
 
 import co.elastic.clients.elasticsearch.ccr.FollowIndexStats;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,14 +143,14 @@ public final class FollowStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FollowStats
+	 * Json deserializer for FollowStats
 	 */
-	public static final JsonpValueParser<FollowStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FollowStats::setupFollowStatsParser);
+	public static final JsonpDeserializer<FollowStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FollowStats::setupFollowStatsDeserializer);
 
-	protected static void setupFollowStatsParser(DelegatingJsonpValueParser<FollowStats.Builder> op) {
+	protected static void setupFollowStatsDeserializer(DelegatingDeserializer<FollowStats.Builder> op) {
 
-		op.add(Builder::indices, JsonpValueParser.arrayParser(FollowIndexStats.JSONP_PARSER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(FollowIndexStats.DESERIALIZER), "indices");
 
 	}
 

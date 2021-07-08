@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -266,18 +266,19 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateDataFrameAnalyticsRequest
+	 * Json deserializer for UpdateDataFrameAnalyticsRequest
 	 */
-	public static final JsonpValueParser<UpdateDataFrameAnalyticsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateDataFrameAnalyticsRequest::setupUpdateDataFrameAnalyticsRequestParser);
+	public static final JsonpDeserializer<UpdateDataFrameAnalyticsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					UpdateDataFrameAnalyticsRequest::setupUpdateDataFrameAnalyticsRequestDeserializer);
 
-	protected static void setupUpdateDataFrameAnalyticsRequestParser(
-			DelegatingJsonpValueParser<UpdateDataFrameAnalyticsRequest.Builder> op) {
+	protected static void setupUpdateDataFrameAnalyticsRequestDeserializer(
+			DelegatingDeserializer<UpdateDataFrameAnalyticsRequest.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::modelMemoryLimit, JsonpValueParser.jsonValueParser(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpValueParser.numberParser(), "max_num_threads");
-		op.add(Builder::allowLazyStart, JsonpValueParser.booleanParser(), "allow_lazy_start");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(), "model_memory_limit");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 
 	}
 
@@ -320,5 +321,5 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateDataFrameAnalyticsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, UpdateDataFrameAnalyticsResponse.DESERIALIZER);
 }

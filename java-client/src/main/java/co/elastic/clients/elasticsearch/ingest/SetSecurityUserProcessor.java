@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -156,16 +156,17 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SetSecurityUserProcessor
+	 * Json deserializer for SetSecurityUserProcessor
 	 */
-	public static final JsonpValueParser<SetSecurityUserProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorParser);
+	public static final JsonpDeserializer<SetSecurityUserProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer);
 
-	protected static void setupSetSecurityUserProcessorParser(
-			DelegatingJsonpValueParser<SetSecurityUserProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::properties, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "properties");
+	protected static void setupSetSecurityUserProcessorDeserializer(
+			DelegatingDeserializer<SetSecurityUserProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"properties");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -124,15 +124,15 @@ public final class CreateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateResponse
+	 * Json deserializer for CreateResponse
 	 */
-	public static final JsonpValueParser<CreateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateResponse::setupCreateResponseParser);
+	public static final JsonpDeserializer<CreateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateResponse::setupCreateResponseDeserializer);
 
-	protected static void setupCreateResponseParser(DelegatingJsonpValueParser<CreateResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::shardsAcknowledged, JsonpValueParser.booleanParser(), "shards_acknowledged");
+	protected static void setupCreateResponseDeserializer(DelegatingDeserializer<CreateResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 
 	}
 

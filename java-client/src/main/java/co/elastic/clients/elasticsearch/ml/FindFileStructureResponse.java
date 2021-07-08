@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class FindFileStructureResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FindFileStructureResponse
+	 * Json deserializer for FindFileStructureResponse
 	 */
-	public static final JsonpValueParser<FindFileStructureResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FindFileStructureResponse::setupFindFileStructureResponseParser);
+	public static final JsonpDeserializer<FindFileStructureResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FindFileStructureResponse::setupFindFileStructureResponseDeserializer);
 
-	protected static void setupFindFileStructureResponseParser(
-			DelegatingJsonpValueParser<FindFileStructureResponse.Builder> op) {
+	protected static void setupFindFileStructureResponseDeserializer(
+			DelegatingDeserializer<FindFileStructureResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.stringParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
 
 	}
 

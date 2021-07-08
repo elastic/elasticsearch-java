@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup.delete_rollup_job;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -179,17 +179,17 @@ public final class TaskFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TaskFailure
+	 * Json deserializer for TaskFailure
 	 */
-	public static final JsonpValueParser<TaskFailure> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TaskFailure::setupTaskFailureParser);
+	public static final JsonpDeserializer<TaskFailure> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TaskFailure::setupTaskFailureDeserializer);
 
-	protected static void setupTaskFailureParser(DelegatingJsonpValueParser<TaskFailure.Builder> op) {
+	protected static void setupTaskFailureDeserializer(DelegatingDeserializer<TaskFailure.Builder> op) {
 
-		op.add(Builder::taskId, JsonpValueParser.jsonValueParser(), "task_id");
-		op.add(Builder::nodeId, JsonpValueParser.stringParser(), "node_id");
-		op.add(Builder::status, JsonpValueParser.stringParser(), "status");
-		op.add(Builder::reason, TaskFailureReason.JSONP_PARSER, "reason");
+		op.add(Builder::taskId, JsonpDeserializer.jsonValueDeserializer(), "task_id");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
+		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
+		op.add(Builder::reason, TaskFailureReason.DESERIALIZER, "reason");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.data_frame_analytics;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -606,33 +606,33 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataFrameAnalyticsRecord
+	 * Json deserializer for DataFrameAnalyticsRecord
 	 */
-	public static final JsonpValueParser<DataFrameAnalyticsRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataFrameAnalyticsRecord::setupDataFrameAnalyticsRecordParser);
+	public static final JsonpDeserializer<DataFrameAnalyticsRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataFrameAnalyticsRecord::setupDataFrameAnalyticsRecordDeserializer);
 
-	protected static void setupDataFrameAnalyticsRecordParser(
-			DelegatingJsonpValueParser<DataFrameAnalyticsRecord.Builder> op) {
+	protected static void setupDataFrameAnalyticsRecordDeserializer(
+			DelegatingDeserializer<DataFrameAnalyticsRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type", "t");
-		op.add(Builder::createTime, JsonpValueParser.stringParser(), "create_time", "ct", "createTime");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version", "v");
-		op.add(Builder::sourceIndex, JsonpValueParser.stringParser(), "source_index", "si", "sourceIndex");
-		op.add(Builder::destIndex, JsonpValueParser.stringParser(), "dest_index", "di", "destIndex");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description", "d");
-		op.add(Builder::modelMemoryLimit, JsonpValueParser.stringParser(), "model_memory_limit", "mml",
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");
+		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time", "ct", "createTime");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
+		op.add(Builder::sourceIndex, JsonpDeserializer.stringDeserializer(), "source_index", "si", "sourceIndex");
+		op.add(Builder::destIndex, JsonpDeserializer.stringDeserializer(), "dest_index", "di", "destIndex");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description", "d");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit", "mml",
 				"modelMemoryLimit");
-		op.add(Builder::state, JsonpValueParser.stringParser(), "state", "s");
-		op.add(Builder::failureReason, JsonpValueParser.stringParser(), "failure_reason", "fr", "failureReason");
-		op.add(Builder::progress, JsonpValueParser.stringParser(), "progress", "p");
-		op.add(Builder::assignmentExplanation, JsonpValueParser.stringParser(), "assignment_explanation", "ae",
+		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state", "s");
+		op.add(Builder::failureReason, JsonpDeserializer.stringDeserializer(), "failure_reason", "fr", "failureReason");
+		op.add(Builder::progress, JsonpDeserializer.stringDeserializer(), "progress", "p");
+		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation", "ae",
 				"assignmentExplanation");
-		op.add(Builder::node_id, JsonpValueParser.stringParser(), "node.id", "ni", "nodeId");
-		op.add(Builder::node_name, JsonpValueParser.stringParser(), "node.name", "nn", "nodeName");
-		op.add(Builder::node_ephemeralId, JsonpValueParser.stringParser(), "node.ephemeral_id", "ne",
+		op.add(Builder::node_id, JsonpDeserializer.stringDeserializer(), "node.id", "ni", "nodeId");
+		op.add(Builder::node_name, JsonpDeserializer.stringDeserializer(), "node.name", "nn", "nodeName");
+		op.add(Builder::node_ephemeralId, JsonpDeserializer.stringDeserializer(), "node.ephemeral_id", "ne",
 				"nodeEphemeralId");
-		op.add(Builder::node_address, JsonpValueParser.stringParser(), "node.address", "na", "nodeAddress");
+		op.add(Builder::node_address, JsonpDeserializer.stringDeserializer(), "node.address", "na", "nodeAddress");
 
 	}
 

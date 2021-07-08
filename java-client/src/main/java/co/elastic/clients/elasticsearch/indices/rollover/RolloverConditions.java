@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.rollover;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -196,17 +196,17 @@ public final class RolloverConditions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RolloverConditions
+	 * Json deserializer for RolloverConditions
 	 */
-	public static final JsonpValueParser<RolloverConditions> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RolloverConditions::setupRolloverConditionsParser);
+	public static final JsonpDeserializer<RolloverConditions> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RolloverConditions::setupRolloverConditionsDeserializer);
 
-	protected static void setupRolloverConditionsParser(DelegatingJsonpValueParser<RolloverConditions.Builder> op) {
+	protected static void setupRolloverConditionsDeserializer(DelegatingDeserializer<RolloverConditions.Builder> op) {
 
-		op.add(Builder::maxAge, JsonpValueParser.jsonValueParser(), "max_age");
-		op.add(Builder::maxDocs, JsonpValueParser.numberParser(), "max_docs");
-		op.add(Builder::maxSize, JsonpValueParser.stringParser(), "max_size");
-		op.add(Builder::maxPrimaryShardSize, JsonpValueParser.jsonValueParser(), "max_primary_shard_size");
+		op.add(Builder::maxAge, JsonpDeserializer.jsonValueDeserializer(), "max_age");
+		op.add(Builder::maxDocs, JsonpDeserializer.numberDeserializer(), "max_docs");
+		op.add(Builder::maxSize, JsonpDeserializer.stringDeserializer(), "max_size");
+		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.jsonValueDeserializer(), "max_primary_shard_size");
 
 	}
 

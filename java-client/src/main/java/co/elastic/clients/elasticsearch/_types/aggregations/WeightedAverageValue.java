@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -167,16 +167,17 @@ public final class WeightedAverageValue implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WeightedAverageValue
+	 * Json deserializer for WeightedAverageValue
 	 */
-	public static final JsonpValueParser<WeightedAverageValue> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WeightedAverageValue::setupWeightedAverageValueParser);
+	public static final JsonpDeserializer<WeightedAverageValue> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WeightedAverageValue::setupWeightedAverageValueDeserializer);
 
-	protected static void setupWeightedAverageValueParser(DelegatingJsonpValueParser<WeightedAverageValue.Builder> op) {
+	protected static void setupWeightedAverageValueDeserializer(
+			DelegatingDeserializer<WeightedAverageValue.Builder> op) {
 
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::missing, JsonpValueParser.numberParser(), "missing");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::missing, JsonpDeserializer.numberDeserializer(), "missing");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.segments;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,15 +125,15 @@ public final class IndexSegment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexSegment
+	 * Json deserializer for IndexSegment
 	 */
-	public static final JsonpValueParser<IndexSegment> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexSegment::setupIndexSegmentParser);
+	public static final JsonpDeserializer<IndexSegment> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexSegment::setupIndexSegmentDeserializer);
 
-	protected static void setupIndexSegmentParser(DelegatingJsonpValueParser<IndexSegment.Builder> op) {
+	protected static void setupIndexSegmentDeserializer(DelegatingDeserializer<IndexSegment.Builder> op) {
 
-		op.add(Builder::shards,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(ShardsSegment.JSONP_PARSER)), "shards");
+		op.add(Builder::shards, JsonpDeserializer
+				.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(ShardsSegment.DESERIALIZER)), "shards");
 
 	}
 

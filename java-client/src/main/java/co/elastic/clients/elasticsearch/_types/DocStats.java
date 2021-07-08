@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class DocStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DocStats
+	 * Json deserializer for DocStats
 	 */
-	public static final JsonpValueParser<DocStats> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			DocStats::setupDocStatsParser);
+	public static final JsonpDeserializer<DocStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DocStats::setupDocStatsDeserializer);
 
-	protected static void setupDocStatsParser(DelegatingJsonpValueParser<DocStats.Builder> op) {
+	protected static void setupDocStatsDeserializer(DelegatingDeserializer<DocStats.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::deleted, JsonpValueParser.numberParser(), "deleted");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::deleted, JsonpDeserializer.numberDeserializer(), "deleted");
 
 	}
 

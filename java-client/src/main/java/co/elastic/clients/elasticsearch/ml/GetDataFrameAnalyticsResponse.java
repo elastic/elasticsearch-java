@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -179,16 +179,17 @@ public final class GetDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetDataFrameAnalyticsResponse
+	 * Json deserializer for GetDataFrameAnalyticsResponse
 	 */
-	public static final JsonpValueParser<GetDataFrameAnalyticsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetDataFrameAnalyticsResponse::setupGetDataFrameAnalyticsResponseParser);
+	public static final JsonpDeserializer<GetDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					GetDataFrameAnalyticsResponse::setupGetDataFrameAnalyticsResponseDeserializer);
 
-	protected static void setupGetDataFrameAnalyticsResponseParser(
-			DelegatingJsonpValueParser<GetDataFrameAnalyticsResponse.Builder> op) {
+	protected static void setupGetDataFrameAnalyticsResponseDeserializer(
+			DelegatingDeserializer<GetDataFrameAnalyticsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::dataFrameAnalytics, JsonpValueParser.arrayParser(DataframeAnalyticsSummary.JSONP_PARSER),
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::dataFrameAnalytics, JsonpDeserializer.arrayDeserializer(DataframeAnalyticsSummary.DESERIALIZER),
 				"data_frame_analytics");
 
 	}

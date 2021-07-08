@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -152,16 +152,16 @@ public final class Influence implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Influence
+	 * Json deserializer for Influence
 	 */
-	public static final JsonpValueParser<Influence> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Influence::setupInfluenceParser);
+	public static final JsonpDeserializer<Influence> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Influence::setupInfluenceDeserializer);
 
-	protected static void setupInfluenceParser(DelegatingJsonpValueParser<Influence.Builder> op) {
+	protected static void setupInfluenceDeserializer(DelegatingDeserializer<Influence.Builder> op) {
 
-		op.add(Builder::influencerFieldName, JsonpValueParser.stringParser(), "influencer_field_name");
-		op.add(Builder::influencerFieldValues, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"influencer_field_values");
+		op.add(Builder::influencerFieldName, JsonpDeserializer.stringDeserializer(), "influencer_field_name");
+		op.add(Builder::influencerFieldValues,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "influencer_field_values");
 
 	}
 

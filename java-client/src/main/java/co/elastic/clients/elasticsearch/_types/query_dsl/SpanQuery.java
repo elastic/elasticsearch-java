@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -436,25 +436,32 @@ public final class SpanQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SpanQuery
+	 * Json deserializer for SpanQuery
 	 */
-	public static final JsonpValueParser<SpanQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SpanQuery::setupSpanQueryParser);
+	public static final JsonpDeserializer<SpanQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SpanQuery::setupSpanQueryDeserializer);
 
-	protected static void setupSpanQueryParser(DelegatingJsonpValueParser<SpanQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::spanContaining, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()),
-				"span_containing");
-		op.add(Builder::fieldMaskingSpan, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()),
+	protected static void setupSpanQueryDeserializer(DelegatingDeserializer<SpanQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::spanContaining,
+				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()), "span_containing");
+		op.add(Builder::fieldMaskingSpan,
+				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"field_masking_span");
-		op.add(Builder::spanFirst, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "span_first");
-		op.add(Builder::spanGap, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "span_gap");
-		op.add(Builder::spanMulti, SpanMultiTermQuery.JSONP_PARSER, "span_multi");
-		op.add(Builder::spanNear, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "span_near");
-		op.add(Builder::spanNot, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "span_not");
-		op.add(Builder::spanOr, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "span_or");
-		op.add(Builder::spanTerm, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "span_term");
-		op.add(Builder::spanWithin, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::spanFirst, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"span_first");
+		op.add(Builder::spanGap, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"span_gap");
+		op.add(Builder::spanMulti, SpanMultiTermQuery.DESERIALIZER, "span_multi");
+		op.add(Builder::spanNear, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"span_near");
+		op.add(Builder::spanNot, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"span_not");
+		op.add(Builder::spanOr, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"span_or");
+		op.add(Builder::spanTerm, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"span_term");
+		op.add(Builder::spanWithin, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"span_within");
 
 	}

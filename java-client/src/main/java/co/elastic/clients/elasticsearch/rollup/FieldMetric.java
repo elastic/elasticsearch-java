@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -152,15 +152,16 @@ public final class FieldMetric implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldMetric
+	 * Json deserializer for FieldMetric
 	 */
-	public static final JsonpValueParser<FieldMetric> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldMetric::setupFieldMetricParser);
+	public static final JsonpDeserializer<FieldMetric> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldMetric::setupFieldMetricDeserializer);
 
-	protected static void setupFieldMetricParser(DelegatingJsonpValueParser<FieldMetric.Builder> op) {
+	protected static void setupFieldMetricDeserializer(DelegatingDeserializer<FieldMetric.Builder> op) {
 
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::metrics, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "metrics");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metrics");
 
 	}
 

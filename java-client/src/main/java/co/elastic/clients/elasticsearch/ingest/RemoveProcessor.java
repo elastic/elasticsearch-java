@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -157,15 +157,15 @@ public final class RemoveProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RemoveProcessor
+	 * Json deserializer for RemoveProcessor
 	 */
-	public static final JsonpValueParser<RemoveProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RemoveProcessor::setupRemoveProcessorParser);
+	public static final JsonpDeserializer<RemoveProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RemoveProcessor::setupRemoveProcessorDeserializer);
 
-	protected static void setupRemoveProcessorParser(DelegatingJsonpValueParser<RemoveProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "field");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
+	protected static void setupRemoveProcessorDeserializer(DelegatingDeserializer<RemoveProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "field");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 
 	}
 

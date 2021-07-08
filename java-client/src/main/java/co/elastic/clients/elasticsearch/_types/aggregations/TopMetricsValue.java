@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class TopMetricsValue implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TopMetricsValue
+	 * Json deserializer for TopMetricsValue
 	 */
-	public static final JsonpValueParser<TopMetricsValue> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TopMetricsValue::setupTopMetricsValueParser);
+	public static final JsonpDeserializer<TopMetricsValue> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TopMetricsValue::setupTopMetricsValueDeserializer);
 
-	protected static void setupTopMetricsValueParser(DelegatingJsonpValueParser<TopMetricsValue.Builder> op) {
+	protected static void setupTopMetricsValueDeserializer(DelegatingDeserializer<TopMetricsValue.Builder> op) {
 
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
 	}
 

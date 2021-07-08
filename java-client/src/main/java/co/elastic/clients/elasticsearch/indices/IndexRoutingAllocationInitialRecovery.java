@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -107,16 +107,16 @@ public final class IndexRoutingAllocationInitialRecovery implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexRoutingAllocationInitialRecovery
+	 * Json deserializer for IndexRoutingAllocationInitialRecovery
 	 */
-	public static final JsonpValueParser<IndexRoutingAllocationInitialRecovery> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<IndexRoutingAllocationInitialRecovery> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					IndexRoutingAllocationInitialRecovery::setupIndexRoutingAllocationInitialRecoveryParser);
+					IndexRoutingAllocationInitialRecovery::setupIndexRoutingAllocationInitialRecoveryDeserializer);
 
-	protected static void setupIndexRoutingAllocationInitialRecoveryParser(
-			DelegatingJsonpValueParser<IndexRoutingAllocationInitialRecovery.Builder> op) {
+	protected static void setupIndexRoutingAllocationInitialRecoveryDeserializer(
+			DelegatingDeserializer<IndexRoutingAllocationInitialRecovery.Builder> op) {
 
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
 
 	}
 

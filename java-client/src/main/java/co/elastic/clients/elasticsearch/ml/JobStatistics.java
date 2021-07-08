@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -170,17 +170,17 @@ public final class JobStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for JobStatistics
+	 * Json deserializer for JobStatistics
 	 */
-	public static final JsonpValueParser<JobStatistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, JobStatistics::setupJobStatisticsParser);
+	public static final JsonpDeserializer<JobStatistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, JobStatistics::setupJobStatisticsDeserializer);
 
-	protected static void setupJobStatisticsParser(DelegatingJsonpValueParser<JobStatistics.Builder> op) {
+	protected static void setupJobStatisticsDeserializer(DelegatingDeserializer<JobStatistics.Builder> op) {
 
-		op.add(Builder::avg, JsonpValueParser.numberParser(), "avg");
-		op.add(Builder::max, JsonpValueParser.numberParser(), "max");
-		op.add(Builder::min, JsonpValueParser.numberParser(), "min");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
+		op.add(Builder::avg, JsonpDeserializer.numberDeserializer(), "avg");
+		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
+		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
 
 	}
 

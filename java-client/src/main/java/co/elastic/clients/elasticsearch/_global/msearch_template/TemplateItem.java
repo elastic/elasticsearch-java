@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.msearch_template;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -241,17 +241,18 @@ public final class TemplateItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TemplateItem
+	 * Json deserializer for TemplateItem
 	 */
-	public static final JsonpValueParser<TemplateItem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TemplateItem::setupTemplateItemParser);
+	public static final JsonpDeserializer<TemplateItem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TemplateItem::setupTemplateItemDeserializer);
 
-	protected static void setupTemplateItemParser(DelegatingJsonpValueParser<TemplateItem.Builder> op) {
+	protected static void setupTemplateItemDeserializer(DelegatingDeserializer<TemplateItem.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::index, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "index");
-		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
-		op.add(Builder::source, JsonpValueParser.stringParser(), "source");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"params");
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}
 

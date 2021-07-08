@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ccr.follow_info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -314,26 +314,28 @@ public final class FollowerIndexParameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FollowerIndexParameters
+	 * Json deserializer for FollowerIndexParameters
 	 */
-	public static final JsonpValueParser<FollowerIndexParameters> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FollowerIndexParameters::setupFollowerIndexParametersParser);
+	public static final JsonpDeserializer<FollowerIndexParameters> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FollowerIndexParameters::setupFollowerIndexParametersDeserializer);
 
-	protected static void setupFollowerIndexParametersParser(
-			DelegatingJsonpValueParser<FollowerIndexParameters.Builder> op) {
+	protected static void setupFollowerIndexParametersDeserializer(
+			DelegatingDeserializer<FollowerIndexParameters.Builder> op) {
 
-		op.add(Builder::maxOutstandingReadRequests, JsonpValueParser.numberParser(), "max_outstanding_read_requests");
-		op.add(Builder::maxOutstandingWriteRequests, JsonpValueParser.numberParser(), "max_outstanding_write_requests");
-		op.add(Builder::maxReadRequestOperationCount, JsonpValueParser.numberParser(),
+		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.numberDeserializer(),
+				"max_outstanding_read_requests");
+		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.numberDeserializer(),
+				"max_outstanding_write_requests");
+		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.numberDeserializer(),
 				"max_read_request_operation_count");
-		op.add(Builder::maxReadRequestSize, JsonpValueParser.stringParser(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpValueParser.jsonValueParser(), "max_retry_delay");
-		op.add(Builder::maxWriteBufferCount, JsonpValueParser.numberParser(), "max_write_buffer_count");
-		op.add(Builder::maxWriteBufferSize, JsonpValueParser.stringParser(), "max_write_buffer_size");
-		op.add(Builder::maxWriteRequestOperationCount, JsonpValueParser.numberParser(),
+		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
+		op.add(Builder::maxRetryDelay, JsonpDeserializer.jsonValueDeserializer(), "max_retry_delay");
+		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.numberDeserializer(), "max_write_buffer_count");
+		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
+		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.numberDeserializer(),
 				"max_write_request_operation_count");
-		op.add(Builder::maxWriteRequestSize, JsonpValueParser.stringParser(), "max_write_request_size");
-		op.add(Builder::readPollTimeout, JsonpValueParser.jsonValueParser(), "read_poll_timeout");
+		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
+		op.add(Builder::readPollTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_poll_timeout");
 
 	}
 

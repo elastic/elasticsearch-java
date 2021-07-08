@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._global.field_caps.FieldCapabilitiesBodyIndexFilter;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -304,14 +304,14 @@ public final class FieldCapsRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldCapsRequest
+	 * Json deserializer for FieldCapsRequest
 	 */
-	public static final JsonpValueParser<FieldCapsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldCapsRequest::setupFieldCapsRequestParser);
+	public static final JsonpDeserializer<FieldCapsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldCapsRequest::setupFieldCapsRequestDeserializer);
 
-	protected static void setupFieldCapsRequestParser(DelegatingJsonpValueParser<FieldCapsRequest.Builder> op) {
+	protected static void setupFieldCapsRequestDeserializer(DelegatingDeserializer<FieldCapsRequest.Builder> op) {
 
-		op.add(Builder::indexFilter, FieldCapabilitiesBodyIndexFilter.JSONP_PARSER, "index_filter");
+		op.add(Builder::indexFilter, FieldCapabilitiesBodyIndexFilter.DESERIALIZER, "index_filter");
 
 	}
 
@@ -372,5 +372,5 @@ public final class FieldCapsRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FieldCapsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, FieldCapsResponse.DESERIALIZER);
 }

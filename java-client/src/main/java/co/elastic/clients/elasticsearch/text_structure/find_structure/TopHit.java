@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.text_structure.find_structure;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -125,15 +125,15 @@ public final class TopHit implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TopHit
+	 * Json deserializer for TopHit
 	 */
-	public static final JsonpValueParser<TopHit> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			TopHit::setupTopHitParser);
+	public static final JsonpDeserializer<TopHit> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			TopHit::setupTopHitDeserializer);
 
-	protected static void setupTopHitParser(DelegatingJsonpValueParser<TopHit.Builder> op) {
+	protected static void setupTopHitDeserializer(DelegatingDeserializer<TopHit.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::value, JsonpValueParser.jsonValueParser(), "value");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -179,17 +179,17 @@ public final class ShardRouting implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardRouting
+	 * Json deserializer for ShardRouting
 	 */
-	public static final JsonpValueParser<ShardRouting> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardRouting::setupShardRoutingParser);
+	public static final JsonpDeserializer<ShardRouting> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardRouting::setupShardRoutingDeserializer);
 
-	protected static void setupShardRoutingParser(DelegatingJsonpValueParser<ShardRouting.Builder> op) {
+	protected static void setupShardRoutingDeserializer(DelegatingDeserializer<ShardRouting.Builder> op) {
 
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::primary, JsonpValueParser.booleanParser(), "primary");
-		op.add(Builder::relocatingNode, JsonpValueParser.stringParser(), "relocating_node");
-		op.add(Builder::state, JsonpValueParser.jsonValueParser(), "state");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
+		op.add(Builder::relocatingNode, JsonpDeserializer.stringDeserializer(), "relocating_node");
+		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
 
 	}
 

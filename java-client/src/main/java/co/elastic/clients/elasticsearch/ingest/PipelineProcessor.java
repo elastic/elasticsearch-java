@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -99,14 +99,14 @@ public final class PipelineProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PipelineProcessor
+	 * Json deserializer for PipelineProcessor
 	 */
-	public static final JsonpValueParser<PipelineProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PipelineProcessor::setupPipelineProcessorParser);
+	public static final JsonpDeserializer<PipelineProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PipelineProcessor::setupPipelineProcessorDeserializer);
 
-	protected static void setupPipelineProcessorParser(DelegatingJsonpValueParser<PipelineProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+	protected static void setupPipelineProcessorDeserializer(DelegatingDeserializer<PipelineProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

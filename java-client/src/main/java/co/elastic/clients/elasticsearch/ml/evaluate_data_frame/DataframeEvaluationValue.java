@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -113,15 +113,15 @@ public class DataframeEvaluationValue implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeEvaluationValue
+	 * Json deserializer for DataframeEvaluationValue
 	 */
-	public static final JsonpValueParser<DataframeEvaluationValue> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataframeEvaluationValue::setupDataframeEvaluationValueParser);
+	public static final JsonpDeserializer<DataframeEvaluationValue> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataframeEvaluationValue::setupDataframeEvaluationValueDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeEvaluationValueParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeEvaluationValueDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::value, JsonpValueParser.numberParser(), "value");
+		op.add(AbstractBuilder::value, JsonpDeserializer.numberDeserializer(), "value");
 
 	}
 

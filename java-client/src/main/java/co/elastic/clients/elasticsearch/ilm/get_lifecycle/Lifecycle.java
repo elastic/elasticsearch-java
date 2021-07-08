@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ilm.get_lifecycle;
 
 import co.elastic.clients.elasticsearch.ilm.Policy;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -157,16 +157,16 @@ public final class Lifecycle implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Lifecycle
+	 * Json deserializer for Lifecycle
 	 */
-	public static final JsonpValueParser<Lifecycle> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Lifecycle::setupLifecycleParser);
+	public static final JsonpDeserializer<Lifecycle> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Lifecycle::setupLifecycleDeserializer);
 
-	protected static void setupLifecycleParser(DelegatingJsonpValueParser<Lifecycle.Builder> op) {
+	protected static void setupLifecycleDeserializer(DelegatingDeserializer<Lifecycle.Builder> op) {
 
-		op.add(Builder::modifiedDate, JsonpValueParser.stringParser(), "modified_date");
-		op.add(Builder::policy, Policy.JSONP_PARSER, "policy");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
+		op.add(Builder::modifiedDate, JsonpDeserializer.stringDeserializer(), "modified_date");
+		op.add(Builder::policy, Policy.DESERIALIZER, "policy");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 
 	}
 

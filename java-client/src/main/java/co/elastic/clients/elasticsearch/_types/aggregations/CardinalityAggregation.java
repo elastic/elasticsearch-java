@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -134,16 +134,16 @@ public final class CardinalityAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CardinalityAggregation
+	 * Json deserializer for CardinalityAggregation
 	 */
-	public static final JsonpValueParser<CardinalityAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CardinalityAggregation::setupCardinalityAggregationParser);
+	public static final JsonpDeserializer<CardinalityAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CardinalityAggregation::setupCardinalityAggregationDeserializer);
 
-	protected static void setupCardinalityAggregationParser(
-			DelegatingJsonpValueParser<CardinalityAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseParser(op);
-		op.add(Builder::precisionThreshold, JsonpValueParser.numberParser(), "precision_threshold");
-		op.add(Builder::rehash, JsonpValueParser.booleanParser(), "rehash");
+	protected static void setupCardinalityAggregationDeserializer(
+			DelegatingDeserializer<CardinalityAggregation.Builder> op) {
+		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+		op.add(Builder::precisionThreshold, JsonpDeserializer.numberDeserializer(), "precision_threshold");
+		op.add(Builder::rehash, JsonpDeserializer.booleanDeserializer(), "rehash");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -148,16 +148,16 @@ public final class RuleCondition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RuleCondition
+	 * Json deserializer for RuleCondition
 	 */
-	public static final JsonpValueParser<RuleCondition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RuleCondition::setupRuleConditionParser);
+	public static final JsonpDeserializer<RuleCondition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RuleCondition::setupRuleConditionDeserializer);
 
-	protected static void setupRuleConditionParser(DelegatingJsonpValueParser<RuleCondition.Builder> op) {
+	protected static void setupRuleConditionDeserializer(DelegatingDeserializer<RuleCondition.Builder> op) {
 
-		op.add(Builder::appliesTo, JsonpValueParser.jsonValueParser(), "applies_to");
-		op.add(Builder::operator, JsonpValueParser.jsonValueParser(), "operator");
-		op.add(Builder::value, JsonpValueParser.numberParser(), "value");
+		op.add(Builder::appliesTo, JsonpDeserializer.jsonValueDeserializer(), "applies_to");
+		op.add(Builder::operator, JsonpDeserializer.jsonValueDeserializer(), "operator");
+		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
 
 	}
 

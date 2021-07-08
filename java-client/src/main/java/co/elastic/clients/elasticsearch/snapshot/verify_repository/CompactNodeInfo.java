@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot.verify_repository;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class CompactNodeInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CompactNodeInfo
+	 * Json deserializer for CompactNodeInfo
 	 */
-	public static final JsonpValueParser<CompactNodeInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CompactNodeInfo::setupCompactNodeInfoParser);
+	public static final JsonpDeserializer<CompactNodeInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CompactNodeInfo::setupCompactNodeInfoDeserializer);
 
-	protected static void setupCompactNodeInfoParser(DelegatingJsonpValueParser<CompactNodeInfo.Builder> op) {
+	protected static void setupCompactNodeInfoDeserializer(DelegatingDeserializer<CompactNodeInfo.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

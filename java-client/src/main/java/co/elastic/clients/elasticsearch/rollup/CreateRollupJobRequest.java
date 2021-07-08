@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -327,20 +327,20 @@ public final class CreateRollupJobRequest extends RequestBase implements ToJsonp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateRollupJobRequest
+	 * Json deserializer for CreateRollupJobRequest
 	 */
-	public static final JsonpValueParser<CreateRollupJobRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateRollupJobRequest::setupCreateRollupJobRequestParser);
+	public static final JsonpDeserializer<CreateRollupJobRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateRollupJobRequest::setupCreateRollupJobRequestDeserializer);
 
-	protected static void setupCreateRollupJobRequestParser(
-			DelegatingJsonpValueParser<CreateRollupJobRequest.Builder> op) {
+	protected static void setupCreateRollupJobRequestDeserializer(
+			DelegatingDeserializer<CreateRollupJobRequest.Builder> op) {
 
-		op.add(Builder::cron, JsonpValueParser.stringParser(), "cron");
-		op.add(Builder::groups, Groupings.JSONP_PARSER, "groups");
-		op.add(Builder::indexPattern, JsonpValueParser.stringParser(), "index_pattern");
-		op.add(Builder::metrics, JsonpValueParser.arrayParser(FieldMetric.JSONP_PARSER), "metrics");
-		op.add(Builder::pageSize, JsonpValueParser.numberParser(), "page_size");
-		op.add(Builder::rollupIndex, JsonpValueParser.stringParser(), "rollup_index");
+		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
+		op.add(Builder::groups, Groupings.DESERIALIZER, "groups");
+		op.add(Builder::indexPattern, JsonpDeserializer.stringDeserializer(), "index_pattern");
+		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(FieldMetric.DESERIALIZER), "metrics");
+		op.add(Builder::pageSize, JsonpDeserializer.numberDeserializer(), "page_size");
+		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");
 
 	}
 
@@ -381,5 +381,5 @@ public final class CreateRollupJobRequest extends RequestBase implements ToJsonp
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, CreateRollupJobResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, CreateRollupJobResponse.DESERIALIZER);
 }

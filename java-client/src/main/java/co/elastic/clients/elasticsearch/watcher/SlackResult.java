@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -139,15 +139,15 @@ public final class SlackResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SlackResult
+	 * Json deserializer for SlackResult
 	 */
-	public static final JsonpValueParser<SlackResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SlackResult::setupSlackResultParser);
+	public static final JsonpDeserializer<SlackResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SlackResult::setupSlackResultDeserializer);
 
-	protected static void setupSlackResultParser(DelegatingJsonpValueParser<SlackResult.Builder> op) {
+	protected static void setupSlackResultDeserializer(DelegatingDeserializer<SlackResult.Builder> op) {
 
-		op.add(Builder::account, JsonpValueParser.stringParser(), "account");
-		op.add(Builder::message, SlackMessage.JSONP_PARSER, "message");
+		op.add(Builder::account, JsonpDeserializer.stringDeserializer(), "account");
+		op.add(Builder::message, SlackMessage.DESERIALIZER, "message");
 
 	}
 

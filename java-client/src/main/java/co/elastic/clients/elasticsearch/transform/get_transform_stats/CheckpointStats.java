@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -252,19 +252,19 @@ public final class CheckpointStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CheckpointStats
+	 * Json deserializer for CheckpointStats
 	 */
-	public static final JsonpValueParser<CheckpointStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CheckpointStats::setupCheckpointStatsParser);
+	public static final JsonpDeserializer<CheckpointStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CheckpointStats::setupCheckpointStatsDeserializer);
 
-	protected static void setupCheckpointStatsParser(DelegatingJsonpValueParser<CheckpointStats.Builder> op) {
+	protected static void setupCheckpointStatsDeserializer(DelegatingDeserializer<CheckpointStats.Builder> op) {
 
-		op.add(Builder::checkpoint, JsonpValueParser.numberParser(), "checkpoint");
-		op.add(Builder::checkpointProgress, TransformProgress.JSONP_PARSER, "checkpoint_progress");
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp");
-		op.add(Builder::timestampMillis, JsonpValueParser.jsonValueParser(), "timestamp_millis");
-		op.add(Builder::timeUpperBound, JsonpValueParser.stringParser(), "time_upper_bound");
-		op.add(Builder::timeUpperBoundMillis, JsonpValueParser.jsonValueParser(), "time_upper_bound_millis");
+		op.add(Builder::checkpoint, JsonpDeserializer.numberDeserializer(), "checkpoint");
+		op.add(Builder::checkpointProgress, TransformProgress.DESERIALIZER, "checkpoint_progress");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timestampMillis, JsonpDeserializer.jsonValueDeserializer(), "timestamp_millis");
+		op.add(Builder::timeUpperBound, JsonpDeserializer.stringDeserializer(), "time_upper_bound");
+		op.add(Builder::timeUpperBoundMillis, JsonpDeserializer.jsonValueDeserializer(), "time_upper_bound_millis");
 
 	}
 

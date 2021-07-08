@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ccr;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -219,18 +219,18 @@ public final class ForgetFollowerIndexRequest extends RequestBase implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ForgetFollowerIndexRequest
+	 * Json deserializer for ForgetFollowerIndexRequest
 	 */
-	public static final JsonpValueParser<ForgetFollowerIndexRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ForgetFollowerIndexRequest::setupForgetFollowerIndexRequestParser);
+	public static final JsonpDeserializer<ForgetFollowerIndexRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ForgetFollowerIndexRequest::setupForgetFollowerIndexRequestDeserializer);
 
-	protected static void setupForgetFollowerIndexRequestParser(
-			DelegatingJsonpValueParser<ForgetFollowerIndexRequest.Builder> op) {
+	protected static void setupForgetFollowerIndexRequestDeserializer(
+			DelegatingDeserializer<ForgetFollowerIndexRequest.Builder> op) {
 
-		op.add(Builder::followerCluster, JsonpValueParser.stringParser(), "follower_cluster");
-		op.add(Builder::followerIndex, JsonpValueParser.stringParser(), "follower_index");
-		op.add(Builder::followerIndexUuid, JsonpValueParser.stringParser(), "follower_index_uuid");
-		op.add(Builder::leaderRemoteCluster, JsonpValueParser.stringParser(), "leader_remote_cluster");
+		op.add(Builder::followerCluster, JsonpDeserializer.stringDeserializer(), "follower_cluster");
+		op.add(Builder::followerIndex, JsonpDeserializer.stringDeserializer(), "follower_index");
+		op.add(Builder::followerIndexUuid, JsonpDeserializer.stringDeserializer(), "follower_index_uuid");
+		op.add(Builder::leaderRemoteCluster, JsonpDeserializer.stringDeserializer(), "leader_remote_cluster");
 
 	}
 
@@ -271,5 +271,5 @@ public final class ForgetFollowerIndexRequest extends RequestBase implements ToJ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ForgetFollowerIndexResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, ForgetFollowerIndexResponse.DESERIALIZER);
 }

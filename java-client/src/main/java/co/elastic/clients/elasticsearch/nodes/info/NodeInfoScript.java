@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,15 +125,16 @@ public final class NodeInfoScript implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoScript
+	 * Json deserializer for NodeInfoScript
 	 */
-	public static final JsonpValueParser<NodeInfoScript> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoScript::setupNodeInfoScriptParser);
+	public static final JsonpDeserializer<NodeInfoScript> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoScript::setupNodeInfoScriptDeserializer);
 
-	protected static void setupNodeInfoScriptParser(DelegatingJsonpValueParser<NodeInfoScript.Builder> op) {
+	protected static void setupNodeInfoScriptDeserializer(DelegatingDeserializer<NodeInfoScript.Builder> op) {
 
-		op.add(Builder::allowedTypes, JsonpValueParser.stringParser(), "allowed_types");
-		op.add(Builder::disableMaxCompilationsRate, JsonpValueParser.stringParser(), "disable_max_compilations_rate");
+		op.add(Builder::allowedTypes, JsonpDeserializer.stringDeserializer(), "allowed_types");
+		op.add(Builder::disableMaxCompilationsRate, JsonpDeserializer.stringDeserializer(),
+				"disable_max_compilations_rate");
 
 	}
 

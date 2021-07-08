@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,14 +68,14 @@ public final class StopTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StopTransformResponse
+	 * Json deserializer for StopTransformResponse
 	 */
-	public static final JsonpValueParser<StopTransformResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StopTransformResponse::setupStopTransformResponseParser);
+	public static final JsonpDeserializer<StopTransformResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StopTransformResponse::setupStopTransformResponseDeserializer);
 
-	protected static void setupStopTransformResponseParser(
-			DelegatingJsonpValueParser<StopTransformResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupStopTransformResponseDeserializer(
+			DelegatingDeserializer<StopTransformResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

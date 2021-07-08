@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.repositories;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -144,15 +144,15 @@ public final class RepositoriesRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RepositoriesRecord
+	 * Json deserializer for RepositoriesRecord
 	 */
-	public static final JsonpValueParser<RepositoriesRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RepositoriesRecord::setupRepositoriesRecordParser);
+	public static final JsonpDeserializer<RepositoriesRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RepositoriesRecord::setupRepositoriesRecordDeserializer);
 
-	protected static void setupRepositoriesRecordParser(DelegatingJsonpValueParser<RepositoriesRecord.Builder> op) {
+	protected static void setupRepositoriesRecordDeserializer(DelegatingDeserializer<RepositoriesRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id", "repoId");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type", "t");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "repoId");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");
 
 	}
 

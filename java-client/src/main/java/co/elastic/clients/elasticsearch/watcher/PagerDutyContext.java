@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -148,16 +148,16 @@ public final class PagerDutyContext implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PagerDutyContext
+	 * Json deserializer for PagerDutyContext
 	 */
-	public static final JsonpValueParser<PagerDutyContext> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PagerDutyContext::setupPagerDutyContextParser);
+	public static final JsonpDeserializer<PagerDutyContext> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PagerDutyContext::setupPagerDutyContextDeserializer);
 
-	protected static void setupPagerDutyContextParser(DelegatingJsonpValueParser<PagerDutyContext.Builder> op) {
+	protected static void setupPagerDutyContextDeserializer(DelegatingDeserializer<PagerDutyContext.Builder> op) {
 
-		op.add(Builder::href, JsonpValueParser.stringParser(), "href");
-		op.add(Builder::src, JsonpValueParser.stringParser(), "src");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
+		op.add(Builder::href, JsonpDeserializer.stringDeserializer(), "href");
+		op.add(Builder::src, JsonpDeserializer.stringDeserializer(), "src");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
 
 	}
 

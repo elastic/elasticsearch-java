@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch.xpack.usage.CustomSettings;
 import co.elastic.clients.elasticsearch.xpack.usage.MlJobForecasts;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -957,40 +957,43 @@ public final class Job implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Job
+	 * Json deserializer for Job
 	 */
-	public static final JsonpValueParser<Job> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Job::setupJobParser);
+	public static final JsonpDeserializer<Job> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Job::setupJobDeserializer);
 
-	protected static void setupJobParser(DelegatingJsonpValueParser<Job.Builder> op) {
+	protected static void setupJobDeserializer(DelegatingDeserializer<Job.Builder> op) {
 
-		op.add(Builder::allowLazyOpen, JsonpValueParser.booleanParser(), "allow_lazy_open");
-		op.add(Builder::analysisConfig, AnalysisConfig.JSONP_PARSER, "analysis_config");
-		op.add(Builder::analysisLimits, AnalysisLimits.JSONP_PARSER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpValueParser.jsonValueParser(), "background_persist_interval");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::createdBy, JsonpValueParser.jsonValueParser(), "created_by");
-		op.add(Builder::createTime, JsonpValueParser.numberParser(), "create_time");
-		op.add(Builder::detectors, JobStatistics.JSONP_PARSER, "detectors");
-		op.add(Builder::dataDescription, DataDescription.JSONP_PARSER, "data_description");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::finishedTime, JsonpValueParser.numberParser(), "finished_time");
-		op.add(Builder::forecasts, MlJobForecasts.JSONP_PARSER, "forecasts");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::jobType, JsonpValueParser.stringParser(), "job_type");
-		op.add(Builder::modelPlot, ModelPlotConfig.JSONP_PARSER, "model_plot");
-		op.add(Builder::modelSize, JobStatistics.JSONP_PARSER, "model_size");
-		op.add(Builder::modelSnapshotId, JsonpValueParser.stringParser(), "model_snapshot_id");
-		op.add(Builder::modelSnapshotRetentionDays, JsonpValueParser.numberParser(), "model_snapshot_retention_days");
-		op.add(Builder::renormalizationWindowDays, JsonpValueParser.numberParser(), "renormalization_window_days");
-		op.add(Builder::resultsIndexName, JsonpValueParser.stringParser(), "results_index_name");
-		op.add(Builder::resultsRetentionDays, JsonpValueParser.numberParser(), "results_retention_days");
-		op.add(Builder::groups, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "groups");
-		op.add(Builder::modelPlotConfig, ModelPlotConfig.JSONP_PARSER, "model_plot_config");
-		op.add(Builder::customSettings, CustomSettings.JSONP_PARSER, "custom_settings");
-		op.add(Builder::jobVersion, JsonpValueParser.stringParser(), "job_version");
-		op.add(Builder::deleting, JsonpValueParser.booleanParser(), "deleting");
-		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpValueParser.numberParser(),
+		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
+		op.add(Builder::analysisConfig, AnalysisConfig.DESERIALIZER, "analysis_config");
+		op.add(Builder::analysisLimits, AnalysisLimits.DESERIALIZER, "analysis_limits");
+		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.jsonValueDeserializer(),
+				"background_persist_interval");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::createdBy, JsonpDeserializer.jsonValueDeserializer(), "created_by");
+		op.add(Builder::createTime, JsonpDeserializer.numberDeserializer(), "create_time");
+		op.add(Builder::detectors, JobStatistics.DESERIALIZER, "detectors");
+		op.add(Builder::dataDescription, DataDescription.DESERIALIZER, "data_description");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::finishedTime, JsonpDeserializer.numberDeserializer(), "finished_time");
+		op.add(Builder::forecasts, MlJobForecasts.DESERIALIZER, "forecasts");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::jobType, JsonpDeserializer.stringDeserializer(), "job_type");
+		op.add(Builder::modelPlot, ModelPlotConfig.DESERIALIZER, "model_plot");
+		op.add(Builder::modelSize, JobStatistics.DESERIALIZER, "model_size");
+		op.add(Builder::modelSnapshotId, JsonpDeserializer.stringDeserializer(), "model_snapshot_id");
+		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
+				"model_snapshot_retention_days");
+		op.add(Builder::renormalizationWindowDays, JsonpDeserializer.numberDeserializer(),
+				"renormalization_window_days");
+		op.add(Builder::resultsIndexName, JsonpDeserializer.stringDeserializer(), "results_index_name");
+		op.add(Builder::resultsRetentionDays, JsonpDeserializer.numberDeserializer(), "results_retention_days");
+		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
+		op.add(Builder::modelPlotConfig, ModelPlotConfig.DESERIALIZER, "model_plot_config");
+		op.add(Builder::customSettings, CustomSettings.DESERIALIZER, "custom_settings");
+		op.add(Builder::jobVersion, JsonpDeserializer.stringDeserializer(), "job_version");
+		op.add(Builder::deleting, JsonpDeserializer.booleanDeserializer(), "deleting");
+		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.numberDeserializer(),
 				"daily_model_snapshot_retention_after_days");
 
 	}

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -194,18 +194,18 @@ public final class PartitionScore implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PartitionScore
+	 * Json deserializer for PartitionScore
 	 */
-	public static final JsonpValueParser<PartitionScore> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PartitionScore::setupPartitionScoreParser);
+	public static final JsonpDeserializer<PartitionScore> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PartitionScore::setupPartitionScoreDeserializer);
 
-	protected static void setupPartitionScoreParser(DelegatingJsonpValueParser<PartitionScore.Builder> op) {
+	protected static void setupPartitionScoreDeserializer(DelegatingDeserializer<PartitionScore.Builder> op) {
 
-		op.add(Builder::initialRecordScore, JsonpValueParser.numberParser(), "initial_record_score");
-		op.add(Builder::partitionFieldName, JsonpValueParser.stringParser(), "partition_field_name");
-		op.add(Builder::partitionFieldValue, JsonpValueParser.stringParser(), "partition_field_value");
-		op.add(Builder::probability, JsonpValueParser.numberParser(), "probability");
-		op.add(Builder::recordScore, JsonpValueParser.numberParser(), "record_score");
+		op.add(Builder::initialRecordScore, JsonpDeserializer.numberDeserializer(), "initial_record_score");
+		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
+		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
+		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
+		op.add(Builder::recordScore, JsonpDeserializer.numberDeserializer(), "record_score");
 
 	}
 

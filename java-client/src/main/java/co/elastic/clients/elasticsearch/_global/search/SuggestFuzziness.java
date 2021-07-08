@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -195,18 +195,18 @@ public final class SuggestFuzziness implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SuggestFuzziness
+	 * Json deserializer for SuggestFuzziness
 	 */
-	public static final JsonpValueParser<SuggestFuzziness> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SuggestFuzziness::setupSuggestFuzzinessParser);
+	public static final JsonpDeserializer<SuggestFuzziness> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SuggestFuzziness::setupSuggestFuzzinessDeserializer);
 
-	protected static void setupSuggestFuzzinessParser(DelegatingJsonpValueParser<SuggestFuzziness.Builder> op) {
+	protected static void setupSuggestFuzzinessDeserializer(DelegatingDeserializer<SuggestFuzziness.Builder> op) {
 
-		op.add(Builder::fuzziness, JsonpValueParser.jsonValueParser(), "fuzziness");
-		op.add(Builder::minLength, JsonpValueParser.numberParser(), "min_length");
-		op.add(Builder::prefixLength, JsonpValueParser.numberParser(), "prefix_length");
-		op.add(Builder::transpositions, JsonpValueParser.booleanParser(), "transpositions");
-		op.add(Builder::unicodeAware, JsonpValueParser.booleanParser(), "unicode_aware");
+		op.add(Builder::fuzziness, JsonpDeserializer.jsonValueDeserializer(), "fuzziness");
+		op.add(Builder::minLength, JsonpDeserializer.numberDeserializer(), "min_length");
+		op.add(Builder::prefixLength, JsonpDeserializer.numberDeserializer(), "prefix_length");
+		op.add(Builder::transpositions, JsonpDeserializer.booleanDeserializer(), "transpositions");
+		op.add(Builder::unicodeAware, JsonpDeserializer.booleanDeserializer(), "unicode_aware");
 
 	}
 

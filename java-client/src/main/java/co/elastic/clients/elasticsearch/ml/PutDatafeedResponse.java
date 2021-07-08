@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -446,25 +446,27 @@ public final class PutDatafeedResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutDatafeedResponse
+	 * Json deserializer for PutDatafeedResponse
 	 */
-	public static final JsonpValueParser<PutDatafeedResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutDatafeedResponse::setupPutDatafeedResponseParser);
+	public static final JsonpDeserializer<PutDatafeedResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutDatafeedResponse::setupPutDatafeedResponseDeserializer);
 
-	protected static void setupPutDatafeedResponseParser(DelegatingJsonpValueParser<PutDatafeedResponse.Builder> op) {
+	protected static void setupPutDatafeedResponseDeserializer(DelegatingDeserializer<PutDatafeedResponse.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpValueParser.stringMapParser(AggregationContainer.JSONP_PARSER),
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER),
 				"aggregations");
-		op.add(Builder::chunkingConfig, ChunkingConfig.JSONP_PARSER, "chunking_config");
-		op.add(Builder::datafeedId, JsonpValueParser.stringParser(), "datafeed_id");
-		op.add(Builder::frequency, JsonpValueParser.jsonValueParser(), "frequency");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::maxEmptySearches, JsonpValueParser.numberParser(), "max_empty_searches");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::queryDelay, JsonpValueParser.jsonValueParser(), "query_delay");
-		op.add(Builder::scriptFields, JsonpValueParser.stringMapParser(ScriptField.JSONP_PARSER), "script_fields");
-		op.add(Builder::scrollSize, JsonpValueParser.numberParser(), "scroll_size");
+		op.add(Builder::chunkingConfig, ChunkingConfig.DESERIALIZER, "chunking_config");
+		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");
+		op.add(Builder::frequency, JsonpDeserializer.jsonValueDeserializer(), "frequency");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::maxEmptySearches, JsonpDeserializer.numberDeserializer(), "max_empty_searches");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::queryDelay, JsonpDeserializer.jsonValueDeserializer(), "query_delay");
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+				"script_fields");
+		op.add(Builder::scrollSize, JsonpDeserializer.numberDeserializer(), "scroll_size");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class CreatedStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreatedStatus
+	 * Json deserializer for CreatedStatus
 	 */
-	public static final JsonpValueParser<CreatedStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreatedStatus::setupCreatedStatusParser);
+	public static final JsonpDeserializer<CreatedStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreatedStatus::setupCreatedStatusDeserializer);
 
-	protected static void setupCreatedStatusParser(DelegatingJsonpValueParser<CreatedStatus.Builder> op) {
+	protected static void setupCreatedStatusDeserializer(DelegatingDeserializer<CreatedStatus.Builder> op) {
 
-		op.add(Builder::created, JsonpValueParser.booleanParser(), "created");
+		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 
 	}
 

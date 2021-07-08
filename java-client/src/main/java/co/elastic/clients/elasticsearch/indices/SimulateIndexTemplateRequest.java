@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -330,19 +330,21 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SimulateIndexTemplateRequest
+	 * Json deserializer for SimulateIndexTemplateRequest
 	 */
-	public static final JsonpValueParser<SimulateIndexTemplateRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SimulateIndexTemplateRequest::setupSimulateIndexTemplateRequestParser);
+	public static final JsonpDeserializer<SimulateIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SimulateIndexTemplateRequest::setupSimulateIndexTemplateRequestDeserializer);
 
-	protected static void setupSimulateIndexTemplateRequestParser(
-			DelegatingJsonpValueParser<SimulateIndexTemplateRequest.Builder> op) {
+	protected static void setupSimulateIndexTemplateRequestDeserializer(
+			DelegatingDeserializer<SimulateIndexTemplateRequest.Builder> op) {
 
-		op.add(Builder::indexPatterns, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "index_patterns");
-		op.add(Builder::composedOf, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "composed_of");
-		op.add(Builder::overlapping, JsonpValueParser.arrayParser(OverlappingIndexTemplate.JSONP_PARSER),
+		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"index_patterns");
+		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"composed_of");
+		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate.DESERIALIZER),
 				"overlapping");
-		op.add(Builder::template, TemplateMapping.JSONP_PARSER, "template");
+		op.add(Builder::template, TemplateMapping.DESERIALIZER, "template");
 
 	}
 
@@ -383,5 +385,5 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, SimulateIndexTemplateResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, SimulateIndexTemplateResponse.DESERIALIZER);
 }

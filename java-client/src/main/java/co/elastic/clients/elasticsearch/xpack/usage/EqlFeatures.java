@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -268,20 +268,20 @@ public final class EqlFeatures implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for EqlFeatures
+	 * Json deserializer for EqlFeatures
 	 */
-	public static final JsonpValueParser<EqlFeatures> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, EqlFeatures::setupEqlFeaturesParser);
+	public static final JsonpDeserializer<EqlFeatures> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, EqlFeatures::setupEqlFeaturesDeserializer);
 
-	protected static void setupEqlFeaturesParser(DelegatingJsonpValueParser<EqlFeatures.Builder> op) {
+	protected static void setupEqlFeaturesDeserializer(DelegatingDeserializer<EqlFeatures.Builder> op) {
 
-		op.add(Builder::join, JsonpValueParser.numberParser(), "join");
-		op.add(Builder::joins, EqlFeaturesJoin.JSONP_PARSER, "joins");
-		op.add(Builder::keys, EqlFeaturesKeys.JSONP_PARSER, "keys");
-		op.add(Builder::event, JsonpValueParser.numberParser(), "event");
-		op.add(Builder::pipes, EqlFeaturesPipes.JSONP_PARSER, "pipes");
-		op.add(Builder::sequence, JsonpValueParser.numberParser(), "sequence");
-		op.add(Builder::sequences, EqlFeaturesSequences.JSONP_PARSER, "sequences");
+		op.add(Builder::join, JsonpDeserializer.numberDeserializer(), "join");
+		op.add(Builder::joins, EqlFeaturesJoin.DESERIALIZER, "joins");
+		op.add(Builder::keys, EqlFeaturesKeys.DESERIALIZER, "keys");
+		op.add(Builder::event, JsonpDeserializer.numberDeserializer(), "event");
+		op.add(Builder::pipes, EqlFeaturesPipes.DESERIALIZER, "pipes");
+		op.add(Builder::sequence, JsonpDeserializer.numberDeserializer(), "sequence");
+		op.add(Builder::sequences, EqlFeaturesSequences.DESERIALIZER, "sequences");
 
 	}
 

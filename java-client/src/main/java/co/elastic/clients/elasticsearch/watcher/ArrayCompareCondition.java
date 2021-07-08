@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -194,19 +194,19 @@ public final class ArrayCompareCondition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ArrayCompareCondition
+	 * Json deserializer for ArrayCompareCondition
 	 */
-	public static final JsonpValueParser<ArrayCompareCondition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ArrayCompareCondition::setupArrayCompareConditionParser);
+	public static final JsonpDeserializer<ArrayCompareCondition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ArrayCompareCondition::setupArrayCompareConditionDeserializer);
 
-	protected static void setupArrayCompareConditionParser(
-			DelegatingJsonpValueParser<ArrayCompareCondition.Builder> op) {
+	protected static void setupArrayCompareConditionDeserializer(
+			DelegatingDeserializer<ArrayCompareCondition.Builder> op) {
 
-		op.add(Builder::arrayPath, JsonpValueParser.stringParser(), "array_path");
-		op.add(Builder::comparison, JsonpValueParser.stringParser(), "comparison");
-		op.add(Builder::path, JsonpValueParser.stringParser(), "path");
-		op.add(Builder::quantifier, JsonpValueParser.jsonValueParser(), "quantifier");
-		op.add(Builder::value, JsonpValueParser.jsonValueParser(), "value");
+		op.add(Builder::arrayPath, JsonpDeserializer.stringDeserializer(), "array_path");
+		op.add(Builder::comparison, JsonpDeserializer.stringDeserializer(), "comparison");
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::quantifier, JsonpDeserializer.jsonValueDeserializer(), "quantifier");
+		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
 
 	}
 

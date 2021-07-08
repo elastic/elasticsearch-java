@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class NativeCode implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NativeCode
+	 * Json deserializer for NativeCode
 	 */
-	public static final JsonpValueParser<NativeCode> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NativeCode::setupNativeCodeParser);
+	public static final JsonpDeserializer<NativeCode> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NativeCode::setupNativeCodeDeserializer);
 
-	protected static void setupNativeCodeParser(DelegatingJsonpValueParser<NativeCode.Builder> op) {
+	protected static void setupNativeCodeDeserializer(DelegatingDeserializer<NativeCode.Builder> op) {
 
-		op.add(Builder::buildHash, JsonpValueParser.stringParser(), "build_hash");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
+		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}
 

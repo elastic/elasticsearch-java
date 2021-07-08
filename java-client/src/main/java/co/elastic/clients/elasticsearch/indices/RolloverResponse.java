@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -235,19 +235,20 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RolloverResponse
+	 * Json deserializer for RolloverResponse
 	 */
-	public static final JsonpValueParser<RolloverResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RolloverResponse::setupRolloverResponseParser);
+	public static final JsonpDeserializer<RolloverResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RolloverResponse::setupRolloverResponseDeserializer);
 
-	protected static void setupRolloverResponseParser(DelegatingJsonpValueParser<RolloverResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::conditions, JsonpValueParser.stringMapParser(JsonpValueParser.booleanParser()), "conditions");
-		op.add(Builder::dryRun, JsonpValueParser.booleanParser(), "dry_run");
-		op.add(Builder::newIndex, JsonpValueParser.stringParser(), "new_index");
-		op.add(Builder::oldIndex, JsonpValueParser.stringParser(), "old_index");
-		op.add(Builder::rolledOver, JsonpValueParser.booleanParser(), "rolled_over");
-		op.add(Builder::shardsAcknowledged, JsonpValueParser.booleanParser(), "shards_acknowledged");
+	protected static void setupRolloverResponseDeserializer(DelegatingDeserializer<RolloverResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::conditions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.booleanDeserializer()),
+				"conditions");
+		op.add(Builder::dryRun, JsonpDeserializer.booleanDeserializer(), "dry_run");
+		op.add(Builder::newIndex, JsonpDeserializer.stringDeserializer(), "new_index");
+		op.add(Builder::oldIndex, JsonpDeserializer.stringDeserializer(), "old_index");
+		op.add(Builder::rolledOver, JsonpDeserializer.booleanDeserializer(), "rolled_over");
+		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 
 	}
 

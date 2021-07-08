@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -104,14 +104,14 @@ public final class ParentAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ParentAggregation
+	 * Json deserializer for ParentAggregation
 	 */
-	public static final JsonpValueParser<ParentAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ParentAggregation::setupParentAggregationParser);
+	public static final JsonpDeserializer<ParentAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ParentAggregation::setupParentAggregationDeserializer);
 
-	protected static void setupParentAggregationParser(DelegatingJsonpValueParser<ParentAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+	protected static void setupParentAggregationDeserializer(DelegatingDeserializer<ParentAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

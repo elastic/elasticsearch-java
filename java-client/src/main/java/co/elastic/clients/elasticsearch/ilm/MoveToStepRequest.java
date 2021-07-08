@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ilm.move_to_step.StepKey;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -177,15 +177,15 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MoveToStepRequest
+	 * Json deserializer for MoveToStepRequest
 	 */
-	public static final JsonpValueParser<MoveToStepRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MoveToStepRequest::setupMoveToStepRequestParser);
+	public static final JsonpDeserializer<MoveToStepRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MoveToStepRequest::setupMoveToStepRequestDeserializer);
 
-	protected static void setupMoveToStepRequestParser(DelegatingJsonpValueParser<MoveToStepRequest.Builder> op) {
+	protected static void setupMoveToStepRequestDeserializer(DelegatingDeserializer<MoveToStepRequest.Builder> op) {
 
-		op.add(Builder::currentStep, StepKey.JSONP_PARSER, "current_step");
-		op.add(Builder::nextStep, StepKey.JSONP_PARSER, "next_step");
+		op.add(Builder::currentStep, StepKey.DESERIALIZER, "current_step");
+		op.add(Builder::nextStep, StepKey.DESERIALIZER, "next_step");
 
 	}
 
@@ -226,5 +226,5 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, MoveToStepResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, MoveToStepResponse.DESERIALIZER);
 }

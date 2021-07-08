@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -241,18 +241,18 @@ public final class Hyperparameter implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Hyperparameter
+	 * Json deserializer for Hyperparameter
 	 */
-	public static final JsonpValueParser<Hyperparameter> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Hyperparameter::setupHyperparameterParser);
+	public static final JsonpDeserializer<Hyperparameter> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Hyperparameter::setupHyperparameterDeserializer);
 
-	protected static void setupHyperparameterParser(DelegatingJsonpValueParser<Hyperparameter.Builder> op) {
+	protected static void setupHyperparameterDeserializer(DelegatingDeserializer<Hyperparameter.Builder> op) {
 
-		op.add(Builder::absoluteImportance, JsonpValueParser.numberParser(), "absolute_importance");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::relativeImportance, JsonpValueParser.numberParser(), "relative_importance");
-		op.add(Builder::supplied, JsonpValueParser.booleanParser(), "supplied");
-		op.add(Builder::value, JsonpValueParser.numberParser(), "value");
+		op.add(Builder::absoluteImportance, JsonpDeserializer.numberDeserializer(), "absolute_importance");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::relativeImportance, JsonpDeserializer.numberDeserializer(), "relative_importance");
+		op.add(Builder::supplied, JsonpDeserializer.booleanDeserializer(), "supplied");
+		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
 
 	}
 

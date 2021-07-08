@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -235,17 +235,19 @@ public final class ResolveIndexItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ResolveIndexItem
+	 * Json deserializer for ResolveIndexItem
 	 */
-	public static final JsonpValueParser<ResolveIndexItem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ResolveIndexItem::setupResolveIndexItemParser);
+	public static final JsonpDeserializer<ResolveIndexItem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ResolveIndexItem::setupResolveIndexItemDeserializer);
 
-	protected static void setupResolveIndexItemParser(DelegatingJsonpValueParser<ResolveIndexItem.Builder> op) {
+	protected static void setupResolveIndexItemDeserializer(DelegatingDeserializer<ResolveIndexItem.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::aliases, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "aliases");
-		op.add(Builder::attributes, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "attributes");
-		op.add(Builder::dataStream, JsonpValueParser.stringParser(), "data_stream");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"aliases");
+		op.add(Builder::attributes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"attributes");
+		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
 
 	}
 

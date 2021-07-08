@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.monitoring;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -173,14 +173,14 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BulkRequest
+	 * Json deserializer for BulkRequest
 	 */
-	public static final JsonpValueParser<BulkRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BulkRequest::setupBulkRequestParser);
+	public static final JsonpDeserializer<BulkRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BulkRequest::setupBulkRequestDeserializer);
 
-	protected static void setupBulkRequestParser(DelegatingJsonpValueParser<BulkRequest.Builder> op) {
+	protected static void setupBulkRequestDeserializer(DelegatingDeserializer<BulkRequest.Builder> op) {
 
-		op.add(Builder::stubC, JsonpValueParser.stringParser(), "stub_c");
+		op.add(Builder::stubC, JsonpDeserializer.stringDeserializer(), "stub_c");
 
 	}
 
@@ -232,5 +232,5 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 				params.put("stub_b", request.stubB);
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, BulkResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, BulkResponse.DESERIALIZER);
 }

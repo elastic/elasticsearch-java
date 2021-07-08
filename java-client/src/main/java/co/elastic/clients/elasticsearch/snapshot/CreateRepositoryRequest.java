@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -228,16 +228,16 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateRepositoryRequest
+	 * Json deserializer for CreateRepositoryRequest
 	 */
-	public static final JsonpValueParser<CreateRepositoryRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestParser);
+	public static final JsonpDeserializer<CreateRepositoryRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestDeserializer);
 
-	protected static void setupCreateRepositoryRequestParser(
-			DelegatingJsonpValueParser<CreateRepositoryRequest.Builder> op) {
+	protected static void setupCreateRepositoryRequestDeserializer(
+			DelegatingDeserializer<CreateRepositoryRequest.Builder> op) {
 
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
-		op.add(Builder::settings, RepositorySettings.JSONP_PARSER, "settings");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::settings, RepositorySettings.DESERIALIZER, "settings");
 
 	}
 
@@ -287,5 +287,5 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateRepositoryResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, CreateRepositoryResponse.DESERIALIZER);
 }

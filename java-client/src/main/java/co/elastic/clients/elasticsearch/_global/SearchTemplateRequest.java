@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch._global;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -584,17 +584,18 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchTemplateRequest
+	 * Json deserializer for SearchTemplateRequest
 	 */
-	public static final JsonpValueParser<SearchTemplateRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchTemplateRequest::setupSearchTemplateRequestParser);
+	public static final JsonpDeserializer<SearchTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchTemplateRequest::setupSearchTemplateRequestDeserializer);
 
-	protected static void setupSearchTemplateRequestParser(
-			DelegatingJsonpValueParser<SearchTemplateRequest.Builder> op) {
+	protected static void setupSearchTemplateRequestDeserializer(
+			DelegatingDeserializer<SearchTemplateRequest.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
-		op.add(Builder::source, JsonpValueParser.stringParser(), "source");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"params");
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}
 
@@ -700,7 +701,8 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	 * Create an "{@code search_template}" endpoint.
 	 */
 	public static <TDocument> Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ElasticsearchError> createSearchTemplateEndpoint(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return ENDPOINT.withResponseParser(SearchTemplateResponse.createSearchTemplateResponseParser(tDocumentParser));
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ENDPOINT.withResponseDeserializer(
+				SearchTemplateResponse.createSearchTemplateResponseDeserializer(tDocumentDeserializer));
 	}
 }

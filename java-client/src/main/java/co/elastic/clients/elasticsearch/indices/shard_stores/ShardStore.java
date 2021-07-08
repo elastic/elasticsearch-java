@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -291,21 +291,22 @@ public final class ShardStore implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardStore
+	 * Json deserializer for ShardStore
 	 */
-	public static final JsonpValueParser<ShardStore> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardStore::setupShardStoreParser);
+	public static final JsonpDeserializer<ShardStore> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardStore::setupShardStoreDeserializer);
 
-	protected static void setupShardStoreParser(DelegatingJsonpValueParser<ShardStore.Builder> op) {
+	protected static void setupShardStoreDeserializer(DelegatingDeserializer<ShardStore.Builder> op) {
 
-		op.add(Builder::allocation, JsonpValueParser.jsonValueParser(), "allocation");
-		op.add(Builder::allocationId, JsonpValueParser.stringParser(), "allocation_id");
-		op.add(Builder::attributes, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "attributes");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::legacyVersion, JsonpValueParser.numberParser(), "legacy_version");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::storeException, ShardStoreException.JSONP_PARSER, "store_exception");
-		op.add(Builder::transportAddress, JsonpValueParser.stringParser(), "transport_address");
+		op.add(Builder::allocation, JsonpDeserializer.jsonValueDeserializer(), "allocation");
+		op.add(Builder::allocationId, JsonpDeserializer.stringDeserializer(), "allocation_id");
+		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"attributes");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::legacyVersion, JsonpDeserializer.numberDeserializer(), "legacy_version");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::storeException, ShardStoreException.DESERIALIZER, "store_exception");
+		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 
 	}
 

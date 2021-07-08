@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -312,23 +312,24 @@ public final class AllField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AllField
+	 * Json deserializer for AllField
 	 */
-	public static final JsonpValueParser<AllField> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			AllField::setupAllFieldParser);
+	public static final JsonpDeserializer<AllField> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AllField::setupAllFieldDeserializer);
 
-	protected static void setupAllFieldParser(DelegatingJsonpValueParser<AllField.Builder> op) {
+	protected static void setupAllFieldDeserializer(DelegatingDeserializer<AllField.Builder> op) {
 
-		op.add(Builder::analyzer, JsonpValueParser.stringParser(), "analyzer");
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
-		op.add(Builder::omitNorms, JsonpValueParser.booleanParser(), "omit_norms");
-		op.add(Builder::searchAnalyzer, JsonpValueParser.stringParser(), "search_analyzer");
-		op.add(Builder::similarity, JsonpValueParser.stringParser(), "similarity");
-		op.add(Builder::store, JsonpValueParser.booleanParser(), "store");
-		op.add(Builder::storeTermVectorOffsets, JsonpValueParser.booleanParser(), "store_term_vector_offsets");
-		op.add(Builder::storeTermVectorPayloads, JsonpValueParser.booleanParser(), "store_term_vector_payloads");
-		op.add(Builder::storeTermVectorPositions, JsonpValueParser.booleanParser(), "store_term_vector_positions");
-		op.add(Builder::storeTermVectors, JsonpValueParser.booleanParser(), "store_term_vectors");
+		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::omitNorms, JsonpDeserializer.booleanDeserializer(), "omit_norms");
+		op.add(Builder::searchAnalyzer, JsonpDeserializer.stringDeserializer(), "search_analyzer");
+		op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
+		op.add(Builder::store, JsonpDeserializer.booleanDeserializer(), "store");
+		op.add(Builder::storeTermVectorOffsets, JsonpDeserializer.booleanDeserializer(), "store_term_vector_offsets");
+		op.add(Builder::storeTermVectorPayloads, JsonpDeserializer.booleanDeserializer(), "store_term_vector_payloads");
+		op.add(Builder::storeTermVectorPositions, JsonpDeserializer.booleanDeserializer(),
+				"store_term_vector_positions");
+		op.add(Builder::storeTermVectors, JsonpDeserializer.booleanDeserializer(), "store_term_vectors");
 
 	}
 

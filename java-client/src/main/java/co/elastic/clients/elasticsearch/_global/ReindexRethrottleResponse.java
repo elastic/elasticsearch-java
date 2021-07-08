@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.reindex_rethrottle.ReindexNode;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -136,15 +136,15 @@ public final class ReindexRethrottleResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReindexRethrottleResponse
+	 * Json deserializer for ReindexRethrottleResponse
 	 */
-	public static final JsonpValueParser<ReindexRethrottleResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReindexRethrottleResponse::setupReindexRethrottleResponseParser);
+	public static final JsonpDeserializer<ReindexRethrottleResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReindexRethrottleResponse::setupReindexRethrottleResponseDeserializer);
 
-	protected static void setupReindexRethrottleResponseParser(
-			DelegatingJsonpValueParser<ReindexRethrottleResponse.Builder> op) {
+	protected static void setupReindexRethrottleResponseDeserializer(
+			DelegatingDeserializer<ReindexRethrottleResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(ReindexNode.JSONP_PARSER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ReindexNode.DESERIALIZER), "nodes");
 
 	}
 

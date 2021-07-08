@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -178,17 +178,17 @@ public final class IndexDetails implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexDetails
+	 * Json deserializer for IndexDetails
 	 */
-	public static final JsonpValueParser<IndexDetails> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexDetails::setupIndexDetailsParser);
+	public static final JsonpDeserializer<IndexDetails> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexDetails::setupIndexDetailsDeserializer);
 
-	protected static void setupIndexDetailsParser(DelegatingJsonpValueParser<IndexDetails.Builder> op) {
+	protected static void setupIndexDetailsDeserializer(DelegatingDeserializer<IndexDetails.Builder> op) {
 
-		op.add(Builder::shardCount, JsonpValueParser.numberParser(), "shard_count");
-		op.add(Builder::size, JsonpValueParser.jsonValueParser(), "size");
-		op.add(Builder::sizeInBytes, JsonpValueParser.numberParser(), "size_in_bytes");
-		op.add(Builder::maxSegmentsPerShard, JsonpValueParser.numberParser(), "max_segments_per_shard");
+		op.add(Builder::shardCount, JsonpDeserializer.numberDeserializer(), "shard_count");
+		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
+		op.add(Builder::maxSegmentsPerShard, JsonpDeserializer.numberDeserializer(), "max_segments_per_shard");
 
 	}
 

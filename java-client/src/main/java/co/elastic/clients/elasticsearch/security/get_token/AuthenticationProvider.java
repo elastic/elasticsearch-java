@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security.get_token;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,16 +124,16 @@ public final class AuthenticationProvider implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AuthenticationProvider
+	 * Json deserializer for AuthenticationProvider
 	 */
-	public static final JsonpValueParser<AuthenticationProvider> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AuthenticationProvider::setupAuthenticationProviderParser);
+	public static final JsonpDeserializer<AuthenticationProvider> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AuthenticationProvider::setupAuthenticationProviderDeserializer);
 
-	protected static void setupAuthenticationProviderParser(
-			DelegatingJsonpValueParser<AuthenticationProvider.Builder> op) {
+	protected static void setupAuthenticationProviderDeserializer(
+			DelegatingDeserializer<AuthenticationProvider.Builder> op) {
 
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -218,20 +218,21 @@ public final class Suggest<T> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for Suggest
+	 * Create a json deserializer for Suggest
 	 */
-	public static <T> JsonpValueParser<Suggest<T>> createSuggestParser(JsonpValueParser<T> tParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<T>>) Builder::new,
-				op -> Suggest.setupSuggestParser(op, tParser));
+	public static <T> JsonpDeserializer<Suggest<T>> createSuggestDeserializer(JsonpDeserializer<T> tDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<T>>) Builder::new,
+				op -> Suggest.setupSuggestDeserializer(op, tDeserializer));
 	};
 
-	protected static <T> void setupSuggestParser(DelegatingJsonpValueParser<Suggest.Builder<T>> op,
-			JsonpValueParser<T> tParser) {
+	protected static <T> void setupSuggestDeserializer(DelegatingDeserializer<Suggest.Builder<T>> op,
+			JsonpDeserializer<T> tDeserializer) {
 
-		op.add(Builder::length, JsonpValueParser.numberParser(), "length");
-		op.add(Builder::offset, JsonpValueParser.numberParser(), "offset");
-		op.add(Builder::options, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "options");
-		op.add(Builder::text, JsonpValueParser.stringParser(), "text");
+		op.add(Builder::length, JsonpDeserializer.numberDeserializer(), "length");
+		op.add(Builder::offset, JsonpDeserializer.numberDeserializer(), "offset");
+		op.add(Builder::options, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"options");
+		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
 	}
 

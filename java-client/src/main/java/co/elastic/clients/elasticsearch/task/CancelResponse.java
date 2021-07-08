@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.task;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -207,15 +207,15 @@ public final class CancelResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CancelResponse
+	 * Json deserializer for CancelResponse
 	 */
-	public static final JsonpValueParser<CancelResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CancelResponse::setupCancelResponseParser);
+	public static final JsonpDeserializer<CancelResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CancelResponse::setupCancelResponseDeserializer);
 
-	protected static void setupCancelResponseParser(DelegatingJsonpValueParser<CancelResponse.Builder> op) {
+	protected static void setupCancelResponseDeserializer(DelegatingDeserializer<CancelResponse.Builder> op) {
 
-		op.add(Builder::nodeFailures, JsonpValueParser.arrayParser(ErrorCause.JSONP_PARSER), "node_failures");
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(TaskExecutingNode.JSONP_PARSER), "nodes");
+		op.add(Builder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "node_failures");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(TaskExecutingNode.DESERIALIZER), "nodes");
 
 	}
 

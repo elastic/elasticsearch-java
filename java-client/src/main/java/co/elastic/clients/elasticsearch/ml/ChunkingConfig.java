@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -131,15 +131,15 @@ public final class ChunkingConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ChunkingConfig
+	 * Json deserializer for ChunkingConfig
 	 */
-	public static final JsonpValueParser<ChunkingConfig> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ChunkingConfig::setupChunkingConfigParser);
+	public static final JsonpDeserializer<ChunkingConfig> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ChunkingConfig::setupChunkingConfigDeserializer);
 
-	protected static void setupChunkingConfigParser(DelegatingJsonpValueParser<ChunkingConfig.Builder> op) {
+	protected static void setupChunkingConfigDeserializer(DelegatingDeserializer<ChunkingConfig.Builder> op) {
 
-		op.add(Builder::mode, JsonpValueParser.jsonValueParser(), "mode");
-		op.add(Builder::timeSpan, JsonpValueParser.jsonValueParser(), "time_span");
+		op.add(Builder::mode, JsonpDeserializer.jsonValueDeserializer(), "mode");
+		op.add(Builder::timeSpan, JsonpDeserializer.jsonValueDeserializer(), "time_span");
 
 	}
 

@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplate;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -208,15 +208,15 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SimulateTemplateRequest
+	 * Json deserializer for SimulateTemplateRequest
 	 */
-	public static final JsonpValueParser<SimulateTemplateRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SimulateTemplateRequest::setupSimulateTemplateRequestParser);
+	public static final JsonpDeserializer<SimulateTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SimulateTemplateRequest::setupSimulateTemplateRequestDeserializer);
 
-	protected static void setupSimulateTemplateRequestParser(
-			DelegatingJsonpValueParser<SimulateTemplateRequest.Builder> op) {
+	protected static void setupSimulateTemplateRequestDeserializer(
+			DelegatingDeserializer<SimulateTemplateRequest.Builder> op) {
 
-		op.add(Builder::value, IndexTemplate.JSONP_PARSER, "value");
+		op.add(Builder::value, IndexTemplate.DESERIALIZER, "value");
 
 	}
 
@@ -270,5 +270,5 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, SimulateTemplateResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, SimulateTemplateResponse.DESERIALIZER);
 }

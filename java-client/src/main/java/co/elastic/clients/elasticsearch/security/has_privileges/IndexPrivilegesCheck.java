@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security.has_privileges;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -175,15 +175,17 @@ public final class IndexPrivilegesCheck implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexPrivilegesCheck
+	 * Json deserializer for IndexPrivilegesCheck
 	 */
-	public static final JsonpValueParser<IndexPrivilegesCheck> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexPrivilegesCheck::setupIndexPrivilegesCheckParser);
+	public static final JsonpDeserializer<IndexPrivilegesCheck> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexPrivilegesCheck::setupIndexPrivilegesCheckDeserializer);
 
-	protected static void setupIndexPrivilegesCheckParser(DelegatingJsonpValueParser<IndexPrivilegesCheck.Builder> op) {
+	protected static void setupIndexPrivilegesCheckDeserializer(
+			DelegatingDeserializer<IndexPrivilegesCheck.Builder> op) {
 
-		op.add(Builder::names, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "names");
-		op.add(Builder::privileges, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "privileges");
+		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
+		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"privileges");
 
 	}
 

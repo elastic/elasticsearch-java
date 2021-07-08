@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -205,16 +205,16 @@ public final class RangeAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RangeAggregation
+	 * Json deserializer for RangeAggregation
 	 */
-	public static final JsonpValueParser<RangeAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RangeAggregation::setupRangeAggregationParser);
+	public static final JsonpDeserializer<RangeAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RangeAggregation::setupRangeAggregationDeserializer);
 
-	protected static void setupRangeAggregationParser(DelegatingJsonpValueParser<RangeAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ranges, JsonpValueParser.arrayParser(AggregationRange.JSONP_PARSER), "ranges");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
+	protected static void setupRangeAggregationDeserializer(DelegatingDeserializer<RangeAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange.DESERIALIZER), "ranges");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}
 

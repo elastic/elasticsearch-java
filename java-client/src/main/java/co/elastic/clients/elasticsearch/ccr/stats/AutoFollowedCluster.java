@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ccr.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -150,16 +150,17 @@ public final class AutoFollowedCluster implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AutoFollowedCluster
+	 * Json deserializer for AutoFollowedCluster
 	 */
-	public static final JsonpValueParser<AutoFollowedCluster> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AutoFollowedCluster::setupAutoFollowedClusterParser);
+	public static final JsonpDeserializer<AutoFollowedCluster> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AutoFollowedCluster::setupAutoFollowedClusterDeserializer);
 
-	protected static void setupAutoFollowedClusterParser(DelegatingJsonpValueParser<AutoFollowedCluster.Builder> op) {
+	protected static void setupAutoFollowedClusterDeserializer(DelegatingDeserializer<AutoFollowedCluster.Builder> op) {
 
-		op.add(Builder::clusterName, JsonpValueParser.stringParser(), "cluster_name");
-		op.add(Builder::lastSeenMetadataVersion, JsonpValueParser.numberParser(), "last_seen_metadata_version");
-		op.add(Builder::timeSinceLastCheckMillis, JsonpValueParser.stringParser(), "time_since_last_check_millis");
+		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+		op.add(Builder::lastSeenMetadataVersion, JsonpDeserializer.numberDeserializer(), "last_seen_metadata_version");
+		op.add(Builder::timeSinceLastCheckMillis, JsonpDeserializer.stringDeserializer(),
+				"time_since_last_check_millis");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -344,23 +344,23 @@ public final class NodeInfoJvmMemory implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoJvmMemory
+	 * Json deserializer for NodeInfoJvmMemory
 	 */
-	public static final JsonpValueParser<NodeInfoJvmMemory> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoJvmMemory::setupNodeInfoJvmMemoryParser);
+	public static final JsonpDeserializer<NodeInfoJvmMemory> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoJvmMemory::setupNodeInfoJvmMemoryDeserializer);
 
-	protected static void setupNodeInfoJvmMemoryParser(DelegatingJsonpValueParser<NodeInfoJvmMemory.Builder> op) {
+	protected static void setupNodeInfoJvmMemoryDeserializer(DelegatingDeserializer<NodeInfoJvmMemory.Builder> op) {
 
-		op.add(Builder::directMax, JsonpValueParser.jsonValueParser(), "direct_max");
-		op.add(Builder::directMaxInBytes, JsonpValueParser.numberParser(), "direct_max_in_bytes");
-		op.add(Builder::heapInit, JsonpValueParser.jsonValueParser(), "heap_init");
-		op.add(Builder::heapInitInBytes, JsonpValueParser.numberParser(), "heap_init_in_bytes");
-		op.add(Builder::heapMax, JsonpValueParser.jsonValueParser(), "heap_max");
-		op.add(Builder::heapMaxInBytes, JsonpValueParser.numberParser(), "heap_max_in_bytes");
-		op.add(Builder::nonHeapInit, JsonpValueParser.jsonValueParser(), "non_heap_init");
-		op.add(Builder::nonHeapInitInBytes, JsonpValueParser.numberParser(), "non_heap_init_in_bytes");
-		op.add(Builder::nonHeapMax, JsonpValueParser.jsonValueParser(), "non_heap_max");
-		op.add(Builder::nonHeapMaxInBytes, JsonpValueParser.numberParser(), "non_heap_max_in_bytes");
+		op.add(Builder::directMax, JsonpDeserializer.jsonValueDeserializer(), "direct_max");
+		op.add(Builder::directMaxInBytes, JsonpDeserializer.numberDeserializer(), "direct_max_in_bytes");
+		op.add(Builder::heapInit, JsonpDeserializer.jsonValueDeserializer(), "heap_init");
+		op.add(Builder::heapInitInBytes, JsonpDeserializer.numberDeserializer(), "heap_init_in_bytes");
+		op.add(Builder::heapMax, JsonpDeserializer.jsonValueDeserializer(), "heap_max");
+		op.add(Builder::heapMaxInBytes, JsonpDeserializer.numberDeserializer(), "heap_max_in_bytes");
+		op.add(Builder::nonHeapInit, JsonpDeserializer.jsonValueDeserializer(), "non_heap_init");
+		op.add(Builder::nonHeapInitInBytes, JsonpDeserializer.numberDeserializer(), "non_heap_init_in_bytes");
+		op.add(Builder::nonHeapMax, JsonpDeserializer.jsonValueDeserializer(), "non_heap_max");
+		op.add(Builder::nonHeapMaxInBytes, JsonpDeserializer.numberDeserializer(), "non_heap_max_in_bytes");
 
 	}
 

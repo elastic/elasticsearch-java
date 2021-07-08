@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -239,20 +239,20 @@ public final class ShardQueryCache implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardQueryCache
+	 * Json deserializer for ShardQueryCache
 	 */
-	public static final JsonpValueParser<ShardQueryCache> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardQueryCache::setupShardQueryCacheParser);
+	public static final JsonpDeserializer<ShardQueryCache> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardQueryCache::setupShardQueryCacheDeserializer);
 
-	protected static void setupShardQueryCacheParser(DelegatingJsonpValueParser<ShardQueryCache.Builder> op) {
+	protected static void setupShardQueryCacheDeserializer(DelegatingDeserializer<ShardQueryCache.Builder> op) {
 
-		op.add(Builder::cacheCount, JsonpValueParser.numberParser(), "cache_count");
-		op.add(Builder::cacheSize, JsonpValueParser.numberParser(), "cache_size");
-		op.add(Builder::evictions, JsonpValueParser.numberParser(), "evictions");
-		op.add(Builder::hitCount, JsonpValueParser.numberParser(), "hit_count");
-		op.add(Builder::memorySizeInBytes, JsonpValueParser.numberParser(), "memory_size_in_bytes");
-		op.add(Builder::missCount, JsonpValueParser.numberParser(), "miss_count");
-		op.add(Builder::totalCount, JsonpValueParser.numberParser(), "total_count");
+		op.add(Builder::cacheCount, JsonpDeserializer.numberDeserializer(), "cache_count");
+		op.add(Builder::cacheSize, JsonpDeserializer.numberDeserializer(), "cache_size");
+		op.add(Builder::evictions, JsonpDeserializer.numberDeserializer(), "evictions");
+		op.add(Builder::hitCount, JsonpDeserializer.numberDeserializer(), "hit_count");
+		op.add(Builder::memorySizeInBytes, JsonpDeserializer.numberDeserializer(), "memory_size_in_bytes");
+		op.add(Builder::missCount, JsonpDeserializer.numberDeserializer(), "miss_count");
+		op.add(Builder::totalCount, JsonpDeserializer.numberDeserializer(), "total_count");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ccr.stats;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -284,22 +284,22 @@ public final class AutoFollowStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AutoFollowStats
+	 * Json deserializer for AutoFollowStats
 	 */
-	public static final JsonpValueParser<AutoFollowStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AutoFollowStats::setupAutoFollowStatsParser);
+	public static final JsonpDeserializer<AutoFollowStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AutoFollowStats::setupAutoFollowStatsDeserializer);
 
-	protected static void setupAutoFollowStatsParser(DelegatingJsonpValueParser<AutoFollowStats.Builder> op) {
+	protected static void setupAutoFollowStatsDeserializer(DelegatingDeserializer<AutoFollowStats.Builder> op) {
 
-		op.add(Builder::autoFollowedClusters, JsonpValueParser.arrayParser(AutoFollowedCluster.JSONP_PARSER),
+		op.add(Builder::autoFollowedClusters, JsonpDeserializer.arrayDeserializer(AutoFollowedCluster.DESERIALIZER),
 				"auto_followed_clusters");
-		op.add(Builder::numberOfFailedFollowIndices, JsonpValueParser.numberParser(),
+		op.add(Builder::numberOfFailedFollowIndices, JsonpDeserializer.numberDeserializer(),
 				"number_of_failed_follow_indices");
-		op.add(Builder::numberOfFailedRemoteClusterStateRequests, JsonpValueParser.numberParser(),
+		op.add(Builder::numberOfFailedRemoteClusterStateRequests, JsonpDeserializer.numberDeserializer(),
 				"number_of_failed_remote_cluster_state_requests");
-		op.add(Builder::numberOfSuccessfulFollowIndices, JsonpValueParser.numberParser(),
+		op.add(Builder::numberOfSuccessfulFollowIndices, JsonpDeserializer.numberDeserializer(),
 				"number_of_successful_follow_indices");
-		op.add(Builder::recentAutoFollowErrors, JsonpValueParser.arrayParser(ErrorCause.JSONP_PARSER),
+		op.add(Builder::recentAutoFollowErrors, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER),
 				"recent_auto_follow_errors");
 
 	}

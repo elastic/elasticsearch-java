@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -233,17 +233,18 @@ public final class Pivot implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Pivot
+	 * Json deserializer for Pivot
 	 */
-	public static final JsonpValueParser<Pivot> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Pivot::setupPivotParser);
+	public static final JsonpDeserializer<Pivot> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Pivot::setupPivotDeserializer);
 
-	protected static void setupPivotParser(DelegatingJsonpValueParser<Pivot.Builder> op) {
+	protected static void setupPivotDeserializer(DelegatingDeserializer<Pivot.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpValueParser.stringMapParser(AggregationContainer.JSONP_PARSER),
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER),
 				"aggregations", "aggs");
-		op.add(Builder::groupBy, JsonpValueParser.stringMapParser(PivotGroupByContainer.JSONP_PARSER), "group_by");
-		op.add(Builder::maxPageSearchSize, JsonpValueParser.numberParser(), "max_page_search_size");
+		op.add(Builder::groupBy, JsonpDeserializer.stringMapDeserializer(PivotGroupByContainer.DESERIALIZER),
+				"group_by");
+		op.add(Builder::maxPageSearchSize, JsonpDeserializer.numberDeserializer(), "max_page_search_size");
 
 	}
 

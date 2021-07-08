@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.rollup.get_rollup_index_capabilities.IndexCapabilities;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -72,16 +72,16 @@ public final class GetRollupIndexCapabilitiesResponse extends AdditionalProperti
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetRollupIndexCapabilitiesResponse
+	 * Json deserializer for GetRollupIndexCapabilitiesResponse
 	 */
-	public static final JsonpValueParser<GetRollupIndexCapabilitiesResponse> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<GetRollupIndexCapabilitiesResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					GetRollupIndexCapabilitiesResponse::setupGetRollupIndexCapabilitiesResponseParser);
+					GetRollupIndexCapabilitiesResponse::setupGetRollupIndexCapabilitiesResponseDeserializer);
 
-	protected static void setupGetRollupIndexCapabilitiesResponseParser(
-			DelegatingJsonpValueParser<GetRollupIndexCapabilitiesResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				IndexCapabilities.JSONP_PARSER);
+	protected static void setupGetRollupIndexCapabilitiesResponseDeserializer(
+			DelegatingDeserializer<GetRollupIndexCapabilitiesResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				IndexCapabilities.DESERIALIZER);
 
 	}
 

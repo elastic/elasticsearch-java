@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch.rollup.get_rollup_job.RollupJob;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,14 +143,15 @@ public final class GetRollupJobResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetRollupJobResponse
+	 * Json deserializer for GetRollupJobResponse
 	 */
-	public static final JsonpValueParser<GetRollupJobResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetRollupJobResponse::setupGetRollupJobResponseParser);
+	public static final JsonpDeserializer<GetRollupJobResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetRollupJobResponse::setupGetRollupJobResponseDeserializer);
 
-	protected static void setupGetRollupJobResponseParser(DelegatingJsonpValueParser<GetRollupJobResponse.Builder> op) {
+	protected static void setupGetRollupJobResponseDeserializer(
+			DelegatingDeserializer<GetRollupJobResponse.Builder> op) {
 
-		op.add(Builder::jobs, JsonpValueParser.arrayParser(RollupJob.JSONP_PARSER), "jobs");
+		op.add(Builder::jobs, JsonpDeserializer.arrayDeserializer(RollupJob.DESERIALIZER), "jobs");
 
 	}
 

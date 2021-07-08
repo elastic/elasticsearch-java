@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -108,15 +108,15 @@ public final class ActivateWatchResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ActivateWatchResponse
+	 * Json deserializer for ActivateWatchResponse
 	 */
-	public static final JsonpValueParser<ActivateWatchResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ActivateWatchResponse::setupActivateWatchResponseParser);
+	public static final JsonpDeserializer<ActivateWatchResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ActivateWatchResponse::setupActivateWatchResponseDeserializer);
 
-	protected static void setupActivateWatchResponseParser(
-			DelegatingJsonpValueParser<ActivateWatchResponse.Builder> op) {
+	protected static void setupActivateWatchResponseDeserializer(
+			DelegatingDeserializer<ActivateWatchResponse.Builder> op) {
 
-		op.add(Builder::status, ActivationStatus.JSONP_PARSER, "status");
+		op.add(Builder::status, ActivationStatus.DESERIALIZER, "status");
 
 	}
 

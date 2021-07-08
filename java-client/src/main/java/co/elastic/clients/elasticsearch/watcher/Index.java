@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -131,15 +131,15 @@ public final class Index implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Index
+	 * Json deserializer for Index
 	 */
-	public static final JsonpValueParser<Index> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Index::setupIndexParser);
+	public static final JsonpDeserializer<Index> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Index::setupIndexDeserializer);
 
-	protected static void setupIndexParser(DelegatingJsonpValueParser<Index.Builder> op) {
+	protected static void setupIndexDeserializer(DelegatingDeserializer<Index.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::docId, JsonpValueParser.stringParser(), "doc_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::docId, JsonpDeserializer.stringDeserializer(), "doc_id");
 
 	}
 

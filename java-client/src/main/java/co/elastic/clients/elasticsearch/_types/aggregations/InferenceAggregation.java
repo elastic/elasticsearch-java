@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -138,15 +138,16 @@ public final class InferenceAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InferenceAggregation
+	 * Json deserializer for InferenceAggregation
 	 */
-	public static final JsonpValueParser<InferenceAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InferenceAggregation::setupInferenceAggregationParser);
+	public static final JsonpDeserializer<InferenceAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InferenceAggregation::setupInferenceAggregationDeserializer);
 
-	protected static void setupInferenceAggregationParser(DelegatingJsonpValueParser<InferenceAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseParser(op);
-		op.add(Builder::modelId, JsonpValueParser.stringParser(), "model_id");
-		op.add(Builder::inferenceConfig, InferenceConfigContainer.JSONP_PARSER, "inference_config");
+	protected static void setupInferenceAggregationDeserializer(
+			DelegatingDeserializer<InferenceAggregation.Builder> op) {
+		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+		op.add(Builder::inferenceConfig, InferenceConfigContainer.DESERIALIZER, "inference_config");
 
 	}
 

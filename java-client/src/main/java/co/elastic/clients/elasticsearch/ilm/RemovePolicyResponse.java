@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -152,15 +152,17 @@ public final class RemovePolicyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RemovePolicyResponse
+	 * Json deserializer for RemovePolicyResponse
 	 */
-	public static final JsonpValueParser<RemovePolicyResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RemovePolicyResponse::setupRemovePolicyResponseParser);
+	public static final JsonpDeserializer<RemovePolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RemovePolicyResponse::setupRemovePolicyResponseDeserializer);
 
-	protected static void setupRemovePolicyResponseParser(DelegatingJsonpValueParser<RemovePolicyResponse.Builder> op) {
+	protected static void setupRemovePolicyResponseDeserializer(
+			DelegatingDeserializer<RemovePolicyResponse.Builder> op) {
 
-		op.add(Builder::failedIndexes, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "failed_indexes");
-		op.add(Builder::hasFailures, JsonpValueParser.booleanParser(), "has_failures");
+		op.add(Builder::failedIndexes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"failed_indexes");
+		op.add(Builder::hasFailures, JsonpDeserializer.booleanDeserializer(), "has_failures");
 
 	}
 

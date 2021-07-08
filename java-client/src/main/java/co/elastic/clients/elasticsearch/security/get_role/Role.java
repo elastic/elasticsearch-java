@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.security.get_role;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -428,20 +428,23 @@ public final class Role implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Role
+	 * Json deserializer for Role
 	 */
-	public static final JsonpValueParser<Role> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Role::setupRoleParser);
+	public static final JsonpDeserializer<Role> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Role::setupRoleDeserializer);
 
-	protected static void setupRoleParser(DelegatingJsonpValueParser<Role.Builder> op) {
+	protected static void setupRoleDeserializer(DelegatingDeserializer<Role.Builder> op) {
 
-		op.add(Builder::cluster, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "cluster");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(IndicesPrivileges.JSONP_PARSER), "indices");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::runAs, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "run_as");
-		op.add(Builder::transientMetadata, TransientMetadata.JSONP_PARSER, "transient_metadata");
-		op.add(Builder::applications, JsonpValueParser.arrayParser(ApplicationPrivileges.JSONP_PARSER), "applications");
-		op.add(Builder::roleTemplates, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"cluster");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges.DESERIALIZER), "indices");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
+		op.add(Builder::transientMetadata, TransientMetadata.DESERIALIZER, "transient_metadata");
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+				"applications");
+		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"role_templates");
 
 	}

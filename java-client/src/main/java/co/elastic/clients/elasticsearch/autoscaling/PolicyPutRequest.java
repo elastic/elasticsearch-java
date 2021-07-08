@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.autoscaling;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -173,14 +173,14 @@ public final class PolicyPutRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PolicyPutRequest
+	 * Json deserializer for PolicyPutRequest
 	 */
-	public static final JsonpValueParser<PolicyPutRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PolicyPutRequest::setupPolicyPutRequestParser);
+	public static final JsonpDeserializer<PolicyPutRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PolicyPutRequest::setupPolicyPutRequestDeserializer);
 
-	protected static void setupPolicyPutRequestParser(DelegatingJsonpValueParser<PolicyPutRequest.Builder> op) {
+	protected static void setupPolicyPutRequestDeserializer(DelegatingDeserializer<PolicyPutRequest.Builder> op) {
 
-		op.add(Builder::stubC, JsonpValueParser.stringParser(), "stub_c");
+		op.add(Builder::stubC, JsonpDeserializer.stringDeserializer(), "stub_c");
 
 	}
 
@@ -226,5 +226,5 @@ public final class PolicyPutRequest extends RequestBase implements ToJsonp {
 				params.put("stub_b", request.stubB);
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PolicyPutResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PolicyPutResponse.DESERIALIZER);
 }

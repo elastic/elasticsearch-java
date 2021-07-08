@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,17 +147,18 @@ public final class MlInferenceIngestProcessorCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MlInferenceIngestProcessorCount
+	 * Json deserializer for MlInferenceIngestProcessorCount
 	 */
-	public static final JsonpValueParser<MlInferenceIngestProcessorCount> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MlInferenceIngestProcessorCount::setupMlInferenceIngestProcessorCountParser);
+	public static final JsonpDeserializer<MlInferenceIngestProcessorCount> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					MlInferenceIngestProcessorCount::setupMlInferenceIngestProcessorCountDeserializer);
 
-	protected static void setupMlInferenceIngestProcessorCountParser(
-			DelegatingJsonpValueParser<MlInferenceIngestProcessorCount.Builder> op) {
+	protected static void setupMlInferenceIngestProcessorCountDeserializer(
+			DelegatingDeserializer<MlInferenceIngestProcessorCount.Builder> op) {
 
-		op.add(Builder::max, JsonpValueParser.numberParser(), "max");
-		op.add(Builder::sum, JsonpValueParser.numberParser(), "sum");
-		op.add(Builder::min, JsonpValueParser.numberParser(), "min");
+		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
+		op.add(Builder::sum, JsonpDeserializer.numberDeserializer(), "sum");
+		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
 
 	}
 

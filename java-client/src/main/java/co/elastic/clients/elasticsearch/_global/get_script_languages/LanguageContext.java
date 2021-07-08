@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.get_script_languages;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -152,15 +152,16 @@ public final class LanguageContext implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for LanguageContext
+	 * Json deserializer for LanguageContext
 	 */
-	public static final JsonpValueParser<LanguageContext> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, LanguageContext::setupLanguageContextParser);
+	public static final JsonpDeserializer<LanguageContext> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, LanguageContext::setupLanguageContextDeserializer);
 
-	protected static void setupLanguageContextParser(DelegatingJsonpValueParser<LanguageContext.Builder> op) {
+	protected static void setupLanguageContextDeserializer(DelegatingDeserializer<LanguageContext.Builder> op) {
 
-		op.add(Builder::contexts, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "contexts");
-		op.add(Builder::language, JsonpValueParser.jsonValueParser(), "language");
+		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"contexts");
+		op.add(Builder::language, JsonpDeserializer.jsonValueDeserializer(), "language");
 
 	}
 

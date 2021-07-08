@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -286,15 +286,15 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <TEvent, BuilderT extends AbstractBuilder<TEvent, BuilderT>> void setupEqlSearchResponseBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op, JsonpValueParser<TEvent> tEventParser) {
+	protected static <TEvent, BuilderT extends AbstractBuilder<TEvent, BuilderT>> void setupEqlSearchResponseBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TEvent> tEventDeserializer) {
 
-		op.add(AbstractBuilder::id, JsonpValueParser.stringParser(), "id");
-		op.add(AbstractBuilder::isPartial, JsonpValueParser.booleanParser(), "is_partial");
-		op.add(AbstractBuilder::isRunning, JsonpValueParser.booleanParser(), "is_running");
-		op.add(AbstractBuilder::took, JsonpValueParser.numberParser(), "took");
-		op.add(AbstractBuilder::timedOut, JsonpValueParser.booleanParser(), "timed_out");
-		op.add(AbstractBuilder::hits, EqlHits.createEqlHitsParser(tEventParser), "hits");
+		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
+		op.add(AbstractBuilder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
+		op.add(AbstractBuilder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(AbstractBuilder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
+		op.add(AbstractBuilder::hits, EqlHits.createEqlHitsDeserializer(tEventDeserializer), "hits");
 
 	}
 

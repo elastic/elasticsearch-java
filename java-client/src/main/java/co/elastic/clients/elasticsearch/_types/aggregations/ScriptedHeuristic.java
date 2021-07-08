@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -101,14 +101,14 @@ public final class ScriptedHeuristic implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ScriptedHeuristic
+	 * Json deserializer for ScriptedHeuristic
 	 */
-	public static final JsonpValueParser<ScriptedHeuristic> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ScriptedHeuristic::setupScriptedHeuristicParser);
+	public static final JsonpDeserializer<ScriptedHeuristic> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ScriptedHeuristic::setupScriptedHeuristicDeserializer);
 
-	protected static void setupScriptedHeuristicParser(DelegatingJsonpValueParser<ScriptedHeuristic.Builder> op) {
+	protected static void setupScriptedHeuristicDeserializer(DelegatingDeserializer<ScriptedHeuristic.Builder> op) {
 
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}
 

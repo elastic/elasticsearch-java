@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.get_data_stream;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,16 +101,16 @@ public final class IndicesGetDataStreamItemTimestampField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndicesGetDataStreamItemTimestampField
+	 * Json deserializer for IndicesGetDataStreamItemTimestampField
 	 */
-	public static final JsonpValueParser<IndicesGetDataStreamItemTimestampField> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<IndicesGetDataStreamItemTimestampField> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					IndicesGetDataStreamItemTimestampField::setupIndicesGetDataStreamItemTimestampFieldParser);
+					IndicesGetDataStreamItemTimestampField::setupIndicesGetDataStreamItemTimestampFieldDeserializer);
 
-	protected static void setupIndicesGetDataStreamItemTimestampFieldParser(
-			DelegatingJsonpValueParser<IndicesGetDataStreamItemTimestampField.Builder> op) {
+	protected static void setupIndicesGetDataStreamItemTimestampFieldDeserializer(
+			DelegatingDeserializer<IndicesGetDataStreamItemTimestampField.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

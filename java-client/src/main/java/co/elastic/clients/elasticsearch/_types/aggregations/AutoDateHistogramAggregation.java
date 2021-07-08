@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -357,23 +357,24 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AutoDateHistogramAggregation
+	 * Json deserializer for AutoDateHistogramAggregation
 	 */
-	public static final JsonpValueParser<AutoDateHistogramAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationParser);
+	public static final JsonpDeserializer<AutoDateHistogramAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationDeserializer);
 
-	protected static void setupAutoDateHistogramAggregationParser(
-			DelegatingJsonpValueParser<AutoDateHistogramAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::buckets, JsonpValueParser.numberParser(), "buckets");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
-		op.add(Builder::minimumInterval, JsonpValueParser.jsonValueParser(), "minimum_interval");
-		op.add(Builder::missing, JsonpValueParser.stringParser(), "missing");
-		op.add(Builder::offset, JsonpValueParser.stringParser(), "offset");
-		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::timeZone, JsonpValueParser.stringParser(), "time_zone");
+	protected static void setupAutoDateHistogramAggregationDeserializer(
+			DelegatingDeserializer<AutoDateHistogramAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::buckets, JsonpDeserializer.numberDeserializer(), "buckets");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::minimumInterval, JsonpDeserializer.jsonValueDeserializer(), "minimum_interval");
+		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::offset, JsonpDeserializer.stringDeserializer(), "offset");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"params");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
 	}
 

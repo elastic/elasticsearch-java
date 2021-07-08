@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class Http implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Http
+	 * Json deserializer for Http
 	 */
-	public static final JsonpValueParser<Http> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Http::setupHttpParser);
+	public static final JsonpDeserializer<Http> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Http::setupHttpDeserializer);
 
-	protected static void setupHttpParser(DelegatingJsonpValueParser<Http.Builder> op) {
+	protected static void setupHttpDeserializer(DelegatingDeserializer<Http.Builder> op) {
 
-		op.add(Builder::currentOpen, JsonpValueParser.numberParser(), "current_open");
-		op.add(Builder::totalOpened, JsonpValueParser.numberParser(), "total_opened");
+		op.add(Builder::currentOpen, JsonpDeserializer.numberDeserializer(), "current_open");
+		op.add(Builder::totalOpened, JsonpDeserializer.numberDeserializer(), "total_opened");
 
 	}
 

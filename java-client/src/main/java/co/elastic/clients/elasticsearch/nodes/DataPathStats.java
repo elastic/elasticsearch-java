@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -447,29 +447,29 @@ public final class DataPathStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataPathStats
+	 * Json deserializer for DataPathStats
 	 */
-	public static final JsonpValueParser<DataPathStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataPathStats::setupDataPathStatsParser);
+	public static final JsonpDeserializer<DataPathStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataPathStats::setupDataPathStatsDeserializer);
 
-	protected static void setupDataPathStatsParser(DelegatingJsonpValueParser<DataPathStats.Builder> op) {
+	protected static void setupDataPathStatsDeserializer(DelegatingDeserializer<DataPathStats.Builder> op) {
 
-		op.add(Builder::available, JsonpValueParser.stringParser(), "available");
-		op.add(Builder::availableInBytes, JsonpValueParser.numberParser(), "available_in_bytes");
-		op.add(Builder::diskQueue, JsonpValueParser.stringParser(), "disk_queue");
-		op.add(Builder::diskReads, JsonpValueParser.numberParser(), "disk_reads");
-		op.add(Builder::diskReadSize, JsonpValueParser.stringParser(), "disk_read_size");
-		op.add(Builder::diskReadSizeInBytes, JsonpValueParser.numberParser(), "disk_read_size_in_bytes");
-		op.add(Builder::diskWrites, JsonpValueParser.numberParser(), "disk_writes");
-		op.add(Builder::diskWriteSize, JsonpValueParser.stringParser(), "disk_write_size");
-		op.add(Builder::diskWriteSizeInBytes, JsonpValueParser.numberParser(), "disk_write_size_in_bytes");
-		op.add(Builder::free, JsonpValueParser.stringParser(), "free");
-		op.add(Builder::freeInBytes, JsonpValueParser.numberParser(), "free_in_bytes");
-		op.add(Builder::mount, JsonpValueParser.stringParser(), "mount");
-		op.add(Builder::path, JsonpValueParser.stringParser(), "path");
-		op.add(Builder::total, JsonpValueParser.stringParser(), "total");
-		op.add(Builder::totalInBytes, JsonpValueParser.numberParser(), "total_in_bytes");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::available, JsonpDeserializer.stringDeserializer(), "available");
+		op.add(Builder::availableInBytes, JsonpDeserializer.numberDeserializer(), "available_in_bytes");
+		op.add(Builder::diskQueue, JsonpDeserializer.stringDeserializer(), "disk_queue");
+		op.add(Builder::diskReads, JsonpDeserializer.numberDeserializer(), "disk_reads");
+		op.add(Builder::diskReadSize, JsonpDeserializer.stringDeserializer(), "disk_read_size");
+		op.add(Builder::diskReadSizeInBytes, JsonpDeserializer.numberDeserializer(), "disk_read_size_in_bytes");
+		op.add(Builder::diskWrites, JsonpDeserializer.numberDeserializer(), "disk_writes");
+		op.add(Builder::diskWriteSize, JsonpDeserializer.stringDeserializer(), "disk_write_size");
+		op.add(Builder::diskWriteSizeInBytes, JsonpDeserializer.numberDeserializer(), "disk_write_size_in_bytes");
+		op.add(Builder::free, JsonpDeserializer.stringDeserializer(), "free");
+		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
+		op.add(Builder::mount, JsonpDeserializer.stringDeserializer(), "mount");
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
+		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

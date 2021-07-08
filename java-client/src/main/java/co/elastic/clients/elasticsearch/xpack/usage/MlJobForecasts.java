@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class MlJobForecasts implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MlJobForecasts
+	 * Json deserializer for MlJobForecasts
 	 */
-	public static final JsonpValueParser<MlJobForecasts> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MlJobForecasts::setupMlJobForecastsParser);
+	public static final JsonpDeserializer<MlJobForecasts> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MlJobForecasts::setupMlJobForecastsDeserializer);
 
-	protected static void setupMlJobForecastsParser(DelegatingJsonpValueParser<MlJobForecasts.Builder> op) {
+	protected static void setupMlJobForecastsDeserializer(DelegatingDeserializer<MlJobForecasts.Builder> op) {
 
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::forecastedJobs, JsonpValueParser.numberParser(), "forecasted_jobs");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::forecastedJobs, JsonpDeserializer.numberDeserializer(), "forecasted_jobs");
 
 	}
 

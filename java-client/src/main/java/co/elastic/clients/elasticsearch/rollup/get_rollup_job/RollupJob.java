@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_job;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -168,16 +168,16 @@ public final class RollupJob implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RollupJob
+	 * Json deserializer for RollupJob
 	 */
-	public static final JsonpValueParser<RollupJob> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RollupJob::setupRollupJobParser);
+	public static final JsonpDeserializer<RollupJob> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RollupJob::setupRollupJobDeserializer);
 
-	protected static void setupRollupJobParser(DelegatingJsonpValueParser<RollupJob.Builder> op) {
+	protected static void setupRollupJobDeserializer(DelegatingDeserializer<RollupJob.Builder> op) {
 
-		op.add(Builder::config, RollupJobConfiguration.JSONP_PARSER, "config");
-		op.add(Builder::stats, RollupJobStats.JSONP_PARSER, "stats");
-		op.add(Builder::status, RollupJobStatus.JSONP_PARSER, "status");
+		op.add(Builder::config, RollupJobConfiguration.DESERIALIZER, "config");
+		op.add(Builder::stats, RollupJobStats.DESERIALIZER, "stats");
+		op.add(Builder::status, RollupJobStatus.DESERIALIZER, "status");
 
 	}
 

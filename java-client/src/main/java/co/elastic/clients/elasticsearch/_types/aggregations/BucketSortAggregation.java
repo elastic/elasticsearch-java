@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -219,18 +219,18 @@ public final class BucketSortAggregation extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BucketSortAggregation
+	 * Json deserializer for BucketSortAggregation
 	 */
-	public static final JsonpValueParser<BucketSortAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BucketSortAggregation::setupBucketSortAggregationParser);
+	public static final JsonpDeserializer<BucketSortAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BucketSortAggregation::setupBucketSortAggregationDeserializer);
 
-	protected static void setupBucketSortAggregationParser(
-			DelegatingJsonpValueParser<BucketSortAggregation.Builder> op) {
-		Aggregation.setupAggregationParser(op);
-		op.add(Builder::from, JsonpValueParser.numberParser(), "from");
-		op.add(Builder::gapPolicy, JsonpValueParser.jsonValueParser(), "gap_policy");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::sort, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "sort");
+	protected static void setupBucketSortAggregationDeserializer(
+			DelegatingDeserializer<BucketSortAggregation.Builder> op) {
+		Aggregation.setupAggregationDeserializer(op);
+		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
+		op.add(Builder::gapPolicy, JsonpDeserializer.jsonValueDeserializer(), "gap_policy");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 
 	}
 

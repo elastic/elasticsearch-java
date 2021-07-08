@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -715,30 +715,33 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateJobRequest
+	 * Json deserializer for UpdateJobRequest
 	 */
-	public static final JsonpValueParser<UpdateJobRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateJobRequest::setupUpdateJobRequestParser);
+	public static final JsonpDeserializer<UpdateJobRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpdateJobRequest::setupUpdateJobRequestDeserializer);
 
-	protected static void setupUpdateJobRequestParser(DelegatingJsonpValueParser<UpdateJobRequest.Builder> op) {
+	protected static void setupUpdateJobRequestDeserializer(DelegatingDeserializer<UpdateJobRequest.Builder> op) {
 
-		op.add(Builder::allowLazyOpen, JsonpValueParser.booleanParser(), "allow_lazy_open");
-		op.add(Builder::analysisLimits, AnalysisMemoryLimit.JSONP_PARSER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpValueParser.jsonValueParser(), "background_persist_interval");
-		op.add(Builder::customSettings, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"custom_settings");
-		op.add(Builder::categorizationFilters, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"categorization_filters");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::modelPlotConfig, ModelPlotConfigEnabled.JSONP_PARSER, "model_plot_config");
-		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpValueParser.numberParser(),
+		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
+		op.add(Builder::analysisLimits, AnalysisMemoryLimit.DESERIALIZER, "analysis_limits");
+		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.jsonValueDeserializer(),
+				"background_persist_interval");
+		op.add(Builder::customSettings,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "custom_settings");
+		op.add(Builder::categorizationFilters,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::modelPlotConfig, ModelPlotConfigEnabled.DESERIALIZER, "model_plot_config");
+		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.numberDeserializer(),
 				"daily_model_snapshot_retention_after_days");
-		op.add(Builder::modelSnapshotRetentionDays, JsonpValueParser.numberParser(), "model_snapshot_retention_days");
-		op.add(Builder::renormalizationWindowDays, JsonpValueParser.numberParser(), "renormalization_window_days");
-		op.add(Builder::resultsRetentionDays, JsonpValueParser.numberParser(), "results_retention_days");
-		op.add(Builder::groups, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "groups");
-		op.add(Builder::detectors, JsonpValueParser.arrayParser(Detector.JSONP_PARSER), "detectors");
-		op.add(Builder::perPartitionCategorization, PerPartitionCategorization.JSONP_PARSER,
+		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
+				"model_snapshot_retention_days");
+		op.add(Builder::renormalizationWindowDays, JsonpDeserializer.numberDeserializer(),
+				"renormalization_window_days");
+		op.add(Builder::resultsRetentionDays, JsonpDeserializer.numberDeserializer(), "results_retention_days");
+		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
+		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector.DESERIALIZER), "detectors");
+		op.add(Builder::perPartitionCategorization, PerPartitionCategorization.DESERIALIZER,
 				"per_partition_categorization");
 
 	}
@@ -781,5 +784,5 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateJobResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, UpdateJobResponse.DESERIALIZER);
 }

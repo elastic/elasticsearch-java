@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.jobs;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -2059,118 +2059,121 @@ public final class JobsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for JobsRecord
+	 * Json deserializer for JobsRecord
 	 */
-	public static final JsonpValueParser<JobsRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, JobsRecord::setupJobsRecordParser);
+	public static final JsonpDeserializer<JobsRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, JobsRecord::setupJobsRecordDeserializer);
 
-	protected static void setupJobsRecordParser(DelegatingJsonpValueParser<JobsRecord.Builder> op) {
+	protected static void setupJobsRecordDeserializer(DelegatingDeserializer<JobsRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::state, JsonpValueParser.jsonValueParser(), "state", "s");
-		op.add(Builder::openedTime, JsonpValueParser.stringParser(), "opened_time", "ot");
-		op.add(Builder::assignmentExplanation, JsonpValueParser.stringParser(), "assignment_explanation", "ae");
-		op.add(Builder::data_processedRecords, JsonpValueParser.stringParser(), "data.processed_records", "dpr",
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state", "s");
+		op.add(Builder::openedTime, JsonpDeserializer.stringDeserializer(), "opened_time", "ot");
+		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation", "ae");
+		op.add(Builder::data_processedRecords, JsonpDeserializer.stringDeserializer(), "data.processed_records", "dpr",
 				"dataProcessedRecords");
-		op.add(Builder::data_processedFields, JsonpValueParser.stringParser(), "data.processed_fields", "dpf",
+		op.add(Builder::data_processedFields, JsonpDeserializer.stringDeserializer(), "data.processed_fields", "dpf",
 				"dataProcessedFields");
-		op.add(Builder::data_inputBytes, JsonpValueParser.jsonValueParser(), "data.input_bytes", "dib",
+		op.add(Builder::data_inputBytes, JsonpDeserializer.jsonValueDeserializer(), "data.input_bytes", "dib",
 				"dataInputBytes");
-		op.add(Builder::data_inputRecords, JsonpValueParser.stringParser(), "data.input_records", "dir",
+		op.add(Builder::data_inputRecords, JsonpDeserializer.stringDeserializer(), "data.input_records", "dir",
 				"dataInputRecords");
-		op.add(Builder::data_inputFields, JsonpValueParser.stringParser(), "data.input_fields", "dif",
+		op.add(Builder::data_inputFields, JsonpDeserializer.stringDeserializer(), "data.input_fields", "dif",
 				"dataInputFields");
-		op.add(Builder::data_invalidDates, JsonpValueParser.stringParser(), "data.invalid_dates", "did",
+		op.add(Builder::data_invalidDates, JsonpDeserializer.stringDeserializer(), "data.invalid_dates", "did",
 				"dataInvalidDates");
-		op.add(Builder::data_missingFields, JsonpValueParser.stringParser(), "data.missing_fields", "dmf",
+		op.add(Builder::data_missingFields, JsonpDeserializer.stringDeserializer(), "data.missing_fields", "dmf",
 				"dataMissingFields");
-		op.add(Builder::data_outOfOrderTimestamps, JsonpValueParser.stringParser(), "data.out_of_order_timestamps",
-				"doot", "dataOutOfOrderTimestamps");
-		op.add(Builder::data_emptyBuckets, JsonpValueParser.stringParser(), "data.empty_buckets", "deb",
+		op.add(Builder::data_outOfOrderTimestamps, JsonpDeserializer.stringDeserializer(),
+				"data.out_of_order_timestamps", "doot", "dataOutOfOrderTimestamps");
+		op.add(Builder::data_emptyBuckets, JsonpDeserializer.stringDeserializer(), "data.empty_buckets", "deb",
 				"dataEmptyBuckets");
-		op.add(Builder::data_sparseBuckets, JsonpValueParser.stringParser(), "data.sparse_buckets", "dsb",
+		op.add(Builder::data_sparseBuckets, JsonpDeserializer.stringDeserializer(), "data.sparse_buckets", "dsb",
 				"dataSparseBuckets");
-		op.add(Builder::data_buckets, JsonpValueParser.stringParser(), "data.buckets", "db", "dataBuckets");
-		op.add(Builder::data_earliestRecord, JsonpValueParser.stringParser(), "data.earliest_record", "der",
+		op.add(Builder::data_buckets, JsonpDeserializer.stringDeserializer(), "data.buckets", "db", "dataBuckets");
+		op.add(Builder::data_earliestRecord, JsonpDeserializer.stringDeserializer(), "data.earliest_record", "der",
 				"dataEarliestRecord");
-		op.add(Builder::data_latestRecord, JsonpValueParser.stringParser(), "data.latest_record", "dlr",
+		op.add(Builder::data_latestRecord, JsonpDeserializer.stringDeserializer(), "data.latest_record", "dlr",
 				"dataLatestRecord");
-		op.add(Builder::data_last, JsonpValueParser.stringParser(), "data.last", "dl", "dataLast");
-		op.add(Builder::data_lastEmptyBucket, JsonpValueParser.stringParser(), "data.last_empty_bucket", "dleb",
+		op.add(Builder::data_last, JsonpDeserializer.stringDeserializer(), "data.last", "dl", "dataLast");
+		op.add(Builder::data_lastEmptyBucket, JsonpDeserializer.stringDeserializer(), "data.last_empty_bucket", "dleb",
 				"dataLastEmptyBucket");
-		op.add(Builder::data_lastSparseBucket, JsonpValueParser.stringParser(), "data.last_sparse_bucket", "dlsb",
-				"dataLastSparseBucket");
-		op.add(Builder::model_bytes, JsonpValueParser.jsonValueParser(), "model.bytes", "mb", "modelBytes");
-		op.add(Builder::model_memoryStatus, JsonpValueParser.jsonValueParser(), "model.memory_status", "mms",
+		op.add(Builder::data_lastSparseBucket, JsonpDeserializer.stringDeserializer(), "data.last_sparse_bucket",
+				"dlsb", "dataLastSparseBucket");
+		op.add(Builder::model_bytes, JsonpDeserializer.jsonValueDeserializer(), "model.bytes", "mb", "modelBytes");
+		op.add(Builder::model_memoryStatus, JsonpDeserializer.jsonValueDeserializer(), "model.memory_status", "mms",
 				"modelMemoryStatus");
-		op.add(Builder::model_bytesExceeded, JsonpValueParser.jsonValueParser(), "model.bytes_exceeded", "mbe",
+		op.add(Builder::model_bytesExceeded, JsonpDeserializer.jsonValueDeserializer(), "model.bytes_exceeded", "mbe",
 				"modelBytesExceeded");
-		op.add(Builder::model_memoryLimit, JsonpValueParser.stringParser(), "model.memory_limit", "mml",
+		op.add(Builder::model_memoryLimit, JsonpDeserializer.stringDeserializer(), "model.memory_limit", "mml",
 				"modelMemoryLimit");
-		op.add(Builder::model_byFields, JsonpValueParser.stringParser(), "model.by_fields", "mbf", "modelByFields");
-		op.add(Builder::model_overFields, JsonpValueParser.stringParser(), "model.over_fields", "mof",
+		op.add(Builder::model_byFields, JsonpDeserializer.stringDeserializer(), "model.by_fields", "mbf",
+				"modelByFields");
+		op.add(Builder::model_overFields, JsonpDeserializer.stringDeserializer(), "model.over_fields", "mof",
 				"modelOverFields");
-		op.add(Builder::model_partitionFields, JsonpValueParser.stringParser(), "model.partition_fields", "mpf",
+		op.add(Builder::model_partitionFields, JsonpDeserializer.stringDeserializer(), "model.partition_fields", "mpf",
 				"modelPartitionFields");
-		op.add(Builder::model_bucketAllocationFailures, JsonpValueParser.stringParser(),
+		op.add(Builder::model_bucketAllocationFailures, JsonpDeserializer.stringDeserializer(),
 				"model.bucket_allocation_failures", "mbaf", "modelBucketAllocationFailures");
-		op.add(Builder::model_categorizationStatus, JsonpValueParser.jsonValueParser(), "model.categorization_status",
-				"mcs", "modelCategorizationStatus");
-		op.add(Builder::model_categorizedDocCount, JsonpValueParser.stringParser(), "model.categorized_doc_count",
-				"mcdc", "modelCategorizedDocCount");
-		op.add(Builder::model_totalCategoryCount, JsonpValueParser.stringParser(), "model.total_category_count", "mtcc",
-				"modelTotalCategoryCount");
-		op.add(Builder::model_frequentCategoryCount, JsonpValueParser.stringParser(), "model.frequent_category_count",
-				"modelFrequentCategoryCount");
-		op.add(Builder::model_rareCategoryCount, JsonpValueParser.stringParser(), "model.rare_category_count", "mrcc",
-				"modelRareCategoryCount");
-		op.add(Builder::model_deadCategoryCount, JsonpValueParser.stringParser(), "model.dead_category_count", "mdcc",
-				"modelDeadCategoryCount");
-		op.add(Builder::model_failedCategoryCount, JsonpValueParser.stringParser(), "model.failed_category_count",
-				"mfcc", "modelFailedCategoryCount");
-		op.add(Builder::model_logTime, JsonpValueParser.stringParser(), "model.log_time", "mlt", "modelLogTime");
-		op.add(Builder::model_timestamp, JsonpValueParser.stringParser(), "model.timestamp", "mt", "modelTimestamp");
-		op.add(Builder::forecasts_total, JsonpValueParser.stringParser(), "forecasts.total", "ft", "forecastsTotal");
-		op.add(Builder::forecasts_memory_min, JsonpValueParser.stringParser(), "forecasts.memory.min", "fmmin",
+		op.add(Builder::model_categorizationStatus, JsonpDeserializer.jsonValueDeserializer(),
+				"model.categorization_status", "mcs", "modelCategorizationStatus");
+		op.add(Builder::model_categorizedDocCount, JsonpDeserializer.stringDeserializer(),
+				"model.categorized_doc_count", "mcdc", "modelCategorizedDocCount");
+		op.add(Builder::model_totalCategoryCount, JsonpDeserializer.stringDeserializer(), "model.total_category_count",
+				"mtcc", "modelTotalCategoryCount");
+		op.add(Builder::model_frequentCategoryCount, JsonpDeserializer.stringDeserializer(),
+				"model.frequent_category_count", "modelFrequentCategoryCount");
+		op.add(Builder::model_rareCategoryCount, JsonpDeserializer.stringDeserializer(), "model.rare_category_count",
+				"mrcc", "modelRareCategoryCount");
+		op.add(Builder::model_deadCategoryCount, JsonpDeserializer.stringDeserializer(), "model.dead_category_count",
+				"mdcc", "modelDeadCategoryCount");
+		op.add(Builder::model_failedCategoryCount, JsonpDeserializer.stringDeserializer(),
+				"model.failed_category_count", "mfcc", "modelFailedCategoryCount");
+		op.add(Builder::model_logTime, JsonpDeserializer.stringDeserializer(), "model.log_time", "mlt", "modelLogTime");
+		op.add(Builder::model_timestamp, JsonpDeserializer.stringDeserializer(), "model.timestamp", "mt",
+				"modelTimestamp");
+		op.add(Builder::forecasts_total, JsonpDeserializer.stringDeserializer(), "forecasts.total", "ft",
+				"forecastsTotal");
+		op.add(Builder::forecasts_memory_min, JsonpDeserializer.stringDeserializer(), "forecasts.memory.min", "fmmin",
 				"forecastsMemoryMin");
-		op.add(Builder::forecasts_memory_max, JsonpValueParser.stringParser(), "forecasts.memory.max", "fmmax",
+		op.add(Builder::forecasts_memory_max, JsonpDeserializer.stringDeserializer(), "forecasts.memory.max", "fmmax",
 				"forecastsMemoryMax");
-		op.add(Builder::forecasts_memory_avg, JsonpValueParser.stringParser(), "forecasts.memory.avg", "fmavg",
+		op.add(Builder::forecasts_memory_avg, JsonpDeserializer.stringDeserializer(), "forecasts.memory.avg", "fmavg",
 				"forecastsMemoryAvg");
-		op.add(Builder::forecasts_memory_total, JsonpValueParser.stringParser(), "forecasts.memory.total", "fmt",
+		op.add(Builder::forecasts_memory_total, JsonpDeserializer.stringDeserializer(), "forecasts.memory.total", "fmt",
 				"forecastsMemoryTotal");
-		op.add(Builder::forecasts_records_min, JsonpValueParser.stringParser(), "forecasts.records.min", "frmin",
+		op.add(Builder::forecasts_records_min, JsonpDeserializer.stringDeserializer(), "forecasts.records.min", "frmin",
 				"forecastsRecordsMin");
-		op.add(Builder::forecasts_records_max, JsonpValueParser.stringParser(), "forecasts.records.max", "frmax",
+		op.add(Builder::forecasts_records_max, JsonpDeserializer.stringDeserializer(), "forecasts.records.max", "frmax",
 				"forecastsRecordsMax");
-		op.add(Builder::forecasts_records_avg, JsonpValueParser.stringParser(), "forecasts.records.avg", "fravg",
+		op.add(Builder::forecasts_records_avg, JsonpDeserializer.stringDeserializer(), "forecasts.records.avg", "fravg",
 				"forecastsRecordsAvg");
-		op.add(Builder::forecasts_records_total, JsonpValueParser.stringParser(), "forecasts.records.total", "frt",
-				"forecastsRecordsTotal");
-		op.add(Builder::forecasts_time_min, JsonpValueParser.stringParser(), "forecasts.time.min", "ftmin",
+		op.add(Builder::forecasts_records_total, JsonpDeserializer.stringDeserializer(), "forecasts.records.total",
+				"frt", "forecastsRecordsTotal");
+		op.add(Builder::forecasts_time_min, JsonpDeserializer.stringDeserializer(), "forecasts.time.min", "ftmin",
 				"forecastsTimeMin");
-		op.add(Builder::forecasts_time_max, JsonpValueParser.stringParser(), "forecasts.time.max", "ftmax",
+		op.add(Builder::forecasts_time_max, JsonpDeserializer.stringDeserializer(), "forecasts.time.max", "ftmax",
 				"forecastsTimeMax");
-		op.add(Builder::forecasts_time_avg, JsonpValueParser.stringParser(), "forecasts.time.avg", "ftavg",
+		op.add(Builder::forecasts_time_avg, JsonpDeserializer.stringDeserializer(), "forecasts.time.avg", "ftavg",
 				"forecastsTimeAvg");
-		op.add(Builder::forecasts_time_total, JsonpValueParser.stringParser(), "forecasts.time.total", "ftt",
+		op.add(Builder::forecasts_time_total, JsonpDeserializer.stringDeserializer(), "forecasts.time.total", "ftt",
 				"forecastsTimeTotal");
-		op.add(Builder::node_id, JsonpValueParser.stringParser(), "node.id", "ni", "nodeId");
-		op.add(Builder::node_name, JsonpValueParser.stringParser(), "node.name", "nn", "nodeName");
-		op.add(Builder::node_ephemeralId, JsonpValueParser.stringParser(), "node.ephemeral_id", "ne",
+		op.add(Builder::node_id, JsonpDeserializer.stringDeserializer(), "node.id", "ni", "nodeId");
+		op.add(Builder::node_name, JsonpDeserializer.stringDeserializer(), "node.name", "nn", "nodeName");
+		op.add(Builder::node_ephemeralId, JsonpDeserializer.stringDeserializer(), "node.ephemeral_id", "ne",
 				"nodeEphemeralId");
-		op.add(Builder::node_address, JsonpValueParser.stringParser(), "node.address", "na", "nodeAddress");
-		op.add(Builder::buckets_count, JsonpValueParser.stringParser(), "buckets.count", "bc", "bucketsCount");
-		op.add(Builder::buckets_time_total, JsonpValueParser.stringParser(), "buckets.time.total", "btt",
+		op.add(Builder::node_address, JsonpDeserializer.stringDeserializer(), "node.address", "na", "nodeAddress");
+		op.add(Builder::buckets_count, JsonpDeserializer.stringDeserializer(), "buckets.count", "bc", "bucketsCount");
+		op.add(Builder::buckets_time_total, JsonpDeserializer.stringDeserializer(), "buckets.time.total", "btt",
 				"bucketsTimeTotal");
-		op.add(Builder::buckets_time_min, JsonpValueParser.stringParser(), "buckets.time.min", "btmin",
+		op.add(Builder::buckets_time_min, JsonpDeserializer.stringDeserializer(), "buckets.time.min", "btmin",
 				"bucketsTimeMin");
-		op.add(Builder::buckets_time_max, JsonpValueParser.stringParser(), "buckets.time.max", "btmax",
+		op.add(Builder::buckets_time_max, JsonpDeserializer.stringDeserializer(), "buckets.time.max", "btmax",
 				"bucketsTimeMax");
-		op.add(Builder::buckets_time_expAvg, JsonpValueParser.stringParser(), "buckets.time.exp_avg", "btea",
+		op.add(Builder::buckets_time_expAvg, JsonpDeserializer.stringDeserializer(), "buckets.time.exp_avg", "btea",
 				"bucketsTimeExpAvg");
-		op.add(Builder::buckets_time_expAvgHour, JsonpValueParser.stringParser(), "buckets.time.exp_avg_hour", "bteah",
-				"bucketsTimeExpAvgHour");
+		op.add(Builder::buckets_time_expAvgHour, JsonpDeserializer.stringDeserializer(), "buckets.time.exp_avg_hour",
+				"bteah", "bucketsTimeExpAvgHour");
 
 	}
 

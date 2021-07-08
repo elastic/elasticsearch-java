@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -331,19 +331,19 @@ public abstract class WriteResponseBase implements ToJsonp {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteResponseBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteResponseBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(AbstractBuilder::_index, JsonpValueParser.stringParser(), "_index");
-		op.add(AbstractBuilder::_primaryTerm, JsonpValueParser.numberParser(), "_primary_term");
-		op.add(AbstractBuilder::result, JsonpValueParser.jsonValueParser(), "result");
-		op.add(AbstractBuilder::_seqNo, JsonpValueParser.numberParser(), "_seq_no");
-		op.add(AbstractBuilder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
-		op.add(AbstractBuilder::_type, JsonpValueParser.stringParser(), "_type");
-		op.add(AbstractBuilder::_version, JsonpValueParser.numberParser(), "_version");
-		op.add(AbstractBuilder::forcedRefresh, JsonpValueParser.booleanParser(), "forced_refresh");
-		op.add(AbstractBuilder::error, ErrorCause.JSONP_PARSER, "error");
+		op.add(AbstractBuilder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(AbstractBuilder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(AbstractBuilder::_primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(AbstractBuilder::result, JsonpDeserializer.jsonValueDeserializer(), "result");
+		op.add(AbstractBuilder::_seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
+		op.add(AbstractBuilder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(AbstractBuilder::_type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(AbstractBuilder::_version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(AbstractBuilder::forcedRefresh, JsonpDeserializer.booleanDeserializer(), "forced_refresh");
+		op.add(AbstractBuilder::error, ErrorCause.DESERIALIZER, "error");
 
 	}
 

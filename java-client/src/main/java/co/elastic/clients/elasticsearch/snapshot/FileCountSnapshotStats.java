@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,16 +124,16 @@ public final class FileCountSnapshotStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FileCountSnapshotStats
+	 * Json deserializer for FileCountSnapshotStats
 	 */
-	public static final JsonpValueParser<FileCountSnapshotStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FileCountSnapshotStats::setupFileCountSnapshotStatsParser);
+	public static final JsonpDeserializer<FileCountSnapshotStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FileCountSnapshotStats::setupFileCountSnapshotStatsDeserializer);
 
-	protected static void setupFileCountSnapshotStatsParser(
-			DelegatingJsonpValueParser<FileCountSnapshotStats.Builder> op) {
+	protected static void setupFileCountSnapshotStatsDeserializer(
+			DelegatingDeserializer<FileCountSnapshotStats.Builder> op) {
 
-		op.add(Builder::fileCount, JsonpValueParser.numberParser(), "file_count");
-		op.add(Builder::sizeInBytes, JsonpValueParser.numberParser(), "size_in_bytes");
+		op.add(Builder::fileCount, JsonpDeserializer.numberDeserializer(), "file_count");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
 
 	}
 

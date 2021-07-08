@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.validate_query;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -184,18 +184,18 @@ public final class IndicesValidationExplanation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndicesValidationExplanation
+	 * Json deserializer for IndicesValidationExplanation
 	 */
-	public static final JsonpValueParser<IndicesValidationExplanation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndicesValidationExplanation::setupIndicesValidationExplanationParser);
+	public static final JsonpDeserializer<IndicesValidationExplanation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndicesValidationExplanation::setupIndicesValidationExplanationDeserializer);
 
-	protected static void setupIndicesValidationExplanationParser(
-			DelegatingJsonpValueParser<IndicesValidationExplanation.Builder> op) {
+	protected static void setupIndicesValidationExplanationDeserializer(
+			DelegatingDeserializer<IndicesValidationExplanation.Builder> op) {
 
-		op.add(Builder::error, JsonpValueParser.stringParser(), "error");
-		op.add(Builder::explanation, JsonpValueParser.stringParser(), "explanation");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::valid, JsonpValueParser.booleanParser(), "valid");
+		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
+		op.add(Builder::explanation, JsonpDeserializer.stringDeserializer(), "explanation");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::valid, JsonpDeserializer.booleanDeserializer(), "valid");
 
 	}
 

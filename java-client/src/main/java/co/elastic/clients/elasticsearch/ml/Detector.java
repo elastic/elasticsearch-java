@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -442,24 +442,24 @@ public final class Detector implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Detector
+	 * Json deserializer for Detector
 	 */
-	public static final JsonpValueParser<Detector> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Detector::setupDetectorParser);
+	public static final JsonpDeserializer<Detector> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Detector::setupDetectorDeserializer);
 
-	protected static void setupDetectorParser(DelegatingJsonpValueParser<Detector.Builder> op) {
+	protected static void setupDetectorDeserializer(DelegatingDeserializer<Detector.Builder> op) {
 
-		op.add(Builder::byFieldName, JsonpValueParser.stringParser(), "by_field_name");
-		op.add(Builder::customRules, JsonpValueParser.arrayParser(DetectionRule.JSONP_PARSER), "custom_rules");
-		op.add(Builder::detectorDescription, JsonpValueParser.stringParser(), "detector_description");
-		op.add(Builder::detectorIndex, JsonpValueParser.numberParser(), "detector_index");
-		op.add(Builder::excludeFrequent, JsonpValueParser.jsonValueParser(), "exclude_frequent");
-		op.add(Builder::fieldName, JsonpValueParser.stringParser(), "field_name");
-		op.add(Builder::function, JsonpValueParser.stringParser(), "function");
-		op.add(Builder::useNull, JsonpValueParser.booleanParser(), "use_null");
-		op.add(Builder::overFieldName, JsonpValueParser.stringParser(), "over_field_name");
-		op.add(Builder::partitionFieldName, JsonpValueParser.stringParser(), "partition_field_name");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
+		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
+		op.add(Builder::customRules, JsonpDeserializer.arrayDeserializer(DetectionRule.DESERIALIZER), "custom_rules");
+		op.add(Builder::detectorDescription, JsonpDeserializer.stringDeserializer(), "detector_description");
+		op.add(Builder::detectorIndex, JsonpDeserializer.numberDeserializer(), "detector_index");
+		op.add(Builder::excludeFrequent, JsonpDeserializer.jsonValueDeserializer(), "exclude_frequent");
+		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
+		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
+		op.add(Builder::useNull, JsonpDeserializer.booleanDeserializer(), "use_null");
+		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
+		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 
 	}
 

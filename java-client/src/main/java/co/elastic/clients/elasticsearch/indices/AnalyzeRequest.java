@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -467,22 +467,25 @@ public final class AnalyzeRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AnalyzeRequest
+	 * Json deserializer for AnalyzeRequest
 	 */
-	public static final JsonpValueParser<AnalyzeRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AnalyzeRequest::setupAnalyzeRequestParser);
+	public static final JsonpDeserializer<AnalyzeRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AnalyzeRequest::setupAnalyzeRequestDeserializer);
 
-	protected static void setupAnalyzeRequestParser(DelegatingJsonpValueParser<AnalyzeRequest.Builder> op) {
+	protected static void setupAnalyzeRequestDeserializer(DelegatingDeserializer<AnalyzeRequest.Builder> op) {
 
-		op.add(Builder::analyzer, JsonpValueParser.stringParser(), "analyzer");
-		op.add(Builder::attributes, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "attributes");
-		op.add(Builder::charFilter, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "char_filter");
-		op.add(Builder::explain, JsonpValueParser.booleanParser(), "explain");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::filter, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "filter");
-		op.add(Builder::normalizer, JsonpValueParser.stringParser(), "normalizer");
-		op.add(Builder::text, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "text");
-		op.add(Builder::tokenizer, JsonpValueParser.jsonValueParser(), "tokenizer");
+		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
+		op.add(Builder::attributes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"attributes");
+		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"char_filter");
+		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"filter");
+		op.add(Builder::normalizer, JsonpDeserializer.stringDeserializer(), "normalizer");
+		op.add(Builder::text, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "text");
+		op.add(Builder::tokenizer, JsonpDeserializer.jsonValueDeserializer(), "tokenizer");
 
 	}
 
@@ -527,5 +530,5 @@ public final class AnalyzeRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, AnalyzeResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, AnalyzeResponse.DESERIALIZER);
 }

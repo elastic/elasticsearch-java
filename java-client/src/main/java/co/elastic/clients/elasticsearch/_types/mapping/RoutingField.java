@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class RoutingField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RoutingField
+	 * Json deserializer for RoutingField
 	 */
-	public static final JsonpValueParser<RoutingField> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RoutingField::setupRoutingFieldParser);
+	public static final JsonpDeserializer<RoutingField> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RoutingField::setupRoutingFieldDeserializer);
 
-	protected static void setupRoutingFieldParser(DelegatingJsonpValueParser<RoutingField.Builder> op) {
+	protected static void setupRoutingFieldDeserializer(DelegatingDeserializer<RoutingField.Builder> op) {
 
-		op.add(Builder::required, JsonpValueParser.booleanParser(), "required");
+		op.add(Builder::required, JsonpDeserializer.booleanDeserializer(), "required");
 
 	}
 

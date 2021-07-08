@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -139,15 +139,15 @@ public final class ScriptScoreQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ScriptScoreQuery
+	 * Json deserializer for ScriptScoreQuery
 	 */
-	public static final JsonpValueParser<ScriptScoreQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ScriptScoreQuery::setupScriptScoreQueryParser);
+	public static final JsonpDeserializer<ScriptScoreQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ScriptScoreQuery::setupScriptScoreQueryDeserializer);
 
-	protected static void setupScriptScoreQueryParser(DelegatingJsonpValueParser<ScriptScoreQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
+	protected static void setupScriptScoreQueryDeserializer(DelegatingDeserializer<ScriptScoreQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}
 

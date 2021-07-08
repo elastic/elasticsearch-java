@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -218,19 +218,19 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MovingAverageAggregation
+	 * Json deserializer for MovingAverageAggregation
 	 */
-	public static final JsonpValueParser<MovingAverageAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MovingAverageAggregation::setupMovingAverageAggregationParser);
+	public static final JsonpDeserializer<MovingAverageAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MovingAverageAggregation::setupMovingAverageAggregationDeserializer);
 
-	protected static void setupMovingAverageAggregationParser(
-			DelegatingJsonpValueParser<MovingAverageAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseParser(op);
-		op.add(Builder::minimize, JsonpValueParser.booleanParser(), "minimize");
-		op.add(Builder::model, JsonpValueParser.jsonValueParser(), "model");
-		op.add(Builder::settings, JsonpValueParser.jsonValueParser(), "settings");
-		op.add(Builder::predict, JsonpValueParser.numberParser(), "predict");
-		op.add(Builder::window, JsonpValueParser.numberParser(), "window");
+	protected static void setupMovingAverageAggregationDeserializer(
+			DelegatingDeserializer<MovingAverageAggregation.Builder> op) {
+		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+		op.add(Builder::minimize, JsonpDeserializer.booleanDeserializer(), "minimize");
+		op.add(Builder::model, JsonpDeserializer.jsonValueDeserializer(), "model");
+		op.add(Builder::settings, JsonpDeserializer.jsonValueDeserializer(), "settings");
+		op.add(Builder::predict, JsonpDeserializer.numberDeserializer(), "predict");
+		op.add(Builder::window, JsonpDeserializer.numberDeserializer(), "window");
 
 	}
 

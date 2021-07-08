@@ -31,44 +31,44 @@ import java.util.function.BiConsumer;
 import java.util.function.ObjIntConsumer;
 import java.util.function.Supplier;
 
-public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<ObjectType> {
+public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<ObjectType> {
 
-    /** A field parser parses a value and calls the setter on the target object. */
-    public abstract static class FieldParser<ObjectType> {
+    /** A field deserializer parses a value and calls the setter on the target object. */
+    public abstract static class FieldDeserializer<ObjectType> {
         protected final String name;
         protected final String[] deprecatedNames;
 
-        public FieldParser(String name, String[] deprecatedNames) {
+        public FieldDeserializer(String name, String[] deprecatedNames) {
             this.name = name;
             this.deprecatedNames = deprecatedNames;
         }
-        public abstract void parse(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object);
+        public abstract void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object);
     }
 
-    /** Field parser for objects (and boxed primitives) */
-    public static class FieldObjectParser<ObjectType, FieldType> extends FieldParser<ObjectType> {
+    /** Field deserializer for objects (and boxed primitives) */
+    public static class FieldObjectDeserializer<ObjectType, FieldType> extends FieldDeserializer<ObjectType> {
         private final BiConsumer<ObjectType, FieldType> setter;
-        private final JsonpValueParser<FieldType> valueParser;
+        private final JsonpDeserializer<FieldType> deserializer;
 
-        public FieldObjectParser(
-            BiConsumer<ObjectType, FieldType> setter, JsonpValueParser<FieldType> valueParser,
+        public FieldObjectDeserializer(
+            BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer,
             String name, String[] deprecatedNames
         ) {
             super(name, deprecatedNames);
             this.setter = setter;
-            this.valueParser = valueParser;
+            this.deserializer = deserializer;
         }
 
         public String name() {
             return this.name;
         }
 
-        public void parse(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
+        public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
             // Note: we handle `null` as a missing value. We may want to be more strict and distinguish nullable and
             // optional values.
             JsonParser.Event event = parser.next();
             if (event != Event.VALUE_NULL) {
-                FieldType fieldValue = valueParser.parse(parser, mapper, event);
+                FieldType fieldValue = deserializer.deserialize(parser, mapper, event);
                 setter.accept(object, fieldValue);
             }
         }
@@ -77,16 +77,16 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
     //---------------------------------------------------------------------------------------------
 
     private final Supplier<ObjectType> constructor;
-    private final Map<String, FieldParser<?>> fieldParsers;
+    private final Map<String, FieldDeserializer<?>> fieldDeserializers;
     private QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler;
 
-    public JsonpObjectParser(Supplier<ObjectType> constructor) {
+    public ObjectDeserializer(Supplier<ObjectType> constructor) {
         super(EnumSet.of(Event.START_OBJECT));
         this.constructor = constructor;
-        this.fieldParsers = new HashMap<>();
+        this.fieldDeserializers = new HashMap<>();
     }
 
-    public ObjectType parse(JsonParser parser, JsonpMapper mapper, Event event) {
+    public ObjectType deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
         ensureAccepts(parser, event);
 
         ObjectType value = constructor.get();
@@ -98,11 +98,11 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
             String fieldName = parser.getString();
 
             @SuppressWarnings("unchecked")
-            FieldParser<ObjectType> fieldParser = (FieldParser<ObjectType>)fieldParsers.get(fieldName);
-            if (fieldParser == null) {
+            FieldDeserializer<ObjectType> fieldDeserializer = (FieldDeserializer<ObjectType>) fieldDeserializers.get(fieldName);
+            if (fieldDeserializer == null) {
                 parseUnknownField(parser, mapper, fieldName, value);
             } else {
-                fieldParser.parse(parser, mapper, fieldName, value);
+                fieldDeserializer.deserialize(parser, mapper, fieldName, value);
             }
         }
 
@@ -133,33 +133,33 @@ public class JsonpObjectParser<ObjectType> extends DelegatingJsonpValueParser<Ob
     @Override
     public <FieldType> void add(
         BiConsumer<ObjectType, FieldType> setter,
-        JsonpValueParser<FieldType> valueParser,
+        JsonpDeserializer<FieldType> deserializer,
         String name, String... deprecatedNames
     ) {
-        FieldObjectParser<ObjectType, FieldType> fieldParser =
-            new FieldObjectParser<>(setter, valueParser, name, deprecatedNames);
-        this.fieldParsers.put(name, fieldParser);
+        FieldObjectDeserializer<ObjectType, FieldType> fieldDeserializer =
+            new FieldObjectDeserializer<>(setter, deserializer, name, deprecatedNames);
+        this.fieldDeserializers.put(name, fieldDeserializer);
         for (String alias: deprecatedNames) {
-            this.fieldParsers.put(alias, fieldParser);
+            this.fieldDeserializers.put(alias, fieldDeserializer);
         }
     }
 
     //----- Primitive types
 
     public void add(ObjIntConsumer<ObjectType> setter, String name, String... deprecatedNames) {
-        // FIXME (perf): add specialized parser to avoid intermediate boxing
-        add(setter::accept, integerParser(), name, deprecatedNames);
+        // FIXME (perf): add specialized deserializer to avoid intermediate boxing
+        add(setter::accept, integerDeserializer(), name, deprecatedNames);
     }
 
 // Experiment: avoid boxing, allow multiple primitive parsers (e.g. int as number & string)
 //    public void add(
-//        ObjIntConsumer<Value> setter,
+//        ObjIntConsumer<ObjectType> setter,
 //        JsonpIntParser vp,
 //        String name, String... deprecatedNames
 //    ) {
-//        this.fieldParsers.put(name, new FieldParser(name, deprecatedNames) {
+//        this.fieldDeserializers.put(name, new FieldDeserializer<ObjectType>(name, deprecatedNames) {
 //            @Override
-//            public void parse(JsonParser parser, Params params, String fieldName, Value object) {
+//            public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
 //                JsonpUtils.expectNextEvent(parser, Event.VALUE_NUMBER);
 //                setter.accept(object, vp.parse(parser));
 //            }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -152,16 +152,16 @@ public final class Vector extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Vector
+	 * Json deserializer for Vector
 	 */
-	public static final JsonpValueParser<Vector> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Vector::setupVectorParser);
+	public static final JsonpDeserializer<Vector> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Vector::setupVectorDeserializer);
 
-	protected static void setupVectorParser(DelegatingJsonpValueParser<Vector.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::denseVectorDimsAvgCount, JsonpValueParser.numberParser(), "dense_vector_dims_avg_count");
-		op.add(Builder::denseVectorFieldsCount, JsonpValueParser.numberParser(), "dense_vector_fields_count");
-		op.add(Builder::sparseVectorFieldsCount, JsonpValueParser.numberParser(), "sparse_vector_fields_count");
+	protected static void setupVectorDeserializer(DelegatingDeserializer<Vector.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::denseVectorDimsAvgCount, JsonpDeserializer.numberDeserializer(), "dense_vector_dims_avg_count");
+		op.add(Builder::denseVectorFieldsCount, JsonpDeserializer.numberDeserializer(), "dense_vector_fields_count");
+		op.add(Builder::sparseVectorFieldsCount, JsonpDeserializer.numberDeserializer(), "sparse_vector_fields_count");
 
 	}
 

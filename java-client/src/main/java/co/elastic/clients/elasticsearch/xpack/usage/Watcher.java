@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -164,16 +164,16 @@ public final class Watcher extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Watcher
+	 * Json deserializer for Watcher
 	 */
-	public static final JsonpValueParser<Watcher> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Watcher::setupWatcherParser);
+	public static final JsonpDeserializer<Watcher> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Watcher::setupWatcherDeserializer);
 
-	protected static void setupWatcherParser(DelegatingJsonpValueParser<Watcher.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::execution, WatcherActions.JSONP_PARSER, "execution");
-		op.add(Builder::watch, WatcherWatch.JSONP_PARSER, "watch");
-		op.add(Builder::count, Counter.JSONP_PARSER, "count");
+	protected static void setupWatcherDeserializer(DelegatingDeserializer<Watcher.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::execution, WatcherActions.DESERIALIZER, "execution");
+		op.add(Builder::watch, WatcherWatch.DESERIALIZER, "watch");
+		op.add(Builder::count, Counter.DESERIALIZER, "count");
 
 	}
 

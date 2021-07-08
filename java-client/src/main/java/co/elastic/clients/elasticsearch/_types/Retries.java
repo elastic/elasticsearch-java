@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class Retries implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Retries
+	 * Json deserializer for Retries
 	 */
-	public static final JsonpValueParser<Retries> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Retries::setupRetriesParser);
+	public static final JsonpDeserializer<Retries> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Retries::setupRetriesDeserializer);
 
-	protected static void setupRetriesParser(DelegatingJsonpValueParser<Retries.Builder> op) {
+	protected static void setupRetriesDeserializer(DelegatingDeserializer<Retries.Builder> op) {
 
-		op.add(Builder::bulk, JsonpValueParser.numberParser(), "bulk");
-		op.add(Builder::search, JsonpValueParser.numberParser(), "search");
+		op.add(Builder::bulk, JsonpDeserializer.numberDeserializer(), "bulk");
+		op.add(Builder::search, JsonpDeserializer.numberDeserializer(), "search");
 
 	}
 

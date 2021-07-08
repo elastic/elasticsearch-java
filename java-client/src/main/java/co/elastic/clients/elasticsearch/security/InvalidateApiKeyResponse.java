@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -272,19 +272,20 @@ public final class InvalidateApiKeyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InvalidateApiKeyResponse
+	 * Json deserializer for InvalidateApiKeyResponse
 	 */
-	public static final JsonpValueParser<InvalidateApiKeyResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InvalidateApiKeyResponse::setupInvalidateApiKeyResponseParser);
+	public static final JsonpDeserializer<InvalidateApiKeyResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InvalidateApiKeyResponse::setupInvalidateApiKeyResponseDeserializer);
 
-	protected static void setupInvalidateApiKeyResponseParser(
-			DelegatingJsonpValueParser<InvalidateApiKeyResponse.Builder> op) {
+	protected static void setupInvalidateApiKeyResponseDeserializer(
+			DelegatingDeserializer<InvalidateApiKeyResponse.Builder> op) {
 
-		op.add(Builder::errorCount, JsonpValueParser.numberParser(), "error_count");
-		op.add(Builder::errorDetails, JsonpValueParser.arrayParser(ErrorCause.JSONP_PARSER), "error_details");
-		op.add(Builder::invalidatedApiKeys, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::errorCount, JsonpDeserializer.numberDeserializer(), "error_count");
+		op.add(Builder::errorDetails, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "error_details");
+		op.add(Builder::invalidatedApiKeys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"invalidated_api_keys");
-		op.add(Builder::previouslyInvalidatedApiKeys, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::previouslyInvalidatedApiKeys,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"previously_invalidated_api_keys");
 
 	}

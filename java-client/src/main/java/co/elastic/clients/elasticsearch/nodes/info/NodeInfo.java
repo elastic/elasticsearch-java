@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.elasticsearch._types.PluginStats;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -1005,38 +1005,40 @@ public final class NodeInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfo
+	 * Json deserializer for NodeInfo
 	 */
-	public static final JsonpValueParser<NodeInfo> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			NodeInfo::setupNodeInfoParser);
+	public static final JsonpDeserializer<NodeInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfo::setupNodeInfoDeserializer);
 
-	protected static void setupNodeInfoParser(DelegatingJsonpValueParser<NodeInfo.Builder> op) {
+	protected static void setupNodeInfoDeserializer(DelegatingDeserializer<NodeInfo.Builder> op) {
 
-		op.add(Builder::attributes, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "attributes");
-		op.add(Builder::buildFlavor, JsonpValueParser.stringParser(), "build_flavor");
-		op.add(Builder::buildHash, JsonpValueParser.stringParser(), "build_hash");
-		op.add(Builder::buildType, JsonpValueParser.stringParser(), "build_type");
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host");
-		op.add(Builder::http, NodeInfoHttp.JSONP_PARSER, "http");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip");
-		op.add(Builder::jvm, NodeJvmInfo.JSONP_PARSER, "jvm");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::network, NodeInfoNetwork.JSONP_PARSER, "network");
-		op.add(Builder::os, NodeOperatingSystemInfo.JSONP_PARSER, "os");
-		op.add(Builder::plugins, JsonpValueParser.arrayParser(PluginStats.JSONP_PARSER), "plugins");
-		op.add(Builder::process, NodeProcessInfo.JSONP_PARSER, "process");
-		op.add(Builder::roles, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "roles");
-		op.add(Builder::settings, NodeInfoSettings.JSONP_PARSER, "settings");
-		op.add(Builder::threadPool, JsonpValueParser.stringMapParser(NodeThreadPoolInfo.JSONP_PARSER), "thread_pool");
-		op.add(Builder::totalIndexingBuffer, JsonpValueParser.numberParser(), "total_indexing_buffer");
-		op.add(Builder::totalIndexingBufferInBytes, JsonpValueParser.jsonValueParser(),
+		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"attributes");
+		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");
+		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
+		op.add(Builder::buildType, JsonpDeserializer.stringDeserializer(), "build_type");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
+		op.add(Builder::http, NodeInfoHttp.DESERIALIZER, "http");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
+		op.add(Builder::jvm, NodeJvmInfo.DESERIALIZER, "jvm");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::network, NodeInfoNetwork.DESERIALIZER, "network");
+		op.add(Builder::os, NodeOperatingSystemInfo.DESERIALIZER, "os");
+		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "plugins");
+		op.add(Builder::process, NodeProcessInfo.DESERIALIZER, "process");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "roles");
+		op.add(Builder::settings, NodeInfoSettings.DESERIALIZER, "settings");
+		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(NodeThreadPoolInfo.DESERIALIZER),
+				"thread_pool");
+		op.add(Builder::totalIndexingBuffer, JsonpDeserializer.numberDeserializer(), "total_indexing_buffer");
+		op.add(Builder::totalIndexingBufferInBytes, JsonpDeserializer.jsonValueDeserializer(),
 				"total_indexing_buffer_in_bytes");
-		op.add(Builder::transport, NodeInfoTransport.JSONP_PARSER, "transport");
-		op.add(Builder::transportAddress, JsonpValueParser.stringParser(), "transport_address");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
-		op.add(Builder::modules, JsonpValueParser.arrayParser(PluginStats.JSONP_PARSER), "modules");
-		op.add(Builder::ingest, NodeInfoIngest.JSONP_PARSER, "ingest");
-		op.add(Builder::aggregations, JsonpValueParser.stringMapParser(NodeInfoAggregation.JSONP_PARSER),
+		op.add(Builder::transport, NodeInfoTransport.DESERIALIZER, "transport");
+		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::modules, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "modules");
+		op.add(Builder::ingest, NodeInfoIngest.DESERIALIZER, "ingest");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(NodeInfoAggregation.DESERIALIZER),
 				"aggregations");
 
 	}

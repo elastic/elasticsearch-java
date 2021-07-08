@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch.ccr.get_auto_follow_pattern.AutoFollowPattern;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,15 +143,15 @@ public final class GetAutoFollowPatternResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetAutoFollowPatternResponse
+	 * Json deserializer for GetAutoFollowPatternResponse
 	 */
-	public static final JsonpValueParser<GetAutoFollowPatternResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetAutoFollowPatternResponse::setupGetAutoFollowPatternResponseParser);
+	public static final JsonpDeserializer<GetAutoFollowPatternResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetAutoFollowPatternResponse::setupGetAutoFollowPatternResponseDeserializer);
 
-	protected static void setupGetAutoFollowPatternResponseParser(
-			DelegatingJsonpValueParser<GetAutoFollowPatternResponse.Builder> op) {
+	protected static void setupGetAutoFollowPatternResponseDeserializer(
+			DelegatingDeserializer<GetAutoFollowPatternResponse.Builder> op) {
 
-		op.add(Builder::patterns, JsonpValueParser.arrayParser(AutoFollowPattern.JSONP_PARSER), "patterns");
+		op.add(Builder::patterns, JsonpDeserializer.arrayDeserializer(AutoFollowPattern.DESERIALIZER), "patterns");
 
 	}
 

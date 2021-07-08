@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -200,19 +200,17 @@ public final class InnerHitsMetadata implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InnerHitsMetadata
+	 * Json deserializer for InnerHitsMetadata
 	 */
-	public static final JsonpValueParser<InnerHitsMetadata> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InnerHitsMetadata::setupInnerHitsMetadataParser);
+	public static final JsonpDeserializer<InnerHitsMetadata> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InnerHitsMetadata::setupInnerHitsMetadataDeserializer);
 
-	protected static void setupInnerHitsMetadataParser(DelegatingJsonpValueParser<InnerHitsMetadata.Builder> op) {
+	protected static void setupInnerHitsMetadataDeserializer(DelegatingDeserializer<InnerHitsMetadata.Builder> op) {
 
-		op.add(Builder::total, JsonpValueParser.jsonValueParser(), "total");
-		op.add(Builder::hits,
-				JsonpValueParser.arrayParser(
-						Hit.createHitParser(JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()))),
-				"hits");
-		op.add(Builder::maxScore, JsonpValueParser.numberParser(), "max_score");
+		op.add(Builder::total, JsonpDeserializer.jsonValueDeserializer(), "total");
+		op.add(Builder::hits, JsonpDeserializer.arrayDeserializer(Hit.createHitDeserializer(
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()))), "hits");
+		op.add(Builder::maxScore, JsonpDeserializer.numberDeserializer(), "max_score");
 
 	}
 

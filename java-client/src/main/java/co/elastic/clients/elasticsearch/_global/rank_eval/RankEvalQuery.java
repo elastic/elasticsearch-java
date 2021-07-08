@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -140,15 +140,15 @@ public final class RankEvalQuery implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalQuery
+	 * Json deserializer for RankEvalQuery
 	 */
-	public static final JsonpValueParser<RankEvalQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RankEvalQuery::setupRankEvalQueryParser);
+	public static final JsonpDeserializer<RankEvalQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RankEvalQuery::setupRankEvalQueryDeserializer);
 
-	protected static void setupRankEvalQueryParser(DelegatingJsonpValueParser<RankEvalQuery.Builder> op) {
+	protected static void setupRankEvalQueryDeserializer(DelegatingDeserializer<RankEvalQuery.Builder> op) {
 
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}
 

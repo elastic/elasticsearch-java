@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -366,21 +366,22 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutJobRequest
+	 * Json deserializer for PutJobRequest
 	 */
-	public static final JsonpValueParser<PutJobRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutJobRequest::setupPutJobRequestParser);
+	public static final JsonpDeserializer<PutJobRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutJobRequest::setupPutJobRequestDeserializer);
 
-	protected static void setupPutJobRequestParser(DelegatingJsonpValueParser<PutJobRequest.Builder> op) {
+	protected static void setupPutJobRequestDeserializer(DelegatingDeserializer<PutJobRequest.Builder> op) {
 
-		op.add(Builder::allowLazyOpen, JsonpValueParser.booleanParser(), "allow_lazy_open");
-		op.add(Builder::analysisConfig, AnalysisConfig.JSONP_PARSER, "analysis_config");
-		op.add(Builder::analysisLimits, AnalysisLimits.JSONP_PARSER, "analysis_limits");
-		op.add(Builder::dataDescription, DataDescription.JSONP_PARSER, "data_description");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::modelPlot, ModelPlotConfig.JSONP_PARSER, "model_plot");
-		op.add(Builder::modelSnapshotRetentionDays, JsonpValueParser.numberParser(), "model_snapshot_retention_days");
-		op.add(Builder::resultsIndexName, JsonpValueParser.stringParser(), "results_index_name");
+		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
+		op.add(Builder::analysisConfig, AnalysisConfig.DESERIALIZER, "analysis_config");
+		op.add(Builder::analysisLimits, AnalysisLimits.DESERIALIZER, "analysis_limits");
+		op.add(Builder::dataDescription, DataDescription.DESERIALIZER, "data_description");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::modelPlot, ModelPlotConfig.DESERIALIZER, "model_plot");
+		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
+				"model_snapshot_retention_days");
+		op.add(Builder::resultsIndexName, JsonpDeserializer.stringDeserializer(), "results_index_name");
 
 	}
 
@@ -421,5 +422,5 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutJobResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutJobResponse.DESERIALIZER);
 }

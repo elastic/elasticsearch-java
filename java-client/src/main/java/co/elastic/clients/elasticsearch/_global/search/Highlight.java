@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global.search;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -750,33 +750,35 @@ public final class Highlight implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Highlight
+	 * Json deserializer for Highlight
 	 */
-	public static final JsonpValueParser<Highlight> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Highlight::setupHighlightParser);
+	public static final JsonpDeserializer<Highlight> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Highlight::setupHighlightDeserializer);
 
-	protected static void setupHighlightParser(DelegatingJsonpValueParser<Highlight.Builder> op) {
+	protected static void setupHighlightDeserializer(DelegatingDeserializer<Highlight.Builder> op) {
 
-		op.add(Builder::fields, JsonpValueParser.stringMapParser(HighlightField.JSONP_PARSER), "fields");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
-		op.add(Builder::boundaryChars, JsonpValueParser.stringParser(), "boundary_chars");
-		op.add(Builder::boundaryMaxScan, JsonpValueParser.numberParser(), "boundary_max_scan");
-		op.add(Builder::boundaryScanner, JsonpValueParser.jsonValueParser(), "boundary_scanner");
-		op.add(Builder::boundaryScannerLocale, JsonpValueParser.stringParser(), "boundary_scanner_locale");
-		op.add(Builder::encoder, JsonpValueParser.jsonValueParser(), "encoder");
-		op.add(Builder::fragmenter, JsonpValueParser.jsonValueParser(), "fragmenter");
-		op.add(Builder::fragmentOffset, JsonpValueParser.numberParser(), "fragment_offset");
-		op.add(Builder::fragmentSize, JsonpValueParser.numberParser(), "fragment_size");
-		op.add(Builder::maxFragmentLength, JsonpValueParser.numberParser(), "max_fragment_length");
-		op.add(Builder::noMatchSize, JsonpValueParser.numberParser(), "no_match_size");
-		op.add(Builder::numberOfFragments, JsonpValueParser.numberParser(), "number_of_fragments");
-		op.add(Builder::order, JsonpValueParser.jsonValueParser(), "order");
-		op.add(Builder::postTags, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "post_tags");
-		op.add(Builder::preTags, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "pre_tags");
-		op.add(Builder::requireFieldMatch, JsonpValueParser.booleanParser(), "require_field_match");
-		op.add(Builder::tagsSchema, JsonpValueParser.jsonValueParser(), "tags_schema");
-		op.add(Builder::highlightQuery, QueryContainer.JSONP_PARSER, "highlight_query");
-		op.add(Builder::maxAnalyzedOffset, JsonpValueParser.jsonValueParser(), "max_analyzed_offset");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(HighlightField.DESERIALIZER), "fields");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::boundaryChars, JsonpDeserializer.stringDeserializer(), "boundary_chars");
+		op.add(Builder::boundaryMaxScan, JsonpDeserializer.numberDeserializer(), "boundary_max_scan");
+		op.add(Builder::boundaryScanner, JsonpDeserializer.jsonValueDeserializer(), "boundary_scanner");
+		op.add(Builder::boundaryScannerLocale, JsonpDeserializer.stringDeserializer(), "boundary_scanner_locale");
+		op.add(Builder::encoder, JsonpDeserializer.jsonValueDeserializer(), "encoder");
+		op.add(Builder::fragmenter, JsonpDeserializer.jsonValueDeserializer(), "fragmenter");
+		op.add(Builder::fragmentOffset, JsonpDeserializer.numberDeserializer(), "fragment_offset");
+		op.add(Builder::fragmentSize, JsonpDeserializer.numberDeserializer(), "fragment_size");
+		op.add(Builder::maxFragmentLength, JsonpDeserializer.numberDeserializer(), "max_fragment_length");
+		op.add(Builder::noMatchSize, JsonpDeserializer.numberDeserializer(), "no_match_size");
+		op.add(Builder::numberOfFragments, JsonpDeserializer.numberDeserializer(), "number_of_fragments");
+		op.add(Builder::order, JsonpDeserializer.jsonValueDeserializer(), "order");
+		op.add(Builder::postTags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"post_tags");
+		op.add(Builder::preTags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"pre_tags");
+		op.add(Builder::requireFieldMatch, JsonpDeserializer.booleanDeserializer(), "require_field_match");
+		op.add(Builder::tagsSchema, JsonpDeserializer.jsonValueDeserializer(), "tags_schema");
+		op.add(Builder::highlightQuery, QueryContainer.DESERIALIZER, "highlight_query");
+		op.add(Builder::maxAnalyzedOffset, JsonpDeserializer.jsonValueDeserializer(), "max_analyzed_offset");
 
 	}
 

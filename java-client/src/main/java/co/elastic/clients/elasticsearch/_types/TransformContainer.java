@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -58,7 +58,7 @@ public class TransformContainer extends TaggedUnion<TransformContainer.Tag, Obje
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private TransformContainer(Builder builder) {
@@ -170,21 +170,22 @@ public class TransformContainer extends TaggedUnion<TransformContainer.Tag, Obje
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<TransformContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(TransformContainer::buildJsonpParser);
+	public static final JsonpDeserializer<TransformContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(TransformContainer::buildDeserializer);
 
-	private static JsonpValueParser<TransformContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<TransformContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::chain, ChainTransform.JSONP_PARSER, "chain");
-		op.add(Builder::script, ScriptTransform.JSONP_PARSER, "script");
-		op.add(Builder::search, SearchTransform.JSONP_PARSER, "search");
+		op.add(Builder::chain, ChainTransform.DESERIALIZER, "chain");
+		op.add(Builder::script, ScriptTransform.DESERIALIZER, "script");
+		op.add(Builder::search, SearchTransform.DESERIALIZER, "search");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

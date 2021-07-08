@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -454,29 +454,28 @@ public final class SearchStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchStats
+	 * Json deserializer for SearchStats
 	 */
-	public static final JsonpValueParser<SearchStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchStats::setupSearchStatsParser);
+	public static final JsonpDeserializer<SearchStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchStats::setupSearchStatsDeserializer);
 
-	protected static void setupSearchStatsParser(DelegatingJsonpValueParser<SearchStats.Builder> op) {
+	protected static void setupSearchStatsDeserializer(DelegatingDeserializer<SearchStats.Builder> op) {
 
-		op.add(Builder::fetchCurrent, JsonpValueParser.numberParser(), "fetch_current");
-		op.add(Builder::fetchTimeInMillis, JsonpValueParser.numberParser(), "fetch_time_in_millis");
-		op.add(Builder::fetchTotal, JsonpValueParser.numberParser(), "fetch_total");
-		op.add(Builder::openContexts, JsonpValueParser.numberParser(), "open_contexts");
-		op.add(Builder::queryCurrent, JsonpValueParser.numberParser(), "query_current");
-		op.add(Builder::queryTimeInMillis, JsonpValueParser.numberParser(), "query_time_in_millis");
-		op.add(Builder::queryTotal, JsonpValueParser.numberParser(), "query_total");
-		op.add(Builder::scrollCurrent, JsonpValueParser.numberParser(), "scroll_current");
-		op.add(Builder::scrollTimeInMillis, JsonpValueParser.numberParser(), "scroll_time_in_millis");
-		op.add(Builder::scrollTotal, JsonpValueParser.numberParser(), "scroll_total");
-		op.add(Builder::suggestCurrent, JsonpValueParser.numberParser(), "suggest_current");
-		op.add(Builder::suggestTimeInMillis, JsonpValueParser.numberParser(), "suggest_time_in_millis");
-		op.add(Builder::suggestTotal, JsonpValueParser.numberParser(), "suggest_total");
-		op.add(Builder::groups,
-				JsonpValueParser.stringMapParser(co.elastic.clients.elasticsearch._types.SearchStats.JSONP_PARSER),
-				"groups");
+		op.add(Builder::fetchCurrent, JsonpDeserializer.numberDeserializer(), "fetch_current");
+		op.add(Builder::fetchTimeInMillis, JsonpDeserializer.numberDeserializer(), "fetch_time_in_millis");
+		op.add(Builder::fetchTotal, JsonpDeserializer.numberDeserializer(), "fetch_total");
+		op.add(Builder::openContexts, JsonpDeserializer.numberDeserializer(), "open_contexts");
+		op.add(Builder::queryCurrent, JsonpDeserializer.numberDeserializer(), "query_current");
+		op.add(Builder::queryTimeInMillis, JsonpDeserializer.numberDeserializer(), "query_time_in_millis");
+		op.add(Builder::queryTotal, JsonpDeserializer.numberDeserializer(), "query_total");
+		op.add(Builder::scrollCurrent, JsonpDeserializer.numberDeserializer(), "scroll_current");
+		op.add(Builder::scrollTimeInMillis, JsonpDeserializer.numberDeserializer(), "scroll_time_in_millis");
+		op.add(Builder::scrollTotal, JsonpDeserializer.numberDeserializer(), "scroll_total");
+		op.add(Builder::suggestCurrent, JsonpDeserializer.numberDeserializer(), "suggest_current");
+		op.add(Builder::suggestTimeInMillis, JsonpDeserializer.numberDeserializer(), "suggest_time_in_millis");
+		op.add(Builder::suggestTotal, JsonpDeserializer.numberDeserializer(), "suggest_total");
+		op.add(Builder::groups, JsonpDeserializer
+				.stringMapDeserializer(co.elastic.clients.elasticsearch._types.SearchStats.DESERIALIZER), "groups");
 
 	}
 

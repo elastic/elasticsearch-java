@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch.cluster.pending_tasks.PendingTask;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,14 +143,15 @@ public final class PendingTasksResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PendingTasksResponse
+	 * Json deserializer for PendingTasksResponse
 	 */
-	public static final JsonpValueParser<PendingTasksResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PendingTasksResponse::setupPendingTasksResponseParser);
+	public static final JsonpDeserializer<PendingTasksResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PendingTasksResponse::setupPendingTasksResponseDeserializer);
 
-	protected static void setupPendingTasksResponseParser(DelegatingJsonpValueParser<PendingTasksResponse.Builder> op) {
+	protected static void setupPendingTasksResponseDeserializer(
+			DelegatingDeserializer<PendingTasksResponse.Builder> op) {
 
-		op.add(Builder::tasks, JsonpValueParser.arrayParser(PendingTask.JSONP_PARSER), "tasks");
+		op.add(Builder::tasks, JsonpDeserializer.arrayDeserializer(PendingTask.DESERIALIZER), "tasks");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -138,15 +138,15 @@ public final class Defaults implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Defaults
+	 * Json deserializer for Defaults
 	 */
-	public static final JsonpValueParser<Defaults> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Defaults::setupDefaultsParser);
+	public static final JsonpDeserializer<Defaults> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Defaults::setupDefaultsDeserializer);
 
-	protected static void setupDefaultsParser(DelegatingJsonpValueParser<Defaults.Builder> op) {
+	protected static void setupDefaultsDeserializer(DelegatingDeserializer<Defaults.Builder> op) {
 
-		op.add(Builder::anomalyDetectors, AnomalyDetectors.JSONP_PARSER, "anomaly_detectors");
-		op.add(Builder::datafeeds, Datafeeds.JSONP_PARSER, "datafeeds");
+		op.add(Builder::anomalyDetectors, AnomalyDetectors.DESERIALIZER, "anomaly_detectors");
+		op.add(Builder::datafeeds, Datafeeds.DESERIALIZER, "datafeeds");
 
 	}
 

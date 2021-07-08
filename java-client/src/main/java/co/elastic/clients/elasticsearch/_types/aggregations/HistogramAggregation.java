@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -390,25 +390,27 @@ public final class HistogramAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HistogramAggregation
+	 * Json deserializer for HistogramAggregation
 	 */
-	public static final JsonpValueParser<HistogramAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HistogramAggregation::setupHistogramAggregationParser);
+	public static final JsonpDeserializer<HistogramAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HistogramAggregation::setupHistogramAggregationDeserializer);
 
-	protected static void setupHistogramAggregationParser(DelegatingJsonpValueParser<HistogramAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::extendedBounds, ExtendedBounds.createExtendedBoundsParser(JsonpValueParser.numberParser()),
+	protected static void setupHistogramAggregationDeserializer(
+			DelegatingDeserializer<HistogramAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::extendedBounds,
+				ExtendedBounds.createExtendedBoundsDeserializer(JsonpDeserializer.numberDeserializer()),
 				"extended_bounds");
-		op.add(Builder::hardBounds, ExtendedBounds.createExtendedBoundsParser(JsonpValueParser.numberParser()),
-				"hard_bounds");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::interval, JsonpValueParser.numberParser(), "interval");
-		op.add(Builder::minDocCount, JsonpValueParser.numberParser(), "min_doc_count");
-		op.add(Builder::missing, JsonpValueParser.numberParser(), "missing");
-		op.add(Builder::offset, JsonpValueParser.numberParser(), "offset");
-		op.add(Builder::order, HistogramOrder.JSONP_PARSER, "order");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
+		op.add(Builder::hardBounds,
+				ExtendedBounds.createExtendedBoundsDeserializer(JsonpDeserializer.numberDeserializer()), "hard_bounds");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::interval, JsonpDeserializer.numberDeserializer(), "interval");
+		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
+		op.add(Builder::missing, JsonpDeserializer.numberDeserializer(), "missing");
+		op.add(Builder::offset, JsonpDeserializer.numberDeserializer(), "offset");
+		op.add(Builder::order, HistogramOrder.DESERIALIZER, "order");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 
 	}
 

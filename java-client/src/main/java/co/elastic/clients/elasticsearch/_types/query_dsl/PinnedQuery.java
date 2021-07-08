@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -139,15 +139,15 @@ public final class PinnedQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PinnedQuery
+	 * Json deserializer for PinnedQuery
 	 */
-	public static final JsonpValueParser<PinnedQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PinnedQuery::setupPinnedQueryParser);
+	public static final JsonpDeserializer<PinnedQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PinnedQuery::setupPinnedQueryDeserializer);
 
-	protected static void setupPinnedQueryParser(DelegatingJsonpValueParser<PinnedQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::ids, JsonpValueParser.jsonValueParser(), "ids");
-		op.add(Builder::organic, QueryContainer.JSONP_PARSER, "organic");
+	protected static void setupPinnedQueryDeserializer(DelegatingDeserializer<PinnedQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::ids, JsonpDeserializer.jsonValueDeserializer(), "ids");
+		op.add(Builder::organic, QueryContainer.DESERIALIZER, "organic");
 
 	}
 

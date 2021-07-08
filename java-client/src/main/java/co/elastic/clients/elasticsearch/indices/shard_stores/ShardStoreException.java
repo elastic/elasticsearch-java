@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class ShardStoreException implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardStoreException
+	 * Json deserializer for ShardStoreException
 	 */
-	public static final JsonpValueParser<ShardStoreException> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardStoreException::setupShardStoreExceptionParser);
+	public static final JsonpDeserializer<ShardStoreException> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardStoreException::setupShardStoreExceptionDeserializer);
 
-	protected static void setupShardStoreExceptionParser(DelegatingJsonpValueParser<ShardStoreException.Builder> op) {
+	protected static void setupShardStoreExceptionDeserializer(DelegatingDeserializer<ShardStoreException.Builder> op) {
 
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

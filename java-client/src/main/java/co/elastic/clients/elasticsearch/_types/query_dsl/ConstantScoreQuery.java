@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
@@ -111,14 +111,14 @@ public final class ConstantScoreQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ConstantScoreQuery
+	 * Json deserializer for ConstantScoreQuery
 	 */
-	public static final JsonpValueParser<ConstantScoreQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ConstantScoreQuery::setupConstantScoreQueryParser);
+	public static final JsonpDeserializer<ConstantScoreQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ConstantScoreQuery::setupConstantScoreQueryDeserializer);
 
-	protected static void setupConstantScoreQueryParser(DelegatingJsonpValueParser<ConstantScoreQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::filter, QueryContainer.JSONP_PARSER, "filter");
+	protected static void setupConstantScoreQueryDeserializer(DelegatingDeserializer<ConstantScoreQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
 
 	}
 

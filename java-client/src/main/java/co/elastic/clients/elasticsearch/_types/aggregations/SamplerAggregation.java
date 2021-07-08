@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -104,14 +104,14 @@ public final class SamplerAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SamplerAggregation
+	 * Json deserializer for SamplerAggregation
 	 */
-	public static final JsonpValueParser<SamplerAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SamplerAggregation::setupSamplerAggregationParser);
+	public static final JsonpDeserializer<SamplerAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SamplerAggregation::setupSamplerAggregationDeserializer);
 
-	protected static void setupSamplerAggregationParser(DelegatingJsonpValueParser<SamplerAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::shardSize, JsonpValueParser.numberParser(), "shard_size");
+	protected static void setupSamplerAggregationDeserializer(DelegatingDeserializer<SamplerAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
 
 	}
 

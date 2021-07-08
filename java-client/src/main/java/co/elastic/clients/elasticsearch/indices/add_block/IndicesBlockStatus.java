@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.add_block;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,15 +125,15 @@ public final class IndicesBlockStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndicesBlockStatus
+	 * Json deserializer for IndicesBlockStatus
 	 */
-	public static final JsonpValueParser<IndicesBlockStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusParser);
+	public static final JsonpDeserializer<IndicesBlockStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusDeserializer);
 
-	protected static void setupIndicesBlockStatusParser(DelegatingJsonpValueParser<IndicesBlockStatus.Builder> op) {
+	protected static void setupIndicesBlockStatusDeserializer(DelegatingDeserializer<IndicesBlockStatus.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::blocked, JsonpValueParser.booleanParser(), "blocked");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::blocked, JsonpDeserializer.booleanDeserializer(), "blocked");
 
 	}
 

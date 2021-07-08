@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -315,19 +315,20 @@ public final class VertexDefinition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for VertexDefinition
+	 * Json deserializer for VertexDefinition
 	 */
-	public static final JsonpValueParser<VertexDefinition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, VertexDefinition::setupVertexDefinitionParser);
+	public static final JsonpDeserializer<VertexDefinition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, VertexDefinition::setupVertexDefinitionDeserializer);
 
-	protected static void setupVertexDefinitionParser(DelegatingJsonpValueParser<VertexDefinition.Builder> op) {
+	protected static void setupVertexDefinitionDeserializer(DelegatingDeserializer<VertexDefinition.Builder> op) {
 
-		op.add(Builder::exclude, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "exclude");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::include, JsonpValueParser.arrayParser(VertexInclude.JSONP_PARSER), "include");
-		op.add(Builder::minDocCount, JsonpValueParser.numberParser(), "min_doc_count");
-		op.add(Builder::shardMinDocCount, JsonpValueParser.numberParser(), "shard_min_doc_count");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"exclude");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(VertexInclude.DESERIALIZER), "include");
+		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
+		op.add(Builder::shardMinDocCount, JsonpDeserializer.numberDeserializer(), "shard_min_doc_count");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}
 

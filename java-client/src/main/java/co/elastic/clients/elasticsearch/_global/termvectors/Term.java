@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.termvectors;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -255,18 +255,18 @@ public final class Term implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Term
+	 * Json deserializer for Term
 	 */
-	public static final JsonpValueParser<Term> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Term::setupTermParser);
+	public static final JsonpDeserializer<Term> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Term::setupTermDeserializer);
 
-	protected static void setupTermParser(DelegatingJsonpValueParser<Term.Builder> op) {
+	protected static void setupTermDeserializer(DelegatingDeserializer<Term.Builder> op) {
 
-		op.add(Builder::docFreq, JsonpValueParser.numberParser(), "doc_freq");
-		op.add(Builder::score, JsonpValueParser.numberParser(), "score");
-		op.add(Builder::termFreq, JsonpValueParser.numberParser(), "term_freq");
-		op.add(Builder::tokens, JsonpValueParser.arrayParser(Token.JSONP_PARSER), "tokens");
-		op.add(Builder::ttf, JsonpValueParser.numberParser(), "ttf");
+		op.add(Builder::docFreq, JsonpDeserializer.numberDeserializer(), "doc_freq");
+		op.add(Builder::score, JsonpDeserializer.numberDeserializer(), "score");
+		op.add(Builder::termFreq, JsonpDeserializer.numberDeserializer(), "term_freq");
+		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(Token.DESERIALIZER), "tokens");
+		op.add(Builder::ttf, JsonpDeserializer.numberDeserializer(), "ttf");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Supplier;
@@ -89,18 +89,18 @@ public final class GetResponse<TDocument> extends AsyncSearchDocumentResponseBas
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for GetResponse
+	 * Create a json deserializer for GetResponse
 	 */
-	public static <TDocument> JsonpValueParser<GetResponse<TDocument>> createGetResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> GetResponse.setupGetResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<GetResponse<TDocument>> createGetResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> GetResponse.setupGetResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupGetResponseParser(
-			DelegatingJsonpValueParser<GetResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
-		AsyncSearchDocumentResponseBase.setupAsyncSearchDocumentResponseBaseParser(op, tDocumentParser);
+	protected static <TDocument> void setupGetResponseDeserializer(
+			DelegatingDeserializer<GetResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		AsyncSearchDocumentResponseBase.setupAsyncSearchDocumentResponseBaseDeserializer(op, tDocumentDeserializer);
 
 	}
 

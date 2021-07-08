@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -482,28 +482,28 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SimpleQueryStringQuery
+	 * Json deserializer for SimpleQueryStringQuery
 	 */
-	public static final JsonpValueParser<SimpleQueryStringQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SimpleQueryStringQuery::setupSimpleQueryStringQueryParser);
+	public static final JsonpDeserializer<SimpleQueryStringQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SimpleQueryStringQuery::setupSimpleQueryStringQueryDeserializer);
 
-	protected static void setupSimpleQueryStringQueryParser(
-			DelegatingJsonpValueParser<SimpleQueryStringQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::analyzer, JsonpValueParser.stringParser(), "analyzer");
-		op.add(Builder::analyzeWildcard, JsonpValueParser.booleanParser(), "analyze_wildcard");
-		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpValueParser.booleanParser(),
+	protected static void setupSimpleQueryStringQueryDeserializer(
+			DelegatingDeserializer<SimpleQueryStringQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
+		op.add(Builder::analyzeWildcard, JsonpDeserializer.booleanDeserializer(), "analyze_wildcard");
+		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),
 				"auto_generate_synonyms_phrase_query");
-		op.add(Builder::defaultOperator, JsonpValueParser.jsonValueParser(), "default_operator");
-		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "fields");
-		op.add(Builder::flags, JsonpValueParser.jsonValueParser(), "flags");
-		op.add(Builder::fuzzyMaxExpansions, JsonpValueParser.numberParser(), "fuzzy_max_expansions");
-		op.add(Builder::fuzzyPrefixLength, JsonpValueParser.numberParser(), "fuzzy_prefix_length");
-		op.add(Builder::fuzzyTranspositions, JsonpValueParser.booleanParser(), "fuzzy_transpositions");
-		op.add(Builder::lenient, JsonpValueParser.booleanParser(), "lenient");
-		op.add(Builder::minimumShouldMatch, JsonpValueParser.jsonValueParser(), "minimum_should_match");
-		op.add(Builder::query, JsonpValueParser.stringParser(), "query");
-		op.add(Builder::quoteFieldSuffix, JsonpValueParser.stringParser(), "quote_field_suffix");
+		op.add(Builder::defaultOperator, JsonpDeserializer.jsonValueDeserializer(), "default_operator");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::flags, JsonpDeserializer.jsonValueDeserializer(), "flags");
+		op.add(Builder::fuzzyMaxExpansions, JsonpDeserializer.numberDeserializer(), "fuzzy_max_expansions");
+		op.add(Builder::fuzzyPrefixLength, JsonpDeserializer.numberDeserializer(), "fuzzy_prefix_length");
+		op.add(Builder::fuzzyTranspositions, JsonpDeserializer.booleanDeserializer(), "fuzzy_transpositions");
+		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::quoteFieldSuffix, JsonpDeserializer.stringDeserializer(), "quote_field_suffix");
 
 	}
 

@@ -24,12 +24,12 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -150,20 +150,20 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for StatusResponse
+	 * Create a json deserializer for StatusResponse
 	 */
-	public static <TDocument> JsonpValueParser<StatusResponse<TDocument>> createStatusResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> StatusResponse.setupStatusResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<StatusResponse<TDocument>> createStatusResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> StatusResponse.setupStatusResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupStatusResponseParser(
-			DelegatingJsonpValueParser<StatusResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
-		AsyncSearchResponseBase.setupAsyncSearchResponseBaseParser(op);
-		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
-		op.add(Builder::completionStatus, JsonpValueParser.numberParser(), "completion_status");
+	protected static <TDocument> void setupStatusResponseDeserializer(
+			DelegatingDeserializer<StatusResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
+		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::completionStatus, JsonpDeserializer.numberDeserializer(), "completion_status");
 
 	}
 

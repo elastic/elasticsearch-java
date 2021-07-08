@@ -25,9 +25,9 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -42,7 +42,8 @@ public final class HelpRequest extends CatRequestBase {
 	 */
 	public static final HelpRequest INSTANCE = new HelpRequest();
 
-	public static final JsonpValueParser<HelpRequest> JSONP_PARSER = JsonpValueParser.fixedValue(HelpRequest.INSTANCE);
+	public static final JsonpDeserializer<HelpRequest> DESERIALIZER = JsonpDeserializer
+			.fixedValue(HelpRequest.INSTANCE);
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,5 +67,5 @@ public final class HelpRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, HelpResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), false, HelpResponse.DESERIALIZER);
 }

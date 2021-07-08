@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -220,17 +220,18 @@ public final class ClusterIndicesShards implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterIndicesShards
+	 * Json deserializer for ClusterIndicesShards
 	 */
-	public static final JsonpValueParser<ClusterIndicesShards> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterIndicesShards::setupClusterIndicesShardsParser);
+	public static final JsonpDeserializer<ClusterIndicesShards> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterIndicesShards::setupClusterIndicesShardsDeserializer);
 
-	protected static void setupClusterIndicesShardsParser(DelegatingJsonpValueParser<ClusterIndicesShards.Builder> op) {
+	protected static void setupClusterIndicesShardsDeserializer(
+			DelegatingDeserializer<ClusterIndicesShards.Builder> op) {
 
-		op.add(Builder::index, ClusterIndicesShardsIndex.JSONP_PARSER, "index");
-		op.add(Builder::primaries, JsonpValueParser.numberParser(), "primaries");
-		op.add(Builder::replication, JsonpValueParser.numberParser(), "replication");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
+		op.add(Builder::index, ClusterIndicesShardsIndex.DESERIALIZER, "index");
+		op.add(Builder::primaries, JsonpDeserializer.numberDeserializer(), "primaries");
+		op.add(Builder::replication, JsonpDeserializer.numberDeserializer(), "replication");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
 
 	}
 

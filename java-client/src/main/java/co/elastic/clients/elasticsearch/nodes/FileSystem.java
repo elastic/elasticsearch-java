@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -196,16 +196,16 @@ public final class FileSystem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FileSystem
+	 * Json deserializer for FileSystem
 	 */
-	public static final JsonpValueParser<FileSystem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FileSystem::setupFileSystemParser);
+	public static final JsonpDeserializer<FileSystem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FileSystem::setupFileSystemDeserializer);
 
-	protected static void setupFileSystemParser(DelegatingJsonpValueParser<FileSystem.Builder> op) {
+	protected static void setupFileSystemDeserializer(DelegatingDeserializer<FileSystem.Builder> op) {
 
-		op.add(Builder::data, JsonpValueParser.arrayParser(DataPathStats.JSONP_PARSER), "data");
-		op.add(Builder::timestamp, JsonpValueParser.numberParser(), "timestamp");
-		op.add(Builder::total, FileSystemTotal.JSONP_PARSER, "total");
+		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(DataPathStats.DESERIALIZER), "data");
+		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::total, FileSystemTotal.DESERIALIZER, "total");
 
 	}
 

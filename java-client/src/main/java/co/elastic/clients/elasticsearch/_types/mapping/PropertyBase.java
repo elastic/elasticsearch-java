@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -363,23 +363,25 @@ public class PropertyBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PropertyBase
+	 * Json deserializer for PropertyBase
 	 */
-	public static final JsonpValueParser<PropertyBase> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PropertyBase::setupPropertyBaseParser);
+	public static final JsonpDeserializer<PropertyBase> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PropertyBase::setupPropertyBaseDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPropertyBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPropertyBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::localMetadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"local_metadata");
-		op.add(AbstractBuilder::meta, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "meta");
-		op.add(AbstractBuilder::name, JsonpValueParser.stringParser(), "name");
-		op.add(AbstractBuilder::properties, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"properties");
-		op.add(AbstractBuilder::ignoreAbove, JsonpValueParser.numberParser(), "ignore_above");
-		op.add(AbstractBuilder::dynamic, JsonpValueParser.jsonValueParser(), "dynamic");
-		op.add(AbstractBuilder::fields, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "fields");
+		op.add(AbstractBuilder::localMetadata,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "local_metadata");
+		op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"meta");
+		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(AbstractBuilder::properties,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "properties");
+		op.add(AbstractBuilder::ignoreAbove, JsonpDeserializer.numberDeserializer(), "ignore_above");
+		op.add(AbstractBuilder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
+		op.add(AbstractBuilder::fields,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "fields");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -142,14 +142,14 @@ public final class GetPolicyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetPolicyResponse
+	 * Json deserializer for GetPolicyResponse
 	 */
-	public static final JsonpValueParser<GetPolicyResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetPolicyResponse::setupGetPolicyResponseParser);
+	public static final JsonpDeserializer<GetPolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetPolicyResponse::setupGetPolicyResponseDeserializer);
 
-	protected static void setupGetPolicyResponseParser(DelegatingJsonpValueParser<GetPolicyResponse.Builder> op) {
+	protected static void setupGetPolicyResponseDeserializer(DelegatingDeserializer<GetPolicyResponse.Builder> op) {
 
-		op.add(Builder::policies, JsonpValueParser.arrayParser(Summary.JSONP_PARSER), "policies");
+		op.add(Builder::policies, JsonpDeserializer.arrayDeserializer(Summary.DESERIALIZER), "policies");
 
 	}
 

@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -105,16 +105,16 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase imple
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteVotingConfigExclusionsRequest
+	 * Json deserializer for DeleteVotingConfigExclusionsRequest
 	 */
-	public static final JsonpValueParser<DeleteVotingConfigExclusionsRequest> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DeleteVotingConfigExclusionsRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DeleteVotingConfigExclusionsRequest::setupDeleteVotingConfigExclusionsRequestParser);
+					DeleteVotingConfigExclusionsRequest::setupDeleteVotingConfigExclusionsRequestDeserializer);
 
-	protected static void setupDeleteVotingConfigExclusionsRequestParser(
-			DelegatingJsonpValueParser<DeleteVotingConfigExclusionsRequest.Builder> op) {
+	protected static void setupDeleteVotingConfigExclusionsRequestDeserializer(
+			DelegatingDeserializer<DeleteVotingConfigExclusionsRequest.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.stringParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
 
 	}
 
@@ -140,5 +140,5 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase imple
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, DeleteVotingConfigExclusionsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, DeleteVotingConfigExclusionsResponse.DESERIALIZER);
 }

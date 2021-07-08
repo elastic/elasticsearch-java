@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -172,19 +172,18 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PostStartBasicResponse
+	 * Json deserializer for PostStartBasicResponse
 	 */
-	public static final JsonpValueParser<PostStartBasicResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PostStartBasicResponse::setupPostStartBasicResponseParser);
+	public static final JsonpDeserializer<PostStartBasicResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PostStartBasicResponse::setupPostStartBasicResponseDeserializer);
 
-	protected static void setupPostStartBasicResponseParser(
-			DelegatingJsonpValueParser<PostStartBasicResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::acknowledge,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(JsonpValueParser.stringParser())),
-				"acknowledge");
-		op.add(Builder::basicWasStarted, JsonpValueParser.booleanParser(), "basic_was_started");
-		op.add(Builder::errorMessage, JsonpValueParser.stringParser(), "error_message");
+	protected static void setupPostStartBasicResponseDeserializer(
+			DelegatingDeserializer<PostStartBasicResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::acknowledge, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "acknowledge");
+		op.add(Builder::basicWasStarted, JsonpDeserializer.booleanDeserializer(), "basic_was_started");
+		op.add(Builder::errorMessage, JsonpDeserializer.stringDeserializer(), "error_message");
 
 	}
 

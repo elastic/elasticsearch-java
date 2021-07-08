@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,15 +125,15 @@ public final class HttpInputProxy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HttpInputProxy
+	 * Json deserializer for HttpInputProxy
 	 */
-	public static final JsonpValueParser<HttpInputProxy> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HttpInputProxy::setupHttpInputProxyParser);
+	public static final JsonpDeserializer<HttpInputProxy> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HttpInputProxy::setupHttpInputProxyDeserializer);
 
-	protected static void setupHttpInputProxyParser(DelegatingJsonpValueParser<HttpInputProxy.Builder> op) {
+	protected static void setupHttpInputProxyDeserializer(DelegatingDeserializer<HttpInputProxy.Builder> op) {
 
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host");
-		op.add(Builder::port, JsonpValueParser.numberParser(), "port");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
+		op.add(Builder::port, JsonpDeserializer.numberDeserializer(), "port");
 
 	}
 

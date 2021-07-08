@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -60,7 +60,7 @@ public class DataframeEvaluationContainer extends TaggedUnion<DataframeEvaluatio
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private DataframeEvaluationContainer(Builder builder) {
@@ -175,21 +175,22 @@ public class DataframeEvaluationContainer extends TaggedUnion<DataframeEvaluatio
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<DataframeEvaluationContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(DataframeEvaluationContainer::buildJsonpParser);
+	public static final JsonpDeserializer<DataframeEvaluationContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(DataframeEvaluationContainer::buildDeserializer);
 
-	private static JsonpValueParser<DataframeEvaluationContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<DataframeEvaluationContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::classification, DataframeEvaluationClassification.JSONP_PARSER, "classification");
-		op.add(Builder::outlierDetection, DataframeEvaluationOutlierDetection.JSONP_PARSER, "outlier_detection");
-		op.add(Builder::regression, DataframeEvaluationRegression.JSONP_PARSER, "regression");
+		op.add(Builder::classification, DataframeEvaluationClassification.DESERIALIZER, "classification");
+		op.add(Builder::outlierDetection, DataframeEvaluationOutlierDetection.DESERIALIZER, "outlier_detection");
+		op.add(Builder::regression, DataframeEvaluationRegression.DESERIALIZER, "regression");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

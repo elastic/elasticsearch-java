@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._spec_utils;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -255,16 +255,17 @@ public abstract class BaseNode implements ToJsonp {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseNodeParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseNodeDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::attributes, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
-				"attributes");
-		op.add(AbstractBuilder::host, JsonpValueParser.stringParser(), "host");
-		op.add(AbstractBuilder::ip, JsonpValueParser.stringParser(), "ip");
-		op.add(AbstractBuilder::name, JsonpValueParser.stringParser(), "name");
-		op.add(AbstractBuilder::roles, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "roles");
-		op.add(AbstractBuilder::transportAddress, JsonpValueParser.stringParser(), "transport_address");
+		op.add(AbstractBuilder::attributes,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "attributes");
+		op.add(AbstractBuilder::host, JsonpDeserializer.stringDeserializer(), "host");
+		op.add(AbstractBuilder::ip, JsonpDeserializer.stringDeserializer(), "ip");
+		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(AbstractBuilder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"roles");
+		op.add(AbstractBuilder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 
 	}
 

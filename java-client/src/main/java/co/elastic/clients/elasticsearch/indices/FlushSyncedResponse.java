@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -111,15 +111,15 @@ public final class FlushSyncedResponse extends AdditionalProperties<String, Shar
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FlushSyncedResponse
+	 * Json deserializer for FlushSyncedResponse
 	 */
-	public static final JsonpValueParser<FlushSyncedResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FlushSyncedResponse::setupFlushSyncedResponseParser);
+	public static final JsonpDeserializer<FlushSyncedResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FlushSyncedResponse::setupFlushSyncedResponseDeserializer);
 
-	protected static void setupFlushSyncedResponseParser(DelegatingJsonpValueParser<FlushSyncedResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				ShardStatistics.JSONP_PARSER);
-		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
+	protected static void setupFlushSyncedResponseDeserializer(DelegatingDeserializer<FlushSyncedResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				ShardStatistics.DESERIALIZER);
+		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
 
 	}
 

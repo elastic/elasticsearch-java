@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_job;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -181,17 +181,17 @@ public final class RollupJobStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RollupJobStatus
+	 * Json deserializer for RollupJobStatus
 	 */
-	public static final JsonpValueParser<RollupJobStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RollupJobStatus::setupRollupJobStatusParser);
+	public static final JsonpDeserializer<RollupJobStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RollupJobStatus::setupRollupJobStatusDeserializer);
 
-	protected static void setupRollupJobStatusParser(DelegatingJsonpValueParser<RollupJobStatus.Builder> op) {
+	protected static void setupRollupJobStatusDeserializer(DelegatingDeserializer<RollupJobStatus.Builder> op) {
 
-		op.add(Builder::currentPosition, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"current_position");
-		op.add(Builder::jobState, JsonpValueParser.jsonValueParser(), "job_state");
-		op.add(Builder::upgradedDocId, JsonpValueParser.booleanParser(), "upgraded_doc_id");
+		op.add(Builder::currentPosition,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "current_position");
+		op.add(Builder::jobState, JsonpDeserializer.jsonValueDeserializer(), "job_state");
+		op.add(Builder::upgradedDocId, JsonpDeserializer.booleanDeserializer(), "upgraded_doc_id");
 
 	}
 

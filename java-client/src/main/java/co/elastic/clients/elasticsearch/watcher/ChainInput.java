@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -142,14 +142,14 @@ public final class ChainInput implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ChainInput
+	 * Json deserializer for ChainInput
 	 */
-	public static final JsonpValueParser<ChainInput> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ChainInput::setupChainInputParser);
+	public static final JsonpDeserializer<ChainInput> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ChainInput::setupChainInputDeserializer);
 
-	protected static void setupChainInputParser(DelegatingJsonpValueParser<ChainInput.Builder> op) {
+	protected static void setupChainInputDeserializer(DelegatingDeserializer<ChainInput.Builder> op) {
 
-		op.add(Builder::inputs, JsonpValueParser.arrayParser(InputContainer.JSONP_PARSER), "inputs");
+		op.add(Builder::inputs, JsonpDeserializer.arrayDeserializer(InputContainer.DESERIALIZER), "inputs");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -104,14 +104,14 @@ public final class Analytics extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Analytics
+	 * Json deserializer for Analytics
 	 */
-	public static final JsonpValueParser<Analytics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Analytics::setupAnalyticsParser);
+	public static final JsonpDeserializer<Analytics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Analytics::setupAnalyticsDeserializer);
 
-	protected static void setupAnalyticsParser(DelegatingJsonpValueParser<Analytics.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::stats, AnalyticsStatistics.JSONP_PARSER, "stats");
+	protected static void setupAnalyticsDeserializer(DelegatingDeserializer<Analytics.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::stats, AnalyticsStatistics.DESERIALIZER, "stats");
 
 	}
 

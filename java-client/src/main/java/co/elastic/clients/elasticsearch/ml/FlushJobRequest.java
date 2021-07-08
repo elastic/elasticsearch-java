@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -244,17 +244,17 @@ public final class FlushJobRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FlushJobRequest
+	 * Json deserializer for FlushJobRequest
 	 */
-	public static final JsonpValueParser<FlushJobRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FlushJobRequest::setupFlushJobRequestParser);
+	public static final JsonpDeserializer<FlushJobRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FlushJobRequest::setupFlushJobRequestDeserializer);
 
-	protected static void setupFlushJobRequestParser(DelegatingJsonpValueParser<FlushJobRequest.Builder> op) {
+	protected static void setupFlushJobRequestDeserializer(DelegatingDeserializer<FlushJobRequest.Builder> op) {
 
-		op.add(Builder::advanceTime, JsonpValueParser.stringParser(), "advance_time");
-		op.add(Builder::calcInterim, JsonpValueParser.booleanParser(), "calc_interim");
-		op.add(Builder::end, JsonpValueParser.stringParser(), "end");
-		op.add(Builder::start, JsonpValueParser.stringParser(), "start");
+		op.add(Builder::advanceTime, JsonpDeserializer.stringDeserializer(), "advance_time");
+		op.add(Builder::calcInterim, JsonpDeserializer.booleanDeserializer(), "calc_interim");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
+		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
 
 	}
 
@@ -300,5 +300,5 @@ public final class FlushJobRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FlushJobResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, FlushJobResponse.DESERIALIZER);
 }

@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.rollover.RolloverConditions;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -418,17 +418,18 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RolloverRequest
+	 * Json deserializer for RolloverRequest
 	 */
-	public static final JsonpValueParser<RolloverRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RolloverRequest::setupRolloverRequestParser);
+	public static final JsonpDeserializer<RolloverRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RolloverRequest::setupRolloverRequestDeserializer);
 
-	protected static void setupRolloverRequestParser(DelegatingJsonpValueParser<RolloverRequest.Builder> op) {
+	protected static void setupRolloverRequestDeserializer(DelegatingDeserializer<RolloverRequest.Builder> op) {
 
-		op.add(Builder::aliases, JsonpValueParser.stringMapParser(Alias.JSONP_PARSER), "aliases");
-		op.add(Builder::conditions, RolloverConditions.JSONP_PARSER, "conditions");
-		op.add(Builder::mappings, JsonpValueParser.jsonValueParser(), "mappings");
-		op.add(Builder::settings, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "settings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::conditions, RolloverConditions.DESERIALIZER, "conditions");
+		op.add(Builder::mappings, JsonpDeserializer.jsonValueDeserializer(), "mappings");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"settings");
 
 	}
 
@@ -496,5 +497,5 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RolloverResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, RolloverResponse.DESERIALIZER);
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,16 +147,16 @@ public final class ClusterFileSystem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterFileSystem
+	 * Json deserializer for ClusterFileSystem
 	 */
-	public static final JsonpValueParser<ClusterFileSystem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterFileSystem::setupClusterFileSystemParser);
+	public static final JsonpDeserializer<ClusterFileSystem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterFileSystem::setupClusterFileSystemDeserializer);
 
-	protected static void setupClusterFileSystemParser(DelegatingJsonpValueParser<ClusterFileSystem.Builder> op) {
+	protected static void setupClusterFileSystemDeserializer(DelegatingDeserializer<ClusterFileSystem.Builder> op) {
 
-		op.add(Builder::availableInBytes, JsonpValueParser.numberParser(), "available_in_bytes");
-		op.add(Builder::freeInBytes, JsonpValueParser.numberParser(), "free_in_bytes");
-		op.add(Builder::totalInBytes, JsonpValueParser.numberParser(), "total_in_bytes");
+		op.add(Builder::availableInBytes, JsonpDeserializer.numberDeserializer(), "available_in_bytes");
+		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
+		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
 
 	}
 

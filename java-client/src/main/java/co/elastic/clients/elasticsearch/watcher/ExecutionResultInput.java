@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -166,16 +166,18 @@ public final class ExecutionResultInput implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExecutionResultInput
+	 * Json deserializer for ExecutionResultInput
 	 */
-	public static final JsonpValueParser<ExecutionResultInput> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExecutionResultInput::setupExecutionResultInputParser);
+	public static final JsonpDeserializer<ExecutionResultInput> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExecutionResultInput::setupExecutionResultInputDeserializer);
 
-	protected static void setupExecutionResultInputParser(DelegatingJsonpValueParser<ExecutionResultInput.Builder> op) {
+	protected static void setupExecutionResultInputDeserializer(
+			DelegatingDeserializer<ExecutionResultInput.Builder> op) {
 
-		op.add(Builder::payload, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "payload");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
+		op.add(Builder::payload, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"payload");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
 
 	}
 

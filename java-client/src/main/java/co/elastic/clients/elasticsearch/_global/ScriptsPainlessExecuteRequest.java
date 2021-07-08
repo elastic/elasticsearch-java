@@ -28,11 +28,11 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._global.scripts_painless_execute.PainlessContextSetup;
 import co.elastic.clients.elasticsearch._types.InlineScript;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -186,17 +186,18 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ScriptsPainlessExecuteRequest
+	 * Json deserializer for ScriptsPainlessExecuteRequest
 	 */
-	public static final JsonpValueParser<ScriptsPainlessExecuteRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ScriptsPainlessExecuteRequest::setupScriptsPainlessExecuteRequestParser);
+	public static final JsonpDeserializer<ScriptsPainlessExecuteRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					ScriptsPainlessExecuteRequest::setupScriptsPainlessExecuteRequestDeserializer);
 
-	protected static void setupScriptsPainlessExecuteRequestParser(
-			DelegatingJsonpValueParser<ScriptsPainlessExecuteRequest.Builder> op) {
+	protected static void setupScriptsPainlessExecuteRequestDeserializer(
+			DelegatingDeserializer<ScriptsPainlessExecuteRequest.Builder> op) {
 
-		op.add(Builder::context, JsonpValueParser.stringParser(), "context");
-		op.add(Builder::contextSetup, PainlessContextSetup.JSONP_PARSER, "context_setup");
-		op.add(Builder::script, InlineScript.JSONP_PARSER, "script");
+		op.add(Builder::context, JsonpDeserializer.stringDeserializer(), "context");
+		op.add(Builder::contextSetup, PainlessContextSetup.DESERIALIZER, "context_setup");
+		op.add(Builder::script, InlineScript.DESERIALIZER, "script");
 
 	}
 
@@ -228,8 +229,8 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	 * Create an "{@code scripts_painless_execute}" endpoint.
 	 */
 	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ElasticsearchError> createScriptsPainlessExecuteEndpoint(
-			JsonpValueParser<TResult> tResultParser) {
-		return ENDPOINT.withResponseParser(
-				ScriptsPainlessExecuteResponse.createScriptsPainlessExecuteResponseParser(tResultParser));
+			JsonpDeserializer<TResult> tResultDeserializer) {
+		return ENDPOINT.withResponseDeserializer(
+				ScriptsPainlessExecuteResponse.createScriptsPainlessExecuteResponseDeserializer(tResultDeserializer));
 	}
 }

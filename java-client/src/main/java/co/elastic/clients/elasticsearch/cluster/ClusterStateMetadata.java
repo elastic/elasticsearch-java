@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -491,28 +491,31 @@ public final class ClusterStateMetadata implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateMetadata
+	 * Json deserializer for ClusterStateMetadata
 	 */
-	public static final JsonpValueParser<ClusterStateMetadata> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterStateMetadata::setupClusterStateMetadataParser);
+	public static final JsonpDeserializer<ClusterStateMetadata> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterStateMetadata::setupClusterStateMetadataDeserializer);
 
-	protected static void setupClusterStateMetadataParser(DelegatingJsonpValueParser<ClusterStateMetadata.Builder> op) {
+	protected static void setupClusterStateMetadataDeserializer(
+			DelegatingDeserializer<ClusterStateMetadata.Builder> op) {
 
-		op.add(Builder::clusterUuid, JsonpValueParser.stringParser(), "cluster_uuid");
-		op.add(Builder::clusterUuidCommitted, JsonpValueParser.booleanParser(), "cluster_uuid_committed");
-		op.add(Builder::templates, JsonpValueParser.jsonValueParser(), "templates");
-		op.add(Builder::indices, JsonpValueParser.stringMapParser(ClusterStateBlockIndex.JSONP_PARSER), "indices");
-		op.add(Builder::indexGraveyard, ClusterStateMetadataIndexGraveyard.JSONP_PARSER, "index-graveyard");
-		op.add(Builder::clusterCoordination, ClusterStateMetadataClusterCoordination.JSONP_PARSER,
+		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
+		op.add(Builder::clusterUuidCommitted, JsonpDeserializer.booleanDeserializer(), "cluster_uuid_committed");
+		op.add(Builder::templates, JsonpDeserializer.jsonValueDeserializer(), "templates");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(ClusterStateBlockIndex.DESERIALIZER),
+				"indices");
+		op.add(Builder::indexGraveyard, ClusterStateMetadataIndexGraveyard.DESERIALIZER, "index-graveyard");
+		op.add(Builder::clusterCoordination, ClusterStateMetadataClusterCoordination.DESERIALIZER,
 				"cluster_coordination");
-		op.add(Builder::ingest, ClusterStateIngest.JSONP_PARSER, "ingest");
-		op.add(Builder::repositories, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
+		op.add(Builder::ingest, ClusterStateIngest.DESERIALIZER, "ingest");
+		op.add(Builder::repositories, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"repositories");
-		op.add(Builder::componentTemplate, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::componentTemplate,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"component_template");
-		op.add(Builder::indexTemplate, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"index_template");
-		op.add(Builder::indexLifecycle, ClusterStateIndexLifecycle.JSONP_PARSER, "index_lifecycle");
+		op.add(Builder::indexTemplate,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "index_template");
+		op.add(Builder::indexLifecycle, ClusterStateIndexLifecycle.DESERIALIZER, "index_lifecycle");
 
 	}
 

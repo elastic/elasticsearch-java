@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -101,15 +101,15 @@ public final class IndexRoutingRebalance implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexRoutingRebalance
+	 * Json deserializer for IndexRoutingRebalance
 	 */
-	public static final JsonpValueParser<IndexRoutingRebalance> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexRoutingRebalance::setupIndexRoutingRebalanceParser);
+	public static final JsonpDeserializer<IndexRoutingRebalance> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexRoutingRebalance::setupIndexRoutingRebalanceDeserializer);
 
-	protected static void setupIndexRoutingRebalanceParser(
-			DelegatingJsonpValueParser<IndexRoutingRebalance.Builder> op) {
+	protected static void setupIndexRoutingRebalanceDeserializer(
+			DelegatingDeserializer<IndexRoutingRebalance.Builder> op) {
 
-		op.add(Builder::enable, JsonpValueParser.jsonValueParser(), "enable");
+		op.add(Builder::enable, JsonpDeserializer.jsonValueDeserializer(), "enable");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -254,20 +254,19 @@ public final class QueryProfile implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for QueryProfile
+	 * Json deserializer for QueryProfile
 	 */
-	public static final JsonpValueParser<QueryProfile> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, QueryProfile::setupQueryProfileParser);
+	public static final JsonpDeserializer<QueryProfile> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, QueryProfile::setupQueryProfileDeserializer);
 
-	protected static void setupQueryProfileParser(DelegatingJsonpValueParser<QueryProfile.Builder> op) {
+	protected static void setupQueryProfileDeserializer(DelegatingDeserializer<QueryProfile.Builder> op) {
 
-		op.add(Builder::breakdown, QueryBreakdown.JSONP_PARSER, "breakdown");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::timeInNanos, JsonpValueParser.numberParser(), "time_in_nanos");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
-		op.add(Builder::children,
-				JsonpValueParser.arrayParser(co.elastic.clients.elasticsearch._global.search.QueryProfile.JSONP_PARSER),
-				"children");
+		op.add(Builder::breakdown, QueryBreakdown.DESERIALIZER, "breakdown");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::timeInNanos, JsonpDeserializer.numberDeserializer(), "time_in_nanos");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(
+				co.elastic.clients.elasticsearch._global.search.QueryProfile.DESERIALIZER), "children");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -546,28 +546,28 @@ public final class SlackAttachment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SlackAttachment
+	 * Json deserializer for SlackAttachment
 	 */
-	public static final JsonpValueParser<SlackAttachment> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SlackAttachment::setupSlackAttachmentParser);
+	public static final JsonpDeserializer<SlackAttachment> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SlackAttachment::setupSlackAttachmentDeserializer);
 
-	protected static void setupSlackAttachmentParser(DelegatingJsonpValueParser<SlackAttachment.Builder> op) {
+	protected static void setupSlackAttachmentDeserializer(DelegatingDeserializer<SlackAttachment.Builder> op) {
 
-		op.add(Builder::authorIcon, JsonpValueParser.stringParser(), "author_icon");
-		op.add(Builder::authorLink, JsonpValueParser.stringParser(), "author_link");
-		op.add(Builder::authorName, JsonpValueParser.stringParser(), "author_name");
-		op.add(Builder::color, JsonpValueParser.stringParser(), "color");
-		op.add(Builder::fallback, JsonpValueParser.stringParser(), "fallback");
-		op.add(Builder::fields, JsonpValueParser.arrayParser(SlackAttachmentField.JSONP_PARSER), "fields");
-		op.add(Builder::footer, JsonpValueParser.stringParser(), "footer");
-		op.add(Builder::footerIcon, JsonpValueParser.stringParser(), "footer_icon");
-		op.add(Builder::imageUrl, JsonpValueParser.stringParser(), "image_url");
-		op.add(Builder::pretext, JsonpValueParser.stringParser(), "pretext");
-		op.add(Builder::text, JsonpValueParser.stringParser(), "text");
-		op.add(Builder::thumbUrl, JsonpValueParser.stringParser(), "thumb_url");
-		op.add(Builder::title, JsonpValueParser.stringParser(), "title");
-		op.add(Builder::titleLink, JsonpValueParser.stringParser(), "title_link");
-		op.add(Builder::ts, JsonpValueParser.stringParser(), "ts");
+		op.add(Builder::authorIcon, JsonpDeserializer.stringDeserializer(), "author_icon");
+		op.add(Builder::authorLink, JsonpDeserializer.stringDeserializer(), "author_link");
+		op.add(Builder::authorName, JsonpDeserializer.stringDeserializer(), "author_name");
+		op.add(Builder::color, JsonpDeserializer.stringDeserializer(), "color");
+		op.add(Builder::fallback, JsonpDeserializer.stringDeserializer(), "fallback");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(SlackAttachmentField.DESERIALIZER), "fields");
+		op.add(Builder::footer, JsonpDeserializer.stringDeserializer(), "footer");
+		op.add(Builder::footerIcon, JsonpDeserializer.stringDeserializer(), "footer_icon");
+		op.add(Builder::imageUrl, JsonpDeserializer.stringDeserializer(), "image_url");
+		op.add(Builder::pretext, JsonpDeserializer.stringDeserializer(), "pretext");
+		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
+		op.add(Builder::thumbUrl, JsonpDeserializer.stringDeserializer(), "thumb_url");
+		op.add(Builder::title, JsonpDeserializer.stringDeserializer(), "title");
+		op.add(Builder::titleLink, JsonpDeserializer.stringDeserializer(), "title_link");
+		op.add(Builder::ts, JsonpDeserializer.stringDeserializer(), "ts");
 
 	}
 

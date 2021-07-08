@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -251,18 +251,18 @@ public final class ExecutionResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExecutionResult
+	 * Json deserializer for ExecutionResult
 	 */
-	public static final JsonpValueParser<ExecutionResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExecutionResult::setupExecutionResultParser);
+	public static final JsonpDeserializer<ExecutionResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExecutionResult::setupExecutionResultDeserializer);
 
-	protected static void setupExecutionResultParser(DelegatingJsonpValueParser<ExecutionResult.Builder> op) {
+	protected static void setupExecutionResultDeserializer(DelegatingDeserializer<ExecutionResult.Builder> op) {
 
-		op.add(Builder::actions, JsonpValueParser.arrayParser(ExecutionResultAction.JSONP_PARSER), "actions");
-		op.add(Builder::condition, ExecutionResultCondition.JSONP_PARSER, "condition");
-		op.add(Builder::executionDuration, JsonpValueParser.numberParser(), "execution_duration");
-		op.add(Builder::executionTime, JsonpValueParser.stringParser(), "execution_time");
-		op.add(Builder::input, ExecutionResultInput.JSONP_PARSER, "input");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(ExecutionResultAction.DESERIALIZER), "actions");
+		op.add(Builder::condition, ExecutionResultCondition.DESERIALIZER, "condition");
+		op.add(Builder::executionDuration, JsonpDeserializer.numberDeserializer(), "execution_duration");
+		op.add(Builder::executionTime, JsonpDeserializer.stringDeserializer(), "execution_time");
+		op.add(Builder::input, ExecutionResultInput.DESERIALIZER, "input");
 
 	}
 

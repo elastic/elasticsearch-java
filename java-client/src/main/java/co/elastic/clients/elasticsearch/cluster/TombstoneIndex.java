@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class TombstoneIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TombstoneIndex
+	 * Json deserializer for TombstoneIndex
 	 */
-	public static final JsonpValueParser<TombstoneIndex> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TombstoneIndex::setupTombstoneIndexParser);
+	public static final JsonpDeserializer<TombstoneIndex> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TombstoneIndex::setupTombstoneIndexDeserializer);
 
-	protected static void setupTombstoneIndexParser(DelegatingJsonpValueParser<TombstoneIndex.Builder> op) {
+	protected static void setupTombstoneIndexDeserializer(DelegatingDeserializer<TombstoneIndex.Builder> op) {
 
-		op.add(Builder::indexName, JsonpValueParser.stringParser(), "index_name");
-		op.add(Builder::indexUuid, JsonpValueParser.stringParser(), "index_uuid");
+		op.add(Builder::indexName, JsonpDeserializer.stringDeserializer(), "index_name");
+		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
 
 	}
 

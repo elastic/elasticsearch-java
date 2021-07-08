@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -291,19 +291,19 @@ public final class OverallBucket implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for OverallBucket
+	 * Json deserializer for OverallBucket
 	 */
-	public static final JsonpValueParser<OverallBucket> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, OverallBucket::setupOverallBucketParser);
+	public static final JsonpDeserializer<OverallBucket> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, OverallBucket::setupOverallBucketDeserializer);
 
-	protected static void setupOverallBucketParser(DelegatingJsonpValueParser<OverallBucket.Builder> op) {
+	protected static void setupOverallBucketDeserializer(DelegatingDeserializer<OverallBucket.Builder> op) {
 
-		op.add(Builder::bucketSpan, JsonpValueParser.numberParser(), "bucket_span");
-		op.add(Builder::isInterim, JsonpValueParser.booleanParser(), "is_interim");
-		op.add(Builder::jobs, JsonpValueParser.arrayParser(OverallBucketJob.JSONP_PARSER), "jobs");
-		op.add(Builder::overallScore, JsonpValueParser.numberParser(), "overall_score");
-		op.add(Builder::resultType, JsonpValueParser.stringParser(), "result_type");
-		op.add(Builder::timestamp, JsonpValueParser.jsonValueParser(), "timestamp");
+		op.add(Builder::bucketSpan, JsonpDeserializer.numberDeserializer(), "bucket_span");
+		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
+		op.add(Builder::jobs, JsonpDeserializer.arrayDeserializer(OverallBucketJob.DESERIALIZER), "jobs");
+		op.add(Builder::overallScore, JsonpDeserializer.numberDeserializer(), "overall_score");
+		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
+		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -212,18 +212,18 @@ public final class SplitProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SplitProcessor
+	 * Json deserializer for SplitProcessor
 	 */
-	public static final JsonpValueParser<SplitProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SplitProcessor::setupSplitProcessorParser);
+	public static final JsonpDeserializer<SplitProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SplitProcessor::setupSplitProcessorDeserializer);
 
-	protected static void setupSplitProcessorParser(DelegatingJsonpValueParser<SplitProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::preserveTrailing, JsonpValueParser.booleanParser(), "preserve_trailing");
-		op.add(Builder::separator, JsonpValueParser.stringParser(), "separator");
-		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
+	protected static void setupSplitProcessorDeserializer(DelegatingDeserializer<SplitProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::preserveTrailing, JsonpDeserializer.booleanDeserializer(), "preserve_trailing");
+		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}
 

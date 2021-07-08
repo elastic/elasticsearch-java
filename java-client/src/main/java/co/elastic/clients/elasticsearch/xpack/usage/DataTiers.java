@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -233,18 +233,18 @@ public final class DataTiers extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataTiers
+	 * Json deserializer for DataTiers
 	 */
-	public static final JsonpValueParser<DataTiers> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataTiers::setupDataTiersParser);
+	public static final JsonpDeserializer<DataTiers> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataTiers::setupDataTiersDeserializer);
 
-	protected static void setupDataTiersParser(DelegatingJsonpValueParser<DataTiers.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::dataWarm, DataTierPhaseStatistics.JSONP_PARSER, "data_warm");
-		op.add(Builder::dataFrozen, DataTierPhaseStatistics.JSONP_PARSER, "data_frozen");
-		op.add(Builder::dataCold, DataTierPhaseStatistics.JSONP_PARSER, "data_cold");
-		op.add(Builder::dataContent, DataTierPhaseStatistics.JSONP_PARSER, "data_content");
-		op.add(Builder::dataHot, DataTierPhaseStatistics.JSONP_PARSER, "data_hot");
+	protected static void setupDataTiersDeserializer(DelegatingDeserializer<DataTiers.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::dataWarm, DataTierPhaseStatistics.DESERIALIZER, "data_warm");
+		op.add(Builder::dataFrozen, DataTierPhaseStatistics.DESERIALIZER, "data_frozen");
+		op.add(Builder::dataCold, DataTierPhaseStatistics.DESERIALIZER, "data_cold");
+		op.add(Builder::dataContent, DataTierPhaseStatistics.DESERIALIZER, "data_content");
+		op.add(Builder::dataHot, DataTierPhaseStatistics.DESERIALIZER, "data_hot");
 
 	}
 

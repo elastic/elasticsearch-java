@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -284,20 +284,20 @@ public final class InvalidateApiKeyRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InvalidateApiKeyRequest
+	 * Json deserializer for InvalidateApiKeyRequest
 	 */
-	public static final JsonpValueParser<InvalidateApiKeyRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InvalidateApiKeyRequest::setupInvalidateApiKeyRequestParser);
+	public static final JsonpDeserializer<InvalidateApiKeyRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InvalidateApiKeyRequest::setupInvalidateApiKeyRequestDeserializer);
 
-	protected static void setupInvalidateApiKeyRequestParser(
-			DelegatingJsonpValueParser<InvalidateApiKeyRequest.Builder> op) {
+	protected static void setupInvalidateApiKeyRequestDeserializer(
+			DelegatingDeserializer<InvalidateApiKeyRequest.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::ids, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "ids");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::owner, JsonpValueParser.booleanParser(), "owner");
-		op.add(Builder::realmName, JsonpValueParser.stringParser(), "realm_name");
-		op.add(Builder::username, JsonpValueParser.stringParser(), "username");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::owner, JsonpDeserializer.booleanDeserializer(), "owner");
+		op.add(Builder::realmName, JsonpDeserializer.stringDeserializer(), "realm_name");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
 
@@ -323,5 +323,5 @@ public final class InvalidateApiKeyRequest extends RequestBase implements ToJson
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, InvalidateApiKeyResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, InvalidateApiKeyResponse.DESERIALIZER);
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -196,16 +196,16 @@ public final class RerouteExplanation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RerouteExplanation
+	 * Json deserializer for RerouteExplanation
 	 */
-	public static final JsonpValueParser<RerouteExplanation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RerouteExplanation::setupRerouteExplanationParser);
+	public static final JsonpDeserializer<RerouteExplanation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RerouteExplanation::setupRerouteExplanationDeserializer);
 
-	protected static void setupRerouteExplanationParser(DelegatingJsonpValueParser<RerouteExplanation.Builder> op) {
+	protected static void setupRerouteExplanationDeserializer(DelegatingDeserializer<RerouteExplanation.Builder> op) {
 
-		op.add(Builder::command, JsonpValueParser.stringParser(), "command");
-		op.add(Builder::decisions, JsonpValueParser.arrayParser(RerouteDecision.JSONP_PARSER), "decisions");
-		op.add(Builder::parameters, RerouteParameters.JSONP_PARSER, "parameters");
+		op.add(Builder::command, JsonpDeserializer.stringDeserializer(), "command");
+		op.add(Builder::decisions, JsonpDeserializer.arrayDeserializer(RerouteDecision.DESERIALIZER), "decisions");
+		op.add(Builder::parameters, RerouteParameters.DESERIALIZER, "parameters");
 
 	}
 

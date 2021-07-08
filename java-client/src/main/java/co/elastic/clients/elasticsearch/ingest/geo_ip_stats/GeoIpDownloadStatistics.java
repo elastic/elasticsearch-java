@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest.geo_ip_stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -213,19 +213,19 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoIpDownloadStatistics
+	 * Json deserializer for GeoIpDownloadStatistics
 	 */
-	public static final JsonpValueParser<GeoIpDownloadStatistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoIpDownloadStatistics::setupGeoIpDownloadStatisticsParser);
+	public static final JsonpDeserializer<GeoIpDownloadStatistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoIpDownloadStatistics::setupGeoIpDownloadStatisticsDeserializer);
 
-	protected static void setupGeoIpDownloadStatisticsParser(
-			DelegatingJsonpValueParser<GeoIpDownloadStatistics.Builder> op) {
+	protected static void setupGeoIpDownloadStatisticsDeserializer(
+			DelegatingDeserializer<GeoIpDownloadStatistics.Builder> op) {
 
-		op.add(Builder::successfulDownloads, JsonpValueParser.numberParser(), "successful_downloads");
-		op.add(Builder::failedDownloads, JsonpValueParser.numberParser(), "failed_downloads");
-		op.add(Builder::totalDownloadTime, JsonpValueParser.numberParser(), "total_download_time");
-		op.add(Builder::databaseCount, JsonpValueParser.numberParser(), "database_count");
-		op.add(Builder::skippedUpdates, JsonpValueParser.numberParser(), "skipped_updates");
+		op.add(Builder::successfulDownloads, JsonpDeserializer.numberDeserializer(), "successful_downloads");
+		op.add(Builder::failedDownloads, JsonpDeserializer.numberDeserializer(), "failed_downloads");
+		op.add(Builder::totalDownloadTime, JsonpDeserializer.numberDeserializer(), "total_download_time");
+		op.add(Builder::databaseCount, JsonpDeserializer.numberDeserializer(), "database_count");
+		op.add(Builder::skippedUpdates, JsonpDeserializer.numberDeserializer(), "skipped_updates");
 
 	}
 

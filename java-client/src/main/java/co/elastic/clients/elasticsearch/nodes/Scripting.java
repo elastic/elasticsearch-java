@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class Scripting implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Scripting
+	 * Json deserializer for Scripting
 	 */
-	public static final JsonpValueParser<Scripting> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Scripting::setupScriptingParser);
+	public static final JsonpDeserializer<Scripting> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Scripting::setupScriptingDeserializer);
 
-	protected static void setupScriptingParser(DelegatingJsonpValueParser<Scripting.Builder> op) {
+	protected static void setupScriptingDeserializer(DelegatingDeserializer<Scripting.Builder> op) {
 
-		op.add(Builder::cacheEvictions, JsonpValueParser.numberParser(), "cache_evictions");
-		op.add(Builder::compilations, JsonpValueParser.numberParser(), "compilations");
+		op.add(Builder::cacheEvictions, JsonpDeserializer.numberDeserializer(), "cache_evictions");
+		op.add(Builder::compilations, JsonpDeserializer.numberDeserializer(), "compilations");
 
 	}
 

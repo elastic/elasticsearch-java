@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch.ingest.geo_ip_stats.GeoIpDownloadStatistics;
 import co.elastic.clients.elasticsearch.ingest.geo_ip_stats.GeoIpNodeDatabases;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -178,15 +178,15 @@ public final class GeoIpStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoIpStatsResponse
+	 * Json deserializer for GeoIpStatsResponse
 	 */
-	public static final JsonpValueParser<GeoIpStatsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoIpStatsResponse::setupGeoIpStatsResponseParser);
+	public static final JsonpDeserializer<GeoIpStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoIpStatsResponse::setupGeoIpStatsResponseDeserializer);
 
-	protected static void setupGeoIpStatsResponseParser(DelegatingJsonpValueParser<GeoIpStatsResponse.Builder> op) {
+	protected static void setupGeoIpStatsResponseDeserializer(DelegatingDeserializer<GeoIpStatsResponse.Builder> op) {
 
-		op.add(Builder::stats, GeoIpDownloadStatistics.JSONP_PARSER, "stats");
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(GeoIpNodeDatabases.JSONP_PARSER), "nodes");
+		op.add(Builder::stats, GeoIpDownloadStatistics.DESERIALIZER, "stats");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(GeoIpNodeDatabases.DESERIALIZER), "nodes");
 
 	}
 

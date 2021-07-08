@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,15 +125,15 @@ public final class ActivationState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ActivationState
+	 * Json deserializer for ActivationState
 	 */
-	public static final JsonpValueParser<ActivationState> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ActivationState::setupActivationStateParser);
+	public static final JsonpDeserializer<ActivationState> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ActivationState::setupActivationStateDeserializer);
 
-	protected static void setupActivationStateParser(DelegatingJsonpValueParser<ActivationState.Builder> op) {
+	protected static void setupActivationStateDeserializer(DelegatingDeserializer<ActivationState.Builder> op) {
 
-		op.add(Builder::active, JsonpValueParser.booleanParser(), "active");
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp");
+		op.add(Builder::active, JsonpDeserializer.booleanDeserializer(), "active");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}
 

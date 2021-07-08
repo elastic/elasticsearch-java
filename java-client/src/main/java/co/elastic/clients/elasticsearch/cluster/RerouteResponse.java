@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.cluster.reroute.RerouteExplanation;
 import co.elastic.clients.elasticsearch.cluster.reroute.RerouteState;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -179,15 +179,16 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RerouteResponse
+	 * Json deserializer for RerouteResponse
 	 */
-	public static final JsonpValueParser<RerouteResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RerouteResponse::setupRerouteResponseParser);
+	public static final JsonpDeserializer<RerouteResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RerouteResponse::setupRerouteResponseDeserializer);
 
-	protected static void setupRerouteResponseParser(DelegatingJsonpValueParser<RerouteResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::explanations, JsonpValueParser.arrayParser(RerouteExplanation.JSONP_PARSER), "explanations");
-		op.add(Builder::state, RerouteState.JSONP_PARSER, "state");
+	protected static void setupRerouteResponseDeserializer(DelegatingDeserializer<RerouteResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(RerouteExplanation.DESERIALIZER),
+				"explanations");
+		op.add(Builder::state, RerouteState.DESERIALIZER, "state");
 
 	}
 

@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch._global;
 
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -39,7 +39,7 @@ public final class ExistsSourceResponse {
 	 */
 	public static final ExistsSourceResponse INSTANCE = new ExistsSourceResponse();
 
-	public static final JsonpValueParser<ExistsSourceResponse> JSONP_PARSER = JsonpValueParser
+	public static final JsonpDeserializer<ExistsSourceResponse> DESERIALIZER = JsonpDeserializer
 			.fixedValue(ExistsSourceResponse.INSTANCE);
 
 }

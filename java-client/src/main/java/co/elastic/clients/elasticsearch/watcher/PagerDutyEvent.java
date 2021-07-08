@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -306,21 +306,21 @@ public final class PagerDutyEvent implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PagerDutyEvent
+	 * Json deserializer for PagerDutyEvent
 	 */
-	public static final JsonpValueParser<PagerDutyEvent> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PagerDutyEvent::setupPagerDutyEventParser);
+	public static final JsonpDeserializer<PagerDutyEvent> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PagerDutyEvent::setupPagerDutyEventDeserializer);
 
-	protected static void setupPagerDutyEventParser(DelegatingJsonpValueParser<PagerDutyEvent.Builder> op) {
+	protected static void setupPagerDutyEventDeserializer(DelegatingDeserializer<PagerDutyEvent.Builder> op) {
 
-		op.add(Builder::account, JsonpValueParser.stringParser(), "account");
-		op.add(Builder::attachPayload, JsonpValueParser.booleanParser(), "attach_payload");
-		op.add(Builder::client, JsonpValueParser.stringParser(), "client");
-		op.add(Builder::clientUrl, JsonpValueParser.stringParser(), "client_url");
-		op.add(Builder::context, JsonpValueParser.arrayParser(PagerDutyContext.JSONP_PARSER), "context");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::eventType, JsonpValueParser.jsonValueParser(), "event_type");
-		op.add(Builder::incidentKey, JsonpValueParser.stringParser(), "incident_key");
+		op.add(Builder::account, JsonpDeserializer.stringDeserializer(), "account");
+		op.add(Builder::attachPayload, JsonpDeserializer.booleanDeserializer(), "attach_payload");
+		op.add(Builder::client, JsonpDeserializer.stringDeserializer(), "client");
+		op.add(Builder::clientUrl, JsonpDeserializer.stringDeserializer(), "client_url");
+		op.add(Builder::context, JsonpDeserializer.arrayDeserializer(PagerDutyContext.DESERIALIZER), "context");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::eventType, JsonpDeserializer.jsonValueDeserializer(), "event_type");
+		op.add(Builder::incidentKey, JsonpDeserializer.stringDeserializer(), "incident_key");
 
 	}
 

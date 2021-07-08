@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch.task.ListResponse;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,14 +68,15 @@ public final class DeleteByQueryRethrottleResponse extends ListResponse {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteByQueryRethrottleResponse
+	 * Json deserializer for DeleteByQueryRethrottleResponse
 	 */
-	public static final JsonpValueParser<DeleteByQueryRethrottleResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseParser);
+	public static final JsonpDeserializer<DeleteByQueryRethrottleResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer);
 
-	protected static void setupDeleteByQueryRethrottleResponseParser(
-			DelegatingJsonpValueParser<DeleteByQueryRethrottleResponse.Builder> op) {
-		ListResponse.setupListResponseParser(op);
+	protected static void setupDeleteByQueryRethrottleResponseDeserializer(
+			DelegatingDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
+		ListResponse.setupListResponseDeserializer(op);
 
 	}
 

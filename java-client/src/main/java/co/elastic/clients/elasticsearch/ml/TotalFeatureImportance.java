@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -253,18 +253,19 @@ public final class TotalFeatureImportance implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TotalFeatureImportance
+	 * Json deserializer for TotalFeatureImportance
 	 */
-	public static final JsonpValueParser<TotalFeatureImportance> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TotalFeatureImportance::setupTotalFeatureImportanceParser);
+	public static final JsonpDeserializer<TotalFeatureImportance> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TotalFeatureImportance::setupTotalFeatureImportanceDeserializer);
 
-	protected static void setupTotalFeatureImportanceParser(
-			DelegatingJsonpValueParser<TotalFeatureImportance.Builder> op) {
+	protected static void setupTotalFeatureImportanceDeserializer(
+			DelegatingDeserializer<TotalFeatureImportance.Builder> op) {
 
-		op.add(Builder::featureName, JsonpValueParser.stringParser(), "feature_name");
-		op.add(Builder::importance, JsonpValueParser.arrayParser(TotalFeatureImportanceStatistics.JSONP_PARSER),
+		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
+		op.add(Builder::importance, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceStatistics.DESERIALIZER),
 				"importance");
-		op.add(Builder::classes, JsonpValueParser.arrayParser(TotalFeatureImportanceClass.JSONP_PARSER), "classes");
+		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceClass.DESERIALIZER),
+				"classes");
 
 	}
 

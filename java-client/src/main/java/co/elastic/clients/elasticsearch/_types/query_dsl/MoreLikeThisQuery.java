@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -717,32 +717,34 @@ public final class MoreLikeThisQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MoreLikeThisQuery
+	 * Json deserializer for MoreLikeThisQuery
 	 */
-	public static final JsonpValueParser<MoreLikeThisQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryParser);
+	public static final JsonpDeserializer<MoreLikeThisQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryDeserializer);
 
-	protected static void setupMoreLikeThisQueryParser(DelegatingJsonpValueParser<MoreLikeThisQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::analyzer, JsonpValueParser.stringParser(), "analyzer");
-		op.add(Builder::boostTerms, JsonpValueParser.numberParser(), "boost_terms");
-		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "fields");
-		op.add(Builder::include, JsonpValueParser.booleanParser(), "include");
-		op.add(Builder::like, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "like");
-		op.add(Builder::maxDocFreq, JsonpValueParser.numberParser(), "max_doc_freq");
-		op.add(Builder::maxQueryTerms, JsonpValueParser.numberParser(), "max_query_terms");
-		op.add(Builder::maxWordLength, JsonpValueParser.numberParser(), "max_word_length");
-		op.add(Builder::minDocFreq, JsonpValueParser.numberParser(), "min_doc_freq");
-		op.add(Builder::minimumShouldMatch, JsonpValueParser.jsonValueParser(), "minimum_should_match");
-		op.add(Builder::minTermFreq, JsonpValueParser.numberParser(), "min_term_freq");
-		op.add(Builder::minWordLength, JsonpValueParser.numberParser(), "min_word_length");
-		op.add(Builder::perFieldAnalyzer, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
-				"per_field_analyzer");
-		op.add(Builder::routing, JsonpValueParser.jsonValueParser(), "routing");
-		op.add(Builder::stopWords, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "stop_words");
-		op.add(Builder::unlike, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "unlike");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::versionType, JsonpValueParser.jsonValueParser(), "version_type");
+	protected static void setupMoreLikeThisQueryDeserializer(DelegatingDeserializer<MoreLikeThisQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
+		op.add(Builder::boostTerms, JsonpDeserializer.numberDeserializer(), "boost_terms");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::include, JsonpDeserializer.booleanDeserializer(), "include");
+		op.add(Builder::like, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "like");
+		op.add(Builder::maxDocFreq, JsonpDeserializer.numberDeserializer(), "max_doc_freq");
+		op.add(Builder::maxQueryTerms, JsonpDeserializer.numberDeserializer(), "max_query_terms");
+		op.add(Builder::maxWordLength, JsonpDeserializer.numberDeserializer(), "max_word_length");
+		op.add(Builder::minDocFreq, JsonpDeserializer.numberDeserializer(), "min_doc_freq");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
+		op.add(Builder::minTermFreq, JsonpDeserializer.numberDeserializer(), "min_term_freq");
+		op.add(Builder::minWordLength, JsonpDeserializer.numberDeserializer(), "min_word_length");
+		op.add(Builder::perFieldAnalyzer,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "per_field_analyzer");
+		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::stopWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"stop_words");
+		op.add(Builder::unlike, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"unlike");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::versionType, JsonpDeserializer.jsonValueDeserializer(), "version_type");
 
 	}
 

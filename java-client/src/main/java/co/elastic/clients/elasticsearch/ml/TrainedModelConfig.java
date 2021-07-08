@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfigContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -602,29 +602,29 @@ public final class TrainedModelConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TrainedModelConfig
+	 * Json deserializer for TrainedModelConfig
 	 */
-	public static final JsonpValueParser<TrainedModelConfig> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TrainedModelConfig::setupTrainedModelConfigParser);
+	public static final JsonpDeserializer<TrainedModelConfig> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer);
 
-	protected static void setupTrainedModelConfigParser(DelegatingJsonpValueParser<TrainedModelConfig.Builder> op) {
+	protected static void setupTrainedModelConfigDeserializer(DelegatingDeserializer<TrainedModelConfig.Builder> op) {
 
-		op.add(Builder::modelId, JsonpValueParser.stringParser(), "model_id");
-		op.add(Builder::tags, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "tags");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
-		op.add(Builder::compressedDefinition, JsonpValueParser.stringParser(), "compressed_definition");
-		op.add(Builder::createdBy, JsonpValueParser.stringParser(), "created_by");
-		op.add(Builder::createTime, JsonpValueParser.jsonValueParser(), "create_time");
-		op.add(Builder::defaultFieldMap, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
-				"default_field_map");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::estimatedHeapMemoryUsageBytes, JsonpValueParser.numberParser(),
+		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
+		op.add(Builder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by");
+		op.add(Builder::createTime, JsonpDeserializer.jsonValueDeserializer(), "create_time");
+		op.add(Builder::defaultFieldMap,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "default_field_map");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.numberDeserializer(),
 				"estimated_heap_memory_usage_bytes");
-		op.add(Builder::estimatedOperations, JsonpValueParser.numberParser(), "estimated_operations");
-		op.add(Builder::inferenceConfig, InferenceConfigContainer.JSONP_PARSER, "inference_config");
-		op.add(Builder::input, TrainedModelConfigInput.JSONP_PARSER, "input");
-		op.add(Builder::licenseLevel, JsonpValueParser.stringParser(), "license_level");
-		op.add(Builder::metadata, TrainedModelConfigMetadata.JSONP_PARSER, "metadata");
+		op.add(Builder::estimatedOperations, JsonpDeserializer.numberDeserializer(), "estimated_operations");
+		op.add(Builder::inferenceConfig, InferenceConfigContainer.DESERIALIZER, "inference_config");
+		op.add(Builder::input, TrainedModelConfigInput.DESERIALIZER, "input");
+		op.add(Builder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");
+		op.add(Builder::metadata, TrainedModelConfigMetadata.DESERIALIZER, "metadata");
 
 	}
 

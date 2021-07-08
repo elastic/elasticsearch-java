@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -188,16 +188,17 @@ public final class Configuration implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Configuration
+	 * Json deserializer for Configuration
 	 */
-	public static final JsonpValueParser<Configuration> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Configuration::setupConfigurationParser);
+	public static final JsonpDeserializer<Configuration> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Configuration::setupConfigurationDeserializer);
 
-	protected static void setupConfigurationParser(DelegatingJsonpValueParser<Configuration.Builder> op) {
+	protected static void setupConfigurationDeserializer(DelegatingDeserializer<Configuration.Builder> op) {
 
-		op.add(Builder::ignoreUnavailable, JsonpValueParser.booleanParser(), "ignore_unavailable");
-		op.add(Builder::includeGlobalState, JsonpValueParser.booleanParser(), "include_global_state");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
+		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
+		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
 
 	}
 

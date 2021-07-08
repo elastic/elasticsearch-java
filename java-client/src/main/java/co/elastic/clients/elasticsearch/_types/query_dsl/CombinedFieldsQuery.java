@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -181,16 +181,16 @@ public final class CombinedFieldsQuery implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CombinedFieldsQuery
+	 * Json deserializer for CombinedFieldsQuery
 	 */
-	public static final JsonpValueParser<CombinedFieldsQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CombinedFieldsQuery::setupCombinedFieldsQueryParser);
+	public static final JsonpDeserializer<CombinedFieldsQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CombinedFieldsQuery::setupCombinedFieldsQueryDeserializer);
 
-	protected static void setupCombinedFieldsQueryParser(DelegatingJsonpValueParser<CombinedFieldsQuery.Builder> op) {
+	protected static void setupCombinedFieldsQueryDeserializer(DelegatingDeserializer<CombinedFieldsQuery.Builder> op) {
 
-		op.add(Builder::query, JsonpValueParser.stringParser(), "query");
-		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "fields");
-		op.add(Builder::operator, JsonpValueParser.stringParser(), "operator");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::operator, JsonpDeserializer.stringDeserializer(), "operator");
 
 	}
 

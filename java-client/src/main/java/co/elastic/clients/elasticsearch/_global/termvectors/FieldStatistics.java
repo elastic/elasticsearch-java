@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.termvectors;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,16 +147,16 @@ public final class FieldStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldStatistics
+	 * Json deserializer for FieldStatistics
 	 */
-	public static final JsonpValueParser<FieldStatistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldStatistics::setupFieldStatisticsParser);
+	public static final JsonpDeserializer<FieldStatistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldStatistics::setupFieldStatisticsDeserializer);
 
-	protected static void setupFieldStatisticsParser(DelegatingJsonpValueParser<FieldStatistics.Builder> op) {
+	protected static void setupFieldStatisticsDeserializer(DelegatingDeserializer<FieldStatistics.Builder> op) {
 
-		op.add(Builder::docCount, JsonpValueParser.numberParser(), "doc_count");
-		op.add(Builder::sumDocFreq, JsonpValueParser.numberParser(), "sum_doc_freq");
-		op.add(Builder::sumTtf, JsonpValueParser.numberParser(), "sum_ttf");
+		op.add(Builder::docCount, JsonpDeserializer.numberDeserializer(), "doc_count");
+		op.add(Builder::sumDocFreq, JsonpDeserializer.numberDeserializer(), "sum_doc_freq");
+		op.add(Builder::sumTtf, JsonpDeserializer.numberDeserializer(), "sum_ttf");
 
 	}
 

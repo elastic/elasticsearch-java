@@ -25,12 +25,12 @@ package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.explain.ExplanationDetail;
 import co.elastic.clients.elasticsearch._types.InlineGet;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -274,24 +274,24 @@ public final class ExplainResponse<TDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for ExplainResponse
+	 * Create a json deserializer for ExplainResponse
 	 */
-	public static <TDocument> JsonpValueParser<ExplainResponse<TDocument>> createExplainResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> ExplainResponse.setupExplainResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<ExplainResponse<TDocument>> createExplainResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> ExplainResponse.setupExplainResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupExplainResponseParser(
-			DelegatingJsonpValueParser<ExplainResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupExplainResponseDeserializer(
+			DelegatingDeserializer<ExplainResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::_index, JsonpValueParser.stringParser(), "_index");
-		op.add(Builder::_type, JsonpValueParser.stringParser(), "_type");
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::matched, JsonpValueParser.booleanParser(), "matched");
-		op.add(Builder::explanation, ExplanationDetail.JSONP_PARSER, "explanation");
-		op.add(Builder::get, InlineGet.createInlineGetParser(tDocumentParser), "get");
+		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::matched, JsonpDeserializer.booleanDeserializer(), "matched");
+		op.add(Builder::explanation, ExplanationDetail.DESERIALIZER, "explanation");
+		op.add(Builder::get, InlineGet.createInlineGetDeserializer(tDocumentDeserializer), "get");
 
 	}
 

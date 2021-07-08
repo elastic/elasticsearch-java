@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -179,17 +179,17 @@ public final class CommandMoveAction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CommandMoveAction
+	 * Json deserializer for CommandMoveAction
 	 */
-	public static final JsonpValueParser<CommandMoveAction> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CommandMoveAction::setupCommandMoveActionParser);
+	public static final JsonpDeserializer<CommandMoveAction> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CommandMoveAction::setupCommandMoveActionDeserializer);
 
-	protected static void setupCommandMoveActionParser(DelegatingJsonpValueParser<CommandMoveAction.Builder> op) {
+	protected static void setupCommandMoveActionDeserializer(DelegatingDeserializer<CommandMoveAction.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::shard, JsonpValueParser.numberParser(), "shard");
-		op.add(Builder::fromNode, JsonpValueParser.stringParser(), "from_node");
-		op.add(Builder::toNode, JsonpValueParser.stringParser(), "to_node");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::fromNode, JsonpDeserializer.stringDeserializer(), "from_node");
+		op.add(Builder::toNode, JsonpDeserializer.stringDeserializer(), "to_node");
 
 	}
 

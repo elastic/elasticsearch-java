@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.migration.deprecation_info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -175,17 +175,17 @@ public final class Deprecation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Deprecation
+	 * Json deserializer for Deprecation
 	 */
-	public static final JsonpValueParser<Deprecation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Deprecation::setupDeprecationParser);
+	public static final JsonpDeserializer<Deprecation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Deprecation::setupDeprecationDeserializer);
 
-	protected static void setupDeprecationParser(DelegatingJsonpValueParser<Deprecation.Builder> op) {
+	protected static void setupDeprecationDeserializer(DelegatingDeserializer<Deprecation.Builder> op) {
 
-		op.add(Builder::details, JsonpValueParser.stringParser(), "details");
-		op.add(Builder::level, JsonpValueParser.jsonValueParser(), "level");
-		op.add(Builder::message, JsonpValueParser.stringParser(), "message");
-		op.add(Builder::url, JsonpValueParser.stringParser(), "url");
+		op.add(Builder::details, JsonpDeserializer.stringDeserializer(), "details");
+		op.add(Builder::level, JsonpDeserializer.jsonValueDeserializer(), "level");
+		op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
+		op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
 
 	}
 

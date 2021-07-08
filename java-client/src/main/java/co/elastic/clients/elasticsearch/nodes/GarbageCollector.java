@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -138,14 +138,15 @@ public final class GarbageCollector implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GarbageCollector
+	 * Json deserializer for GarbageCollector
 	 */
-	public static final JsonpValueParser<GarbageCollector> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GarbageCollector::setupGarbageCollectorParser);
+	public static final JsonpDeserializer<GarbageCollector> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GarbageCollector::setupGarbageCollectorDeserializer);
 
-	protected static void setupGarbageCollectorParser(DelegatingJsonpValueParser<GarbageCollector.Builder> op) {
+	protected static void setupGarbageCollectorDeserializer(DelegatingDeserializer<GarbageCollector.Builder> op) {
 
-		op.add(Builder::collectors, JsonpValueParser.stringMapParser(GarbageCollectorTotal.JSONP_PARSER), "collectors");
+		op.add(Builder::collectors, JsonpDeserializer.stringMapDeserializer(GarbageCollectorTotal.DESERIALIZER),
+				"collectors");
 
 	}
 

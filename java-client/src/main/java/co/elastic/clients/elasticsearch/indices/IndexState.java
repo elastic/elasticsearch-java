@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -203,16 +203,16 @@ public final class IndexState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexState
+	 * Json deserializer for IndexState
 	 */
-	public static final JsonpValueParser<IndexState> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexState::setupIndexStateParser);
+	public static final JsonpDeserializer<IndexState> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexState::setupIndexStateDeserializer);
 
-	protected static void setupIndexStateParser(DelegatingJsonpValueParser<IndexState.Builder> op) {
+	protected static void setupIndexStateDeserializer(DelegatingDeserializer<IndexState.Builder> op) {
 
-		op.add(Builder::aliases, JsonpValueParser.stringMapParser(Alias.JSONP_PARSER), "aliases");
-		op.add(Builder::mappings, TypeMapping.JSONP_PARSER, "mappings");
-		op.add(Builder::settings, JsonpValueParser.jsonValueParser(), "settings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::settings, JsonpDeserializer.jsonValueDeserializer(), "settings");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -198,17 +198,19 @@ public final class ApplicationPrivileges implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ApplicationPrivileges
+	 * Json deserializer for ApplicationPrivileges
 	 */
-	public static final JsonpValueParser<ApplicationPrivileges> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ApplicationPrivileges::setupApplicationPrivilegesParser);
+	public static final JsonpDeserializer<ApplicationPrivileges> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ApplicationPrivileges::setupApplicationPrivilegesDeserializer);
 
-	protected static void setupApplicationPrivilegesParser(
-			DelegatingJsonpValueParser<ApplicationPrivileges.Builder> op) {
+	protected static void setupApplicationPrivilegesDeserializer(
+			DelegatingDeserializer<ApplicationPrivileges.Builder> op) {
 
-		op.add(Builder::application, JsonpValueParser.stringParser(), "application");
-		op.add(Builder::privileges, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "privileges");
-		op.add(Builder::resources, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "resources");
+		op.add(Builder::application, JsonpDeserializer.stringDeserializer(), "application");
+		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"privileges");
+		op.add(Builder::resources, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"resources");
 
 	}
 

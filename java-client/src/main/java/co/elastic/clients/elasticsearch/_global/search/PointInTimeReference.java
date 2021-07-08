@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -132,15 +132,16 @@ public final class PointInTimeReference implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PointInTimeReference
+	 * Json deserializer for PointInTimeReference
 	 */
-	public static final JsonpValueParser<PointInTimeReference> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PointInTimeReference::setupPointInTimeReferenceParser);
+	public static final JsonpDeserializer<PointInTimeReference> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PointInTimeReference::setupPointInTimeReferenceDeserializer);
 
-	protected static void setupPointInTimeReferenceParser(DelegatingJsonpValueParser<PointInTimeReference.Builder> op) {
+	protected static void setupPointInTimeReferenceDeserializer(
+			DelegatingDeserializer<PointInTimeReference.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::keepAlive, JsonpValueParser.jsonValueParser(), "keep_alive");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::keepAlive, JsonpDeserializer.jsonValueDeserializer(), "keep_alive");
 
 	}
 

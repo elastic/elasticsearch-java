@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -186,18 +186,18 @@ public final class PagerDutyActionEventResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PagerDutyActionEventResult
+	 * Json deserializer for PagerDutyActionEventResult
 	 */
-	public static final JsonpValueParser<PagerDutyActionEventResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PagerDutyActionEventResult::setupPagerDutyActionEventResultParser);
+	public static final JsonpDeserializer<PagerDutyActionEventResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PagerDutyActionEventResult::setupPagerDutyActionEventResultDeserializer);
 
-	protected static void setupPagerDutyActionEventResultParser(
-			DelegatingJsonpValueParser<PagerDutyActionEventResult.Builder> op) {
+	protected static void setupPagerDutyActionEventResultDeserializer(
+			DelegatingDeserializer<PagerDutyActionEventResult.Builder> op) {
 
-		op.add(Builder::event, PagerDutyEvent.JSONP_PARSER, "event");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
-		op.add(Builder::request, JsonpValueParser.jsonValueParser(), "request");
-		op.add(Builder::response, HttpInputResponseResult.JSONP_PARSER, "response");
+		op.add(Builder::event, PagerDutyEvent.DESERIALIZER, "event");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(Builder::request, JsonpDeserializer.jsonValueDeserializer(), "request");
+		op.add(Builder::response, HttpInputResponseResult.DESERIALIZER, "response");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -178,17 +178,17 @@ public final class RecoveryStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RecoveryStats
+	 * Json deserializer for RecoveryStats
 	 */
-	public static final JsonpValueParser<RecoveryStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RecoveryStats::setupRecoveryStatsParser);
+	public static final JsonpDeserializer<RecoveryStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RecoveryStats::setupRecoveryStatsDeserializer);
 
-	protected static void setupRecoveryStatsParser(DelegatingJsonpValueParser<RecoveryStats.Builder> op) {
+	protected static void setupRecoveryStatsDeserializer(DelegatingDeserializer<RecoveryStats.Builder> op) {
 
-		op.add(Builder::currentAsSource, JsonpValueParser.numberParser(), "current_as_source");
-		op.add(Builder::currentAsTarget, JsonpValueParser.numberParser(), "current_as_target");
-		op.add(Builder::throttleTime, JsonpValueParser.stringParser(), "throttle_time");
-		op.add(Builder::throttleTimeInMillis, JsonpValueParser.numberParser(), "throttle_time_in_millis");
+		op.add(Builder::currentAsSource, JsonpDeserializer.numberDeserializer(), "current_as_source");
+		op.add(Builder::currentAsTarget, JsonpDeserializer.numberDeserializer(), "current_as_target");
+		op.add(Builder::throttleTime, JsonpDeserializer.stringDeserializer(), "throttle_time");
+		op.add(Builder::throttleTimeInMillis, JsonpDeserializer.numberDeserializer(), "throttle_time_in_millis");
 
 	}
 

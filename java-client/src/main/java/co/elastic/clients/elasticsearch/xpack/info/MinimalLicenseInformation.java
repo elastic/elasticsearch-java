@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -194,19 +194,19 @@ public final class MinimalLicenseInformation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MinimalLicenseInformation
+	 * Json deserializer for MinimalLicenseInformation
 	 */
-	public static final JsonpValueParser<MinimalLicenseInformation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MinimalLicenseInformation::setupMinimalLicenseInformationParser);
+	public static final JsonpDeserializer<MinimalLicenseInformation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MinimalLicenseInformation::setupMinimalLicenseInformationDeserializer);
 
-	protected static void setupMinimalLicenseInformationParser(
-			DelegatingJsonpValueParser<MinimalLicenseInformation.Builder> op) {
+	protected static void setupMinimalLicenseInformationDeserializer(
+			DelegatingDeserializer<MinimalLicenseInformation.Builder> op) {
 
-		op.add(Builder::expiryDateInMillis, JsonpValueParser.jsonValueParser(), "expiry_date_in_millis");
-		op.add(Builder::mode, JsonpValueParser.jsonValueParser(), "mode");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
-		op.add(Builder::uid, JsonpValueParser.stringParser(), "uid");
+		op.add(Builder::expiryDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "expiry_date_in_millis");
+		op.add(Builder::mode, JsonpDeserializer.jsonValueDeserializer(), "mode");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");
 
 	}
 

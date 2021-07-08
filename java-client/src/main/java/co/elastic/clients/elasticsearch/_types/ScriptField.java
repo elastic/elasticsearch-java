@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -101,14 +101,14 @@ public final class ScriptField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ScriptField
+	 * Json deserializer for ScriptField
 	 */
-	public static final JsonpValueParser<ScriptField> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ScriptField::setupScriptFieldParser);
+	public static final JsonpDeserializer<ScriptField> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ScriptField::setupScriptFieldDeserializer);
 
-	protected static void setupScriptFieldParser(DelegatingJsonpValueParser<ScriptField.Builder> op) {
+	protected static void setupScriptFieldDeserializer(DelegatingDeserializer<ScriptField.Builder> op) {
 
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}
 

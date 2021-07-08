@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -341,22 +341,22 @@ public final class FunctionScoreContainer implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FunctionScoreContainer
+	 * Json deserializer for FunctionScoreContainer
 	 */
-	public static final JsonpValueParser<FunctionScoreContainer> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FunctionScoreContainer::setupFunctionScoreContainerParser);
+	public static final JsonpDeserializer<FunctionScoreContainer> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FunctionScoreContainer::setupFunctionScoreContainerDeserializer);
 
-	protected static void setupFunctionScoreContainerParser(
-			DelegatingJsonpValueParser<FunctionScoreContainer.Builder> op) {
+	protected static void setupFunctionScoreContainerDeserializer(
+			DelegatingDeserializer<FunctionScoreContainer.Builder> op) {
 
-		op.add(Builder::exp, JsonpValueParser.jsonValueParser(), "exp");
-		op.add(Builder::gauss, JsonpValueParser.jsonValueParser(), "gauss");
-		op.add(Builder::linear, JsonpValueParser.jsonValueParser(), "linear");
-		op.add(Builder::fieldValueFactor, FieldValueFactorScoreFunction.JSONP_PARSER, "field_value_factor");
-		op.add(Builder::randomScore, RandomScoreFunction.JSONP_PARSER, "random_score");
-		op.add(Builder::scriptScore, ScriptScoreFunction.JSONP_PARSER, "script_score");
-		op.add(Builder::filter, QueryContainer.JSONP_PARSER, "filter");
-		op.add(Builder::weight, JsonpValueParser.numberParser(), "weight");
+		op.add(Builder::exp, JsonpDeserializer.jsonValueDeserializer(), "exp");
+		op.add(Builder::gauss, JsonpDeserializer.jsonValueDeserializer(), "gauss");
+		op.add(Builder::linear, JsonpDeserializer.jsonValueDeserializer(), "linear");
+		op.add(Builder::fieldValueFactor, FieldValueFactorScoreFunction.DESERIALIZER, "field_value_factor");
+		op.add(Builder::randomScore, RandomScoreFunction.DESERIALIZER, "random_score");
+		op.add(Builder::scriptScore, ScriptScoreFunction.DESERIALIZER, "script_score");
+		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::weight, JsonpDeserializer.numberDeserializer(), "weight");
 
 	}
 

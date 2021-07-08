@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.restore.SnapshotRestore;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,14 +109,14 @@ public final class RestoreResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RestoreResponse
+	 * Json deserializer for RestoreResponse
 	 */
-	public static final JsonpValueParser<RestoreResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RestoreResponse::setupRestoreResponseParser);
+	public static final JsonpDeserializer<RestoreResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RestoreResponse::setupRestoreResponseDeserializer);
 
-	protected static void setupRestoreResponseParser(DelegatingJsonpValueParser<RestoreResponse.Builder> op) {
+	protected static void setupRestoreResponseDeserializer(DelegatingDeserializer<RestoreResponse.Builder> op) {
 
-		op.add(Builder::snapshot, SnapshotRestore.JSONP_PARSER, "snapshot");
+		op.add(Builder::snapshot, SnapshotRestore.DESERIALIZER, "snapshot");
 
 	}
 

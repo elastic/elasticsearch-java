@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -190,17 +190,17 @@ public final class ClearCachedRealmsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClearCachedRealmsResponse
+	 * Json deserializer for ClearCachedRealmsResponse
 	 */
-	public static final JsonpValueParser<ClearCachedRealmsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClearCachedRealmsResponse::setupClearCachedRealmsResponseParser);
+	public static final JsonpDeserializer<ClearCachedRealmsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClearCachedRealmsResponse::setupClearCachedRealmsResponseDeserializer);
 
-	protected static void setupClearCachedRealmsResponseParser(
-			DelegatingJsonpValueParser<ClearCachedRealmsResponse.Builder> op) {
+	protected static void setupClearCachedRealmsResponseDeserializer(
+			DelegatingDeserializer<ClearCachedRealmsResponse.Builder> op) {
 
-		op.add(Builder::clusterName, JsonpValueParser.stringParser(), "cluster_name");
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(ClusterNode.JSONP_PARSER), "nodes");
-		op.add(Builder::_nodes, NodeStatistics.JSONP_PARSER, "_nodes");
+		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ClusterNode.DESERIALIZER), "nodes");
+		op.add(Builder::_nodes, NodeStatistics.DESERIALIZER, "_nodes");
 
 	}
 

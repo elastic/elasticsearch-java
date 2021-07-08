@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ssl;
 
 import co.elastic.clients.elasticsearch.ssl.get_certificates.CertificateInformation;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -141,15 +141,15 @@ public final class GetCertificatesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetCertificatesResponse
+	 * Json deserializer for GetCertificatesResponse
 	 */
-	public static final JsonpValueParser<GetCertificatesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetCertificatesResponse::setupGetCertificatesResponseParser);
+	public static final JsonpDeserializer<GetCertificatesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetCertificatesResponse::setupGetCertificatesResponseDeserializer);
 
-	protected static void setupGetCertificatesResponseParser(
-			DelegatingJsonpValueParser<GetCertificatesResponse.Builder> op) {
+	protected static void setupGetCertificatesResponseDeserializer(
+			DelegatingDeserializer<GetCertificatesResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(CertificateInformation.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(CertificateInformation.DESERIALIZER), "value");
 
 	}
 

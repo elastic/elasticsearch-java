@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ingest.simulate_pipeline.Document;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -238,16 +238,16 @@ public final class SimulatePipelineRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SimulatePipelineRequest
+	 * Json deserializer for SimulatePipelineRequest
 	 */
-	public static final JsonpValueParser<SimulatePipelineRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SimulatePipelineRequest::setupSimulatePipelineRequestParser);
+	public static final JsonpDeserializer<SimulatePipelineRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SimulatePipelineRequest::setupSimulatePipelineRequestDeserializer);
 
-	protected static void setupSimulatePipelineRequestParser(
-			DelegatingJsonpValueParser<SimulatePipelineRequest.Builder> op) {
+	protected static void setupSimulatePipelineRequestDeserializer(
+			DelegatingDeserializer<SimulatePipelineRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpValueParser.arrayParser(Document.JSONP_PARSER), "docs");
-		op.add(Builder::pipeline, Pipeline.JSONP_PARSER, "pipeline");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Document.DESERIALIZER), "docs");
+		op.add(Builder::pipeline, Pipeline.DESERIALIZER, "pipeline");
 
 	}
 
@@ -300,5 +300,5 @@ public final class SimulatePipelineRequest extends RequestBase implements ToJson
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, SimulatePipelineResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, SimulatePipelineResponse.DESERIALIZER);
 }

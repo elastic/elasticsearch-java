@@ -62,7 +62,7 @@ public class SearchRequestTest extends Assert {
 
         JsonParser parser = provider.createParser(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)));
 
-        request = SearchRequest.JSONP_PARSER.parse(parser, new JsonbJsonpMapper());
+        request = SearchRequest.DESERIALIZER.deserialize(parser, new JsonbJsonpMapper());
 
         assertTrue(request.query().isType());
         assertEquals("foo", request.query().type().value());

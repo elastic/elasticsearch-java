@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -137,14 +137,14 @@ public class PutTransformRequest extends PreviewTransformRequest {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutTransformRequest
+	 * Json deserializer for PutTransformRequest
 	 */
-	public static final JsonpValueParser<PutTransformRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutTransformRequest::setupPutTransformRequestParser);
+	public static final JsonpDeserializer<PutTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutTransformRequest::setupPutTransformRequestDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPutTransformRequestParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
-		PreviewTransformRequest.setupPreviewTransformRequestParser(op);
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPutTransformRequestDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
+		PreviewTransformRequest.setupPreviewTransformRequestDeserializer(op);
 
 	}
 
@@ -188,5 +188,5 @@ public class PutTransformRequest extends PreviewTransformRequest {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutTransformResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutTransformResponse.DESERIALIZER);
 }

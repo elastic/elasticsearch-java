@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -573,28 +573,30 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SignificantTermsAggregation
+	 * Json deserializer for SignificantTermsAggregation
 	 */
-	public static final JsonpValueParser<SignificantTermsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SignificantTermsAggregation::setupSignificantTermsAggregationParser);
+	public static final JsonpDeserializer<SignificantTermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SignificantTermsAggregation::setupSignificantTermsAggregationDeserializer);
 
-	protected static void setupSignificantTermsAggregationParser(
-			DelegatingJsonpValueParser<SignificantTermsAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::backgroundFilter, QueryContainer.JSONP_PARSER, "background_filter");
-		op.add(Builder::chiSquare, ChiSquareHeuristic.JSONP_PARSER, "chi_square");
-		op.add(Builder::exclude, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "exclude");
-		op.add(Builder::executionHint, JsonpValueParser.jsonValueParser(), "execution_hint");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic.JSONP_PARSER, "gnd");
-		op.add(Builder::include, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "include");
-		op.add(Builder::minDocCount, JsonpValueParser.numberParser(), "min_doc_count");
-		op.add(Builder::mutualInformation, MutualInformationHeuristic.JSONP_PARSER, "mutual_information");
-		op.add(Builder::percentage, JsonpValueParser.jsonValueParser(), "percentage");
-		op.add(Builder::scriptHeuristic, ScriptedHeuristic.JSONP_PARSER, "script_heuristic");
-		op.add(Builder::shardMinDocCount, JsonpValueParser.numberParser(), "shard_min_doc_count");
-		op.add(Builder::shardSize, JsonpValueParser.numberParser(), "shard_size");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+	protected static void setupSignificantTermsAggregationDeserializer(
+			DelegatingDeserializer<SignificantTermsAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::backgroundFilter, QueryContainer.DESERIALIZER, "background_filter");
+		op.add(Builder::chiSquare, ChiSquareHeuristic.DESERIALIZER, "chi_square");
+		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"exclude");
+		op.add(Builder::executionHint, JsonpDeserializer.jsonValueDeserializer(), "execution_hint");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic.DESERIALIZER, "gnd");
+		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"include");
+		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
+		op.add(Builder::mutualInformation, MutualInformationHeuristic.DESERIALIZER, "mutual_information");
+		op.add(Builder::percentage, JsonpDeserializer.jsonValueDeserializer(), "percentage");
+		op.add(Builder::scriptHeuristic, ScriptedHeuristic.DESERIALIZER, "script_heuristic");
+		op.add(Builder::shardMinDocCount, JsonpDeserializer.numberDeserializer(), "shard_min_doc_count");
+		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}
 

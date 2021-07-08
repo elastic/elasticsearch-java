@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -148,16 +148,16 @@ public final class NodePackagingType implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodePackagingType
+	 * Json deserializer for NodePackagingType
 	 */
-	public static final JsonpValueParser<NodePackagingType> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodePackagingType::setupNodePackagingTypeParser);
+	public static final JsonpDeserializer<NodePackagingType> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodePackagingType::setupNodePackagingTypeDeserializer);
 
-	protected static void setupNodePackagingTypeParser(DelegatingJsonpValueParser<NodePackagingType.Builder> op) {
+	protected static void setupNodePackagingTypeDeserializer(DelegatingDeserializer<NodePackagingType.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::flavor, JsonpValueParser.stringParser(), "flavor");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::flavor, JsonpDeserializer.stringDeserializer(), "flavor");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

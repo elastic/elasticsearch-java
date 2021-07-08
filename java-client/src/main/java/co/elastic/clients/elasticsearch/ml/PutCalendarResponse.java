@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -174,16 +174,16 @@ public final class PutCalendarResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutCalendarResponse
+	 * Json deserializer for PutCalendarResponse
 	 */
-	public static final JsonpValueParser<PutCalendarResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutCalendarResponse::setupPutCalendarResponseParser);
+	public static final JsonpDeserializer<PutCalendarResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutCalendarResponse::setupPutCalendarResponseDeserializer);
 
-	protected static void setupPutCalendarResponseParser(DelegatingJsonpValueParser<PutCalendarResponse.Builder> op) {
+	protected static void setupPutCalendarResponseDeserializer(DelegatingDeserializer<PutCalendarResponse.Builder> op) {
 
-		op.add(Builder::calendarId, JsonpValueParser.stringParser(), "calendar_id");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::jobIds, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "job_ids");
+		op.add(Builder::calendarId, JsonpDeserializer.stringDeserializer(), "calendar_id");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::jobIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "job_ids");
 
 	}
 

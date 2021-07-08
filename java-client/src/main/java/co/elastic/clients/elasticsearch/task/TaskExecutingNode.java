@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.task;
 
 import co.elastic.clients.elasticsearch._spec_utils.BaseNode;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -98,14 +98,14 @@ public final class TaskExecutingNode extends BaseNode {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TaskExecutingNode
+	 * Json deserializer for TaskExecutingNode
 	 */
-	public static final JsonpValueParser<TaskExecutingNode> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TaskExecutingNode::setupTaskExecutingNodeParser);
+	public static final JsonpDeserializer<TaskExecutingNode> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TaskExecutingNode::setupTaskExecutingNodeDeserializer);
 
-	protected static void setupTaskExecutingNodeParser(DelegatingJsonpValueParser<TaskExecutingNode.Builder> op) {
-		BaseNode.setupBaseNodeParser(op);
-		op.add(Builder::tasks, JsonpValueParser.jsonValueParser(), "tasks");
+	protected static void setupTaskExecutingNodeDeserializer(DelegatingDeserializer<TaskExecutingNode.Builder> op) {
+		BaseNode.setupBaseNodeDeserializer(op);
+		op.add(Builder::tasks, JsonpDeserializer.jsonValueDeserializer(), "tasks");
 
 	}
 

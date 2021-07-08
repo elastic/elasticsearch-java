@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.enrich.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -194,18 +194,18 @@ public final class CoordinatorStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CoordinatorStats
+	 * Json deserializer for CoordinatorStats
 	 */
-	public static final JsonpValueParser<CoordinatorStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CoordinatorStats::setupCoordinatorStatsParser);
+	public static final JsonpDeserializer<CoordinatorStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CoordinatorStats::setupCoordinatorStatsDeserializer);
 
-	protected static void setupCoordinatorStatsParser(DelegatingJsonpValueParser<CoordinatorStats.Builder> op) {
+	protected static void setupCoordinatorStatsDeserializer(DelegatingDeserializer<CoordinatorStats.Builder> op) {
 
-		op.add(Builder::executedSearchesTotal, JsonpValueParser.numberParser(), "executed_searches_total");
-		op.add(Builder::nodeId, JsonpValueParser.stringParser(), "node_id");
-		op.add(Builder::queueSize, JsonpValueParser.numberParser(), "queue_size");
-		op.add(Builder::remoteRequestsCurrent, JsonpValueParser.numberParser(), "remote_requests_current");
-		op.add(Builder::remoteRequestsTotal, JsonpValueParser.numberParser(), "remote_requests_total");
+		op.add(Builder::executedSearchesTotal, JsonpDeserializer.numberDeserializer(), "executed_searches_total");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
+		op.add(Builder::queueSize, JsonpDeserializer.numberDeserializer(), "queue_size");
+		op.add(Builder::remoteRequestsCurrent, JsonpDeserializer.numberDeserializer(), "remote_requests_current");
+		op.add(Builder::remoteRequestsTotal, JsonpDeserializer.numberDeserializer(), "remote_requests_total");
 
 	}
 

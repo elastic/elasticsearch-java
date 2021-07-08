@@ -26,13 +26,13 @@ package co.elastic.clients.elasticsearch._global;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -711,25 +711,28 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for UpdateRequest
+	 * Create a json deserializer for UpdateRequest
 	 */
-	public static <TDocument, TPartialDocument> JsonpValueParser<UpdateRequest<TDocument, TPartialDocument>> createUpdateRequestParser(
-			JsonpValueParser<TDocument> tDocumentParser, JsonpValueParser<TPartialDocument> tPartialDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument, TPartialDocument>>) Builder::new,
-				op -> UpdateRequest.setupUpdateRequestParser(op, tDocumentParser, tPartialDocumentParser));
+	public static <TDocument, TPartialDocument> JsonpDeserializer<UpdateRequest<TDocument, TPartialDocument>> createUpdateRequestDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer,
+			JsonpDeserializer<TPartialDocument> tPartialDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument, TPartialDocument>>) Builder::new,
+				op -> UpdateRequest.setupUpdateRequestDeserializer(op, tDocumentDeserializer,
+						tPartialDocumentDeserializer));
 	};
 
-	protected static <TDocument, TPartialDocument> void setupUpdateRequestParser(
-			DelegatingJsonpValueParser<UpdateRequest.Builder<TDocument, TPartialDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser, JsonpValueParser<TPartialDocument> tPartialDocumentParser) {
+	protected static <TDocument, TPartialDocument> void setupUpdateRequestDeserializer(
+			DelegatingDeserializer<UpdateRequest.Builder<TDocument, TPartialDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer,
+			JsonpDeserializer<TPartialDocument> tPartialDocumentDeserializer) {
 
-		op.add(Builder::detectNoop, JsonpValueParser.booleanParser(), "detect_noop");
-		op.add(Builder::doc, tPartialDocumentParser, "doc");
-		op.add(Builder::docAsUpsert, JsonpValueParser.booleanParser(), "doc_as_upsert");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::scriptedUpsert, JsonpValueParser.booleanParser(), "scripted_upsert");
-		op.add(Builder::_source, JsonpValueParser.jsonValueParser(), "_source");
-		op.add(Builder::upsert, tDocumentParser, "upsert");
+		op.add(Builder::detectNoop, JsonpDeserializer.booleanDeserializer(), "detect_noop");
+		op.add(Builder::doc, tPartialDocumentDeserializer, "doc");
+		op.add(Builder::docAsUpsert, JsonpDeserializer.booleanDeserializer(), "doc_as_upsert");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::scriptedUpsert, JsonpDeserializer.booleanDeserializer(), "scripted_upsert");
+		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::upsert, tDocumentDeserializer, "upsert");
 
 	}
 
@@ -833,7 +836,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * Create an "{@code update}" endpoint.
 	 */
 	public static <TDocument> Endpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ElasticsearchError> createUpdateEndpoint(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return ENDPOINT.withResponseParser(UpdateResponse.createUpdateResponseParser(tDocumentParser));
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ENDPOINT
+				.withResponseDeserializer(UpdateResponse.createUpdateResponseDeserializer(tDocumentDeserializer));
 	}
 }

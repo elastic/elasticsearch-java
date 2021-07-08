@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -171,17 +171,17 @@ public final class ShardLease implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardLease
+	 * Json deserializer for ShardLease
 	 */
-	public static final JsonpValueParser<ShardLease> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardLease::setupShardLeaseParser);
+	public static final JsonpDeserializer<ShardLease> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardLease::setupShardLeaseDeserializer);
 
-	protected static void setupShardLeaseParser(DelegatingJsonpValueParser<ShardLease.Builder> op) {
+	protected static void setupShardLeaseDeserializer(DelegatingDeserializer<ShardLease.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::retainingSeqNo, JsonpValueParser.numberParser(), "retaining_seq_no");
-		op.add(Builder::timestamp, JsonpValueParser.numberParser(), "timestamp");
-		op.add(Builder::source, JsonpValueParser.stringParser(), "source");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::retainingSeqNo, JsonpDeserializer.numberDeserializer(), "retaining_seq_no");
+		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}
 

@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,14 +68,14 @@ public final class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateAliasesResponse
+	 * Json deserializer for UpdateAliasesResponse
 	 */
-	public static final JsonpValueParser<UpdateAliasesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateAliasesResponse::setupUpdateAliasesResponseParser);
+	public static final JsonpDeserializer<UpdateAliasesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpdateAliasesResponse::setupUpdateAliasesResponseDeserializer);
 
-	protected static void setupUpdateAliasesResponseParser(
-			DelegatingJsonpValueParser<UpdateAliasesResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupUpdateAliasesResponseDeserializer(
+			DelegatingDeserializer<UpdateAliasesResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

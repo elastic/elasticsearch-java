@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -170,17 +170,17 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoSettingsTransport
+	 * Json deserializer for NodeInfoSettingsTransport
 	 */
-	public static final JsonpValueParser<NodeInfoSettingsTransport> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoSettingsTransport::setupNodeInfoSettingsTransportParser);
+	public static final JsonpDeserializer<NodeInfoSettingsTransport> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoSettingsTransport::setupNodeInfoSettingsTransportDeserializer);
 
-	protected static void setupNodeInfoSettingsTransportParser(
-			DelegatingJsonpValueParser<NodeInfoSettingsTransport.Builder> op) {
+	protected static void setupNodeInfoSettingsTransportDeserializer(
+			DelegatingDeserializer<NodeInfoSettingsTransport.Builder> op) {
 
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
-		op.add(Builder::type_default, JsonpValueParser.stringParser(), "type.default");
-		op.add(Builder::features, NodeInfoSettingsTransportFeatures.JSONP_PARSER, "features");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type_default, JsonpDeserializer.stringDeserializer(), "type.default");
+		op.add(Builder::features, NodeInfoSettingsTransportFeatures.DESERIALIZER, "features");
 
 	}
 

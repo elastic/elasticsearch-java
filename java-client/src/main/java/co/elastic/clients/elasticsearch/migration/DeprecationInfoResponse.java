@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.migration;
 
 import co.elastic.clients.elasticsearch.migration.deprecation_info.Deprecation;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -312,20 +312,21 @@ public final class DeprecationInfoResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeprecationInfoResponse
+	 * Json deserializer for DeprecationInfoResponse
 	 */
-	public static final JsonpValueParser<DeprecationInfoResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeprecationInfoResponse::setupDeprecationInfoResponseParser);
+	public static final JsonpDeserializer<DeprecationInfoResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DeprecationInfoResponse::setupDeprecationInfoResponseDeserializer);
 
-	protected static void setupDeprecationInfoResponseParser(
-			DelegatingJsonpValueParser<DeprecationInfoResponse.Builder> op) {
+	protected static void setupDeprecationInfoResponseDeserializer(
+			DelegatingDeserializer<DeprecationInfoResponse.Builder> op) {
 
-		op.add(Builder::clusterSettings, JsonpValueParser.arrayParser(Deprecation.JSONP_PARSER), "cluster_settings");
+		op.add(Builder::clusterSettings, JsonpDeserializer.arrayDeserializer(Deprecation.DESERIALIZER),
+				"cluster_settings");
 		op.add(Builder::indexSettings,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(Deprecation.JSONP_PARSER)),
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(Deprecation.DESERIALIZER)),
 				"index_settings");
-		op.add(Builder::nodeSettings, JsonpValueParser.arrayParser(Deprecation.JSONP_PARSER), "node_settings");
-		op.add(Builder::mlSettings, JsonpValueParser.arrayParser(Deprecation.JSONP_PARSER), "ml_settings");
+		op.add(Builder::nodeSettings, JsonpDeserializer.arrayDeserializer(Deprecation.DESERIALIZER), "node_settings");
+		op.add(Builder::mlSettings, JsonpDeserializer.arrayDeserializer(Deprecation.DESERIALIZER), "ml_settings");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.get_index_template;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -132,15 +132,15 @@ public final class IndexTemplateItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexTemplateItem
+	 * Json deserializer for IndexTemplateItem
 	 */
-	public static final JsonpValueParser<IndexTemplateItem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexTemplateItem::setupIndexTemplateItemParser);
+	public static final JsonpDeserializer<IndexTemplateItem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexTemplateItem::setupIndexTemplateItemDeserializer);
 
-	protected static void setupIndexTemplateItemParser(DelegatingJsonpValueParser<IndexTemplateItem.Builder> op) {
+	protected static void setupIndexTemplateItemDeserializer(DelegatingDeserializer<IndexTemplateItem.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::indexTemplate, IndexTemplate.JSONP_PARSER, "index_template");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::indexTemplate, IndexTemplate.DESERIALIZER, "index_template");
 
 	}
 

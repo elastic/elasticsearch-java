@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -235,17 +235,18 @@ public final class TrainedModelStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TrainedModelStats
+	 * Json deserializer for TrainedModelStats
 	 */
-	public static final JsonpValueParser<TrainedModelStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TrainedModelStats::setupTrainedModelStatsParser);
+	public static final JsonpDeserializer<TrainedModelStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TrainedModelStats::setupTrainedModelStatsDeserializer);
 
-	protected static void setupTrainedModelStatsParser(DelegatingJsonpValueParser<TrainedModelStats.Builder> op) {
+	protected static void setupTrainedModelStatsDeserializer(DelegatingDeserializer<TrainedModelStats.Builder> op) {
 
-		op.add(Builder::modelId, JsonpValueParser.stringParser(), "model_id");
-		op.add(Builder::pipelineCount, JsonpValueParser.numberParser(), "pipeline_count");
-		op.add(Builder::inferenceStats, TrainedModelInferenceStats.JSONP_PARSER, "inference_stats");
-		op.add(Builder::ingest, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "ingest");
+		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+		op.add(Builder::pipelineCount, JsonpDeserializer.numberDeserializer(), "pipeline_count");
+		op.add(Builder::inferenceStats, TrainedModelInferenceStats.DESERIALIZER, "inference_stats");
+		op.add(Builder::ingest, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"ingest");
 
 	}
 

@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.security.delete_privileges.FoundStatus;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -73,15 +73,15 @@ public final class DeletePrivilegesResponse extends AdditionalProperties<String,
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeletePrivilegesResponse
+	 * Json deserializer for DeletePrivilegesResponse
 	 */
-	public static final JsonpValueParser<DeletePrivilegesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeletePrivilegesResponse::setupDeletePrivilegesResponseParser);
+	public static final JsonpDeserializer<DeletePrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DeletePrivilegesResponse::setupDeletePrivilegesResponseDeserializer);
 
-	protected static void setupDeletePrivilegesResponseParser(
-			DelegatingJsonpValueParser<DeletePrivilegesResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				JsonpValueParser.stringMapParser(FoundStatus.JSONP_PARSER));
+	protected static void setupDeletePrivilegesResponseDeserializer(
+			DelegatingDeserializer<DeletePrivilegesResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				JsonpDeserializer.stringMapDeserializer(FoundStatus.DESERIALIZER));
 
 	}
 

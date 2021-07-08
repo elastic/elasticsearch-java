@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -273,18 +273,18 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AllocationExplainRequest
+	 * Json deserializer for AllocationExplainRequest
 	 */
-	public static final JsonpValueParser<AllocationExplainRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AllocationExplainRequest::setupAllocationExplainRequestParser);
+	public static final JsonpDeserializer<AllocationExplainRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AllocationExplainRequest::setupAllocationExplainRequestDeserializer);
 
-	protected static void setupAllocationExplainRequestParser(
-			DelegatingJsonpValueParser<AllocationExplainRequest.Builder> op) {
+	protected static void setupAllocationExplainRequestDeserializer(
+			DelegatingDeserializer<AllocationExplainRequest.Builder> op) {
 
-		op.add(Builder::currentNode, JsonpValueParser.stringParser(), "current_node");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::primary, JsonpValueParser.booleanParser(), "primary");
-		op.add(Builder::shard, JsonpValueParser.numberParser(), "shard");
+		op.add(Builder::currentNode, JsonpDeserializer.stringDeserializer(), "current_node");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
+		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
 
 	}
 
@@ -317,5 +317,5 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, AllocationExplainResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, AllocationExplainResponse.DESERIALIZER);
 }

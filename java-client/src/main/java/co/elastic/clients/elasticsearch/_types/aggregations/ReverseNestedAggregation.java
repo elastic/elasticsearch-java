@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -104,15 +104,15 @@ public final class ReverseNestedAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReverseNestedAggregation
+	 * Json deserializer for ReverseNestedAggregation
 	 */
-	public static final JsonpValueParser<ReverseNestedAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReverseNestedAggregation::setupReverseNestedAggregationParser);
+	public static final JsonpDeserializer<ReverseNestedAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReverseNestedAggregation::setupReverseNestedAggregationDeserializer);
 
-	protected static void setupReverseNestedAggregationParser(
-			DelegatingJsonpValueParser<ReverseNestedAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::path, JsonpValueParser.stringParser(), "path");
+	protected static void setupReverseNestedAggregationDeserializer(
+			DelegatingDeserializer<ReverseNestedAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 
 	}
 

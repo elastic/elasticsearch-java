@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -138,15 +138,15 @@ public final class Ssl implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Ssl
+	 * Json deserializer for Ssl
 	 */
-	public static final JsonpValueParser<Ssl> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Ssl::setupSslParser);
+	public static final JsonpDeserializer<Ssl> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Ssl::setupSslDeserializer);
 
-	protected static void setupSslParser(DelegatingJsonpValueParser<Ssl.Builder> op) {
+	protected static void setupSslDeserializer(DelegatingDeserializer<Ssl.Builder> op) {
 
-		op.add(Builder::http, FeatureToggle.JSONP_PARSER, "http");
-		op.add(Builder::transport, FeatureToggle.JSONP_PARSER, "transport");
+		op.add(Builder::http, FeatureToggle.DESERIALIZER, "http");
+		op.add(Builder::transport, FeatureToggle.DESERIALIZER, "transport");
 
 	}
 

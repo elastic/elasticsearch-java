@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch.transform.get_transform_stats.TransformStats;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -167,16 +167,16 @@ public final class GetTransformStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetTransformStatsResponse
+	 * Json deserializer for GetTransformStatsResponse
 	 */
-	public static final JsonpValueParser<GetTransformStatsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetTransformStatsResponse::setupGetTransformStatsResponseParser);
+	public static final JsonpDeserializer<GetTransformStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetTransformStatsResponse::setupGetTransformStatsResponseDeserializer);
 
-	protected static void setupGetTransformStatsResponseParser(
-			DelegatingJsonpValueParser<GetTransformStatsResponse.Builder> op) {
+	protected static void setupGetTransformStatsResponseDeserializer(
+			DelegatingDeserializer<GetTransformStatsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::transforms, JsonpValueParser.arrayParser(TransformStats.JSONP_PARSER), "transforms");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(TransformStats.DESERIALIZER), "transforms");
 
 	}
 

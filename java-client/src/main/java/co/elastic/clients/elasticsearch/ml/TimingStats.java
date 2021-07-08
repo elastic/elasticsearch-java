@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -139,15 +139,15 @@ public final class TimingStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TimingStats
+	 * Json deserializer for TimingStats
 	 */
-	public static final JsonpValueParser<TimingStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TimingStats::setupTimingStatsParser);
+	public static final JsonpDeserializer<TimingStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TimingStats::setupTimingStatsDeserializer);
 
-	protected static void setupTimingStatsParser(DelegatingJsonpValueParser<TimingStats.Builder> op) {
+	protected static void setupTimingStatsDeserializer(DelegatingDeserializer<TimingStats.Builder> op) {
 
-		op.add(Builder::elapsedTime, JsonpValueParser.numberParser(), "elapsed_time");
-		op.add(Builder::iterationTime, JsonpValueParser.numberParser(), "iteration_time");
+		op.add(Builder::elapsedTime, JsonpDeserializer.numberDeserializer(), "elapsed_time");
+		op.add(Builder::iterationTime, JsonpDeserializer.numberDeserializer(), "iteration_time");
 
 	}
 

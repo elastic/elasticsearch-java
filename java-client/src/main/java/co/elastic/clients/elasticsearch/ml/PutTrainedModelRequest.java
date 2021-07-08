@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -130,13 +130,13 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutTrainedModelRequest
+	 * Json deserializer for PutTrainedModelRequest
 	 */
-	public static final JsonpValueParser<PutTrainedModelRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestParser);
+	public static final JsonpDeserializer<PutTrainedModelRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer);
 
-	protected static void setupPutTrainedModelRequestParser(
-			DelegatingJsonpValueParser<PutTrainedModelRequest.Builder> op) {
+	protected static void setupPutTrainedModelRequestDeserializer(
+			DelegatingDeserializer<PutTrainedModelRequest.Builder> op) {
 
 	}
 
@@ -181,5 +181,5 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 				Map<String, String> params = new HashMap<>();
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutTrainedModelResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutTrainedModelResponse.DESERIALIZER);
 }

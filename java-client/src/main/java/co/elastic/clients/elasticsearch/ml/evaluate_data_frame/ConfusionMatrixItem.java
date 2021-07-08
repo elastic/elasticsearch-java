@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -216,18 +216,18 @@ public final class ConfusionMatrixItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ConfusionMatrixItem
+	 * Json deserializer for ConfusionMatrixItem
 	 */
-	public static final JsonpValueParser<ConfusionMatrixItem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ConfusionMatrixItem::setupConfusionMatrixItemParser);
+	public static final JsonpDeserializer<ConfusionMatrixItem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ConfusionMatrixItem::setupConfusionMatrixItemDeserializer);
 
-	protected static void setupConfusionMatrixItemParser(DelegatingJsonpValueParser<ConfusionMatrixItem.Builder> op) {
+	protected static void setupConfusionMatrixItemDeserializer(DelegatingDeserializer<ConfusionMatrixItem.Builder> op) {
 
-		op.add(Builder::actualClass, JsonpValueParser.stringParser(), "actual_class");
-		op.add(Builder::actualClassDocCount, JsonpValueParser.numberParser(), "actual_class_doc_count");
-		op.add(Builder::predictedClasses, JsonpValueParser.arrayParser(ConfusionMatrixPrediction.JSONP_PARSER),
+		op.add(Builder::actualClass, JsonpDeserializer.stringDeserializer(), "actual_class");
+		op.add(Builder::actualClassDocCount, JsonpDeserializer.numberDeserializer(), "actual_class_doc_count");
+		op.add(Builder::predictedClasses, JsonpDeserializer.arrayDeserializer(ConfusionMatrixPrediction.DESERIALIZER),
 				"predicted_classes");
-		op.add(Builder::otherPredictedClassDocCount, JsonpValueParser.numberParser(),
+		op.add(Builder::otherPredictedClassDocCount, JsonpDeserializer.numberDeserializer(),
 				"other_predicted_class_doc_count");
 
 	}

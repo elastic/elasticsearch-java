@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.analyze;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -294,22 +294,22 @@ public final class ExplainAnalyzeToken implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExplainAnalyzeToken
+	 * Json deserializer for ExplainAnalyzeToken
 	 */
-	public static final JsonpValueParser<ExplainAnalyzeToken> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExplainAnalyzeToken::setupExplainAnalyzeTokenParser);
+	public static final JsonpDeserializer<ExplainAnalyzeToken> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExplainAnalyzeToken::setupExplainAnalyzeTokenDeserializer);
 
-	protected static void setupExplainAnalyzeTokenParser(DelegatingJsonpValueParser<ExplainAnalyzeToken.Builder> op) {
+	protected static void setupExplainAnalyzeTokenDeserializer(DelegatingDeserializer<ExplainAnalyzeToken.Builder> op) {
 
-		op.add(Builder::bytes, JsonpValueParser.stringParser(), "bytes");
-		op.add(Builder::endOffset, JsonpValueParser.numberParser(), "end_offset");
-		op.add(Builder::keyword, JsonpValueParser.booleanParser(), "keyword");
-		op.add(Builder::position, JsonpValueParser.numberParser(), "position");
-		op.add(Builder::positionlength, JsonpValueParser.numberParser(), "positionLength");
-		op.add(Builder::startOffset, JsonpValueParser.numberParser(), "start_offset");
-		op.add(Builder::termfrequency, JsonpValueParser.numberParser(), "termFrequency");
-		op.add(Builder::token, JsonpValueParser.stringParser(), "token");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::bytes, JsonpDeserializer.stringDeserializer(), "bytes");
+		op.add(Builder::endOffset, JsonpDeserializer.numberDeserializer(), "end_offset");
+		op.add(Builder::keyword, JsonpDeserializer.booleanDeserializer(), "keyword");
+		op.add(Builder::position, JsonpDeserializer.numberDeserializer(), "position");
+		op.add(Builder::positionlength, JsonpDeserializer.numberDeserializer(), "positionLength");
+		op.add(Builder::startOffset, JsonpDeserializer.numberDeserializer(), "start_offset");
+		op.add(Builder::termfrequency, JsonpDeserializer.numberDeserializer(), "termFrequency");
+		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

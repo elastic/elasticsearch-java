@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -148,17 +148,17 @@ public final class CommandAllocateReplicaAction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CommandAllocateReplicaAction
+	 * Json deserializer for CommandAllocateReplicaAction
 	 */
-	public static final JsonpValueParser<CommandAllocateReplicaAction> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CommandAllocateReplicaAction::setupCommandAllocateReplicaActionParser);
+	public static final JsonpDeserializer<CommandAllocateReplicaAction> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CommandAllocateReplicaAction::setupCommandAllocateReplicaActionDeserializer);
 
-	protected static void setupCommandAllocateReplicaActionParser(
-			DelegatingJsonpValueParser<CommandAllocateReplicaAction.Builder> op) {
+	protected static void setupCommandAllocateReplicaActionDeserializer(
+			DelegatingDeserializer<CommandAllocateReplicaAction.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::shard, JsonpValueParser.numberParser(), "shard");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 
 	}
 

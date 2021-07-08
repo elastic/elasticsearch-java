@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -159,15 +159,15 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReloadSecureSettingsRequest
+	 * Json deserializer for ReloadSecureSettingsRequest
 	 */
-	public static final JsonpValueParser<ReloadSecureSettingsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReloadSecureSettingsRequest::setupReloadSecureSettingsRequestParser);
+	public static final JsonpDeserializer<ReloadSecureSettingsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReloadSecureSettingsRequest::setupReloadSecureSettingsRequestDeserializer);
 
-	protected static void setupReloadSecureSettingsRequestParser(
-			DelegatingJsonpValueParser<ReloadSecureSettingsRequest.Builder> op) {
+	protected static void setupReloadSecureSettingsRequestDeserializer(
+			DelegatingDeserializer<ReloadSecureSettingsRequest.Builder> op) {
 
-		op.add(Builder::secureSettingsPassword, JsonpValueParser.stringParser(), "secure_settings_password");
+		op.add(Builder::secureSettingsPassword, JsonpDeserializer.stringDeserializer(), "secure_settings_password");
 
 	}
 
@@ -218,5 +218,5 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ReloadSecureSettingsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, ReloadSecureSettingsResponse.DESERIALIZER);
 }

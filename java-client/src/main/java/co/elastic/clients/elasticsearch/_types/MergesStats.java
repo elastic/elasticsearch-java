@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -492,29 +492,32 @@ public final class MergesStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MergesStats
+	 * Json deserializer for MergesStats
 	 */
-	public static final JsonpValueParser<MergesStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MergesStats::setupMergesStatsParser);
+	public static final JsonpDeserializer<MergesStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MergesStats::setupMergesStatsDeserializer);
 
-	protected static void setupMergesStatsParser(DelegatingJsonpValueParser<MergesStats.Builder> op) {
+	protected static void setupMergesStatsDeserializer(DelegatingDeserializer<MergesStats.Builder> op) {
 
-		op.add(Builder::current, JsonpValueParser.numberParser(), "current");
-		op.add(Builder::currentDocs, JsonpValueParser.numberParser(), "current_docs");
-		op.add(Builder::currentSize, JsonpValueParser.stringParser(), "current_size");
-		op.add(Builder::currentSizeInBytes, JsonpValueParser.numberParser(), "current_size_in_bytes");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::totalAutoThrottle, JsonpValueParser.stringParser(), "total_auto_throttle");
-		op.add(Builder::totalAutoThrottleInBytes, JsonpValueParser.numberParser(), "total_auto_throttle_in_bytes");
-		op.add(Builder::totalDocs, JsonpValueParser.numberParser(), "total_docs");
-		op.add(Builder::totalSize, JsonpValueParser.stringParser(), "total_size");
-		op.add(Builder::totalSizeInBytes, JsonpValueParser.numberParser(), "total_size_in_bytes");
-		op.add(Builder::totalStoppedTime, JsonpValueParser.stringParser(), "total_stopped_time");
-		op.add(Builder::totalStoppedTimeInMillis, JsonpValueParser.numberParser(), "total_stopped_time_in_millis");
-		op.add(Builder::totalThrottledTime, JsonpValueParser.stringParser(), "total_throttled_time");
-		op.add(Builder::totalThrottledTimeInMillis, JsonpValueParser.numberParser(), "total_throttled_time_in_millis");
-		op.add(Builder::totalTime, JsonpValueParser.stringParser(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.numberParser(), "total_time_in_millis");
+		op.add(Builder::current, JsonpDeserializer.numberDeserializer(), "current");
+		op.add(Builder::currentDocs, JsonpDeserializer.numberDeserializer(), "current_docs");
+		op.add(Builder::currentSize, JsonpDeserializer.stringDeserializer(), "current_size");
+		op.add(Builder::currentSizeInBytes, JsonpDeserializer.numberDeserializer(), "current_size_in_bytes");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::totalAutoThrottle, JsonpDeserializer.stringDeserializer(), "total_auto_throttle");
+		op.add(Builder::totalAutoThrottleInBytes, JsonpDeserializer.numberDeserializer(),
+				"total_auto_throttle_in_bytes");
+		op.add(Builder::totalDocs, JsonpDeserializer.numberDeserializer(), "total_docs");
+		op.add(Builder::totalSize, JsonpDeserializer.stringDeserializer(), "total_size");
+		op.add(Builder::totalSizeInBytes, JsonpDeserializer.numberDeserializer(), "total_size_in_bytes");
+		op.add(Builder::totalStoppedTime, JsonpDeserializer.stringDeserializer(), "total_stopped_time");
+		op.add(Builder::totalStoppedTimeInMillis, JsonpDeserializer.numberDeserializer(),
+				"total_stopped_time_in_millis");
+		op.add(Builder::totalThrottledTime, JsonpDeserializer.stringDeserializer(), "total_throttled_time");
+		op.add(Builder::totalThrottledTimeInMillis, JsonpDeserializer.numberDeserializer(),
+				"total_throttled_time_in_millis");
+		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.numberDeserializer(), "total_time_in_millis");
 
 	}
 

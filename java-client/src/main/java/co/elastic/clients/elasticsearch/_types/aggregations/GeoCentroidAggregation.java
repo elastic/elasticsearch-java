@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -134,16 +134,16 @@ public final class GeoCentroidAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoCentroidAggregation
+	 * Json deserializer for GeoCentroidAggregation
 	 */
-	public static final JsonpValueParser<GeoCentroidAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoCentroidAggregation::setupGeoCentroidAggregationParser);
+	public static final JsonpDeserializer<GeoCentroidAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoCentroidAggregation::setupGeoCentroidAggregationDeserializer);
 
-	protected static void setupGeoCentroidAggregationParser(
-			DelegatingJsonpValueParser<GeoCentroidAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseParser(op);
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::location, JsonpValueParser.jsonValueParser(), "location");
+	protected static void setupGeoCentroidAggregationDeserializer(
+			DelegatingDeserializer<GeoCentroidAggregation.Builder> op) {
+		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::location, JsonpDeserializer.jsonValueDeserializer(), "location");
 
 	}
 

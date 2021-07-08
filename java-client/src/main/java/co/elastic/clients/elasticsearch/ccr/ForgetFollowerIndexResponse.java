@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,15 +109,15 @@ public final class ForgetFollowerIndexResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ForgetFollowerIndexResponse
+	 * Json deserializer for ForgetFollowerIndexResponse
 	 */
-	public static final JsonpValueParser<ForgetFollowerIndexResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ForgetFollowerIndexResponse::setupForgetFollowerIndexResponseParser);
+	public static final JsonpDeserializer<ForgetFollowerIndexResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ForgetFollowerIndexResponse::setupForgetFollowerIndexResponseDeserializer);
 
-	protected static void setupForgetFollowerIndexResponseParser(
-			DelegatingJsonpValueParser<ForgetFollowerIndexResponse.Builder> op) {
+	protected static void setupForgetFollowerIndexResponseDeserializer(
+			DelegatingDeserializer<ForgetFollowerIndexResponse.Builder> op) {
 
-		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
+		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
 
 	}
 

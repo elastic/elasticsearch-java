@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.create_api_key.RoleDescriptor;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -309,18 +309,19 @@ public final class CreateApiKeyRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateApiKeyRequest
+	 * Json deserializer for CreateApiKeyRequest
 	 */
-	public static final JsonpValueParser<CreateApiKeyRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateApiKeyRequest::setupCreateApiKeyRequestParser);
+	public static final JsonpDeserializer<CreateApiKeyRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateApiKeyRequest::setupCreateApiKeyRequestDeserializer);
 
-	protected static void setupCreateApiKeyRequestParser(DelegatingJsonpValueParser<CreateApiKeyRequest.Builder> op) {
+	protected static void setupCreateApiKeyRequestDeserializer(DelegatingDeserializer<CreateApiKeyRequest.Builder> op) {
 
-		op.add(Builder::expiration, JsonpValueParser.jsonValueParser(), "expiration");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::roleDescriptors, JsonpValueParser.stringMapParser(RoleDescriptor.JSONP_PARSER),
+		op.add(Builder::expiration, JsonpDeserializer.jsonValueDeserializer(), "expiration");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor.DESERIALIZER),
 				"role_descriptors");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
 
 	}
 
@@ -350,5 +351,5 @@ public final class CreateApiKeyRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateApiKeyResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, CreateApiKeyResponse.DESERIALIZER);
 }

@@ -27,11 +27,11 @@ import co.elastic.clients.elasticsearch.watcher.ConditionContainer;
 import co.elastic.clients.elasticsearch.watcher.ExecutionResult;
 import co.elastic.clients.elasticsearch.watcher.InputContainer;
 import co.elastic.clients.elasticsearch.watcher.TriggerEventResult;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -388,23 +388,25 @@ public final class WatchRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WatchRecord
+	 * Json deserializer for WatchRecord
 	 */
-	public static final JsonpValueParser<WatchRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WatchRecord::setupWatchRecordParser);
+	public static final JsonpDeserializer<WatchRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WatchRecord::setupWatchRecordDeserializer);
 
-	protected static void setupWatchRecordParser(DelegatingJsonpValueParser<WatchRecord.Builder> op) {
+	protected static void setupWatchRecordDeserializer(DelegatingDeserializer<WatchRecord.Builder> op) {
 
-		op.add(Builder::condition, ConditionContainer.JSONP_PARSER, "condition");
-		op.add(Builder::input, InputContainer.JSONP_PARSER, "input");
-		op.add(Builder::messages, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "messages");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::result, ExecutionResult.JSONP_PARSER, "result");
-		op.add(Builder::state, JsonpValueParser.jsonValueParser(), "state");
-		op.add(Builder::triggerEvent, TriggerEventResult.JSONP_PARSER, "trigger_event");
-		op.add(Builder::user, JsonpValueParser.stringParser(), "user");
-		op.add(Builder::watchId, JsonpValueParser.stringParser(), "watch_id");
+		op.add(Builder::condition, ConditionContainer.DESERIALIZER, "condition");
+		op.add(Builder::input, InputContainer.DESERIALIZER, "input");
+		op.add(Builder::messages, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"messages");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::result, ExecutionResult.DESERIALIZER, "result");
+		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
+		op.add(Builder::triggerEvent, TriggerEventResult.DESERIALIZER, "trigger_event");
+		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
+		op.add(Builder::watchId, JsonpDeserializer.stringDeserializer(), "watch_id");
 
 	}
 

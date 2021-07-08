@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch._global;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -116,19 +116,19 @@ public final class GetSourceResponse<TDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for GetSourceResponse
+	 * Create a json deserializer for GetSourceResponse
 	 */
-	public static <TDocument> JsonpValueParser<GetSourceResponse<TDocument>> createGetSourceResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForValue((Supplier<Builder<TDocument>>) Builder::new,
-				op -> GetSourceResponse.setupGetSourceResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<GetSourceResponse<TDocument>> createGetSourceResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TDocument>>) Builder::new,
+				op -> GetSourceResponse.setupGetSourceResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupGetSourceResponseParser(
-			DelegatingJsonpValueParser<GetSourceResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupGetSourceResponseDeserializer(
+			DelegatingDeserializer<GetSourceResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::value, tDocumentParser, "value");
+		op.add(Builder::value, tDocumentDeserializer, "value");
 
 	}
 

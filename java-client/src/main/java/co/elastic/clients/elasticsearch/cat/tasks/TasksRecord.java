@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.tasks;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -606,29 +606,29 @@ public final class TasksRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TasksRecord
+	 * Json deserializer for TasksRecord
 	 */
-	public static final JsonpValueParser<TasksRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TasksRecord::setupTasksRecordParser);
+	public static final JsonpDeserializer<TasksRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TasksRecord::setupTasksRecordDeserializer);
 
-	protected static void setupTasksRecordParser(DelegatingJsonpValueParser<TasksRecord.Builder> op) {
+	protected static void setupTasksRecordDeserializer(DelegatingDeserializer<TasksRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::action, JsonpValueParser.stringParser(), "action", "ac");
-		op.add(Builder::taskId, JsonpValueParser.stringParser(), "task_id", "ti");
-		op.add(Builder::parentTaskId, JsonpValueParser.stringParser(), "parent_task_id", "pti");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type", "ty");
-		op.add(Builder::startTime, JsonpValueParser.stringParser(), "start_time", "start");
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp", "ts", "hms", "hhmmss");
-		op.add(Builder::runningTimeNs, JsonpValueParser.stringParser(), "running_time_ns");
-		op.add(Builder::runningTime, JsonpValueParser.stringParser(), "running_time", "time");
-		op.add(Builder::nodeId, JsonpValueParser.stringParser(), "node_id", "ni");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip", "i");
-		op.add(Builder::port, JsonpValueParser.stringParser(), "port", "po");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node", "n");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version", "v");
-		op.add(Builder::xOpaqueId, JsonpValueParser.stringParser(), "x_opaque_id", "x");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description", "desc");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action", "ac");
+		op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id", "ti");
+		op.add(Builder::parentTaskId, JsonpDeserializer.stringDeserializer(), "parent_task_id", "pti");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "ty");
+		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time", "start");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");
+		op.add(Builder::runningTimeNs, JsonpDeserializer.stringDeserializer(), "running_time_ns");
+		op.add(Builder::runningTime, JsonpDeserializer.stringDeserializer(), "running_time", "time");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id", "ni");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip", "i");
+		op.add(Builder::port, JsonpDeserializer.stringDeserializer(), "port", "po");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
+		op.add(Builder::xOpaqueId, JsonpDeserializer.stringDeserializer(), "x_opaque_id", "x");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description", "desc");
 
 	}
 

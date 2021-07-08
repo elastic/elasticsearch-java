@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -161,16 +161,16 @@ public final class RuntimeField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RuntimeField
+	 * Json deserializer for RuntimeField
 	 */
-	public static final JsonpValueParser<RuntimeField> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RuntimeField::setupRuntimeFieldParser);
+	public static final JsonpDeserializer<RuntimeField> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RuntimeField::setupRuntimeFieldDeserializer);
 
-	protected static void setupRuntimeFieldParser(DelegatingJsonpValueParser<RuntimeField.Builder> op) {
+	protected static void setupRuntimeFieldDeserializer(DelegatingDeserializer<RuntimeField.Builder> op) {
 
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
 
 	}
 

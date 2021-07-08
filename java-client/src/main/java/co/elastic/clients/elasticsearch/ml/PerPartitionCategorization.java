@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -158,16 +158,16 @@ public final class PerPartitionCategorization implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PerPartitionCategorization
+	 * Json deserializer for PerPartitionCategorization
 	 */
-	public static final JsonpValueParser<PerPartitionCategorization> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PerPartitionCategorization::setupPerPartitionCategorizationParser);
+	public static final JsonpDeserializer<PerPartitionCategorization> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PerPartitionCategorization::setupPerPartitionCategorizationDeserializer);
 
-	protected static void setupPerPartitionCategorizationParser(
-			DelegatingJsonpValueParser<PerPartitionCategorization.Builder> op) {
+	protected static void setupPerPartitionCategorizationDeserializer(
+			DelegatingDeserializer<PerPartitionCategorization.Builder> op) {
 
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
-		op.add(Builder::stopOnWarn, JsonpValueParser.booleanParser(), "stop_on_warn");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::stopOnWarn, JsonpDeserializer.booleanDeserializer(), "stop_on_warn");
 
 	}
 

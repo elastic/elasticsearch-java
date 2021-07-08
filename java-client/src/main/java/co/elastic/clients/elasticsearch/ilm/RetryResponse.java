@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,13 @@ public final class RetryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RetryResponse
+	 * Json deserializer for RetryResponse
 	 */
-	public static final JsonpValueParser<RetryResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RetryResponse::setupRetryResponseParser);
+	public static final JsonpDeserializer<RetryResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RetryResponse::setupRetryResponseDeserializer);
 
-	protected static void setupRetryResponseParser(DelegatingJsonpValueParser<RetryResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupRetryResponseDeserializer(DelegatingDeserializer<RetryResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

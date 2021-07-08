@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -368,25 +368,26 @@ public final class AggregationBreakdown implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AggregationBreakdown
+	 * Json deserializer for AggregationBreakdown
 	 */
-	public static final JsonpValueParser<AggregationBreakdown> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AggregationBreakdown::setupAggregationBreakdownParser);
+	public static final JsonpDeserializer<AggregationBreakdown> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AggregationBreakdown::setupAggregationBreakdownDeserializer);
 
-	protected static void setupAggregationBreakdownParser(DelegatingJsonpValueParser<AggregationBreakdown.Builder> op) {
+	protected static void setupAggregationBreakdownDeserializer(
+			DelegatingDeserializer<AggregationBreakdown.Builder> op) {
 
-		op.add(Builder::buildAggregation, JsonpValueParser.numberParser(), "build_aggregation");
-		op.add(Builder::buildAggregationCount, JsonpValueParser.numberParser(), "build_aggregation_count");
-		op.add(Builder::buildLeafCollector, JsonpValueParser.numberParser(), "build_leaf_collector");
-		op.add(Builder::buildLeafCollectorCount, JsonpValueParser.numberParser(), "build_leaf_collector_count");
-		op.add(Builder::collect, JsonpValueParser.numberParser(), "collect");
-		op.add(Builder::collectCount, JsonpValueParser.numberParser(), "collect_count");
-		op.add(Builder::initialize, JsonpValueParser.numberParser(), "initialize");
-		op.add(Builder::initializeCount, JsonpValueParser.numberParser(), "initialize_count");
-		op.add(Builder::postCollection, JsonpValueParser.numberParser(), "post_collection");
-		op.add(Builder::postCollectionCount, JsonpValueParser.numberParser(), "post_collection_count");
-		op.add(Builder::reduce, JsonpValueParser.numberParser(), "reduce");
-		op.add(Builder::reduceCount, JsonpValueParser.numberParser(), "reduce_count");
+		op.add(Builder::buildAggregation, JsonpDeserializer.numberDeserializer(), "build_aggregation");
+		op.add(Builder::buildAggregationCount, JsonpDeserializer.numberDeserializer(), "build_aggregation_count");
+		op.add(Builder::buildLeafCollector, JsonpDeserializer.numberDeserializer(), "build_leaf_collector");
+		op.add(Builder::buildLeafCollectorCount, JsonpDeserializer.numberDeserializer(), "build_leaf_collector_count");
+		op.add(Builder::collect, JsonpDeserializer.numberDeserializer(), "collect");
+		op.add(Builder::collectCount, JsonpDeserializer.numberDeserializer(), "collect_count");
+		op.add(Builder::initialize, JsonpDeserializer.numberDeserializer(), "initialize");
+		op.add(Builder::initializeCount, JsonpDeserializer.numberDeserializer(), "initialize_count");
+		op.add(Builder::postCollection, JsonpDeserializer.numberDeserializer(), "post_collection");
+		op.add(Builder::postCollectionCount, JsonpDeserializer.numberDeserializer(), "post_collection_count");
+		op.add(Builder::reduce, JsonpDeserializer.numberDeserializer(), "reduce");
+		op.add(Builder::reduceCount, JsonpDeserializer.numberDeserializer(), "reduce_count");
 
 	}
 

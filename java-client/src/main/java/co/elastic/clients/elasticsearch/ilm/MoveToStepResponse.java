@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,13 @@ public final class MoveToStepResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MoveToStepResponse
+	 * Json deserializer for MoveToStepResponse
 	 */
-	public static final JsonpValueParser<MoveToStepResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MoveToStepResponse::setupMoveToStepResponseParser);
+	public static final JsonpDeserializer<MoveToStepResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MoveToStepResponse::setupMoveToStepResponseDeserializer);
 
-	protected static void setupMoveToStepResponseParser(DelegatingJsonpValueParser<MoveToStepResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupMoveToStepResponseDeserializer(DelegatingDeserializer<MoveToStepResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

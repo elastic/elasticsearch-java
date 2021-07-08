@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -139,15 +139,15 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AdjacencyMatrixAggregation
+	 * Json deserializer for AdjacencyMatrixAggregation
 	 */
-	public static final JsonpValueParser<AdjacencyMatrixAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationParser);
+	public static final JsonpDeserializer<AdjacencyMatrixAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer);
 
-	protected static void setupAdjacencyMatrixAggregationParser(
-			DelegatingJsonpValueParser<AdjacencyMatrixAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::filters, JsonpValueParser.stringMapParser(QueryContainer.JSONP_PARSER), "filters");
+	protected static void setupAdjacencyMatrixAggregationDeserializer(
+			DelegatingDeserializer<AdjacencyMatrixAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(QueryContainer.DESERIALIZER), "filters");
 
 	}
 

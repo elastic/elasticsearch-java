@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.count;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -178,16 +178,16 @@ public final class CountRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CountRecord
+	 * Json deserializer for CountRecord
 	 */
-	public static final JsonpValueParser<CountRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CountRecord::setupCountRecordParser);
+	public static final JsonpDeserializer<CountRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CountRecord::setupCountRecordDeserializer);
 
-	protected static void setupCountRecordParser(DelegatingJsonpValueParser<CountRecord.Builder> op) {
+	protected static void setupCountRecordDeserializer(DelegatingDeserializer<CountRecord.Builder> op) {
 
-		op.add(Builder::epoch, JsonpValueParser.jsonValueParser(), "epoch", "t", "time");
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp", "ts", "hms", "hhmmss");
-		op.add(Builder::count, JsonpValueParser.stringParser(), "count", "dc", "docs.count", "docsCount");
+		op.add(Builder::epoch, JsonpDeserializer.jsonValueDeserializer(), "epoch", "t", "time");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");
+		op.add(Builder::count, JsonpDeserializer.stringDeserializer(), "count", "dc", "docs.count", "docsCount");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -655,30 +655,31 @@ public final class TypeMapping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TypeMapping
+	 * Json deserializer for TypeMapping
 	 */
-	public static final JsonpValueParser<TypeMapping> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TypeMapping::setupTypeMappingParser);
+	public static final JsonpDeserializer<TypeMapping> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TypeMapping::setupTypeMappingDeserializer);
 
-	protected static void setupTypeMappingParser(DelegatingJsonpValueParser<TypeMapping.Builder> op) {
+	protected static void setupTypeMappingDeserializer(DelegatingDeserializer<TypeMapping.Builder> op) {
 
-		op.add(Builder::allField, AllField.JSONP_PARSER, "all_field");
-		op.add(Builder::dateDetection, JsonpValueParser.booleanParser(), "date_detection");
-		op.add(Builder::dynamic, JsonpValueParser.jsonValueParser(), "dynamic");
-		op.add(Builder::dynamicDateFormats, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::allField, AllField.DESERIALIZER, "all_field");
+		op.add(Builder::dateDetection, JsonpDeserializer.booleanDeserializer(), "date_detection");
+		op.add(Builder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
+		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
-		op.add(Builder::dynamicTemplates,
-				JsonpValueParser.arrayParser(JsonpValueParser.stringMapParser(DynamicTemplate.JSONP_PARSER)),
-				"dynamic_templates");
-		op.add(Builder::_fieldNames, FieldNamesField.JSONP_PARSER, "_field_names");
-		op.add(Builder::indexField, IndexField.JSONP_PARSER, "index_field");
-		op.add(Builder::_meta, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "_meta");
-		op.add(Builder::numericDetection, JsonpValueParser.booleanParser(), "numeric_detection");
-		op.add(Builder::properties, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "properties");
-		op.add(Builder::_routing, RoutingField.JSONP_PARSER, "_routing");
-		op.add(Builder::_size, SizeField.JSONP_PARSER, "_size");
-		op.add(Builder::_source, SourceField.JSONP_PARSER, "_source");
-		op.add(Builder::runtime, JsonpValueParser.stringMapParser(RuntimeField.JSONP_PARSER), "runtime");
+		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
+				JsonpDeserializer.stringMapDeserializer(DynamicTemplate.DESERIALIZER)), "dynamic_templates");
+		op.add(Builder::_fieldNames, FieldNamesField.DESERIALIZER, "_field_names");
+		op.add(Builder::indexField, IndexField.DESERIALIZER, "index_field");
+		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"_meta");
+		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
+		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"properties");
+		op.add(Builder::_routing, RoutingField.DESERIALIZER, "_routing");
+		op.add(Builder::_size, SizeField.DESERIALIZER, "_size");
+		op.add(Builder::_source, SourceField.DESERIALIZER, "_source");
+		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER), "runtime");
 
 	}
 

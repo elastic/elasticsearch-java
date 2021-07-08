@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -235,23 +235,22 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for HitsEvent
+	 * Create a json deserializer for HitsEvent
 	 */
-	public static <TEvent> JsonpValueParser<HitsEvent<TEvent>> createHitsEventParser(
-			JsonpValueParser<TEvent> tEventParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TEvent>>) Builder::new,
-				op -> HitsEvent.setupHitsEventParser(op, tEventParser));
+	public static <TEvent> JsonpDeserializer<HitsEvent<TEvent>> createHitsEventDeserializer(
+			JsonpDeserializer<TEvent> tEventDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TEvent>>) Builder::new,
+				op -> HitsEvent.setupHitsEventDeserializer(op, tEventDeserializer));
 	};
 
-	protected static <TEvent> void setupHitsEventParser(DelegatingJsonpValueParser<HitsEvent.Builder<TEvent>> op,
-			JsonpValueParser<TEvent> tEventParser) {
+	protected static <TEvent> void setupHitsEventDeserializer(DelegatingDeserializer<HitsEvent.Builder<TEvent>> op,
+			JsonpDeserializer<TEvent> tEventDeserializer) {
 
-		op.add(Builder::_index, JsonpValueParser.stringParser(), "_index");
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::_source, tEventParser, "_source");
-		op.add(Builder::fields,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser())),
-				"fields");
+		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::_source, tEventDeserializer, "_source");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer())), "fields");
 
 	}
 

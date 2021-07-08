@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -577,28 +577,29 @@ public final class Category implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Category
+	 * Json deserializer for Category
 	 */
-	public static final JsonpValueParser<Category> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Category::setupCategoryParser);
+	public static final JsonpDeserializer<Category> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Category::setupCategoryDeserializer);
 
-	protected static void setupCategoryParser(DelegatingJsonpValueParser<Category.Builder> op) {
+	protected static void setupCategoryDeserializer(DelegatingDeserializer<Category.Builder> op) {
 
-		op.add(Builder::categoryId, JsonpValueParser.numberParser(), "category_id");
-		op.add(Builder::examples, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "examples");
-		op.add(Builder::grokPattern, JsonpValueParser.stringParser(), "grok_pattern");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::maxMatchingLength, JsonpValueParser.numberParser(), "max_matching_length");
-		op.add(Builder::partitionFieldName, JsonpValueParser.stringParser(), "partition_field_name");
-		op.add(Builder::partitionFieldValue, JsonpValueParser.stringParser(), "partition_field_value");
-		op.add(Builder::regex, JsonpValueParser.stringParser(), "regex");
-		op.add(Builder::terms, JsonpValueParser.stringParser(), "terms");
-		op.add(Builder::numMatches, JsonpValueParser.numberParser(), "num_matches");
-		op.add(Builder::preferredToCategories, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"preferred_to_categories");
-		op.add(Builder::p, JsonpValueParser.stringParser(), "p");
-		op.add(Builder::resultType, JsonpValueParser.stringParser(), "result_type");
-		op.add(Builder::mlcategory, JsonpValueParser.stringParser(), "mlcategory");
+		op.add(Builder::categoryId, JsonpDeserializer.numberDeserializer(), "category_id");
+		op.add(Builder::examples, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"examples");
+		op.add(Builder::grokPattern, JsonpDeserializer.stringDeserializer(), "grok_pattern");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::maxMatchingLength, JsonpDeserializer.numberDeserializer(), "max_matching_length");
+		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
+		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
+		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
+		op.add(Builder::terms, JsonpDeserializer.stringDeserializer(), "terms");
+		op.add(Builder::numMatches, JsonpDeserializer.numberDeserializer(), "num_matches");
+		op.add(Builder::preferredToCategories,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "preferred_to_categories");
+		op.add(Builder::p, JsonpDeserializer.stringDeserializer(), "p");
+		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
+		op.add(Builder::mlcategory, JsonpDeserializer.stringDeserializer(), "mlcategory");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -141,16 +141,16 @@ public final class SpanFieldMaskingQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SpanFieldMaskingQuery
+	 * Json deserializer for SpanFieldMaskingQuery
 	 */
-	public static final JsonpValueParser<SpanFieldMaskingQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SpanFieldMaskingQuery::setupSpanFieldMaskingQueryParser);
+	public static final JsonpDeserializer<SpanFieldMaskingQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SpanFieldMaskingQuery::setupSpanFieldMaskingQueryDeserializer);
 
-	protected static void setupSpanFieldMaskingQueryParser(
-			DelegatingJsonpValueParser<SpanFieldMaskingQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::query, SpanQuery.JSONP_PARSER, "query");
+	protected static void setupSpanFieldMaskingQueryDeserializer(
+			DelegatingDeserializer<SpanFieldMaskingQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::query, SpanQuery.DESERIALIZER, "query");
 
 	}
 

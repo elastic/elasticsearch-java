@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -102,14 +102,14 @@ public final class NodeInfoAction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoAction
+	 * Json deserializer for NodeInfoAction
 	 */
-	public static final JsonpValueParser<NodeInfoAction> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoAction::setupNodeInfoActionParser);
+	public static final JsonpDeserializer<NodeInfoAction> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoAction::setupNodeInfoActionDeserializer);
 
-	protected static void setupNodeInfoActionParser(DelegatingJsonpValueParser<NodeInfoAction.Builder> op) {
+	protected static void setupNodeInfoActionDeserializer(DelegatingDeserializer<NodeInfoAction.Builder> op) {
 
-		op.add(Builder::destructiveRequiresName, JsonpValueParser.stringParser(), "destructive_requires_name");
+		op.add(Builder::destructiveRequiresName, JsonpDeserializer.stringDeserializer(), "destructive_requires_name");
 
 	}
 

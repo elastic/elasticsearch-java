@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.TransformContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -481,20 +481,21 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutWatchRequest
+	 * Json deserializer for PutWatchRequest
 	 */
-	public static final JsonpValueParser<PutWatchRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutWatchRequest::setupPutWatchRequestParser);
+	public static final JsonpDeserializer<PutWatchRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutWatchRequest::setupPutWatchRequestDeserializer);
 
-	protected static void setupPutWatchRequestParser(DelegatingJsonpValueParser<PutWatchRequest.Builder> op) {
+	protected static void setupPutWatchRequestDeserializer(DelegatingDeserializer<PutWatchRequest.Builder> op) {
 
-		op.add(Builder::actions, JsonpValueParser.stringMapParser(Action.JSONP_PARSER), "actions");
-		op.add(Builder::condition, ConditionContainer.JSONP_PARSER, "condition");
-		op.add(Builder::input, InputContainer.JSONP_PARSER, "input");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::throttlePeriod, JsonpValueParser.stringParser(), "throttle_period");
-		op.add(Builder::transform, TransformContainer.JSONP_PARSER, "transform");
-		op.add(Builder::trigger, TriggerContainer.JSONP_PARSER, "trigger");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action.DESERIALIZER), "actions");
+		op.add(Builder::condition, ConditionContainer.DESERIALIZER, "condition");
+		op.add(Builder::input, InputContainer.DESERIALIZER, "input");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::throttlePeriod, JsonpDeserializer.stringDeserializer(), "throttle_period");
+		op.add(Builder::transform, TransformContainer.DESERIALIZER, "transform");
+		op.add(Builder::trigger, TriggerContainer.DESERIALIZER, "trigger");
 
 	}
 
@@ -548,5 +549,5 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutWatchResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutWatchResponse.DESERIALIZER);
 }

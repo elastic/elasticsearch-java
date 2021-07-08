@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class GetTrialStatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetTrialStatusResponse
+	 * Json deserializer for GetTrialStatusResponse
 	 */
-	public static final JsonpValueParser<GetTrialStatusResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetTrialStatusResponse::setupGetTrialStatusResponseParser);
+	public static final JsonpDeserializer<GetTrialStatusResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetTrialStatusResponse::setupGetTrialStatusResponseDeserializer);
 
-	protected static void setupGetTrialStatusResponseParser(
-			DelegatingJsonpValueParser<GetTrialStatusResponse.Builder> op) {
+	protected static void setupGetTrialStatusResponseDeserializer(
+			DelegatingDeserializer<GetTrialStatusResponse.Builder> op) {
 
-		op.add(Builder::eligibleToStartTrial, JsonpValueParser.booleanParser(), "eligible_to_start_trial");
+		op.add(Builder::eligibleToStartTrial, JsonpDeserializer.booleanDeserializer(), "eligible_to_start_trial");
 
 	}
 

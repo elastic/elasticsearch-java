@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.create_service_token.Token;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -133,16 +133,16 @@ public final class CreateServiceTokenResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateServiceTokenResponse
+	 * Json deserializer for CreateServiceTokenResponse
 	 */
-	public static final JsonpValueParser<CreateServiceTokenResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateServiceTokenResponse::setupCreateServiceTokenResponseParser);
+	public static final JsonpDeserializer<CreateServiceTokenResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateServiceTokenResponse::setupCreateServiceTokenResponseDeserializer);
 
-	protected static void setupCreateServiceTokenResponseParser(
-			DelegatingJsonpValueParser<CreateServiceTokenResponse.Builder> op) {
+	protected static void setupCreateServiceTokenResponseDeserializer(
+			DelegatingDeserializer<CreateServiceTokenResponse.Builder> op) {
 
-		op.add(Builder::created, JsonpValueParser.booleanParser(), "created");
-		op.add(Builder::token, Token.JSONP_PARSER, "token");
+		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
+		op.add(Builder::token, Token.DESERIALIZER, "token");
 
 	}
 

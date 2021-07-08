@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch._global.update_by_query_rethrottle;
 
 import co.elastic.clients.elasticsearch._spec_utils.BaseNode;
 import co.elastic.clients.elasticsearch.task.Info;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class UpdateByQueryRethrottleNode extends BaseNode {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateByQueryRethrottleNode
+	 * Json deserializer for UpdateByQueryRethrottleNode
 	 */
-	public static final JsonpValueParser<UpdateByQueryRethrottleNode> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateByQueryRethrottleNode::setupUpdateByQueryRethrottleNodeParser);
+	public static final JsonpDeserializer<UpdateByQueryRethrottleNode> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpdateByQueryRethrottleNode::setupUpdateByQueryRethrottleNodeDeserializer);
 
-	protected static void setupUpdateByQueryRethrottleNodeParser(
-			DelegatingJsonpValueParser<UpdateByQueryRethrottleNode.Builder> op) {
-		BaseNode.setupBaseNodeParser(op);
-		op.add(Builder::tasks, JsonpValueParser.jsonValueParser(), "tasks");
+	protected static void setupUpdateByQueryRethrottleNodeDeserializer(
+			DelegatingDeserializer<UpdateByQueryRethrottleNode.Builder> op) {
+		BaseNode.setupBaseNodeDeserializer(op);
+		op.add(Builder::tasks, JsonpDeserializer.jsonValueDeserializer(), "tasks");
 
 	}
 

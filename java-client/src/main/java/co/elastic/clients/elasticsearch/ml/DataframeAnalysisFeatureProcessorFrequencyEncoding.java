@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -177,18 +177,18 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding implements
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalysisFeatureProcessorFrequencyEncoding
+	 * Json deserializer for DataframeAnalysisFeatureProcessorFrequencyEncoding
 	 */
-	public static final JsonpValueParser<DataframeAnalysisFeatureProcessorFrequencyEncoding> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorFrequencyEncoding> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeAnalysisFeatureProcessorFrequencyEncoding::setupDataframeAnalysisFeatureProcessorFrequencyEncodingParser);
+					DataframeAnalysisFeatureProcessorFrequencyEncoding::setupDataframeAnalysisFeatureProcessorFrequencyEncodingDeserializer);
 
-	protected static void setupDataframeAnalysisFeatureProcessorFrequencyEncodingParser(
-			DelegatingJsonpValueParser<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder> op) {
+	protected static void setupDataframeAnalysisFeatureProcessorFrequencyEncodingDeserializer(
+			DelegatingDeserializer<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder> op) {
 
-		op.add(Builder::featureName, JsonpValueParser.stringParser(), "feature_name");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::frequencyMap, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()),
+		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::frequencyMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
 				"frequency_map");
 
 	}

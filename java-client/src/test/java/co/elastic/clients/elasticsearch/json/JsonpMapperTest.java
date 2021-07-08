@@ -100,7 +100,7 @@ public class JsonpMapperTest extends Assert {
     private void testDeserialize(JsonpMapper mapper, String json) {
 
         JsonParser parser = mapper.jsonpProvider().createParser(new StringReader(json));
-        SomeClass parsed = mapper.getDeserializer(SomeClass.class).parse(parser, mapper);
+        SomeClass parsed = mapper.getDeserializer(SomeClass.class).deserialize(parser, mapper);
 
         assertEquals(1, parsed.getIntValue());
         assertEquals(2.1, parsed.getDoubleValue(), 0.0);

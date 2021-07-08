@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,14 +109,15 @@ public final class NodeInfoXpackLicense implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoXpackLicense
+	 * Json deserializer for NodeInfoXpackLicense
 	 */
-	public static final JsonpValueParser<NodeInfoXpackLicense> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoXpackLicense::setupNodeInfoXpackLicenseParser);
+	public static final JsonpDeserializer<NodeInfoXpackLicense> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoXpackLicense::setupNodeInfoXpackLicenseDeserializer);
 
-	protected static void setupNodeInfoXpackLicenseParser(DelegatingJsonpValueParser<NodeInfoXpackLicense.Builder> op) {
+	protected static void setupNodeInfoXpackLicenseDeserializer(
+			DelegatingDeserializer<NodeInfoXpackLicense.Builder> op) {
 
-		op.add(Builder::selfGenerated, NodeInfoXpackLicenseType.JSONP_PARSER, "self_generated");
+		op.add(Builder::selfGenerated, NodeInfoXpackLicenseType.DESERIALIZER, "self_generated");
 
 	}
 

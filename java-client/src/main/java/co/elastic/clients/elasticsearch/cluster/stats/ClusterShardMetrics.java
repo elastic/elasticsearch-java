@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,16 +147,16 @@ public final class ClusterShardMetrics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterShardMetrics
+	 * Json deserializer for ClusterShardMetrics
 	 */
-	public static final JsonpValueParser<ClusterShardMetrics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterShardMetrics::setupClusterShardMetricsParser);
+	public static final JsonpDeserializer<ClusterShardMetrics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterShardMetrics::setupClusterShardMetricsDeserializer);
 
-	protected static void setupClusterShardMetricsParser(DelegatingJsonpValueParser<ClusterShardMetrics.Builder> op) {
+	protected static void setupClusterShardMetricsDeserializer(DelegatingDeserializer<ClusterShardMetrics.Builder> op) {
 
-		op.add(Builder::avg, JsonpValueParser.numberParser(), "avg");
-		op.add(Builder::max, JsonpValueParser.numberParser(), "max");
-		op.add(Builder::min, JsonpValueParser.numberParser(), "min");
+		op.add(Builder::avg, JsonpDeserializer.numberDeserializer(), "avg");
+		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
+		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
 
 	}
 

@@ -25,13 +25,13 @@ package co.elastic.clients.elasticsearch.text_structure;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -615,19 +615,19 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for FindStructureRequest
+	 * Create a json deserializer for FindStructureRequest
 	 */
-	public static <TJsonDocument> JsonpValueParser<FindStructureRequest<TJsonDocument>> createFindStructureRequestParser(
-			JsonpValueParser<TJsonDocument> tJsonDocumentParser) {
-		return JsonpObjectBuilderParser.createForValue((Supplier<Builder<TJsonDocument>>) Builder::new,
-				op -> FindStructureRequest.setupFindStructureRequestParser(op, tJsonDocumentParser));
+	public static <TJsonDocument> JsonpDeserializer<FindStructureRequest<TJsonDocument>> createFindStructureRequestDeserializer(
+			JsonpDeserializer<TJsonDocument> tJsonDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TJsonDocument>>) Builder::new,
+				op -> FindStructureRequest.setupFindStructureRequestDeserializer(op, tJsonDocumentDeserializer));
 	};
 
-	protected static <TJsonDocument> void setupFindStructureRequestParser(
-			DelegatingJsonpValueParser<FindStructureRequest.Builder<TJsonDocument>> op,
-			JsonpValueParser<TJsonDocument> tJsonDocumentParser) {
+	protected static <TJsonDocument> void setupFindStructureRequestDeserializer(
+			DelegatingDeserializer<FindStructureRequest.Builder<TJsonDocument>> op,
+			JsonpDeserializer<TJsonDocument> tJsonDocumentDeserializer) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(tJsonDocumentParser), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(tJsonDocumentDeserializer), "value");
 
 	}
 
@@ -696,5 +696,5 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FindStructureResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, FindStructureResponse.DESERIALIZER);
 }

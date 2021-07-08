@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.shutdown;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -132,14 +132,14 @@ public final class DeleteNodeRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteNodeRequest
+	 * Json deserializer for DeleteNodeRequest
 	 */
-	public static final JsonpValueParser<DeleteNodeRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeleteNodeRequest::setupDeleteNodeRequestParser);
+	public static final JsonpDeserializer<DeleteNodeRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DeleteNodeRequest::setupDeleteNodeRequestDeserializer);
 
-	protected static void setupDeleteNodeRequestParser(DelegatingJsonpValueParser<DeleteNodeRequest.Builder> op) {
+	protected static void setupDeleteNodeRequestDeserializer(DelegatingDeserializer<DeleteNodeRequest.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.stringParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
 
 	}
 
@@ -180,5 +180,5 @@ public final class DeleteNodeRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, DeleteNodeResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, DeleteNodeResponse.DESERIALIZER);
 }

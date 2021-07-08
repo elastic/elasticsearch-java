@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.help.HelpRecord;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -141,14 +141,14 @@ public final class HelpResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HelpResponse
+	 * Json deserializer for HelpResponse
 	 */
-	public static final JsonpValueParser<HelpResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HelpResponse::setupHelpResponseParser);
+	public static final JsonpDeserializer<HelpResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HelpResponse::setupHelpResponseDeserializer);
 
-	protected static void setupHelpResponseParser(DelegatingJsonpValueParser<HelpResponse.Builder> op) {
+	protected static void setupHelpResponseDeserializer(DelegatingDeserializer<HelpResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(HelpRecord.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(HelpRecord.DESERIALIZER), "value");
 
 	}
 

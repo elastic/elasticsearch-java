@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.AdditionalProperties;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -71,14 +71,14 @@ public final class GetSettingsResponse extends AdditionalProperties<String, Inde
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetSettingsResponse
+	 * Json deserializer for GetSettingsResponse
 	 */
-	public static final JsonpValueParser<GetSettingsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetSettingsResponse::setupGetSettingsResponseParser);
+	public static final JsonpDeserializer<GetSettingsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer);
 
-	protected static void setupGetSettingsResponseParser(DelegatingJsonpValueParser<GetSettingsResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				IndexState.JSONP_PARSER);
+	protected static void setupGetSettingsResponseDeserializer(DelegatingDeserializer<GetSettingsResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				IndexState.DESERIALIZER);
 
 	}
 

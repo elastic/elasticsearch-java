@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -102,14 +102,14 @@ public final class ExistsQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExistsQuery
+	 * Json deserializer for ExistsQuery
 	 */
-	public static final JsonpValueParser<ExistsQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExistsQuery::setupExistsQueryParser);
+	public static final JsonpDeserializer<ExistsQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExistsQuery::setupExistsQueryDeserializer);
 
-	protected static void setupExistsQueryParser(DelegatingJsonpValueParser<ExistsQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
+	protected static void setupExistsQueryDeserializer(DelegatingDeserializer<ExistsQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.count.CountRecord;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -141,14 +141,14 @@ public final class CountResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CountResponse
+	 * Json deserializer for CountResponse
 	 */
-	public static final JsonpValueParser<CountResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CountResponse::setupCountResponseParser);
+	public static final JsonpDeserializer<CountResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CountResponse::setupCountResponseDeserializer);
 
-	protected static void setupCountResponseParser(DelegatingJsonpValueParser<CountResponse.Builder> op) {
+	protected static void setupCountResponseDeserializer(DelegatingDeserializer<CountResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(CountRecord.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(CountRecord.DESERIALIZER), "value");
 
 	}
 

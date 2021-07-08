@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -248,18 +248,18 @@ public final class ShardStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardStatistics
+	 * Json deserializer for ShardStatistics
 	 */
-	public static final JsonpValueParser<ShardStatistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardStatistics::setupShardStatisticsParser);
+	public static final JsonpDeserializer<ShardStatistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardStatistics::setupShardStatisticsDeserializer);
 
-	protected static void setupShardStatisticsParser(DelegatingJsonpValueParser<ShardStatistics.Builder> op) {
+	protected static void setupShardStatisticsDeserializer(DelegatingDeserializer<ShardStatistics.Builder> op) {
 
-		op.add(Builder::failed, JsonpValueParser.numberParser(), "failed");
-		op.add(Builder::successful, JsonpValueParser.numberParser(), "successful");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::failures, JsonpValueParser.arrayParser(ShardFailure.JSONP_PARSER), "failures");
-		op.add(Builder::skipped, JsonpValueParser.numberParser(), "skipped");
+		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
+		op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure.DESERIALIZER), "failures");
+		op.add(Builder::skipped, JsonpDeserializer.numberDeserializer(), "skipped");
 
 	}
 

@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch.indices.IndexState;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -179,20 +179,20 @@ public final class PreviewTransformResponse<TTransform> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for PreviewTransformResponse
+	 * Create a json deserializer for PreviewTransformResponse
 	 */
-	public static <TTransform> JsonpValueParser<PreviewTransformResponse<TTransform>> createPreviewTransformResponseParser(
-			JsonpValueParser<TTransform> tTransformParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TTransform>>) Builder::new,
-				op -> PreviewTransformResponse.setupPreviewTransformResponseParser(op, tTransformParser));
+	public static <TTransform> JsonpDeserializer<PreviewTransformResponse<TTransform>> createPreviewTransformResponseDeserializer(
+			JsonpDeserializer<TTransform> tTransformDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TTransform>>) Builder::new,
+				op -> PreviewTransformResponse.setupPreviewTransformResponseDeserializer(op, tTransformDeserializer));
 	};
 
-	protected static <TTransform> void setupPreviewTransformResponseParser(
-			DelegatingJsonpValueParser<PreviewTransformResponse.Builder<TTransform>> op,
-			JsonpValueParser<TTransform> tTransformParser) {
+	protected static <TTransform> void setupPreviewTransformResponseDeserializer(
+			DelegatingDeserializer<PreviewTransformResponse.Builder<TTransform>> op,
+			JsonpDeserializer<TTransform> tTransformDeserializer) {
 
-		op.add(Builder::generatedDestIndex, IndexState.JSONP_PARSER, "generated_dest_index");
-		op.add(Builder::preview, JsonpValueParser.arrayParser(tTransformParser), "preview");
+		op.add(Builder::generatedDestIndex, IndexState.DESERIALIZER, "generated_dest_index");
+		op.add(Builder::preview, JsonpDeserializer.arrayDeserializer(tTransformDeserializer), "preview");
 
 	}
 

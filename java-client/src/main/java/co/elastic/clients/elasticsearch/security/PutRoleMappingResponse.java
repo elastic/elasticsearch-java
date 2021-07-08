@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -139,16 +139,16 @@ public final class PutRoleMappingResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutRoleMappingResponse
+	 * Json deserializer for PutRoleMappingResponse
 	 */
-	public static final JsonpValueParser<PutRoleMappingResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutRoleMappingResponse::setupPutRoleMappingResponseParser);
+	public static final JsonpDeserializer<PutRoleMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutRoleMappingResponse::setupPutRoleMappingResponseDeserializer);
 
-	protected static void setupPutRoleMappingResponseParser(
-			DelegatingJsonpValueParser<PutRoleMappingResponse.Builder> op) {
+	protected static void setupPutRoleMappingResponseDeserializer(
+			DelegatingDeserializer<PutRoleMappingResponse.Builder> op) {
 
-		op.add(Builder::created, JsonpValueParser.booleanParser(), "created");
-		op.add(Builder::roleMapping, CreatedStatus.JSONP_PARSER, "role_mapping");
+		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
+		op.add(Builder::roleMapping, CreatedStatus.DESERIALIZER, "role_mapping");
 
 	}
 

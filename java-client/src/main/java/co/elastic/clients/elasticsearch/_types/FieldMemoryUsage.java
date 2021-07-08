@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -132,15 +132,15 @@ public final class FieldMemoryUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldMemoryUsage
+	 * Json deserializer for FieldMemoryUsage
 	 */
-	public static final JsonpValueParser<FieldMemoryUsage> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldMemoryUsage::setupFieldMemoryUsageParser);
+	public static final JsonpDeserializer<FieldMemoryUsage> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldMemoryUsage::setupFieldMemoryUsageDeserializer);
 
-	protected static void setupFieldMemoryUsageParser(DelegatingJsonpValueParser<FieldMemoryUsage.Builder> op) {
+	protected static void setupFieldMemoryUsageDeserializer(DelegatingDeserializer<FieldMemoryUsage.Builder> op) {
 
-		op.add(Builder::memorySize, JsonpValueParser.jsonValueParser(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpValueParser.numberParser(), "memory_size_in_bytes");
+		op.add(Builder::memorySize, JsonpDeserializer.jsonValueDeserializer(), "memory_size");
+		op.add(Builder::memorySizeInBytes, JsonpDeserializer.numberDeserializer(), "memory_size_in_bytes");
 
 	}
 

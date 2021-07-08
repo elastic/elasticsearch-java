@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.field_caps.FieldCapability;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -177,17 +177,17 @@ public final class FieldCapsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldCapsResponse
+	 * Json deserializer for FieldCapsResponse
 	 */
-	public static final JsonpValueParser<FieldCapsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldCapsResponse::setupFieldCapsResponseParser);
+	public static final JsonpDeserializer<FieldCapsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldCapsResponse::setupFieldCapsResponseDeserializer);
 
-	protected static void setupFieldCapsResponseParser(DelegatingJsonpValueParser<FieldCapsResponse.Builder> op) {
+	protected static void setupFieldCapsResponseDeserializer(DelegatingDeserializer<FieldCapsResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::fields,
-				JsonpValueParser.stringMapParser(JsonpValueParser.stringMapParser(FieldCapability.JSONP_PARSER)),
-				"fields");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.stringMapDeserializer(FieldCapability.DESERIALIZER)), "fields");
 
 	}
 

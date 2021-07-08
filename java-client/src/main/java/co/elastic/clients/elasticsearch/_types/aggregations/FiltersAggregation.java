@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -164,16 +164,16 @@ public final class FiltersAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FiltersAggregation
+	 * Json deserializer for FiltersAggregation
 	 */
-	public static final JsonpValueParser<FiltersAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FiltersAggregation::setupFiltersAggregationParser);
+	public static final JsonpDeserializer<FiltersAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FiltersAggregation::setupFiltersAggregationDeserializer);
 
-	protected static void setupFiltersAggregationParser(DelegatingJsonpValueParser<FiltersAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::filters, JsonpValueParser.jsonValueParser(), "filters");
-		op.add(Builder::otherBucket, JsonpValueParser.booleanParser(), "other_bucket");
-		op.add(Builder::otherBucketKey, JsonpValueParser.stringParser(), "other_bucket_key");
+	protected static void setupFiltersAggregationDeserializer(DelegatingDeserializer<FiltersAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::filters, JsonpDeserializer.jsonValueDeserializer(), "filters");
+		op.add(Builder::otherBucket, JsonpDeserializer.booleanDeserializer(), "other_bucket");
+		op.add(Builder::otherBucketKey, JsonpDeserializer.stringDeserializer(), "other_bucket_key");
 
 	}
 

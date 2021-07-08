@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class RealmInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RealmInfo
+	 * Json deserializer for RealmInfo
 	 */
-	public static final JsonpValueParser<RealmInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RealmInfo::setupRealmInfoParser);
+	public static final JsonpDeserializer<RealmInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RealmInfo::setupRealmInfoDeserializer);
 
-	protected static void setupRealmInfoParser(DelegatingJsonpValueParser<RealmInfo.Builder> op) {
+	protected static void setupRealmInfoDeserializer(DelegatingDeserializer<RealmInfo.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

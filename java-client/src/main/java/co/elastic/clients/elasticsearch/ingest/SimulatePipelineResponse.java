@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,15 +143,15 @@ public final class SimulatePipelineResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SimulatePipelineResponse
+	 * Json deserializer for SimulatePipelineResponse
 	 */
-	public static final JsonpValueParser<SimulatePipelineResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SimulatePipelineResponse::setupSimulatePipelineResponseParser);
+	public static final JsonpDeserializer<SimulatePipelineResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SimulatePipelineResponse::setupSimulatePipelineResponseDeserializer);
 
-	protected static void setupSimulatePipelineResponseParser(
-			DelegatingJsonpValueParser<SimulatePipelineResponse.Builder> op) {
+	protected static void setupSimulatePipelineResponseDeserializer(
+			DelegatingDeserializer<SimulatePipelineResponse.Builder> op) {
 
-		op.add(Builder::docs, JsonpValueParser.arrayParser(PipelineSimulation.JSONP_PARSER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(PipelineSimulation.DESERIALIZER), "docs");
 
 	}
 

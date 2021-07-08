@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -256,20 +256,20 @@ public final class TranslogStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TranslogStats
+	 * Json deserializer for TranslogStats
 	 */
-	public static final JsonpValueParser<TranslogStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TranslogStats::setupTranslogStatsParser);
+	public static final JsonpDeserializer<TranslogStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TranslogStats::setupTranslogStatsDeserializer);
 
-	protected static void setupTranslogStatsParser(DelegatingJsonpValueParser<TranslogStats.Builder> op) {
+	protected static void setupTranslogStatsDeserializer(DelegatingDeserializer<TranslogStats.Builder> op) {
 
-		op.add(Builder::earliestLastModifiedAge, JsonpValueParser.numberParser(), "earliest_last_modified_age");
-		op.add(Builder::operations, JsonpValueParser.numberParser(), "operations");
-		op.add(Builder::size, JsonpValueParser.stringParser(), "size");
-		op.add(Builder::sizeInBytes, JsonpValueParser.numberParser(), "size_in_bytes");
-		op.add(Builder::uncommittedOperations, JsonpValueParser.numberParser(), "uncommitted_operations");
-		op.add(Builder::uncommittedSize, JsonpValueParser.stringParser(), "uncommitted_size");
-		op.add(Builder::uncommittedSizeInBytes, JsonpValueParser.numberParser(), "uncommitted_size_in_bytes");
+		op.add(Builder::earliestLastModifiedAge, JsonpDeserializer.numberDeserializer(), "earliest_last_modified_age");
+		op.add(Builder::operations, JsonpDeserializer.numberDeserializer(), "operations");
+		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
+		op.add(Builder::uncommittedOperations, JsonpDeserializer.numberDeserializer(), "uncommitted_operations");
+		op.add(Builder::uncommittedSize, JsonpDeserializer.stringDeserializer(), "uncommitted_size");
+		op.add(Builder::uncommittedSizeInBytes, JsonpDeserializer.numberDeserializer(), "uncommitted_size_in_bytes");
 
 	}
 

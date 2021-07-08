@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class OpenJobResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for OpenJobResponse
+	 * Json deserializer for OpenJobResponse
 	 */
-	public static final JsonpValueParser<OpenJobResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, OpenJobResponse::setupOpenJobResponseParser);
+	public static final JsonpDeserializer<OpenJobResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, OpenJobResponse::setupOpenJobResponseDeserializer);
 
-	protected static void setupOpenJobResponseParser(DelegatingJsonpValueParser<OpenJobResponse.Builder> op) {
+	protected static void setupOpenJobResponseDeserializer(DelegatingDeserializer<OpenJobResponse.Builder> op) {
 
-		op.add(Builder::opened, JsonpValueParser.booleanParser(), "opened");
+		op.add(Builder::opened, JsonpDeserializer.booleanDeserializer(), "opened");
 
 	}
 

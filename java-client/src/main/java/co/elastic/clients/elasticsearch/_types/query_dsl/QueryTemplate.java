@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class QueryTemplate implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for QueryTemplate
+	 * Json deserializer for QueryTemplate
 	 */
-	public static final JsonpValueParser<QueryTemplate> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, QueryTemplate::setupQueryTemplateParser);
+	public static final JsonpDeserializer<QueryTemplate> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, QueryTemplate::setupQueryTemplateDeserializer);
 
-	protected static void setupQueryTemplateParser(DelegatingJsonpValueParser<QueryTemplate.Builder> op) {
+	protected static void setupQueryTemplateDeserializer(DelegatingDeserializer<QueryTemplate.Builder> op) {
 
-		op.add(Builder::source, JsonpValueParser.stringParser(), "source");
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}
 

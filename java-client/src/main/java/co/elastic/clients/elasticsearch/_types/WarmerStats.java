@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -178,17 +178,17 @@ public final class WarmerStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WarmerStats
+	 * Json deserializer for WarmerStats
 	 */
-	public static final JsonpValueParser<WarmerStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WarmerStats::setupWarmerStatsParser);
+	public static final JsonpDeserializer<WarmerStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WarmerStats::setupWarmerStatsDeserializer);
 
-	protected static void setupWarmerStatsParser(DelegatingJsonpValueParser<WarmerStats.Builder> op) {
+	protected static void setupWarmerStatsDeserializer(DelegatingDeserializer<WarmerStats.Builder> op) {
 
-		op.add(Builder::current, JsonpValueParser.numberParser(), "current");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::totalTime, JsonpValueParser.stringParser(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.numberParser(), "total_time_in_millis");
+		op.add(Builder::current, JsonpDeserializer.numberDeserializer(), "current");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.numberDeserializer(), "total_time_in_millis");
 
 	}
 

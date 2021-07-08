@@ -20,7 +20,7 @@
 package co.elastic.clients.util;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
@@ -123,14 +123,14 @@ public class Union2<A, B> {
     }
   }
 
-  public static class JsonpParser<A, B> extends JsonpValueParser<Union2<A, B>> {
+  public static class JsonpParser<A, B> extends JsonpDeserializer<Union2<A, B>> {
 
-    private final JsonpValueParser<A> parserA;
-    private final JsonpValueParser<B> parserB;
+    private final JsonpDeserializer<A> parserA;
+    private final JsonpDeserializer<B> parserB;
 
     public JsonpParser(
-        JsonpValueParser<A> parserA,
-        JsonpValueParser<B> parserB
+        JsonpDeserializer<A> parserA,
+        JsonpDeserializer<B> parserB
     ) {
       super(allAcceptedEvents(parserA, parserB));
       this.parserA = parserA;
@@ -138,12 +138,12 @@ public class Union2<A, B> {
     }
 
     @Override
-    public Union2<A, B> parse(JsonParser parser, JsonpMapper mapper, Event event) {
+    public Union2<A, B> deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
       if (parserA.accepts(event)) {
-        return Union2.ofA(parserA.parse(parser, mapper, event));
+        return Union2.ofA(parserA.deserialize(parser, mapper, event));
 
       } else if (parserB.accepts(event)) {
-        return Union2.ofB(parserB.parse(parser, mapper, event));
+        return Union2.ofB(parserB.deserialize(parser, mapper, event));
 
       } else {
         throw new JsonParsingException("Unexpected event [" + event + "]", parser.getLocation());

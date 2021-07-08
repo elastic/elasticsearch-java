@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -244,19 +244,20 @@ public final class StoreStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StoreStats
+	 * Json deserializer for StoreStats
 	 */
-	public static final JsonpValueParser<StoreStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StoreStats::setupStoreStatsParser);
+	public static final JsonpDeserializer<StoreStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StoreStats::setupStoreStatsDeserializer);
 
-	protected static void setupStoreStatsParser(DelegatingJsonpValueParser<StoreStats.Builder> op) {
+	protected static void setupStoreStatsDeserializer(DelegatingDeserializer<StoreStats.Builder> op) {
 
-		op.add(Builder::size, JsonpValueParser.jsonValueParser(), "size");
-		op.add(Builder::sizeInBytes, JsonpValueParser.numberParser(), "size_in_bytes");
-		op.add(Builder::reserved, JsonpValueParser.jsonValueParser(), "reserved");
-		op.add(Builder::reservedInBytes, JsonpValueParser.numberParser(), "reserved_in_bytes");
-		op.add(Builder::totalDataSetSize, JsonpValueParser.jsonValueParser(), "total_data_set_size");
-		op.add(Builder::totalDataSetSizeInBytes, JsonpValueParser.numberParser(), "total_data_set_size_in_bytes");
+		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
+		op.add(Builder::reserved, JsonpDeserializer.jsonValueDeserializer(), "reserved");
+		op.add(Builder::reservedInBytes, JsonpDeserializer.numberDeserializer(), "reserved_in_bytes");
+		op.add(Builder::totalDataSetSize, JsonpDeserializer.jsonValueDeserializer(), "total_data_set_size");
+		op.add(Builder::totalDataSetSizeInBytes, JsonpDeserializer.numberDeserializer(),
+				"total_data_set_size_in_bytes");
 
 	}
 

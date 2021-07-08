@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -108,14 +108,14 @@ public final class Summary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Summary
+	 * Json deserializer for Summary
 	 */
-	public static final JsonpValueParser<Summary> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Summary::setupSummaryParser);
+	public static final JsonpDeserializer<Summary> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Summary::setupSummaryDeserializer);
 
-	protected static void setupSummaryParser(DelegatingJsonpValueParser<Summary.Builder> op) {
+	protected static void setupSummaryDeserializer(DelegatingDeserializer<Summary.Builder> op) {
 
-		op.add(Builder::config, Configuration.JSONP_PARSER, "config");
+		op.add(Builder::config, Configuration.DESERIALIZER, "config");
 
 	}
 

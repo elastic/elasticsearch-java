@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,13 @@ public final class StartResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StartResponse
+	 * Json deserializer for StartResponse
 	 */
-	public static final JsonpValueParser<StartResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StartResponse::setupStartResponseParser);
+	public static final JsonpDeserializer<StartResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StartResponse::setupStartResponseDeserializer);
 
-	protected static void setupStartResponseParser(DelegatingJsonpValueParser<StartResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupStartResponseDeserializer(DelegatingDeserializer<StartResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -167,17 +167,17 @@ public final class DataframeClassificationSummaryPrecision implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeClassificationSummaryPrecision
+	 * Json deserializer for DataframeClassificationSummaryPrecision
 	 */
-	public static final JsonpValueParser<DataframeClassificationSummaryPrecision> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeClassificationSummaryPrecision> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeClassificationSummaryPrecision::setupDataframeClassificationSummaryPrecisionParser);
+					DataframeClassificationSummaryPrecision::setupDataframeClassificationSummaryPrecisionDeserializer);
 
-	protected static void setupDataframeClassificationSummaryPrecisionParser(
-			DelegatingJsonpValueParser<DataframeClassificationSummaryPrecision.Builder> op) {
+	protected static void setupDataframeClassificationSummaryPrecisionDeserializer(
+			DelegatingDeserializer<DataframeClassificationSummaryPrecision.Builder> op) {
 
-		op.add(Builder::classes, JsonpValueParser.arrayParser(DataframeEvaluationClass.JSONP_PARSER), "classes");
-		op.add(Builder::avgPrecision, JsonpValueParser.numberParser(), "avg_precision");
+		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass.DESERIALIZER), "classes");
+		op.add(Builder::avgPrecision, JsonpDeserializer.numberDeserializer(), "avg_precision");
 
 	}
 

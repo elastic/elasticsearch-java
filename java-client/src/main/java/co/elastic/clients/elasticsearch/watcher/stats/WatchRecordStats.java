@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -226,19 +226,19 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WatchRecordStats
+	 * Json deserializer for WatchRecordStats
 	 */
-	public static final JsonpValueParser<WatchRecordStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WatchRecordStats::setupWatchRecordStatsParser);
+	public static final JsonpDeserializer<WatchRecordStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WatchRecordStats::setupWatchRecordStatsDeserializer);
 
-	protected static void setupWatchRecordStatsParser(DelegatingJsonpValueParser<WatchRecordStats.Builder> op) {
-		WatchRecordQueuedStats.setupWatchRecordQueuedStatsParser(op);
-		op.add(Builder::executionPhase, JsonpValueParser.jsonValueParser(), "execution_phase");
-		op.add(Builder::triggeredTime, JsonpValueParser.stringParser(), "triggered_time");
-		op.add(Builder::executedActions, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+	protected static void setupWatchRecordStatsDeserializer(DelegatingDeserializer<WatchRecordStats.Builder> op) {
+		WatchRecordQueuedStats.setupWatchRecordQueuedStatsDeserializer(op);
+		op.add(Builder::executionPhase, JsonpDeserializer.jsonValueDeserializer(), "execution_phase");
+		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");
+		op.add(Builder::executedActions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"executed_actions");
-		op.add(Builder::watchId, JsonpValueParser.stringParser(), "watch_id");
-		op.add(Builder::watchRecordId, JsonpValueParser.stringParser(), "watch_record_id");
+		op.add(Builder::watchId, JsonpDeserializer.stringDeserializer(), "watch_id");
+		op.add(Builder::watchRecordId, JsonpDeserializer.stringDeserializer(), "watch_record_id");
 
 	}
 

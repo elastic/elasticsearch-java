@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -138,14 +138,14 @@ public final class RuntimeFieldTypes extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RuntimeFieldTypes
+	 * Json deserializer for RuntimeFieldTypes
 	 */
-	public static final JsonpValueParser<RuntimeFieldTypes> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RuntimeFieldTypes::setupRuntimeFieldTypesParser);
+	public static final JsonpDeserializer<RuntimeFieldTypes> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RuntimeFieldTypes::setupRuntimeFieldTypesDeserializer);
 
-	protected static void setupRuntimeFieldTypesParser(DelegatingJsonpValueParser<RuntimeFieldTypes.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::fieldTypes, JsonpValueParser.arrayParser(RuntimeFieldsType.JSONP_PARSER), "field_types");
+	protected static void setupRuntimeFieldTypesDeserializer(DelegatingDeserializer<RuntimeFieldTypes.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldsType.DESERIALIZER), "field_types");
 
 	}
 

@@ -34,11 +34,11 @@ import co.elastic.clients.elasticsearch._types.mapping.RoutingField;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.mapping.SizeField;
 import co.elastic.clients.elasticsearch._types.mapping.SourceField;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -893,30 +893,31 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutMappingRequest
+	 * Json deserializer for PutMappingRequest
 	 */
-	public static final JsonpValueParser<PutMappingRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutMappingRequest::setupPutMappingRequestParser);
+	public static final JsonpDeserializer<PutMappingRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutMappingRequest::setupPutMappingRequestDeserializer);
 
-	protected static void setupPutMappingRequestParser(DelegatingJsonpValueParser<PutMappingRequest.Builder> op) {
+	protected static void setupPutMappingRequestDeserializer(DelegatingDeserializer<PutMappingRequest.Builder> op) {
 
-		op.add(Builder::allField, AllField.JSONP_PARSER, "all_field");
-		op.add(Builder::dateDetection, JsonpValueParser.booleanParser(), "date_detection");
-		op.add(Builder::dynamic, JsonpValueParser.jsonValueParser(), "dynamic");
-		op.add(Builder::dynamicDateFormats, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::allField, AllField.DESERIALIZER, "all_field");
+		op.add(Builder::dateDetection, JsonpDeserializer.booleanDeserializer(), "date_detection");
+		op.add(Builder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
+		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
-		op.add(Builder::dynamicTemplates,
-				JsonpValueParser.arrayParser(JsonpValueParser.stringMapParser(DynamicTemplate.JSONP_PARSER)),
-				"dynamic_templates");
-		op.add(Builder::fieldNamesField, FieldNamesField.JSONP_PARSER, "field_names_field");
-		op.add(Builder::indexField, IndexField.JSONP_PARSER, "index_field");
-		op.add(Builder::meta, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "meta");
-		op.add(Builder::numericDetection, JsonpValueParser.booleanParser(), "numeric_detection");
-		op.add(Builder::properties, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "properties");
-		op.add(Builder::routingField, RoutingField.JSONP_PARSER, "routing_field");
-		op.add(Builder::sizeField, SizeField.JSONP_PARSER, "size_field");
-		op.add(Builder::sourceField, SourceField.JSONP_PARSER, "source_field");
-		op.add(Builder::runtime, JsonpValueParser.stringMapParser(RuntimeField.JSONP_PARSER), "runtime");
+		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
+				JsonpDeserializer.stringMapDeserializer(DynamicTemplate.DESERIALIZER)), "dynamic_templates");
+		op.add(Builder::fieldNamesField, FieldNamesField.DESERIALIZER, "field_names_field");
+		op.add(Builder::indexField, IndexField.DESERIALIZER, "index_field");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"meta");
+		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
+		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"properties");
+		op.add(Builder::routingField, RoutingField.DESERIALIZER, "routing_field");
+		op.add(Builder::sizeField, SizeField.DESERIALIZER, "size_field");
+		op.add(Builder::sourceField, SourceField.DESERIALIZER, "source_field");
+		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER), "runtime");
 
 	}
 
@@ -1038,5 +1039,5 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutMappingResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutMappingResponse.DESERIALIZER);
 }

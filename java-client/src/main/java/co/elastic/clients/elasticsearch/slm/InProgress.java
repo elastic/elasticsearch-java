@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -170,17 +170,17 @@ public final class InProgress implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InProgress
+	 * Json deserializer for InProgress
 	 */
-	public static final JsonpValueParser<InProgress> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InProgress::setupInProgressParser);
+	public static final JsonpDeserializer<InProgress> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InProgress::setupInProgressDeserializer);
 
-	protected static void setupInProgressParser(DelegatingJsonpValueParser<InProgress.Builder> op) {
+	protected static void setupInProgressDeserializer(DelegatingDeserializer<InProgress.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::startTimeMillis, JsonpValueParser.stringParser(), "start_time_millis");
-		op.add(Builder::state, JsonpValueParser.stringParser(), "state");
-		op.add(Builder::uuid, JsonpValueParser.stringParser(), "uuid");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::startTimeMillis, JsonpDeserializer.stringDeserializer(), "start_time_millis");
+		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
+		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
 
 	}
 

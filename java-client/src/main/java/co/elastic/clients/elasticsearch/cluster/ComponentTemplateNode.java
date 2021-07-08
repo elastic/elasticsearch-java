@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -189,17 +189,18 @@ public final class ComponentTemplateNode implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ComponentTemplateNode
+	 * Json deserializer for ComponentTemplateNode
 	 */
-	public static final JsonpValueParser<ComponentTemplateNode> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ComponentTemplateNode::setupComponentTemplateNodeParser);
+	public static final JsonpDeserializer<ComponentTemplateNode> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ComponentTemplateNode::setupComponentTemplateNodeDeserializer);
 
-	protected static void setupComponentTemplateNodeParser(
-			DelegatingJsonpValueParser<ComponentTemplateNode.Builder> op) {
+	protected static void setupComponentTemplateNodeDeserializer(
+			DelegatingDeserializer<ComponentTemplateNode.Builder> op) {
 
-		op.add(Builder::template, ComponentTemplateSummary.JSONP_PARSER, "template");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::_meta, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "_meta");
+		op.add(Builder::template, ComponentTemplateSummary.DESERIALIZER, "template");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"_meta");
 
 	}
 

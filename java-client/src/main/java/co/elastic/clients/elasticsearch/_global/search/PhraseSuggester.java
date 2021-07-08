@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -517,27 +517,27 @@ public final class PhraseSuggester extends SuggesterBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PhraseSuggester
+	 * Json deserializer for PhraseSuggester
 	 */
-	public static final JsonpValueParser<PhraseSuggester> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PhraseSuggester::setupPhraseSuggesterParser);
+	public static final JsonpDeserializer<PhraseSuggester> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PhraseSuggester::setupPhraseSuggesterDeserializer);
 
-	protected static void setupPhraseSuggesterParser(DelegatingJsonpValueParser<PhraseSuggester.Builder> op) {
-		SuggesterBase.setupSuggesterBaseParser(op);
-		op.add(Builder::collate, PhraseSuggestCollate.JSONP_PARSER, "collate");
-		op.add(Builder::confidence, JsonpValueParser.numberParser(), "confidence");
-		op.add(Builder::directGenerator, JsonpValueParser.arrayParser(DirectGenerator.JSONP_PARSER),
+	protected static void setupPhraseSuggesterDeserializer(DelegatingDeserializer<PhraseSuggester.Builder> op) {
+		SuggesterBase.setupSuggesterBaseDeserializer(op);
+		op.add(Builder::collate, PhraseSuggestCollate.DESERIALIZER, "collate");
+		op.add(Builder::confidence, JsonpDeserializer.numberDeserializer(), "confidence");
+		op.add(Builder::directGenerator, JsonpDeserializer.arrayDeserializer(DirectGenerator.DESERIALIZER),
 				"direct_generator");
-		op.add(Builder::forceUnigrams, JsonpValueParser.booleanParser(), "force_unigrams");
-		op.add(Builder::gramSize, JsonpValueParser.numberParser(), "gram_size");
-		op.add(Builder::highlight, PhraseSuggestHighlight.JSONP_PARSER, "highlight");
-		op.add(Builder::maxErrors, JsonpValueParser.numberParser(), "max_errors");
-		op.add(Builder::realWordErrorLikelihood, JsonpValueParser.numberParser(), "real_word_error_likelihood");
-		op.add(Builder::separator, JsonpValueParser.stringParser(), "separator");
-		op.add(Builder::shardSize, JsonpValueParser.numberParser(), "shard_size");
-		op.add(Builder::smoothing, SmoothingModelContainer.JSONP_PARSER, "smoothing");
-		op.add(Builder::text, JsonpValueParser.stringParser(), "text");
-		op.add(Builder::tokenLimit, JsonpValueParser.numberParser(), "token_limit");
+		op.add(Builder::forceUnigrams, JsonpDeserializer.booleanDeserializer(), "force_unigrams");
+		op.add(Builder::gramSize, JsonpDeserializer.numberDeserializer(), "gram_size");
+		op.add(Builder::highlight, PhraseSuggestHighlight.DESERIALIZER, "highlight");
+		op.add(Builder::maxErrors, JsonpDeserializer.numberDeserializer(), "max_errors");
+		op.add(Builder::realWordErrorLikelihood, JsonpDeserializer.numberDeserializer(), "real_word_error_likelihood");
+		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
+		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::smoothing, SmoothingModelContainer.DESERIALIZER, "smoothing");
+		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
+		op.add(Builder::tokenLimit, JsonpDeserializer.numberDeserializer(), "token_limit");
 
 	}
 

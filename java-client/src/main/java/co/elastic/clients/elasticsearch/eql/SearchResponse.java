@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Supplier;
@@ -87,17 +87,17 @@ public final class SearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for SearchResponse
+	 * Create a json deserializer for SearchResponse
 	 */
-	public static <TEvent> JsonpValueParser<SearchResponse<TEvent>> createSearchResponseParser(
-			JsonpValueParser<TEvent> tEventParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TEvent>>) Builder::new,
-				op -> SearchResponse.setupSearchResponseParser(op, tEventParser));
+	public static <TEvent> JsonpDeserializer<SearchResponse<TEvent>> createSearchResponseDeserializer(
+			JsonpDeserializer<TEvent> tEventDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TEvent>>) Builder::new,
+				op -> SearchResponse.setupSearchResponseDeserializer(op, tEventDeserializer));
 	};
 
-	protected static <TEvent> void setupSearchResponseParser(
-			DelegatingJsonpValueParser<SearchResponse.Builder<TEvent>> op, JsonpValueParser<TEvent> tEventParser) {
-		EqlSearchResponseBase.setupEqlSearchResponseBaseParser(op, tEventParser);
+	protected static <TEvent> void setupSearchResponseDeserializer(
+			DelegatingDeserializer<SearchResponse.Builder<TEvent>> op, JsonpDeserializer<TEvent> tEventDeserializer) {
+		EqlSearchResponseBase.setupEqlSearchResponseBaseDeserializer(op, tEventDeserializer);
 
 	}
 

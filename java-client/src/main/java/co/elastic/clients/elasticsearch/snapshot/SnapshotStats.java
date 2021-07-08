@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -185,17 +185,17 @@ public final class SnapshotStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SnapshotStats
+	 * Json deserializer for SnapshotStats
 	 */
-	public static final JsonpValueParser<SnapshotStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SnapshotStats::setupSnapshotStatsParser);
+	public static final JsonpDeserializer<SnapshotStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SnapshotStats::setupSnapshotStatsDeserializer);
 
-	protected static void setupSnapshotStatsParser(DelegatingJsonpValueParser<SnapshotStats.Builder> op) {
+	protected static void setupSnapshotStatsDeserializer(DelegatingDeserializer<SnapshotStats.Builder> op) {
 
-		op.add(Builder::incremental, FileCountSnapshotStats.JSONP_PARSER, "incremental");
-		op.add(Builder::startTimeInMillis, JsonpValueParser.numberParser(), "start_time_in_millis");
-		op.add(Builder::timeInMillis, JsonpValueParser.numberParser(), "time_in_millis");
-		op.add(Builder::total, FileCountSnapshotStats.JSONP_PARSER, "total");
+		op.add(Builder::incremental, FileCountSnapshotStats.DESERIALIZER, "incremental");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
+		op.add(Builder::timeInMillis, JsonpDeserializer.numberDeserializer(), "time_in_millis");
+		op.add(Builder::total, FileCountSnapshotStats.DESERIALIZER, "total");
 
 	}
 

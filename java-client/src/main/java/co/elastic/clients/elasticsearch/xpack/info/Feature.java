@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -194,17 +194,17 @@ public final class Feature implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Feature
+	 * Json deserializer for Feature
 	 */
-	public static final JsonpValueParser<Feature> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Feature::setupFeatureParser);
+	public static final JsonpDeserializer<Feature> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Feature::setupFeatureDeserializer);
 
-	protected static void setupFeatureParser(DelegatingJsonpValueParser<Feature.Builder> op) {
+	protected static void setupFeatureDeserializer(DelegatingDeserializer<Feature.Builder> op) {
 
-		op.add(Builder::available, JsonpValueParser.booleanParser(), "available");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
-		op.add(Builder::nativeCodeInfo, NativeCodeInformation.JSONP_PARSER, "native_code_info");
+		op.add(Builder::available, JsonpDeserializer.booleanDeserializer(), "available");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::nativeCodeInfo, NativeCodeInformation.DESERIALIZER, "native_code_info");
 
 	}
 

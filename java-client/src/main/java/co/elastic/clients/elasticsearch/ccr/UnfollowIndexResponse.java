@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,14 +68,14 @@ public final class UnfollowIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UnfollowIndexResponse
+	 * Json deserializer for UnfollowIndexResponse
 	 */
-	public static final JsonpValueParser<UnfollowIndexResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UnfollowIndexResponse::setupUnfollowIndexResponseParser);
+	public static final JsonpDeserializer<UnfollowIndexResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UnfollowIndexResponse::setupUnfollowIndexResponseDeserializer);
 
-	protected static void setupUnfollowIndexResponseParser(
-			DelegatingJsonpValueParser<UnfollowIndexResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupUnfollowIndexResponseDeserializer(
+			DelegatingDeserializer<UnfollowIndexResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

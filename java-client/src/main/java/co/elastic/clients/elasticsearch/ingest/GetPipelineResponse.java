@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.AdditionalProperties;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -71,14 +71,14 @@ public final class GetPipelineResponse extends AdditionalProperties<String, Pipe
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetPipelineResponse
+	 * Json deserializer for GetPipelineResponse
 	 */
-	public static final JsonpValueParser<GetPipelineResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetPipelineResponse::setupGetPipelineResponseParser);
+	public static final JsonpDeserializer<GetPipelineResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer);
 
-	protected static void setupGetPipelineResponseParser(DelegatingJsonpValueParser<GetPipelineResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				Pipeline.JSONP_PARSER);
+	protected static void setupGetPipelineResponseDeserializer(DelegatingDeserializer<GetPipelineResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				Pipeline.DESERIALIZER);
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -174,17 +174,17 @@ public final class ResolveIndexDataStreamsItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ResolveIndexDataStreamsItem
+	 * Json deserializer for ResolveIndexDataStreamsItem
 	 */
-	public static final JsonpValueParser<ResolveIndexDataStreamsItem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ResolveIndexDataStreamsItem::setupResolveIndexDataStreamsItemParser);
+	public static final JsonpDeserializer<ResolveIndexDataStreamsItem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ResolveIndexDataStreamsItem::setupResolveIndexDataStreamsItemDeserializer);
 
-	protected static void setupResolveIndexDataStreamsItemParser(
-			DelegatingJsonpValueParser<ResolveIndexDataStreamsItem.Builder> op) {
+	protected static void setupResolveIndexDataStreamsItemDeserializer(
+			DelegatingDeserializer<ResolveIndexDataStreamsItem.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::timestampField, JsonpValueParser.stringParser(), "timestamp_field");
-		op.add(Builder::backingIndices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");
+		op.add(Builder::backingIndices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"backing_indices");
 
 	}

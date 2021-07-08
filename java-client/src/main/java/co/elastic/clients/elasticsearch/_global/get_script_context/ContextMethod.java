@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.get_script_context;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -189,16 +189,16 @@ public final class ContextMethod implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ContextMethod
+	 * Json deserializer for ContextMethod
 	 */
-	public static final JsonpValueParser<ContextMethod> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ContextMethod::setupContextMethodParser);
+	public static final JsonpDeserializer<ContextMethod> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ContextMethod::setupContextMethodDeserializer);
 
-	protected static void setupContextMethodParser(DelegatingJsonpValueParser<ContextMethod.Builder> op) {
+	protected static void setupContextMethodDeserializer(DelegatingDeserializer<ContextMethod.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::returnType, JsonpValueParser.stringParser(), "return_type");
-		op.add(Builder::params, JsonpValueParser.arrayParser(ContextMethodParam.JSONP_PARSER), "params");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::returnType, JsonpDeserializer.stringDeserializer(), "return_type");
+		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(ContextMethodParam.DESERIALIZER), "params");
 
 	}
 

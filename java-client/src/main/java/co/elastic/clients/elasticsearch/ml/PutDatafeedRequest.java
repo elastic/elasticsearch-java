@@ -29,11 +29,11 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -653,25 +653,28 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutDatafeedRequest
+	 * Json deserializer for PutDatafeedRequest
 	 */
-	public static final JsonpValueParser<PutDatafeedRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestParser);
+	public static final JsonpDeserializer<PutDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestDeserializer);
 
-	protected static void setupPutDatafeedRequestParser(DelegatingJsonpValueParser<PutDatafeedRequest.Builder> op) {
+	protected static void setupPutDatafeedRequestDeserializer(DelegatingDeserializer<PutDatafeedRequest.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpValueParser.stringMapParser(AggregationContainer.JSONP_PARSER),
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER),
 				"aggregations");
-		op.add(Builder::chunkingConfig, ChunkingConfig.JSONP_PARSER, "chunking_config");
-		op.add(Builder::frequency, JsonpValueParser.jsonValueParser(), "frequency");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::indexes, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indexes");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::maxEmptySearches, JsonpValueParser.numberParser(), "max_empty_searches");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::queryDelay, JsonpValueParser.jsonValueParser(), "query_delay");
-		op.add(Builder::scriptFields, JsonpValueParser.stringMapParser(ScriptField.JSONP_PARSER), "script_fields");
-		op.add(Builder::scrollSize, JsonpValueParser.numberParser(), "scroll_size");
+		op.add(Builder::chunkingConfig, ChunkingConfig.DESERIALIZER, "chunking_config");
+		op.add(Builder::frequency, JsonpDeserializer.jsonValueDeserializer(), "frequency");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::indexes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indexes");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::maxEmptySearches, JsonpDeserializer.numberDeserializer(), "max_empty_searches");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::queryDelay, JsonpDeserializer.jsonValueDeserializer(), "query_delay");
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+				"script_fields");
+		op.add(Builder::scrollSize, JsonpDeserializer.numberDeserializer(), "scroll_size");
 
 	}
 
@@ -725,5 +728,5 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutDatafeedResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutDatafeedResponse.DESERIALIZER);
 }

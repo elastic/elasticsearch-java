@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -207,18 +207,19 @@ public final class NodeUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeUsage
+	 * Json deserializer for NodeUsage
 	 */
-	public static final JsonpValueParser<NodeUsage> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeUsage::setupNodeUsageParser);
+	public static final JsonpDeserializer<NodeUsage> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeUsage::setupNodeUsageDeserializer);
 
-	protected static void setupNodeUsageParser(DelegatingJsonpValueParser<NodeUsage.Builder> op) {
+	protected static void setupNodeUsageDeserializer(DelegatingDeserializer<NodeUsage.Builder> op) {
 
-		op.add(Builder::restActions, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()), "rest_actions");
-		op.add(Builder::since, JsonpValueParser.jsonValueParser(), "since");
-		op.add(Builder::timestamp, JsonpValueParser.jsonValueParser(), "timestamp");
-		op.add(Builder::aggregations, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"aggregations");
+		op.add(Builder::restActions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+				"rest_actions");
+		op.add(Builder::since, JsonpDeserializer.jsonValueDeserializer(), "since");
+		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::aggregations,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");
 
 	}
 

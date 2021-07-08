@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,16 +125,16 @@ public final class ConfusionMatrixPrediction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ConfusionMatrixPrediction
+	 * Json deserializer for ConfusionMatrixPrediction
 	 */
-	public static final JsonpValueParser<ConfusionMatrixPrediction> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ConfusionMatrixPrediction::setupConfusionMatrixPredictionParser);
+	public static final JsonpDeserializer<ConfusionMatrixPrediction> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ConfusionMatrixPrediction::setupConfusionMatrixPredictionDeserializer);
 
-	protected static void setupConfusionMatrixPredictionParser(
-			DelegatingJsonpValueParser<ConfusionMatrixPrediction.Builder> op) {
+	protected static void setupConfusionMatrixPredictionDeserializer(
+			DelegatingDeserializer<ConfusionMatrixPrediction.Builder> op) {
 
-		op.add(Builder::predictedClass, JsonpValueParser.stringParser(), "predicted_class");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
+		op.add(Builder::predictedClass, JsonpDeserializer.stringDeserializer(), "predicted_class");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
 
 	}
 

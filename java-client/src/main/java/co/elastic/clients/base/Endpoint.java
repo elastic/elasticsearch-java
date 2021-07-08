@@ -19,7 +19,7 @@
 
 package co.elastic.clients.base;
 
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -64,7 +64,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
    * The entity parser for the response body. Can be {@code null} to indicate that there's no response body.
    */
   @Nullable
-  JsonpValueParser<ResponseT> responseParser();
+  JsonpDeserializer<ResponseT> responseParser();
 
   // TODO: combine isError and errorParser in a single method with a tri-state result?
   boolean isError(int statusCode);
@@ -73,7 +73,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
    * The entity parser for the error response body. Can be {@code null} to indicate that there's no error body.
    */
   @Nullable
-  JsonpValueParser<ErrorT> errorParser(int statusCode);
+  JsonpDeserializer<ErrorT> errorParser(int statusCode);
 
   class Simple<RequestT, ResponseT> implements Endpoint<RequestT, ResponseT, ElasticsearchError> {
 
@@ -93,7 +93,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     private final Function<RequestT, Map<String, String>> queryParameters;
     private final Function<RequestT, Map<String, String>> headers;
     private final boolean hasRequestBody;
-    private final JsonpValueParser<ResponseT> responseParser;
+    private final JsonpDeserializer<ResponseT> responseParser;
 
     public Simple(
       Function<RequestT, String> method,
@@ -101,7 +101,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
       Function<RequestT, Map<String, String>> queryParameters,
       Function<RequestT, Map<String, String>> headers,
       boolean hasRequestBody,
-      JsonpValueParser<ResponseT> responseParser
+      JsonpDeserializer<ResponseT> responseParser
     ) {
       this.method = method;
       this.requestUrl = requestUrl;
@@ -137,7 +137,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     }
 
     @Override
-    public JsonpValueParser<ResponseT> responseParser() {
+    public JsonpDeserializer<ResponseT> responseParser() {
       return this.responseParser;
     }
 
@@ -148,11 +148,11 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     }
 
     @Override
-    public JsonpValueParser<ElasticsearchError> errorParser(int statusCode) {
+    public JsonpDeserializer<ElasticsearchError> errorParser(int statusCode) {
       return ElasticsearchError.PARSER;
     }
 
-    public <NewResponseT> Simple<RequestT, NewResponseT> withResponseParser(JsonpValueParser<NewResponseT> newResponseParser) {
+    public <NewResponseT> Simple<RequestT, NewResponseT> withResponseDeserializer(JsonpDeserializer<NewResponseT> newResponseParser) {
       return new Simple<>(
           method,
           requestUrl,
@@ -178,7 +178,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
         Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
         boolean hasRequestBody, // always true
-        JsonpValueParser<BooleanResponse> responseParser // always null
+        JsonpDeserializer<BooleanResponse> responseParser // always null
     ) {
       super(method, requestUrl, queryParameters, headers, hasRequestBody, responseParser);
     }

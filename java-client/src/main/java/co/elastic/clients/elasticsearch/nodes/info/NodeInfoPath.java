@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -228,17 +228,17 @@ public final class NodeInfoPath implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoPath
+	 * Json deserializer for NodeInfoPath
 	 */
-	public static final JsonpValueParser<NodeInfoPath> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoPath::setupNodeInfoPathParser);
+	public static final JsonpDeserializer<NodeInfoPath> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoPath::setupNodeInfoPathDeserializer);
 
-	protected static void setupNodeInfoPathParser(DelegatingJsonpValueParser<NodeInfoPath.Builder> op) {
+	protected static void setupNodeInfoPathDeserializer(DelegatingDeserializer<NodeInfoPath.Builder> op) {
 
-		op.add(Builder::logs, JsonpValueParser.stringParser(), "logs");
-		op.add(Builder::home, JsonpValueParser.stringParser(), "home");
-		op.add(Builder::repo, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "repo");
-		op.add(Builder::data, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "data");
+		op.add(Builder::logs, JsonpDeserializer.stringDeserializer(), "logs");
+		op.add(Builder::home, JsonpDeserializer.stringDeserializer(), "home");
+		op.add(Builder::repo, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "repo");
+		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "data");
 
 	}
 

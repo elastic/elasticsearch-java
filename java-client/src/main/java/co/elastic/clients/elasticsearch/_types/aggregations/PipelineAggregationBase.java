@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -141,12 +141,12 @@ public abstract class PipelineAggregationBase extends Aggregation {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPipelineAggregationBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
-		Aggregation.setupAggregationParser(op);
-		op.add(AbstractBuilder::bucketsPath, JsonpValueParser.jsonValueParser(), "buckets_path");
-		op.add(AbstractBuilder::format, JsonpValueParser.stringParser(), "format");
-		op.add(AbstractBuilder::gapPolicy, JsonpValueParser.jsonValueParser(), "gap_policy");
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPipelineAggregationBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
+		Aggregation.setupAggregationDeserializer(op);
+		op.add(AbstractBuilder::bucketsPath, JsonpDeserializer.jsonValueDeserializer(), "buckets_path");
+		op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(AbstractBuilder::gapPolicy, JsonpDeserializer.jsonValueDeserializer(), "gap_policy");
 
 	}
 

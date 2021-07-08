@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,16 +101,16 @@ public final class NodeInfoSettingsTransportFeatures implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoSettingsTransportFeatures
+	 * Json deserializer for NodeInfoSettingsTransportFeatures
 	 */
-	public static final JsonpValueParser<NodeInfoSettingsTransportFeatures> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<NodeInfoSettingsTransportFeatures> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					NodeInfoSettingsTransportFeatures::setupNodeInfoSettingsTransportFeaturesParser);
+					NodeInfoSettingsTransportFeatures::setupNodeInfoSettingsTransportFeaturesDeserializer);
 
-	protected static void setupNodeInfoSettingsTransportFeaturesParser(
-			DelegatingJsonpValueParser<NodeInfoSettingsTransportFeatures.Builder> op) {
+	protected static void setupNodeInfoSettingsTransportFeaturesDeserializer(
+			DelegatingDeserializer<NodeInfoSettingsTransportFeatures.Builder> op) {
 
-		op.add(Builder::xPack, JsonpValueParser.stringParser(), "x-pack");
+		op.add(Builder::xPack, JsonpDeserializer.stringDeserializer(), "x-pack");
 
 	}
 

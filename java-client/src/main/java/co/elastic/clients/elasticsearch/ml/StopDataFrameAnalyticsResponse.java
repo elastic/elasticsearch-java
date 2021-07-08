@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,16 @@ public final class StopDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StopDataFrameAnalyticsResponse
+	 * Json deserializer for StopDataFrameAnalyticsResponse
 	 */
-	public static final JsonpValueParser<StopDataFrameAnalyticsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StopDataFrameAnalyticsResponse::setupStopDataFrameAnalyticsResponseParser);
+	public static final JsonpDeserializer<StopDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					StopDataFrameAnalyticsResponse::setupStopDataFrameAnalyticsResponseDeserializer);
 
-	protected static void setupStopDataFrameAnalyticsResponseParser(
-			DelegatingJsonpValueParser<StopDataFrameAnalyticsResponse.Builder> op) {
+	protected static void setupStopDataFrameAnalyticsResponseDeserializer(
+			DelegatingDeserializer<StopDataFrameAnalyticsResponse.Builder> op) {
 
-		op.add(Builder::stopped, JsonpValueParser.booleanParser(), "stopped");
+		op.add(Builder::stopped, JsonpDeserializer.booleanDeserializer(), "stopped");
 
 	}
 

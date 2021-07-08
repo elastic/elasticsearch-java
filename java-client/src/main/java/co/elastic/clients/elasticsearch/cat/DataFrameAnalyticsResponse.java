@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.data_frame_analytics.DataFrameAnalyticsRecord;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -142,15 +142,15 @@ public final class DataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataFrameAnalyticsResponse
+	 * Json deserializer for DataFrameAnalyticsResponse
 	 */
-	public static final JsonpValueParser<DataFrameAnalyticsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataFrameAnalyticsResponse::setupDataFrameAnalyticsResponseParser);
+	public static final JsonpDeserializer<DataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataFrameAnalyticsResponse::setupDataFrameAnalyticsResponseDeserializer);
 
-	protected static void setupDataFrameAnalyticsResponseParser(
-			DelegatingJsonpValueParser<DataFrameAnalyticsResponse.Builder> op) {
+	protected static void setupDataFrameAnalyticsResponseDeserializer(
+			DelegatingDeserializer<DataFrameAnalyticsResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(DataFrameAnalyticsRecord.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(DataFrameAnalyticsRecord.DESERIALIZER), "value");
 
 	}
 

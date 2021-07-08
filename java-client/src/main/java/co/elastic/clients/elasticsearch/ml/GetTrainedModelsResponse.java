@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -178,16 +178,16 @@ public final class GetTrainedModelsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetTrainedModelsResponse
+	 * Json deserializer for GetTrainedModelsResponse
 	 */
-	public static final JsonpValueParser<GetTrainedModelsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetTrainedModelsResponse::setupGetTrainedModelsResponseParser);
+	public static final JsonpDeserializer<GetTrainedModelsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetTrainedModelsResponse::setupGetTrainedModelsResponseDeserializer);
 
-	protected static void setupGetTrainedModelsResponseParser(
-			DelegatingJsonpValueParser<GetTrainedModelsResponse.Builder> op) {
+	protected static void setupGetTrainedModelsResponseDeserializer(
+			DelegatingDeserializer<GetTrainedModelsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::trainedModelConfigs, JsonpValueParser.arrayParser(TrainedModelConfig.JSONP_PARSER),
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::trainedModelConfigs, JsonpDeserializer.arrayDeserializer(TrainedModelConfig.DESERIALIZER),
 				"trained_model_configs");
 
 	}

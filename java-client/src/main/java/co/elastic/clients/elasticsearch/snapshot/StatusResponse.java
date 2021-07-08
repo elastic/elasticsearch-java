@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -142,14 +142,14 @@ public final class StatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StatusResponse
+	 * Json deserializer for StatusResponse
 	 */
-	public static final JsonpValueParser<StatusResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StatusResponse::setupStatusResponseParser);
+	public static final JsonpDeserializer<StatusResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StatusResponse::setupStatusResponseDeserializer);
 
-	protected static void setupStatusResponseParser(DelegatingJsonpValueParser<StatusResponse.Builder> op) {
+	protected static void setupStatusResponseDeserializer(DelegatingDeserializer<StatusResponse.Builder> op) {
 
-		op.add(Builder::snapshots, JsonpValueParser.arrayParser(Status.JSONP_PARSER), "snapshots");
+		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(Status.DESERIALIZER), "snapshots");
 
 	}
 

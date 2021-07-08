@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.autoscaling;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,15 @@ public final class PolicyDeleteResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PolicyDeleteResponse
+	 * Json deserializer for PolicyDeleteResponse
 	 */
-	public static final JsonpValueParser<PolicyDeleteResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PolicyDeleteResponse::setupPolicyDeleteResponseParser);
+	public static final JsonpDeserializer<PolicyDeleteResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PolicyDeleteResponse::setupPolicyDeleteResponseDeserializer);
 
-	protected static void setupPolicyDeleteResponseParser(DelegatingJsonpValueParser<PolicyDeleteResponse.Builder> op) {
+	protected static void setupPolicyDeleteResponseDeserializer(
+			DelegatingDeserializer<PolicyDeleteResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.numberParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
 
 	}
 

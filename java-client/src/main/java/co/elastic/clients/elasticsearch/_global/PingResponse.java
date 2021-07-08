@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch._global;
 
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -39,7 +39,7 @@ public final class PingResponse {
 	 */
 	public static final PingResponse INSTANCE = new PingResponse();
 
-	public static final JsonpValueParser<PingResponse> JSONP_PARSER = JsonpValueParser
+	public static final JsonpDeserializer<PingResponse> DESERIALIZER = JsonpDeserializer
 			.fixedValue(PingResponse.INSTANCE);
 
 }

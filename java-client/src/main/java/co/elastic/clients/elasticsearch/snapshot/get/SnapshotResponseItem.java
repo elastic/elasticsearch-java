@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.snapshot.get;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch.snapshot.SnapshotInfo;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -211,16 +211,17 @@ public final class SnapshotResponseItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SnapshotResponseItem
+	 * Json deserializer for SnapshotResponseItem
 	 */
-	public static final JsonpValueParser<SnapshotResponseItem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SnapshotResponseItem::setupSnapshotResponseItemParser);
+	public static final JsonpDeserializer<SnapshotResponseItem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SnapshotResponseItem::setupSnapshotResponseItemDeserializer);
 
-	protected static void setupSnapshotResponseItemParser(DelegatingJsonpValueParser<SnapshotResponseItem.Builder> op) {
+	protected static void setupSnapshotResponseItemDeserializer(
+			DelegatingDeserializer<SnapshotResponseItem.Builder> op) {
 
-		op.add(Builder::repository, JsonpValueParser.stringParser(), "repository");
-		op.add(Builder::snapshots, JsonpValueParser.arrayParser(SnapshotInfo.JSONP_PARSER), "snapshots");
-		op.add(Builder::error, ErrorCause.JSONP_PARSER, "error");
+		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
+		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo.DESERIALIZER), "snapshots");
+		op.add(Builder::error, ErrorCause.DESERIALIZER, "error");
 
 	}
 

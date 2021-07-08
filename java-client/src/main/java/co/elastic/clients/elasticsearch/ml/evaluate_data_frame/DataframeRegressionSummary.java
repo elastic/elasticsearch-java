@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -223,18 +223,18 @@ public final class DataframeRegressionSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeRegressionSummary
+	 * Json deserializer for DataframeRegressionSummary
 	 */
-	public static final JsonpValueParser<DataframeRegressionSummary> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataframeRegressionSummary::setupDataframeRegressionSummaryParser);
+	public static final JsonpDeserializer<DataframeRegressionSummary> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataframeRegressionSummary::setupDataframeRegressionSummaryDeserializer);
 
-	protected static void setupDataframeRegressionSummaryParser(
-			DelegatingJsonpValueParser<DataframeRegressionSummary.Builder> op) {
+	protected static void setupDataframeRegressionSummaryDeserializer(
+			DelegatingDeserializer<DataframeRegressionSummary.Builder> op) {
 
-		op.add(Builder::huber, DataframeEvaluationValue.JSONP_PARSER, "huber");
-		op.add(Builder::mse, DataframeEvaluationValue.JSONP_PARSER, "mse");
-		op.add(Builder::msle, DataframeEvaluationValue.JSONP_PARSER, "msle");
-		op.add(Builder::rSquared, DataframeEvaluationValue.JSONP_PARSER, "r_squared");
+		op.add(Builder::huber, DataframeEvaluationValue.DESERIALIZER, "huber");
+		op.add(Builder::mse, DataframeEvaluationValue.DESERIALIZER, "mse");
+		op.add(Builder::msle, DataframeEvaluationValue.DESERIALIZER, "msle");
+		op.add(Builder::rSquared, DataframeEvaluationValue.DESERIALIZER, "r_squared");
 
 	}
 

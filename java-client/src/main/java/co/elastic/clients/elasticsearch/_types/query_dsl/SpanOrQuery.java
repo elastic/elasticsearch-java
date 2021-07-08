@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -143,14 +143,14 @@ public final class SpanOrQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SpanOrQuery
+	 * Json deserializer for SpanOrQuery
 	 */
-	public static final JsonpValueParser<SpanOrQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SpanOrQuery::setupSpanOrQueryParser);
+	public static final JsonpDeserializer<SpanOrQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SpanOrQuery::setupSpanOrQueryDeserializer);
 
-	protected static void setupSpanOrQueryParser(DelegatingJsonpValueParser<SpanOrQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::clauses, JsonpValueParser.arrayParser(SpanQuery.JSONP_PARSER), "clauses");
+	protected static void setupSpanOrQueryDeserializer(DelegatingDeserializer<SpanOrQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::clauses, JsonpDeserializer.arrayDeserializer(SpanQuery.DESERIALIZER), "clauses");
 
 	}
 

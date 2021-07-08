@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -191,18 +191,18 @@ public final class ExtendedMemoryStats extends MemoryStats {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExtendedMemoryStats
+	 * Json deserializer for ExtendedMemoryStats
 	 */
-	public static final JsonpValueParser<ExtendedMemoryStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExtendedMemoryStats::setupExtendedMemoryStatsParser);
+	public static final JsonpDeserializer<ExtendedMemoryStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExtendedMemoryStats::setupExtendedMemoryStatsDeserializer);
 
-	protected static void setupExtendedMemoryStatsParser(DelegatingJsonpValueParser<ExtendedMemoryStats.Builder> op) {
-		MemoryStats.setupMemoryStatsParser(op);
-		op.add(Builder::freePercent, JsonpValueParser.numberParser(), "free_percent");
-		op.add(Builder::usedPercent, JsonpValueParser.numberParser(), "used_percent");
-		op.add(Builder::totalInBytes, JsonpValueParser.numberParser(), "total_in_bytes");
-		op.add(Builder::freeInBytes, JsonpValueParser.numberParser(), "free_in_bytes");
-		op.add(Builder::usedInBytes, JsonpValueParser.numberParser(), "used_in_bytes");
+	protected static void setupExtendedMemoryStatsDeserializer(DelegatingDeserializer<ExtendedMemoryStats.Builder> op) {
+		MemoryStats.setupMemoryStatsDeserializer(op);
+		op.add(Builder::freePercent, JsonpDeserializer.numberDeserializer(), "free_percent");
+		op.add(Builder::usedPercent, JsonpDeserializer.numberDeserializer(), "used_percent");
+		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
+		op.add(Builder::usedInBytes, JsonpDeserializer.numberDeserializer(), "used_in_bytes");
 
 	}
 

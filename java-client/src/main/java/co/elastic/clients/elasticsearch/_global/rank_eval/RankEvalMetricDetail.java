@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -311,18 +311,20 @@ public final class RankEvalMetricDetail implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalMetricDetail
+	 * Json deserializer for RankEvalMetricDetail
 	 */
-	public static final JsonpValueParser<RankEvalMetricDetail> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RankEvalMetricDetail::setupRankEvalMetricDetailParser);
+	public static final JsonpDeserializer<RankEvalMetricDetail> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RankEvalMetricDetail::setupRankEvalMetricDetailDeserializer);
 
-	protected static void setupRankEvalMetricDetailParser(DelegatingJsonpValueParser<RankEvalMetricDetail.Builder> op) {
+	protected static void setupRankEvalMetricDetailDeserializer(
+			DelegatingDeserializer<RankEvalMetricDetail.Builder> op) {
 
-		op.add(Builder::metricScore, JsonpValueParser.numberParser(), "metric_score");
-		op.add(Builder::unratedDocs, JsonpValueParser.arrayParser(UnratedDocument.JSONP_PARSER), "unrated_docs");
-		op.add(Builder::hits, JsonpValueParser.arrayParser(RankEvalHitItem.JSONP_PARSER), "hits");
+		op.add(Builder::metricScore, JsonpDeserializer.numberDeserializer(), "metric_score");
+		op.add(Builder::unratedDocs, JsonpDeserializer.arrayDeserializer(UnratedDocument.DESERIALIZER), "unrated_docs");
+		op.add(Builder::hits, JsonpDeserializer.arrayDeserializer(RankEvalHitItem.DESERIALIZER), "hits");
 		op.add(Builder::metricDetails,
-				JsonpValueParser.stringMapParser(JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser())),
+				JsonpDeserializer.stringMapDeserializer(
+						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer())),
 				"metric_details");
 
 	}

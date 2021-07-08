@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -104,14 +104,15 @@ public final class NormalizeAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NormalizeAggregation
+	 * Json deserializer for NormalizeAggregation
 	 */
-	public static final JsonpValueParser<NormalizeAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NormalizeAggregation::setupNormalizeAggregationParser);
+	public static final JsonpDeserializer<NormalizeAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NormalizeAggregation::setupNormalizeAggregationDeserializer);
 
-	protected static void setupNormalizeAggregationParser(DelegatingJsonpValueParser<NormalizeAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseParser(op);
-		op.add(Builder::method, JsonpValueParser.jsonValueParser(), "method");
+	protected static void setupNormalizeAggregationDeserializer(
+			DelegatingDeserializer<NormalizeAggregation.Builder> op) {
+		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+		op.add(Builder::method, JsonpDeserializer.jsonValueDeserializer(), "method");
 
 	}
 

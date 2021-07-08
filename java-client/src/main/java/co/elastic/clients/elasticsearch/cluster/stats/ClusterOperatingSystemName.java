@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,16 +125,16 @@ public final class ClusterOperatingSystemName implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterOperatingSystemName
+	 * Json deserializer for ClusterOperatingSystemName
 	 */
-	public static final JsonpValueParser<ClusterOperatingSystemName> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterOperatingSystemName::setupClusterOperatingSystemNameParser);
+	public static final JsonpDeserializer<ClusterOperatingSystemName> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterOperatingSystemName::setupClusterOperatingSystemNameDeserializer);
 
-	protected static void setupClusterOperatingSystemNameParser(
-			DelegatingJsonpValueParser<ClusterOperatingSystemName.Builder> op) {
+	protected static void setupClusterOperatingSystemNameDeserializer(
+			DelegatingDeserializer<ClusterOperatingSystemName.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

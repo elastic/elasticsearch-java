@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ml.Job;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -272,18 +272,18 @@ public final class MachineLearning extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MachineLearning
+	 * Json deserializer for MachineLearning
 	 */
-	public static final JsonpValueParser<MachineLearning> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MachineLearning::setupMachineLearningParser);
+	public static final JsonpDeserializer<MachineLearning> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MachineLearning::setupMachineLearningDeserializer);
 
-	protected static void setupMachineLearningParser(DelegatingJsonpValueParser<MachineLearning.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::datafeeds, JsonpValueParser.stringMapParser(Datafeed.JSONP_PARSER), "datafeeds");
-		op.add(Builder::jobs, JsonpValueParser.stringMapParser(Job.JSONP_PARSER), "jobs");
-		op.add(Builder::nodeCount, JsonpValueParser.numberParser(), "node_count");
-		op.add(Builder::dataFrameAnalyticsJobs, MlDataFrameAnalyticsJobs.JSONP_PARSER, "data_frame_analytics_jobs");
-		op.add(Builder::inference, MlInference.JSONP_PARSER, "inference");
+	protected static void setupMachineLearningDeserializer(DelegatingDeserializer<MachineLearning.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::datafeeds, JsonpDeserializer.stringMapDeserializer(Datafeed.DESERIALIZER), "datafeeds");
+		op.add(Builder::jobs, JsonpDeserializer.stringMapDeserializer(Job.DESERIALIZER), "jobs");
+		op.add(Builder::nodeCount, JsonpDeserializer.numberDeserializer(), "node_count");
+		op.add(Builder::dataFrameAnalyticsJobs, MlDataFrameAnalyticsJobs.DESERIALIZER, "data_frame_analytics_jobs");
+		op.add(Builder::inference, MlInference.DESERIALIZER, "inference");
 
 	}
 

@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -481,19 +481,21 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutTemplateRequest
+	 * Json deserializer for PutTemplateRequest
 	 */
-	public static final JsonpValueParser<PutTemplateRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutTemplateRequest::setupPutTemplateRequestParser);
+	public static final JsonpDeserializer<PutTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutTemplateRequest::setupPutTemplateRequestDeserializer);
 
-	protected static void setupPutTemplateRequestParser(DelegatingJsonpValueParser<PutTemplateRequest.Builder> op) {
+	protected static void setupPutTemplateRequestDeserializer(DelegatingDeserializer<PutTemplateRequest.Builder> op) {
 
-		op.add(Builder::aliases, JsonpValueParser.stringMapParser(Alias.JSONP_PARSER), "aliases");
-		op.add(Builder::indexPatterns, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "index_patterns");
-		op.add(Builder::mappings, TypeMapping.JSONP_PARSER, "mappings");
-		op.add(Builder::order, JsonpValueParser.numberParser(), "order");
-		op.add(Builder::settings, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "settings");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"index_patterns");
+		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::order, JsonpDeserializer.numberDeserializer(), "order");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"settings");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 
 	}
 
@@ -549,5 +551,5 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutTemplateResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutTemplateResponse.DESERIALIZER);
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -174,16 +174,18 @@ public final class NodeInfoSettingsNode implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoSettingsNode
+	 * Json deserializer for NodeInfoSettingsNode
 	 */
-	public static final JsonpValueParser<NodeInfoSettingsNode> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoSettingsNode::setupNodeInfoSettingsNodeParser);
+	public static final JsonpDeserializer<NodeInfoSettingsNode> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoSettingsNode::setupNodeInfoSettingsNodeDeserializer);
 
-	protected static void setupNodeInfoSettingsNodeParser(DelegatingJsonpValueParser<NodeInfoSettingsNode.Builder> op) {
+	protected static void setupNodeInfoSettingsNodeDeserializer(
+			DelegatingDeserializer<NodeInfoSettingsNode.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::attr, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "attr");
-		op.add(Builder::maxLocalStorageNodes, JsonpValueParser.stringParser(), "max_local_storage_nodes");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::attr, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"attr");
+		op.add(Builder::maxLocalStorageNodes, JsonpDeserializer.stringDeserializer(), "max_local_storage_nodes");
 
 	}
 

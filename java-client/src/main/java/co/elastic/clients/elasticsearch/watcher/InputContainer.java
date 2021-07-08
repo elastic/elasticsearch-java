@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -62,7 +62,7 @@ public class InputContainer extends TaggedUnion<InputContainer.Tag, Object> impl
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private InputContainer(Builder builder) {
@@ -207,22 +207,24 @@ public class InputContainer extends TaggedUnion<InputContainer.Tag, Object> impl
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<InputContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(InputContainer::buildJsonpParser);
+	public static final JsonpDeserializer<InputContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(InputContainer::buildDeserializer);
 
-	private static JsonpValueParser<InputContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<InputContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::chain, ChainInput.JSONP_PARSER, "chain");
-		op.add(Builder::http, HttpInput.JSONP_PARSER, "http");
-		op.add(Builder::search, SearchInput.JSONP_PARSER, "search");
-		op.add(Builder::simple, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "simple");
+		op.add(Builder::chain, ChainInput.DESERIALIZER, "chain");
+		op.add(Builder::http, HttpInput.DESERIALIZER, "http");
+		op.add(Builder::search, SearchInput.DESERIALIZER, "search");
+		op.add(Builder::simple, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"simple");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

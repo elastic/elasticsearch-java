@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -198,16 +198,17 @@ public final class SearchInput implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchInput
+	 * Json deserializer for SearchInput
 	 */
-	public static final JsonpValueParser<SearchInput> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchInput::setupSearchInputParser);
+	public static final JsonpDeserializer<SearchInput> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchInput::setupSearchInputDeserializer);
 
-	protected static void setupSearchInputParser(DelegatingJsonpValueParser<SearchInput.Builder> op) {
+	protected static void setupSearchInputDeserializer(DelegatingDeserializer<SearchInput.Builder> op) {
 
-		op.add(Builder::extract, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "extract");
-		op.add(Builder::request, SearchInputRequestDefinition.JSONP_PARSER, "request");
-		op.add(Builder::timeout, JsonpValueParser.jsonValueParser(), "timeout");
+		op.add(Builder::extract, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"extract");
+		op.add(Builder::request, SearchInputRequestDefinition.DESERIALIZER, "request");
+		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
 
 	}
 

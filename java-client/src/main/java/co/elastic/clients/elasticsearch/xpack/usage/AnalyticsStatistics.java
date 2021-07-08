@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -294,22 +294,23 @@ public final class AnalyticsStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AnalyticsStatistics
+	 * Json deserializer for AnalyticsStatistics
 	 */
-	public static final JsonpValueParser<AnalyticsStatistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AnalyticsStatistics::setupAnalyticsStatisticsParser);
+	public static final JsonpDeserializer<AnalyticsStatistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AnalyticsStatistics::setupAnalyticsStatisticsDeserializer);
 
-	protected static void setupAnalyticsStatisticsParser(DelegatingJsonpValueParser<AnalyticsStatistics.Builder> op) {
+	protected static void setupAnalyticsStatisticsDeserializer(DelegatingDeserializer<AnalyticsStatistics.Builder> op) {
 
-		op.add(Builder::boxplotUsage, JsonpValueParser.numberParser(), "boxplot_usage");
-		op.add(Builder::cumulativeCardinalityUsage, JsonpValueParser.numberParser(), "cumulative_cardinality_usage");
-		op.add(Builder::stringStatsUsage, JsonpValueParser.numberParser(), "string_stats_usage");
-		op.add(Builder::topMetricsUsage, JsonpValueParser.numberParser(), "top_metrics_usage");
-		op.add(Builder::tTestUsage, JsonpValueParser.numberParser(), "t_test_usage");
-		op.add(Builder::movingPercentilesUsage, JsonpValueParser.numberParser(), "moving_percentiles_usage");
-		op.add(Builder::normalizeUsage, JsonpValueParser.numberParser(), "normalize_usage");
-		op.add(Builder::rateUsage, JsonpValueParser.numberParser(), "rate_usage");
-		op.add(Builder::multiTermsUsage, JsonpValueParser.numberParser(), "multi_terms_usage");
+		op.add(Builder::boxplotUsage, JsonpDeserializer.numberDeserializer(), "boxplot_usage");
+		op.add(Builder::cumulativeCardinalityUsage, JsonpDeserializer.numberDeserializer(),
+				"cumulative_cardinality_usage");
+		op.add(Builder::stringStatsUsage, JsonpDeserializer.numberDeserializer(), "string_stats_usage");
+		op.add(Builder::topMetricsUsage, JsonpDeserializer.numberDeserializer(), "top_metrics_usage");
+		op.add(Builder::tTestUsage, JsonpDeserializer.numberDeserializer(), "t_test_usage");
+		op.add(Builder::movingPercentilesUsage, JsonpDeserializer.numberDeserializer(), "moving_percentiles_usage");
+		op.add(Builder::normalizeUsage, JsonpDeserializer.numberDeserializer(), "normalize_usage");
+		op.add(Builder::rateUsage, JsonpDeserializer.numberDeserializer(), "rate_usage");
+		op.add(Builder::multiTermsUsage, JsonpDeserializer.numberDeserializer(), "multi_terms_usage");
 
 	}
 

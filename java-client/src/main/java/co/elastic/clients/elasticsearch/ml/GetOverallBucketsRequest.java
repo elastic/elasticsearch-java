@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -337,15 +337,15 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetOverallBucketsRequest
+	 * Json deserializer for GetOverallBucketsRequest
 	 */
-	public static final JsonpValueParser<GetOverallBucketsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestParser);
+	public static final JsonpDeserializer<GetOverallBucketsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer);
 
-	protected static void setupGetOverallBucketsRequestParser(
-			DelegatingJsonpValueParser<GetOverallBucketsRequest.Builder> op) {
+	protected static void setupGetOverallBucketsRequestDeserializer(
+			DelegatingDeserializer<GetOverallBucketsRequest.Builder> op) {
 
-		op.add(Builder::allowNoJobs, JsonpValueParser.booleanParser(), "allow_no_jobs");
+		op.add(Builder::allowNoJobs, JsonpDeserializer.booleanDeserializer(), "allow_no_jobs");
 
 	}
 
@@ -410,5 +410,5 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetOverallBucketsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GetOverallBucketsResponse.DESERIALIZER);
 }

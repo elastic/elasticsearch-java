@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -148,16 +148,17 @@ public final class SlackAttachmentField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SlackAttachmentField
+	 * Json deserializer for SlackAttachmentField
 	 */
-	public static final JsonpValueParser<SlackAttachmentField> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SlackAttachmentField::setupSlackAttachmentFieldParser);
+	public static final JsonpDeserializer<SlackAttachmentField> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SlackAttachmentField::setupSlackAttachmentFieldDeserializer);
 
-	protected static void setupSlackAttachmentFieldParser(DelegatingJsonpValueParser<SlackAttachmentField.Builder> op) {
+	protected static void setupSlackAttachmentFieldDeserializer(
+			DelegatingDeserializer<SlackAttachmentField.Builder> op) {
 
-		op.add(Builder::short_, JsonpValueParser.booleanParser(), "short");
-		op.add(Builder::title, JsonpValueParser.stringParser(), "title");
-		op.add(Builder::value, JsonpValueParser.stringParser(), "value");
+		op.add(Builder::short_, JsonpDeserializer.booleanDeserializer(), "short");
+		op.add(Builder::title, JsonpDeserializer.stringDeserializer(), "title");
+		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 
 	}
 

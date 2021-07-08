@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -100,14 +100,14 @@ public final class OpenResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for OpenResponse
+	 * Json deserializer for OpenResponse
 	 */
-	public static final JsonpValueParser<OpenResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, OpenResponse::setupOpenResponseParser);
+	public static final JsonpDeserializer<OpenResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, OpenResponse::setupOpenResponseDeserializer);
 
-	protected static void setupOpenResponseParser(DelegatingJsonpValueParser<OpenResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::shardsAcknowledged, JsonpValueParser.booleanParser(), "shards_acknowledged");
+	protected static void setupOpenResponseDeserializer(DelegatingDeserializer<OpenResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 
 	}
 

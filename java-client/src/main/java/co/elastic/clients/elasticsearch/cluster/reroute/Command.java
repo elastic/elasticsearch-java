@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -363,18 +363,18 @@ public final class Command implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Command
+	 * Json deserializer for Command
 	 */
-	public static final JsonpValueParser<Command> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Command::setupCommandParser);
+	public static final JsonpDeserializer<Command> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Command::setupCommandDeserializer);
 
-	protected static void setupCommandParser(DelegatingJsonpValueParser<Command.Builder> op) {
+	protected static void setupCommandDeserializer(DelegatingDeserializer<Command.Builder> op) {
 
-		op.add(Builder::cancel, CommandCancelAction.JSONP_PARSER, "cancel");
-		op.add(Builder::move, CommandMoveAction.JSONP_PARSER, "move");
-		op.add(Builder::allocateReplica, CommandAllocateReplicaAction.JSONP_PARSER, "allocate_replica");
-		op.add(Builder::allocateStalePrimary, CommandAllocatePrimaryAction.JSONP_PARSER, "allocate_stale_primary");
-		op.add(Builder::allocateEmptyPrimary, CommandAllocatePrimaryAction.JSONP_PARSER, "allocate_empty_primary");
+		op.add(Builder::cancel, CommandCancelAction.DESERIALIZER, "cancel");
+		op.add(Builder::move, CommandMoveAction.DESERIALIZER, "move");
+		op.add(Builder::allocateReplica, CommandAllocateReplicaAction.DESERIALIZER, "allocate_replica");
+		op.add(Builder::allocateStalePrimary, CommandAllocatePrimaryAction.DESERIALIZER, "allocate_stale_primary");
+		op.add(Builder::allocateEmptyPrimary, CommandAllocatePrimaryAction.DESERIALIZER, "allocate_empty_primary");
 
 	}
 

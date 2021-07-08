@@ -25,12 +25,12 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch._global.search.HitsMetadata;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -288,25 +288,25 @@ public final class RollupSearchResponse<TDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for RollupSearchResponse
+	 * Create a json deserializer for RollupSearchResponse
 	 */
-	public static <TDocument> JsonpValueParser<RollupSearchResponse<TDocument>> createRollupSearchResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> RollupSearchResponse.setupRollupSearchResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<RollupSearchResponse<TDocument>> createRollupSearchResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> RollupSearchResponse.setupRollupSearchResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupRollupSearchResponseParser(
-			DelegatingJsonpValueParser<RollupSearchResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupRollupSearchResponseDeserializer(
+			DelegatingDeserializer<RollupSearchResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
-		op.add(Builder::timedOut, JsonpValueParser.booleanParser(), "timed_out");
-		op.add(Builder::terminatedEarly, JsonpValueParser.booleanParser(), "terminated_early");
-		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
-		op.add(Builder::hits, HitsMetadata.createHitsMetadataParser(tDocumentParser), "hits");
-		op.add(Builder::aggregations, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"aggregations");
+		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
+		op.add(Builder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
+		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
+		op.add(Builder::aggregations,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");
 
 	}
 

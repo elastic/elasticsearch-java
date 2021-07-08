@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security.create_api_key;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -175,15 +175,16 @@ public final class IndexPrivileges implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexPrivileges
+	 * Json deserializer for IndexPrivileges
 	 */
-	public static final JsonpValueParser<IndexPrivileges> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexPrivileges::setupIndexPrivilegesParser);
+	public static final JsonpDeserializer<IndexPrivileges> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexPrivileges::setupIndexPrivilegesDeserializer);
 
-	protected static void setupIndexPrivilegesParser(DelegatingJsonpValueParser<IndexPrivileges.Builder> op) {
+	protected static void setupIndexPrivilegesDeserializer(DelegatingDeserializer<IndexPrivileges.Builder> op) {
 
-		op.add(Builder::names, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "names");
-		op.add(Builder::privileges, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "privileges");
+		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
+		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"privileges");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.termvectors.TermVector;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -291,20 +291,20 @@ public final class TermvectorsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TermvectorsResponse
+	 * Json deserializer for TermvectorsResponse
 	 */
-	public static final JsonpValueParser<TermvectorsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TermvectorsResponse::setupTermvectorsResponseParser);
+	public static final JsonpDeserializer<TermvectorsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TermvectorsResponse::setupTermvectorsResponseDeserializer);
 
-	protected static void setupTermvectorsResponseParser(DelegatingJsonpValueParser<TermvectorsResponse.Builder> op) {
+	protected static void setupTermvectorsResponseDeserializer(DelegatingDeserializer<TermvectorsResponse.Builder> op) {
 
-		op.add(Builder::found, JsonpValueParser.booleanParser(), "found");
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::_index, JsonpValueParser.stringParser(), "_index");
-		op.add(Builder::termVectors, JsonpValueParser.stringMapParser(TermVector.JSONP_PARSER), "term_vectors");
-		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
-		op.add(Builder::_type, JsonpValueParser.stringParser(), "_type");
-		op.add(Builder::_version, JsonpValueParser.numberParser(), "_version");
+		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::termVectors, JsonpDeserializer.stringMapDeserializer(TermVector.DESERIALIZER), "term_vectors");
+		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::_version, JsonpDeserializer.numberDeserializer(), "_version");
 
 	}
 

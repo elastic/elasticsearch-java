@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -161,16 +161,16 @@ public final class ForeachProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ForeachProcessor
+	 * Json deserializer for ForeachProcessor
 	 */
-	public static final JsonpValueParser<ForeachProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ForeachProcessor::setupForeachProcessorParser);
+	public static final JsonpDeserializer<ForeachProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ForeachProcessor::setupForeachProcessorDeserializer);
 
-	protected static void setupForeachProcessorParser(DelegatingJsonpValueParser<ForeachProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::processor, ProcessorContainer.JSONP_PARSER, "processor");
+	protected static void setupForeachProcessorDeserializer(DelegatingDeserializer<ForeachProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::processor, ProcessorContainer.DESERIALIZER, "processor");
 
 	}
 

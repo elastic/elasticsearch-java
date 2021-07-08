@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -199,7 +199,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	@Nullable
@@ -2395,99 +2395,101 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 		}
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<AggregationContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(AggregationContainer::buildJsonpParser);
+	public static final JsonpDeserializer<AggregationContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(AggregationContainer::buildDeserializer);
 
-	private static JsonpValueParser<AggregationContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<AggregationContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
 		op.add(Builder::aggs,
-				JsonpValueParser.stringMapParser(
-						co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.JSONP_PARSER),
+				JsonpDeserializer.stringMapDeserializer(
+						co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.DESERIALIZER),
 				"aggs");
-		op.add(Builder::meta, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "meta");
-		op.add(Builder::adjacencyMatrix, AdjacencyMatrixAggregation.JSONP_PARSER, "adjacency_matrix");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"meta");
+		op.add(Builder::adjacencyMatrix, AdjacencyMatrixAggregation.DESERIALIZER, "adjacency_matrix");
 		op.add(Builder::aggregations,
-				JsonpValueParser.stringMapParser(
-						co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.JSONP_PARSER),
+				JsonpDeserializer.stringMapDeserializer(
+						co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.DESERIALIZER),
 				"aggregations");
-		op.add(Builder::autoDateHistogram, AutoDateHistogramAggregation.JSONP_PARSER, "auto_date_histogram");
-		op.add(Builder::avg, JsonpValueParser.jsonValueParser(), "avg");
-		op.add(Builder::avgBucket, JsonpValueParser.jsonValueParser(), "avg_bucket");
-		op.add(Builder::boxplot, BoxplotAggregation.JSONP_PARSER, "boxplot");
-		op.add(Builder::bucketScript, BucketScriptAggregation.JSONP_PARSER, "bucket_script");
-		op.add(Builder::bucketSelector, BucketSelectorAggregation.JSONP_PARSER, "bucket_selector");
-		op.add(Builder::bucketSort, BucketSortAggregation.JSONP_PARSER, "bucket_sort");
-		op.add(Builder::cardinality, CardinalityAggregation.JSONP_PARSER, "cardinality");
-		op.add(Builder::children, ChildrenAggregation.JSONP_PARSER, "children");
-		op.add(Builder::composite, CompositeAggregation.JSONP_PARSER, "composite");
-		op.add(Builder::cumulativeCardinality, JsonpValueParser.jsonValueParser(), "cumulative_cardinality");
-		op.add(Builder::cumulativeSum, JsonpValueParser.jsonValueParser(), "cumulative_sum");
-		op.add(Builder::dateHistogram, DateHistogramAggregation.JSONP_PARSER, "date_histogram");
-		op.add(Builder::dateRange, DateRangeAggregation.JSONP_PARSER, "date_range");
-		op.add(Builder::derivative, JsonpValueParser.jsonValueParser(), "derivative");
-		op.add(Builder::diversifiedSampler, DiversifiedSamplerAggregation.JSONP_PARSER, "diversified_sampler");
-		op.add(Builder::extendedStats, ExtendedStatsAggregation.JSONP_PARSER, "extended_stats");
-		op.add(Builder::extendedStatsBucket, ExtendedStatsBucketAggregation.JSONP_PARSER, "extended_stats_bucket");
-		op.add(Builder::filter, QueryContainer.JSONP_PARSER, "filter");
-		op.add(Builder::filters, FiltersAggregation.JSONP_PARSER, "filters");
-		op.add(Builder::geoBounds, GeoBoundsAggregation.JSONP_PARSER, "geo_bounds");
-		op.add(Builder::geoCentroid, GeoCentroidAggregation.JSONP_PARSER, "geo_centroid");
-		op.add(Builder::geoDistance, GeoDistanceAggregation.JSONP_PARSER, "geo_distance");
-		op.add(Builder::geohashGrid, GeoHashGridAggregation.JSONP_PARSER, "geohash_grid");
-		op.add(Builder::geoLine, GeoLineAggregation.JSONP_PARSER, "geo_line");
-		op.add(Builder::geotileGrid, GeoTileGridAggregation.JSONP_PARSER, "geotile_grid");
-		op.add(Builder::global, JsonpValueParser.jsonValueParser(), "global");
-		op.add(Builder::histogram, HistogramAggregation.JSONP_PARSER, "histogram");
-		op.add(Builder::ipRange, IpRangeAggregation.JSONP_PARSER, "ip_range");
-		op.add(Builder::inference, InferenceAggregation.JSONP_PARSER, "inference");
-		op.add(Builder::line, GeoLineAggregation.JSONP_PARSER, "line");
-		op.add(Builder::matrixStats, MatrixStatsAggregation.JSONP_PARSER, "matrix_stats");
-		op.add(Builder::max, JsonpValueParser.jsonValueParser(), "max");
-		op.add(Builder::maxBucket, JsonpValueParser.jsonValueParser(), "max_bucket");
-		op.add(Builder::medianAbsoluteDeviation, MedianAbsoluteDeviationAggregation.JSONP_PARSER,
+		op.add(Builder::autoDateHistogram, AutoDateHistogramAggregation.DESERIALIZER, "auto_date_histogram");
+		op.add(Builder::avg, JsonpDeserializer.jsonValueDeserializer(), "avg");
+		op.add(Builder::avgBucket, JsonpDeserializer.jsonValueDeserializer(), "avg_bucket");
+		op.add(Builder::boxplot, BoxplotAggregation.DESERIALIZER, "boxplot");
+		op.add(Builder::bucketScript, BucketScriptAggregation.DESERIALIZER, "bucket_script");
+		op.add(Builder::bucketSelector, BucketSelectorAggregation.DESERIALIZER, "bucket_selector");
+		op.add(Builder::bucketSort, BucketSortAggregation.DESERIALIZER, "bucket_sort");
+		op.add(Builder::cardinality, CardinalityAggregation.DESERIALIZER, "cardinality");
+		op.add(Builder::children, ChildrenAggregation.DESERIALIZER, "children");
+		op.add(Builder::composite, CompositeAggregation.DESERIALIZER, "composite");
+		op.add(Builder::cumulativeCardinality, JsonpDeserializer.jsonValueDeserializer(), "cumulative_cardinality");
+		op.add(Builder::cumulativeSum, JsonpDeserializer.jsonValueDeserializer(), "cumulative_sum");
+		op.add(Builder::dateHistogram, DateHistogramAggregation.DESERIALIZER, "date_histogram");
+		op.add(Builder::dateRange, DateRangeAggregation.DESERIALIZER, "date_range");
+		op.add(Builder::derivative, JsonpDeserializer.jsonValueDeserializer(), "derivative");
+		op.add(Builder::diversifiedSampler, DiversifiedSamplerAggregation.DESERIALIZER, "diversified_sampler");
+		op.add(Builder::extendedStats, ExtendedStatsAggregation.DESERIALIZER, "extended_stats");
+		op.add(Builder::extendedStatsBucket, ExtendedStatsBucketAggregation.DESERIALIZER, "extended_stats_bucket");
+		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::filters, FiltersAggregation.DESERIALIZER, "filters");
+		op.add(Builder::geoBounds, GeoBoundsAggregation.DESERIALIZER, "geo_bounds");
+		op.add(Builder::geoCentroid, GeoCentroidAggregation.DESERIALIZER, "geo_centroid");
+		op.add(Builder::geoDistance, GeoDistanceAggregation.DESERIALIZER, "geo_distance");
+		op.add(Builder::geohashGrid, GeoHashGridAggregation.DESERIALIZER, "geohash_grid");
+		op.add(Builder::geoLine, GeoLineAggregation.DESERIALIZER, "geo_line");
+		op.add(Builder::geotileGrid, GeoTileGridAggregation.DESERIALIZER, "geotile_grid");
+		op.add(Builder::global, JsonpDeserializer.jsonValueDeserializer(), "global");
+		op.add(Builder::histogram, HistogramAggregation.DESERIALIZER, "histogram");
+		op.add(Builder::ipRange, IpRangeAggregation.DESERIALIZER, "ip_range");
+		op.add(Builder::inference, InferenceAggregation.DESERIALIZER, "inference");
+		op.add(Builder::line, GeoLineAggregation.DESERIALIZER, "line");
+		op.add(Builder::matrixStats, MatrixStatsAggregation.DESERIALIZER, "matrix_stats");
+		op.add(Builder::max, JsonpDeserializer.jsonValueDeserializer(), "max");
+		op.add(Builder::maxBucket, JsonpDeserializer.jsonValueDeserializer(), "max_bucket");
+		op.add(Builder::medianAbsoluteDeviation, MedianAbsoluteDeviationAggregation.DESERIALIZER,
 				"median_absolute_deviation");
-		op.add(Builder::min, JsonpValueParser.jsonValueParser(), "min");
-		op.add(Builder::minBucket, JsonpValueParser.jsonValueParser(), "min_bucket");
-		op.add(Builder::missing, MissingAggregation.JSONP_PARSER, "missing");
-		op.add(Builder::movingAvg, MovingAverageAggregation.JSONP_PARSER, "moving_avg");
-		op.add(Builder::movingPercentiles, MovingPercentilesAggregation.JSONP_PARSER, "moving_percentiles");
-		op.add(Builder::movingFn, MovingFunctionAggregation.JSONP_PARSER, "moving_fn");
-		op.add(Builder::multiTerms, MultiTermsAggregation.JSONP_PARSER, "multi_terms");
-		op.add(Builder::nested, NestedAggregation.JSONP_PARSER, "nested");
-		op.add(Builder::normalize, NormalizeAggregation.JSONP_PARSER, "normalize");
-		op.add(Builder::parent, ParentAggregation.JSONP_PARSER, "parent");
-		op.add(Builder::percentileRanks, PercentileRanksAggregation.JSONP_PARSER, "percentile_ranks");
-		op.add(Builder::percentiles, PercentilesAggregation.JSONP_PARSER, "percentiles");
-		op.add(Builder::percentilesBucket, PercentilesBucketAggregation.JSONP_PARSER, "percentiles_bucket");
-		op.add(Builder::range, RangeAggregation.JSONP_PARSER, "range");
-		op.add(Builder::rareTerms, RareTermsAggregation.JSONP_PARSER, "rare_terms");
-		op.add(Builder::rate, RateAggregation.JSONP_PARSER, "rate");
-		op.add(Builder::reverseNested, ReverseNestedAggregation.JSONP_PARSER, "reverse_nested");
-		op.add(Builder::sampler, SamplerAggregation.JSONP_PARSER, "sampler");
-		op.add(Builder::scriptedMetric, ScriptedMetricAggregation.JSONP_PARSER, "scripted_metric");
-		op.add(Builder::serialDiff, SerialDifferencingAggregation.JSONP_PARSER, "serial_diff");
-		op.add(Builder::significantTerms, SignificantTermsAggregation.JSONP_PARSER, "significant_terms");
-		op.add(Builder::significantText, SignificantTextAggregation.JSONP_PARSER, "significant_text");
-		op.add(Builder::stats, JsonpValueParser.jsonValueParser(), "stats");
-		op.add(Builder::statsBucket, JsonpValueParser.jsonValueParser(), "stats_bucket");
-		op.add(Builder::stringStats, StringStatsAggregation.JSONP_PARSER, "string_stats");
-		op.add(Builder::sum, JsonpValueParser.jsonValueParser(), "sum");
-		op.add(Builder::sumBucket, JsonpValueParser.jsonValueParser(), "sum_bucket");
-		op.add(Builder::terms, TermsAggregation.JSONP_PARSER, "terms");
-		op.add(Builder::topHits, TopHitsAggregation.JSONP_PARSER, "top_hits");
-		op.add(Builder::tTest, TTestAggregation.JSONP_PARSER, "t_test");
-		op.add(Builder::topMetrics, TopMetricsAggregation.JSONP_PARSER, "top_metrics");
-		op.add(Builder::valueCount, JsonpValueParser.jsonValueParser(), "value_count");
-		op.add(Builder::weightedAvg, WeightedAverageAggregation.JSONP_PARSER, "weighted_avg");
-		op.add(Builder::variableWidthHistogram, VariableWidthHistogramAggregation.JSONP_PARSER,
+		op.add(Builder::min, JsonpDeserializer.jsonValueDeserializer(), "min");
+		op.add(Builder::minBucket, JsonpDeserializer.jsonValueDeserializer(), "min_bucket");
+		op.add(Builder::missing, MissingAggregation.DESERIALIZER, "missing");
+		op.add(Builder::movingAvg, MovingAverageAggregation.DESERIALIZER, "moving_avg");
+		op.add(Builder::movingPercentiles, MovingPercentilesAggregation.DESERIALIZER, "moving_percentiles");
+		op.add(Builder::movingFn, MovingFunctionAggregation.DESERIALIZER, "moving_fn");
+		op.add(Builder::multiTerms, MultiTermsAggregation.DESERIALIZER, "multi_terms");
+		op.add(Builder::nested, NestedAggregation.DESERIALIZER, "nested");
+		op.add(Builder::normalize, NormalizeAggregation.DESERIALIZER, "normalize");
+		op.add(Builder::parent, ParentAggregation.DESERIALIZER, "parent");
+		op.add(Builder::percentileRanks, PercentileRanksAggregation.DESERIALIZER, "percentile_ranks");
+		op.add(Builder::percentiles, PercentilesAggregation.DESERIALIZER, "percentiles");
+		op.add(Builder::percentilesBucket, PercentilesBucketAggregation.DESERIALIZER, "percentiles_bucket");
+		op.add(Builder::range, RangeAggregation.DESERIALIZER, "range");
+		op.add(Builder::rareTerms, RareTermsAggregation.DESERIALIZER, "rare_terms");
+		op.add(Builder::rate, RateAggregation.DESERIALIZER, "rate");
+		op.add(Builder::reverseNested, ReverseNestedAggregation.DESERIALIZER, "reverse_nested");
+		op.add(Builder::sampler, SamplerAggregation.DESERIALIZER, "sampler");
+		op.add(Builder::scriptedMetric, ScriptedMetricAggregation.DESERIALIZER, "scripted_metric");
+		op.add(Builder::serialDiff, SerialDifferencingAggregation.DESERIALIZER, "serial_diff");
+		op.add(Builder::significantTerms, SignificantTermsAggregation.DESERIALIZER, "significant_terms");
+		op.add(Builder::significantText, SignificantTextAggregation.DESERIALIZER, "significant_text");
+		op.add(Builder::stats, JsonpDeserializer.jsonValueDeserializer(), "stats");
+		op.add(Builder::statsBucket, JsonpDeserializer.jsonValueDeserializer(), "stats_bucket");
+		op.add(Builder::stringStats, StringStatsAggregation.DESERIALIZER, "string_stats");
+		op.add(Builder::sum, JsonpDeserializer.jsonValueDeserializer(), "sum");
+		op.add(Builder::sumBucket, JsonpDeserializer.jsonValueDeserializer(), "sum_bucket");
+		op.add(Builder::terms, TermsAggregation.DESERIALIZER, "terms");
+		op.add(Builder::topHits, TopHitsAggregation.DESERIALIZER, "top_hits");
+		op.add(Builder::tTest, TTestAggregation.DESERIALIZER, "t_test");
+		op.add(Builder::topMetrics, TopMetricsAggregation.DESERIALIZER, "top_metrics");
+		op.add(Builder::valueCount, JsonpDeserializer.jsonValueDeserializer(), "value_count");
+		op.add(Builder::weightedAvg, WeightedAverageAggregation.DESERIALIZER, "weighted_avg");
+		op.add(Builder::variableWidthHistogram, VariableWidthHistogramAggregation.DESERIALIZER,
 				"variable_width_histogram");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

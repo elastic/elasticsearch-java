@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -174,16 +174,17 @@ public final class UpdateFilterResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateFilterResponse
+	 * Json deserializer for UpdateFilterResponse
 	 */
-	public static final JsonpValueParser<UpdateFilterResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateFilterResponse::setupUpdateFilterResponseParser);
+	public static final JsonpDeserializer<UpdateFilterResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpdateFilterResponse::setupUpdateFilterResponseDeserializer);
 
-	protected static void setupUpdateFilterResponseParser(DelegatingJsonpValueParser<UpdateFilterResponse.Builder> op) {
+	protected static void setupUpdateFilterResponseDeserializer(
+			DelegatingDeserializer<UpdateFilterResponse.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::filterId, JsonpValueParser.stringParser(), "filter_id");
-		op.add(Builder::items, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "items");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::filterId, JsonpDeserializer.stringDeserializer(), "filter_id");
+		op.add(Builder::items, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "items");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -190,17 +190,18 @@ public final class ShardCommit implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardCommit
+	 * Json deserializer for ShardCommit
 	 */
-	public static final JsonpValueParser<ShardCommit> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardCommit::setupShardCommitParser);
+	public static final JsonpDeserializer<ShardCommit> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardCommit::setupShardCommitDeserializer);
 
-	protected static void setupShardCommitParser(DelegatingJsonpValueParser<ShardCommit.Builder> op) {
+	protected static void setupShardCommitDeserializer(DelegatingDeserializer<ShardCommit.Builder> op) {
 
-		op.add(Builder::generation, JsonpValueParser.numberParser(), "generation");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::numDocs, JsonpValueParser.numberParser(), "num_docs");
-		op.add(Builder::userData, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "user_data");
+		op.add(Builder::generation, JsonpDeserializer.numberDeserializer(), "generation");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::numDocs, JsonpDeserializer.numberDeserializer(), "num_docs");
+		op.add(Builder::userData, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"user_data");
 
 	}
 

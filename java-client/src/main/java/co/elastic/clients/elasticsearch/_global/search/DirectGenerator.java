@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -394,24 +394,24 @@ public final class DirectGenerator implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DirectGenerator
+	 * Json deserializer for DirectGenerator
 	 */
-	public static final JsonpValueParser<DirectGenerator> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DirectGenerator::setupDirectGeneratorParser);
+	public static final JsonpDeserializer<DirectGenerator> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DirectGenerator::setupDirectGeneratorDeserializer);
 
-	protected static void setupDirectGeneratorParser(DelegatingJsonpValueParser<DirectGenerator.Builder> op) {
+	protected static void setupDirectGeneratorDeserializer(DelegatingDeserializer<DirectGenerator.Builder> op) {
 
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::maxEdits, JsonpValueParser.numberParser(), "max_edits");
-		op.add(Builder::maxInspections, JsonpValueParser.numberParser(), "max_inspections");
-		op.add(Builder::maxTermFreq, JsonpValueParser.numberParser(), "max_term_freq");
-		op.add(Builder::minDocFreq, JsonpValueParser.numberParser(), "min_doc_freq");
-		op.add(Builder::minWordLength, JsonpValueParser.numberParser(), "min_word_length");
-		op.add(Builder::postFilter, JsonpValueParser.stringParser(), "post_filter");
-		op.add(Builder::preFilter, JsonpValueParser.stringParser(), "pre_filter");
-		op.add(Builder::prefixLength, JsonpValueParser.numberParser(), "prefix_length");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::suggestMode, JsonpValueParser.jsonValueParser(), "suggest_mode");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::maxEdits, JsonpDeserializer.numberDeserializer(), "max_edits");
+		op.add(Builder::maxInspections, JsonpDeserializer.numberDeserializer(), "max_inspections");
+		op.add(Builder::maxTermFreq, JsonpDeserializer.numberDeserializer(), "max_term_freq");
+		op.add(Builder::minDocFreq, JsonpDeserializer.numberDeserializer(), "min_doc_freq");
+		op.add(Builder::minWordLength, JsonpDeserializer.numberDeserializer(), "min_word_length");
+		op.add(Builder::postFilter, JsonpDeserializer.stringDeserializer(), "post_filter");
+		op.add(Builder::preFilter, JsonpDeserializer.stringDeserializer(), "pre_filter");
+		op.add(Builder::prefixLength, JsonpDeserializer.numberDeserializer(), "prefix_length");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::suggestMode, JsonpDeserializer.jsonValueDeserializer(), "suggest_mode");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -257,18 +257,20 @@ public final class Policy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Policy
+	 * Json deserializer for Policy
 	 */
-	public static final JsonpValueParser<Policy> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Policy::setupPolicyParser);
+	public static final JsonpDeserializer<Policy> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Policy::setupPolicyDeserializer);
 
-	protected static void setupPolicyParser(DelegatingJsonpValueParser<Policy.Builder> op) {
+	protected static void setupPolicyDeserializer(DelegatingDeserializer<Policy.Builder> op) {
 
-		op.add(Builder::enrichFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "enrich_fields");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::matchField, JsonpValueParser.stringParser(), "match_field");
-		op.add(Builder::query, JsonpValueParser.stringParser(), "query");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::enrichFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"enrich_fields");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::matchField, JsonpDeserializer.stringDeserializer(), "match_field");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -142,16 +142,17 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReloadSecureSettingsResponse
+	 * Json deserializer for ReloadSecureSettingsResponse
 	 */
-	public static final JsonpValueParser<ReloadSecureSettingsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReloadSecureSettingsResponse::setupReloadSecureSettingsResponseParser);
+	public static final JsonpDeserializer<ReloadSecureSettingsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReloadSecureSettingsResponse::setupReloadSecureSettingsResponseDeserializer);
 
-	protected static void setupReloadSecureSettingsResponseParser(
-			DelegatingJsonpValueParser<ReloadSecureSettingsResponse.Builder> op) {
-		NodesResponseBase.setupNodesResponseBaseParser(op);
-		op.add(Builder::clusterName, JsonpValueParser.stringParser(), "cluster_name");
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "nodes");
+	protected static void setupReloadSecureSettingsResponseDeserializer(
+			DelegatingDeserializer<ReloadSecureSettingsResponse.Builder> op) {
+		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
+		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"nodes");
 
 	}
 

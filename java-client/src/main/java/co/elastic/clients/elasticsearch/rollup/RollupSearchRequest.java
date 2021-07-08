@@ -28,11 +28,11 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -329,16 +329,16 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RollupSearchRequest
+	 * Json deserializer for RollupSearchRequest
 	 */
-	public static final JsonpValueParser<RollupSearchRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RollupSearchRequest::setupRollupSearchRequestParser);
+	public static final JsonpDeserializer<RollupSearchRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RollupSearchRequest::setupRollupSearchRequestDeserializer);
 
-	protected static void setupRollupSearchRequestParser(DelegatingJsonpValueParser<RollupSearchRequest.Builder> op) {
+	protected static void setupRollupSearchRequestDeserializer(DelegatingDeserializer<RollupSearchRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpValueParser.stringMapParser(AggregationContainer.JSONP_PARSER), "aggs");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER), "aggs");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}
 
@@ -403,7 +403,8 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	 * Create an "{@code rollup.rollup_search}" endpoint.
 	 */
 	public static <TDocument> Endpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ElasticsearchError> createRollupSearchEndpoint(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return ENDPOINT.withResponseParser(RollupSearchResponse.createRollupSearchResponseParser(tDocumentParser));
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ENDPOINT.withResponseDeserializer(
+				RollupSearchResponse.createRollupSearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

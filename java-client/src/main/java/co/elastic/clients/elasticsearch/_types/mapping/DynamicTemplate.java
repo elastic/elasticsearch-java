@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -290,20 +290,20 @@ public final class DynamicTemplate implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DynamicTemplate
+	 * Json deserializer for DynamicTemplate
 	 */
-	public static final JsonpValueParser<DynamicTemplate> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DynamicTemplate::setupDynamicTemplateParser);
+	public static final JsonpDeserializer<DynamicTemplate> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DynamicTemplate::setupDynamicTemplateDeserializer);
 
-	protected static void setupDynamicTemplateParser(DelegatingJsonpValueParser<DynamicTemplate.Builder> op) {
+	protected static void setupDynamicTemplateDeserializer(DelegatingDeserializer<DynamicTemplate.Builder> op) {
 
-		op.add(Builder::mapping, PropertyBase.JSONP_PARSER, "mapping");
-		op.add(Builder::match, JsonpValueParser.stringParser(), "match");
-		op.add(Builder::matchMappingType, JsonpValueParser.stringParser(), "match_mapping_type");
-		op.add(Builder::matchPattern, JsonpValueParser.jsonValueParser(), "match_pattern");
-		op.add(Builder::pathMatch, JsonpValueParser.stringParser(), "path_match");
-		op.add(Builder::pathUnmatch, JsonpValueParser.stringParser(), "path_unmatch");
-		op.add(Builder::unmatch, JsonpValueParser.stringParser(), "unmatch");
+		op.add(Builder::mapping, PropertyBase.DESERIALIZER, "mapping");
+		op.add(Builder::match, JsonpDeserializer.stringDeserializer(), "match");
+		op.add(Builder::matchMappingType, JsonpDeserializer.stringDeserializer(), "match_mapping_type");
+		op.add(Builder::matchPattern, JsonpDeserializer.jsonValueDeserializer(), "match_pattern");
+		op.add(Builder::pathMatch, JsonpDeserializer.stringDeserializer(), "path_match");
+		op.add(Builder::pathUnmatch, JsonpDeserializer.stringDeserializer(), "path_unmatch");
+		op.add(Builder::unmatch, JsonpDeserializer.stringDeserializer(), "unmatch");
 
 	}
 

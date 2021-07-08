@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -220,20 +220,20 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalyticsStatsHyperparameters
+	 * Json deserializer for DataframeAnalyticsStatsHyperparameters
 	 */
-	public static final JsonpValueParser<DataframeAnalyticsStatsHyperparameters> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeAnalyticsStatsHyperparameters> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeAnalyticsStatsHyperparameters::setupDataframeAnalyticsStatsHyperparametersParser);
+					DataframeAnalyticsStatsHyperparameters::setupDataframeAnalyticsStatsHyperparametersDeserializer);
 
-	protected static void setupDataframeAnalyticsStatsHyperparametersParser(
-			DelegatingJsonpValueParser<DataframeAnalyticsStatsHyperparameters.Builder> op) {
+	protected static void setupDataframeAnalyticsStatsHyperparametersDeserializer(
+			DelegatingDeserializer<DataframeAnalyticsStatsHyperparameters.Builder> op) {
 
-		op.add(Builder::hyperparameters, Hyperparameters.JSONP_PARSER, "hyperparameters");
-		op.add(Builder::iteration, JsonpValueParser.numberParser(), "iteration");
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp");
-		op.add(Builder::timingStats, TimingStats.JSONP_PARSER, "timing_stats");
-		op.add(Builder::validationLoss, ValidationLoss.JSONP_PARSER, "validation_loss");
+		op.add(Builder::hyperparameters, Hyperparameters.DESERIALIZER, "hyperparameters");
+		op.add(Builder::iteration, JsonpDeserializer.numberDeserializer(), "iteration");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timingStats, TimingStats.DESERIALIZER, "timing_stats");
+		op.add(Builder::validationLoss, ValidationLoss.DESERIALIZER, "validation_loss");
 
 	}
 

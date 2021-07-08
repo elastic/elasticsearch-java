@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch.ml.info.Defaults;
 import co.elastic.clients.elasticsearch.ml.info.Limits;
 import co.elastic.clients.elasticsearch.ml.info.NativeCode;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -195,17 +195,17 @@ public final class InfoResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InfoResponse
+	 * Json deserializer for InfoResponse
 	 */
-	public static final JsonpValueParser<InfoResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InfoResponse::setupInfoResponseParser);
+	public static final JsonpDeserializer<InfoResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InfoResponse::setupInfoResponseDeserializer);
 
-	protected static void setupInfoResponseParser(DelegatingJsonpValueParser<InfoResponse.Builder> op) {
+	protected static void setupInfoResponseDeserializer(DelegatingDeserializer<InfoResponse.Builder> op) {
 
-		op.add(Builder::defaults, Defaults.JSONP_PARSER, "defaults");
-		op.add(Builder::limits, Limits.JSONP_PARSER, "limits");
-		op.add(Builder::upgradeMode, JsonpValueParser.booleanParser(), "upgrade_mode");
-		op.add(Builder::nativeCode, NativeCode.JSONP_PARSER, "native_code");
+		op.add(Builder::defaults, Defaults.DESERIALIZER, "defaults");
+		op.add(Builder::limits, Limits.DESERIALIZER, "limits");
+		op.add(Builder::upgradeMode, JsonpDeserializer.booleanDeserializer(), "upgrade_mode");
+		op.add(Builder::nativeCode, NativeCode.DESERIALIZER, "native_code");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -235,18 +235,19 @@ public final class DateProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DateProcessor
+	 * Json deserializer for DateProcessor
 	 */
-	public static final JsonpValueParser<DateProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DateProcessor::setupDateProcessorParser);
+	public static final JsonpDeserializer<DateProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DateProcessor::setupDateProcessorDeserializer);
 
-	protected static void setupDateProcessorParser(DelegatingJsonpValueParser<DateProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::formats, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "formats");
-		op.add(Builder::locale, JsonpValueParser.stringParser(), "locale");
-		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
-		op.add(Builder::timezone, JsonpValueParser.stringParser(), "timezone");
+	protected static void setupDateProcessorDeserializer(DelegatingDeserializer<DateProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::formats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"formats");
+		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+		op.add(Builder::timezone, JsonpDeserializer.stringDeserializer(), "timezone");
 
 	}
 

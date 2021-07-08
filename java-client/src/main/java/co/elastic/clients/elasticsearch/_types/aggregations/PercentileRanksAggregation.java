@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -234,18 +234,18 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PercentileRanksAggregation
+	 * Json deserializer for PercentileRanksAggregation
 	 */
-	public static final JsonpValueParser<PercentileRanksAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PercentileRanksAggregation::setupPercentileRanksAggregationParser);
+	public static final JsonpDeserializer<PercentileRanksAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PercentileRanksAggregation::setupPercentileRanksAggregationDeserializer);
 
-	protected static void setupPercentileRanksAggregationParser(
-			DelegatingJsonpValueParser<PercentileRanksAggregation.Builder> op) {
-		FormatMetricAggregationBase.setupFormatMetricAggregationBaseParser(op);
-		op.add(Builder::keyed, JsonpValueParser.booleanParser(), "keyed");
-		op.add(Builder::values, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "values");
-		op.add(Builder::hdr, HdrMethod.JSONP_PARSER, "hdr");
-		op.add(Builder::tdigest, TDigest.JSONP_PARSER, "tdigest");
+	protected static void setupPercentileRanksAggregationDeserializer(
+			DelegatingDeserializer<PercentileRanksAggregation.Builder> op) {
+		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
+		op.add(Builder::values, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "values");
+		op.add(Builder::hdr, HdrMethod.DESERIALIZER, "hdr");
+		op.add(Builder::tdigest, TDigest.DESERIALIZER, "tdigest");
 
 	}
 

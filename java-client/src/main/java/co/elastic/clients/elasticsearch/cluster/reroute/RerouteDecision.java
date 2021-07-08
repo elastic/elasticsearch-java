@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,16 +147,16 @@ public final class RerouteDecision implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RerouteDecision
+	 * Json deserializer for RerouteDecision
 	 */
-	public static final JsonpValueParser<RerouteDecision> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RerouteDecision::setupRerouteDecisionParser);
+	public static final JsonpDeserializer<RerouteDecision> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RerouteDecision::setupRerouteDecisionDeserializer);
 
-	protected static void setupRerouteDecisionParser(DelegatingJsonpValueParser<RerouteDecision.Builder> op) {
+	protected static void setupRerouteDecisionDeserializer(DelegatingDeserializer<RerouteDecision.Builder> op) {
 
-		op.add(Builder::decider, JsonpValueParser.stringParser(), "decider");
-		op.add(Builder::decision, JsonpValueParser.stringParser(), "decision");
-		op.add(Builder::explanation, JsonpValueParser.stringParser(), "explanation");
+		op.add(Builder::decider, JsonpDeserializer.stringDeserializer(), "decider");
+		op.add(Builder::decision, JsonpDeserializer.stringDeserializer(), "decision");
+		op.add(Builder::explanation, JsonpDeserializer.stringDeserializer(), "explanation");
 
 	}
 

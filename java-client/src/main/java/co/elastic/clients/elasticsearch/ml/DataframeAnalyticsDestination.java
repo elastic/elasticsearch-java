@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,16 +143,17 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalyticsDestination
+	 * Json deserializer for DataframeAnalyticsDestination
 	 */
-	public static final JsonpValueParser<DataframeAnalyticsDestination> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataframeAnalyticsDestination::setupDataframeAnalyticsDestinationParser);
+	public static final JsonpDeserializer<DataframeAnalyticsDestination> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					DataframeAnalyticsDestination::setupDataframeAnalyticsDestinationDeserializer);
 
-	protected static void setupDataframeAnalyticsDestinationParser(
-			DelegatingJsonpValueParser<DataframeAnalyticsDestination.Builder> op) {
+	protected static void setupDataframeAnalyticsDestinationDeserializer(
+			DelegatingDeserializer<DataframeAnalyticsDestination.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::resultsField, JsonpValueParser.stringParser(), "results_field");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
 
 	}
 

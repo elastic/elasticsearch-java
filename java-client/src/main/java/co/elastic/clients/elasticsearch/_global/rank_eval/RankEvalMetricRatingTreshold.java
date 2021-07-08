@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -88,10 +88,11 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricRatingTresholdParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
-		RankEvalMetricBase.setupRankEvalMetricBaseParser(op);
-		op.add(AbstractBuilder::relevantRatingThreshold, JsonpValueParser.numberParser(), "relevant_rating_threshold");
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricRatingTresholdDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
+		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
+		op.add(AbstractBuilder::relevantRatingThreshold, JsonpDeserializer.numberDeserializer(),
+				"relevant_rating_threshold");
 
 	}
 

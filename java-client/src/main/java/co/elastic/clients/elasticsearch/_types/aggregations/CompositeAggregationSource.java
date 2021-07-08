@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -223,18 +223,18 @@ public final class CompositeAggregationSource implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CompositeAggregationSource
+	 * Json deserializer for CompositeAggregationSource
 	 */
-	public static final JsonpValueParser<CompositeAggregationSource> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CompositeAggregationSource::setupCompositeAggregationSourceParser);
+	public static final JsonpDeserializer<CompositeAggregationSource> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CompositeAggregationSource::setupCompositeAggregationSourceDeserializer);
 
-	protected static void setupCompositeAggregationSourceParser(
-			DelegatingJsonpValueParser<CompositeAggregationSource.Builder> op) {
+	protected static void setupCompositeAggregationSourceDeserializer(
+			DelegatingDeserializer<CompositeAggregationSource.Builder> op) {
 
-		op.add(Builder::terms, TermsAggregation.JSONP_PARSER, "terms");
-		op.add(Builder::histogram, HistogramAggregation.JSONP_PARSER, "histogram");
-		op.add(Builder::dateHistogram, DateHistogramAggregation.JSONP_PARSER, "date_histogram");
-		op.add(Builder::geotileGrid, GeoTileGridAggregation.JSONP_PARSER, "geotile_grid");
+		op.add(Builder::terms, TermsAggregation.DESERIALIZER, "terms");
+		op.add(Builder::histogram, HistogramAggregation.DESERIALIZER, "histogram");
+		op.add(Builder::dateHistogram, DateHistogramAggregation.DESERIALIZER, "date_histogram");
+		op.add(Builder::geotileGrid, GeoTileGridAggregation.DESERIALIZER, "geotile_grid");
 
 	}
 

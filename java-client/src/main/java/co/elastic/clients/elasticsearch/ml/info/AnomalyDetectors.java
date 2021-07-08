@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.elasticsearch.ml.CategorizationAnalyzer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -207,18 +207,20 @@ public final class AnomalyDetectors implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AnomalyDetectors
+	 * Json deserializer for AnomalyDetectors
 	 */
-	public static final JsonpValueParser<AnomalyDetectors> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AnomalyDetectors::setupAnomalyDetectorsParser);
+	public static final JsonpDeserializer<AnomalyDetectors> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AnomalyDetectors::setupAnomalyDetectorsDeserializer);
 
-	protected static void setupAnomalyDetectorsParser(DelegatingJsonpValueParser<AnomalyDetectors.Builder> op) {
+	protected static void setupAnomalyDetectorsDeserializer(DelegatingDeserializer<AnomalyDetectors.Builder> op) {
 
-		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer.JSONP_PARSER, "categorization_analyzer");
-		op.add(Builder::categorizationExamplesLimit, JsonpValueParser.numberParser(), "categorization_examples_limit");
-		op.add(Builder::modelMemoryLimit, JsonpValueParser.jsonValueParser(), "model_memory_limit");
-		op.add(Builder::modelSnapshotRetentionDays, JsonpValueParser.numberParser(), "model_snapshot_retention_days");
-		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpValueParser.numberParser(),
+		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer.DESERIALIZER, "categorization_analyzer");
+		op.add(Builder::categorizationExamplesLimit, JsonpDeserializer.numberDeserializer(),
+				"categorization_examples_limit");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(), "model_memory_limit");
+		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
+				"model_snapshot_retention_days");
+		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.numberDeserializer(),
 				"daily_model_snapshot_retention_after_days");
 
 	}

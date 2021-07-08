@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup.delete_rollup_job;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class TaskFailureReason implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TaskFailureReason
+	 * Json deserializer for TaskFailureReason
 	 */
-	public static final JsonpValueParser<TaskFailureReason> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TaskFailureReason::setupTaskFailureReasonParser);
+	public static final JsonpDeserializer<TaskFailureReason> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TaskFailureReason::setupTaskFailureReasonDeserializer);
 
-	protected static void setupTaskFailureReasonParser(DelegatingJsonpValueParser<TaskFailureReason.Builder> op) {
+	protected static void setupTaskFailureReasonDeserializer(DelegatingDeserializer<TaskFailureReason.Builder> op) {
 
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 
 	}
 

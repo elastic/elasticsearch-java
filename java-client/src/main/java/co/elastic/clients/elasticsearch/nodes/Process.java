@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -185,17 +185,17 @@ public final class Process implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Process
+	 * Json deserializer for Process
 	 */
-	public static final JsonpValueParser<Process> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Process::setupProcessParser);
+	public static final JsonpDeserializer<Process> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Process::setupProcessDeserializer);
 
-	protected static void setupProcessParser(DelegatingJsonpValueParser<Process.Builder> op) {
+	protected static void setupProcessDeserializer(DelegatingDeserializer<Process.Builder> op) {
 
-		op.add(Builder::cpu, Cpu.JSONP_PARSER, "cpu");
-		op.add(Builder::mem, MemoryStats.JSONP_PARSER, "mem");
-		op.add(Builder::openFileDescriptors, JsonpValueParser.numberParser(), "open_file_descriptors");
-		op.add(Builder::timestamp, JsonpValueParser.numberParser(), "timestamp");
+		op.add(Builder::cpu, Cpu.DESERIALIZER, "cpu");
+		op.add(Builder::mem, MemoryStats.DESERIALIZER, "mem");
+		op.add(Builder::openFileDescriptors, JsonpDeserializer.numberDeserializer(), "open_file_descriptors");
+		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
 
 	}
 

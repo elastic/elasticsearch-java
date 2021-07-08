@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -136,16 +136,16 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WatcherWatchTriggerSchedule
+	 * Json deserializer for WatcherWatchTriggerSchedule
 	 */
-	public static final JsonpValueParser<WatcherWatchTriggerSchedule> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WatcherWatchTriggerSchedule::setupWatcherWatchTriggerScheduleParser);
+	public static final JsonpDeserializer<WatcherWatchTriggerSchedule> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WatcherWatchTriggerSchedule::setupWatcherWatchTriggerScheduleDeserializer);
 
-	protected static void setupWatcherWatchTriggerScheduleParser(
-			DelegatingJsonpValueParser<WatcherWatchTriggerSchedule.Builder> op) {
-		Counter.setupCounterParser(op);
-		op.add(Builder::cron, Counter.JSONP_PARSER, "cron");
-		op.add(Builder::_all, Counter.JSONP_PARSER, "_all");
+	protected static void setupWatcherWatchTriggerScheduleDeserializer(
+			DelegatingDeserializer<WatcherWatchTriggerSchedule.Builder> op) {
+		Counter.setupCounterDeserializer(op);
+		op.add(Builder::cron, Counter.DESERIALIZER, "cron");
+		op.add(Builder::_all, Counter.DESERIALIZER, "_all");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -144,17 +144,18 @@ public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PreviewDataFrameAnalyticsResponse
+	 * Json deserializer for PreviewDataFrameAnalyticsResponse
 	 */
-	public static final JsonpValueParser<PreviewDataFrameAnalyticsResponse> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<PreviewDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					PreviewDataFrameAnalyticsResponse::setupPreviewDataFrameAnalyticsResponseParser);
+					PreviewDataFrameAnalyticsResponse::setupPreviewDataFrameAnalyticsResponseDeserializer);
 
-	protected static void setupPreviewDataFrameAnalyticsResponseParser(
-			DelegatingJsonpValueParser<PreviewDataFrameAnalyticsResponse.Builder> op) {
+	protected static void setupPreviewDataFrameAnalyticsResponseDeserializer(
+			DelegatingDeserializer<PreviewDataFrameAnalyticsResponse.Builder> op) {
 
 		op.add(Builder::featureValues,
-				JsonpValueParser.arrayParser(JsonpValueParser.stringMapParser(JsonpValueParser.stringParser())),
+				JsonpDeserializer.arrayDeserializer(
+						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())),
 				"feature_values");
 
 	}

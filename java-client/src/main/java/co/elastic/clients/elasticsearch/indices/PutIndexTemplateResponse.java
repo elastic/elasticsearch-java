@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,14 +68,14 @@ public final class PutIndexTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutIndexTemplateResponse
+	 * Json deserializer for PutIndexTemplateResponse
 	 */
-	public static final JsonpValueParser<PutIndexTemplateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutIndexTemplateResponse::setupPutIndexTemplateResponseParser);
+	public static final JsonpDeserializer<PutIndexTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutIndexTemplateResponse::setupPutIndexTemplateResponseDeserializer);
 
-	protected static void setupPutIndexTemplateResponseParser(
-			DelegatingJsonpValueParser<PutIndexTemplateResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupPutIndexTemplateResponseDeserializer(
+			DelegatingDeserializer<PutIndexTemplateResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

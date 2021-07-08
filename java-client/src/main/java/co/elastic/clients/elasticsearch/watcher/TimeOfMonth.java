@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -176,15 +176,15 @@ public final class TimeOfMonth implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TimeOfMonth
+	 * Json deserializer for TimeOfMonth
 	 */
-	public static final JsonpValueParser<TimeOfMonth> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TimeOfMonth::setupTimeOfMonthParser);
+	public static final JsonpDeserializer<TimeOfMonth> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TimeOfMonth::setupTimeOfMonthDeserializer);
 
-	protected static void setupTimeOfMonthParser(DelegatingJsonpValueParser<TimeOfMonth.Builder> op) {
+	protected static void setupTimeOfMonthDeserializer(DelegatingDeserializer<TimeOfMonth.Builder> op) {
 
-		op.add(Builder::at, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "at");
-		op.add(Builder::on, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "on");
+		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
+		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "on");
 
 	}
 

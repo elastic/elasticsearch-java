@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate_pipeline;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -282,21 +282,21 @@ public final class PipelineSimulation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PipelineSimulation
+	 * Json deserializer for PipelineSimulation
 	 */
-	public static final JsonpValueParser<PipelineSimulation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PipelineSimulation::setupPipelineSimulationParser);
+	public static final JsonpDeserializer<PipelineSimulation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PipelineSimulation::setupPipelineSimulationDeserializer);
 
-	protected static void setupPipelineSimulationParser(DelegatingJsonpValueParser<PipelineSimulation.Builder> op) {
+	protected static void setupPipelineSimulationDeserializer(DelegatingDeserializer<PipelineSimulation.Builder> op) {
 
-		op.add(Builder::doc, DocumentSimulation.JSONP_PARSER, "doc");
+		op.add(Builder::doc, DocumentSimulation.DESERIALIZER, "doc");
 		op.add(Builder::processorResults,
-				JsonpValueParser.arrayParser(
-						co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.JSONP_PARSER),
+				JsonpDeserializer.arrayDeserializer(
+						co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.DESERIALIZER),
 				"processor_results");
-		op.add(Builder::tag, JsonpValueParser.stringParser(), "tag");
-		op.add(Builder::processorType, JsonpValueParser.stringParser(), "processor_type");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
+		op.add(Builder::tag, JsonpDeserializer.stringDeserializer(), "tag");
+		op.add(Builder::processorType, JsonpDeserializer.stringDeserializer(), "processor_type");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
 
 	}
 

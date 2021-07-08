@@ -19,12 +19,12 @@
 
 package co.elastic.clients.base;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 
 import javax.annotation.Nullable;
@@ -130,14 +130,14 @@ public abstract class AdditionalProperties<TKey, TValue> implements ToJsonp {
     }
 
     // ---------------------------------------------------------------------------------------------
-    protected static <TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> void setupAdditionalPropertiesParser(
-        DelegatingJsonpValueParser<BuilderT> op, JsonpValueParser<TKey> tKeyParser,
-        JsonpValueParser<TValue> tValueParser) {
+    protected static <TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> void setupAdditionalPropertiesDeserializer(
+        DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TKey> tKeyParser,
+        JsonpDeserializer<TValue> tValueParser) {
 
         @SuppressWarnings("unckecked")
-        JsonpObjectParser<BuilderT> op1 = (JsonpObjectParser<BuilderT>)op;
+        ObjectDeserializer<BuilderT> op1 = (ObjectDeserializer<BuilderT>)op;
         op1.setUnknownFieldHandler((builder, name, parser, params) -> {
-            builder.putValue(name, tValueParser.parse(parser, params));
+            builder.putValue(name, tValueParser.deserialize(parser, params));
         });
     }
 }

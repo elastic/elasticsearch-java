@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -249,18 +249,19 @@ public final class CompletionSuggester extends SuggesterBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CompletionSuggester
+	 * Json deserializer for CompletionSuggester
 	 */
-	public static final JsonpValueParser<CompletionSuggester> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CompletionSuggester::setupCompletionSuggesterParser);
+	public static final JsonpDeserializer<CompletionSuggester> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CompletionSuggester::setupCompletionSuggesterDeserializer);
 
-	protected static void setupCompletionSuggesterParser(DelegatingJsonpValueParser<CompletionSuggester.Builder> op) {
-		SuggesterBase.setupSuggesterBaseParser(op);
-		op.add(Builder::contexts, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "contexts");
-		op.add(Builder::fuzzy, SuggestFuzziness.JSONP_PARSER, "fuzzy");
-		op.add(Builder::prefix, JsonpValueParser.stringParser(), "prefix");
-		op.add(Builder::regex, JsonpValueParser.stringParser(), "regex");
-		op.add(Builder::skipDuplicates, JsonpValueParser.booleanParser(), "skip_duplicates");
+	protected static void setupCompletionSuggesterDeserializer(DelegatingDeserializer<CompletionSuggester.Builder> op) {
+		SuggesterBase.setupSuggesterBaseDeserializer(op);
+		op.add(Builder::contexts, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"contexts");
+		op.add(Builder::fuzzy, SuggestFuzziness.DESERIALIZER, "fuzzy");
+		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
+		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
+		op.add(Builder::skipDuplicates, JsonpDeserializer.booleanDeserializer(), "skip_duplicates");
 
 	}
 

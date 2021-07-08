@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -160,15 +160,16 @@ public final class ClusterNetworkTypes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterNetworkTypes
+	 * Json deserializer for ClusterNetworkTypes
 	 */
-	public static final JsonpValueParser<ClusterNetworkTypes> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterNetworkTypes::setupClusterNetworkTypesParser);
+	public static final JsonpDeserializer<ClusterNetworkTypes> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterNetworkTypes::setupClusterNetworkTypesDeserializer);
 
-	protected static void setupClusterNetworkTypesParser(DelegatingJsonpValueParser<ClusterNetworkTypes.Builder> op) {
+	protected static void setupClusterNetworkTypesDeserializer(DelegatingDeserializer<ClusterNetworkTypes.Builder> op) {
 
-		op.add(Builder::httpTypes, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()), "http_types");
-		op.add(Builder::transportTypes, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()),
+		op.add(Builder::httpTypes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+				"http_types");
+		op.add(Builder::transportTypes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
 				"transport_types");
 
 	}

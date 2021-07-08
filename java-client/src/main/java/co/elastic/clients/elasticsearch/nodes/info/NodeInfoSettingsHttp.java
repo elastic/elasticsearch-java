@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -190,17 +190,18 @@ public final class NodeInfoSettingsHttp implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoSettingsHttp
+	 * Json deserializer for NodeInfoSettingsHttp
 	 */
-	public static final JsonpValueParser<NodeInfoSettingsHttp> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoSettingsHttp::setupNodeInfoSettingsHttpParser);
+	public static final JsonpDeserializer<NodeInfoSettingsHttp> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoSettingsHttp::setupNodeInfoSettingsHttpDeserializer);
 
-	protected static void setupNodeInfoSettingsHttpParser(DelegatingJsonpValueParser<NodeInfoSettingsHttp.Builder> op) {
+	protected static void setupNodeInfoSettingsHttpDeserializer(
+			DelegatingDeserializer<NodeInfoSettingsHttp.Builder> op) {
 
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
-		op.add(Builder::type_default, JsonpValueParser.stringParser(), "type.default");
-		op.add(Builder::compression, JsonpValueParser.jsonValueParser(), "compression");
-		op.add(Builder::port, JsonpValueParser.jsonValueParser(), "port");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type_default, JsonpDeserializer.stringDeserializer(), "type.default");
+		op.add(Builder::compression, JsonpDeserializer.jsonValueDeserializer(), "compression");
+		op.add(Builder::port, JsonpDeserializer.jsonValueDeserializer(), "port");
 
 	}
 

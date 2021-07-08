@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -244,17 +244,17 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetIndexTemplateRequest
+	 * Json deserializer for GetIndexTemplateRequest
 	 */
-	public static final JsonpValueParser<GetIndexTemplateRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetIndexTemplateRequest::setupGetIndexTemplateRequestParser);
+	public static final JsonpDeserializer<GetIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetIndexTemplateRequest::setupGetIndexTemplateRequestDeserializer);
 
-	protected static void setupGetIndexTemplateRequestParser(
-			DelegatingJsonpValueParser<GetIndexTemplateRequest.Builder> op) {
+	protected static void setupGetIndexTemplateRequestDeserializer(
+			DelegatingDeserializer<GetIndexTemplateRequest.Builder> op) {
 
-		op.add(Builder::flatSettings, JsonpValueParser.booleanParser(), "flat_settings");
-		op.add(Builder::includeTypeName, JsonpValueParser.booleanParser(), "include_type_name");
-		op.add(Builder::masterTimeout, JsonpValueParser.jsonValueParser(), "master_timeout");
+		op.add(Builder::flatSettings, JsonpDeserializer.booleanDeserializer(), "flat_settings");
+		op.add(Builder::includeTypeName, JsonpDeserializer.booleanDeserializer(), "include_type_name");
+		op.add(Builder::masterTimeout, JsonpDeserializer.jsonValueDeserializer(), "master_timeout");
 
 	}
 
@@ -303,5 +303,5 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetIndexTemplateResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GetIndexTemplateResponse.DESERIALIZER);
 }

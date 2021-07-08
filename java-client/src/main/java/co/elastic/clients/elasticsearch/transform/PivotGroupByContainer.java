@@ -27,10 +27,10 @@ import co.elastic.clients.elasticsearch._types.aggregations.DateHistogramAggrega
 import co.elastic.clients.elasticsearch._types.aggregations.GeoTileGridAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.TermsAggregation;
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -64,7 +64,7 @@ public class PivotGroupByContainer extends TaggedUnion<PivotGroupByContainer.Tag
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private PivotGroupByContainer(Builder builder) {
@@ -204,22 +204,23 @@ public class PivotGroupByContainer extends TaggedUnion<PivotGroupByContainer.Tag
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<PivotGroupByContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(PivotGroupByContainer::buildJsonpParser);
+	public static final JsonpDeserializer<PivotGroupByContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(PivotGroupByContainer::buildDeserializer);
 
-	private static JsonpValueParser<PivotGroupByContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<PivotGroupByContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::dateHistogram, DateHistogramAggregation.JSONP_PARSER, "date_histogram");
-		op.add(Builder::geotileGrid, GeoTileGridAggregation.JSONP_PARSER, "geotile_grid");
-		op.add(Builder::histogram, HistogramAggregation.JSONP_PARSER, "histogram");
-		op.add(Builder::terms, TermsAggregation.JSONP_PARSER, "terms");
+		op.add(Builder::dateHistogram, DateHistogramAggregation.DESERIALIZER, "date_histogram");
+		op.add(Builder::geotileGrid, GeoTileGridAggregation.DESERIALIZER, "geotile_grid");
+		op.add(Builder::histogram, HistogramAggregation.DESERIALIZER, "histogram");
+		op.add(Builder::terms, TermsAggregation.DESERIALIZER, "terms");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

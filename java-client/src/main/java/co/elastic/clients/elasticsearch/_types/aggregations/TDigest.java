@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -107,14 +107,14 @@ public final class TDigest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TDigest
+	 * Json deserializer for TDigest
 	 */
-	public static final JsonpValueParser<TDigest> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			TDigest::setupTDigestParser);
+	public static final JsonpDeserializer<TDigest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TDigest::setupTDigestDeserializer);
 
-	protected static void setupTDigestParser(DelegatingJsonpValueParser<TDigest.Builder> op) {
+	protected static void setupTDigestDeserializer(DelegatingDeserializer<TDigest.Builder> op) {
 
-		op.add(Builder::compression, JsonpValueParser.numberParser(), "compression");
+		op.add(Builder::compression, JsonpDeserializer.numberDeserializer(), "compression");
 
 	}
 

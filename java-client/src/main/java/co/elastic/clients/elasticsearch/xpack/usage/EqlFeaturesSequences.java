@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -217,19 +217,21 @@ public final class EqlFeaturesSequences implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for EqlFeaturesSequences
+	 * Json deserializer for EqlFeaturesSequences
 	 */
-	public static final JsonpValueParser<EqlFeaturesSequences> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, EqlFeaturesSequences::setupEqlFeaturesSequencesParser);
+	public static final JsonpDeserializer<EqlFeaturesSequences> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, EqlFeaturesSequences::setupEqlFeaturesSequencesDeserializer);
 
-	protected static void setupEqlFeaturesSequencesParser(DelegatingJsonpValueParser<EqlFeaturesSequences.Builder> op) {
+	protected static void setupEqlFeaturesSequencesDeserializer(
+			DelegatingDeserializer<EqlFeaturesSequences.Builder> op) {
 
-		op.add(Builder::sequenceQueriesThree, JsonpValueParser.numberParser(), "sequence_queries_three");
-		op.add(Builder::sequenceQueriesFour, JsonpValueParser.numberParser(), "sequence_queries_four");
-		op.add(Builder::sequenceQueriesTwo, JsonpValueParser.numberParser(), "sequence_queries_two");
-		op.add(Builder::sequenceUntil, JsonpValueParser.numberParser(), "sequence_until");
-		op.add(Builder::sequenceQueriesFiveOrMore, JsonpValueParser.numberParser(), "sequence_queries_five_or_more");
-		op.add(Builder::sequenceMaxspan, JsonpValueParser.numberParser(), "sequence_maxspan");
+		op.add(Builder::sequenceQueriesThree, JsonpDeserializer.numberDeserializer(), "sequence_queries_three");
+		op.add(Builder::sequenceQueriesFour, JsonpDeserializer.numberDeserializer(), "sequence_queries_four");
+		op.add(Builder::sequenceQueriesTwo, JsonpDeserializer.numberDeserializer(), "sequence_queries_two");
+		op.add(Builder::sequenceUntil, JsonpDeserializer.numberDeserializer(), "sequence_until");
+		op.add(Builder::sequenceQueriesFiveOrMore, JsonpDeserializer.numberDeserializer(),
+				"sequence_queries_five_or_more");
+		op.add(Builder::sequenceMaxspan, JsonpDeserializer.numberDeserializer(), "sequence_maxspan");
 
 	}
 

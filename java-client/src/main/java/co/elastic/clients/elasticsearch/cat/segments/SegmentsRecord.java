@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.segments;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -574,28 +574,28 @@ public final class SegmentsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SegmentsRecord
+	 * Json deserializer for SegmentsRecord
 	 */
-	public static final JsonpValueParser<SegmentsRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SegmentsRecord::setupSegmentsRecordParser);
+	public static final JsonpDeserializer<SegmentsRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SegmentsRecord::setupSegmentsRecordDeserializer);
 
-	protected static void setupSegmentsRecordParser(DelegatingJsonpValueParser<SegmentsRecord.Builder> op) {
+	protected static void setupSegmentsRecordDeserializer(DelegatingDeserializer<SegmentsRecord.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index", "i", "idx");
-		op.add(Builder::shard, JsonpValueParser.stringParser(), "shard", "s", "sh");
-		op.add(Builder::prirep, JsonpValueParser.stringParser(), "prirep", "p", "pr", "primaryOrReplica");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::segment, JsonpValueParser.stringParser(), "segment", "seg");
-		op.add(Builder::generation, JsonpValueParser.stringParser(), "generation", "g", "gen");
-		op.add(Builder::docs_count, JsonpValueParser.stringParser(), "docs.count", "dc", "docsCount");
-		op.add(Builder::docs_deleted, JsonpValueParser.stringParser(), "docs.deleted", "dd", "docsDeleted");
-		op.add(Builder::size, JsonpValueParser.jsonValueParser(), "size", "si");
-		op.add(Builder::size_memory, JsonpValueParser.jsonValueParser(), "size.memory", "sm", "sizeMemory");
-		op.add(Builder::committed, JsonpValueParser.stringParser(), "committed", "ic", "isCommitted");
-		op.add(Builder::searchable, JsonpValueParser.stringParser(), "searchable", "is", "isSearchable");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version", "v");
-		op.add(Builder::compound, JsonpValueParser.stringParser(), "compound", "ico", "isCompound");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "i", "idx");
+		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "shard", "s", "sh");
+		op.add(Builder::prirep, JsonpDeserializer.stringDeserializer(), "prirep", "p", "pr", "primaryOrReplica");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::segment, JsonpDeserializer.stringDeserializer(), "segment", "seg");
+		op.add(Builder::generation, JsonpDeserializer.stringDeserializer(), "generation", "g", "gen");
+		op.add(Builder::docs_count, JsonpDeserializer.stringDeserializer(), "docs.count", "dc", "docsCount");
+		op.add(Builder::docs_deleted, JsonpDeserializer.stringDeserializer(), "docs.deleted", "dd", "docsDeleted");
+		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size", "si");
+		op.add(Builder::size_memory, JsonpDeserializer.jsonValueDeserializer(), "size.memory", "sm", "sizeMemory");
+		op.add(Builder::committed, JsonpDeserializer.stringDeserializer(), "committed", "ic", "isCommitted");
+		op.add(Builder::searchable, JsonpDeserializer.stringDeserializer(), "searchable", "is", "isSearchable");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
+		op.add(Builder::compound, JsonpDeserializer.stringDeserializer(), "compound", "ico", "isCompound");
 
 	}
 

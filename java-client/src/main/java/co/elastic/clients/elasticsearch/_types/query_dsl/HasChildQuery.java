@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._global.search.InnerHits;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -295,20 +295,20 @@ public final class HasChildQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HasChildQuery
+	 * Json deserializer for HasChildQuery
 	 */
-	public static final JsonpValueParser<HasChildQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HasChildQuery::setupHasChildQueryParser);
+	public static final JsonpDeserializer<HasChildQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HasChildQuery::setupHasChildQueryDeserializer);
 
-	protected static void setupHasChildQueryParser(DelegatingJsonpValueParser<HasChildQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::ignoreUnmapped, JsonpValueParser.booleanParser(), "ignore_unmapped");
-		op.add(Builder::innerHits, InnerHits.JSONP_PARSER, "inner_hits");
-		op.add(Builder::maxChildren, JsonpValueParser.numberParser(), "max_children");
-		op.add(Builder::minChildren, JsonpValueParser.numberParser(), "min_children");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::scoreMode, JsonpValueParser.jsonValueParser(), "score_mode");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+	protected static void setupHasChildQueryDeserializer(DelegatingDeserializer<HasChildQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
+		op.add(Builder::innerHits, InnerHits.DESERIALIZER, "inner_hits");
+		op.add(Builder::maxChildren, JsonpDeserializer.numberDeserializer(), "max_children");
+		op.add(Builder::minChildren, JsonpDeserializer.numberDeserializer(), "min_children");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::scoreMode, JsonpDeserializer.jsonValueDeserializer(), "score_mode");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

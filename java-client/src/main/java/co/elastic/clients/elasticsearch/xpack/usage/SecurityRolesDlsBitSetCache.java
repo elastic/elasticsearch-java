@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -155,17 +155,17 @@ public final class SecurityRolesDlsBitSetCache implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SecurityRolesDlsBitSetCache
+	 * Json deserializer for SecurityRolesDlsBitSetCache
 	 */
-	public static final JsonpValueParser<SecurityRolesDlsBitSetCache> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SecurityRolesDlsBitSetCache::setupSecurityRolesDlsBitSetCacheParser);
+	public static final JsonpDeserializer<SecurityRolesDlsBitSetCache> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SecurityRolesDlsBitSetCache::setupSecurityRolesDlsBitSetCacheDeserializer);
 
-	protected static void setupSecurityRolesDlsBitSetCacheParser(
-			DelegatingJsonpValueParser<SecurityRolesDlsBitSetCache.Builder> op) {
+	protected static void setupSecurityRolesDlsBitSetCacheDeserializer(
+			DelegatingDeserializer<SecurityRolesDlsBitSetCache.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::memory, JsonpValueParser.jsonValueParser(), "memory");
-		op.add(Builder::memoryInBytes, JsonpValueParser.numberParser(), "memory_in_bytes");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::memory, JsonpDeserializer.jsonValueDeserializer(), "memory");
+		op.add(Builder::memoryInBytes, JsonpDeserializer.numberDeserializer(), "memory_in_bytes");
 
 	}
 

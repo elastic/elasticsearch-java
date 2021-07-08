@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.field_caps;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -110,16 +110,16 @@ public final class FieldCapabilitiesBodyIndexFilterTerm implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldCapabilitiesBodyIndexFilterTerm
+	 * Json deserializer for FieldCapabilitiesBodyIndexFilterTerm
 	 */
-	public static final JsonpValueParser<FieldCapabilitiesBodyIndexFilterTerm> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilterTerm> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					FieldCapabilitiesBodyIndexFilterTerm::setupFieldCapabilitiesBodyIndexFilterTermParser);
+					FieldCapabilitiesBodyIndexFilterTerm::setupFieldCapabilitiesBodyIndexFilterTermDeserializer);
 
-	protected static void setupFieldCapabilitiesBodyIndexFilterTermParser(
-			DelegatingJsonpValueParser<FieldCapabilitiesBodyIndexFilterTerm.Builder> op) {
+	protected static void setupFieldCapabilitiesBodyIndexFilterTermDeserializer(
+			DelegatingDeserializer<FieldCapabilitiesBodyIndexFilterTerm.Builder> op) {
 
-		op.add(Builder::versioncontrol, FieldCapabilitiesBodyIndexFilterTermVersionControl.JSONP_PARSER,
+		op.add(Builder::versioncontrol, FieldCapabilitiesBodyIndexFilterTermVersionControl.DESERIALIZER,
 				"versionControl");
 
 	}

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -192,16 +192,16 @@ public final class Settings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Settings
+	 * Json deserializer for Settings
 	 */
-	public static final JsonpValueParser<Settings> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Settings::setupSettingsParser);
+	public static final JsonpDeserializer<Settings> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Settings::setupSettingsDeserializer);
 
-	protected static void setupSettingsParser(DelegatingJsonpValueParser<Settings.Builder> op) {
+	protected static void setupSettingsDeserializer(DelegatingDeserializer<Settings.Builder> op) {
 
-		op.add(Builder::datesAsEpochMillis, JsonpValueParser.booleanParser(), "dates_as_epoch_millis");
-		op.add(Builder::docsPerSecond, JsonpValueParser.numberParser(), "docs_per_second");
-		op.add(Builder::maxPageSearchSize, JsonpValueParser.numberParser(), "max_page_search_size");
+		op.add(Builder::datesAsEpochMillis, JsonpDeserializer.booleanDeserializer(), "dates_as_epoch_millis");
+		op.add(Builder::docsPerSecond, JsonpDeserializer.numberDeserializer(), "docs_per_second");
+		op.add(Builder::maxPageSearchSize, JsonpDeserializer.numberDeserializer(), "max_page_search_size");
 
 	}
 

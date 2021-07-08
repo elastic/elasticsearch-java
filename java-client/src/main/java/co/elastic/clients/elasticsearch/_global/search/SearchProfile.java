@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -227,16 +227,16 @@ public final class SearchProfile implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchProfile
+	 * Json deserializer for SearchProfile
 	 */
-	public static final JsonpValueParser<SearchProfile> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchProfile::setupSearchProfileParser);
+	public static final JsonpDeserializer<SearchProfile> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchProfile::setupSearchProfileDeserializer);
 
-	protected static void setupSearchProfileParser(DelegatingJsonpValueParser<SearchProfile.Builder> op) {
+	protected static void setupSearchProfileDeserializer(DelegatingDeserializer<SearchProfile.Builder> op) {
 
-		op.add(Builder::collector, JsonpValueParser.arrayParser(Collector.JSONP_PARSER), "collector");
-		op.add(Builder::query, JsonpValueParser.arrayParser(QueryProfile.JSONP_PARSER), "query");
-		op.add(Builder::rewriteTime, JsonpValueParser.numberParser(), "rewrite_time");
+		op.add(Builder::collector, JsonpDeserializer.arrayDeserializer(Collector.DESERIALIZER), "collector");
+		op.add(Builder::query, JsonpDeserializer.arrayDeserializer(QueryProfile.DESERIALIZER), "query");
+		op.add(Builder::rewriteTime, JsonpDeserializer.numberDeserializer(), "rewrite_time");
 
 	}
 

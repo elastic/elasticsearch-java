@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -374,23 +374,23 @@ public final class JobStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for JobStats
+	 * Json deserializer for JobStats
 	 */
-	public static final JsonpValueParser<JobStats> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			JobStats::setupJobStatsParser);
+	public static final JsonpDeserializer<JobStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, JobStats::setupJobStatsDeserializer);
 
-	protected static void setupJobStatsParser(DelegatingJsonpValueParser<JobStats.Builder> op) {
+	protected static void setupJobStatsDeserializer(DelegatingDeserializer<JobStats.Builder> op) {
 
-		op.add(Builder::assignmentExplanation, JsonpValueParser.stringParser(), "assignment_explanation");
-		op.add(Builder::dataCounts, DataCounts.JSONP_PARSER, "data_counts");
-		op.add(Builder::forecastsStats, JobForecastStatistics.JSONP_PARSER, "forecasts_stats");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::modelSizeStats, ModelSizeStats.JSONP_PARSER, "model_size_stats");
-		op.add(Builder::node, DiscoveryNode.JSONP_PARSER, "node");
-		op.add(Builder::openTime, JsonpValueParser.stringParser(), "open_time");
-		op.add(Builder::state, JsonpValueParser.jsonValueParser(), "state");
-		op.add(Builder::timingStats, JobTimingStats.JSONP_PARSER, "timing_stats");
-		op.add(Builder::deleting, JsonpValueParser.booleanParser(), "deleting");
+		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
+		op.add(Builder::dataCounts, DataCounts.DESERIALIZER, "data_counts");
+		op.add(Builder::forecastsStats, JobForecastStatistics.DESERIALIZER, "forecasts_stats");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::modelSizeStats, ModelSizeStats.DESERIALIZER, "model_size_stats");
+		op.add(Builder::node, DiscoveryNode.DESERIALIZER, "node");
+		op.add(Builder::openTime, JsonpDeserializer.stringDeserializer(), "open_time");
+		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
+		op.add(Builder::timingStats, JobTimingStats.DESERIALIZER, "timing_stats");
+		op.add(Builder::deleting, JsonpDeserializer.booleanDeserializer(), "deleting");
 
 	}
 

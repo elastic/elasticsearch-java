@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -286,17 +286,17 @@ public final class WatcherWatch implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WatcherWatch
+	 * Json deserializer for WatcherWatch
 	 */
-	public static final JsonpValueParser<WatcherWatch> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WatcherWatch::setupWatcherWatchParser);
+	public static final JsonpDeserializer<WatcherWatch> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WatcherWatch::setupWatcherWatchDeserializer);
 
-	protected static void setupWatcherWatchParser(DelegatingJsonpValueParser<WatcherWatch.Builder> op) {
+	protected static void setupWatcherWatchDeserializer(DelegatingDeserializer<WatcherWatch.Builder> op) {
 
-		op.add(Builder::input, JsonpValueParser.stringMapParser(Counter.JSONP_PARSER), "input");
-		op.add(Builder::condition, JsonpValueParser.stringMapParser(Counter.JSONP_PARSER), "condition");
-		op.add(Builder::action, JsonpValueParser.stringMapParser(Counter.JSONP_PARSER), "action");
-		op.add(Builder::trigger, WatcherWatchTrigger.JSONP_PARSER, "trigger");
+		op.add(Builder::input, JsonpDeserializer.stringMapDeserializer(Counter.DESERIALIZER), "input");
+		op.add(Builder::condition, JsonpDeserializer.stringMapDeserializer(Counter.DESERIALIZER), "condition");
+		op.add(Builder::action, JsonpDeserializer.stringMapDeserializer(Counter.DESERIALIZER), "action");
+		op.add(Builder::trigger, WatcherWatchTrigger.DESERIALIZER, "trigger");
 
 	}
 

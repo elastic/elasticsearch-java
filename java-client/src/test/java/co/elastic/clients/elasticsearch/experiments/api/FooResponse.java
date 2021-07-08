@@ -19,9 +19,9 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 
 public class FooResponse {
 
-  public static JsonpValueParser<FooResponse> PARSER = null;
+  public static JsonpDeserializer<FooResponse> PARSER = null;
 }

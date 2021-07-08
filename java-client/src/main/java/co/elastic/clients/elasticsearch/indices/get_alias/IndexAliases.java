@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices.get_alias;
 
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -136,14 +136,14 @@ public final class IndexAliases implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexAliases
+	 * Json deserializer for IndexAliases
 	 */
-	public static final JsonpValueParser<IndexAliases> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexAliases::setupIndexAliasesParser);
+	public static final JsonpDeserializer<IndexAliases> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexAliases::setupIndexAliasesDeserializer);
 
-	protected static void setupIndexAliasesParser(DelegatingJsonpValueParser<IndexAliases.Builder> op) {
+	protected static void setupIndexAliasesDeserializer(DelegatingDeserializer<IndexAliases.Builder> op) {
 
-		op.add(Builder::aliases, JsonpValueParser.stringMapParser(AliasDefinition.JSONP_PARSER), "aliases");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition.DESERIALIZER), "aliases");
 
 	}
 

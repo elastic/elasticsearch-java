@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -164,16 +164,16 @@ public final class InferenceConfigContainer implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InferenceConfigContainer
+	 * Json deserializer for InferenceConfigContainer
 	 */
-	public static final JsonpValueParser<InferenceConfigContainer> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InferenceConfigContainer::setupInferenceConfigContainerParser);
+	public static final JsonpDeserializer<InferenceConfigContainer> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InferenceConfigContainer::setupInferenceConfigContainerDeserializer);
 
-	protected static void setupInferenceConfigContainerParser(
-			DelegatingJsonpValueParser<InferenceConfigContainer.Builder> op) {
+	protected static void setupInferenceConfigContainerDeserializer(
+			DelegatingDeserializer<InferenceConfigContainer.Builder> op) {
 
-		op.add(Builder::regression, RegressionInferenceOptions.JSONP_PARSER, "regression");
-		op.add(Builder::classification, ClassificationInferenceOptions.JSONP_PARSER, "classification");
+		op.add(Builder::regression, RegressionInferenceOptions.DESERIALIZER, "regression");
+		op.add(Builder::classification, ClassificationInferenceOptions.DESERIALIZER, "classification");
 
 	}
 

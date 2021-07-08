@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -247,19 +247,20 @@ public final class ClusterRemoteInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterRemoteInfo
+	 * Json deserializer for ClusterRemoteInfo
 	 */
-	public static final JsonpValueParser<ClusterRemoteInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterRemoteInfo::setupClusterRemoteInfoParser);
+	public static final JsonpDeserializer<ClusterRemoteInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterRemoteInfo::setupClusterRemoteInfoDeserializer);
 
-	protected static void setupClusterRemoteInfoParser(DelegatingJsonpValueParser<ClusterRemoteInfo.Builder> op) {
+	protected static void setupClusterRemoteInfoDeserializer(DelegatingDeserializer<ClusterRemoteInfo.Builder> op) {
 
-		op.add(Builder::connected, JsonpValueParser.booleanParser(), "connected");
-		op.add(Builder::initialConnectTimeout, JsonpValueParser.jsonValueParser(), "initial_connect_timeout");
-		op.add(Builder::maxConnectionsPerCluster, JsonpValueParser.numberParser(), "max_connections_per_cluster");
-		op.add(Builder::numNodesConnected, JsonpValueParser.numberParser(), "num_nodes_connected");
-		op.add(Builder::seeds, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "seeds");
-		op.add(Builder::skipUnavailable, JsonpValueParser.booleanParser(), "skip_unavailable");
+		op.add(Builder::connected, JsonpDeserializer.booleanDeserializer(), "connected");
+		op.add(Builder::initialConnectTimeout, JsonpDeserializer.jsonValueDeserializer(), "initial_connect_timeout");
+		op.add(Builder::maxConnectionsPerCluster, JsonpDeserializer.numberDeserializer(),
+				"max_connections_per_cluster");
+		op.add(Builder::numNodesConnected, JsonpDeserializer.numberDeserializer(), "num_nodes_connected");
+		op.add(Builder::seeds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "seeds");
+		op.add(Builder::skipUnavailable, JsonpDeserializer.booleanDeserializer(), "skip_unavailable");
 
 	}
 

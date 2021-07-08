@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.eql;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -197,7 +197,7 @@ public final class GetRequest extends RequestBase {
 	 * Create an "{@code eql.get}" endpoint.
 	 */
 	public static <TEvent> Endpoint<GetRequest, GetResponse<TEvent>, ElasticsearchError> createGetEndpoint(
-			JsonpValueParser<TEvent> tEventParser) {
-		return ENDPOINT.withResponseParser(GetResponse.createGetResponseParser(tEventParser));
+			JsonpDeserializer<TEvent> tEventDeserializer) {
+		return ENDPOINT.withResponseDeserializer(GetResponse.createGetResponseDeserializer(tEventDeserializer));
 	}
 }

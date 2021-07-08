@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -257,19 +257,19 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetTokenRequest
+	 * Json deserializer for GetTokenRequest
 	 */
-	public static final JsonpValueParser<GetTokenRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetTokenRequest::setupGetTokenRequestParser);
+	public static final JsonpDeserializer<GetTokenRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetTokenRequest::setupGetTokenRequestDeserializer);
 
-	protected static void setupGetTokenRequestParser(DelegatingJsonpValueParser<GetTokenRequest.Builder> op) {
+	protected static void setupGetTokenRequestDeserializer(DelegatingDeserializer<GetTokenRequest.Builder> op) {
 
-		op.add(Builder::grantType, JsonpValueParser.jsonValueParser(), "grant_type");
-		op.add(Builder::scope, JsonpValueParser.stringParser(), "scope");
-		op.add(Builder::password, JsonpValueParser.stringParser(), "password");
-		op.add(Builder::kerberosTicket, JsonpValueParser.stringParser(), "kerberos_ticket");
-		op.add(Builder::refreshToken, JsonpValueParser.stringParser(), "refresh_token");
-		op.add(Builder::username, JsonpValueParser.stringParser(), "username");
+		op.add(Builder::grantType, JsonpDeserializer.jsonValueDeserializer(), "grant_type");
+		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
+		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
+		op.add(Builder::kerberosTicket, JsonpDeserializer.stringDeserializer(), "kerberos_ticket");
+		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
 
@@ -295,5 +295,5 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, GetTokenResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GetTokenResponse.DESERIALIZER);
 }

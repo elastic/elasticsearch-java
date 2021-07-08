@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices.put_settings;
 
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
@@ -112,14 +112,14 @@ public final class IndexSettingsBody extends IndexSettings {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexSettingsBody
+	 * Json deserializer for IndexSettingsBody
 	 */
-	public static final JsonpValueParser<IndexSettingsBody> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexSettingsBody::setupIndexSettingsBodyParser);
+	public static final JsonpDeserializer<IndexSettingsBody> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexSettingsBody::setupIndexSettingsBodyDeserializer);
 
-	protected static void setupIndexSettingsBodyParser(DelegatingJsonpValueParser<IndexSettingsBody.Builder> op) {
-		IndexSettings.setupIndexSettingsParser(op);
-		op.add(Builder::settings, IndexSettings.JSONP_PARSER, "settings");
+	protected static void setupIndexSettingsBodyDeserializer(DelegatingDeserializer<IndexSettingsBody.Builder> op) {
+		IndexSettings.setupIndexSettingsDeserializer(op);
+		op.add(Builder::settings, IndexSettings.DESERIALIZER, "settings");
 
 	}
 

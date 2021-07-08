@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_role.TransientMetadata;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -502,20 +502,24 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutRoleRequest
+	 * Json deserializer for PutRoleRequest
 	 */
-	public static final JsonpValueParser<PutRoleRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutRoleRequest::setupPutRoleRequestParser);
+	public static final JsonpDeserializer<PutRoleRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutRoleRequest::setupPutRoleRequestDeserializer);
 
-	protected static void setupPutRoleRequestParser(DelegatingJsonpValueParser<PutRoleRequest.Builder> op) {
+	protected static void setupPutRoleRequestDeserializer(DelegatingDeserializer<PutRoleRequest.Builder> op) {
 
-		op.add(Builder::applications, JsonpValueParser.arrayParser(ApplicationPrivileges.JSONP_PARSER), "applications");
-		op.add(Builder::cluster, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "cluster");
-		op.add(Builder::global, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "global");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(IndicesPrivileges.JSONP_PARSER), "indices");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::runAs, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "run_as");
-		op.add(Builder::transientMetadata, TransientMetadata.JSONP_PARSER, "transient_metadata");
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+				"applications");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"cluster");
+		op.add(Builder::global, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"global");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges.DESERIALIZER), "indices");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
+		op.add(Builder::transientMetadata, TransientMetadata.DESERIALIZER, "transient_metadata");
 
 	}
 
@@ -560,5 +564,5 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutRoleResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutRoleResponse.DESERIALIZER);
 }

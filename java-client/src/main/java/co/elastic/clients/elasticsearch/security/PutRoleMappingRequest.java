@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -342,19 +342,20 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutRoleMappingRequest
+	 * Json deserializer for PutRoleMappingRequest
 	 */
-	public static final JsonpValueParser<PutRoleMappingRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutRoleMappingRequest::setupPutRoleMappingRequestParser);
+	public static final JsonpDeserializer<PutRoleMappingRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutRoleMappingRequest::setupPutRoleMappingRequestDeserializer);
 
-	protected static void setupPutRoleMappingRequestParser(
-			DelegatingJsonpValueParser<PutRoleMappingRequest.Builder> op) {
+	protected static void setupPutRoleMappingRequestDeserializer(
+			DelegatingDeserializer<PutRoleMappingRequest.Builder> op) {
 
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::roles, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "roles");
-		op.add(Builder::rules, JsonpValueParser.jsonValueParser(), "rules");
-		op.add(Builder::runAs, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "run_as");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
+		op.add(Builder::rules, JsonpDeserializer.jsonValueDeserializer(), "rules");
+		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 
 	}
 
@@ -399,5 +400,5 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutRoleMappingResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutRoleMappingResponse.DESERIALIZER);
 }

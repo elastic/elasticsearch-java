@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -121,7 +121,7 @@ public class ProcessorContainer extends TaggedUnion<ProcessorContainer.Tag, Obje
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private ProcessorContainer(Builder builder) {
@@ -1094,52 +1094,53 @@ public class ProcessorContainer extends TaggedUnion<ProcessorContainer.Tag, Obje
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<ProcessorContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(ProcessorContainer::buildJsonpParser);
+	public static final JsonpDeserializer<ProcessorContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(ProcessorContainer::buildDeserializer);
 
-	private static JsonpValueParser<ProcessorContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<ProcessorContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::attachment, AttachmentProcessor.JSONP_PARSER, "attachment");
-		op.add(Builder::append, AppendProcessor.JSONP_PARSER, "append");
-		op.add(Builder::csv, CsvProcessor.JSONP_PARSER, "csv");
-		op.add(Builder::convert, ConvertProcessor.JSONP_PARSER, "convert");
-		op.add(Builder::date, DateProcessor.JSONP_PARSER, "date");
-		op.add(Builder::dateIndexName, DateIndexNameProcessor.JSONP_PARSER, "date_index_name");
-		op.add(Builder::dotExpander, DotExpanderProcessor.JSONP_PARSER, "dot_expander");
-		op.add(Builder::enrich, EnrichProcessor.JSONP_PARSER, "enrich");
-		op.add(Builder::fail, FailProcessor.JSONP_PARSER, "fail");
-		op.add(Builder::foreach, ForeachProcessor.JSONP_PARSER, "foreach");
-		op.add(Builder::json, JsonProcessor.JSONP_PARSER, "json");
-		op.add(Builder::userAgent, UserAgentProcessor.JSONP_PARSER, "user_agent");
-		op.add(Builder::kv, KeyValueProcessor.JSONP_PARSER, "kv");
-		op.add(Builder::geoip, GeoIpProcessor.JSONP_PARSER, "geoip");
-		op.add(Builder::grok, GrokProcessor.JSONP_PARSER, "grok");
-		op.add(Builder::gsub, GsubProcessor.JSONP_PARSER, "gsub");
-		op.add(Builder::join, JoinProcessor.JSONP_PARSER, "join");
-		op.add(Builder::lowercase, LowercaseProcessor.JSONP_PARSER, "lowercase");
-		op.add(Builder::remove, RemoveProcessor.JSONP_PARSER, "remove");
-		op.add(Builder::rename, RenameProcessor.JSONP_PARSER, "rename");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::set, SetProcessor.JSONP_PARSER, "set");
-		op.add(Builder::sort, SortProcessor.JSONP_PARSER, "sort");
-		op.add(Builder::split, SplitProcessor.JSONP_PARSER, "split");
-		op.add(Builder::trim, TrimProcessor.JSONP_PARSER, "trim");
-		op.add(Builder::uppercase, UppercaseProcessor.JSONP_PARSER, "uppercase");
-		op.add(Builder::urldecode, UrlDecodeProcessor.JSONP_PARSER, "urldecode");
-		op.add(Builder::bytes, BytesProcessor.JSONP_PARSER, "bytes");
-		op.add(Builder::dissect, DissectProcessor.JSONP_PARSER, "dissect");
-		op.add(Builder::setSecurityUser, SetSecurityUserProcessor.JSONP_PARSER, "set_security_user");
-		op.add(Builder::pipeline, PipelineProcessor.JSONP_PARSER, "pipeline");
-		op.add(Builder::drop, JsonpValueParser.jsonValueParser(), "drop");
-		op.add(Builder::circle, CircleProcessor.JSONP_PARSER, "circle");
-		op.add(Builder::inference, InferenceProcessor.JSONP_PARSER, "inference");
+		op.add(Builder::attachment, AttachmentProcessor.DESERIALIZER, "attachment");
+		op.add(Builder::append, AppendProcessor.DESERIALIZER, "append");
+		op.add(Builder::csv, CsvProcessor.DESERIALIZER, "csv");
+		op.add(Builder::convert, ConvertProcessor.DESERIALIZER, "convert");
+		op.add(Builder::date, DateProcessor.DESERIALIZER, "date");
+		op.add(Builder::dateIndexName, DateIndexNameProcessor.DESERIALIZER, "date_index_name");
+		op.add(Builder::dotExpander, DotExpanderProcessor.DESERIALIZER, "dot_expander");
+		op.add(Builder::enrich, EnrichProcessor.DESERIALIZER, "enrich");
+		op.add(Builder::fail, FailProcessor.DESERIALIZER, "fail");
+		op.add(Builder::foreach, ForeachProcessor.DESERIALIZER, "foreach");
+		op.add(Builder::json, JsonProcessor.DESERIALIZER, "json");
+		op.add(Builder::userAgent, UserAgentProcessor.DESERIALIZER, "user_agent");
+		op.add(Builder::kv, KeyValueProcessor.DESERIALIZER, "kv");
+		op.add(Builder::geoip, GeoIpProcessor.DESERIALIZER, "geoip");
+		op.add(Builder::grok, GrokProcessor.DESERIALIZER, "grok");
+		op.add(Builder::gsub, GsubProcessor.DESERIALIZER, "gsub");
+		op.add(Builder::join, JoinProcessor.DESERIALIZER, "join");
+		op.add(Builder::lowercase, LowercaseProcessor.DESERIALIZER, "lowercase");
+		op.add(Builder::remove, RemoveProcessor.DESERIALIZER, "remove");
+		op.add(Builder::rename, RenameProcessor.DESERIALIZER, "rename");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::set, SetProcessor.DESERIALIZER, "set");
+		op.add(Builder::sort, SortProcessor.DESERIALIZER, "sort");
+		op.add(Builder::split, SplitProcessor.DESERIALIZER, "split");
+		op.add(Builder::trim, TrimProcessor.DESERIALIZER, "trim");
+		op.add(Builder::uppercase, UppercaseProcessor.DESERIALIZER, "uppercase");
+		op.add(Builder::urldecode, UrlDecodeProcessor.DESERIALIZER, "urldecode");
+		op.add(Builder::bytes, BytesProcessor.DESERIALIZER, "bytes");
+		op.add(Builder::dissect, DissectProcessor.DESERIALIZER, "dissect");
+		op.add(Builder::setSecurityUser, SetSecurityUserProcessor.DESERIALIZER, "set_security_user");
+		op.add(Builder::pipeline, PipelineProcessor.DESERIALIZER, "pipeline");
+		op.add(Builder::drop, JsonpDeserializer.jsonValueDeserializer(), "drop");
+		op.add(Builder::circle, CircleProcessor.DESERIALIZER, "circle");
+		op.add(Builder::inference, InferenceProcessor.DESERIALIZER, "inference");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -627,30 +627,34 @@ public abstract class DataframeAnalysis implements ToJsonp {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeAnalysisParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeAnalysisDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::dependentVariable, JsonpValueParser.stringParser(), "dependent_variable");
-		op.add(AbstractBuilder::predictionFieldName, JsonpValueParser.stringParser(), "prediction_field_name");
-		op.add(AbstractBuilder::alpha, JsonpValueParser.numberParser(), "alpha");
-		op.add(AbstractBuilder::lambda, JsonpValueParser.numberParser(), "lambda");
-		op.add(AbstractBuilder::gamma, JsonpValueParser.numberParser(), "gamma");
-		op.add(AbstractBuilder::eta, JsonpValueParser.numberParser(), "eta");
-		op.add(AbstractBuilder::etaGrowthRatePerTree, JsonpValueParser.numberParser(), "eta_growth_rate_per_tree");
-		op.add(AbstractBuilder::featureBagFraction, JsonpValueParser.numberParser(), "feature_bag_fraction");
-		op.add(AbstractBuilder::maxTrees, JsonpValueParser.numberParser(), "max_trees", "maximum_number_trees");
-		op.add(AbstractBuilder::softTreeDepthLimit, JsonpValueParser.numberParser(), "soft_tree_depth_limit");
-		op.add(AbstractBuilder::softTreeDepthTolerance, JsonpValueParser.numberParser(), "soft_tree_depth_tolerance");
-		op.add(AbstractBuilder::downsampleFactor, JsonpValueParser.numberParser(), "downsample_factor");
-		op.add(AbstractBuilder::maxOptimizationRoundsPerHyperparameter, JsonpValueParser.numberParser(),
+		op.add(AbstractBuilder::dependentVariable, JsonpDeserializer.stringDeserializer(), "dependent_variable");
+		op.add(AbstractBuilder::predictionFieldName, JsonpDeserializer.stringDeserializer(), "prediction_field_name");
+		op.add(AbstractBuilder::alpha, JsonpDeserializer.numberDeserializer(), "alpha");
+		op.add(AbstractBuilder::lambda, JsonpDeserializer.numberDeserializer(), "lambda");
+		op.add(AbstractBuilder::gamma, JsonpDeserializer.numberDeserializer(), "gamma");
+		op.add(AbstractBuilder::eta, JsonpDeserializer.numberDeserializer(), "eta");
+		op.add(AbstractBuilder::etaGrowthRatePerTree, JsonpDeserializer.numberDeserializer(),
+				"eta_growth_rate_per_tree");
+		op.add(AbstractBuilder::featureBagFraction, JsonpDeserializer.numberDeserializer(), "feature_bag_fraction");
+		op.add(AbstractBuilder::maxTrees, JsonpDeserializer.numberDeserializer(), "max_trees", "maximum_number_trees");
+		op.add(AbstractBuilder::softTreeDepthLimit, JsonpDeserializer.numberDeserializer(), "soft_tree_depth_limit");
+		op.add(AbstractBuilder::softTreeDepthTolerance, JsonpDeserializer.numberDeserializer(),
+				"soft_tree_depth_tolerance");
+		op.add(AbstractBuilder::downsampleFactor, JsonpDeserializer.numberDeserializer(), "downsample_factor");
+		op.add(AbstractBuilder::maxOptimizationRoundsPerHyperparameter, JsonpDeserializer.numberDeserializer(),
 				"max_optimization_rounds_per_hyperparameter");
-		op.add(AbstractBuilder::earlyStoppingEnabled, JsonpValueParser.booleanParser(), "early_stopping_enabled");
-		op.add(AbstractBuilder::numTopFeatureImportanceValues, JsonpValueParser.numberParser(),
+		op.add(AbstractBuilder::earlyStoppingEnabled, JsonpDeserializer.booleanDeserializer(),
+				"early_stopping_enabled");
+		op.add(AbstractBuilder::numTopFeatureImportanceValues, JsonpDeserializer.numberDeserializer(),
 				"num_top_feature_importance_values");
 		op.add(AbstractBuilder::featureProcessors,
-				JsonpValueParser.arrayParser(DataframeAnalysisFeatureProcessor.JSONP_PARSER), "feature_processors");
-		op.add(AbstractBuilder::randomizeSeed, JsonpValueParser.numberParser(), "randomize_seed");
-		op.add(AbstractBuilder::trainingPercent, JsonpValueParser.jsonValueParser(), "training_percent");
+				JsonpDeserializer.arrayDeserializer(DataframeAnalysisFeatureProcessor.DESERIALIZER),
+				"feature_processors");
+		op.add(AbstractBuilder::randomizeSeed, JsonpDeserializer.numberDeserializer(), "randomize_seed");
+		op.add(AbstractBuilder::trainingPercent, JsonpDeserializer.jsonValueDeserializer(), "training_percent");
 
 	}
 

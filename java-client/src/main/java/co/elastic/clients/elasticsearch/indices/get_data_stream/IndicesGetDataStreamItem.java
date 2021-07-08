@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.get_data_stream;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -402,24 +402,26 @@ public final class IndicesGetDataStreamItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndicesGetDataStreamItem
+	 * Json deserializer for IndicesGetDataStreamItem
 	 */
-	public static final JsonpValueParser<IndicesGetDataStreamItem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndicesGetDataStreamItem::setupIndicesGetDataStreamItemParser);
+	public static final JsonpDeserializer<IndicesGetDataStreamItem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndicesGetDataStreamItem::setupIndicesGetDataStreamItemDeserializer);
 
-	protected static void setupIndicesGetDataStreamItemParser(
-			DelegatingJsonpValueParser<IndicesGetDataStreamItem.Builder> op) {
+	protected static void setupIndicesGetDataStreamItemDeserializer(
+			DelegatingDeserializer<IndicesGetDataStreamItem.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::timestampField, IndicesGetDataStreamItemTimestampField.JSONP_PARSER, "timestamp_field");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(IndicesGetDataStreamItemIndex.JSONP_PARSER), "indices");
-		op.add(Builder::generation, JsonpValueParser.numberParser(), "generation");
-		op.add(Builder::template, JsonpValueParser.stringParser(), "template");
-		op.add(Builder::hidden, JsonpValueParser.booleanParser(), "hidden");
-		op.add(Builder::system, JsonpValueParser.booleanParser(), "system");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
-		op.add(Builder::ilmPolicy, JsonpValueParser.stringParser(), "ilm_policy");
-		op.add(Builder::_meta, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "_meta");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::timestampField, IndicesGetDataStreamItemTimestampField.DESERIALIZER, "timestamp_field");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesGetDataStreamItemIndex.DESERIALIZER),
+				"indices");
+		op.add(Builder::generation, JsonpDeserializer.numberDeserializer(), "generation");
+		op.add(Builder::template, JsonpDeserializer.stringDeserializer(), "template");
+		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
+		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
+		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"_meta");
 
 	}
 

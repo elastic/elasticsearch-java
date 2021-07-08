@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ccr.get_auto_follow_pattern;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -231,20 +231,21 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AutoFollowPatternSummary
+	 * Json deserializer for AutoFollowPatternSummary
 	 */
-	public static final JsonpValueParser<AutoFollowPatternSummary> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AutoFollowPatternSummary::setupAutoFollowPatternSummaryParser);
+	public static final JsonpDeserializer<AutoFollowPatternSummary> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AutoFollowPatternSummary::setupAutoFollowPatternSummaryDeserializer);
 
-	protected static void setupAutoFollowPatternSummaryParser(
-			DelegatingJsonpValueParser<AutoFollowPatternSummary.Builder> op) {
+	protected static void setupAutoFollowPatternSummaryDeserializer(
+			DelegatingDeserializer<AutoFollowPatternSummary.Builder> op) {
 
-		op.add(Builder::active, JsonpValueParser.booleanParser(), "active");
-		op.add(Builder::remoteCluster, JsonpValueParser.stringParser(), "remote_cluster");
-		op.add(Builder::followIndexPattern, JsonpValueParser.stringParser(), "follow_index_pattern");
-		op.add(Builder::leaderIndexPatterns, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"leader_index_patterns");
-		op.add(Builder::maxOutstandingReadRequests, JsonpValueParser.numberParser(), "max_outstanding_read_requests");
+		op.add(Builder::active, JsonpDeserializer.booleanDeserializer(), "active");
+		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
+		op.add(Builder::followIndexPattern, JsonpDeserializer.stringDeserializer(), "follow_index_pattern");
+		op.add(Builder::leaderIndexPatterns,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "leader_index_patterns");
+		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.numberDeserializer(),
+				"max_outstanding_read_requests");
 
 	}
 

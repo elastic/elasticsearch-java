@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class Datafeeds implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Datafeeds
+	 * Json deserializer for Datafeeds
 	 */
-	public static final JsonpValueParser<Datafeeds> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Datafeeds::setupDatafeedsParser);
+	public static final JsonpDeserializer<Datafeeds> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Datafeeds::setupDatafeedsDeserializer);
 
-	protected static void setupDatafeedsParser(DelegatingJsonpValueParser<Datafeeds.Builder> op) {
+	protected static void setupDatafeedsDeserializer(DelegatingDeserializer<Datafeeds.Builder> op) {
 
-		op.add(Builder::scrollSize, JsonpValueParser.numberParser(), "scroll_size");
+		op.add(Builder::scrollSize, JsonpDeserializer.numberDeserializer(), "scroll_size");
 
 	}
 

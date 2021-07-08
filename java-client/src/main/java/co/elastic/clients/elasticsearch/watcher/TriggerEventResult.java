@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -155,16 +155,16 @@ public final class TriggerEventResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TriggerEventResult
+	 * Json deserializer for TriggerEventResult
 	 */
-	public static final JsonpValueParser<TriggerEventResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TriggerEventResult::setupTriggerEventResultParser);
+	public static final JsonpDeserializer<TriggerEventResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TriggerEventResult::setupTriggerEventResultDeserializer);
 
-	protected static void setupTriggerEventResultParser(DelegatingJsonpValueParser<TriggerEventResult.Builder> op) {
+	protected static void setupTriggerEventResultDeserializer(DelegatingDeserializer<TriggerEventResult.Builder> op) {
 
-		op.add(Builder::manual, TriggerEventContainer.JSONP_PARSER, "manual");
-		op.add(Builder::triggeredTime, JsonpValueParser.stringParser(), "triggered_time");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::manual, TriggerEventContainer.DESERIALIZER, "manual");
+		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

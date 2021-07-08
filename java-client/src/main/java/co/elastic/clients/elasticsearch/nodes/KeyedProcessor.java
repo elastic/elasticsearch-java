@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -132,15 +132,15 @@ public final class KeyedProcessor implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for KeyedProcessor
+	 * Json deserializer for KeyedProcessor
 	 */
-	public static final JsonpValueParser<KeyedProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, KeyedProcessor::setupKeyedProcessorParser);
+	public static final JsonpDeserializer<KeyedProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, KeyedProcessor::setupKeyedProcessorDeserializer);
 
-	protected static void setupKeyedProcessorParser(DelegatingJsonpValueParser<KeyedProcessor.Builder> op) {
+	protected static void setupKeyedProcessorDeserializer(DelegatingDeserializer<KeyedProcessor.Builder> op) {
 
-		op.add(Builder::statistics, Process.JSONP_PARSER, "statistics");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::statistics, Process.DESERIALIZER, "statistics");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

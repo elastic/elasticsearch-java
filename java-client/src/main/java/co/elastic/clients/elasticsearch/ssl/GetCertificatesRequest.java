@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ssl;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -43,7 +43,7 @@ public final class GetCertificatesRequest extends RequestBase {
 	 */
 	public static final GetCertificatesRequest INSTANCE = new GetCertificatesRequest();
 
-	public static final JsonpValueParser<GetCertificatesRequest> JSONP_PARSER = JsonpValueParser
+	public static final JsonpDeserializer<GetCertificatesRequest> DESERIALIZER = JsonpDeserializer
 			.fixedValue(GetCertificatesRequest.INSTANCE);
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,5 +68,5 @@ public final class GetCertificatesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetCertificatesResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), false, GetCertificatesResponse.DESERIALIZER);
 }

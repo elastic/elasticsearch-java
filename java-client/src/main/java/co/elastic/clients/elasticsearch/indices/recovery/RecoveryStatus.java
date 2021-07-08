@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -142,14 +142,14 @@ public final class RecoveryStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RecoveryStatus
+	 * Json deserializer for RecoveryStatus
 	 */
-	public static final JsonpValueParser<RecoveryStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RecoveryStatus::setupRecoveryStatusParser);
+	public static final JsonpDeserializer<RecoveryStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RecoveryStatus::setupRecoveryStatusDeserializer);
 
-	protected static void setupRecoveryStatusParser(DelegatingJsonpValueParser<RecoveryStatus.Builder> op) {
+	protected static void setupRecoveryStatusDeserializer(DelegatingDeserializer<RecoveryStatus.Builder> op) {
 
-		op.add(Builder::shards, JsonpValueParser.arrayParser(ShardRecovery.JSONP_PARSER), "shards");
+		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardRecovery.DESERIALIZER), "shards");
 
 	}
 

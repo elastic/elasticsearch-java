@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch.indices.stats.IndexStats;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -751,33 +751,34 @@ public final class Stats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Stats
+	 * Json deserializer for Stats
 	 */
-	public static final JsonpValueParser<Stats> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Stats::setupStatsParser);
+	public static final JsonpDeserializer<Stats> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Stats::setupStatsDeserializer);
 
-	protected static void setupStatsParser(DelegatingJsonpValueParser<Stats.Builder> op) {
+	protected static void setupStatsDeserializer(DelegatingDeserializer<Stats.Builder> op) {
 
-		op.add(Builder::adaptiveSelection, JsonpValueParser.stringMapParser(AdaptiveSelection.JSONP_PARSER),
+		op.add(Builder::adaptiveSelection, JsonpDeserializer.stringMapDeserializer(AdaptiveSelection.DESERIALIZER),
 				"adaptive_selection");
-		op.add(Builder::breakers, JsonpValueParser.stringMapParser(Breaker.JSONP_PARSER), "breakers");
-		op.add(Builder::fs, FileSystem.JSONP_PARSER, "fs");
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host");
-		op.add(Builder::http, Http.JSONP_PARSER, "http");
-		op.add(Builder::indices, IndexStats.JSONP_PARSER, "indices");
-		op.add(Builder::ingest, Ingest.JSONP_PARSER, "ingest");
-		op.add(Builder::ip, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "ip");
-		op.add(Builder::jvm, Jvm.JSONP_PARSER, "jvm");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::os, OperatingSystem.JSONP_PARSER, "os");
-		op.add(Builder::process, Process.JSONP_PARSER, "process");
-		op.add(Builder::roles, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "roles");
-		op.add(Builder::script, Scripting.JSONP_PARSER, "script");
-		op.add(Builder::threadPool, JsonpValueParser.stringMapParser(ThreadCount.JSONP_PARSER), "thread_pool");
-		op.add(Builder::timestamp, JsonpValueParser.numberParser(), "timestamp");
-		op.add(Builder::transport, Transport.JSONP_PARSER, "transport");
-		op.add(Builder::transportAddress, JsonpValueParser.stringParser(), "transport_address");
-		op.add(Builder::attributes, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "attributes");
+		op.add(Builder::breakers, JsonpDeserializer.stringMapDeserializer(Breaker.DESERIALIZER), "breakers");
+		op.add(Builder::fs, FileSystem.DESERIALIZER, "fs");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
+		op.add(Builder::http, Http.DESERIALIZER, "http");
+		op.add(Builder::indices, IndexStats.DESERIALIZER, "indices");
+		op.add(Builder::ingest, Ingest.DESERIALIZER, "ingest");
+		op.add(Builder::ip, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ip");
+		op.add(Builder::jvm, Jvm.DESERIALIZER, "jvm");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::os, OperatingSystem.DESERIALIZER, "os");
+		op.add(Builder::process, Process.DESERIALIZER, "process");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "roles");
+		op.add(Builder::script, Scripting.DESERIALIZER, "script");
+		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(ThreadCount.DESERIALIZER), "thread_pool");
+		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::transport, Transport.DESERIALIZER, "transport");
+		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"attributes");
 
 	}
 

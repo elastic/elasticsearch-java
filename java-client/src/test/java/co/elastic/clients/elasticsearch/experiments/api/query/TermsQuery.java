@@ -20,9 +20,9 @@
 package co.elastic.clients.elasticsearch.experiments.api.query;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 
@@ -87,17 +87,17 @@ public class TermsQuery implements ToJsonp {
         }
     }
 
-    private static final JsonpValueParser<TermsQuery> PARSER;
+    private static final JsonpDeserializer<TermsQuery> PARSER;
 
-    public static JsonpValueParser<TermsQuery> parser() {
+    public static JsonpDeserializer<TermsQuery> parser() {
         return PARSER;
     }
 
     static {
-        JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
-        op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-        op.add(Builder::term, JsonpValueParser.stringParser(), "term");
+        ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::term, JsonpDeserializer.stringDeserializer(), "term");
 
-        PARSER = new JsonpObjectBuilderParser<>(op);
+        PARSER = new ObjectBuilderDeserializer<>(op);
     }
 }

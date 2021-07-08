@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._global;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -187,21 +187,21 @@ public final class MsearchTemplateResponse<TDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for MsearchTemplateResponse
+	 * Create a json deserializer for MsearchTemplateResponse
 	 */
-	public static <TDocument> JsonpValueParser<MsearchTemplateResponse<TDocument>> createMsearchTemplateResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> MsearchTemplateResponse.setupMsearchTemplateResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<MsearchTemplateResponse<TDocument>> createMsearchTemplateResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> MsearchTemplateResponse.setupMsearchTemplateResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupMsearchTemplateResponseParser(
-			DelegatingJsonpValueParser<MsearchTemplateResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupMsearchTemplateResponseDeserializer(
+			DelegatingDeserializer<MsearchTemplateResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::responses,
-				JsonpValueParser.arrayParser(SearchResponse.createSearchResponseParser(tDocumentParser)), "responses");
-		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
+		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(
+				SearchResponse.createSearchResponseDeserializer(tDocumentDeserializer)), "responses");
+		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
 
 	}
 

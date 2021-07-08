@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ssl.get_certificates;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -247,21 +247,21 @@ public final class CertificateInformation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CertificateInformation
+	 * Json deserializer for CertificateInformation
 	 */
-	public static final JsonpValueParser<CertificateInformation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CertificateInformation::setupCertificateInformationParser);
+	public static final JsonpDeserializer<CertificateInformation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CertificateInformation::setupCertificateInformationDeserializer);
 
-	protected static void setupCertificateInformationParser(
-			DelegatingJsonpValueParser<CertificateInformation.Builder> op) {
+	protected static void setupCertificateInformationDeserializer(
+			DelegatingDeserializer<CertificateInformation.Builder> op) {
 
-		op.add(Builder::alias, JsonpValueParser.stringParser(), "alias");
-		op.add(Builder::expiry, JsonpValueParser.stringParser(), "expiry");
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
-		op.add(Builder::hasPrivateKey, JsonpValueParser.booleanParser(), "has_private_key");
-		op.add(Builder::path, JsonpValueParser.stringParser(), "path");
-		op.add(Builder::serialNumber, JsonpValueParser.stringParser(), "serial_number");
-		op.add(Builder::subjectDn, JsonpValueParser.stringParser(), "subject_dn");
+		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
+		op.add(Builder::expiry, JsonpDeserializer.stringDeserializer(), "expiry");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::hasPrivateKey, JsonpDeserializer.booleanDeserializer(), "has_private_key");
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::serialNumber, JsonpDeserializer.stringDeserializer(), "serial_number");
+		op.add(Builder::subjectDn, JsonpDeserializer.stringDeserializer(), "subject_dn");
 
 	}
 

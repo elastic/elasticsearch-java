@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -150,15 +150,15 @@ public final class IndexRouting implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexRouting
+	 * Json deserializer for IndexRouting
 	 */
-	public static final JsonpValueParser<IndexRouting> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexRouting::setupIndexRoutingParser);
+	public static final JsonpDeserializer<IndexRouting> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexRouting::setupIndexRoutingDeserializer);
 
-	protected static void setupIndexRoutingParser(DelegatingJsonpValueParser<IndexRouting.Builder> op) {
+	protected static void setupIndexRoutingDeserializer(DelegatingDeserializer<IndexRouting.Builder> op) {
 
-		op.add(Builder::allocation, IndexRoutingAllocation.JSONP_PARSER, "allocation");
-		op.add(Builder::rebalance, IndexRoutingRebalance.JSONP_PARSER, "rebalance");
+		op.add(Builder::allocation, IndexRoutingAllocation.DESERIALIZER, "allocation");
+		op.add(Builder::rebalance, IndexRoutingRebalance.DESERIALIZER, "rebalance");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -129,14 +129,15 @@ public final class Audit extends FeatureToggle {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Audit
+	 * Json deserializer for Audit
 	 */
-	public static final JsonpValueParser<Audit> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Audit::setupAuditParser);
+	public static final JsonpDeserializer<Audit> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Audit::setupAuditDeserializer);
 
-	protected static void setupAuditParser(DelegatingJsonpValueParser<Audit.Builder> op) {
-		FeatureToggle.setupFeatureToggleParser(op);
-		op.add(Builder::outputs, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "outputs");
+	protected static void setupAuditDeserializer(DelegatingDeserializer<Audit.Builder> op) {
+		FeatureToggle.setupFeatureToggleDeserializer(op);
+		op.add(Builder::outputs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"outputs");
 
 	}
 

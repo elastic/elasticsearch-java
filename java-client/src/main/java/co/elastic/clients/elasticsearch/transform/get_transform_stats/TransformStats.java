@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -252,19 +252,19 @@ public final class TransformStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TransformStats
+	 * Json deserializer for TransformStats
 	 */
-	public static final JsonpValueParser<TransformStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TransformStats::setupTransformStatsParser);
+	public static final JsonpDeserializer<TransformStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TransformStats::setupTransformStatsDeserializer);
 
-	protected static void setupTransformStatsParser(DelegatingJsonpValueParser<TransformStats.Builder> op) {
+	protected static void setupTransformStatsDeserializer(DelegatingDeserializer<TransformStats.Builder> op) {
 
-		op.add(Builder::checkpointing, Checkpointing.JSONP_PARSER, "checkpointing");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::node, NodeAttributes.JSONP_PARSER, "node");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
-		op.add(Builder::state, JsonpValueParser.stringParser(), "state");
-		op.add(Builder::stats, TransformIndexerStats.JSONP_PARSER, "stats");
+		op.add(Builder::checkpointing, Checkpointing.DESERIALIZER, "checkpointing");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::node, NodeAttributes.DESERIALIZER, "node");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
+		op.add(Builder::stats, TransformIndexerStats.DESERIALIZER, "stats");
 
 	}
 

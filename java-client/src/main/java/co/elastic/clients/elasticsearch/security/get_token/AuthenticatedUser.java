@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.security.get_token;
 
 import co.elastic.clients.elasticsearch.security.User;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -197,17 +197,17 @@ public final class AuthenticatedUser extends User {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AuthenticatedUser
+	 * Json deserializer for AuthenticatedUser
 	 */
-	public static final JsonpValueParser<AuthenticatedUser> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AuthenticatedUser::setupAuthenticatedUserParser);
+	public static final JsonpDeserializer<AuthenticatedUser> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AuthenticatedUser::setupAuthenticatedUserDeserializer);
 
-	protected static void setupAuthenticatedUserParser(DelegatingJsonpValueParser<AuthenticatedUser.Builder> op) {
-		User.setupUserParser(op);
-		op.add(Builder::authenticationRealm, UserRealm.JSONP_PARSER, "authentication_realm");
-		op.add(Builder::lookupRealm, UserRealm.JSONP_PARSER, "lookup_realm");
-		op.add(Builder::authenticationProvider, AuthenticationProvider.JSONP_PARSER, "authentication_provider");
-		op.add(Builder::authenticationType, JsonpValueParser.stringParser(), "authentication_type");
+	protected static void setupAuthenticatedUserDeserializer(DelegatingDeserializer<AuthenticatedUser.Builder> op) {
+		User.setupUserDeserializer(op);
+		op.add(Builder::authenticationRealm, UserRealm.DESERIALIZER, "authentication_realm");
+		op.add(Builder::lookupRealm, UserRealm.DESERIALIZER, "lookup_realm");
+		op.add(Builder::authenticationProvider, AuthenticationProvider.DESERIALIZER, "authentication_provider");
+		op.add(Builder::authenticationType, JsonpDeserializer.stringDeserializer(), "authentication_type");
 
 	}
 

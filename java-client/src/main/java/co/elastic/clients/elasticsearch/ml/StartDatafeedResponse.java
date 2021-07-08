@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,16 +125,16 @@ public final class StartDatafeedResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StartDatafeedResponse
+	 * Json deserializer for StartDatafeedResponse
 	 */
-	public static final JsonpValueParser<StartDatafeedResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StartDatafeedResponse::setupStartDatafeedResponseParser);
+	public static final JsonpDeserializer<StartDatafeedResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StartDatafeedResponse::setupStartDatafeedResponseDeserializer);
 
-	protected static void setupStartDatafeedResponseParser(
-			DelegatingJsonpValueParser<StartDatafeedResponse.Builder> op) {
+	protected static void setupStartDatafeedResponseDeserializer(
+			DelegatingDeserializer<StartDatafeedResponse.Builder> op) {
 
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::started, JsonpValueParser.booleanParser(), "started");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::started, JsonpDeserializer.booleanDeserializer(), "started");
 
 	}
 

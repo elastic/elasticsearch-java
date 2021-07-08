@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -263,21 +263,21 @@ public final class NodeInfoOSCPU implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoOSCPU
+	 * Json deserializer for NodeInfoOSCPU
 	 */
-	public static final JsonpValueParser<NodeInfoOSCPU> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoOSCPU::setupNodeInfoOSCPUParser);
+	public static final JsonpDeserializer<NodeInfoOSCPU> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoOSCPU::setupNodeInfoOSCPUDeserializer);
 
-	protected static void setupNodeInfoOSCPUParser(DelegatingJsonpValueParser<NodeInfoOSCPU.Builder> op) {
+	protected static void setupNodeInfoOSCPUDeserializer(DelegatingDeserializer<NodeInfoOSCPU.Builder> op) {
 
-		op.add(Builder::cacheSize, JsonpValueParser.stringParser(), "cache_size");
-		op.add(Builder::cacheSizeInBytes, JsonpValueParser.numberParser(), "cache_size_in_bytes");
-		op.add(Builder::coresPerSocket, JsonpValueParser.numberParser(), "cores_per_socket");
-		op.add(Builder::mhz, JsonpValueParser.numberParser(), "mhz");
-		op.add(Builder::model, JsonpValueParser.stringParser(), "model");
-		op.add(Builder::totalCores, JsonpValueParser.numberParser(), "total_cores");
-		op.add(Builder::totalSockets, JsonpValueParser.numberParser(), "total_sockets");
-		op.add(Builder::vendor, JsonpValueParser.stringParser(), "vendor");
+		op.add(Builder::cacheSize, JsonpDeserializer.stringDeserializer(), "cache_size");
+		op.add(Builder::cacheSizeInBytes, JsonpDeserializer.numberDeserializer(), "cache_size_in_bytes");
+		op.add(Builder::coresPerSocket, JsonpDeserializer.numberDeserializer(), "cores_per_socket");
+		op.add(Builder::mhz, JsonpDeserializer.numberDeserializer(), "mhz");
+		op.add(Builder::model, JsonpDeserializer.stringDeserializer(), "model");
+		op.add(Builder::totalCores, JsonpDeserializer.numberDeserializer(), "total_cores");
+		op.add(Builder::totalSockets, JsonpDeserializer.numberDeserializer(), "total_sockets");
+		op.add(Builder::vendor, JsonpDeserializer.stringDeserializer(), "vendor");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -282,20 +282,21 @@ public final class JobForecastStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for JobForecastStatistics
+	 * Json deserializer for JobForecastStatistics
 	 */
-	public static final JsonpValueParser<JobForecastStatistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, JobForecastStatistics::setupJobForecastStatisticsParser);
+	public static final JsonpDeserializer<JobForecastStatistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, JobForecastStatistics::setupJobForecastStatisticsDeserializer);
 
-	protected static void setupJobForecastStatisticsParser(
-			DelegatingJsonpValueParser<JobForecastStatistics.Builder> op) {
+	protected static void setupJobForecastStatisticsDeserializer(
+			DelegatingDeserializer<JobForecastStatistics.Builder> op) {
 
-		op.add(Builder::memoryBytes, JobStatistics.JSONP_PARSER, "memory_bytes");
-		op.add(Builder::processingTimeMs, JobStatistics.JSONP_PARSER, "processing_time_ms");
-		op.add(Builder::records, JobStatistics.JSONP_PARSER, "records");
-		op.add(Builder::status, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()), "status");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::forecastedJobs, JsonpValueParser.numberParser(), "forecasted_jobs");
+		op.add(Builder::memoryBytes, JobStatistics.DESERIALIZER, "memory_bytes");
+		op.add(Builder::processingTimeMs, JobStatistics.DESERIALIZER, "processing_time_ms");
+		op.add(Builder::records, JobStatistics.DESERIALIZER, "records");
+		op.add(Builder::status, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+				"status");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::forecastedJobs, JsonpDeserializer.numberDeserializer(), "forecasted_jobs");
 
 	}
 

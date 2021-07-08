@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -185,17 +185,17 @@ public final class ShardsStatsSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardsStatsSummary
+	 * Json deserializer for ShardsStatsSummary
 	 */
-	public static final JsonpValueParser<ShardsStatsSummary> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardsStatsSummary::setupShardsStatsSummaryParser);
+	public static final JsonpDeserializer<ShardsStatsSummary> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardsStatsSummary::setupShardsStatsSummaryDeserializer);
 
-	protected static void setupShardsStatsSummaryParser(DelegatingJsonpValueParser<ShardsStatsSummary.Builder> op) {
+	protected static void setupShardsStatsSummaryDeserializer(DelegatingDeserializer<ShardsStatsSummary.Builder> op) {
 
-		op.add(Builder::incremental, ShardsStatsSummaryItem.JSONP_PARSER, "incremental");
-		op.add(Builder::total, ShardsStatsSummaryItem.JSONP_PARSER, "total");
-		op.add(Builder::startTimeInMillis, JsonpValueParser.numberParser(), "start_time_in_millis");
-		op.add(Builder::timeInMillis, JsonpValueParser.numberParser(), "time_in_millis");
+		op.add(Builder::incremental, ShardsStatsSummaryItem.DESERIALIZER, "incremental");
+		op.add(Builder::total, ShardsStatsSummaryItem.DESERIALIZER, "total");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
+		op.add(Builder::timeInMillis, JsonpDeserializer.numberDeserializer(), "time_in_millis");
 
 	}
 

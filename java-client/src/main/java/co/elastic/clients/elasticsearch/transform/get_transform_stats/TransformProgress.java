@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -193,18 +193,18 @@ public final class TransformProgress implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TransformProgress
+	 * Json deserializer for TransformProgress
 	 */
-	public static final JsonpValueParser<TransformProgress> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TransformProgress::setupTransformProgressParser);
+	public static final JsonpDeserializer<TransformProgress> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TransformProgress::setupTransformProgressDeserializer);
 
-	protected static void setupTransformProgressParser(DelegatingJsonpValueParser<TransformProgress.Builder> op) {
+	protected static void setupTransformProgressDeserializer(DelegatingDeserializer<TransformProgress.Builder> op) {
 
-		op.add(Builder::docsIndexed, JsonpValueParser.numberParser(), "docs_indexed");
-		op.add(Builder::docsProcessed, JsonpValueParser.numberParser(), "docs_processed");
-		op.add(Builder::docsRemaining, JsonpValueParser.numberParser(), "docs_remaining");
-		op.add(Builder::percentComplete, JsonpValueParser.numberParser(), "percent_complete");
-		op.add(Builder::totalDocs, JsonpValueParser.numberParser(), "total_docs");
+		op.add(Builder::docsIndexed, JsonpDeserializer.numberDeserializer(), "docs_indexed");
+		op.add(Builder::docsProcessed, JsonpDeserializer.numberDeserializer(), "docs_processed");
+		op.add(Builder::docsRemaining, JsonpDeserializer.numberDeserializer(), "docs_remaining");
+		op.add(Builder::percentComplete, JsonpDeserializer.numberDeserializer(), "percent_complete");
+		op.add(Builder::totalDocs, JsonpDeserializer.numberDeserializer(), "total_docs");
 
 	}
 

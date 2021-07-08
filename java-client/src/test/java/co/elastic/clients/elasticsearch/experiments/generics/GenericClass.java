@@ -21,12 +21,12 @@ package co.elastic.clients.elasticsearch.experiments.generics;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 
@@ -83,24 +83,24 @@ public class GenericClass<GenParam> implements ToJsonp {
         }
     }
 
-    public static <GenParam> JsonpValueParser<GenericClass<GenParam>> parser(
+    public static <GenParam> JsonpDeserializer<GenericClass<GenParam>> parser(
         // A deserializer for each generic parameter
-        JsonpValueParser<GenParam> getParamDeserializer
+        JsonpDeserializer<GenParam> getParamDeserializer
     ) {
 
-        return JsonpObjectBuilderParser.createForObject(
+        return ObjectBuilderDeserializer.createForObject(
             (Supplier<Builder<GenParam>>) Builder::new,
             (op) -> GenericClass.setupParser(op, getParamDeserializer)
         );
     }
 
-    private static <GenParam> void setupParser(DelegatingJsonpValueParser<Builder<GenParam>> op, JsonpValueParser<GenParam> deserializer) {
+    private static <GenParam> void setupParser(DelegatingDeserializer<Builder<GenParam>> op, JsonpDeserializer<GenParam> deserializer) {
         op.add(Builder::genParam, deserializer, "genParam");
     }
 
 
     public static <GenParam> Endpoint<Boolean, GenericClass<GenParam>, ElasticsearchError> endpoint(
-        JsonpValueParser<GenParam> genParamDeserializer
+        JsonpDeserializer<GenParam> genParamDeserializer
     ) {
         return new Endpoint.Simple<>(
             // Request method

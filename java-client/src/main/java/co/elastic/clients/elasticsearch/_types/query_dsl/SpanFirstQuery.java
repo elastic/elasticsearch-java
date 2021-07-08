@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -139,15 +139,15 @@ public final class SpanFirstQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SpanFirstQuery
+	 * Json deserializer for SpanFirstQuery
 	 */
-	public static final JsonpValueParser<SpanFirstQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SpanFirstQuery::setupSpanFirstQueryParser);
+	public static final JsonpDeserializer<SpanFirstQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SpanFirstQuery::setupSpanFirstQueryDeserializer);
 
-	protected static void setupSpanFirstQueryParser(DelegatingJsonpValueParser<SpanFirstQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::end, JsonpValueParser.numberParser(), "end");
-		op.add(Builder::match, SpanQuery.JSONP_PARSER, "match");
+	protected static void setupSpanFirstQueryDeserializer(DelegatingDeserializer<SpanFirstQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::end, JsonpDeserializer.numberDeserializer(), "end");
+		op.add(Builder::match, SpanQuery.DESERIALIZER, "match");
 
 	}
 

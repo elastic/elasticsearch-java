@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,16 +125,16 @@ public final class ClosePointInTimeResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClosePointInTimeResponse
+	 * Json deserializer for ClosePointInTimeResponse
 	 */
-	public static final JsonpValueParser<ClosePointInTimeResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClosePointInTimeResponse::setupClosePointInTimeResponseParser);
+	public static final JsonpDeserializer<ClosePointInTimeResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClosePointInTimeResponse::setupClosePointInTimeResponseDeserializer);
 
-	protected static void setupClosePointInTimeResponseParser(
-			DelegatingJsonpValueParser<ClosePointInTimeResponse.Builder> op) {
+	protected static void setupClosePointInTimeResponseDeserializer(
+			DelegatingDeserializer<ClosePointInTimeResponse.Builder> op) {
 
-		op.add(Builder::succeeded, JsonpValueParser.booleanParser(), "succeeded");
-		op.add(Builder::numFreed, JsonpValueParser.numberParser(), "num_freed");
+		op.add(Builder::succeeded, JsonpDeserializer.booleanDeserializer(), "succeeded");
+		op.add(Builder::numFreed, JsonpDeserializer.numberDeserializer(), "num_freed");
 
 	}
 

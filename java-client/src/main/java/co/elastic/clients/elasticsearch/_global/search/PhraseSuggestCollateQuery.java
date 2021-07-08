@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -136,16 +136,16 @@ public final class PhraseSuggestCollateQuery implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PhraseSuggestCollateQuery
+	 * Json deserializer for PhraseSuggestCollateQuery
 	 */
-	public static final JsonpValueParser<PhraseSuggestCollateQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PhraseSuggestCollateQuery::setupPhraseSuggestCollateQueryParser);
+	public static final JsonpDeserializer<PhraseSuggestCollateQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PhraseSuggestCollateQuery::setupPhraseSuggestCollateQueryDeserializer);
 
-	protected static void setupPhraseSuggestCollateQueryParser(
-			DelegatingJsonpValueParser<PhraseSuggestCollateQuery.Builder> op) {
+	protected static void setupPhraseSuggestCollateQueryDeserializer(
+			DelegatingDeserializer<PhraseSuggestCollateQuery.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::source, JsonpValueParser.stringParser(), "source");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}
 

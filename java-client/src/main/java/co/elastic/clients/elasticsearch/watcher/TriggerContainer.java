@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -54,7 +54,7 @@ public class TriggerContainer extends TaggedUnion<TriggerContainer.Tag, Object> 
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private TriggerContainer(Builder builder) {
@@ -110,19 +110,20 @@ public class TriggerContainer extends TaggedUnion<TriggerContainer.Tag, Object> 
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<TriggerContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(TriggerContainer::buildJsonpParser);
+	public static final JsonpDeserializer<TriggerContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(TriggerContainer::buildDeserializer);
 
-	private static JsonpValueParser<TriggerContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<TriggerContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::schedule, ScheduleContainer.JSONP_PARSER, "schedule");
+		op.add(Builder::schedule, ScheduleContainer.DESERIALIZER, "schedule");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -202,17 +202,17 @@ public final class ExplanationDetail implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExplanationDetail
+	 * Json deserializer for ExplanationDetail
 	 */
-	public static final JsonpValueParser<ExplanationDetail> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExplanationDetail::setupExplanationDetailParser);
+	public static final JsonpDeserializer<ExplanationDetail> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExplanationDetail::setupExplanationDetailDeserializer);
 
-	protected static void setupExplanationDetailParser(DelegatingJsonpValueParser<ExplanationDetail.Builder> op) {
+	protected static void setupExplanationDetailDeserializer(DelegatingDeserializer<ExplanationDetail.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::details, JsonpValueParser.arrayParser(
-				co.elastic.clients.elasticsearch._global.explain.ExplanationDetail.JSONP_PARSER), "details");
-		op.add(Builder::value, JsonpValueParser.numberParser(), "value");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(
+				co.elastic.clients.elasticsearch._global.explain.ExplanationDetail.DESERIALIZER), "details");
+		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
 
 	}
 

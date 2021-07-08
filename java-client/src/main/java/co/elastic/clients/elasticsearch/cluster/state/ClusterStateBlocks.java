@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cluster.state;
 
 import co.elastic.clients.elasticsearch.cluster.ClusterStateBlockIndex;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -132,16 +132,15 @@ public final class ClusterStateBlocks implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateBlocks
+	 * Json deserializer for ClusterStateBlocks
 	 */
-	public static final JsonpValueParser<ClusterStateBlocks> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterStateBlocks::setupClusterStateBlocksParser);
+	public static final JsonpDeserializer<ClusterStateBlocks> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterStateBlocks::setupClusterStateBlocksDeserializer);
 
-	protected static void setupClusterStateBlocksParser(DelegatingJsonpValueParser<ClusterStateBlocks.Builder> op) {
+	protected static void setupClusterStateBlocksDeserializer(DelegatingDeserializer<ClusterStateBlocks.Builder> op) {
 
-		op.add(Builder::indices,
-				JsonpValueParser.stringMapParser(JsonpValueParser.stringMapParser(ClusterStateBlockIndex.JSONP_PARSER)),
-				"indices");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.stringMapDeserializer(ClusterStateBlockIndex.DESERIALIZER)), "indices");
 
 	}
 

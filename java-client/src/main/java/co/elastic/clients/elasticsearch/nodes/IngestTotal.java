@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -235,18 +235,18 @@ public final class IngestTotal implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IngestTotal
+	 * Json deserializer for IngestTotal
 	 */
-	public static final JsonpValueParser<IngestTotal> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IngestTotal::setupIngestTotalParser);
+	public static final JsonpDeserializer<IngestTotal> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IngestTotal::setupIngestTotalDeserializer);
 
-	protected static void setupIngestTotalParser(DelegatingJsonpValueParser<IngestTotal.Builder> op) {
+	protected static void setupIngestTotalDeserializer(DelegatingDeserializer<IngestTotal.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::current, JsonpValueParser.numberParser(), "current");
-		op.add(Builder::failed, JsonpValueParser.numberParser(), "failed");
-		op.add(Builder::processors, JsonpValueParser.arrayParser(KeyedProcessor.JSONP_PARSER), "processors");
-		op.add(Builder::timeInMillis, JsonpValueParser.numberParser(), "time_in_millis");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::current, JsonpDeserializer.numberDeserializer(), "current");
+		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(KeyedProcessor.DESERIALIZER), "processors");
+		op.add(Builder::timeInMillis, JsonpDeserializer.numberDeserializer(), "time_in_millis");
 
 	}
 

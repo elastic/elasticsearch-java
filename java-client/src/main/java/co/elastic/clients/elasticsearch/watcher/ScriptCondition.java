@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -174,16 +174,17 @@ public final class ScriptCondition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ScriptCondition
+	 * Json deserializer for ScriptCondition
 	 */
-	public static final JsonpValueParser<ScriptCondition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ScriptCondition::setupScriptConditionParser);
+	public static final JsonpDeserializer<ScriptCondition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ScriptCondition::setupScriptConditionDeserializer);
 
-	protected static void setupScriptConditionParser(DelegatingJsonpValueParser<ScriptCondition.Builder> op) {
+	protected static void setupScriptConditionDeserializer(DelegatingDeserializer<ScriptCondition.Builder> op) {
 
-		op.add(Builder::lang, JsonpValueParser.stringParser(), "lang");
-		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
-		op.add(Builder::source, JsonpValueParser.stringParser(), "source");
+		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"params");
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}
 

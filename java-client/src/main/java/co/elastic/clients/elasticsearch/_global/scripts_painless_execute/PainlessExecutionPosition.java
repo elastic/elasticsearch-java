@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.scripts_painless_execute;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,17 +147,17 @@ public final class PainlessExecutionPosition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PainlessExecutionPosition
+	 * Json deserializer for PainlessExecutionPosition
 	 */
-	public static final JsonpValueParser<PainlessExecutionPosition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PainlessExecutionPosition::setupPainlessExecutionPositionParser);
+	public static final JsonpDeserializer<PainlessExecutionPosition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PainlessExecutionPosition::setupPainlessExecutionPositionDeserializer);
 
-	protected static void setupPainlessExecutionPositionParser(
-			DelegatingJsonpValueParser<PainlessExecutionPosition.Builder> op) {
+	protected static void setupPainlessExecutionPositionDeserializer(
+			DelegatingDeserializer<PainlessExecutionPosition.Builder> op) {
 
-		op.add(Builder::offset, JsonpValueParser.numberParser(), "offset");
-		op.add(Builder::start, JsonpValueParser.numberParser(), "start");
-		op.add(Builder::end, JsonpValueParser.numberParser(), "end");
+		op.add(Builder::offset, JsonpDeserializer.numberDeserializer(), "offset");
+		op.add(Builder::start, JsonpDeserializer.numberDeserializer(), "start");
+		op.add(Builder::end, JsonpDeserializer.numberDeserializer(), "end");
 
 	}
 

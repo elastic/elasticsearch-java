@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -170,16 +170,16 @@ public final class EmailResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for EmailResult
+	 * Json deserializer for EmailResult
 	 */
-	public static final JsonpValueParser<EmailResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, EmailResult::setupEmailResultParser);
+	public static final JsonpDeserializer<EmailResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, EmailResult::setupEmailResultDeserializer);
 
-	protected static void setupEmailResultParser(DelegatingJsonpValueParser<EmailResult.Builder> op) {
+	protected static void setupEmailResultDeserializer(DelegatingDeserializer<EmailResult.Builder> op) {
 
-		op.add(Builder::account, JsonpValueParser.stringParser(), "account");
-		op.add(Builder::message, co.elastic.clients.elasticsearch.watcher.EmailResult.JSONP_PARSER, "message");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
+		op.add(Builder::account, JsonpDeserializer.stringDeserializer(), "account");
+		op.add(Builder::message, co.elastic.clients.elasticsearch.watcher.EmailResult.DESERIALIZER, "message");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 
 	}
 

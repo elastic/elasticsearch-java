@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.IndicesResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,13 @@ public final class PutMappingResponse extends IndicesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutMappingResponse
+	 * Json deserializer for PutMappingResponse
 	 */
-	public static final JsonpValueParser<PutMappingResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutMappingResponse::setupPutMappingResponseParser);
+	public static final JsonpDeserializer<PutMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutMappingResponse::setupPutMappingResponseDeserializer);
 
-	protected static void setupPutMappingResponseParser(DelegatingJsonpValueParser<PutMappingResponse.Builder> op) {
-		IndicesResponseBase.setupIndicesResponseBaseParser(op);
+	protected static void setupPutMappingResponseDeserializer(DelegatingDeserializer<PutMappingResponse.Builder> op) {
+		IndicesResponseBase.setupIndicesResponseBaseDeserializer(op);
 
 	}
 

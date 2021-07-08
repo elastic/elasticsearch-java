@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -63,7 +63,7 @@ public class ConditionContainer extends TaggedUnion<ConditionContainer.Tag, Obje
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private ConditionContainer(Builder builder) {
@@ -232,23 +232,24 @@ public class ConditionContainer extends TaggedUnion<ConditionContainer.Tag, Obje
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<ConditionContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(ConditionContainer::buildJsonpParser);
+	public static final JsonpDeserializer<ConditionContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(ConditionContainer::buildDeserializer);
 
-	private static JsonpValueParser<ConditionContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<ConditionContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::always, JsonpValueParser.jsonValueParser(), "always");
-		op.add(Builder::arrayCompare, ArrayCompareCondition.JSONP_PARSER, "array_compare");
-		op.add(Builder::compare, CompareCondition.JSONP_PARSER, "compare");
-		op.add(Builder::never, JsonpValueParser.jsonValueParser(), "never");
-		op.add(Builder::script, ScriptCondition.JSONP_PARSER, "script");
+		op.add(Builder::always, JsonpDeserializer.jsonValueDeserializer(), "always");
+		op.add(Builder::arrayCompare, ArrayCompareCondition.DESERIALIZER, "array_compare");
+		op.add(Builder::compare, CompareCondition.DESERIALIZER, "compare");
+		op.add(Builder::never, JsonpDeserializer.jsonValueDeserializer(), "never");
+		op.add(Builder::script, ScriptCondition.DESERIALIZER, "script");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

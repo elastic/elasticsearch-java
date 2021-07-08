@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -191,17 +191,17 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for EvaluateDataFrameRequest
+	 * Json deserializer for EvaluateDataFrameRequest
 	 */
-	public static final JsonpValueParser<EvaluateDataFrameRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, EvaluateDataFrameRequest::setupEvaluateDataFrameRequestParser);
+	public static final JsonpDeserializer<EvaluateDataFrameRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, EvaluateDataFrameRequest::setupEvaluateDataFrameRequestDeserializer);
 
-	protected static void setupEvaluateDataFrameRequestParser(
-			DelegatingJsonpValueParser<EvaluateDataFrameRequest.Builder> op) {
+	protected static void setupEvaluateDataFrameRequestDeserializer(
+			DelegatingDeserializer<EvaluateDataFrameRequest.Builder> op) {
 
-		op.add(Builder::evaluation, DataframeEvaluationContainer.JSONP_PARSER, "evaluation");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
+		op.add(Builder::evaluation, DataframeEvaluationContainer.DESERIALIZER, "evaluation");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
 
 	}
 
@@ -227,5 +227,5 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, EvaluateDataFrameResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, EvaluateDataFrameResponse.DESERIALIZER);
 }

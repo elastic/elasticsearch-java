@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch.snapshot.Status;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,15 +143,15 @@ public final class ClusterStateSnapshots implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateSnapshots
+	 * Json deserializer for ClusterStateSnapshots
 	 */
-	public static final JsonpValueParser<ClusterStateSnapshots> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterStateSnapshots::setupClusterStateSnapshotsParser);
+	public static final JsonpDeserializer<ClusterStateSnapshots> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterStateSnapshots::setupClusterStateSnapshotsDeserializer);
 
-	protected static void setupClusterStateSnapshotsParser(
-			DelegatingJsonpValueParser<ClusterStateSnapshots.Builder> op) {
+	protected static void setupClusterStateSnapshotsDeserializer(
+			DelegatingDeserializer<ClusterStateSnapshots.Builder> op) {
 
-		op.add(Builder::snapshots, JsonpValueParser.arrayParser(Status.JSONP_PARSER), "snapshots");
+		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(Status.DESERIALIZER), "snapshots");
 
 	}
 

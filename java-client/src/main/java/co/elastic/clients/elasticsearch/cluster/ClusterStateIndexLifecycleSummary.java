@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -228,22 +228,21 @@ public final class ClusterStateIndexLifecycleSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateIndexLifecycleSummary
+	 * Json deserializer for ClusterStateIndexLifecycleSummary
 	 */
-	public static final JsonpValueParser<ClusterStateIndexLifecycleSummary> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<ClusterStateIndexLifecycleSummary> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					ClusterStateIndexLifecycleSummary::setupClusterStateIndexLifecycleSummaryParser);
+					ClusterStateIndexLifecycleSummary::setupClusterStateIndexLifecycleSummaryDeserializer);
 
-	protected static void setupClusterStateIndexLifecycleSummaryParser(
-			DelegatingJsonpValueParser<ClusterStateIndexLifecycleSummary.Builder> op) {
+	protected static void setupClusterStateIndexLifecycleSummaryDeserializer(
+			DelegatingDeserializer<ClusterStateIndexLifecycleSummary.Builder> op) {
 
-		op.add(Builder::policy, ClusterStateIndexLifecyclePolicy.JSONP_PARSER, "policy");
-		op.add(Builder::headers,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(JsonpValueParser.stringParser())),
-				"headers");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::modifiedDate, JsonpValueParser.numberParser(), "modified_date");
-		op.add(Builder::modifiedDateString, JsonpValueParser.stringParser(), "modified_date_string");
+		op.add(Builder::policy, ClusterStateIndexLifecyclePolicy.DESERIALIZER, "policy");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::modifiedDate, JsonpDeserializer.numberDeserializer(), "modified_date");
+		op.add(Builder::modifiedDateString, JsonpDeserializer.stringDeserializer(), "modified_date_string");
 
 	}
 

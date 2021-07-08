@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -226,19 +226,19 @@ public final class IndexResultSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexResultSummary
+	 * Json deserializer for IndexResultSummary
 	 */
-	public static final JsonpValueParser<IndexResultSummary> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexResultSummary::setupIndexResultSummaryParser);
+	public static final JsonpDeserializer<IndexResultSummary> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexResultSummary::setupIndexResultSummaryDeserializer);
 
-	protected static void setupIndexResultSummaryParser(DelegatingJsonpValueParser<IndexResultSummary.Builder> op) {
+	protected static void setupIndexResultSummaryDeserializer(DelegatingDeserializer<IndexResultSummary.Builder> op) {
 
-		op.add(Builder::created, JsonpValueParser.booleanParser(), "created");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::result, JsonpValueParser.jsonValueParser(), "result");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::result, JsonpDeserializer.jsonValueDeserializer(), "result");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

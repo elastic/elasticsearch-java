@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -240,20 +240,20 @@ public final class Transport implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Transport
+	 * Json deserializer for Transport
 	 */
-	public static final JsonpValueParser<Transport> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Transport::setupTransportParser);
+	public static final JsonpDeserializer<Transport> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Transport::setupTransportDeserializer);
 
-	protected static void setupTransportParser(DelegatingJsonpValueParser<Transport.Builder> op) {
+	protected static void setupTransportDeserializer(DelegatingDeserializer<Transport.Builder> op) {
 
-		op.add(Builder::rxCount, JsonpValueParser.numberParser(), "rx_count");
-		op.add(Builder::rxSize, JsonpValueParser.stringParser(), "rx_size");
-		op.add(Builder::rxSizeInBytes, JsonpValueParser.numberParser(), "rx_size_in_bytes");
-		op.add(Builder::serverOpen, JsonpValueParser.numberParser(), "server_open");
-		op.add(Builder::txCount, JsonpValueParser.numberParser(), "tx_count");
-		op.add(Builder::txSize, JsonpValueParser.stringParser(), "tx_size");
-		op.add(Builder::txSizeInBytes, JsonpValueParser.numberParser(), "tx_size_in_bytes");
+		op.add(Builder::rxCount, JsonpDeserializer.numberDeserializer(), "rx_count");
+		op.add(Builder::rxSize, JsonpDeserializer.stringDeserializer(), "rx_size");
+		op.add(Builder::rxSizeInBytes, JsonpDeserializer.numberDeserializer(), "rx_size_in_bytes");
+		op.add(Builder::serverOpen, JsonpDeserializer.numberDeserializer(), "server_open");
+		op.add(Builder::txCount, JsonpDeserializer.numberDeserializer(), "tx_count");
+		op.add(Builder::txSize, JsonpDeserializer.stringDeserializer(), "tx_size");
+		op.add(Builder::txSizeInBytes, JsonpDeserializer.numberDeserializer(), "tx_size_in_bytes");
 
 	}
 

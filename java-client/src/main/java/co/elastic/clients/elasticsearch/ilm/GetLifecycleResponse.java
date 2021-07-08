@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.ilm.get_lifecycle.Lifecycle;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -72,14 +72,15 @@ public final class GetLifecycleResponse extends AdditionalProperties<String, Lif
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetLifecycleResponse
+	 * Json deserializer for GetLifecycleResponse
 	 */
-	public static final JsonpValueParser<GetLifecycleResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseParser);
+	public static final JsonpDeserializer<GetLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer);
 
-	protected static void setupGetLifecycleResponseParser(DelegatingJsonpValueParser<GetLifecycleResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				Lifecycle.JSONP_PARSER);
+	protected static void setupGetLifecycleResponseDeserializer(
+			DelegatingDeserializer<GetLifecycleResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				Lifecycle.DESERIALIZER);
 
 	}
 

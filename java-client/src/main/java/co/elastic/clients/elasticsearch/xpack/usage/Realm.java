@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -520,24 +520,27 @@ public final class Realm extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Realm
+	 * Json deserializer for Realm
 	 */
-	public static final JsonpValueParser<Realm> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Realm::setupRealmParser);
+	public static final JsonpDeserializer<Realm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Realm::setupRealmDeserializer);
 
-	protected static void setupRealmParser(DelegatingJsonpValueParser<Realm.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::name, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "name");
-		op.add(Builder::order, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "order");
-		op.add(Builder::size, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "size");
-		op.add(Builder::cache, JsonpValueParser.arrayParser(RealmCache.JSONP_PARSER), "cache");
-		op.add(Builder::hasAuthorizationRealms, JsonpValueParser.arrayParser(JsonpValueParser.booleanParser()),
+	protected static void setupRealmDeserializer(DelegatingDeserializer<Realm.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::name, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "name");
+		op.add(Builder::order, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "order");
+		op.add(Builder::size, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "size");
+		op.add(Builder::cache, JsonpDeserializer.arrayDeserializer(RealmCache.DESERIALIZER), "cache");
+		op.add(Builder::hasAuthorizationRealms,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.booleanDeserializer()),
 				"has_authorization_realms");
-		op.add(Builder::hasDefaultUsernamePattern, JsonpValueParser.arrayParser(JsonpValueParser.booleanParser()),
+		op.add(Builder::hasDefaultUsernamePattern,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.booleanDeserializer()),
 				"has_default_username_pattern");
-		op.add(Builder::hasTruststore, JsonpValueParser.arrayParser(JsonpValueParser.booleanParser()),
+		op.add(Builder::hasTruststore, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.booleanDeserializer()),
 				"has_truststore");
-		op.add(Builder::isAuthenticationDelegated, JsonpValueParser.arrayParser(JsonpValueParser.booleanParser()),
+		op.add(Builder::isAuthenticationDelegated,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.booleanDeserializer()),
 				"is_authentication_delegated");
 
 	}

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.elasticsearch._types.PluginStats;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -572,26 +572,27 @@ public final class ClusterNodes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterNodes
+	 * Json deserializer for ClusterNodes
 	 */
-	public static final JsonpValueParser<ClusterNodes> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterNodes::setupClusterNodesParser);
+	public static final JsonpDeserializer<ClusterNodes> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterNodes::setupClusterNodesDeserializer);
 
-	protected static void setupClusterNodesParser(DelegatingJsonpValueParser<ClusterNodes.Builder> op) {
+	protected static void setupClusterNodesDeserializer(DelegatingDeserializer<ClusterNodes.Builder> op) {
 
-		op.add(Builder::count, ClusterNodeCount.JSONP_PARSER, "count");
-		op.add(Builder::discoveryTypes, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()),
+		op.add(Builder::count, ClusterNodeCount.DESERIALIZER, "count");
+		op.add(Builder::discoveryTypes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
 				"discovery_types");
-		op.add(Builder::fs, ClusterFileSystem.JSONP_PARSER, "fs");
-		op.add(Builder::ingest, ClusterIngest.JSONP_PARSER, "ingest");
-		op.add(Builder::jvm, ClusterJvm.JSONP_PARSER, "jvm");
-		op.add(Builder::networkTypes, ClusterNetworkTypes.JSONP_PARSER, "network_types");
-		op.add(Builder::os, ClusterOperatingSystem.JSONP_PARSER, "os");
-		op.add(Builder::packagingTypes, JsonpValueParser.arrayParser(NodePackagingType.JSONP_PARSER),
+		op.add(Builder::fs, ClusterFileSystem.DESERIALIZER, "fs");
+		op.add(Builder::ingest, ClusterIngest.DESERIALIZER, "ingest");
+		op.add(Builder::jvm, ClusterJvm.DESERIALIZER, "jvm");
+		op.add(Builder::networkTypes, ClusterNetworkTypes.DESERIALIZER, "network_types");
+		op.add(Builder::os, ClusterOperatingSystem.DESERIALIZER, "os");
+		op.add(Builder::packagingTypes, JsonpDeserializer.arrayDeserializer(NodePackagingType.DESERIALIZER),
 				"packaging_types");
-		op.add(Builder::plugins, JsonpValueParser.arrayParser(PluginStats.JSONP_PARSER), "plugins");
-		op.add(Builder::process, ClusterProcess.JSONP_PARSER, "process");
-		op.add(Builder::versions, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "versions");
+		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "plugins");
+		op.add(Builder::process, ClusterProcess.DESERIALIZER, "process");
+		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"versions");
 
 	}
 

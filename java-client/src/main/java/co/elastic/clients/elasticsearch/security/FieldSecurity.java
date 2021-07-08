@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -182,15 +182,15 @@ public final class FieldSecurity implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldSecurity
+	 * Json deserializer for FieldSecurity
 	 */
-	public static final JsonpValueParser<FieldSecurity> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldSecurity::setupFieldSecurityParser);
+	public static final JsonpDeserializer<FieldSecurity> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldSecurity::setupFieldSecurityDeserializer);
 
-	protected static void setupFieldSecurityParser(DelegatingJsonpValueParser<FieldSecurity.Builder> op) {
+	protected static void setupFieldSecurityDeserializer(DelegatingDeserializer<FieldSecurity.Builder> op) {
 
-		op.add(Builder::except, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "except");
-		op.add(Builder::grant, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "grant");
+		op.add(Builder::except, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "except");
+		op.add(Builder::grant, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "grant");
 
 	}
 

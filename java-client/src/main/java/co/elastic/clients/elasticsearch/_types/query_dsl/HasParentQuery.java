@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._global.search.InnerHits;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -235,18 +235,18 @@ public final class HasParentQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HasParentQuery
+	 * Json deserializer for HasParentQuery
 	 */
-	public static final JsonpValueParser<HasParentQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HasParentQuery::setupHasParentQueryParser);
+	public static final JsonpDeserializer<HasParentQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HasParentQuery::setupHasParentQueryDeserializer);
 
-	protected static void setupHasParentQueryParser(DelegatingJsonpValueParser<HasParentQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::ignoreUnmapped, JsonpValueParser.booleanParser(), "ignore_unmapped");
-		op.add(Builder::innerHits, InnerHits.JSONP_PARSER, "inner_hits");
-		op.add(Builder::parentType, JsonpValueParser.stringParser(), "parent_type");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::score, JsonpValueParser.booleanParser(), "score");
+	protected static void setupHasParentQueryDeserializer(DelegatingDeserializer<HasParentQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
+		op.add(Builder::innerHits, InnerHits.DESERIALIZER, "inner_hits");
+		op.add(Builder::parentType, JsonpDeserializer.stringDeserializer(), "parent_type");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::score, JsonpDeserializer.booleanDeserializer(), "score");
 
 	}
 

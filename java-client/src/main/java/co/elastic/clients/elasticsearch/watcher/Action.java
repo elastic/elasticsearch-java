@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.TransformContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -400,23 +400,23 @@ public final class Action implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Action
+	 * Json deserializer for Action
 	 */
-	public static final JsonpValueParser<Action> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Action::setupActionParser);
+	public static final JsonpDeserializer<Action> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Action::setupActionDeserializer);
 
-	protected static void setupActionParser(DelegatingJsonpValueParser<Action.Builder> op) {
+	protected static void setupActionDeserializer(DelegatingDeserializer<Action.Builder> op) {
 
-		op.add(Builder::actionType, JsonpValueParser.jsonValueParser(), "action_type");
-		op.add(Builder::condition, ConditionContainer.JSONP_PARSER, "condition");
-		op.add(Builder::foreach, JsonpValueParser.stringParser(), "foreach");
-		op.add(Builder::maxIterations, JsonpValueParser.numberParser(), "max_iterations");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::throttlePeriod, JsonpValueParser.jsonValueParser(), "throttle_period");
-		op.add(Builder::throttlePeriodInMillis, JsonpValueParser.jsonValueParser(), "throttle_period_in_millis");
-		op.add(Builder::transform, TransformContainer.JSONP_PARSER, "transform");
-		op.add(Builder::index, Index.JSONP_PARSER, "index");
-		op.add(Builder::logging, Logging.JSONP_PARSER, "logging");
+		op.add(Builder::actionType, JsonpDeserializer.jsonValueDeserializer(), "action_type");
+		op.add(Builder::condition, ConditionContainer.DESERIALIZER, "condition");
+		op.add(Builder::foreach, JsonpDeserializer.stringDeserializer(), "foreach");
+		op.add(Builder::maxIterations, JsonpDeserializer.numberDeserializer(), "max_iterations");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::throttlePeriod, JsonpDeserializer.jsonValueDeserializer(), "throttle_period");
+		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.jsonValueDeserializer(), "throttle_period_in_millis");
+		op.add(Builder::transform, TransformContainer.DESERIALIZER, "transform");
+		op.add(Builder::index, Index.DESERIALIZER, "index");
+		op.add(Builder::logging, Logging.DESERIALIZER, "logging");
 
 	}
 

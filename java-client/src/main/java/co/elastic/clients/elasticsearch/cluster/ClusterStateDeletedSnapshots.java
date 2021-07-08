@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -128,15 +128,15 @@ public final class ClusterStateDeletedSnapshots implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateDeletedSnapshots
+	 * Json deserializer for ClusterStateDeletedSnapshots
 	 */
-	public static final JsonpValueParser<ClusterStateDeletedSnapshots> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterStateDeletedSnapshots::setupClusterStateDeletedSnapshotsParser);
+	public static final JsonpDeserializer<ClusterStateDeletedSnapshots> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterStateDeletedSnapshots::setupClusterStateDeletedSnapshotsDeserializer);
 
-	protected static void setupClusterStateDeletedSnapshotsParser(
-			DelegatingJsonpValueParser<ClusterStateDeletedSnapshots.Builder> op) {
+	protected static void setupClusterStateDeletedSnapshotsDeserializer(
+			DelegatingDeserializer<ClusterStateDeletedSnapshots.Builder> op) {
 
-		op.add(Builder::snapshotDeletions, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::snapshotDeletions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"snapshot_deletions");
 
 	}

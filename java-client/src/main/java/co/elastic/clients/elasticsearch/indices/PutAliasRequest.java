@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -349,18 +349,18 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutAliasRequest
+	 * Json deserializer for PutAliasRequest
 	 */
-	public static final JsonpValueParser<PutAliasRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutAliasRequest::setupPutAliasRequestParser);
+	public static final JsonpDeserializer<PutAliasRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutAliasRequest::setupPutAliasRequestDeserializer);
 
-	protected static void setupPutAliasRequestParser(DelegatingJsonpValueParser<PutAliasRequest.Builder> op) {
+	protected static void setupPutAliasRequestDeserializer(DelegatingDeserializer<PutAliasRequest.Builder> op) {
 
-		op.add(Builder::filter, QueryContainer.JSONP_PARSER, "filter");
-		op.add(Builder::indexRouting, JsonpValueParser.jsonValueParser(), "index_routing");
-		op.add(Builder::isWriteIndex, JsonpValueParser.booleanParser(), "is_write_index");
-		op.add(Builder::routing, JsonpValueParser.jsonValueParser(), "routing");
-		op.add(Builder::searchRouting, JsonpValueParser.jsonValueParser(), "search_routing");
+		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::indexRouting, JsonpDeserializer.jsonValueDeserializer(), "index_routing");
+		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
+		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::searchRouting, JsonpDeserializer.jsonValueDeserializer(), "search_routing");
 
 	}
 
@@ -421,5 +421,5 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutAliasResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutAliasResponse.DESERIALIZER);
 }

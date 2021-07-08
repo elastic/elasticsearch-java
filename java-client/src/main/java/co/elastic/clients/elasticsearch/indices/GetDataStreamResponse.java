@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.get_data_stream.IndicesGetDataStreamItem;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -145,15 +145,15 @@ public final class GetDataStreamResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetDataStreamResponse
+	 * Json deserializer for GetDataStreamResponse
 	 */
-	public static final JsonpValueParser<GetDataStreamResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetDataStreamResponse::setupGetDataStreamResponseParser);
+	public static final JsonpDeserializer<GetDataStreamResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetDataStreamResponse::setupGetDataStreamResponseDeserializer);
 
-	protected static void setupGetDataStreamResponseParser(
-			DelegatingJsonpValueParser<GetDataStreamResponse.Builder> op) {
+	protected static void setupGetDataStreamResponseDeserializer(
+			DelegatingDeserializer<GetDataStreamResponse.Builder> op) {
 
-		op.add(Builder::dataStreams, JsonpValueParser.arrayParser(IndicesGetDataStreamItem.JSONP_PARSER),
+		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(IndicesGetDataStreamItem.DESERIALIZER),
 				"data_streams");
 
 	}

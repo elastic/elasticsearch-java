@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -1361,84 +1361,86 @@ public class IndexSettings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexSettings
+	 * Json deserializer for IndexSettings
 	 */
-	public static final JsonpValueParser<IndexSettings> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexSettings::setupIndexSettingsParser);
+	public static final JsonpDeserializer<IndexSettings> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexSettings::setupIndexSettingsDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndexSettingsParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndexSettingsDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::numberOfShards, JsonpValueParser.jsonValueParser(), "number_of_shards",
+		op.add(AbstractBuilder::numberOfShards, JsonpDeserializer.jsonValueDeserializer(), "number_of_shards",
 				"index.number_of_shards");
-		op.add(AbstractBuilder::numberOfReplicas, JsonpValueParser.jsonValueParser(), "number_of_replicas",
+		op.add(AbstractBuilder::numberOfReplicas, JsonpDeserializer.jsonValueDeserializer(), "number_of_replicas",
 				"index.number_of_replicas");
-		op.add(AbstractBuilder::numberOfRoutingShards, JsonpValueParser.numberParser(), "number_of_routing_shards",
-				"index.number_of_routing_shards");
-		op.add(AbstractBuilder::checkOnStartup, JsonpValueParser.jsonValueParser(), "check_on_startup",
+		op.add(AbstractBuilder::numberOfRoutingShards, JsonpDeserializer.numberDeserializer(),
+				"number_of_routing_shards", "index.number_of_routing_shards");
+		op.add(AbstractBuilder::checkOnStartup, JsonpDeserializer.jsonValueDeserializer(), "check_on_startup",
 				"index.check_on_startup");
-		op.add(AbstractBuilder::codec, JsonpValueParser.stringParser(), "codec", "index.codec");
-		op.add(AbstractBuilder::routingPartitionSize, JsonpValueParser.jsonValueParser(), "routing_partition_size",
-				"index.routing_partition_size");
-		op.add(AbstractBuilder::softDeletes_retentionLease_period, JsonpValueParser.jsonValueParser(),
+		op.add(AbstractBuilder::codec, JsonpDeserializer.stringDeserializer(), "codec", "index.codec");
+		op.add(AbstractBuilder::routingPartitionSize, JsonpDeserializer.jsonValueDeserializer(),
+				"routing_partition_size", "index.routing_partition_size");
+		op.add(AbstractBuilder::softDeletes_retentionLease_period, JsonpDeserializer.jsonValueDeserializer(),
 				"soft_deletes.retention_lease.period", "index.soft_deletes.retention_lease.period");
-		op.add(AbstractBuilder::loadFixedBitsetFiltersEagerly, JsonpValueParser.booleanParser(),
+		op.add(AbstractBuilder::loadFixedBitsetFiltersEagerly, JsonpDeserializer.booleanDeserializer(),
 				"load_fixed_bitset_filters_eagerly", "index.load_fixed_bitset_filters_eagerly");
-		op.add(AbstractBuilder::hidden, JsonpValueParser.jsonValueParser(), "hidden", "index.hidden");
-		op.add(AbstractBuilder::autoExpandReplicas, JsonpValueParser.stringParser(), "auto_expand_replicas",
+		op.add(AbstractBuilder::hidden, JsonpDeserializer.jsonValueDeserializer(), "hidden", "index.hidden");
+		op.add(AbstractBuilder::autoExpandReplicas, JsonpDeserializer.stringDeserializer(), "auto_expand_replicas",
 				"index.auto_expand_replicas");
-		op.add(AbstractBuilder::search_idle_after, JsonpValueParser.jsonValueParser(), "search.idle.after",
+		op.add(AbstractBuilder::search_idle_after, JsonpDeserializer.jsonValueDeserializer(), "search.idle.after",
 				"index.search.idle.after");
-		op.add(AbstractBuilder::refreshInterval, JsonpValueParser.jsonValueParser(), "refresh_interval",
+		op.add(AbstractBuilder::refreshInterval, JsonpDeserializer.jsonValueDeserializer(), "refresh_interval",
 				"index.refresh_interval");
-		op.add(AbstractBuilder::maxResultWindow, JsonpValueParser.numberParser(), "max_result_window",
+		op.add(AbstractBuilder::maxResultWindow, JsonpDeserializer.numberDeserializer(), "max_result_window",
 				"index.max_result_window");
-		op.add(AbstractBuilder::maxInnerResultWindow, JsonpValueParser.numberParser(), "max_inner_result_window",
+		op.add(AbstractBuilder::maxInnerResultWindow, JsonpDeserializer.numberDeserializer(), "max_inner_result_window",
 				"index.max_inner_result_window");
-		op.add(AbstractBuilder::maxRescoreWindow, JsonpValueParser.numberParser(), "max_rescore_window",
+		op.add(AbstractBuilder::maxRescoreWindow, JsonpDeserializer.numberDeserializer(), "max_rescore_window",
 				"index.max_rescore_window");
-		op.add(AbstractBuilder::maxDocvalueFieldsSearch, JsonpValueParser.numberParser(), "max_docvalue_fields_search",
-				"index.max_docvalue_fields_search");
-		op.add(AbstractBuilder::maxScriptFields, JsonpValueParser.numberParser(), "max_script_fields",
+		op.add(AbstractBuilder::maxDocvalueFieldsSearch, JsonpDeserializer.numberDeserializer(),
+				"max_docvalue_fields_search", "index.max_docvalue_fields_search");
+		op.add(AbstractBuilder::maxScriptFields, JsonpDeserializer.numberDeserializer(), "max_script_fields",
 				"index.max_script_fields");
-		op.add(AbstractBuilder::maxNgramDiff, JsonpValueParser.numberParser(), "max_ngram_diff",
+		op.add(AbstractBuilder::maxNgramDiff, JsonpDeserializer.numberDeserializer(), "max_ngram_diff",
 				"index.max_ngram_diff");
-		op.add(AbstractBuilder::maxShingleDiff, JsonpValueParser.numberParser(), "max_shingle_diff",
+		op.add(AbstractBuilder::maxShingleDiff, JsonpDeserializer.numberDeserializer(), "max_shingle_diff",
 				"index.max_shingle_diff");
-		op.add(AbstractBuilder::blocks, IndexSettingBlocks.JSONP_PARSER, "blocks", "index.blocks");
-		op.add(AbstractBuilder::maxRefreshListeners, JsonpValueParser.numberParser(), "max_refresh_listeners",
+		op.add(AbstractBuilder::blocks, IndexSettingBlocks.DESERIALIZER, "blocks", "index.blocks");
+		op.add(AbstractBuilder::maxRefreshListeners, JsonpDeserializer.numberDeserializer(), "max_refresh_listeners",
 				"index.max_refresh_listeners");
-		op.add(AbstractBuilder::analyze_maxTokenCount, JsonpValueParser.numberParser(), "analyze.max_token_count",
-				"index.analyze.max_token_count");
-		op.add(AbstractBuilder::highlight_maxAnalyzedOffset, JsonpValueParser.numberParser(),
+		op.add(AbstractBuilder::analyze_maxTokenCount, JsonpDeserializer.numberDeserializer(),
+				"analyze.max_token_count", "index.analyze.max_token_count");
+		op.add(AbstractBuilder::highlight_maxAnalyzedOffset, JsonpDeserializer.numberDeserializer(),
 				"highlight.max_analyzed_offset", "index.highlight.max_analyzed_offset");
-		op.add(AbstractBuilder::maxTermsCount, JsonpValueParser.numberParser(), "max_terms_count",
+		op.add(AbstractBuilder::maxTermsCount, JsonpDeserializer.numberDeserializer(), "max_terms_count",
 				"index.max_terms_count");
-		op.add(AbstractBuilder::maxRegexLength, JsonpValueParser.numberParser(), "max_regex_length",
+		op.add(AbstractBuilder::maxRegexLength, JsonpDeserializer.numberDeserializer(), "max_regex_length",
 				"index.max_regex_length");
-		op.add(AbstractBuilder::routing, IndexRouting.JSONP_PARSER, "routing", "index.routing");
-		op.add(AbstractBuilder::gcDeletes, JsonpValueParser.jsonValueParser(), "gc_deletes", "index.gc_deletes");
-		op.add(AbstractBuilder::defaultPipeline, JsonpValueParser.stringParser(), "default_pipeline",
+		op.add(AbstractBuilder::routing, IndexRouting.DESERIALIZER, "routing", "index.routing");
+		op.add(AbstractBuilder::gcDeletes, JsonpDeserializer.jsonValueDeserializer(), "gc_deletes", "index.gc_deletes");
+		op.add(AbstractBuilder::defaultPipeline, JsonpDeserializer.stringDeserializer(), "default_pipeline",
 				"index.default_pipeline");
-		op.add(AbstractBuilder::finalPipeline, JsonpValueParser.stringParser(), "final_pipeline",
+		op.add(AbstractBuilder::finalPipeline, JsonpDeserializer.stringDeserializer(), "final_pipeline",
 				"index.final_pipeline");
-		op.add(AbstractBuilder::lifecycle, IndexSettingsLifecycle.JSONP_PARSER, "lifecycle", "index.lifecycle");
-		op.add(AbstractBuilder::providedName, JsonpValueParser.stringParser(), "provided_name", "index.provided_name");
-		op.add(AbstractBuilder::creationDate, JsonpValueParser.stringParser(), "creation_date", "index.creation_date");
-		op.add(AbstractBuilder::uuid, JsonpValueParser.stringParser(), "uuid", "index.uuid");
-		op.add(AbstractBuilder::version, IndexVersioning.JSONP_PARSER, "version", "index.version");
-		op.add(AbstractBuilder::verifiedBeforeClose, JsonpValueParser.jsonValueParser(), "verified_before_close",
+		op.add(AbstractBuilder::lifecycle, IndexSettingsLifecycle.DESERIALIZER, "lifecycle", "index.lifecycle");
+		op.add(AbstractBuilder::providedName, JsonpDeserializer.stringDeserializer(), "provided_name",
+				"index.provided_name");
+		op.add(AbstractBuilder::creationDate, JsonpDeserializer.stringDeserializer(), "creation_date",
+				"index.creation_date");
+		op.add(AbstractBuilder::uuid, JsonpDeserializer.stringDeserializer(), "uuid", "index.uuid");
+		op.add(AbstractBuilder::version, IndexVersioning.DESERIALIZER, "version", "index.version");
+		op.add(AbstractBuilder::verifiedBeforeClose, JsonpDeserializer.jsonValueDeserializer(), "verified_before_close",
 				"index.verified_before_close");
-		op.add(AbstractBuilder::format, JsonpValueParser.jsonValueParser(), "format", "index.format");
-		op.add(AbstractBuilder::maxSlicesPerScroll, JsonpValueParser.numberParser(), "max_slices_per_scroll",
+		op.add(AbstractBuilder::format, JsonpDeserializer.jsonValueDeserializer(), "format", "index.format");
+		op.add(AbstractBuilder::maxSlicesPerScroll, JsonpDeserializer.numberDeserializer(), "max_slices_per_scroll",
 				"index.max_slices_per_scroll");
-		op.add(AbstractBuilder::translog_durability, JsonpValueParser.stringParser(), "translog.durability",
+		op.add(AbstractBuilder::translog_durability, JsonpDeserializer.stringDeserializer(), "translog.durability",
 				"index.translog.durability");
-		op.add(AbstractBuilder::queryString_lenient, JsonpValueParser.jsonValueParser(), "query_string.lenient",
+		op.add(AbstractBuilder::queryString_lenient, JsonpDeserializer.jsonValueDeserializer(), "query_string.lenient",
 				"index.query_string.lenient");
-		op.add(AbstractBuilder::priority, JsonpValueParser.jsonValueParser(), "priority", "index.priority");
-		op.add(AbstractBuilder::topMetricsMaxSize, JsonpValueParser.numberParser(), "top_metrics_max_size");
-		op.add(AbstractBuilder::analysis, IndexSettingsAnalysis.JSONP_PARSER, "analysis");
+		op.add(AbstractBuilder::priority, JsonpDeserializer.jsonValueDeserializer(), "priority", "index.priority");
+		op.add(AbstractBuilder::topMetricsMaxSize, JsonpDeserializer.numberDeserializer(), "top_metrics_max_size");
+		op.add(AbstractBuilder::analysis, IndexSettingsAnalysis.DESERIALIZER, "analysis");
 
 	}
 

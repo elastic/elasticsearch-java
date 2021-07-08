@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,17 +125,17 @@ public final class ClusterOperatingSystemArchitecture implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterOperatingSystemArchitecture
+	 * Json deserializer for ClusterOperatingSystemArchitecture
 	 */
-	public static final JsonpValueParser<ClusterOperatingSystemArchitecture> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<ClusterOperatingSystemArchitecture> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					ClusterOperatingSystemArchitecture::setupClusterOperatingSystemArchitectureParser);
+					ClusterOperatingSystemArchitecture::setupClusterOperatingSystemArchitectureDeserializer);
 
-	protected static void setupClusterOperatingSystemArchitectureParser(
-			DelegatingJsonpValueParser<ClusterOperatingSystemArchitecture.Builder> op) {
+	protected static void setupClusterOperatingSystemArchitectureDeserializer(
+			DelegatingDeserializer<ClusterOperatingSystemArchitecture.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::arch, JsonpValueParser.stringParser(), "arch");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
 
 	}
 

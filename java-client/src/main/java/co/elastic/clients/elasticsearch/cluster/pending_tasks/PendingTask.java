@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.pending_tasks;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -194,18 +194,18 @@ public final class PendingTask implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PendingTask
+	 * Json deserializer for PendingTask
 	 */
-	public static final JsonpValueParser<PendingTask> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PendingTask::setupPendingTaskParser);
+	public static final JsonpDeserializer<PendingTask> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PendingTask::setupPendingTaskDeserializer);
 
-	protected static void setupPendingTaskParser(DelegatingJsonpValueParser<PendingTask.Builder> op) {
+	protected static void setupPendingTaskDeserializer(DelegatingDeserializer<PendingTask.Builder> op) {
 
-		op.add(Builder::insertOrder, JsonpValueParser.numberParser(), "insert_order");
-		op.add(Builder::priority, JsonpValueParser.stringParser(), "priority");
-		op.add(Builder::source, JsonpValueParser.stringParser(), "source");
-		op.add(Builder::timeInQueue, JsonpValueParser.stringParser(), "time_in_queue");
-		op.add(Builder::timeInQueueMillis, JsonpValueParser.numberParser(), "time_in_queue_millis");
+		op.add(Builder::insertOrder, JsonpDeserializer.numberDeserializer(), "insert_order");
+		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::timeInQueue, JsonpDeserializer.stringDeserializer(), "time_in_queue");
+		op.add(Builder::timeInQueueMillis, JsonpDeserializer.numberDeserializer(), "time_in_queue_millis");
 
 	}
 

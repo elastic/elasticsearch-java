@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -178,17 +178,17 @@ public final class FlushStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FlushStats
+	 * Json deserializer for FlushStats
 	 */
-	public static final JsonpValueParser<FlushStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FlushStats::setupFlushStatsParser);
+	public static final JsonpDeserializer<FlushStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FlushStats::setupFlushStatsDeserializer);
 
-	protected static void setupFlushStatsParser(DelegatingJsonpValueParser<FlushStats.Builder> op) {
+	protected static void setupFlushStatsDeserializer(DelegatingDeserializer<FlushStats.Builder> op) {
 
-		op.add(Builder::periodic, JsonpValueParser.numberParser(), "periodic");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::totalTime, JsonpValueParser.stringParser(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.numberParser(), "total_time_in_millis");
+		op.add(Builder::periodic, JsonpDeserializer.numberDeserializer(), "periodic");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.numberDeserializer(), "total_time_in_millis");
 
 	}
 

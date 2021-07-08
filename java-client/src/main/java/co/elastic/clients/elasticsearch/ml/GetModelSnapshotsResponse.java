@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -166,16 +166,17 @@ public final class GetModelSnapshotsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetModelSnapshotsResponse
+	 * Json deserializer for GetModelSnapshotsResponse
 	 */
-	public static final JsonpValueParser<GetModelSnapshotsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetModelSnapshotsResponse::setupGetModelSnapshotsResponseParser);
+	public static final JsonpDeserializer<GetModelSnapshotsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetModelSnapshotsResponse::setupGetModelSnapshotsResponseDeserializer);
 
-	protected static void setupGetModelSnapshotsResponseParser(
-			DelegatingJsonpValueParser<GetModelSnapshotsResponse.Builder> op) {
+	protected static void setupGetModelSnapshotsResponseDeserializer(
+			DelegatingDeserializer<GetModelSnapshotsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::modelSnapshots, JsonpValueParser.arrayParser(ModelSnapshot.JSONP_PARSER), "model_snapshots");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::modelSnapshots, JsonpDeserializer.arrayDeserializer(ModelSnapshot.DESERIALIZER),
+				"model_snapshots");
 
 	}
 

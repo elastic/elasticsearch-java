@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ml.JobStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -219,18 +219,18 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MlInferenceTrainedModels
+	 * Json deserializer for MlInferenceTrainedModels
 	 */
-	public static final JsonpValueParser<MlInferenceTrainedModels> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MlInferenceTrainedModels::setupMlInferenceTrainedModelsParser);
+	public static final JsonpDeserializer<MlInferenceTrainedModels> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MlInferenceTrainedModels::setupMlInferenceTrainedModelsDeserializer);
 
-	protected static void setupMlInferenceTrainedModelsParser(
-			DelegatingJsonpValueParser<MlInferenceTrainedModels.Builder> op) {
+	protected static void setupMlInferenceTrainedModelsDeserializer(
+			DelegatingDeserializer<MlInferenceTrainedModels.Builder> op) {
 
-		op.add(Builder::estimatedOperations, JobStatistics.JSONP_PARSER, "estimated_operations");
-		op.add(Builder::estimatedHeapMemoryUsageBytes, JobStatistics.JSONP_PARSER, "estimated_heap_memory_usage_bytes");
-		op.add(Builder::count, MlInferenceTrainedModelsCount.JSONP_PARSER, "count");
-		op.add(Builder::_all, MlCounter.JSONP_PARSER, "_all");
+		op.add(Builder::estimatedOperations, JobStatistics.DESERIALIZER, "estimated_operations");
+		op.add(Builder::estimatedHeapMemoryUsageBytes, JobStatistics.DESERIALIZER, "estimated_heap_memory_usage_bytes");
+		op.add(Builder::count, MlInferenceTrainedModelsCount.DESERIALIZER, "count");
+		op.add(Builder::_all, MlCounter.DESERIALIZER, "_all");
 
 	}
 

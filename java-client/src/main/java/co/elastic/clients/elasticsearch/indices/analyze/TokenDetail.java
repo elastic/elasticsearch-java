@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.analyze;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -166,15 +166,15 @@ public final class TokenDetail implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TokenDetail
+	 * Json deserializer for TokenDetail
 	 */
-	public static final JsonpValueParser<TokenDetail> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TokenDetail::setupTokenDetailParser);
+	public static final JsonpDeserializer<TokenDetail> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TokenDetail::setupTokenDetailDeserializer);
 
-	protected static void setupTokenDetailParser(DelegatingJsonpValueParser<TokenDetail.Builder> op) {
+	protected static void setupTokenDetailDeserializer(DelegatingDeserializer<TokenDetail.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::tokens, JsonpValueParser.arrayParser(ExplainAnalyzeToken.JSONP_PARSER), "tokens");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(ExplainAnalyzeToken.DESERIALIZER), "tokens");
 
 	}
 

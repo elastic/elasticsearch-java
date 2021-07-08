@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.reload_search_analyzers;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -198,17 +198,17 @@ public final class ReloadDetails implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReloadDetails
+	 * Json deserializer for ReloadDetails
 	 */
-	public static final JsonpValueParser<ReloadDetails> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReloadDetails::setupReloadDetailsParser);
+	public static final JsonpDeserializer<ReloadDetails> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReloadDetails::setupReloadDetailsDeserializer);
 
-	protected static void setupReloadDetailsParser(DelegatingJsonpValueParser<ReloadDetails.Builder> op) {
+	protected static void setupReloadDetailsDeserializer(DelegatingDeserializer<ReloadDetails.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::reloadedAnalyzers, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::reloadedAnalyzers, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"reloaded_analyzers");
-		op.add(Builder::reloadedNodeIds, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::reloadedNodeIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"reloaded_node_ids");
 
 	}

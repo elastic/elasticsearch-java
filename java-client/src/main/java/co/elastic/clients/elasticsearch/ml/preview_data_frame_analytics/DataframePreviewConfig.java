@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics;
 
 import co.elastic.clients.elasticsearch.ml.DataframeAnalysisContainer;
 import co.elastic.clients.elasticsearch.ml.DataframeAnalyticsSource;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -231,19 +231,19 @@ public final class DataframePreviewConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframePreviewConfig
+	 * Json deserializer for DataframePreviewConfig
 	 */
-	public static final JsonpValueParser<DataframePreviewConfig> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataframePreviewConfig::setupDataframePreviewConfigParser);
+	public static final JsonpDeserializer<DataframePreviewConfig> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataframePreviewConfig::setupDataframePreviewConfigDeserializer);
 
-	protected static void setupDataframePreviewConfigParser(
-			DelegatingJsonpValueParser<DataframePreviewConfig.Builder> op) {
+	protected static void setupDataframePreviewConfigDeserializer(
+			DelegatingDeserializer<DataframePreviewConfig.Builder> op) {
 
-		op.add(Builder::source, DataframeAnalyticsSource.JSONP_PARSER, "source");
-		op.add(Builder::analysis, DataframeAnalysisContainer.JSONP_PARSER, "analysis");
-		op.add(Builder::modelMemoryLimit, JsonpValueParser.jsonValueParser(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpValueParser.numberParser(), "max_num_threads");
-		op.add(Builder::analyzedFields, JsonpValueParser.jsonValueParser(), "analyzed_fields");
+		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
+		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(), "model_memory_limit");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 
 	}
 

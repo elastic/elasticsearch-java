@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -333,23 +333,23 @@ public class MemoryStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MemoryStats
+	 * Json deserializer for MemoryStats
 	 */
-	public static final JsonpValueParser<MemoryStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MemoryStats::setupMemoryStatsParser);
+	public static final JsonpDeserializer<MemoryStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MemoryStats::setupMemoryStatsDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMemoryStatsParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMemoryStatsDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::resident, JsonpValueParser.stringParser(), "resident");
-		op.add(AbstractBuilder::residentInBytes, JsonpValueParser.numberParser(), "resident_in_bytes");
-		op.add(AbstractBuilder::share, JsonpValueParser.stringParser(), "share");
-		op.add(AbstractBuilder::shareInBytes, JsonpValueParser.numberParser(), "share_in_bytes");
-		op.add(AbstractBuilder::totalVirtual, JsonpValueParser.stringParser(), "total_virtual");
-		op.add(AbstractBuilder::totalVirtualInBytes, JsonpValueParser.numberParser(), "total_virtual_in_bytes");
-		op.add(AbstractBuilder::totalInBytes, JsonpValueParser.numberParser(), "total_in_bytes");
-		op.add(AbstractBuilder::freeInBytes, JsonpValueParser.numberParser(), "free_in_bytes");
-		op.add(AbstractBuilder::usedInBytes, JsonpValueParser.numberParser(), "used_in_bytes");
+		op.add(AbstractBuilder::resident, JsonpDeserializer.stringDeserializer(), "resident");
+		op.add(AbstractBuilder::residentInBytes, JsonpDeserializer.numberDeserializer(), "resident_in_bytes");
+		op.add(AbstractBuilder::share, JsonpDeserializer.stringDeserializer(), "share");
+		op.add(AbstractBuilder::shareInBytes, JsonpDeserializer.numberDeserializer(), "share_in_bytes");
+		op.add(AbstractBuilder::totalVirtual, JsonpDeserializer.stringDeserializer(), "total_virtual");
+		op.add(AbstractBuilder::totalVirtualInBytes, JsonpDeserializer.numberDeserializer(), "total_virtual_in_bytes");
+		op.add(AbstractBuilder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(AbstractBuilder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
+		op.add(AbstractBuilder::usedInBytes, JsonpDeserializer.numberDeserializer(), "used_in_bytes");
 
 	}
 

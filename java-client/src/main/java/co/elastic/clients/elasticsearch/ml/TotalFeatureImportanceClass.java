@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -181,16 +181,16 @@ public final class TotalFeatureImportanceClass implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TotalFeatureImportanceClass
+	 * Json deserializer for TotalFeatureImportanceClass
 	 */
-	public static final JsonpValueParser<TotalFeatureImportanceClass> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TotalFeatureImportanceClass::setupTotalFeatureImportanceClassParser);
+	public static final JsonpDeserializer<TotalFeatureImportanceClass> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TotalFeatureImportanceClass::setupTotalFeatureImportanceClassDeserializer);
 
-	protected static void setupTotalFeatureImportanceClassParser(
-			DelegatingJsonpValueParser<TotalFeatureImportanceClass.Builder> op) {
+	protected static void setupTotalFeatureImportanceClassDeserializer(
+			DelegatingDeserializer<TotalFeatureImportanceClass.Builder> op) {
 
-		op.add(Builder::className, JsonpValueParser.stringParser(), "class_name");
-		op.add(Builder::importance, JsonpValueParser.arrayParser(TotalFeatureImportanceStatistics.JSONP_PARSER),
+		op.add(Builder::className, JsonpDeserializer.stringDeserializer(), "class_name");
+		op.add(Builder::importance, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceStatistics.DESERIALIZER),
 				"importance");
 
 	}

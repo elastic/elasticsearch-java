@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -195,19 +195,19 @@ public final class DatafeedTimingStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DatafeedTimingStats
+	 * Json deserializer for DatafeedTimingStats
 	 */
-	public static final JsonpValueParser<DatafeedTimingStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DatafeedTimingStats::setupDatafeedTimingStatsParser);
+	public static final JsonpDeserializer<DatafeedTimingStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DatafeedTimingStats::setupDatafeedTimingStatsDeserializer);
 
-	protected static void setupDatafeedTimingStatsParser(DelegatingJsonpValueParser<DatafeedTimingStats.Builder> op) {
+	protected static void setupDatafeedTimingStatsDeserializer(DelegatingDeserializer<DatafeedTimingStats.Builder> op) {
 
-		op.add(Builder::bucketCount, JsonpValueParser.numberParser(), "bucket_count");
-		op.add(Builder::exponentialAverageSearchTimePerHourMs, JsonpValueParser.numberParser(),
+		op.add(Builder::bucketCount, JsonpDeserializer.numberDeserializer(), "bucket_count");
+		op.add(Builder::exponentialAverageSearchTimePerHourMs, JsonpDeserializer.numberDeserializer(),
 				"exponential_average_search_time_per_hour_ms");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::searchCount, JsonpValueParser.numberParser(), "search_count");
-		op.add(Builder::totalSearchTimeMs, JsonpValueParser.numberParser(), "total_search_time_ms");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::searchCount, JsonpDeserializer.numberDeserializer(), "search_count");
+		op.add(Builder::totalSearchTimeMs, JsonpDeserializer.numberDeserializer(), "total_search_time_ms");
 
 	}
 

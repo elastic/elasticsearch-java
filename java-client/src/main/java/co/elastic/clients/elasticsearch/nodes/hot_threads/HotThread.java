@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.hot_threads;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -221,17 +221,18 @@ public final class HotThread implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HotThread
+	 * Json deserializer for HotThread
 	 */
-	public static final JsonpValueParser<HotThread> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HotThread::setupHotThreadParser);
+	public static final JsonpDeserializer<HotThread> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HotThread::setupHotThreadDeserializer);
 
-	protected static void setupHotThreadParser(DelegatingJsonpValueParser<HotThread.Builder> op) {
+	protected static void setupHotThreadDeserializer(DelegatingDeserializer<HotThread.Builder> op) {
 
-		op.add(Builder::hosts, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "hosts");
-		op.add(Builder::nodeId, JsonpValueParser.stringParser(), "node_id");
-		op.add(Builder::nodeName, JsonpValueParser.stringParser(), "node_name");
-		op.add(Builder::threads, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "threads");
+		op.add(Builder::hosts, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "hosts");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
+		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
+		op.add(Builder::threads, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"threads");
 
 	}
 

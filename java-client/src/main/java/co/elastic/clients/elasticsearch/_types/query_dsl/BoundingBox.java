@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -166,16 +166,16 @@ public final class BoundingBox implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BoundingBox
+	 * Json deserializer for BoundingBox
 	 */
-	public static final JsonpValueParser<BoundingBox> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BoundingBox::setupBoundingBoxParser);
+	public static final JsonpDeserializer<BoundingBox> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BoundingBox::setupBoundingBoxDeserializer);
 
-	protected static void setupBoundingBoxParser(DelegatingJsonpValueParser<BoundingBox.Builder> op) {
+	protected static void setupBoundingBoxDeserializer(DelegatingDeserializer<BoundingBox.Builder> op) {
 
-		op.add(Builder::bottomRight, JsonpValueParser.jsonValueParser(), "bottom_right");
-		op.add(Builder::topLeft, JsonpValueParser.jsonValueParser(), "top_left");
-		op.add(Builder::wkt, JsonpValueParser.stringParser(), "wkt");
+		op.add(Builder::bottomRight, JsonpDeserializer.jsonValueDeserializer(), "bottom_right");
+		op.add(Builder::topLeft, JsonpDeserializer.jsonValueDeserializer(), "top_left");
+		op.add(Builder::wkt, JsonpDeserializer.stringDeserializer(), "wkt");
 
 	}
 

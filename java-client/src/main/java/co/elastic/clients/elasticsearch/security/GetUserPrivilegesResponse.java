@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -360,19 +360,21 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetUserPrivilegesResponse
+	 * Json deserializer for GetUserPrivilegesResponse
 	 */
-	public static final JsonpValueParser<GetUserPrivilegesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetUserPrivilegesResponse::setupGetUserPrivilegesResponseParser);
+	public static final JsonpDeserializer<GetUserPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetUserPrivilegesResponse::setupGetUserPrivilegesResponseDeserializer);
 
-	protected static void setupGetUserPrivilegesResponseParser(
-			DelegatingJsonpValueParser<GetUserPrivilegesResponse.Builder> op) {
+	protected static void setupGetUserPrivilegesResponseDeserializer(
+			DelegatingDeserializer<GetUserPrivilegesResponse.Builder> op) {
 
-		op.add(Builder::applications, JsonpValueParser.arrayParser(ApplicationPrivileges.JSONP_PARSER), "applications");
-		op.add(Builder::cluster, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "cluster");
-		op.add(Builder::global, JsonpValueParser.arrayParser(GlobalPrivileges.JSONP_PARSER), "global");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(IndicesPrivileges.JSONP_PARSER), "indices");
-		op.add(Builder::runAs, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "run_as");
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+				"applications");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"cluster");
+		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivileges.DESERIALIZER), "global");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges.DESERIALIZER), "indices");
+		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 
 	}
 

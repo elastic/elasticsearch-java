@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._global.mget.Operation;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -498,15 +498,15 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MgetRequest
+	 * Json deserializer for MgetRequest
 	 */
-	public static final JsonpValueParser<MgetRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MgetRequest::setupMgetRequestParser);
+	public static final JsonpDeserializer<MgetRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MgetRequest::setupMgetRequestDeserializer);
 
-	protected static void setupMgetRequestParser(DelegatingJsonpValueParser<MgetRequest.Builder> op) {
+	protected static void setupMgetRequestDeserializer(DelegatingDeserializer<MgetRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpValueParser.arrayParser(Operation.JSONP_PARSER), "docs");
-		op.add(Builder::ids, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "ids");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation.DESERIALIZER), "docs");
+		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "ids");
 
 	}
 
@@ -597,7 +597,7 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	 * Create an "{@code mget}" endpoint.
 	 */
 	public static <TDocument> Endpoint<MgetRequest, MgetResponse<TDocument>, ElasticsearchError> createMgetEndpoint(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return ENDPOINT.withResponseParser(MgetResponse.createMgetResponseParser(tDocumentParser));
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ENDPOINT.withResponseDeserializer(MgetResponse.createMgetResponseDeserializer(tDocumentDeserializer));
 	}
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -166,15 +166,16 @@ public final class Ilm implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Ilm
+	 * Json deserializer for Ilm
 	 */
-	public static final JsonpValueParser<Ilm> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Ilm::setupIlmParser);
+	public static final JsonpDeserializer<Ilm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Ilm::setupIlmDeserializer);
 
-	protected static void setupIlmParser(DelegatingJsonpValueParser<Ilm.Builder> op) {
+	protected static void setupIlmDeserializer(DelegatingDeserializer<Ilm.Builder> op) {
 
-		op.add(Builder::policyCount, JsonpValueParser.numberParser(), "policy_count");
-		op.add(Builder::policyStats, JsonpValueParser.arrayParser(IlmPolicyStatistics.JSONP_PARSER), "policy_stats");
+		op.add(Builder::policyCount, JsonpDeserializer.numberDeserializer(), "policy_count");
+		op.add(Builder::policyStats, JsonpDeserializer.arrayDeserializer(IlmPolicyStatistics.DESERIALIZER),
+				"policy_stats");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class ExecutionThreadPool implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExecutionThreadPool
+	 * Json deserializer for ExecutionThreadPool
 	 */
-	public static final JsonpValueParser<ExecutionThreadPool> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExecutionThreadPool::setupExecutionThreadPoolParser);
+	public static final JsonpDeserializer<ExecutionThreadPool> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExecutionThreadPool::setupExecutionThreadPoolDeserializer);
 
-	protected static void setupExecutionThreadPoolParser(DelegatingJsonpValueParser<ExecutionThreadPool.Builder> op) {
+	protected static void setupExecutionThreadPoolDeserializer(DelegatingDeserializer<ExecutionThreadPool.Builder> op) {
 
-		op.add(Builder::maxSize, JsonpValueParser.numberParser(), "max_size");
-		op.add(Builder::queueSize, JsonpValueParser.numberParser(), "queue_size");
+		op.add(Builder::maxSize, JsonpDeserializer.numberDeserializer(), "max_size");
+		op.add(Builder::queueSize, JsonpDeserializer.numberDeserializer(), "queue_size");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -428,27 +428,27 @@ public final class RuntimeFieldTypes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RuntimeFieldTypes
+	 * Json deserializer for RuntimeFieldTypes
 	 */
-	public static final JsonpValueParser<RuntimeFieldTypes> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RuntimeFieldTypes::setupRuntimeFieldTypesParser);
+	public static final JsonpDeserializer<RuntimeFieldTypes> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RuntimeFieldTypes::setupRuntimeFieldTypesDeserializer);
 
-	protected static void setupRuntimeFieldTypesParser(DelegatingJsonpValueParser<RuntimeFieldTypes.Builder> op) {
+	protected static void setupRuntimeFieldTypesDeserializer(DelegatingDeserializer<RuntimeFieldTypes.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::indexCount, JsonpValueParser.numberParser(), "index_count");
-		op.add(Builder::scriptlessCount, JsonpValueParser.numberParser(), "scriptless_count");
-		op.add(Builder::shadowedCount, JsonpValueParser.numberParser(), "shadowed_count");
-		op.add(Builder::lang, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "lang");
-		op.add(Builder::linesMax, JsonpValueParser.numberParser(), "lines_max");
-		op.add(Builder::linesTotal, JsonpValueParser.numberParser(), "lines_total");
-		op.add(Builder::charsMax, JsonpValueParser.numberParser(), "chars_max");
-		op.add(Builder::charsTotal, JsonpValueParser.numberParser(), "chars_total");
-		op.add(Builder::sourceMax, JsonpValueParser.numberParser(), "source_max");
-		op.add(Builder::sourceTotal, JsonpValueParser.numberParser(), "source_total");
-		op.add(Builder::docMax, JsonpValueParser.numberParser(), "doc_max");
-		op.add(Builder::docTotal, JsonpValueParser.numberParser(), "doc_total");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::indexCount, JsonpDeserializer.numberDeserializer(), "index_count");
+		op.add(Builder::scriptlessCount, JsonpDeserializer.numberDeserializer(), "scriptless_count");
+		op.add(Builder::shadowedCount, JsonpDeserializer.numberDeserializer(), "shadowed_count");
+		op.add(Builder::lang, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "lang");
+		op.add(Builder::linesMax, JsonpDeserializer.numberDeserializer(), "lines_max");
+		op.add(Builder::linesTotal, JsonpDeserializer.numberDeserializer(), "lines_total");
+		op.add(Builder::charsMax, JsonpDeserializer.numberDeserializer(), "chars_max");
+		op.add(Builder::charsTotal, JsonpDeserializer.numberDeserializer(), "chars_total");
+		op.add(Builder::sourceMax, JsonpDeserializer.numberDeserializer(), "source_max");
+		op.add(Builder::sourceTotal, JsonpDeserializer.numberDeserializer(), "source_total");
+		op.add(Builder::docMax, JsonpDeserializer.numberDeserializer(), "doc_max");
+		op.add(Builder::docTotal, JsonpDeserializer.numberDeserializer(), "doc_total");
 
 	}
 

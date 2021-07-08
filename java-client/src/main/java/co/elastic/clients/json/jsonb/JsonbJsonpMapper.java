@@ -20,7 +20,7 @@
 package co.elastic.clients.json.jsonb;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import jakarta.json.bind.spi.JsonbProvider;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
@@ -46,7 +46,7 @@ public class JsonbJsonpMapper implements JsonpMapper {
     }
 
     @Override
-    public <T> JsonpValueParser<T> getDeserializer(Class<T> clazz) {
+    public <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz) {
         return new Deserializer<>(clazz);
     }
 
@@ -66,7 +66,7 @@ public class JsonbJsonpMapper implements JsonpMapper {
         return jsonProvider;
     }
 
-    private class Deserializer<T> extends JsonpValueParser<T> {
+    private class Deserializer<T> extends JsonpDeserializer<T> {
         private final Class<T> clazz;
 
         Deserializer(Class<T> clazz) {
@@ -75,7 +75,7 @@ public class JsonbJsonpMapper implements JsonpMapper {
         }
 
         @Override
-        public T parse(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+        public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
             CharArrayWriter caw = new CharArrayWriter();
             JsonGenerator generator = jsonProvider.createGenerator(caw);

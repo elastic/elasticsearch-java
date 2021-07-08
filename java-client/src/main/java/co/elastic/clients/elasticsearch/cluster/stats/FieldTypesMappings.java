@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -210,15 +210,15 @@ public final class FieldTypesMappings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldTypesMappings
+	 * Json deserializer for FieldTypesMappings
 	 */
-	public static final JsonpValueParser<FieldTypesMappings> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldTypesMappings::setupFieldTypesMappingsParser);
+	public static final JsonpDeserializer<FieldTypesMappings> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldTypesMappings::setupFieldTypesMappingsDeserializer);
 
-	protected static void setupFieldTypesMappingsParser(DelegatingJsonpValueParser<FieldTypesMappings.Builder> op) {
+	protected static void setupFieldTypesMappingsDeserializer(DelegatingDeserializer<FieldTypesMappings.Builder> op) {
 
-		op.add(Builder::fieldTypes, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "field_types");
-		op.add(Builder::runtimeFieldTypes, JsonpValueParser.arrayParser(RuntimeFieldTypes.JSONP_PARSER),
+		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER), "field_types");
+		op.add(Builder::runtimeFieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldTypes.DESERIALIZER),
 				"runtime_field_types");
 
 	}

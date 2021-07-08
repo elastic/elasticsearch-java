@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -625,32 +625,32 @@ public final class MultiMatchQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MultiMatchQuery
+	 * Json deserializer for MultiMatchQuery
 	 */
-	public static final JsonpValueParser<MultiMatchQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MultiMatchQuery::setupMultiMatchQueryParser);
+	public static final JsonpDeserializer<MultiMatchQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MultiMatchQuery::setupMultiMatchQueryDeserializer);
 
-	protected static void setupMultiMatchQueryParser(DelegatingJsonpValueParser<MultiMatchQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::analyzer, JsonpValueParser.stringParser(), "analyzer");
-		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpValueParser.booleanParser(),
+	protected static void setupMultiMatchQueryDeserializer(DelegatingDeserializer<MultiMatchQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
+		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),
 				"auto_generate_synonyms_phrase_query");
-		op.add(Builder::cutoffFrequency, JsonpValueParser.numberParser(), "cutoff_frequency");
-		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "fields");
-		op.add(Builder::fuzziness, JsonpValueParser.jsonValueParser(), "fuzziness");
-		op.add(Builder::fuzzyRewrite, JsonpValueParser.stringParser(), "fuzzy_rewrite");
-		op.add(Builder::fuzzyTranspositions, JsonpValueParser.booleanParser(), "fuzzy_transpositions");
-		op.add(Builder::lenient, JsonpValueParser.booleanParser(), "lenient");
-		op.add(Builder::maxExpansions, JsonpValueParser.numberParser(), "max_expansions");
-		op.add(Builder::minimumShouldMatch, JsonpValueParser.jsonValueParser(), "minimum_should_match");
-		op.add(Builder::operator, JsonpValueParser.jsonValueParser(), "operator");
-		op.add(Builder::prefixLength, JsonpValueParser.numberParser(), "prefix_length");
-		op.add(Builder::query, JsonpValueParser.stringParser(), "query");
-		op.add(Builder::slop, JsonpValueParser.numberParser(), "slop");
-		op.add(Builder::tieBreaker, JsonpValueParser.numberParser(), "tie_breaker");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
-		op.add(Builder::useDisMax, JsonpValueParser.booleanParser(), "use_dis_max");
-		op.add(Builder::zeroTermsQuery, JsonpValueParser.jsonValueParser(), "zero_terms_query");
+		op.add(Builder::cutoffFrequency, JsonpDeserializer.numberDeserializer(), "cutoff_frequency");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::fuzziness, JsonpDeserializer.jsonValueDeserializer(), "fuzziness");
+		op.add(Builder::fuzzyRewrite, JsonpDeserializer.stringDeserializer(), "fuzzy_rewrite");
+		op.add(Builder::fuzzyTranspositions, JsonpDeserializer.booleanDeserializer(), "fuzzy_transpositions");
+		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
+		op.add(Builder::maxExpansions, JsonpDeserializer.numberDeserializer(), "max_expansions");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
+		op.add(Builder::operator, JsonpDeserializer.jsonValueDeserializer(), "operator");
+		op.add(Builder::prefixLength, JsonpDeserializer.numberDeserializer(), "prefix_length");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::slop, JsonpDeserializer.numberDeserializer(), "slop");
+		op.add(Builder::tieBreaker, JsonpDeserializer.numberDeserializer(), "tie_breaker");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::useDisMax, JsonpDeserializer.booleanDeserializer(), "use_dis_max");
+		op.add(Builder::zeroTermsQuery, JsonpDeserializer.jsonValueDeserializer(), "zero_terms_query");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -144,15 +144,15 @@ public final class CreateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateResponse
+	 * Json deserializer for CreateResponse
 	 */
-	public static final JsonpValueParser<CreateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateResponse::setupCreateResponseParser);
+	public static final JsonpDeserializer<CreateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateResponse::setupCreateResponseDeserializer);
 
-	protected static void setupCreateResponseParser(DelegatingJsonpValueParser<CreateResponse.Builder> op) {
+	protected static void setupCreateResponseDeserializer(DelegatingDeserializer<CreateResponse.Builder> op) {
 
-		op.add(Builder::accepted, JsonpValueParser.booleanParser(), "accepted");
-		op.add(Builder::snapshot, SnapshotInfo.JSONP_PARSER, "snapshot");
+		op.add(Builder::accepted, JsonpDeserializer.booleanDeserializer(), "accepted");
+		op.add(Builder::snapshot, SnapshotInfo.DESERIALIZER, "snapshot");
 
 	}
 

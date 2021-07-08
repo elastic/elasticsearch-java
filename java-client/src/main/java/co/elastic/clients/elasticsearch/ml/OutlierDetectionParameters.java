@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -254,20 +254,21 @@ public final class OutlierDetectionParameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for OutlierDetectionParameters
+	 * Json deserializer for OutlierDetectionParameters
 	 */
-	public static final JsonpValueParser<OutlierDetectionParameters> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, OutlierDetectionParameters::setupOutlierDetectionParametersParser);
+	public static final JsonpDeserializer<OutlierDetectionParameters> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, OutlierDetectionParameters::setupOutlierDetectionParametersDeserializer);
 
-	protected static void setupOutlierDetectionParametersParser(
-			DelegatingJsonpValueParser<OutlierDetectionParameters.Builder> op) {
+	protected static void setupOutlierDetectionParametersDeserializer(
+			DelegatingDeserializer<OutlierDetectionParameters.Builder> op) {
 
-		op.add(Builder::computeFeatureInfluence, JsonpValueParser.booleanParser(), "compute_feature_influence");
-		op.add(Builder::featureInfluenceThreshold, JsonpValueParser.numberParser(), "feature_influence_threshold");
-		op.add(Builder::method, JsonpValueParser.stringParser(), "method");
-		op.add(Builder::nNeighbors, JsonpValueParser.numberParser(), "n_neighbors");
-		op.add(Builder::outlierFraction, JsonpValueParser.numberParser(), "outlier_fraction");
-		op.add(Builder::standardizationEnabled, JsonpValueParser.booleanParser(), "standardization_enabled");
+		op.add(Builder::computeFeatureInfluence, JsonpDeserializer.booleanDeserializer(), "compute_feature_influence");
+		op.add(Builder::featureInfluenceThreshold, JsonpDeserializer.numberDeserializer(),
+				"feature_influence_threshold");
+		op.add(Builder::method, JsonpDeserializer.stringDeserializer(), "method");
+		op.add(Builder::nNeighbors, JsonpDeserializer.numberDeserializer(), "n_neighbors");
+		op.add(Builder::outlierFraction, JsonpDeserializer.numberDeserializer(), "outlier_fraction");
+		op.add(Builder::standardizationEnabled, JsonpDeserializer.booleanDeserializer(), "standardization_enabled");
 
 	}
 

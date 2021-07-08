@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -245,15 +245,17 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutSettingsRequest
+	 * Json deserializer for PutSettingsRequest
 	 */
-	public static final JsonpValueParser<PutSettingsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutSettingsRequest::setupPutSettingsRequestParser);
+	public static final JsonpDeserializer<PutSettingsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutSettingsRequest::setupPutSettingsRequestDeserializer);
 
-	protected static void setupPutSettingsRequestParser(DelegatingJsonpValueParser<PutSettingsRequest.Builder> op) {
+	protected static void setupPutSettingsRequestDeserializer(DelegatingDeserializer<PutSettingsRequest.Builder> op) {
 
-		op.add(Builder::persistent, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "persistent");
-		op.add(Builder::transient_, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "transient");
+		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"persistent");
+		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"transient");
 
 	}
 
@@ -289,5 +291,5 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutSettingsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutSettingsResponse.DESERIALIZER);
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -263,19 +263,19 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoDistanceAggregation
+	 * Json deserializer for GeoDistanceAggregation
 	 */
-	public static final JsonpValueParser<GeoDistanceAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoDistanceAggregation::setupGeoDistanceAggregationParser);
+	public static final JsonpDeserializer<GeoDistanceAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoDistanceAggregation::setupGeoDistanceAggregationDeserializer);
 
-	protected static void setupGeoDistanceAggregationParser(
-			DelegatingJsonpValueParser<GeoDistanceAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::distanceType, JsonpValueParser.jsonValueParser(), "distance_type");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::origin, JsonpValueParser.jsonValueParser(), "origin");
-		op.add(Builder::ranges, JsonpValueParser.arrayParser(AggregationRange.JSONP_PARSER), "ranges");
-		op.add(Builder::unit, JsonpValueParser.jsonValueParser(), "unit");
+	protected static void setupGeoDistanceAggregationDeserializer(
+			DelegatingDeserializer<GeoDistanceAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::distanceType, JsonpDeserializer.jsonValueDeserializer(), "distance_type");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::origin, JsonpDeserializer.jsonValueDeserializer(), "origin");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange.DESERIALIZER), "ranges");
+		op.add(Builder::unit, JsonpDeserializer.jsonValueDeserializer(), "unit");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -169,18 +169,18 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalyticsStatsDataCounts
+	 * Json deserializer for DataframeAnalyticsStatsDataCounts
 	 */
-	public static final JsonpValueParser<DataframeAnalyticsStatsDataCounts> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeAnalyticsStatsDataCounts> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsParser);
+					DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsDeserializer);
 
-	protected static void setupDataframeAnalyticsStatsDataCountsParser(
-			DelegatingJsonpValueParser<DataframeAnalyticsStatsDataCounts.Builder> op) {
+	protected static void setupDataframeAnalyticsStatsDataCountsDeserializer(
+			DelegatingDeserializer<DataframeAnalyticsStatsDataCounts.Builder> op) {
 
-		op.add(Builder::skippedDocsCount, JsonpValueParser.numberParser(), "skipped_docs_count");
-		op.add(Builder::testDocsCount, JsonpValueParser.numberParser(), "test_docs_count");
-		op.add(Builder::trainingDocsCount, JsonpValueParser.numberParser(), "training_docs_count");
+		op.add(Builder::skippedDocsCount, JsonpDeserializer.numberDeserializer(), "skipped_docs_count");
+		op.add(Builder::testDocsCount, JsonpDeserializer.numberDeserializer(), "test_docs_count");
+		op.add(Builder::trainingDocsCount, JsonpDeserializer.numberDeserializer(), "training_docs_count");
 
 	}
 

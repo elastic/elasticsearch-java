@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class WatcherActionTotals implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WatcherActionTotals
+	 * Json deserializer for WatcherActionTotals
 	 */
-	public static final JsonpValueParser<WatcherActionTotals> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WatcherActionTotals::setupWatcherActionTotalsParser);
+	public static final JsonpDeserializer<WatcherActionTotals> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WatcherActionTotals::setupWatcherActionTotalsDeserializer);
 
-	protected static void setupWatcherActionTotalsParser(DelegatingJsonpValueParser<WatcherActionTotals.Builder> op) {
+	protected static void setupWatcherActionTotalsDeserializer(DelegatingDeserializer<WatcherActionTotals.Builder> op) {
 
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::totalTimeInMs, JsonpValueParser.numberParser(), "total_time_in_ms");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::totalTimeInMs, JsonpDeserializer.numberDeserializer(), "total_time_in_ms");
 
 	}
 

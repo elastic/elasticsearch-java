@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -262,19 +262,19 @@ public final class Alias implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Alias
+	 * Json deserializer for Alias
 	 */
-	public static final JsonpValueParser<Alias> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Alias::setupAliasParser);
+	public static final JsonpDeserializer<Alias> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Alias::setupAliasDeserializer);
 
-	protected static void setupAliasParser(DelegatingJsonpValueParser<Alias.Builder> op) {
+	protected static void setupAliasDeserializer(DelegatingDeserializer<Alias.Builder> op) {
 
-		op.add(Builder::filter, QueryContainer.JSONP_PARSER, "filter");
-		op.add(Builder::indexRouting, JsonpValueParser.jsonValueParser(), "index_routing");
-		op.add(Builder::isHidden, JsonpValueParser.booleanParser(), "is_hidden");
-		op.add(Builder::isWriteIndex, JsonpValueParser.booleanParser(), "is_write_index");
-		op.add(Builder::routing, JsonpValueParser.jsonValueParser(), "routing");
-		op.add(Builder::searchRouting, JsonpValueParser.jsonValueParser(), "search_routing");
+		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::indexRouting, JsonpDeserializer.jsonValueDeserializer(), "index_routing");
+		op.add(Builder::isHidden, JsonpDeserializer.booleanDeserializer(), "is_hidden");
+		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
+		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::searchRouting, JsonpDeserializer.jsonValueDeserializer(), "search_routing");
 
 	}
 

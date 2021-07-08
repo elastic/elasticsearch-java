@@ -28,11 +28,11 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.has_privileges.ApplicationPrivilegesCheck;
 import co.elastic.clients.elasticsearch.security.has_privileges.IndexPrivilegesCheck;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -300,17 +300,19 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HasPrivilegesRequest
+	 * Json deserializer for HasPrivilegesRequest
 	 */
-	public static final JsonpValueParser<HasPrivilegesRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HasPrivilegesRequest::setupHasPrivilegesRequestParser);
+	public static final JsonpDeserializer<HasPrivilegesRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HasPrivilegesRequest::setupHasPrivilegesRequestDeserializer);
 
-	protected static void setupHasPrivilegesRequestParser(DelegatingJsonpValueParser<HasPrivilegesRequest.Builder> op) {
+	protected static void setupHasPrivilegesRequestDeserializer(
+			DelegatingDeserializer<HasPrivilegesRequest.Builder> op) {
 
-		op.add(Builder::application, JsonpValueParser.arrayParser(ApplicationPrivilegesCheck.JSONP_PARSER),
+		op.add(Builder::application, JsonpDeserializer.arrayDeserializer(ApplicationPrivilegesCheck.DESERIALIZER),
 				"application");
-		op.add(Builder::cluster, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "cluster");
-		op.add(Builder::index, JsonpValueParser.arrayParser(IndexPrivilegesCheck.JSONP_PARSER), "index");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"cluster");
+		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivilegesCheck.DESERIALIZER), "index");
 
 	}
 
@@ -359,5 +361,5 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, HasPrivilegesResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, HasPrivilegesResponse.DESERIALIZER);
 }

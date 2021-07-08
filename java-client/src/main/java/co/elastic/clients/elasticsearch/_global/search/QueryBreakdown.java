@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -494,31 +494,31 @@ public final class QueryBreakdown implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for QueryBreakdown
+	 * Json deserializer for QueryBreakdown
 	 */
-	public static final JsonpValueParser<QueryBreakdown> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, QueryBreakdown::setupQueryBreakdownParser);
+	public static final JsonpDeserializer<QueryBreakdown> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, QueryBreakdown::setupQueryBreakdownDeserializer);
 
-	protected static void setupQueryBreakdownParser(DelegatingJsonpValueParser<QueryBreakdown.Builder> op) {
+	protected static void setupQueryBreakdownDeserializer(DelegatingDeserializer<QueryBreakdown.Builder> op) {
 
-		op.add(Builder::advance, JsonpValueParser.numberParser(), "advance");
-		op.add(Builder::advanceCount, JsonpValueParser.numberParser(), "advance_count");
-		op.add(Builder::buildScorer, JsonpValueParser.numberParser(), "build_scorer");
-		op.add(Builder::buildScorerCount, JsonpValueParser.numberParser(), "build_scorer_count");
-		op.add(Builder::createWeight, JsonpValueParser.numberParser(), "create_weight");
-		op.add(Builder::createWeightCount, JsonpValueParser.numberParser(), "create_weight_count");
-		op.add(Builder::match, JsonpValueParser.numberParser(), "match");
-		op.add(Builder::matchCount, JsonpValueParser.numberParser(), "match_count");
-		op.add(Builder::shallowAdvance, JsonpValueParser.numberParser(), "shallow_advance");
-		op.add(Builder::shallowAdvanceCount, JsonpValueParser.numberParser(), "shallow_advance_count");
-		op.add(Builder::nextDoc, JsonpValueParser.numberParser(), "next_doc");
-		op.add(Builder::nextDocCount, JsonpValueParser.numberParser(), "next_doc_count");
-		op.add(Builder::score, JsonpValueParser.numberParser(), "score");
-		op.add(Builder::scoreCount, JsonpValueParser.numberParser(), "score_count");
-		op.add(Builder::computeMaxScore, JsonpValueParser.numberParser(), "compute_max_score");
-		op.add(Builder::computeMaxScoreCount, JsonpValueParser.numberParser(), "compute_max_score_count");
-		op.add(Builder::setMinCompetitiveScore, JsonpValueParser.numberParser(), "set_min_competitive_score");
-		op.add(Builder::setMinCompetitiveScoreCount, JsonpValueParser.numberParser(),
+		op.add(Builder::advance, JsonpDeserializer.numberDeserializer(), "advance");
+		op.add(Builder::advanceCount, JsonpDeserializer.numberDeserializer(), "advance_count");
+		op.add(Builder::buildScorer, JsonpDeserializer.numberDeserializer(), "build_scorer");
+		op.add(Builder::buildScorerCount, JsonpDeserializer.numberDeserializer(), "build_scorer_count");
+		op.add(Builder::createWeight, JsonpDeserializer.numberDeserializer(), "create_weight");
+		op.add(Builder::createWeightCount, JsonpDeserializer.numberDeserializer(), "create_weight_count");
+		op.add(Builder::match, JsonpDeserializer.numberDeserializer(), "match");
+		op.add(Builder::matchCount, JsonpDeserializer.numberDeserializer(), "match_count");
+		op.add(Builder::shallowAdvance, JsonpDeserializer.numberDeserializer(), "shallow_advance");
+		op.add(Builder::shallowAdvanceCount, JsonpDeserializer.numberDeserializer(), "shallow_advance_count");
+		op.add(Builder::nextDoc, JsonpDeserializer.numberDeserializer(), "next_doc");
+		op.add(Builder::nextDocCount, JsonpDeserializer.numberDeserializer(), "next_doc_count");
+		op.add(Builder::score, JsonpDeserializer.numberDeserializer(), "score");
+		op.add(Builder::scoreCount, JsonpDeserializer.numberDeserializer(), "score_count");
+		op.add(Builder::computeMaxScore, JsonpDeserializer.numberDeserializer(), "compute_max_score");
+		op.add(Builder::computeMaxScoreCount, JsonpDeserializer.numberDeserializer(), "compute_max_score_count");
+		op.add(Builder::setMinCompetitiveScore, JsonpDeserializer.numberDeserializer(), "set_min_competitive_score");
+		op.add(Builder::setMinCompetitiveScoreCount, JsonpDeserializer.numberDeserializer(),
 				"set_min_competitive_score_count");
 
 	}

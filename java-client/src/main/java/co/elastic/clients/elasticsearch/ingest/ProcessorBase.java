@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -222,13 +222,14 @@ public abstract class ProcessorBase implements ToJsonp {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupProcessorBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupProcessorBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::if_, JsonpValueParser.stringParser(), "if");
-		op.add(AbstractBuilder::ignoreFailure, JsonpValueParser.booleanParser(), "ignore_failure");
-		op.add(AbstractBuilder::onFailure, JsonpValueParser.arrayParser(ProcessorContainer.JSONP_PARSER), "on_failure");
-		op.add(AbstractBuilder::tag, JsonpValueParser.stringParser(), "tag");
+		op.add(AbstractBuilder::if_, JsonpDeserializer.stringDeserializer(), "if");
+		op.add(AbstractBuilder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
+		op.add(AbstractBuilder::onFailure, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER),
+				"on_failure");
+		op.add(AbstractBuilder::tag, JsonpDeserializer.stringDeserializer(), "tag");
 
 	}
 

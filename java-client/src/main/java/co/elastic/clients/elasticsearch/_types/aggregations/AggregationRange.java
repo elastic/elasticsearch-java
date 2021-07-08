@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -166,16 +166,16 @@ public final class AggregationRange implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AggregationRange
+	 * Json deserializer for AggregationRange
 	 */
-	public static final JsonpValueParser<AggregationRange> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AggregationRange::setupAggregationRangeParser);
+	public static final JsonpDeserializer<AggregationRange> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AggregationRange::setupAggregationRangeDeserializer);
 
-	protected static void setupAggregationRangeParser(DelegatingJsonpValueParser<AggregationRange.Builder> op) {
+	protected static void setupAggregationRangeDeserializer(DelegatingDeserializer<AggregationRange.Builder> op) {
 
-		op.add(Builder::from, JsonpValueParser.jsonValueParser(), "from");
-		op.add(Builder::key, JsonpValueParser.stringParser(), "key");
-		op.add(Builder::to, JsonpValueParser.jsonValueParser(), "to");
+		op.add(Builder::from, JsonpDeserializer.jsonValueDeserializer(), "from");
+		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+		op.add(Builder::to, JsonpDeserializer.jsonValueDeserializer(), "to");
 
 	}
 

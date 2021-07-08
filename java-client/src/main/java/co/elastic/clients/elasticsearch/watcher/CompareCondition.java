@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -241,18 +241,18 @@ public final class CompareCondition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CompareCondition
+	 * Json deserializer for CompareCondition
 	 */
-	public static final JsonpValueParser<CompareCondition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CompareCondition::setupCompareConditionParser);
+	public static final JsonpDeserializer<CompareCondition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CompareCondition::setupCompareConditionDeserializer);
 
-	protected static void setupCompareConditionParser(DelegatingJsonpValueParser<CompareCondition.Builder> op) {
+	protected static void setupCompareConditionDeserializer(DelegatingDeserializer<CompareCondition.Builder> op) {
 
-		op.add(Builder::comparison, JsonpValueParser.stringParser(), "comparison");
-		op.add(Builder::path, JsonpValueParser.stringParser(), "path");
-		op.add(Builder::value, JsonpValueParser.jsonValueParser(), "value");
-		op.add(Builder::ctx_payload_match, CompareContextPayloadCondition.JSONP_PARSER, "ctx.payload.match");
-		op.add(Builder::ctx_payload_value, CompareContextPayloadCondition.JSONP_PARSER, "ctx.payload.value");
+		op.add(Builder::comparison, JsonpDeserializer.stringDeserializer(), "comparison");
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
+		op.add(Builder::ctx_payload_match, CompareContextPayloadCondition.DESERIALIZER, "ctx.payload.match");
+		op.add(Builder::ctx_payload_value, CompareContextPayloadCondition.DESERIALIZER, "ctx.payload.value");
 
 	}
 

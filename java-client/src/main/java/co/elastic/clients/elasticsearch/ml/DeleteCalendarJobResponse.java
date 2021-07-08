@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -181,17 +181,17 @@ public final class DeleteCalendarJobResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteCalendarJobResponse
+	 * Json deserializer for DeleteCalendarJobResponse
 	 */
-	public static final JsonpValueParser<DeleteCalendarJobResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeleteCalendarJobResponse::setupDeleteCalendarJobResponseParser);
+	public static final JsonpDeserializer<DeleteCalendarJobResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DeleteCalendarJobResponse::setupDeleteCalendarJobResponseDeserializer);
 
-	protected static void setupDeleteCalendarJobResponseParser(
-			DelegatingJsonpValueParser<DeleteCalendarJobResponse.Builder> op) {
+	protected static void setupDeleteCalendarJobResponseDeserializer(
+			DelegatingDeserializer<DeleteCalendarJobResponse.Builder> op) {
 
-		op.add(Builder::calendarId, JsonpValueParser.stringParser(), "calendar_id");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::jobIds, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "job_ids");
+		op.add(Builder::calendarId, JsonpDeserializer.stringDeserializer(), "calendar_id");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::jobIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "job_ids");
 
 	}
 

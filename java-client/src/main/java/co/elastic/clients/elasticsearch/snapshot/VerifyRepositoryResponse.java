@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.verify_repository.CompactNodeInfo;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -136,15 +136,15 @@ public final class VerifyRepositoryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for VerifyRepositoryResponse
+	 * Json deserializer for VerifyRepositoryResponse
 	 */
-	public static final JsonpValueParser<VerifyRepositoryResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseParser);
+	public static final JsonpDeserializer<VerifyRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseDeserializer);
 
-	protected static void setupVerifyRepositoryResponseParser(
-			DelegatingJsonpValueParser<VerifyRepositoryResponse.Builder> op) {
+	protected static void setupVerifyRepositoryResponseDeserializer(
+			DelegatingDeserializer<VerifyRepositoryResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(CompactNodeInfo.JSONP_PARSER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo.DESERIALIZER), "nodes");
 
 	}
 

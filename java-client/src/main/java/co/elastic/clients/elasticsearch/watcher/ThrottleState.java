@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class ThrottleState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ThrottleState
+	 * Json deserializer for ThrottleState
 	 */
-	public static final JsonpValueParser<ThrottleState> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ThrottleState::setupThrottleStateParser);
+	public static final JsonpDeserializer<ThrottleState> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ThrottleState::setupThrottleStateDeserializer);
 
-	protected static void setupThrottleStateParser(DelegatingJsonpValueParser<ThrottleState.Builder> op) {
+	protected static void setupThrottleStateDeserializer(DelegatingDeserializer<ThrottleState.Builder> op) {
 
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}
 

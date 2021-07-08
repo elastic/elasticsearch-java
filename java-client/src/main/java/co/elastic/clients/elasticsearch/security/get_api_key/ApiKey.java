@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security.get_api_key;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -298,21 +298,22 @@ public final class ApiKey implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ApiKey
+	 * Json deserializer for ApiKey
 	 */
-	public static final JsonpValueParser<ApiKey> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			ApiKey::setupApiKeyParser);
+	public static final JsonpDeserializer<ApiKey> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			ApiKey::setupApiKeyDeserializer);
 
-	protected static void setupApiKeyParser(DelegatingJsonpValueParser<ApiKey.Builder> op) {
+	protected static void setupApiKeyDeserializer(DelegatingDeserializer<ApiKey.Builder> op) {
 
-		op.add(Builder::creation, JsonpValueParser.numberParser(), "creation");
-		op.add(Builder::expiration, JsonpValueParser.numberParser(), "expiration");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::invalidated, JsonpValueParser.booleanParser(), "invalidated");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::realm, JsonpValueParser.stringParser(), "realm");
-		op.add(Builder::username, JsonpValueParser.stringParser(), "username");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
+		op.add(Builder::creation, JsonpDeserializer.numberDeserializer(), "creation");
+		op.add(Builder::expiration, JsonpDeserializer.numberDeserializer(), "expiration");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::invalidated, JsonpDeserializer.booleanDeserializer(), "invalidated");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::realm, JsonpDeserializer.stringDeserializer(), "realm");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
 
 	}
 

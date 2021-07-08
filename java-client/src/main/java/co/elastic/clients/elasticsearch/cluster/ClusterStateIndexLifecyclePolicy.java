@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch.ilm.Phases;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,16 +109,16 @@ public final class ClusterStateIndexLifecyclePolicy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateIndexLifecyclePolicy
+	 * Json deserializer for ClusterStateIndexLifecyclePolicy
 	 */
-	public static final JsonpValueParser<ClusterStateIndexLifecyclePolicy> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<ClusterStateIndexLifecyclePolicy> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					ClusterStateIndexLifecyclePolicy::setupClusterStateIndexLifecyclePolicyParser);
+					ClusterStateIndexLifecyclePolicy::setupClusterStateIndexLifecyclePolicyDeserializer);
 
-	protected static void setupClusterStateIndexLifecyclePolicyParser(
-			DelegatingJsonpValueParser<ClusterStateIndexLifecyclePolicy.Builder> op) {
+	protected static void setupClusterStateIndexLifecyclePolicyDeserializer(
+			DelegatingDeserializer<ClusterStateIndexLifecyclePolicy.Builder> op) {
 
-		op.add(Builder::phases, Phases.JSONP_PARSER, "phases");
+		op.add(Builder::phases, Phases.DESERIALIZER, "phases");
 
 	}
 

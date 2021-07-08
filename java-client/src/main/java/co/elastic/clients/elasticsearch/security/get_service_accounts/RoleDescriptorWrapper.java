@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security.get_service_accounts;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -108,15 +108,15 @@ public final class RoleDescriptorWrapper implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RoleDescriptorWrapper
+	 * Json deserializer for RoleDescriptorWrapper
 	 */
-	public static final JsonpValueParser<RoleDescriptorWrapper> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RoleDescriptorWrapper::setupRoleDescriptorWrapperParser);
+	public static final JsonpDeserializer<RoleDescriptorWrapper> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RoleDescriptorWrapper::setupRoleDescriptorWrapperDeserializer);
 
-	protected static void setupRoleDescriptorWrapperParser(
-			DelegatingJsonpValueParser<RoleDescriptorWrapper.Builder> op) {
+	protected static void setupRoleDescriptorWrapperDeserializer(
+			DelegatingDeserializer<RoleDescriptorWrapper.Builder> op) {
 
-		op.add(Builder::roleDescriptor, RoleDescriptor.JSONP_PARSER, "role_descriptor");
+		op.add(Builder::roleDescriptor, RoleDescriptor.DESERIALIZER, "role_descriptor");
 
 	}
 

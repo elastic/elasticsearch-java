@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -163,17 +163,17 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MovingFunctionAggregation
+	 * Json deserializer for MovingFunctionAggregation
 	 */
-	public static final JsonpValueParser<MovingFunctionAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MovingFunctionAggregation::setupMovingFunctionAggregationParser);
+	public static final JsonpDeserializer<MovingFunctionAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MovingFunctionAggregation::setupMovingFunctionAggregationDeserializer);
 
-	protected static void setupMovingFunctionAggregationParser(
-			DelegatingJsonpValueParser<MovingFunctionAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseParser(op);
-		op.add(Builder::script, JsonpValueParser.stringParser(), "script");
-		op.add(Builder::shift, JsonpValueParser.numberParser(), "shift");
-		op.add(Builder::window, JsonpValueParser.numberParser(), "window");
+	protected static void setupMovingFunctionAggregationDeserializer(
+			DelegatingDeserializer<MovingFunctionAggregation.Builder> op) {
+		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+		op.add(Builder::script, JsonpDeserializer.stringDeserializer(), "script");
+		op.add(Builder::shift, JsonpDeserializer.numberDeserializer(), "shift");
+		op.add(Builder::window, JsonpDeserializer.numberDeserializer(), "window");
 
 	}
 

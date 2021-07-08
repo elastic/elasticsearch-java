@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,19 +147,19 @@ public final class PreviewDatafeedResponse<TDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for PreviewDatafeedResponse
+	 * Create a json deserializer for PreviewDatafeedResponse
 	 */
-	public static <TDocument> JsonpValueParser<PreviewDatafeedResponse<TDocument>> createPreviewDatafeedResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> PreviewDatafeedResponse.setupPreviewDatafeedResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<PreviewDatafeedResponse<TDocument>> createPreviewDatafeedResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> PreviewDatafeedResponse.setupPreviewDatafeedResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupPreviewDatafeedResponseParser(
-			DelegatingJsonpValueParser<PreviewDatafeedResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupPreviewDatafeedResponseDeserializer(
+			DelegatingDeserializer<PreviewDatafeedResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::data, JsonpValueParser.arrayParser(tDocumentParser), "data");
+		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(tDocumentDeserializer), "data");
 
 	}
 

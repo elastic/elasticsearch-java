@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -131,15 +131,16 @@ public final class ScheduleTriggerEvent implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ScheduleTriggerEvent
+	 * Json deserializer for ScheduleTriggerEvent
 	 */
-	public static final JsonpValueParser<ScheduleTriggerEvent> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ScheduleTriggerEvent::setupScheduleTriggerEventParser);
+	public static final JsonpDeserializer<ScheduleTriggerEvent> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ScheduleTriggerEvent::setupScheduleTriggerEventDeserializer);
 
-	protected static void setupScheduleTriggerEventParser(DelegatingJsonpValueParser<ScheduleTriggerEvent.Builder> op) {
+	protected static void setupScheduleTriggerEventDeserializer(
+			DelegatingDeserializer<ScheduleTriggerEvent.Builder> op) {
 
-		op.add(Builder::scheduledTime, JsonpValueParser.jsonValueParser(), "scheduled_time");
-		op.add(Builder::triggeredTime, JsonpValueParser.jsonValueParser(), "triggered_time");
+		op.add(Builder::scheduledTime, JsonpDeserializer.jsonValueDeserializer(), "scheduled_time");
+		op.add(Builder::triggeredTime, JsonpDeserializer.jsonValueDeserializer(), "triggered_time");
 
 	}
 

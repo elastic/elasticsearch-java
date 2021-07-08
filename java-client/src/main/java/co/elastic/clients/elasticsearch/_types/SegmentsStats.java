@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.indices.stats.ShardFileSizeInfo;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -750,38 +750,44 @@ public final class SegmentsStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SegmentsStats
+	 * Json deserializer for SegmentsStats
 	 */
-	public static final JsonpValueParser<SegmentsStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SegmentsStats::setupSegmentsStatsParser);
+	public static final JsonpDeserializer<SegmentsStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SegmentsStats::setupSegmentsStatsDeserializer);
 
-	protected static void setupSegmentsStatsParser(DelegatingJsonpValueParser<SegmentsStats.Builder> op) {
+	protected static void setupSegmentsStatsDeserializer(DelegatingDeserializer<SegmentsStats.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::docValuesMemory, JsonpValueParser.jsonValueParser(), "doc_values_memory");
-		op.add(Builder::docValuesMemoryInBytes, JsonpValueParser.numberParser(), "doc_values_memory_in_bytes");
-		op.add(Builder::fileSizes, JsonpValueParser.stringMapParser(ShardFileSizeInfo.JSONP_PARSER), "file_sizes");
-		op.add(Builder::fixedBitSet, JsonpValueParser.jsonValueParser(), "fixed_bit_set");
-		op.add(Builder::fixedBitSetMemoryInBytes, JsonpValueParser.numberParser(), "fixed_bit_set_memory_in_bytes");
-		op.add(Builder::indexWriterMemory, JsonpValueParser.jsonValueParser(), "index_writer_memory");
-		op.add(Builder::indexWriterMaxMemoryInBytes, JsonpValueParser.numberParser(),
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::docValuesMemory, JsonpDeserializer.jsonValueDeserializer(), "doc_values_memory");
+		op.add(Builder::docValuesMemoryInBytes, JsonpDeserializer.numberDeserializer(), "doc_values_memory_in_bytes");
+		op.add(Builder::fileSizes, JsonpDeserializer.stringMapDeserializer(ShardFileSizeInfo.DESERIALIZER),
+				"file_sizes");
+		op.add(Builder::fixedBitSet, JsonpDeserializer.jsonValueDeserializer(), "fixed_bit_set");
+		op.add(Builder::fixedBitSetMemoryInBytes, JsonpDeserializer.numberDeserializer(),
+				"fixed_bit_set_memory_in_bytes");
+		op.add(Builder::indexWriterMemory, JsonpDeserializer.jsonValueDeserializer(), "index_writer_memory");
+		op.add(Builder::indexWriterMaxMemoryInBytes, JsonpDeserializer.numberDeserializer(),
 				"index_writer_max_memory_in_bytes");
-		op.add(Builder::indexWriterMemoryInBytes, JsonpValueParser.numberParser(), "index_writer_memory_in_bytes");
-		op.add(Builder::maxUnsafeAutoIdTimestamp, JsonpValueParser.numberParser(), "max_unsafe_auto_id_timestamp");
-		op.add(Builder::memory, JsonpValueParser.jsonValueParser(), "memory");
-		op.add(Builder::memoryInBytes, JsonpValueParser.numberParser(), "memory_in_bytes");
-		op.add(Builder::normsMemory, JsonpValueParser.jsonValueParser(), "norms_memory");
-		op.add(Builder::normsMemoryInBytes, JsonpValueParser.numberParser(), "norms_memory_in_bytes");
-		op.add(Builder::pointsMemory, JsonpValueParser.jsonValueParser(), "points_memory");
-		op.add(Builder::pointsMemoryInBytes, JsonpValueParser.numberParser(), "points_memory_in_bytes");
-		op.add(Builder::storedMemory, JsonpValueParser.jsonValueParser(), "stored_memory");
-		op.add(Builder::storedFieldsMemoryInBytes, JsonpValueParser.numberParser(), "stored_fields_memory_in_bytes");
-		op.add(Builder::termsMemoryInBytes, JsonpValueParser.numberParser(), "terms_memory_in_bytes");
-		op.add(Builder::termsMemory, JsonpValueParser.jsonValueParser(), "terms_memory");
-		op.add(Builder::termVectoryMemory, JsonpValueParser.jsonValueParser(), "term_vectory_memory");
-		op.add(Builder::termVectorsMemoryInBytes, JsonpValueParser.numberParser(), "term_vectors_memory_in_bytes");
-		op.add(Builder::versionMapMemory, JsonpValueParser.jsonValueParser(), "version_map_memory");
-		op.add(Builder::versionMapMemoryInBytes, JsonpValueParser.numberParser(), "version_map_memory_in_bytes");
+		op.add(Builder::indexWriterMemoryInBytes, JsonpDeserializer.numberDeserializer(),
+				"index_writer_memory_in_bytes");
+		op.add(Builder::maxUnsafeAutoIdTimestamp, JsonpDeserializer.numberDeserializer(),
+				"max_unsafe_auto_id_timestamp");
+		op.add(Builder::memory, JsonpDeserializer.jsonValueDeserializer(), "memory");
+		op.add(Builder::memoryInBytes, JsonpDeserializer.numberDeserializer(), "memory_in_bytes");
+		op.add(Builder::normsMemory, JsonpDeserializer.jsonValueDeserializer(), "norms_memory");
+		op.add(Builder::normsMemoryInBytes, JsonpDeserializer.numberDeserializer(), "norms_memory_in_bytes");
+		op.add(Builder::pointsMemory, JsonpDeserializer.jsonValueDeserializer(), "points_memory");
+		op.add(Builder::pointsMemoryInBytes, JsonpDeserializer.numberDeserializer(), "points_memory_in_bytes");
+		op.add(Builder::storedMemory, JsonpDeserializer.jsonValueDeserializer(), "stored_memory");
+		op.add(Builder::storedFieldsMemoryInBytes, JsonpDeserializer.numberDeserializer(),
+				"stored_fields_memory_in_bytes");
+		op.add(Builder::termsMemoryInBytes, JsonpDeserializer.numberDeserializer(), "terms_memory_in_bytes");
+		op.add(Builder::termsMemory, JsonpDeserializer.jsonValueDeserializer(), "terms_memory");
+		op.add(Builder::termVectoryMemory, JsonpDeserializer.jsonValueDeserializer(), "term_vectory_memory");
+		op.add(Builder::termVectorsMemoryInBytes, JsonpDeserializer.numberDeserializer(),
+				"term_vectors_memory_in_bytes");
+		op.add(Builder::versionMapMemory, JsonpDeserializer.jsonValueDeserializer(), "version_map_memory");
+		op.add(Builder::versionMapMemoryInBytes, JsonpDeserializer.numberDeserializer(), "version_map_memory_in_bytes");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_capabilities;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -196,20 +196,19 @@ public final class RollupCapabilitySummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RollupCapabilitySummary
+	 * Json deserializer for RollupCapabilitySummary
 	 */
-	public static final JsonpValueParser<RollupCapabilitySummary> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RollupCapabilitySummary::setupRollupCapabilitySummaryParser);
+	public static final JsonpDeserializer<RollupCapabilitySummary> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RollupCapabilitySummary::setupRollupCapabilitySummaryDeserializer);
 
-	protected static void setupRollupCapabilitySummaryParser(
-			DelegatingJsonpValueParser<RollupCapabilitySummary.Builder> op) {
+	protected static void setupRollupCapabilitySummaryDeserializer(
+			DelegatingDeserializer<RollupCapabilitySummary.Builder> op) {
 
-		op.add(Builder::fields,
-				JsonpValueParser.stringMapParser(JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser())),
-				"fields");
-		op.add(Builder::indexPattern, JsonpValueParser.stringParser(), "index_pattern");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::rollupIndex, JsonpValueParser.stringParser(), "rollup_index");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer())), "fields");
+		op.add(Builder::indexPattern, JsonpDeserializer.stringDeserializer(), "index_pattern");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");
 
 	}
 

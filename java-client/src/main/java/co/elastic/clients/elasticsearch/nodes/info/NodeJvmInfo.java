@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -470,27 +470,29 @@ public final class NodeJvmInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeJvmInfo
+	 * Json deserializer for NodeJvmInfo
 	 */
-	public static final JsonpValueParser<NodeJvmInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeJvmInfo::setupNodeJvmInfoParser);
+	public static final JsonpDeserializer<NodeJvmInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeJvmInfo::setupNodeJvmInfoDeserializer);
 
-	protected static void setupNodeJvmInfoParser(DelegatingJsonpValueParser<NodeJvmInfo.Builder> op) {
+	protected static void setupNodeJvmInfoDeserializer(DelegatingDeserializer<NodeJvmInfo.Builder> op) {
 
-		op.add(Builder::gcCollectors, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "gc_collectors");
-		op.add(Builder::mem, NodeInfoJvmMemory.JSONP_PARSER, "mem");
-		op.add(Builder::memoryPools, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "memory_pools");
-		op.add(Builder::pid, JsonpValueParser.numberParser(), "pid");
-		op.add(Builder::startTimeInMillis, JsonpValueParser.numberParser(), "start_time_in_millis");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
-		op.add(Builder::vmName, JsonpValueParser.stringParser(), "vm_name");
-		op.add(Builder::vmVendor, JsonpValueParser.stringParser(), "vm_vendor");
-		op.add(Builder::vmVersion, JsonpValueParser.stringParser(), "vm_version");
-		op.add(Builder::bundledJdk, JsonpValueParser.booleanParser(), "bundled_jdk");
-		op.add(Builder::usingBundledJdk, JsonpValueParser.booleanParser(), "using_bundled_jdk");
-		op.add(Builder::usingCompressedOrdinaryObjectPointers, JsonpValueParser.jsonValueParser(),
+		op.add(Builder::gcCollectors, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"gc_collectors");
+		op.add(Builder::mem, NodeInfoJvmMemory.DESERIALIZER, "mem");
+		op.add(Builder::memoryPools, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"memory_pools");
+		op.add(Builder::pid, JsonpDeserializer.numberDeserializer(), "pid");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::vmName, JsonpDeserializer.stringDeserializer(), "vm_name");
+		op.add(Builder::vmVendor, JsonpDeserializer.stringDeserializer(), "vm_vendor");
+		op.add(Builder::vmVersion, JsonpDeserializer.stringDeserializer(), "vm_version");
+		op.add(Builder::bundledJdk, JsonpDeserializer.booleanDeserializer(), "bundled_jdk");
+		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk");
+		op.add(Builder::usingCompressedOrdinaryObjectPointers, JsonpDeserializer.jsonValueDeserializer(),
 				"using_compressed_ordinary_object_pointers");
-		op.add(Builder::inputArguments, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::inputArguments, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"input_arguments");
 
 	}

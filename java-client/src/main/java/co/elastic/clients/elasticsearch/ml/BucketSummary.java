@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -421,25 +421,26 @@ public final class BucketSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BucketSummary
+	 * Json deserializer for BucketSummary
 	 */
-	public static final JsonpValueParser<BucketSummary> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BucketSummary::setupBucketSummaryParser);
+	public static final JsonpDeserializer<BucketSummary> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BucketSummary::setupBucketSummaryDeserializer);
 
-	protected static void setupBucketSummaryParser(DelegatingJsonpValueParser<BucketSummary.Builder> op) {
+	protected static void setupBucketSummaryDeserializer(DelegatingDeserializer<BucketSummary.Builder> op) {
 
-		op.add(Builder::anomalyScore, JsonpValueParser.numberParser(), "anomaly_score");
-		op.add(Builder::bucketInfluencers, JsonpValueParser.arrayParser(BucketInfluencer.JSONP_PARSER),
+		op.add(Builder::anomalyScore, JsonpDeserializer.numberDeserializer(), "anomaly_score");
+		op.add(Builder::bucketInfluencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer.DESERIALIZER),
 				"bucket_influencers");
-		op.add(Builder::bucketSpan, JsonpValueParser.jsonValueParser(), "bucket_span");
-		op.add(Builder::eventCount, JsonpValueParser.numberParser(), "event_count");
-		op.add(Builder::initialAnomalyScore, JsonpValueParser.numberParser(), "initial_anomaly_score");
-		op.add(Builder::isInterim, JsonpValueParser.booleanParser(), "is_interim");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::partitionScores, JsonpValueParser.arrayParser(PartitionScore.JSONP_PARSER), "partition_scores");
-		op.add(Builder::processingTimeMs, JsonpValueParser.numberParser(), "processing_time_ms");
-		op.add(Builder::resultType, JsonpValueParser.stringParser(), "result_type");
-		op.add(Builder::timestamp, JsonpValueParser.jsonValueParser(), "timestamp");
+		op.add(Builder::bucketSpan, JsonpDeserializer.jsonValueDeserializer(), "bucket_span");
+		op.add(Builder::eventCount, JsonpDeserializer.numberDeserializer(), "event_count");
+		op.add(Builder::initialAnomalyScore, JsonpDeserializer.numberDeserializer(), "initial_anomaly_score");
+		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::partitionScores, JsonpDeserializer.arrayDeserializer(PartitionScore.DESERIALIZER),
+				"partition_scores");
+		op.add(Builder::processingTimeMs, JsonpDeserializer.numberDeserializer(), "processing_time_ms");
+		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
+		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -128,14 +128,14 @@ public final class HourlySchedule implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HourlySchedule
+	 * Json deserializer for HourlySchedule
 	 */
-	public static final JsonpValueParser<HourlySchedule> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HourlySchedule::setupHourlyScheduleParser);
+	public static final JsonpDeserializer<HourlySchedule> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HourlySchedule::setupHourlyScheduleDeserializer);
 
-	protected static void setupHourlyScheduleParser(DelegatingJsonpValueParser<HourlySchedule.Builder> op) {
+	protected static void setupHourlyScheduleDeserializer(DelegatingDeserializer<HourlySchedule.Builder> op) {
 
-		op.add(Builder::minute, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "minute");
+		op.add(Builder::minute, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "minute");
 
 	}
 

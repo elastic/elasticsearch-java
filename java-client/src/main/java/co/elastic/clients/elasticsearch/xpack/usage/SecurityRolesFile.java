@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -148,16 +148,16 @@ public final class SecurityRolesFile implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SecurityRolesFile
+	 * Json deserializer for SecurityRolesFile
 	 */
-	public static final JsonpValueParser<SecurityRolesFile> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SecurityRolesFile::setupSecurityRolesFileParser);
+	public static final JsonpDeserializer<SecurityRolesFile> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SecurityRolesFile::setupSecurityRolesFileDeserializer);
 
-	protected static void setupSecurityRolesFileParser(DelegatingJsonpValueParser<SecurityRolesFile.Builder> op) {
+	protected static void setupSecurityRolesFileDeserializer(DelegatingDeserializer<SecurityRolesFile.Builder> op) {
 
-		op.add(Builder::dls, JsonpValueParser.booleanParser(), "dls");
-		op.add(Builder::fls, JsonpValueParser.booleanParser(), "fls");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+		op.add(Builder::dls, JsonpDeserializer.booleanDeserializer(), "dls");
+		op.add(Builder::fls, JsonpDeserializer.booleanDeserializer(), "fls");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}
 

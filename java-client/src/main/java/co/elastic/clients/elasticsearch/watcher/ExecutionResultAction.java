@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -397,24 +397,24 @@ public final class ExecutionResultAction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExecutionResultAction
+	 * Json deserializer for ExecutionResultAction
 	 */
-	public static final JsonpValueParser<ExecutionResultAction> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExecutionResultAction::setupExecutionResultActionParser);
+	public static final JsonpDeserializer<ExecutionResultAction> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExecutionResultAction::setupExecutionResultActionDeserializer);
 
-	protected static void setupExecutionResultActionParser(
-			DelegatingJsonpValueParser<ExecutionResultAction.Builder> op) {
+	protected static void setupExecutionResultActionDeserializer(
+			DelegatingDeserializer<ExecutionResultAction.Builder> op) {
 
-		op.add(Builder::email, EmailResult.JSONP_PARSER, "email");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::index, IndexResult.JSONP_PARSER, "index");
-		op.add(Builder::logging, LoggingResult.JSONP_PARSER, "logging");
-		op.add(Builder::pagerduty, PagerDutyResult.JSONP_PARSER, "pagerduty");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
-		op.add(Builder::slack, SlackResult.JSONP_PARSER, "slack");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
-		op.add(Builder::webhook, WebhookResult.JSONP_PARSER, "webhook");
+		op.add(Builder::email, EmailResult.DESERIALIZER, "email");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::index, IndexResult.DESERIALIZER, "index");
+		op.add(Builder::logging, LoggingResult.DESERIALIZER, "logging");
+		op.add(Builder::pagerduty, PagerDutyResult.DESERIALIZER, "pagerduty");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(Builder::slack, SlackResult.DESERIALIZER, "slack");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::webhook, WebhookResult.DESERIALIZER, "webhook");
 
 	}
 

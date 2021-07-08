@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -394,23 +394,23 @@ public final class ModelSnapshot implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ModelSnapshot
+	 * Json deserializer for ModelSnapshot
 	 */
-	public static final JsonpValueParser<ModelSnapshot> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ModelSnapshot::setupModelSnapshotParser);
+	public static final JsonpDeserializer<ModelSnapshot> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ModelSnapshot::setupModelSnapshotDeserializer);
 
-	protected static void setupModelSnapshotParser(DelegatingJsonpValueParser<ModelSnapshot.Builder> op) {
+	protected static void setupModelSnapshotDeserializer(DelegatingDeserializer<ModelSnapshot.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::latestRecordTimeStamp, JsonpValueParser.jsonValueParser(), "latest_record_time_stamp");
-		op.add(Builder::latestResultTimeStamp, JsonpValueParser.jsonValueParser(), "latest_result_time_stamp");
-		op.add(Builder::minVersion, JsonpValueParser.stringParser(), "min_version");
-		op.add(Builder::modelSizeStats, ModelSizeStats.JSONP_PARSER, "model_size_stats");
-		op.add(Builder::retain, JsonpValueParser.booleanParser(), "retain");
-		op.add(Builder::snapshotDocCount, JsonpValueParser.numberParser(), "snapshot_doc_count");
-		op.add(Builder::snapshotId, JsonpValueParser.stringParser(), "snapshot_id");
-		op.add(Builder::timestamp, JsonpValueParser.jsonValueParser(), "timestamp");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::latestRecordTimeStamp, JsonpDeserializer.jsonValueDeserializer(), "latest_record_time_stamp");
+		op.add(Builder::latestResultTimeStamp, JsonpDeserializer.jsonValueDeserializer(), "latest_result_time_stamp");
+		op.add(Builder::minVersion, JsonpDeserializer.stringDeserializer(), "min_version");
+		op.add(Builder::modelSizeStats, ModelSizeStats.DESERIALIZER, "model_size_stats");
+		op.add(Builder::retain, JsonpDeserializer.booleanDeserializer(), "retain");
+		op.add(Builder::snapshotDocCount, JsonpDeserializer.numberDeserializer(), "snapshot_doc_count");
+		op.add(Builder::snapshotId, JsonpDeserializer.stringDeserializer(), "snapshot_id");
+		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
 
 	}
 

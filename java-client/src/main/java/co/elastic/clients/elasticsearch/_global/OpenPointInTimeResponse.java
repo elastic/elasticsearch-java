@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class OpenPointInTimeResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for OpenPointInTimeResponse
+	 * Json deserializer for OpenPointInTimeResponse
 	 */
-	public static final JsonpValueParser<OpenPointInTimeResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, OpenPointInTimeResponse::setupOpenPointInTimeResponseParser);
+	public static final JsonpDeserializer<OpenPointInTimeResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, OpenPointInTimeResponse::setupOpenPointInTimeResponseDeserializer);
 
-	protected static void setupOpenPointInTimeResponseParser(
-			DelegatingJsonpValueParser<OpenPointInTimeResponse.Builder> op) {
+	protected static void setupOpenPointInTimeResponseDeserializer(
+			DelegatingDeserializer<OpenPointInTimeResponse.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
 	}
 

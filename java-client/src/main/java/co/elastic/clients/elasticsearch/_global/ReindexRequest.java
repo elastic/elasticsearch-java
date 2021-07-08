@@ -28,11 +28,11 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._global.reindex.Destination;
 import co.elastic.clients.elasticsearch._global.reindex.Source;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -460,19 +460,19 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReindexRequest
+	 * Json deserializer for ReindexRequest
 	 */
-	public static final JsonpValueParser<ReindexRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReindexRequest::setupReindexRequestParser);
+	public static final JsonpDeserializer<ReindexRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReindexRequest::setupReindexRequestDeserializer);
 
-	protected static void setupReindexRequestParser(DelegatingJsonpValueParser<ReindexRequest.Builder> op) {
+	protected static void setupReindexRequestDeserializer(DelegatingDeserializer<ReindexRequest.Builder> op) {
 
-		op.add(Builder::conflicts, JsonpValueParser.jsonValueParser(), "conflicts");
-		op.add(Builder::dest, Destination.JSONP_PARSER, "dest");
-		op.add(Builder::maxDocs, JsonpValueParser.numberParser(), "max_docs");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::source, Source.JSONP_PARSER, "source");
+		op.add(Builder::conflicts, JsonpDeserializer.jsonValueDeserializer(), "conflicts");
+		op.add(Builder::dest, Destination.DESERIALIZER, "dest");
+		op.add(Builder::maxDocs, JsonpDeserializer.numberDeserializer(), "max_docs");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::source, Source.DESERIALIZER, "source");
 
 	}
 
@@ -523,5 +523,5 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ReindexResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, ReindexResponse.DESERIALIZER);
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -176,15 +176,15 @@ public final class TimeOfWeek implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TimeOfWeek
+	 * Json deserializer for TimeOfWeek
 	 */
-	public static final JsonpValueParser<TimeOfWeek> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TimeOfWeek::setupTimeOfWeekParser);
+	public static final JsonpDeserializer<TimeOfWeek> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TimeOfWeek::setupTimeOfWeekDeserializer);
 
-	protected static void setupTimeOfWeekParser(DelegatingJsonpValueParser<TimeOfWeek.Builder> op) {
+	protected static void setupTimeOfWeekDeserializer(DelegatingDeserializer<TimeOfWeek.Builder> op) {
 
-		op.add(Builder::at, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "at");
-		op.add(Builder::on, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "on");
+		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
+		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "on");
 
 	}
 

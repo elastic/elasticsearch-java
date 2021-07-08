@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -656,30 +656,33 @@ public final class SignificantTextAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SignificantTextAggregation
+	 * Json deserializer for SignificantTextAggregation
 	 */
-	public static final JsonpValueParser<SignificantTextAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SignificantTextAggregation::setupSignificantTextAggregationParser);
+	public static final JsonpDeserializer<SignificantTextAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SignificantTextAggregation::setupSignificantTextAggregationDeserializer);
 
-	protected static void setupSignificantTextAggregationParser(
-			DelegatingJsonpValueParser<SignificantTextAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::backgroundFilter, QueryContainer.JSONP_PARSER, "background_filter");
-		op.add(Builder::chiSquare, ChiSquareHeuristic.JSONP_PARSER, "chi_square");
-		op.add(Builder::exclude, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "exclude");
-		op.add(Builder::executionHint, JsonpValueParser.jsonValueParser(), "execution_hint");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::filterDuplicateText, JsonpValueParser.booleanParser(), "filter_duplicate_text");
-		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic.JSONP_PARSER, "gnd");
-		op.add(Builder::include, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "include");
-		op.add(Builder::minDocCount, JsonpValueParser.numberParser(), "min_doc_count");
-		op.add(Builder::mutualInformation, MutualInformationHeuristic.JSONP_PARSER, "mutual_information");
-		op.add(Builder::percentage, JsonpValueParser.jsonValueParser(), "percentage");
-		op.add(Builder::scriptHeuristic, ScriptedHeuristic.JSONP_PARSER, "script_heuristic");
-		op.add(Builder::shardMinDocCount, JsonpValueParser.numberParser(), "shard_min_doc_count");
-		op.add(Builder::shardSize, JsonpValueParser.numberParser(), "shard_size");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::sourceFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "source_fields");
+	protected static void setupSignificantTextAggregationDeserializer(
+			DelegatingDeserializer<SignificantTextAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::backgroundFilter, QueryContainer.DESERIALIZER, "background_filter");
+		op.add(Builder::chiSquare, ChiSquareHeuristic.DESERIALIZER, "chi_square");
+		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"exclude");
+		op.add(Builder::executionHint, JsonpDeserializer.jsonValueDeserializer(), "execution_hint");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::filterDuplicateText, JsonpDeserializer.booleanDeserializer(), "filter_duplicate_text");
+		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic.DESERIALIZER, "gnd");
+		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"include");
+		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
+		op.add(Builder::mutualInformation, MutualInformationHeuristic.DESERIALIZER, "mutual_information");
+		op.add(Builder::percentage, JsonpDeserializer.jsonValueDeserializer(), "percentage");
+		op.add(Builder::scriptHeuristic, ScriptedHeuristic.DESERIALIZER, "script_heuristic");
+		op.add(Builder::shardMinDocCount, JsonpDeserializer.numberDeserializer(), "shard_min_doc_count");
+		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::sourceFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"source_fields");
 
 	}
 

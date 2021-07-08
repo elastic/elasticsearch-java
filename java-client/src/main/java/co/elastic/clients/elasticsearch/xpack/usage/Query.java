@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -194,17 +194,17 @@ public final class Query implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Query
+	 * Json deserializer for Query
 	 */
-	public static final JsonpValueParser<Query> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Query::setupQueryParser);
+	public static final JsonpDeserializer<Query> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Query::setupQueryDeserializer);
 
-	protected static void setupQueryParser(DelegatingJsonpValueParser<Query.Builder> op) {
+	protected static void setupQueryDeserializer(DelegatingDeserializer<Query.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::failed, JsonpValueParser.numberParser(), "failed");
-		op.add(Builder::paging, JsonpValueParser.numberParser(), "paging");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
+		op.add(Builder::paging, JsonpDeserializer.numberDeserializer(), "paging");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
 
 	}
 

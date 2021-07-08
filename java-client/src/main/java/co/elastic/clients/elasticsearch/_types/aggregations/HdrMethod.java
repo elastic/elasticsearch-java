@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -107,14 +107,14 @@ public final class HdrMethod implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HdrMethod
+	 * Json deserializer for HdrMethod
 	 */
-	public static final JsonpValueParser<HdrMethod> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HdrMethod::setupHdrMethodParser);
+	public static final JsonpDeserializer<HdrMethod> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HdrMethod::setupHdrMethodDeserializer);
 
-	protected static void setupHdrMethodParser(DelegatingJsonpValueParser<HdrMethod.Builder> op) {
+	protected static void setupHdrMethodDeserializer(DelegatingDeserializer<HdrMethod.Builder> op) {
 
-		op.add(Builder::numberOfSignificantValueDigits, JsonpValueParser.numberParser(),
+		op.add(Builder::numberOfSignificantValueDigits, JsonpDeserializer.numberDeserializer(),
 				"number_of_significant_value_digits");
 
 	}

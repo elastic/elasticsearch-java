@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -149,17 +149,17 @@ public final class GarbageCollectorTotal implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GarbageCollectorTotal
+	 * Json deserializer for GarbageCollectorTotal
 	 */
-	public static final JsonpValueParser<GarbageCollectorTotal> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GarbageCollectorTotal::setupGarbageCollectorTotalParser);
+	public static final JsonpDeserializer<GarbageCollectorTotal> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GarbageCollectorTotal::setupGarbageCollectorTotalDeserializer);
 
-	protected static void setupGarbageCollectorTotalParser(
-			DelegatingJsonpValueParser<GarbageCollectorTotal.Builder> op) {
+	protected static void setupGarbageCollectorTotalDeserializer(
+			DelegatingDeserializer<GarbageCollectorTotal.Builder> op) {
 
-		op.add(Builder::collectionCount, JsonpValueParser.numberParser(), "collection_count");
-		op.add(Builder::collectionTime, JsonpValueParser.stringParser(), "collection_time");
-		op.add(Builder::collectionTimeInMillis, JsonpValueParser.numberParser(), "collection_time_in_millis");
+		op.add(Builder::collectionCount, JsonpDeserializer.numberDeserializer(), "collection_count");
+		op.add(Builder::collectionTime, JsonpDeserializer.stringDeserializer(), "collection_time");
+		op.add(Builder::collectionTimeInMillis, JsonpDeserializer.numberDeserializer(), "collection_time_in_millis");
 
 	}
 

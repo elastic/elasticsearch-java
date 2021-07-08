@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -243,18 +243,18 @@ public final class RecoveryFiles implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RecoveryFiles
+	 * Json deserializer for RecoveryFiles
 	 */
-	public static final JsonpValueParser<RecoveryFiles> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RecoveryFiles::setupRecoveryFilesParser);
+	public static final JsonpDeserializer<RecoveryFiles> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RecoveryFiles::setupRecoveryFilesDeserializer);
 
-	protected static void setupRecoveryFilesParser(DelegatingJsonpValueParser<RecoveryFiles.Builder> op) {
+	protected static void setupRecoveryFilesDeserializer(DelegatingDeserializer<RecoveryFiles.Builder> op) {
 
-		op.add(Builder::details, JsonpValueParser.arrayParser(FileDetails.JSONP_PARSER), "details");
-		op.add(Builder::percent, JsonpValueParser.jsonValueParser(), "percent");
-		op.add(Builder::recovered, JsonpValueParser.numberParser(), "recovered");
-		op.add(Builder::reused, JsonpValueParser.numberParser(), "reused");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
+		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(FileDetails.DESERIALIZER), "details");
+		op.add(Builder::percent, JsonpDeserializer.jsonValueDeserializer(), "percent");
+		op.add(Builder::recovered, JsonpDeserializer.numberDeserializer(), "recovered");
+		op.add(Builder::reused, JsonpDeserializer.numberDeserializer(), "reused");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
 
 	}
 

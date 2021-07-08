@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.task;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -206,17 +206,17 @@ public final class GetResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetResponse
+	 * Json deserializer for GetResponse
 	 */
-	public static final JsonpValueParser<GetResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetResponse::setupGetResponseParser);
+	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);
 
-	protected static void setupGetResponseParser(DelegatingJsonpValueParser<GetResponse.Builder> op) {
+	protected static void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder> op) {
 
-		op.add(Builder::completed, JsonpValueParser.booleanParser(), "completed");
-		op.add(Builder::task, Info.JSONP_PARSER, "task");
-		op.add(Builder::response, Status.JSONP_PARSER, "response");
-		op.add(Builder::error, ErrorCause.JSONP_PARSER, "error");
+		op.add(Builder::completed, JsonpDeserializer.booleanDeserializer(), "completed");
+		op.add(Builder::task, Info.DESERIALIZER, "task");
+		op.add(Builder::response, Status.DESERIALIZER, "response");
+		op.add(Builder::error, ErrorCause.DESERIALIZER, "error");
 
 	}
 

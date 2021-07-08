@@ -62,7 +62,7 @@ public class ParsingTests extends Assert {
 
       JsonParser parser = provider.createParser(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)));
 
-      FooRequest foo2 = FooRequest.parser().parse(parser, new JsonbJsonpMapper());
+      FooRequest foo2 = FooRequest.parser().deserialize(parser, new JsonbJsonpMapper());
 
       assertEquals(foo.name(), foo2.name());
       assertEquals(foo.value(), foo2.value());
@@ -117,7 +117,7 @@ public class ParsingTests extends Assert {
 
       JsonParser parser = provider.createParser(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)));
 
-      FooRequest foo2 = FooRequest.parser().parse(parser, new JsonbJsonpMapper());
+      FooRequest foo2 = FooRequest.parser().deserialize(parser, new JsonbJsonpMapper());
 
       baos = new ByteArrayOutputStream();
       JsonGenerator generator2 = provider.createGenerator(baos);

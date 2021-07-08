@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -415,21 +415,21 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetBucketsRequest
+	 * Json deserializer for GetBucketsRequest
 	 */
-	public static final JsonpValueParser<GetBucketsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetBucketsRequest::setupGetBucketsRequestParser);
+	public static final JsonpDeserializer<GetBucketsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetBucketsRequest::setupGetBucketsRequestDeserializer);
 
-	protected static void setupGetBucketsRequestParser(DelegatingJsonpValueParser<GetBucketsRequest.Builder> op) {
+	protected static void setupGetBucketsRequestDeserializer(DelegatingDeserializer<GetBucketsRequest.Builder> op) {
 
-		op.add(Builder::anomalyScore, JsonpValueParser.numberParser(), "anomaly_score");
-		op.add(Builder::desc, JsonpValueParser.booleanParser(), "desc");
-		op.add(Builder::excludeInterim, JsonpValueParser.booleanParser(), "exclude_interim");
-		op.add(Builder::expand, JsonpValueParser.booleanParser(), "expand");
-		op.add(Builder::page, Page.JSONP_PARSER, "page");
-		op.add(Builder::sort, JsonpValueParser.stringParser(), "sort");
-		op.add(Builder::start, JsonpValueParser.stringParser(), "start");
-		op.add(Builder::end, JsonpValueParser.stringParser(), "end");
+		op.add(Builder::anomalyScore, JsonpDeserializer.numberDeserializer(), "anomaly_score");
+		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
+		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
+		op.add(Builder::expand, JsonpDeserializer.booleanDeserializer(), "expand");
+		op.add(Builder::page, Page.DESERIALIZER, "page");
+		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
+		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 
 	}
 
@@ -494,5 +494,5 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetBucketsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GetBucketsResponse.DESERIALIZER);
 }

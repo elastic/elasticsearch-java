@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.get_script_languages.LanguageContext;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -191,17 +191,18 @@ public final class GetScriptLanguagesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetScriptLanguagesResponse
+	 * Json deserializer for GetScriptLanguagesResponse
 	 */
-	public static final JsonpValueParser<GetScriptLanguagesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetScriptLanguagesResponse::setupGetScriptLanguagesResponseParser);
+	public static final JsonpDeserializer<GetScriptLanguagesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetScriptLanguagesResponse::setupGetScriptLanguagesResponseDeserializer);
 
-	protected static void setupGetScriptLanguagesResponseParser(
-			DelegatingJsonpValueParser<GetScriptLanguagesResponse.Builder> op) {
+	protected static void setupGetScriptLanguagesResponseDeserializer(
+			DelegatingDeserializer<GetScriptLanguagesResponse.Builder> op) {
 
-		op.add(Builder::languageContexts, JsonpValueParser.arrayParser(LanguageContext.JSONP_PARSER),
+		op.add(Builder::languageContexts, JsonpDeserializer.arrayDeserializer(LanguageContext.DESERIALIZER),
 				"language_contexts");
-		op.add(Builder::typesAllowed, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "types_allowed");
+		op.add(Builder::typesAllowed, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"types_allowed");
 
 	}
 

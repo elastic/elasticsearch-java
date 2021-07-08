@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -224,19 +224,22 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for HitsSequence
+	 * Create a json deserializer for HitsSequence
 	 */
-	public static <TEvent> JsonpValueParser<HitsSequence<TEvent>> createHitsSequenceParser(
-			JsonpValueParser<TEvent> tEventParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TEvent>>) Builder::new,
-				op -> HitsSequence.setupHitsSequenceParser(op, tEventParser));
+	public static <TEvent> JsonpDeserializer<HitsSequence<TEvent>> createHitsSequenceDeserializer(
+			JsonpDeserializer<TEvent> tEventDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TEvent>>) Builder::new,
+				op -> HitsSequence.setupHitsSequenceDeserializer(op, tEventDeserializer));
 	};
 
-	protected static <TEvent> void setupHitsSequenceParser(DelegatingJsonpValueParser<HitsSequence.Builder<TEvent>> op,
-			JsonpValueParser<TEvent> tEventParser) {
+	protected static <TEvent> void setupHitsSequenceDeserializer(
+			DelegatingDeserializer<HitsSequence.Builder<TEvent>> op, JsonpDeserializer<TEvent> tEventDeserializer) {
 
-		op.add(Builder::events, JsonpValueParser.arrayParser(HitsEvent.createHitsEventParser(tEventParser)), "events");
-		op.add(Builder::joinKeys, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "join_keys");
+		op.add(Builder::events,
+				JsonpDeserializer.arrayDeserializer(HitsEvent.createHitsEventDeserializer(tEventDeserializer)),
+				"events");
+		op.add(Builder::joinKeys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"join_keys");
 
 	}
 

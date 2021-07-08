@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -140,15 +140,15 @@ public final class TimeSync implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TimeSync
+	 * Json deserializer for TimeSync
 	 */
-	public static final JsonpValueParser<TimeSync> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			TimeSync::setupTimeSyncParser);
+	public static final JsonpDeserializer<TimeSync> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TimeSync::setupTimeSyncDeserializer);
 
-	protected static void setupTimeSyncParser(DelegatingJsonpValueParser<TimeSync.Builder> op) {
+	protected static void setupTimeSyncDeserializer(DelegatingDeserializer<TimeSync.Builder> op) {
 
-		op.add(Builder::delay, JsonpValueParser.jsonValueParser(), "delay");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
+		op.add(Builder::delay, JsonpDeserializer.jsonValueDeserializer(), "delay");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
 	}
 

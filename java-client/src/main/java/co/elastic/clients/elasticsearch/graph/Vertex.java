@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -171,17 +171,17 @@ public final class Vertex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Vertex
+	 * Json deserializer for Vertex
 	 */
-	public static final JsonpValueParser<Vertex> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Vertex::setupVertexParser);
+	public static final JsonpDeserializer<Vertex> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Vertex::setupVertexDeserializer);
 
-	protected static void setupVertexParser(DelegatingJsonpValueParser<Vertex.Builder> op) {
+	protected static void setupVertexDeserializer(DelegatingDeserializer<Vertex.Builder> op) {
 
-		op.add(Builder::depth, JsonpValueParser.numberParser(), "depth");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::term, JsonpValueParser.stringParser(), "term");
-		op.add(Builder::weight, JsonpValueParser.numberParser(), "weight");
+		op.add(Builder::depth, JsonpDeserializer.numberDeserializer(), "depth");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::term, JsonpDeserializer.stringDeserializer(), "term");
+		op.add(Builder::weight, JsonpDeserializer.numberDeserializer(), "weight");
 
 	}
 

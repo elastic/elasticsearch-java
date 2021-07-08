@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.license.post;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -151,15 +151,16 @@ public final class Acknowledgement implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Acknowledgement
+	 * Json deserializer for Acknowledgement
 	 */
-	public static final JsonpValueParser<Acknowledgement> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Acknowledgement::setupAcknowledgementParser);
+	public static final JsonpDeserializer<Acknowledgement> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Acknowledgement::setupAcknowledgementDeserializer);
 
-	protected static void setupAcknowledgementParser(DelegatingJsonpValueParser<Acknowledgement.Builder> op) {
+	protected static void setupAcknowledgementDeserializer(DelegatingDeserializer<Acknowledgement.Builder> op) {
 
-		op.add(Builder::license, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "license");
-		op.add(Builder::message, JsonpValueParser.stringParser(), "message");
+		op.add(Builder::license, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"license");
+		op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
 
 	}
 

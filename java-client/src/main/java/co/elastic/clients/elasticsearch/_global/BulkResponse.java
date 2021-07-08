@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.bulk.ResponseItemContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -221,17 +221,17 @@ public final class BulkResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BulkResponse
+	 * Json deserializer for BulkResponse
 	 */
-	public static final JsonpValueParser<BulkResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BulkResponse::setupBulkResponseParser);
+	public static final JsonpDeserializer<BulkResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BulkResponse::setupBulkResponseDeserializer);
 
-	protected static void setupBulkResponseParser(DelegatingJsonpValueParser<BulkResponse.Builder> op) {
+	protected static void setupBulkResponseDeserializer(DelegatingDeserializer<BulkResponse.Builder> op) {
 
-		op.add(Builder::errors, JsonpValueParser.booleanParser(), "errors");
-		op.add(Builder::items, JsonpValueParser.arrayParser(ResponseItemContainer.JSONP_PARSER), "items");
-		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
-		op.add(Builder::ingestTook, JsonpValueParser.numberParser(), "ingest_took");
+		op.add(Builder::errors, JsonpDeserializer.booleanDeserializer(), "errors");
+		op.add(Builder::items, JsonpDeserializer.arrayDeserializer(ResponseItemContainer.DESERIALIZER), "items");
+		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::ingestTook, JsonpDeserializer.numberDeserializer(), "ingest_took");
 
 	}
 

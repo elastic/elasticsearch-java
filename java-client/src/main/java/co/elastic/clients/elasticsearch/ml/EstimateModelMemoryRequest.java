@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -215,19 +215,20 @@ public final class EstimateModelMemoryRequest extends RequestBase implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for EstimateModelMemoryRequest
+	 * Json deserializer for EstimateModelMemoryRequest
 	 */
-	public static final JsonpValueParser<EstimateModelMemoryRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, EstimateModelMemoryRequest::setupEstimateModelMemoryRequestParser);
+	public static final JsonpDeserializer<EstimateModelMemoryRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, EstimateModelMemoryRequest::setupEstimateModelMemoryRequestDeserializer);
 
-	protected static void setupEstimateModelMemoryRequestParser(
-			DelegatingJsonpValueParser<EstimateModelMemoryRequest.Builder> op) {
+	protected static void setupEstimateModelMemoryRequestDeserializer(
+			DelegatingDeserializer<EstimateModelMemoryRequest.Builder> op) {
 
-		op.add(Builder::analysisConfig, AnalysisConfig.JSONP_PARSER, "analysis_config");
-		op.add(Builder::maxBucketCardinality, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()),
+		op.add(Builder::analysisConfig, AnalysisConfig.DESERIALIZER, "analysis_config");
+		op.add(Builder::maxBucketCardinality,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
 				"max_bucket_cardinality");
-		op.add(Builder::overallCardinality, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()),
-				"overall_cardinality");
+		op.add(Builder::overallCardinality,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()), "overall_cardinality");
 
 	}
 
@@ -253,5 +254,5 @@ public final class EstimateModelMemoryRequest extends RequestBase implements ToJ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, EstimateModelMemoryResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, EstimateModelMemoryResponse.DESERIALIZER);
 }

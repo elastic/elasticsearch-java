@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.features;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -146,14 +146,14 @@ public final class GetFeaturesRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetFeaturesRequest
+	 * Json deserializer for GetFeaturesRequest
 	 */
-	public static final JsonpValueParser<GetFeaturesRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetFeaturesRequest::setupGetFeaturesRequestParser);
+	public static final JsonpDeserializer<GetFeaturesRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetFeaturesRequest::setupGetFeaturesRequestDeserializer);
 
-	protected static void setupGetFeaturesRequestParser(DelegatingJsonpValueParser<GetFeaturesRequest.Builder> op) {
+	protected static void setupGetFeaturesRequestDeserializer(DelegatingDeserializer<GetFeaturesRequest.Builder> op) {
 
-		op.add(Builder::stubC, JsonpValueParser.stringParser(), "stub_c");
+		op.add(Builder::stubC, JsonpDeserializer.stringDeserializer(), "stub_c");
 
 	}
 
@@ -181,5 +181,5 @@ public final class GetFeaturesRequest extends RequestBase implements ToJsonp {
 				params.put("stub_b", request.stubB);
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetFeaturesResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GetFeaturesResponse.DESERIALIZER);
 }

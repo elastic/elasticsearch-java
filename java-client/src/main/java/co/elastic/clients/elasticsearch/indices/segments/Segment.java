@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.segments;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -329,23 +329,24 @@ public final class Segment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Segment
+	 * Json deserializer for Segment
 	 */
-	public static final JsonpValueParser<Segment> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Segment::setupSegmentParser);
+	public static final JsonpDeserializer<Segment> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Segment::setupSegmentDeserializer);
 
-	protected static void setupSegmentParser(DelegatingJsonpValueParser<Segment.Builder> op) {
+	protected static void setupSegmentDeserializer(DelegatingDeserializer<Segment.Builder> op) {
 
-		op.add(Builder::attributes, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "attributes");
-		op.add(Builder::committed, JsonpValueParser.booleanParser(), "committed");
-		op.add(Builder::compound, JsonpValueParser.booleanParser(), "compound");
-		op.add(Builder::deletedDocs, JsonpValueParser.numberParser(), "deleted_docs");
-		op.add(Builder::generation, JsonpValueParser.numberParser(), "generation");
-		op.add(Builder::memoryInBytes, JsonpValueParser.numberParser(), "memory_in_bytes");
-		op.add(Builder::search, JsonpValueParser.booleanParser(), "search");
-		op.add(Builder::sizeInBytes, JsonpValueParser.numberParser(), "size_in_bytes");
-		op.add(Builder::numDocs, JsonpValueParser.numberParser(), "num_docs");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
+		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"attributes");
+		op.add(Builder::committed, JsonpDeserializer.booleanDeserializer(), "committed");
+		op.add(Builder::compound, JsonpDeserializer.booleanDeserializer(), "compound");
+		op.add(Builder::deletedDocs, JsonpDeserializer.numberDeserializer(), "deleted_docs");
+		op.add(Builder::generation, JsonpDeserializer.numberDeserializer(), "generation");
+		op.add(Builder::memoryInBytes, JsonpDeserializer.numberDeserializer(), "memory_in_bytes");
+		op.add(Builder::search, JsonpDeserializer.booleanDeserializer(), "search");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
+		op.add(Builder::numDocs, JsonpDeserializer.numberDeserializer(), "num_docs");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}
 

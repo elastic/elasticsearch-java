@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -213,18 +213,19 @@ public final class CurrentNode implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CurrentNode
+	 * Json deserializer for CurrentNode
 	 */
-	public static final JsonpValueParser<CurrentNode> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CurrentNode::setupCurrentNodeParser);
+	public static final JsonpDeserializer<CurrentNode> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CurrentNode::setupCurrentNodeDeserializer);
 
-	protected static void setupCurrentNodeParser(DelegatingJsonpValueParser<CurrentNode.Builder> op) {
+	protected static void setupCurrentNodeDeserializer(DelegatingDeserializer<CurrentNode.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::attributes, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "attributes");
-		op.add(Builder::transportAddress, JsonpValueParser.stringParser(), "transport_address");
-		op.add(Builder::weightRanking, JsonpValueParser.numberParser(), "weight_ranking");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"attributes");
+		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+		op.add(Builder::weightRanking, JsonpDeserializer.numberDeserializer(), "weight_ranking");
 
 	}
 

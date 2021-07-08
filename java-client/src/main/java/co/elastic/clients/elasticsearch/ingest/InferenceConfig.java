@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -115,14 +115,14 @@ public final class InferenceConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InferenceConfig
+	 * Json deserializer for InferenceConfig
 	 */
-	public static final JsonpValueParser<InferenceConfig> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InferenceConfig::setupInferenceConfigParser);
+	public static final JsonpDeserializer<InferenceConfig> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InferenceConfig::setupInferenceConfigDeserializer);
 
-	protected static void setupInferenceConfigParser(DelegatingJsonpValueParser<InferenceConfig.Builder> op) {
+	protected static void setupInferenceConfigDeserializer(DelegatingDeserializer<InferenceConfig.Builder> op) {
 
-		op.add(Builder::regression, InferenceConfigRegression.JSONP_PARSER, "regression");
+		op.add(Builder::regression, InferenceConfigRegression.DESERIALIZER, "regression");
 
 	}
 

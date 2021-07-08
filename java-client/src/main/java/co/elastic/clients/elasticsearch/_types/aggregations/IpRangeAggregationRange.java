@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -165,17 +165,17 @@ public final class IpRangeAggregationRange implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IpRangeAggregationRange
+	 * Json deserializer for IpRangeAggregationRange
 	 */
-	public static final JsonpValueParser<IpRangeAggregationRange> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IpRangeAggregationRange::setupIpRangeAggregationRangeParser);
+	public static final JsonpDeserializer<IpRangeAggregationRange> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IpRangeAggregationRange::setupIpRangeAggregationRangeDeserializer);
 
-	protected static void setupIpRangeAggregationRangeParser(
-			DelegatingJsonpValueParser<IpRangeAggregationRange.Builder> op) {
+	protected static void setupIpRangeAggregationRangeDeserializer(
+			DelegatingDeserializer<IpRangeAggregationRange.Builder> op) {
 
-		op.add(Builder::from, JsonpValueParser.stringParser(), "from");
-		op.add(Builder::mask, JsonpValueParser.stringParser(), "mask");
-		op.add(Builder::to, JsonpValueParser.stringParser(), "to");
+		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
+		op.add(Builder::mask, JsonpDeserializer.stringDeserializer(), "mask");
+		op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
 
 	}
 

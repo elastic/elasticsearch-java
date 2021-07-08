@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.get_field_mapping;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -120,14 +120,15 @@ public final class TypeFieldMappings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TypeFieldMappings
+	 * Json deserializer for TypeFieldMappings
 	 */
-	public static final JsonpValueParser<TypeFieldMappings> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TypeFieldMappings::setupTypeFieldMappingsParser);
+	public static final JsonpDeserializer<TypeFieldMappings> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TypeFieldMappings::setupTypeFieldMappingsDeserializer);
 
-	protected static void setupTypeFieldMappingsParser(DelegatingJsonpValueParser<TypeFieldMappings.Builder> op) {
+	protected static void setupTypeFieldMappingsDeserializer(DelegatingDeserializer<TypeFieldMappings.Builder> op) {
 
-		op.add(Builder::mappings, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "mappings");
+		op.add(Builder::mappings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"mappings");
 
 	}
 

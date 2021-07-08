@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,16 +101,16 @@ public final class DeleteVotingConfigExclusionsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteVotingConfigExclusionsResponse
+	 * Json deserializer for DeleteVotingConfigExclusionsResponse
 	 */
-	public static final JsonpValueParser<DeleteVotingConfigExclusionsResponse> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DeleteVotingConfigExclusionsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DeleteVotingConfigExclusionsResponse::setupDeleteVotingConfigExclusionsResponseParser);
+					DeleteVotingConfigExclusionsResponse::setupDeleteVotingConfigExclusionsResponseDeserializer);
 
-	protected static void setupDeleteVotingConfigExclusionsResponseParser(
-			DelegatingJsonpValueParser<DeleteVotingConfigExclusionsResponse.Builder> op) {
+	protected static void setupDeleteVotingConfigExclusionsResponseDeserializer(
+			DelegatingDeserializer<DeleteVotingConfigExclusionsResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.numberParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
 
 	}
 

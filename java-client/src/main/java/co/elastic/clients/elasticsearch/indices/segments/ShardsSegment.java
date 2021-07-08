@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.segments;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -212,17 +212,17 @@ public final class ShardsSegment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardsSegment
+	 * Json deserializer for ShardsSegment
 	 */
-	public static final JsonpValueParser<ShardsSegment> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardsSegment::setupShardsSegmentParser);
+	public static final JsonpDeserializer<ShardsSegment> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardsSegment::setupShardsSegmentDeserializer);
 
-	protected static void setupShardsSegmentParser(DelegatingJsonpValueParser<ShardsSegment.Builder> op) {
+	protected static void setupShardsSegmentDeserializer(DelegatingDeserializer<ShardsSegment.Builder> op) {
 
-		op.add(Builder::numCommittedSegments, JsonpValueParser.numberParser(), "num_committed_segments");
-		op.add(Builder::routing, ShardSegmentRouting.JSONP_PARSER, "routing");
-		op.add(Builder::numSearchSegments, JsonpValueParser.numberParser(), "num_search_segments");
-		op.add(Builder::segments, JsonpValueParser.stringMapParser(Segment.JSONP_PARSER), "segments");
+		op.add(Builder::numCommittedSegments, JsonpDeserializer.numberDeserializer(), "num_committed_segments");
+		op.add(Builder::routing, ShardSegmentRouting.DESERIALIZER, "routing");
+		op.add(Builder::numSearchSegments, JsonpDeserializer.numberDeserializer(), "num_search_segments");
+		op.add(Builder::segments, JsonpDeserializer.stringMapDeserializer(Segment.DESERIALIZER), "segments");
 
 	}
 

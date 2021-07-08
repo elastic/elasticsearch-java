@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.get_index_template;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -391,21 +391,24 @@ public final class IndexTemplate implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexTemplate
+	 * Json deserializer for IndexTemplate
 	 */
-	public static final JsonpValueParser<IndexTemplate> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexTemplate::setupIndexTemplateParser);
+	public static final JsonpDeserializer<IndexTemplate> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexTemplate::setupIndexTemplateDeserializer);
 
-	protected static void setupIndexTemplateParser(DelegatingJsonpValueParser<IndexTemplate.Builder> op) {
+	protected static void setupIndexTemplateDeserializer(DelegatingDeserializer<IndexTemplate.Builder> op) {
 
-		op.add(Builder::indexPatterns, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "index_patterns");
-		op.add(Builder::composedOf, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "composed_of");
-		op.add(Builder::template, IndexTemplateSummary.JSONP_PARSER, "template");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::priority, JsonpValueParser.numberParser(), "priority");
-		op.add(Builder::_meta, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "_meta");
-		op.add(Builder::allowAutoCreate, JsonpValueParser.booleanParser(), "allow_auto_create");
-		op.add(Builder::dataStream, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"index_patterns");
+		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"composed_of");
+		op.add(Builder::template, IndexTemplateSummary.DESERIALIZER, "template");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::priority, JsonpDeserializer.numberDeserializer(), "priority");
+		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"_meta");
+		op.add(Builder::allowAutoCreate, JsonpDeserializer.booleanDeserializer(), "allow_auto_create");
+		op.add(Builder::dataStream, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"data_stream");
 
 	}

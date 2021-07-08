@@ -28,11 +28,11 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._global.reindex.Destination;
 import co.elastic.clients.elasticsearch._global.reindex.Source;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -474,23 +474,23 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PreviewTransformRequest
+	 * Json deserializer for PreviewTransformRequest
 	 */
-	public static final JsonpValueParser<PreviewTransformRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PreviewTransformRequest::setupPreviewTransformRequestParser);
+	public static final JsonpDeserializer<PreviewTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PreviewTransformRequest::setupPreviewTransformRequestDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPreviewTransformRequestParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPreviewTransformRequestDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::dest, Destination.JSONP_PARSER, "dest");
-		op.add(AbstractBuilder::description, JsonpValueParser.stringParser(), "description");
-		op.add(AbstractBuilder::frequency, JsonpValueParser.jsonValueParser(), "frequency");
-		op.add(AbstractBuilder::pivot, Pivot.JSONP_PARSER, "pivot");
-		op.add(AbstractBuilder::source, Source.JSONP_PARSER, "source");
-		op.add(AbstractBuilder::settings, Settings.JSONP_PARSER, "settings");
-		op.add(AbstractBuilder::sync, SyncContainer.JSONP_PARSER, "sync");
-		op.add(AbstractBuilder::retentionPolicy, RetentionPolicyContainer.JSONP_PARSER, "retention_policy");
-		op.add(AbstractBuilder::latest, Latest.JSONP_PARSER, "latest");
+		op.add(AbstractBuilder::dest, Destination.DESERIALIZER, "dest");
+		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(AbstractBuilder::frequency, JsonpDeserializer.jsonValueDeserializer(), "frequency");
+		op.add(AbstractBuilder::pivot, Pivot.DESERIALIZER, "pivot");
+		op.add(AbstractBuilder::source, Source.DESERIALIZER, "source");
+		op.add(AbstractBuilder::settings, Settings.DESERIALIZER, "settings");
+		op.add(AbstractBuilder::sync, SyncContainer.DESERIALIZER, "sync");
+		op.add(AbstractBuilder::retentionPolicy, RetentionPolicyContainer.DESERIALIZER, "retention_policy");
+		op.add(AbstractBuilder::latest, Latest.DESERIALIZER, "latest");
 
 	}
 
@@ -522,8 +522,8 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	 * Create an "{@code transform.preview_transform}" endpoint.
 	 */
 	public static <TTransform> Endpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ElasticsearchError> createPreviewTransformEndpoint(
-			JsonpValueParser<TTransform> tTransformParser) {
-		return ENDPOINT
-				.withResponseParser(PreviewTransformResponse.createPreviewTransformResponseParser(tTransformParser));
+			JsonpDeserializer<TTransform> tTransformDeserializer) {
+		return ENDPOINT.withResponseDeserializer(
+				PreviewTransformResponse.createPreviewTransformResponseDeserializer(tTransformDeserializer));
 	}
 }

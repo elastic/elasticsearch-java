@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._global.search.InnerHits;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -236,18 +236,18 @@ public final class NestedQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NestedQuery
+	 * Json deserializer for NestedQuery
 	 */
-	public static final JsonpValueParser<NestedQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NestedQuery::setupNestedQueryParser);
+	public static final JsonpDeserializer<NestedQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NestedQuery::setupNestedQueryDeserializer);
 
-	protected static void setupNestedQueryParser(DelegatingJsonpValueParser<NestedQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::ignoreUnmapped, JsonpValueParser.booleanParser(), "ignore_unmapped");
-		op.add(Builder::innerHits, InnerHits.JSONP_PARSER, "inner_hits");
-		op.add(Builder::path, JsonpValueParser.stringParser(), "path");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::scoreMode, JsonpValueParser.jsonValueParser(), "score_mode");
+	protected static void setupNestedQueryDeserializer(DelegatingDeserializer<NestedQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
+		op.add(Builder::innerHits, InnerHits.DESERIALIZER, "inner_hits");
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::scoreMode, JsonpDeserializer.jsonValueDeserializer(), "score_mode");
 
 	}
 

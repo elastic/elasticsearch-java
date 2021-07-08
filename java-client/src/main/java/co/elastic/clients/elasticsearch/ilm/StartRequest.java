@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ilm;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -105,14 +105,14 @@ public final class StartRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StartRequest
+	 * Json deserializer for StartRequest
 	 */
-	public static final JsonpValueParser<StartRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StartRequest::setupStartRequestParser);
+	public static final JsonpDeserializer<StartRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StartRequest::setupStartRequestDeserializer);
 
-	protected static void setupStartRequestParser(DelegatingJsonpValueParser<StartRequest.Builder> op) {
+	protected static void setupStartRequestDeserializer(DelegatingDeserializer<StartRequest.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.booleanParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.booleanDeserializer(), "stub");
 
 	}
 
@@ -138,5 +138,5 @@ public final class StartRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, StartResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, StartResponse.DESERIALIZER);
 }

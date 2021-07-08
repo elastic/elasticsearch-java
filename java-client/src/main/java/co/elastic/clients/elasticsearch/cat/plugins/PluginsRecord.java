@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.plugins;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -276,19 +276,19 @@ public final class PluginsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PluginsRecord
+	 * Json deserializer for PluginsRecord
 	 */
-	public static final JsonpValueParser<PluginsRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PluginsRecord::setupPluginsRecordParser);
+	public static final JsonpDeserializer<PluginsRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PluginsRecord::setupPluginsRecordDeserializer);
 
-	protected static void setupPluginsRecordParser(DelegatingJsonpValueParser<PluginsRecord.Builder> op) {
+	protected static void setupPluginsRecordDeserializer(DelegatingDeserializer<PluginsRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name", "n");
-		op.add(Builder::component, JsonpValueParser.stringParser(), "component", "c");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version", "v");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description", "d");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type", "t");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name", "n");
+		op.add(Builder::component, JsonpDeserializer.stringDeserializer(), "component", "c");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description", "d");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");
 
 	}
 

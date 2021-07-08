@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,14 +68,15 @@ public final class DeleteComponentTemplateResponse extends AcknowledgedResponseB
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteComponentTemplateResponse
+	 * Json deserializer for DeleteComponentTemplateResponse
 	 */
-	public static final JsonpValueParser<DeleteComponentTemplateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeleteComponentTemplateResponse::setupDeleteComponentTemplateResponseParser);
+	public static final JsonpDeserializer<DeleteComponentTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					DeleteComponentTemplateResponse::setupDeleteComponentTemplateResponseDeserializer);
 
-	protected static void setupDeleteComponentTemplateResponseParser(
-			DelegatingJsonpValueParser<DeleteComponentTemplateResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupDeleteComponentTemplateResponseDeserializer(
+			DelegatingDeserializer<DeleteComponentTemplateResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

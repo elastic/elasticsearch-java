@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -326,21 +326,22 @@ public final class Jvm implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Jvm
+	 * Json deserializer for Jvm
 	 */
-	public static final JsonpValueParser<Jvm> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Jvm::setupJvmParser);
+	public static final JsonpDeserializer<Jvm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Jvm::setupJvmDeserializer);
 
-	protected static void setupJvmParser(DelegatingJsonpValueParser<Jvm.Builder> op) {
+	protected static void setupJvmDeserializer(DelegatingDeserializer<Jvm.Builder> op) {
 
-		op.add(Builder::bufferPools, JsonpValueParser.stringMapParser(NodeBufferPool.JSONP_PARSER), "buffer_pools");
-		op.add(Builder::classes, JvmClasses.JSONP_PARSER, "classes");
-		op.add(Builder::gc, GarbageCollector.JSONP_PARSER, "gc");
-		op.add(Builder::mem, MemoryStats.JSONP_PARSER, "mem");
-		op.add(Builder::threads, JvmThreads.JSONP_PARSER, "threads");
-		op.add(Builder::timestamp, JsonpValueParser.numberParser(), "timestamp");
-		op.add(Builder::uptime, JsonpValueParser.stringParser(), "uptime");
-		op.add(Builder::uptimeInMillis, JsonpValueParser.numberParser(), "uptime_in_millis");
+		op.add(Builder::bufferPools, JsonpDeserializer.stringMapDeserializer(NodeBufferPool.DESERIALIZER),
+				"buffer_pools");
+		op.add(Builder::classes, JvmClasses.DESERIALIZER, "classes");
+		op.add(Builder::gc, GarbageCollector.DESERIALIZER, "gc");
+		op.add(Builder::mem, MemoryStats.DESERIALIZER, "mem");
+		op.add(Builder::threads, JvmThreads.DESERIALIZER, "threads");
+		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::uptime, JsonpDeserializer.stringDeserializer(), "uptime");
+		op.add(Builder::uptimeInMillis, JsonpDeserializer.numberDeserializer(), "uptime_in_millis");
 
 	}
 

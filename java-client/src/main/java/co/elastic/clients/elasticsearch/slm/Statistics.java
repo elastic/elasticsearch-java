@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -370,27 +370,27 @@ public final class Statistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Statistics
+	 * Json deserializer for Statistics
 	 */
-	public static final JsonpValueParser<Statistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Statistics::setupStatisticsParser);
+	public static final JsonpDeserializer<Statistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Statistics::setupStatisticsDeserializer);
 
-	protected static void setupStatisticsParser(DelegatingJsonpValueParser<Statistics.Builder> op) {
+	protected static void setupStatisticsDeserializer(DelegatingDeserializer<Statistics.Builder> op) {
 
-		op.add(Builder::retentionDeletionTime, JsonpValueParser.stringParser(), "retention_deletion_time");
-		op.add(Builder::retentionDeletionTimeMillis, JsonpValueParser.jsonValueParser(),
+		op.add(Builder::retentionDeletionTime, JsonpDeserializer.stringDeserializer(), "retention_deletion_time");
+		op.add(Builder::retentionDeletionTimeMillis, JsonpDeserializer.jsonValueDeserializer(),
 				"retention_deletion_time_millis");
-		op.add(Builder::retentionFailed, JsonpValueParser.numberParser(), "retention_failed");
-		op.add(Builder::retentionRuns, JsonpValueParser.numberParser(), "retention_runs");
-		op.add(Builder::retentionTimedOut, JsonpValueParser.numberParser(), "retention_timed_out");
-		op.add(Builder::policy, JsonpValueParser.stringParser(), "policy");
-		op.add(Builder::totalSnapshotsDeleted, JsonpValueParser.numberParser(), "total_snapshots_deleted",
+		op.add(Builder::retentionFailed, JsonpDeserializer.numberDeserializer(), "retention_failed");
+		op.add(Builder::retentionRuns, JsonpDeserializer.numberDeserializer(), "retention_runs");
+		op.add(Builder::retentionTimedOut, JsonpDeserializer.numberDeserializer(), "retention_timed_out");
+		op.add(Builder::policy, JsonpDeserializer.stringDeserializer(), "policy");
+		op.add(Builder::totalSnapshotsDeleted, JsonpDeserializer.numberDeserializer(), "total_snapshots_deleted",
 				"snapshots_deleted");
-		op.add(Builder::totalSnapshotDeletionFailures, JsonpValueParser.numberParser(),
+		op.add(Builder::totalSnapshotDeletionFailures, JsonpDeserializer.numberDeserializer(),
 				"total_snapshot_deletion_failures", "snapshot_deletion_failures");
-		op.add(Builder::totalSnapshotsFailed, JsonpValueParser.numberParser(), "total_snapshots_failed",
+		op.add(Builder::totalSnapshotsFailed, JsonpDeserializer.numberDeserializer(), "total_snapshots_failed",
 				"snapshots_failed");
-		op.add(Builder::totalSnapshotsTaken, JsonpValueParser.numberParser(), "total_snapshots_taken",
+		op.add(Builder::totalSnapshotsTaken, JsonpDeserializer.numberDeserializer(), "total_snapshots_taken",
 				"snapshots_taken");
 
 	}

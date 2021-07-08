@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
@@ -162,7 +162,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private QueryContainer(Builder builder) {
@@ -1701,78 +1701,92 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<QueryContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(QueryContainer::buildJsonpParser);
+	public static final JsonpDeserializer<QueryContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(QueryContainer::buildDeserializer);
 
-	private static JsonpValueParser<QueryContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<QueryContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::bool, BoolQuery.JSONP_PARSER, "bool");
-		op.add(Builder::boosting, BoostingQuery.JSONP_PARSER, "boosting");
-		op.add(Builder::common, NamedValue.parser(() -> JsonpValueParser.jsonValueParser()), "common");
-		op.add(Builder::combinedFields, CombinedFieldsQuery.JSONP_PARSER, "combined_fields");
-		op.add(Builder::constantScore, ConstantScoreQuery.JSONP_PARSER, "constant_score");
-		op.add(Builder::disMax, DisMaxQuery.JSONP_PARSER, "dis_max");
-		op.add(Builder::distanceFeature, JsonpValueParser.jsonValueParser(), "distance_feature");
-		op.add(Builder::exists, ExistsQuery.JSONP_PARSER, "exists");
-		op.add(Builder::functionScore, FunctionScoreQuery.JSONP_PARSER, "function_score");
-		op.add(Builder::fuzzy, NamedValue.parser(() -> JsonpValueParser.jsonValueParser()), "fuzzy");
-		op.add(Builder::geoBoundingBox, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()),
-				"geo_bounding_box");
-		op.add(Builder::geoDistance, GeoDistanceQuery.JSONP_PARSER, "geo_distance");
-		op.add(Builder::geoPolygon, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::bool, BoolQuery.DESERIALIZER, "bool");
+		op.add(Builder::boosting, BoostingQuery.DESERIALIZER, "boosting");
+		op.add(Builder::common, NamedValue.deserializer(() -> JsonpDeserializer.jsonValueDeserializer()), "common");
+		op.add(Builder::combinedFields, CombinedFieldsQuery.DESERIALIZER, "combined_fields");
+		op.add(Builder::constantScore, ConstantScoreQuery.DESERIALIZER, "constant_score");
+		op.add(Builder::disMax, DisMaxQuery.DESERIALIZER, "dis_max");
+		op.add(Builder::distanceFeature, JsonpDeserializer.jsonValueDeserializer(), "distance_feature");
+		op.add(Builder::exists, ExistsQuery.DESERIALIZER, "exists");
+		op.add(Builder::functionScore, FunctionScoreQuery.DESERIALIZER, "function_score");
+		op.add(Builder::fuzzy, NamedValue.deserializer(() -> JsonpDeserializer.jsonValueDeserializer()), "fuzzy");
+		op.add(Builder::geoBoundingBox,
+				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()), "geo_bounding_box");
+		op.add(Builder::geoDistance, GeoDistanceQuery.DESERIALIZER, "geo_distance");
+		op.add(Builder::geoPolygon, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"geo_polygon");
-		op.add(Builder::geoShape, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "geo_shape");
-		op.add(Builder::hasChild, HasChildQuery.JSONP_PARSER, "has_child");
-		op.add(Builder::hasParent, HasParentQuery.JSONP_PARSER, "has_parent");
-		op.add(Builder::ids, IdsQuery.JSONP_PARSER, "ids");
-		op.add(Builder::intervals, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "intervals");
-		op.add(Builder::match, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "match");
-		op.add(Builder::matchAll, MatchAllQuery.JSONP_PARSER, "match_all");
-		op.add(Builder::matchBoolPrefix, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::geoShape, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"geo_shape");
+		op.add(Builder::hasChild, HasChildQuery.DESERIALIZER, "has_child");
+		op.add(Builder::hasParent, HasParentQuery.DESERIALIZER, "has_parent");
+		op.add(Builder::ids, IdsQuery.DESERIALIZER, "ids");
+		op.add(Builder::intervals, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"intervals");
+		op.add(Builder::match, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"match");
+		op.add(Builder::matchAll, MatchAllQuery.DESERIALIZER, "match_all");
+		op.add(Builder::matchBoolPrefix,
+				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"match_bool_prefix");
-		op.add(Builder::matchNone, JsonpValueParser.jsonValueParser(), "match_none");
-		op.add(Builder::matchPhrase, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::matchNone, JsonpDeserializer.jsonValueDeserializer(), "match_none");
+		op.add(Builder::matchPhrase, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"match_phrase");
-		op.add(Builder::matchPhrasePrefix, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::matchPhrasePrefix,
+				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"match_phrase_prefix");
-		op.add(Builder::moreLikeThis, MoreLikeThisQuery.JSONP_PARSER, "more_like_this");
-		op.add(Builder::multiMatch, MultiMatchQuery.JSONP_PARSER, "multi_match");
-		op.add(Builder::nested, NestedQuery.JSONP_PARSER, "nested");
-		op.add(Builder::parentId, ParentIdQuery.JSONP_PARSER, "parent_id");
-		op.add(Builder::percolate, PercolateQuery.JSONP_PARSER, "percolate");
-		op.add(Builder::pinned, PinnedQuery.JSONP_PARSER, "pinned");
-		op.add(Builder::prefix, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "prefix");
-		op.add(Builder::queryString, QueryStringQuery.JSONP_PARSER, "query_string");
-		op.add(Builder::range, NamedQuery.createNamedQueryParser(RangeQuery.JSONP_PARSER), "range");
-		op.add(Builder::rankFeature, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::moreLikeThis, MoreLikeThisQuery.DESERIALIZER, "more_like_this");
+		op.add(Builder::multiMatch, MultiMatchQuery.DESERIALIZER, "multi_match");
+		op.add(Builder::nested, NestedQuery.DESERIALIZER, "nested");
+		op.add(Builder::parentId, ParentIdQuery.DESERIALIZER, "parent_id");
+		op.add(Builder::percolate, PercolateQuery.DESERIALIZER, "percolate");
+		op.add(Builder::pinned, PinnedQuery.DESERIALIZER, "pinned");
+		op.add(Builder::prefix, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"prefix");
+		op.add(Builder::queryString, QueryStringQuery.DESERIALIZER, "query_string");
+		op.add(Builder::range, NamedQuery.createNamedQueryDeserializer(RangeQuery.DESERIALIZER), "range");
+		op.add(Builder::rankFeature, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"rank_feature");
-		op.add(Builder::regexp, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "regexp");
-		op.add(Builder::script, ScriptQuery.JSONP_PARSER, "script");
-		op.add(Builder::scriptScore, ScriptScoreQuery.JSONP_PARSER, "script_score");
-		op.add(Builder::shape, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "shape");
-		op.add(Builder::simpleQueryString, SimpleQueryStringQuery.JSONP_PARSER, "simple_query_string");
-		op.add(Builder::spanContaining, SpanContainingQuery.JSONP_PARSER, "span_containing");
-		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery.JSONP_PARSER, "field_masking_span");
-		op.add(Builder::spanFirst, SpanFirstQuery.JSONP_PARSER, "span_first");
-		op.add(Builder::spanMulti, SpanMultiTermQuery.JSONP_PARSER, "span_multi");
-		op.add(Builder::spanNear, SpanNearQuery.JSONP_PARSER, "span_near");
-		op.add(Builder::spanNot, SpanNotQuery.JSONP_PARSER, "span_not");
-		op.add(Builder::spanOr, SpanOrQuery.JSONP_PARSER, "span_or");
-		op.add(Builder::spanTerm, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "span_term");
-		op.add(Builder::spanWithin, SpanWithinQuery.JSONP_PARSER, "span_within");
-		op.add(Builder::template, QueryTemplate.JSONP_PARSER, "template");
-		op.add(Builder::term, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "term");
-		op.add(Builder::terms, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "terms");
-		op.add(Builder::termsSet, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "terms_set");
-		op.add(Builder::wildcard, NamedQuery.createNamedQueryParser(JsonpValueParser.jsonValueParser()), "wildcard");
-		op.add(Builder::type, TypeQuery.JSONP_PARSER, "type");
+		op.add(Builder::regexp, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"regexp");
+		op.add(Builder::script, ScriptQuery.DESERIALIZER, "script");
+		op.add(Builder::scriptScore, ScriptScoreQuery.DESERIALIZER, "script_score");
+		op.add(Builder::shape, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"shape");
+		op.add(Builder::simpleQueryString, SimpleQueryStringQuery.DESERIALIZER, "simple_query_string");
+		op.add(Builder::spanContaining, SpanContainingQuery.DESERIALIZER, "span_containing");
+		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery.DESERIALIZER, "field_masking_span");
+		op.add(Builder::spanFirst, SpanFirstQuery.DESERIALIZER, "span_first");
+		op.add(Builder::spanMulti, SpanMultiTermQuery.DESERIALIZER, "span_multi");
+		op.add(Builder::spanNear, SpanNearQuery.DESERIALIZER, "span_near");
+		op.add(Builder::spanNot, SpanNotQuery.DESERIALIZER, "span_not");
+		op.add(Builder::spanOr, SpanOrQuery.DESERIALIZER, "span_or");
+		op.add(Builder::spanTerm, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"span_term");
+		op.add(Builder::spanWithin, SpanWithinQuery.DESERIALIZER, "span_within");
+		op.add(Builder::template, QueryTemplate.DESERIALIZER, "template");
+		op.add(Builder::term, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"term");
+		op.add(Builder::terms, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"terms");
+		op.add(Builder::termsSet, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"terms_set");
+		op.add(Builder::wildcard, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"wildcard");
+		op.add(Builder::type, TypeQuery.DESERIALIZER, "type");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

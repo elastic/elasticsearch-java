@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -265,20 +265,21 @@ public final class DataframeClassificationSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeClassificationSummary
+	 * Json deserializer for DataframeClassificationSummary
 	 */
-	public static final JsonpValueParser<DataframeClassificationSummary> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataframeClassificationSummary::setupDataframeClassificationSummaryParser);
+	public static final JsonpDeserializer<DataframeClassificationSummary> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					DataframeClassificationSummary::setupDataframeClassificationSummaryDeserializer);
 
-	protected static void setupDataframeClassificationSummaryParser(
-			DelegatingJsonpValueParser<DataframeClassificationSummary.Builder> op) {
+	protected static void setupDataframeClassificationSummaryDeserializer(
+			DelegatingDeserializer<DataframeClassificationSummary.Builder> op) {
 
-		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc.JSONP_PARSER, "auc_roc");
-		op.add(Builder::accuracy, DataframeClassificationSummaryAccuracy.JSONP_PARSER, "accuracy");
-		op.add(Builder::multiclassConfusionMatrix, DataframeClassificationSummaryMulticlassConfusionMatrix.JSONP_PARSER,
+		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc.DESERIALIZER, "auc_roc");
+		op.add(Builder::accuracy, DataframeClassificationSummaryAccuracy.DESERIALIZER, "accuracy");
+		op.add(Builder::multiclassConfusionMatrix, DataframeClassificationSummaryMulticlassConfusionMatrix.DESERIALIZER,
 				"multiclass_confusion_matrix");
-		op.add(Builder::precision, DataframeClassificationSummaryPrecision.JSONP_PARSER, "precision");
-		op.add(Builder::recall, DataframeClassificationSummaryRecall.JSONP_PARSER, "recall");
+		op.add(Builder::precision, DataframeClassificationSummaryPrecision.DESERIALIZER, "precision");
+		op.add(Builder::recall, DataframeClassificationSummaryRecall.DESERIALIZER, "recall");
 
 	}
 

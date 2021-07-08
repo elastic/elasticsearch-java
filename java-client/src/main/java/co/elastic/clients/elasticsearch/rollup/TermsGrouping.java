@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -128,14 +128,14 @@ public final class TermsGrouping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TermsGrouping
+	 * Json deserializer for TermsGrouping
 	 */
-	public static final JsonpValueParser<TermsGrouping> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TermsGrouping::setupTermsGroupingParser);
+	public static final JsonpDeserializer<TermsGrouping> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TermsGrouping::setupTermsGroupingDeserializer);
 
-	protected static void setupTermsGroupingParser(DelegatingJsonpValueParser<TermsGrouping.Builder> op) {
+	protected static void setupTermsGroupingDeserializer(DelegatingDeserializer<TermsGrouping.Builder> op) {
 
-		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "fields");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 
 	}
 

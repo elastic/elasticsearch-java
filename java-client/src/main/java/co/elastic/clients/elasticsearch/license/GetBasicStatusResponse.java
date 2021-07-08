@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class GetBasicStatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetBasicStatusResponse
+	 * Json deserializer for GetBasicStatusResponse
 	 */
-	public static final JsonpValueParser<GetBasicStatusResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetBasicStatusResponse::setupGetBasicStatusResponseParser);
+	public static final JsonpDeserializer<GetBasicStatusResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetBasicStatusResponse::setupGetBasicStatusResponseDeserializer);
 
-	protected static void setupGetBasicStatusResponseParser(
-			DelegatingJsonpValueParser<GetBasicStatusResponse.Builder> op) {
+	protected static void setupGetBasicStatusResponseDeserializer(
+			DelegatingDeserializer<GetBasicStatusResponse.Builder> op) {
 
-		op.add(Builder::eligibleToStartBasic, JsonpValueParser.booleanParser(), "eligible_to_start_basic");
+		op.add(Builder::eligibleToStartBasic, JsonpDeserializer.booleanDeserializer(), "eligible_to_start_basic");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -520,27 +520,29 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HttpInputRequestDefinition
+	 * Json deserializer for HttpInputRequestDefinition
 	 */
-	public static final JsonpValueParser<HttpInputRequestDefinition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HttpInputRequestDefinition::setupHttpInputRequestDefinitionParser);
+	public static final JsonpDeserializer<HttpInputRequestDefinition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HttpInputRequestDefinition::setupHttpInputRequestDefinitionDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupHttpInputRequestDefinitionParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupHttpInputRequestDefinitionDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::auth, HttpInputAuthentication.JSONP_PARSER, "auth");
-		op.add(AbstractBuilder::body, JsonpValueParser.stringParser(), "body");
-		op.add(AbstractBuilder::connectionTimeout, JsonpValueParser.jsonValueParser(), "connection_timeout");
-		op.add(AbstractBuilder::headers, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "headers");
-		op.add(AbstractBuilder::host, JsonpValueParser.stringParser(), "host");
-		op.add(AbstractBuilder::method, JsonpValueParser.jsonValueParser(), "method");
-		op.add(AbstractBuilder::params, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "params");
-		op.add(AbstractBuilder::path, JsonpValueParser.stringParser(), "path");
-		op.add(AbstractBuilder::port, JsonpValueParser.numberParser(), "port");
-		op.add(AbstractBuilder::proxy, HttpInputProxy.JSONP_PARSER, "proxy");
-		op.add(AbstractBuilder::readTimeout, JsonpValueParser.jsonValueParser(), "read_timeout");
-		op.add(AbstractBuilder::scheme, JsonpValueParser.jsonValueParser(), "scheme");
-		op.add(AbstractBuilder::url, JsonpValueParser.stringParser(), "url");
+		op.add(AbstractBuilder::auth, HttpInputAuthentication.DESERIALIZER, "auth");
+		op.add(AbstractBuilder::body, JsonpDeserializer.stringDeserializer(), "body");
+		op.add(AbstractBuilder::connectionTimeout, JsonpDeserializer.jsonValueDeserializer(), "connection_timeout");
+		op.add(AbstractBuilder::headers,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "headers");
+		op.add(AbstractBuilder::host, JsonpDeserializer.stringDeserializer(), "host");
+		op.add(AbstractBuilder::method, JsonpDeserializer.jsonValueDeserializer(), "method");
+		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"params");
+		op.add(AbstractBuilder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(AbstractBuilder::port, JsonpDeserializer.numberDeserializer(), "port");
+		op.add(AbstractBuilder::proxy, HttpInputProxy.DESERIALIZER, "proxy");
+		op.add(AbstractBuilder::readTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_timeout");
+		op.add(AbstractBuilder::scheme, JsonpDeserializer.jsonValueDeserializer(), "scheme");
+		op.add(AbstractBuilder::url, JsonpDeserializer.stringDeserializer(), "url");
 
 	}
 

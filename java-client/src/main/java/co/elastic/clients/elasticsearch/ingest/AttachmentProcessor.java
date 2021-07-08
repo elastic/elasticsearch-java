@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -303,20 +303,21 @@ public final class AttachmentProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AttachmentProcessor
+	 * Json deserializer for AttachmentProcessor
 	 */
-	public static final JsonpValueParser<AttachmentProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AttachmentProcessor::setupAttachmentProcessorParser);
+	public static final JsonpDeserializer<AttachmentProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AttachmentProcessor::setupAttachmentProcessorDeserializer);
 
-	protected static void setupAttachmentProcessorParser(DelegatingJsonpValueParser<AttachmentProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::indexedChars, JsonpValueParser.numberParser(), "indexed_chars");
-		op.add(Builder::indexedCharsField, JsonpValueParser.stringParser(), "indexed_chars_field");
-		op.add(Builder::properties, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "properties");
-		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
-		op.add(Builder::resourceName, JsonpValueParser.stringParser(), "resource_name");
+	protected static void setupAttachmentProcessorDeserializer(DelegatingDeserializer<AttachmentProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::indexedChars, JsonpDeserializer.numberDeserializer(), "indexed_chars");
+		op.add(Builder::indexedCharsField, JsonpDeserializer.stringDeserializer(), "indexed_chars_field");
+		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"properties");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+		op.add(Builder::resourceName, JsonpDeserializer.stringDeserializer(), "resource_name");
 
 	}
 

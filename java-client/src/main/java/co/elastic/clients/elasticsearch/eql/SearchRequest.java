@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -662,26 +662,28 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchRequest
+	 * Json deserializer for SearchRequest
 	 */
-	public static final JsonpValueParser<SearchRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchRequest::setupSearchRequestParser);
+	public static final JsonpDeserializer<SearchRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchRequest::setupSearchRequestDeserializer);
 
-	protected static void setupSearchRequestParser(DelegatingJsonpValueParser<SearchRequest.Builder> op) {
+	protected static void setupSearchRequestDeserializer(DelegatingDeserializer<SearchRequest.Builder> op) {
 
-		op.add(Builder::query, JsonpValueParser.stringParser(), "query");
-		op.add(Builder::caseSensitive, JsonpValueParser.booleanParser(), "case_sensitive");
-		op.add(Builder::eventCategoryField, JsonpValueParser.stringParser(), "event_category_field");
-		op.add(Builder::tiebreakerField, JsonpValueParser.stringParser(), "tiebreaker_field");
-		op.add(Builder::timestampField, JsonpValueParser.stringParser(), "timestamp_field");
-		op.add(Builder::fetchSize, JsonpValueParser.numberParser(), "fetch_size");
-		op.add(Builder::filter, JsonpValueParser.arrayParser(QueryContainer.JSONP_PARSER), "filter");
-		op.add(Builder::keepAlive, JsonpValueParser.jsonValueParser(), "keep_alive");
-		op.add(Builder::keepOnCompletion, JsonpValueParser.booleanParser(), "keep_on_completion");
-		op.add(Builder::waitForCompletionTimeout, JsonpValueParser.jsonValueParser(), "wait_for_completion_timeout");
-		op.add(Builder::size, JsonpValueParser.jsonValueParser(), "size");
-		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "fields");
-		op.add(Builder::resultPosition, JsonpValueParser.jsonValueParser(), "result_position");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::caseSensitive, JsonpDeserializer.booleanDeserializer(), "case_sensitive");
+		op.add(Builder::eventCategoryField, JsonpDeserializer.stringDeserializer(), "event_category_field");
+		op.add(Builder::tiebreakerField, JsonpDeserializer.stringDeserializer(), "tiebreaker_field");
+		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");
+		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
+		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(QueryContainer.DESERIALIZER), "filter");
+		op.add(Builder::keepAlive, JsonpDeserializer.jsonValueDeserializer(), "keep_alive");
+		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
+		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.jsonValueDeserializer(),
+				"wait_for_completion_timeout");
+		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"fields");
+		op.add(Builder::resultPosition, JsonpDeserializer.jsonValueDeserializer(), "result_position");
 
 	}
 
@@ -738,7 +740,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	 * Create an "{@code eql.search}" endpoint.
 	 */
 	public static <TEvent> Endpoint<SearchRequest, SearchResponse<TEvent>, ElasticsearchError> createSearchEndpoint(
-			JsonpValueParser<TEvent> tEventParser) {
-		return ENDPOINT.withResponseParser(SearchResponse.createSearchResponseParser(tEventParser));
+			JsonpDeserializer<TEvent> tEventDeserializer) {
+		return ENDPOINT.withResponseDeserializer(SearchResponse.createSearchResponseDeserializer(tEventDeserializer));
 	}
 }

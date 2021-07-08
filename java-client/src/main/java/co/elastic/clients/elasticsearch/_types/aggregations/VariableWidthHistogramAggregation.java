@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -195,19 +195,19 @@ public final class VariableWidthHistogramAggregation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for VariableWidthHistogramAggregation
+	 * Json deserializer for VariableWidthHistogramAggregation
 	 */
-	public static final JsonpValueParser<VariableWidthHistogramAggregation> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<VariableWidthHistogramAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					VariableWidthHistogramAggregation::setupVariableWidthHistogramAggregationParser);
+					VariableWidthHistogramAggregation::setupVariableWidthHistogramAggregationDeserializer);
 
-	protected static void setupVariableWidthHistogramAggregationParser(
-			DelegatingJsonpValueParser<VariableWidthHistogramAggregation.Builder> op) {
+	protected static void setupVariableWidthHistogramAggregationDeserializer(
+			DelegatingDeserializer<VariableWidthHistogramAggregation.Builder> op) {
 
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::buckets, JsonpValueParser.numberParser(), "buckets");
-		op.add(Builder::shardSize, JsonpValueParser.numberParser(), "shard_size");
-		op.add(Builder::initialBuffer, JsonpValueParser.numberParser(), "initial_buffer");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::buckets, JsonpDeserializer.numberDeserializer(), "buckets");
+		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::initialBuffer, JsonpDeserializer.numberDeserializer(), "initial_buffer");
 
 	}
 

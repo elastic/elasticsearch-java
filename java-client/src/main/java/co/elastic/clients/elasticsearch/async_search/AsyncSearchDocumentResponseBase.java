@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -102,10 +102,10 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupAsyncSearchDocumentResponseBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op, JsonpValueParser<TDocument> tDocumentParser) {
-		AsyncSearchResponseBase.setupAsyncSearchResponseBaseParser(op);
-		op.add(AbstractBuilder::response, AsyncSearch.createAsyncSearchParser(tDocumentParser), "response");
+	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupAsyncSearchDocumentResponseBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
+		op.add(AbstractBuilder::response, AsyncSearch.createAsyncSearchDeserializer(tDocumentDeserializer), "response");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -221,18 +221,19 @@ public final class InvalidateTokenResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InvalidateTokenResponse
+	 * Json deserializer for InvalidateTokenResponse
 	 */
-	public static final JsonpValueParser<InvalidateTokenResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InvalidateTokenResponse::setupInvalidateTokenResponseParser);
+	public static final JsonpDeserializer<InvalidateTokenResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InvalidateTokenResponse::setupInvalidateTokenResponseDeserializer);
 
-	protected static void setupInvalidateTokenResponseParser(
-			DelegatingJsonpValueParser<InvalidateTokenResponse.Builder> op) {
+	protected static void setupInvalidateTokenResponseDeserializer(
+			DelegatingDeserializer<InvalidateTokenResponse.Builder> op) {
 
-		op.add(Builder::errorCount, JsonpValueParser.numberParser(), "error_count");
-		op.add(Builder::errorDetails, JsonpValueParser.arrayParser(ErrorCause.JSONP_PARSER), "error_details");
-		op.add(Builder::invalidatedTokens, JsonpValueParser.numberParser(), "invalidated_tokens");
-		op.add(Builder::previouslyInvalidatedTokens, JsonpValueParser.numberParser(), "previously_invalidated_tokens");
+		op.add(Builder::errorCount, JsonpDeserializer.numberDeserializer(), "error_count");
+		op.add(Builder::errorDetails, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "error_details");
+		op.add(Builder::invalidatedTokens, JsonpDeserializer.numberDeserializer(), "invalidated_tokens");
+		op.add(Builder::previouslyInvalidatedTokens, JsonpDeserializer.numberDeserializer(),
+				"previously_invalidated_tokens");
 
 	}
 

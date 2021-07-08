@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -195,17 +195,17 @@ public final class NodeInfoXpack implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoXpack
+	 * Json deserializer for NodeInfoXpack
 	 */
-	public static final JsonpValueParser<NodeInfoXpack> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoXpack::setupNodeInfoXpackParser);
+	public static final JsonpDeserializer<NodeInfoXpack> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoXpack::setupNodeInfoXpackDeserializer);
 
-	protected static void setupNodeInfoXpackParser(DelegatingJsonpValueParser<NodeInfoXpack.Builder> op) {
+	protected static void setupNodeInfoXpackDeserializer(DelegatingDeserializer<NodeInfoXpack.Builder> op) {
 
-		op.add(Builder::license, NodeInfoXpackLicense.JSONP_PARSER, "license");
-		op.add(Builder::security, NodeInfoXpackSecurity.JSONP_PARSER, "security");
-		op.add(Builder::notification, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"notification");
+		op.add(Builder::license, NodeInfoXpackLicense.DESERIALIZER, "license");
+		op.add(Builder::security, NodeInfoXpackSecurity.DESERIALIZER, "security");
+		op.add(Builder::notification,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "notification");
 
 	}
 

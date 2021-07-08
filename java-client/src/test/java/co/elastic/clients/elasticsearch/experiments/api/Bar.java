@@ -21,9 +21,9 @@ package co.elastic.clients.elasticsearch.experiments.api;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 
 import javax.annotation.Nullable;
@@ -66,17 +66,17 @@ public class Bar implements ToJsonp {
     }
   }
 
-  private static final JsonpValueParser<Bar> PARSER;
+  private static final JsonpDeserializer<Bar> PARSER;
 
-  public static JsonpValueParser<Bar> parser() {
+  public static JsonpDeserializer<Bar> parser() {
     return PARSER;
   }
 
   static {
-    JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+    ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-    op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+    op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
-    PARSER = new JsonpObjectBuilderParser<>(op);
+    PARSER = new ObjectBuilderDeserializer<>(op);
   }
 }

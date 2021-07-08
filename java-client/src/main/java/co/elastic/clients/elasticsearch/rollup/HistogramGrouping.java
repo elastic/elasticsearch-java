@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -152,15 +152,15 @@ public final class HistogramGrouping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HistogramGrouping
+	 * Json deserializer for HistogramGrouping
 	 */
-	public static final JsonpValueParser<HistogramGrouping> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HistogramGrouping::setupHistogramGroupingParser);
+	public static final JsonpDeserializer<HistogramGrouping> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HistogramGrouping::setupHistogramGroupingDeserializer);
 
-	protected static void setupHistogramGroupingParser(DelegatingJsonpValueParser<HistogramGrouping.Builder> op) {
+	protected static void setupHistogramGroupingDeserializer(DelegatingDeserializer<HistogramGrouping.Builder> op) {
 
-		op.add(Builder::fields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "fields");
-		op.add(Builder::interval, JsonpValueParser.numberParser(), "interval");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::interval, JsonpDeserializer.numberDeserializer(), "interval");
 
 	}
 

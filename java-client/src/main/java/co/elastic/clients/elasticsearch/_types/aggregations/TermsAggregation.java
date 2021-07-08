@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -511,27 +511,28 @@ public final class TermsAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TermsAggregation
+	 * Json deserializer for TermsAggregation
 	 */
-	public static final JsonpValueParser<TermsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TermsAggregation::setupTermsAggregationParser);
+	public static final JsonpDeserializer<TermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TermsAggregation::setupTermsAggregationDeserializer);
 
-	protected static void setupTermsAggregationParser(DelegatingJsonpValueParser<TermsAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::collectMode, JsonpValueParser.jsonValueParser(), "collect_mode");
-		op.add(Builder::exclude, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "exclude");
-		op.add(Builder::executionHint, JsonpValueParser.jsonValueParser(), "execution_hint");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::include, JsonpValueParser.jsonValueParser(), "include");
-		op.add(Builder::minDocCount, JsonpValueParser.numberParser(), "min_doc_count");
-		op.add(Builder::missing, JsonpValueParser.jsonValueParser(), "missing");
-		op.add(Builder::missingBucket, JsonpValueParser.booleanParser(), "missing_bucket");
-		op.add(Builder::valueType, JsonpValueParser.stringParser(), "value_type");
-		op.add(Builder::order, JsonpValueParser.jsonValueParser(), "order");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::shardSize, JsonpValueParser.numberParser(), "shard_size");
-		op.add(Builder::showTermDocCountError, JsonpValueParser.booleanParser(), "show_term_doc_count_error");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+	protected static void setupTermsAggregationDeserializer(DelegatingDeserializer<TermsAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::collectMode, JsonpDeserializer.jsonValueDeserializer(), "collect_mode");
+		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"exclude");
+		op.add(Builder::executionHint, JsonpDeserializer.jsonValueDeserializer(), "execution_hint");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::include, JsonpDeserializer.jsonValueDeserializer(), "include");
+		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
+		op.add(Builder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
+		op.add(Builder::missingBucket, JsonpDeserializer.booleanDeserializer(), "missing_bucket");
+		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");
+		op.add(Builder::order, JsonpDeserializer.jsonValueDeserializer(), "order");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::showTermDocCountError, JsonpDeserializer.booleanDeserializer(), "show_term_doc_count_error");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}
 

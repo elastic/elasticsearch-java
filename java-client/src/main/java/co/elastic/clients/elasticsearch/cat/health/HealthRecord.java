@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.health;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -541,30 +541,32 @@ public final class HealthRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HealthRecord
+	 * Json deserializer for HealthRecord
 	 */
-	public static final JsonpValueParser<HealthRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HealthRecord::setupHealthRecordParser);
+	public static final JsonpDeserializer<HealthRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HealthRecord::setupHealthRecordDeserializer);
 
-	protected static void setupHealthRecordParser(DelegatingJsonpValueParser<HealthRecord.Builder> op) {
+	protected static void setupHealthRecordDeserializer(DelegatingDeserializer<HealthRecord.Builder> op) {
 
-		op.add(Builder::epoch, JsonpValueParser.jsonValueParser(), "epoch", "time");
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp", "ts", "hms", "hhmmss");
-		op.add(Builder::cluster, JsonpValueParser.stringParser(), "cluster", "cl");
-		op.add(Builder::status, JsonpValueParser.stringParser(), "status", "st");
-		op.add(Builder::node_total, JsonpValueParser.stringParser(), "node.total", "nt", "nodeTotal");
-		op.add(Builder::node_data, JsonpValueParser.stringParser(), "node.data", "nd", "nodeData");
-		op.add(Builder::shards, JsonpValueParser.stringParser(), "shards", "t", "sh", "shards.total", "shardsTotal");
-		op.add(Builder::pri, JsonpValueParser.stringParser(), "pri", "p", "shards.primary", "shardsPrimary");
-		op.add(Builder::relo, JsonpValueParser.stringParser(), "relo", "r", "shards.relocating", "shardsRelocating");
-		op.add(Builder::init, JsonpValueParser.stringParser(), "init", "i", "shards.initializing",
+		op.add(Builder::epoch, JsonpDeserializer.jsonValueDeserializer(), "epoch", "time");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");
+		op.add(Builder::cluster, JsonpDeserializer.stringDeserializer(), "cluster", "cl");
+		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status", "st");
+		op.add(Builder::node_total, JsonpDeserializer.stringDeserializer(), "node.total", "nt", "nodeTotal");
+		op.add(Builder::node_data, JsonpDeserializer.stringDeserializer(), "node.data", "nd", "nodeData");
+		op.add(Builder::shards, JsonpDeserializer.stringDeserializer(), "shards", "t", "sh", "shards.total",
+				"shardsTotal");
+		op.add(Builder::pri, JsonpDeserializer.stringDeserializer(), "pri", "p", "shards.primary", "shardsPrimary");
+		op.add(Builder::relo, JsonpDeserializer.stringDeserializer(), "relo", "r", "shards.relocating",
+				"shardsRelocating");
+		op.add(Builder::init, JsonpDeserializer.stringDeserializer(), "init", "i", "shards.initializing",
 				"shardsInitializing");
-		op.add(Builder::unassign, JsonpValueParser.stringParser(), "unassign", "u", "shards.unassigned",
+		op.add(Builder::unassign, JsonpDeserializer.stringDeserializer(), "unassign", "u", "shards.unassigned",
 				"shardsUnassigned");
-		op.add(Builder::pendingTasks, JsonpValueParser.stringParser(), "pending_tasks", "pt", "pendingTasks");
-		op.add(Builder::maxTaskWaitTime, JsonpValueParser.stringParser(), "max_task_wait_time", "mtwt",
+		op.add(Builder::pendingTasks, JsonpDeserializer.stringDeserializer(), "pending_tasks", "pt", "pendingTasks");
+		op.add(Builder::maxTaskWaitTime, JsonpDeserializer.stringDeserializer(), "max_task_wait_time", "mtwt",
 				"maxTaskWaitTime");
-		op.add(Builder::activeShardsPercent, JsonpValueParser.stringParser(), "active_shards_percent", "asp",
+		op.add(Builder::activeShardsPercent, JsonpDeserializer.stringDeserializer(), "active_shards_percent", "asp",
 				"activeShardsPercent");
 
 	}

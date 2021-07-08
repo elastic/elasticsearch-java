@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.fielddata;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -276,19 +276,19 @@ public final class FielddataRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FielddataRecord
+	 * Json deserializer for FielddataRecord
 	 */
-	public static final JsonpValueParser<FielddataRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FielddataRecord::setupFielddataRecordParser);
+	public static final JsonpDeserializer<FielddataRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FielddataRecord::setupFielddataRecordDeserializer);
 
-	protected static void setupFielddataRecordParser(DelegatingJsonpValueParser<FielddataRecord.Builder> op) {
+	protected static void setupFielddataRecordDeserializer(DelegatingDeserializer<FielddataRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host", "h");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node", "n");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field", "f");
-		op.add(Builder::size, JsonpValueParser.stringParser(), "size");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field", "f");
+		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
 
 	}
 

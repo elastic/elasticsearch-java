@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security.delete_privileges;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class FoundStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FoundStatus
+	 * Json deserializer for FoundStatus
 	 */
-	public static final JsonpValueParser<FoundStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FoundStatus::setupFoundStatusParser);
+	public static final JsonpDeserializer<FoundStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FoundStatus::setupFoundStatusDeserializer);
 
-	protected static void setupFoundStatusParser(DelegatingJsonpValueParser<FoundStatus.Builder> op) {
+	protected static void setupFoundStatusDeserializer(DelegatingDeserializer<FoundStatus.Builder> op) {
 
-		op.add(Builder::found, JsonpValueParser.booleanParser(), "found");
+		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 
 	}
 

@@ -24,12 +24,12 @@
 package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.elasticsearch._global.search.TotalHits;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -297,20 +297,23 @@ public final class EqlHits<TEvent> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for EqlHits
+	 * Create a json deserializer for EqlHits
 	 */
-	public static <TEvent> JsonpValueParser<EqlHits<TEvent>> createEqlHitsParser(
-			JsonpValueParser<TEvent> tEventParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TEvent>>) Builder::new,
-				op -> EqlHits.setupEqlHitsParser(op, tEventParser));
+	public static <TEvent> JsonpDeserializer<EqlHits<TEvent>> createEqlHitsDeserializer(
+			JsonpDeserializer<TEvent> tEventDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TEvent>>) Builder::new,
+				op -> EqlHits.setupEqlHitsDeserializer(op, tEventDeserializer));
 	};
 
-	protected static <TEvent> void setupEqlHitsParser(DelegatingJsonpValueParser<EqlHits.Builder<TEvent>> op,
-			JsonpValueParser<TEvent> tEventParser) {
+	protected static <TEvent> void setupEqlHitsDeserializer(DelegatingDeserializer<EqlHits.Builder<TEvent>> op,
+			JsonpDeserializer<TEvent> tEventDeserializer) {
 
-		op.add(Builder::total, TotalHits.JSONP_PARSER, "total");
-		op.add(Builder::events, JsonpValueParser.arrayParser(HitsEvent.createHitsEventParser(tEventParser)), "events");
-		op.add(Builder::sequences, JsonpValueParser.arrayParser(HitsSequence.createHitsSequenceParser(tEventParser)),
+		op.add(Builder::total, TotalHits.DESERIALIZER, "total");
+		op.add(Builder::events,
+				JsonpDeserializer.arrayDeserializer(HitsEvent.createHitsEventDeserializer(tEventDeserializer)),
+				"events");
+		op.add(Builder::sequences,
+				JsonpDeserializer.arrayDeserializer(HitsSequence.createHitsSequenceDeserializer(tEventDeserializer)),
 				"sequences");
 
 	}

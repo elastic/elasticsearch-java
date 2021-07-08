@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,14 @@ public final class PutLifecycleResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutLifecycleResponse
+	 * Json deserializer for PutLifecycleResponse
 	 */
-	public static final JsonpValueParser<PutLifecycleResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutLifecycleResponse::setupPutLifecycleResponseParser);
+	public static final JsonpDeserializer<PutLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutLifecycleResponse::setupPutLifecycleResponseDeserializer);
 
-	protected static void setupPutLifecycleResponseParser(DelegatingJsonpValueParser<PutLifecycleResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupPutLifecycleResponseDeserializer(
+			DelegatingDeserializer<PutLifecycleResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

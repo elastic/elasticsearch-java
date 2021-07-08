@@ -26,38 +26,38 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
- * An object parser based on an {@link ObjectBuilder}.
+ * An object deserializer based on an {@link ObjectBuilder}.
  */
-public class JsonpObjectBuilderParser<T> extends JsonpValueParser<T> {
+public class ObjectBuilderDeserializer<T> extends JsonpDeserializer<T> {
 
-    private final JsonpValueParser<? extends ObjectBuilder<T>> builderParser;
+    private final JsonpDeserializer<? extends ObjectBuilder<T>> builderDeserializer;
 
-    public JsonpObjectBuilderParser(JsonpValueParser<? extends ObjectBuilder<T>> builderParser) {
-        super(builderParser.acceptedEvents());
-        this.builderParser = builderParser;
+    public ObjectBuilderDeserializer(JsonpDeserializer<? extends ObjectBuilder<T>> builderDeserializer) {
+        super(builderDeserializer.acceptedEvents());
+        this.builderDeserializer = builderDeserializer;
     }
 
     @Override
-    public T parse(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-        ObjectBuilder<T> builder = builderParser.parse(parser, mapper, event);
+    public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+        ObjectBuilder<T> builder = builderDeserializer.deserialize(parser, mapper, event);
         return builder.build();
     }
 
-    public static <T, B extends ObjectBuilder<T>> JsonpValueParser<T> createForObject(
+    public static <T, B extends ObjectBuilder<T>> JsonpDeserializer<T> createForObject(
         Supplier<B> ctor,
-        Consumer<DelegatingJsonpValueParser<B>> configurer
+        Consumer<DelegatingDeserializer<B>> configurer
     ) {
-        JsonpObjectParser<B> op = new JsonpObjectParser<>(ctor);
+        ObjectDeserializer<B> op = new ObjectDeserializer<>(ctor);
         configurer.accept(op);
-        return new JsonpObjectBuilderParser<>(op);
+        return new ObjectBuilderDeserializer<>(op);
     }
 
-    public static <T, B extends ObjectBuilder<T>> JsonpValueParser<T> createForValue(
+    public static <T, B extends ObjectBuilder<T>> JsonpDeserializer<T> createForValue(
         Supplier<B> ctor,
-        Consumer<DelegatingJsonpValueParser<B>> configurer
+        Consumer<DelegatingDeserializer<B>> configurer
     ) {
-        JsonpValueBodyParser<B> op = new JsonpValueBodyParser<>(ctor);
+        ValueBodyDeserializer<B> op = new ValueBodyDeserializer<>(ctor);
         configurer.accept(op);
-        return new JsonpObjectBuilderParser<>(op);
+        return new ObjectBuilderDeserializer<>(op);
     }
 }

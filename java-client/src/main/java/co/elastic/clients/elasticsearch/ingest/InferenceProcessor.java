@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -209,17 +209,18 @@ public final class InferenceProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InferenceProcessor
+	 * Json deserializer for InferenceProcessor
 	 */
-	public static final JsonpValueParser<InferenceProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InferenceProcessor::setupInferenceProcessorParser);
+	public static final JsonpDeserializer<InferenceProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InferenceProcessor::setupInferenceProcessorDeserializer);
 
-	protected static void setupInferenceProcessorParser(DelegatingJsonpValueParser<InferenceProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::modelId, JsonpValueParser.stringParser(), "model_id");
-		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
-		op.add(Builder::fieldMap, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "field_map");
-		op.add(Builder::inferenceConfig, InferenceConfig.JSONP_PARSER, "inference_config");
+	protected static void setupInferenceProcessorDeserializer(DelegatingDeserializer<InferenceProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+		op.add(Builder::fieldMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"field_map");
+		op.add(Builder::inferenceConfig, InferenceConfig.DESERIALIZER, "inference_config");
 
 	}
 

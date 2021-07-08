@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -186,16 +186,16 @@ public final class Groupings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Groupings
+	 * Json deserializer for Groupings
 	 */
-	public static final JsonpValueParser<Groupings> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Groupings::setupGroupingsParser);
+	public static final JsonpDeserializer<Groupings> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Groupings::setupGroupingsDeserializer);
 
-	protected static void setupGroupingsParser(DelegatingJsonpValueParser<Groupings.Builder> op) {
+	protected static void setupGroupingsDeserializer(DelegatingDeserializer<Groupings.Builder> op) {
 
-		op.add(Builder::dateHistogram, DateHistogramGrouping.JSONP_PARSER, "date_histogram");
-		op.add(Builder::histogram, HistogramGrouping.JSONP_PARSER, "histogram");
-		op.add(Builder::terms, TermsGrouping.JSONP_PARSER, "terms");
+		op.add(Builder::dateHistogram, DateHistogramGrouping.DESERIALIZER, "date_histogram");
+		op.add(Builder::histogram, HistogramGrouping.DESERIALIZER, "histogram");
+		op.add(Builder::terms, TermsGrouping.DESERIALIZER, "terms");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -222,19 +222,20 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DiversifiedSamplerAggregation
+	 * Json deserializer for DiversifiedSamplerAggregation
 	 */
-	public static final JsonpValueParser<DiversifiedSamplerAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DiversifiedSamplerAggregation::setupDiversifiedSamplerAggregationParser);
+	public static final JsonpDeserializer<DiversifiedSamplerAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					DiversifiedSamplerAggregation::setupDiversifiedSamplerAggregationDeserializer);
 
-	protected static void setupDiversifiedSamplerAggregationParser(
-			DelegatingJsonpValueParser<DiversifiedSamplerAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::executionHint, JsonpValueParser.jsonValueParser(), "execution_hint");
-		op.add(Builder::maxDocsPerValue, JsonpValueParser.numberParser(), "max_docs_per_value");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::shardSize, JsonpValueParser.numberParser(), "shard_size");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
+	protected static void setupDiversifiedSamplerAggregationDeserializer(
+			DelegatingDeserializer<DiversifiedSamplerAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::executionHint, JsonpDeserializer.jsonValueDeserializer(), "execution_hint");
+		op.add(Builder::maxDocsPerValue, JsonpDeserializer.numberDeserializer(), "max_docs_per_value");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
 	}
 

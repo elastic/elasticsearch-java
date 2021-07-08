@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class IndexVersioning implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexVersioning
+	 * Json deserializer for IndexVersioning
 	 */
-	public static final JsonpValueParser<IndexVersioning> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexVersioning::setupIndexVersioningParser);
+	public static final JsonpDeserializer<IndexVersioning> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexVersioning::setupIndexVersioningDeserializer);
 
-	protected static void setupIndexVersioningParser(DelegatingJsonpValueParser<IndexVersioning.Builder> op) {
+	protected static void setupIndexVersioningDeserializer(DelegatingDeserializer<IndexVersioning.Builder> op) {
 
-		op.add(Builder::created, JsonpValueParser.stringParser(), "created");
+		op.add(Builder::created, JsonpDeserializer.stringDeserializer(), "created");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -157,15 +157,15 @@ public final class StatsResponse extends NodesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StatsResponse
+	 * Json deserializer for StatsResponse
 	 */
-	public static final JsonpValueParser<StatsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseParser);
+	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
 
-	protected static void setupStatsResponseParser(DelegatingJsonpValueParser<StatsResponse.Builder> op) {
-		NodesResponseBase.setupNodesResponseBaseParser(op);
-		op.add(Builder::clusterName, JsonpValueParser.stringParser(), "cluster_name");
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(Stats.JSONP_PARSER), "nodes");
+	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
+		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
+		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(Stats.DESERIALIZER), "nodes");
 
 	}
 

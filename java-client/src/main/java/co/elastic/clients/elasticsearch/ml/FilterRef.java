@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -125,15 +125,15 @@ public final class FilterRef implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FilterRef
+	 * Json deserializer for FilterRef
 	 */
-	public static final JsonpValueParser<FilterRef> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FilterRef::setupFilterRefParser);
+	public static final JsonpDeserializer<FilterRef> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FilterRef::setupFilterRefDeserializer);
 
-	protected static void setupFilterRefParser(DelegatingJsonpValueParser<FilterRef.Builder> op) {
+	protected static void setupFilterRefDeserializer(DelegatingDeserializer<FilterRef.Builder> op) {
 
-		op.add(Builder::filterId, JsonpValueParser.stringParser(), "filter_id");
-		op.add(Builder::filterType, JsonpValueParser.jsonValueParser(), "filter_type");
+		op.add(Builder::filterId, JsonpDeserializer.stringDeserializer(), "filter_id");
+		op.add(Builder::filterType, JsonpDeserializer.jsonValueDeserializer(), "filter_type");
 
 	}
 

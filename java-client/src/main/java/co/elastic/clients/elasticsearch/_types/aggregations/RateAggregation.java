@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -133,15 +133,15 @@ public final class RateAggregation extends FormatMetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RateAggregation
+	 * Json deserializer for RateAggregation
 	 */
-	public static final JsonpValueParser<RateAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RateAggregation::setupRateAggregationParser);
+	public static final JsonpDeserializer<RateAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RateAggregation::setupRateAggregationDeserializer);
 
-	protected static void setupRateAggregationParser(DelegatingJsonpValueParser<RateAggregation.Builder> op) {
-		FormatMetricAggregationBase.setupFormatMetricAggregationBaseParser(op);
-		op.add(Builder::unit, JsonpValueParser.jsonValueParser(), "unit");
-		op.add(Builder::mode, JsonpValueParser.jsonValueParser(), "mode");
+	protected static void setupRateAggregationDeserializer(DelegatingDeserializer<RateAggregation.Builder> op) {
+		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
+		op.add(Builder::unit, JsonpDeserializer.jsonValueDeserializer(), "unit");
+		op.add(Builder::mode, JsonpDeserializer.jsonValueDeserializer(), "mode");
 
 	}
 

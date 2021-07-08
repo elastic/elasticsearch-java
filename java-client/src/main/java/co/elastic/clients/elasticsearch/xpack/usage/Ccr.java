@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -121,15 +121,15 @@ public final class Ccr extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Ccr
+	 * Json deserializer for Ccr
 	 */
-	public static final JsonpValueParser<Ccr> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Ccr::setupCcrParser);
+	public static final JsonpDeserializer<Ccr> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Ccr::setupCcrDeserializer);
 
-	protected static void setupCcrParser(DelegatingJsonpValueParser<Ccr.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::autoFollowPatternsCount, JsonpValueParser.numberParser(), "auto_follow_patterns_count");
-		op.add(Builder::followerIndicesCount, JsonpValueParser.numberParser(), "follower_indices_count");
+	protected static void setupCcrDeserializer(DelegatingDeserializer<Ccr.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::autoFollowPatternsCount, JsonpDeserializer.numberDeserializer(), "auto_follow_patterns_count");
+		op.add(Builder::followerIndicesCount, JsonpDeserializer.numberDeserializer(), "follower_indices_count");
 
 	}
 

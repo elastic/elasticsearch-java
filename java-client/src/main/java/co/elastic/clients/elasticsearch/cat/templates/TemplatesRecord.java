@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.templates;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -243,18 +243,18 @@ public final class TemplatesRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TemplatesRecord
+	 * Json deserializer for TemplatesRecord
 	 */
-	public static final JsonpValueParser<TemplatesRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TemplatesRecord::setupTemplatesRecordParser);
+	public static final JsonpDeserializer<TemplatesRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TemplatesRecord::setupTemplatesRecordDeserializer);
 
-	protected static void setupTemplatesRecordParser(DelegatingJsonpValueParser<TemplatesRecord.Builder> op) {
+	protected static void setupTemplatesRecordDeserializer(DelegatingDeserializer<TemplatesRecord.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name", "n");
-		op.add(Builder::indexPatterns, JsonpValueParser.stringParser(), "index_patterns", "t");
-		op.add(Builder::order, JsonpValueParser.stringParser(), "order", "o", "p");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version", "v");
-		op.add(Builder::composedOf, JsonpValueParser.stringParser(), "composed_of", "c");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name", "n");
+		op.add(Builder::indexPatterns, JsonpDeserializer.stringDeserializer(), "index_patterns", "t");
+		op.add(Builder::order, JsonpDeserializer.stringDeserializer(), "order", "o", "p");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
+		op.add(Builder::composedOf, JsonpDeserializer.stringDeserializer(), "composed_of", "c");
 
 	}
 

@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -54,7 +54,7 @@ public class RetentionPolicyContainer extends TaggedUnion<RetentionPolicyContain
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private RetentionPolicyContainer(Builder builder) {
@@ -110,19 +110,20 @@ public class RetentionPolicyContainer extends TaggedUnion<RetentionPolicyContain
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<RetentionPolicyContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(RetentionPolicyContainer::buildJsonpParser);
+	public static final JsonpDeserializer<RetentionPolicyContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(RetentionPolicyContainer::buildDeserializer);
 
-	private static JsonpValueParser<RetentionPolicyContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<RetentionPolicyContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::time, RetentionPolicy.JSONP_PARSER, "time");
+		op.add(Builder::time, RetentionPolicy.DESERIALIZER, "time");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

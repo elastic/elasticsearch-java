@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global.scripts_painless_execute;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -157,16 +157,17 @@ public final class PainlessContextSetup implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PainlessContextSetup
+	 * Json deserializer for PainlessContextSetup
 	 */
-	public static final JsonpValueParser<PainlessContextSetup> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PainlessContextSetup::setupPainlessContextSetupParser);
+	public static final JsonpDeserializer<PainlessContextSetup> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PainlessContextSetup::setupPainlessContextSetupDeserializer);
 
-	protected static void setupPainlessContextSetupParser(DelegatingJsonpValueParser<PainlessContextSetup.Builder> op) {
+	protected static void setupPainlessContextSetupDeserializer(
+			DelegatingDeserializer<PainlessContextSetup.Builder> op) {
 
-		op.add(Builder::document, JsonpValueParser.jsonValueParser(), "document");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
+		op.add(Builder::document, JsonpDeserializer.jsonValueDeserializer(), "document");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -218,19 +218,19 @@ public final class AllocationStore implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AllocationStore
+	 * Json deserializer for AllocationStore
 	 */
-	public static final JsonpValueParser<AllocationStore> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AllocationStore::setupAllocationStoreParser);
+	public static final JsonpDeserializer<AllocationStore> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AllocationStore::setupAllocationStoreDeserializer);
 
-	protected static void setupAllocationStoreParser(DelegatingJsonpValueParser<AllocationStore.Builder> op) {
+	protected static void setupAllocationStoreDeserializer(DelegatingDeserializer<AllocationStore.Builder> op) {
 
-		op.add(Builder::allocationId, JsonpValueParser.stringParser(), "allocation_id");
-		op.add(Builder::found, JsonpValueParser.booleanParser(), "found");
-		op.add(Builder::inSync, JsonpValueParser.booleanParser(), "in_sync");
-		op.add(Builder::matchingSizeInBytes, JsonpValueParser.numberParser(), "matching_size_in_bytes");
-		op.add(Builder::matchingSyncId, JsonpValueParser.booleanParser(), "matching_sync_id");
-		op.add(Builder::storeException, JsonpValueParser.stringParser(), "store_exception");
+		op.add(Builder::allocationId, JsonpDeserializer.stringDeserializer(), "allocation_id");
+		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
+		op.add(Builder::inSync, JsonpDeserializer.booleanDeserializer(), "in_sync");
+		op.add(Builder::matchingSizeInBytes, JsonpDeserializer.numberDeserializer(), "matching_size_in_bytes");
+		op.add(Builder::matchingSyncId, JsonpDeserializer.booleanDeserializer(), "matching_sync_id");
+		op.add(Builder::storeException, JsonpDeserializer.stringDeserializer(), "store_exception");
 
 	}
 

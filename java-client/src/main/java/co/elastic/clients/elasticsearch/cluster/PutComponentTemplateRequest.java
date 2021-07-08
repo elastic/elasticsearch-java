@@ -30,11 +30,11 @@ import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.elasticsearch.indices.IndexState;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -396,20 +396,21 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutComponentTemplateRequest
+	 * Json deserializer for PutComponentTemplateRequest
 	 */
-	public static final JsonpValueParser<PutComponentTemplateRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutComponentTemplateRequest::setupPutComponentTemplateRequestParser);
+	public static final JsonpDeserializer<PutComponentTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutComponentTemplateRequest::setupPutComponentTemplateRequestDeserializer);
 
-	protected static void setupPutComponentTemplateRequestParser(
-			DelegatingJsonpValueParser<PutComponentTemplateRequest.Builder> op) {
+	protected static void setupPutComponentTemplateRequestDeserializer(
+			DelegatingDeserializer<PutComponentTemplateRequest.Builder> op) {
 
-		op.add(Builder::template, IndexState.JSONP_PARSER, "template");
-		op.add(Builder::aliases, JsonpValueParser.stringMapParser(AliasDefinition.JSONP_PARSER), "aliases");
-		op.add(Builder::mappings, TypeMapping.JSONP_PARSER, "mappings");
-		op.add(Builder::settings, IndexSettings.JSONP_PARSER, "settings");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::_meta, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "_meta");
+		op.add(Builder::template, IndexState.DESERIALIZER, "template");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition.DESERIALIZER), "aliases");
+		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::settings, IndexSettings.DESERIALIZER, "settings");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"_meta");
 
 	}
 
@@ -456,5 +457,5 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutComponentTemplateResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutComponentTemplateResponse.DESERIALIZER);
 }

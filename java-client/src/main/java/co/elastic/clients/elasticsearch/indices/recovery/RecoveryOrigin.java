@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -427,25 +427,25 @@ public final class RecoveryOrigin implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RecoveryOrigin
+	 * Json deserializer for RecoveryOrigin
 	 */
-	public static final JsonpValueParser<RecoveryOrigin> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RecoveryOrigin::setupRecoveryOriginParser);
+	public static final JsonpDeserializer<RecoveryOrigin> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RecoveryOrigin::setupRecoveryOriginDeserializer);
 
-	protected static void setupRecoveryOriginParser(DelegatingJsonpValueParser<RecoveryOrigin.Builder> op) {
+	protected static void setupRecoveryOriginDeserializer(DelegatingDeserializer<RecoveryOrigin.Builder> op) {
 
-		op.add(Builder::hostname, JsonpValueParser.stringParser(), "hostname");
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host");
-		op.add(Builder::transportAddress, JsonpValueParser.stringParser(), "transport_address");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::bootstrapNewHistoryUuid, JsonpValueParser.booleanParser(), "bootstrap_new_history_uuid");
-		op.add(Builder::repository, JsonpValueParser.stringParser(), "repository");
-		op.add(Builder::snapshot, JsonpValueParser.stringParser(), "snapshot");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
-		op.add(Builder::restoreuuid, JsonpValueParser.stringParser(), "restoreUUID");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
+		op.add(Builder::hostname, JsonpDeserializer.stringDeserializer(), "hostname");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
+		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::bootstrapNewHistoryUuid, JsonpDeserializer.booleanDeserializer(), "bootstrap_new_history_uuid");
+		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
+		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::restoreuuid, JsonpDeserializer.stringDeserializer(), "restoreUUID");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 
 	}
 

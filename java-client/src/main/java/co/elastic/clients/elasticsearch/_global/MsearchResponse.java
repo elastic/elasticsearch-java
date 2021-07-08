@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._global;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -171,20 +171,21 @@ public final class MsearchResponse<TDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for MsearchResponse
+	 * Create a json deserializer for MsearchResponse
 	 */
-	public static <TDocument> JsonpValueParser<MsearchResponse<TDocument>> createMsearchResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> MsearchResponse.setupMsearchResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<MsearchResponse<TDocument>> createMsearchResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> MsearchResponse.setupMsearchResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupMsearchResponseParser(
-			DelegatingJsonpValueParser<MsearchResponse.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupMsearchResponseDeserializer(
+			DelegatingDeserializer<MsearchResponse.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
-		op.add(Builder::responses, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "responses");
+		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"responses");
 
 	}
 

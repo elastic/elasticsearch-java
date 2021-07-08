@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -217,19 +217,19 @@ public final class Breaker implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Breaker
+	 * Json deserializer for Breaker
 	 */
-	public static final JsonpValueParser<Breaker> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Breaker::setupBreakerParser);
+	public static final JsonpDeserializer<Breaker> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Breaker::setupBreakerDeserializer);
 
-	protected static void setupBreakerParser(DelegatingJsonpValueParser<Breaker.Builder> op) {
+	protected static void setupBreakerDeserializer(DelegatingDeserializer<Breaker.Builder> op) {
 
-		op.add(Builder::estimatedSize, JsonpValueParser.stringParser(), "estimated_size");
-		op.add(Builder::estimatedSizeInBytes, JsonpValueParser.numberParser(), "estimated_size_in_bytes");
-		op.add(Builder::limitSize, JsonpValueParser.stringParser(), "limit_size");
-		op.add(Builder::limitSizeInBytes, JsonpValueParser.numberParser(), "limit_size_in_bytes");
-		op.add(Builder::overhead, JsonpValueParser.numberParser(), "overhead");
-		op.add(Builder::tripped, JsonpValueParser.numberParser(), "tripped");
+		op.add(Builder::estimatedSize, JsonpDeserializer.stringDeserializer(), "estimated_size");
+		op.add(Builder::estimatedSizeInBytes, JsonpDeserializer.numberDeserializer(), "estimated_size_in_bytes");
+		op.add(Builder::limitSize, JsonpDeserializer.stringDeserializer(), "limit_size");
+		op.add(Builder::limitSizeInBytes, JsonpDeserializer.numberDeserializer(), "limit_size_in_bytes");
+		op.add(Builder::overhead, JsonpDeserializer.numberDeserializer(), "overhead");
+		op.add(Builder::tripped, JsonpDeserializer.numberDeserializer(), "tripped");
 
 	}
 

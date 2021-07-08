@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.authenticate.Token;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -399,23 +399,25 @@ public final class AuthenticateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AuthenticateResponse
+	 * Json deserializer for AuthenticateResponse
 	 */
-	public static final JsonpValueParser<AuthenticateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AuthenticateResponse::setupAuthenticateResponseParser);
+	public static final JsonpDeserializer<AuthenticateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AuthenticateResponse::setupAuthenticateResponseDeserializer);
 
-	protected static void setupAuthenticateResponseParser(DelegatingJsonpValueParser<AuthenticateResponse.Builder> op) {
+	protected static void setupAuthenticateResponseDeserializer(
+			DelegatingDeserializer<AuthenticateResponse.Builder> op) {
 
-		op.add(Builder::authenticationRealm, RealmInfo.JSONP_PARSER, "authentication_realm");
-		op.add(Builder::email, JsonpValueParser.stringParser(), "email");
-		op.add(Builder::fullName, JsonpValueParser.stringParser(), "full_name");
-		op.add(Builder::lookupRealm, RealmInfo.JSONP_PARSER, "lookup_realm");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::roles, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "roles");
-		op.add(Builder::username, JsonpValueParser.stringParser(), "username");
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
-		op.add(Builder::authenticationType, JsonpValueParser.stringParser(), "authentication_type");
-		op.add(Builder::token, Token.JSONP_PARSER, "token");
+		op.add(Builder::authenticationRealm, RealmInfo.DESERIALIZER, "authentication_realm");
+		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
+		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
+		op.add(Builder::lookupRealm, RealmInfo.DESERIALIZER, "lookup_realm");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::authenticationType, JsonpDeserializer.stringDeserializer(), "authentication_type");
+		op.add(Builder::token, Token.DESERIALIZER, "token");
 
 	}
 

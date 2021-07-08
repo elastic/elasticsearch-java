@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -201,16 +201,16 @@ public final class GetUpgradeResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetUpgradeResponse
+	 * Json deserializer for GetUpgradeResponse
 	 */
-	public static final JsonpValueParser<GetUpgradeResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetUpgradeResponse::setupGetUpgradeResponseParser);
+	public static final JsonpDeserializer<GetUpgradeResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetUpgradeResponse::setupGetUpgradeResponseDeserializer);
 
-	protected static void setupGetUpgradeResponseParser(DelegatingJsonpValueParser<GetUpgradeResponse.Builder> op) {
+	protected static void setupGetUpgradeResponseDeserializer(DelegatingDeserializer<GetUpgradeResponse.Builder> op) {
 
-		op.add(Builder::overlapping, JsonpValueParser.arrayParser(OverlappingIndexTemplate.JSONP_PARSER),
+		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate.DESERIALIZER),
 				"overlapping");
-		op.add(Builder::template, TemplateMapping.JSONP_PARSER, "template");
+		op.add(Builder::template, TemplateMapping.DESERIALIZER, "template");
 
 	}
 

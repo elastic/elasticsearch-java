@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,14 +68,14 @@ public final class PutComponentTemplateResponse extends AcknowledgedResponseBase
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutComponentTemplateResponse
+	 * Json deserializer for PutComponentTemplateResponse
 	 */
-	public static final JsonpValueParser<PutComponentTemplateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutComponentTemplateResponse::setupPutComponentTemplateResponseParser);
+	public static final JsonpDeserializer<PutComponentTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutComponentTemplateResponse::setupPutComponentTemplateResponseDeserializer);
 
-	protected static void setupPutComponentTemplateResponseParser(
-			DelegatingJsonpValueParser<PutComponentTemplateResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupPutComponentTemplateResponseDeserializer(
+			DelegatingDeserializer<PutComponentTemplateResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

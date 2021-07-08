@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -244,18 +244,18 @@ public final class GetCalendarEventsRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetCalendarEventsRequest
+	 * Json deserializer for GetCalendarEventsRequest
 	 */
-	public static final JsonpValueParser<GetCalendarEventsRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetCalendarEventsRequest::setupGetCalendarEventsRequestParser);
+	public static final JsonpDeserializer<GetCalendarEventsRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetCalendarEventsRequest::setupGetCalendarEventsRequestDeserializer);
 
-	protected static void setupGetCalendarEventsRequestParser(
-			DelegatingJsonpValueParser<GetCalendarEventsRequest.Builder> op) {
+	protected static void setupGetCalendarEventsRequestDeserializer(
+			DelegatingDeserializer<GetCalendarEventsRequest.Builder> op) {
 
-		op.add(Builder::end, JsonpValueParser.stringParser(), "end");
-		op.add(Builder::from, JsonpValueParser.numberParser(), "from");
-		op.add(Builder::start, JsonpValueParser.stringParser(), "start");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
+		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
+		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}
 
@@ -301,5 +301,5 @@ public final class GetCalendarEventsRequest extends RequestBase implements ToJso
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetCalendarEventsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GetCalendarEventsResponse.DESERIALIZER);
 }

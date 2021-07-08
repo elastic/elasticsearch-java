@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -240,20 +240,20 @@ public final class AdaptiveSelection implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AdaptiveSelection
+	 * Json deserializer for AdaptiveSelection
 	 */
-	public static final JsonpValueParser<AdaptiveSelection> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AdaptiveSelection::setupAdaptiveSelectionParser);
+	public static final JsonpDeserializer<AdaptiveSelection> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AdaptiveSelection::setupAdaptiveSelectionDeserializer);
 
-	protected static void setupAdaptiveSelectionParser(DelegatingJsonpValueParser<AdaptiveSelection.Builder> op) {
+	protected static void setupAdaptiveSelectionDeserializer(DelegatingDeserializer<AdaptiveSelection.Builder> op) {
 
-		op.add(Builder::avgQueueSize, JsonpValueParser.numberParser(), "avg_queue_size");
-		op.add(Builder::avgResponseTime, JsonpValueParser.numberParser(), "avg_response_time");
-		op.add(Builder::avgResponseTimeNs, JsonpValueParser.numberParser(), "avg_response_time_ns");
-		op.add(Builder::avgServiceTime, JsonpValueParser.stringParser(), "avg_service_time");
-		op.add(Builder::avgServiceTimeNs, JsonpValueParser.numberParser(), "avg_service_time_ns");
-		op.add(Builder::outgoingSearches, JsonpValueParser.numberParser(), "outgoing_searches");
-		op.add(Builder::rank, JsonpValueParser.stringParser(), "rank");
+		op.add(Builder::avgQueueSize, JsonpDeserializer.numberDeserializer(), "avg_queue_size");
+		op.add(Builder::avgResponseTime, JsonpDeserializer.numberDeserializer(), "avg_response_time");
+		op.add(Builder::avgResponseTimeNs, JsonpDeserializer.numberDeserializer(), "avg_response_time_ns");
+		op.add(Builder::avgServiceTime, JsonpDeserializer.stringDeserializer(), "avg_service_time");
+		op.add(Builder::avgServiceTimeNs, JsonpDeserializer.numberDeserializer(), "avg_service_time_ns");
+		op.add(Builder::outgoingSearches, JsonpDeserializer.numberDeserializer(), "outgoing_searches");
+		op.add(Builder::rank, JsonpDeserializer.stringDeserializer(), "rank");
 
 	}
 

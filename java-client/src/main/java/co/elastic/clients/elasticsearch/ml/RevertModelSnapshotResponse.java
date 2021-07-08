@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -108,15 +108,15 @@ public final class RevertModelSnapshotResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RevertModelSnapshotResponse
+	 * Json deserializer for RevertModelSnapshotResponse
 	 */
-	public static final JsonpValueParser<RevertModelSnapshotResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RevertModelSnapshotResponse::setupRevertModelSnapshotResponseParser);
+	public static final JsonpDeserializer<RevertModelSnapshotResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RevertModelSnapshotResponse::setupRevertModelSnapshotResponseDeserializer);
 
-	protected static void setupRevertModelSnapshotResponseParser(
-			DelegatingJsonpValueParser<RevertModelSnapshotResponse.Builder> op) {
+	protected static void setupRevertModelSnapshotResponseDeserializer(
+			DelegatingDeserializer<RevertModelSnapshotResponse.Builder> op) {
 
-		op.add(Builder::model, ModelSnapshot.JSONP_PARSER, "model");
+		op.add(Builder::model, ModelSnapshot.DESERIALIZER, "model");
 
 	}
 

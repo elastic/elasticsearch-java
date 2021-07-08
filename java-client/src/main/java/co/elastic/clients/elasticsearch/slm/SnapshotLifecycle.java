@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -378,23 +378,23 @@ public final class SnapshotLifecycle implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SnapshotLifecycle
+	 * Json deserializer for SnapshotLifecycle
 	 */
-	public static final JsonpValueParser<SnapshotLifecycle> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SnapshotLifecycle::setupSnapshotLifecycleParser);
+	public static final JsonpDeserializer<SnapshotLifecycle> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SnapshotLifecycle::setupSnapshotLifecycleDeserializer);
 
-	protected static void setupSnapshotLifecycleParser(DelegatingJsonpValueParser<SnapshotLifecycle.Builder> op) {
+	protected static void setupSnapshotLifecycleDeserializer(DelegatingDeserializer<SnapshotLifecycle.Builder> op) {
 
-		op.add(Builder::inProgress, InProgress.JSONP_PARSER, "in_progress");
-		op.add(Builder::lastFailure, Invocation.JSONP_PARSER, "last_failure");
-		op.add(Builder::lastSuccess, Invocation.JSONP_PARSER, "last_success");
-		op.add(Builder::modifiedDate, JsonpValueParser.stringParser(), "modified_date");
-		op.add(Builder::modifiedDateMillis, JsonpValueParser.jsonValueParser(), "modified_date_millis");
-		op.add(Builder::nextExecution, JsonpValueParser.stringParser(), "next_execution");
-		op.add(Builder::nextExecutionMillis, JsonpValueParser.jsonValueParser(), "next_execution_millis");
-		op.add(Builder::policy, Policy.JSONP_PARSER, "policy");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::stats, Statistics.JSONP_PARSER, "stats");
+		op.add(Builder::inProgress, InProgress.DESERIALIZER, "in_progress");
+		op.add(Builder::lastFailure, Invocation.DESERIALIZER, "last_failure");
+		op.add(Builder::lastSuccess, Invocation.DESERIALIZER, "last_success");
+		op.add(Builder::modifiedDate, JsonpDeserializer.stringDeserializer(), "modified_date");
+		op.add(Builder::modifiedDateMillis, JsonpDeserializer.jsonValueDeserializer(), "modified_date_millis");
+		op.add(Builder::nextExecution, JsonpDeserializer.stringDeserializer(), "next_execution");
+		op.add(Builder::nextExecutionMillis, JsonpDeserializer.jsonValueDeserializer(), "next_execution_millis");
+		op.add(Builder::policy, Policy.DESERIALIZER, "policy");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::stats, Statistics.DESERIALIZER, "stats");
 
 	}
 

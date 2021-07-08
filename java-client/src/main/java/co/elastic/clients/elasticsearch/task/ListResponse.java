@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.task;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -252,17 +252,19 @@ public class ListResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ListResponse
+	 * Json deserializer for ListResponse
 	 */
-	public static final JsonpValueParser<ListResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ListResponse::setupListResponseParser);
+	public static final JsonpDeserializer<ListResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ListResponse::setupListResponseDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupListResponseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupListResponseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::nodeFailures, JsonpValueParser.arrayParser(ErrorCause.JSONP_PARSER), "node_failures");
-		op.add(AbstractBuilder::nodes, JsonpValueParser.stringMapParser(TaskExecutingNode.JSONP_PARSER), "nodes");
-		op.add(AbstractBuilder::tasks, JsonpValueParser.jsonValueParser(), "tasks");
+		op.add(AbstractBuilder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER),
+				"node_failures");
+		op.add(AbstractBuilder::nodes, JsonpDeserializer.stringMapDeserializer(TaskExecutingNode.DESERIALIZER),
+				"nodes");
+		op.add(AbstractBuilder::tasks, JsonpDeserializer.jsonValueDeserializer(), "tasks");
 
 	}
 

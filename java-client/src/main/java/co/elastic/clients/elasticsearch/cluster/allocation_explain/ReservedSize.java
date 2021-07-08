@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -198,17 +198,17 @@ public final class ReservedSize implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReservedSize
+	 * Json deserializer for ReservedSize
 	 */
-	public static final JsonpValueParser<ReservedSize> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReservedSize::setupReservedSizeParser);
+	public static final JsonpDeserializer<ReservedSize> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReservedSize::setupReservedSizeDeserializer);
 
-	protected static void setupReservedSizeParser(DelegatingJsonpValueParser<ReservedSize.Builder> op) {
+	protected static void setupReservedSizeDeserializer(DelegatingDeserializer<ReservedSize.Builder> op) {
 
-		op.add(Builder::nodeId, JsonpValueParser.stringParser(), "node_id");
-		op.add(Builder::path, JsonpValueParser.stringParser(), "path");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::shards, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "shards");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "shards");
 
 	}
 

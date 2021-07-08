@@ -19,7 +19,7 @@
 
 package co.elastic.clients.base;
 
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import org.elasticsearch.client.RequestOptions;
 
 import javax.annotation.Nullable;
@@ -46,7 +46,7 @@ public abstract class ApiClient<Self extends ApiClient<Self>> {
         return this.requestOptions;
     }
 
-    protected <T> JsonpValueParser<T> getDeserializer(Class<T> clazz) {
+    protected <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz) {
         return transport.jsonpMapper().getDeserializer(clazz);
     }
 }

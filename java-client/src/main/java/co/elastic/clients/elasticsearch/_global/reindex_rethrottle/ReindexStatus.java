@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global.reindex_rethrottle;
 
 import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -340,24 +340,24 @@ public final class ReindexStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReindexStatus
+	 * Json deserializer for ReindexStatus
 	 */
-	public static final JsonpValueParser<ReindexStatus> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReindexStatus::setupReindexStatusParser);
+	public static final JsonpDeserializer<ReindexStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReindexStatus::setupReindexStatusDeserializer);
 
-	protected static void setupReindexStatusParser(DelegatingJsonpValueParser<ReindexStatus.Builder> op) {
+	protected static void setupReindexStatusDeserializer(DelegatingDeserializer<ReindexStatus.Builder> op) {
 
-		op.add(Builder::batches, JsonpValueParser.numberParser(), "batches");
-		op.add(Builder::created, JsonpValueParser.numberParser(), "created");
-		op.add(Builder::deleted, JsonpValueParser.numberParser(), "deleted");
-		op.add(Builder::noops, JsonpValueParser.numberParser(), "noops");
-		op.add(Builder::requestsPerSecond, JsonpValueParser.numberParser(), "requests_per_second");
-		op.add(Builder::retries, Retries.JSONP_PARSER, "retries");
-		op.add(Builder::throttledMillis, JsonpValueParser.numberParser(), "throttled_millis");
-		op.add(Builder::throttledUntilMillis, JsonpValueParser.numberParser(), "throttled_until_millis");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::updated, JsonpValueParser.numberParser(), "updated");
-		op.add(Builder::versionConflicts, JsonpValueParser.numberParser(), "version_conflicts");
+		op.add(Builder::batches, JsonpDeserializer.numberDeserializer(), "batches");
+		op.add(Builder::created, JsonpDeserializer.numberDeserializer(), "created");
+		op.add(Builder::deleted, JsonpDeserializer.numberDeserializer(), "deleted");
+		op.add(Builder::noops, JsonpDeserializer.numberDeserializer(), "noops");
+		op.add(Builder::requestsPerSecond, JsonpDeserializer.numberDeserializer(), "requests_per_second");
+		op.add(Builder::retries, Retries.DESERIALIZER, "retries");
+		op.add(Builder::throttledMillis, JsonpDeserializer.numberDeserializer(), "throttled_millis");
+		op.add(Builder::throttledUntilMillis, JsonpDeserializer.numberDeserializer(), "throttled_until_millis");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::updated, JsonpDeserializer.numberDeserializer(), "updated");
+		op.add(Builder::versionConflicts, JsonpDeserializer.numberDeserializer(), "version_conflicts");
 
 	}
 

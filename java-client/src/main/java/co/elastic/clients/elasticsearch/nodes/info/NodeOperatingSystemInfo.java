@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -386,24 +386,24 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeOperatingSystemInfo
+	 * Json deserializer for NodeOperatingSystemInfo
 	 */
-	public static final JsonpValueParser<NodeOperatingSystemInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoParser);
+	public static final JsonpDeserializer<NodeOperatingSystemInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoDeserializer);
 
-	protected static void setupNodeOperatingSystemInfoParser(
-			DelegatingJsonpValueParser<NodeOperatingSystemInfo.Builder> op) {
+	protected static void setupNodeOperatingSystemInfoDeserializer(
+			DelegatingDeserializer<NodeOperatingSystemInfo.Builder> op) {
 
-		op.add(Builder::arch, JsonpValueParser.stringParser(), "arch");
-		op.add(Builder::availableProcessors, JsonpValueParser.numberParser(), "available_processors");
-		op.add(Builder::allocatedProcessors, JsonpValueParser.numberParser(), "allocated_processors");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::prettyName, JsonpValueParser.stringParser(), "pretty_name");
-		op.add(Builder::refreshIntervalInMillis, JsonpValueParser.numberParser(), "refresh_interval_in_millis");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
-		op.add(Builder::cpu, NodeInfoOSCPU.JSONP_PARSER, "cpu");
-		op.add(Builder::mem, NodeInfoMemory.JSONP_PARSER, "mem");
-		op.add(Builder::swap, NodeInfoMemory.JSONP_PARSER, "swap");
+		op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
+		op.add(Builder::availableProcessors, JsonpDeserializer.numberDeserializer(), "available_processors");
+		op.add(Builder::allocatedProcessors, JsonpDeserializer.numberDeserializer(), "allocated_processors");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::prettyName, JsonpDeserializer.stringDeserializer(), "pretty_name");
+		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.numberDeserializer(), "refresh_interval_in_millis");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::cpu, NodeInfoOSCPU.DESERIALIZER, "cpu");
+		op.add(Builder::mem, NodeInfoMemory.DESERIALIZER, "mem");
+		op.add(Builder::swap, NodeInfoMemory.DESERIALIZER, "swap");
 
 	}
 

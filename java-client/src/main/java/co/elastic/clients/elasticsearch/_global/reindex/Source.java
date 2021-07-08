@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch._global.reindex;
 
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -377,20 +377,21 @@ public final class Source implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Source
+	 * Json deserializer for Source
 	 */
-	public static final JsonpValueParser<Source> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Source::setupSourceParser);
+	public static final JsonpDeserializer<Source> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Source::setupSourceDeserializer);
 
-	protected static void setupSourceParser(DelegatingJsonpValueParser<Source.Builder> op) {
+	protected static void setupSourceDeserializer(DelegatingDeserializer<Source.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "index");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::remote, RemoteSource.JSONP_PARSER, "remote");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::slice, SlicedScroll.JSONP_PARSER, "slice");
-		op.add(Builder::sort, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "sort");
-		op.add(Builder::_source, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "_source");
+		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::remote, RemoteSource.DESERIALIZER, "remote");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::slice, SlicedScroll.DESERIALIZER, "slice");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::_source, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"_source");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -430,24 +430,26 @@ public final class KeyValueProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for KeyValueProcessor
+	 * Json deserializer for KeyValueProcessor
 	 */
-	public static final JsonpValueParser<KeyValueProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, KeyValueProcessor::setupKeyValueProcessorParser);
+	public static final JsonpDeserializer<KeyValueProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, KeyValueProcessor::setupKeyValueProcessorDeserializer);
 
-	protected static void setupKeyValueProcessorParser(DelegatingJsonpValueParser<KeyValueProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::excludeKeys, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "exclude_keys");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::fieldSplit, JsonpValueParser.stringParser(), "field_split");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::includeKeys, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "include_keys");
-		op.add(Builder::prefix, JsonpValueParser.stringParser(), "prefix");
-		op.add(Builder::stripBrackets, JsonpValueParser.booleanParser(), "strip_brackets");
-		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
-		op.add(Builder::trimKey, JsonpValueParser.stringParser(), "trim_key");
-		op.add(Builder::trimValue, JsonpValueParser.stringParser(), "trim_value");
-		op.add(Builder::valueSplit, JsonpValueParser.stringParser(), "value_split");
+	protected static void setupKeyValueProcessorDeserializer(DelegatingDeserializer<KeyValueProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::excludeKeys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"exclude_keys");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::fieldSplit, JsonpDeserializer.stringDeserializer(), "field_split");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::includeKeys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"include_keys");
+		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
+		op.add(Builder::stripBrackets, JsonpDeserializer.booleanDeserializer(), "strip_brackets");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+		op.add(Builder::trimKey, JsonpDeserializer.stringDeserializer(), "trim_key");
+		op.add(Builder::trimValue, JsonpDeserializer.stringDeserializer(), "trim_value");
+		op.add(Builder::valueSplit, JsonpDeserializer.stringDeserializer(), "value_split");
 
 	}
 

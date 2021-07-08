@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.put_index_template.IndexTemplateMapping;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -391,21 +391,24 @@ public final class PutIndexTemplateRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutIndexTemplateRequest
+	 * Json deserializer for PutIndexTemplateRequest
 	 */
-	public static final JsonpValueParser<PutIndexTemplateRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutIndexTemplateRequest::setupPutIndexTemplateRequestParser);
+	public static final JsonpDeserializer<PutIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer);
 
-	protected static void setupPutIndexTemplateRequestParser(
-			DelegatingJsonpValueParser<PutIndexTemplateRequest.Builder> op) {
+	protected static void setupPutIndexTemplateRequestDeserializer(
+			DelegatingDeserializer<PutIndexTemplateRequest.Builder> op) {
 
-		op.add(Builder::indexPatterns, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "index_patterns");
-		op.add(Builder::composedOf, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "composed_of");
-		op.add(Builder::template, IndexTemplateMapping.JSONP_PARSER, "template");
-		op.add(Builder::dataStream, JsonpValueParser.jsonValueParser(), "data_stream");
-		op.add(Builder::priority, JsonpValueParser.numberParser(), "priority");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::_meta, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "_meta");
+		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"index_patterns");
+		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"composed_of");
+		op.add(Builder::template, IndexTemplateMapping.DESERIALIZER, "template");
+		op.add(Builder::dataStream, JsonpDeserializer.jsonValueDeserializer(), "data_stream");
+		op.add(Builder::priority, JsonpDeserializer.numberDeserializer(), "priority");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"_meta");
 
 	}
 
@@ -445,5 +448,5 @@ public final class PutIndexTemplateRequest extends RequestBase implements ToJson
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutIndexTemplateResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutIndexTemplateResponse.DESERIALIZER);
 }

@@ -28,11 +28,11 @@ import co.elastic.clients.elasticsearch.cluster.allocation_explain.ClusterInfo;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.CurrentNode;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.NodeAllocationExplanation;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.UnassignedInformation;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -913,41 +913,45 @@ public final class AllocationExplainResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AllocationExplainResponse
+	 * Json deserializer for AllocationExplainResponse
 	 */
-	public static final JsonpValueParser<AllocationExplainResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AllocationExplainResponse::setupAllocationExplainResponseParser);
+	public static final JsonpDeserializer<AllocationExplainResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AllocationExplainResponse::setupAllocationExplainResponseDeserializer);
 
-	protected static void setupAllocationExplainResponseParser(
-			DelegatingJsonpValueParser<AllocationExplainResponse.Builder> op) {
+	protected static void setupAllocationExplainResponseDeserializer(
+			DelegatingDeserializer<AllocationExplainResponse.Builder> op) {
 
-		op.add(Builder::allocateExplanation, JsonpValueParser.stringParser(), "allocate_explanation");
-		op.add(Builder::allocationDelay, JsonpValueParser.stringParser(), "allocation_delay");
-		op.add(Builder::allocationDelayInMillis, JsonpValueParser.numberParser(), "allocation_delay_in_millis");
-		op.add(Builder::canAllocate, JsonpValueParser.jsonValueParser(), "can_allocate");
-		op.add(Builder::canMoveToOtherNode, JsonpValueParser.jsonValueParser(), "can_move_to_other_node");
-		op.add(Builder::canRebalanceCluster, JsonpValueParser.jsonValueParser(), "can_rebalance_cluster");
-		op.add(Builder::canRebalanceClusterDecisions, JsonpValueParser.arrayParser(AllocationDecision.JSONP_PARSER),
+		op.add(Builder::allocateExplanation, JsonpDeserializer.stringDeserializer(), "allocate_explanation");
+		op.add(Builder::allocationDelay, JsonpDeserializer.stringDeserializer(), "allocation_delay");
+		op.add(Builder::allocationDelayInMillis, JsonpDeserializer.numberDeserializer(), "allocation_delay_in_millis");
+		op.add(Builder::canAllocate, JsonpDeserializer.jsonValueDeserializer(), "can_allocate");
+		op.add(Builder::canMoveToOtherNode, JsonpDeserializer.jsonValueDeserializer(), "can_move_to_other_node");
+		op.add(Builder::canRebalanceCluster, JsonpDeserializer.jsonValueDeserializer(), "can_rebalance_cluster");
+		op.add(Builder::canRebalanceClusterDecisions,
+				JsonpDeserializer.arrayDeserializer(AllocationDecision.DESERIALIZER),
 				"can_rebalance_cluster_decisions");
-		op.add(Builder::canRebalanceToOtherNode, JsonpValueParser.jsonValueParser(), "can_rebalance_to_other_node");
-		op.add(Builder::canRemainDecisions, JsonpValueParser.arrayParser(AllocationDecision.JSONP_PARSER),
+		op.add(Builder::canRebalanceToOtherNode, JsonpDeserializer.jsonValueDeserializer(),
+				"can_rebalance_to_other_node");
+		op.add(Builder::canRemainDecisions, JsonpDeserializer.arrayDeserializer(AllocationDecision.DESERIALIZER),
 				"can_remain_decisions");
-		op.add(Builder::canRemainOnCurrentNode, JsonpValueParser.jsonValueParser(), "can_remain_on_current_node");
-		op.add(Builder::clusterInfo, ClusterInfo.JSONP_PARSER, "cluster_info");
-		op.add(Builder::configuredDelay, JsonpValueParser.stringParser(), "configured_delay");
-		op.add(Builder::configuredDelayInMillis, JsonpValueParser.numberParser(), "configured_delay_in_millis");
-		op.add(Builder::currentNode, CurrentNode.JSONP_PARSER, "current_node");
-		op.add(Builder::currentState, JsonpValueParser.stringParser(), "current_state");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::moveExplanation, JsonpValueParser.stringParser(), "move_explanation");
-		op.add(Builder::nodeAllocationDecisions, JsonpValueParser.arrayParser(NodeAllocationExplanation.JSONP_PARSER),
+		op.add(Builder::canRemainOnCurrentNode, JsonpDeserializer.jsonValueDeserializer(),
+				"can_remain_on_current_node");
+		op.add(Builder::clusterInfo, ClusterInfo.DESERIALIZER, "cluster_info");
+		op.add(Builder::configuredDelay, JsonpDeserializer.stringDeserializer(), "configured_delay");
+		op.add(Builder::configuredDelayInMillis, JsonpDeserializer.numberDeserializer(), "configured_delay_in_millis");
+		op.add(Builder::currentNode, CurrentNode.DESERIALIZER, "current_node");
+		op.add(Builder::currentState, JsonpDeserializer.stringDeserializer(), "current_state");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::moveExplanation, JsonpDeserializer.stringDeserializer(), "move_explanation");
+		op.add(Builder::nodeAllocationDecisions,
+				JsonpDeserializer.arrayDeserializer(NodeAllocationExplanation.DESERIALIZER),
 				"node_allocation_decisions");
-		op.add(Builder::primary, JsonpValueParser.booleanParser(), "primary");
-		op.add(Builder::rebalanceExplanation, JsonpValueParser.stringParser(), "rebalance_explanation");
-		op.add(Builder::remainingDelay, JsonpValueParser.stringParser(), "remaining_delay");
-		op.add(Builder::remainingDelayInMillis, JsonpValueParser.numberParser(), "remaining_delay_in_millis");
-		op.add(Builder::shard, JsonpValueParser.numberParser(), "shard");
-		op.add(Builder::unassignedInfo, UnassignedInformation.JSONP_PARSER, "unassigned_info");
+		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
+		op.add(Builder::rebalanceExplanation, JsonpDeserializer.stringDeserializer(), "rebalance_explanation");
+		op.add(Builder::remainingDelay, JsonpDeserializer.stringDeserializer(), "remaining_delay");
+		op.add(Builder::remainingDelayInMillis, JsonpDeserializer.numberDeserializer(), "remaining_delay_in_millis");
+		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::unassignedInfo, UnassignedInformation.DESERIALIZER, "unassigned_info");
 
 	}
 

@@ -26,10 +26,10 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 /**
- * Deserializer for bodies of type `ValueOf`. It is modelled after {@link JsonpObjectParser} with (with an
+ * Deserializer for bodies of type `ValueOf`. It is modelled after {@link ObjectDeserializer} (with an
  * {@code add} method) to fit into the same code generation structure with no additional runtime cost.
  */
-public class JsonpValueBodyParser<ObjectType> extends DelegatingJsonpValueParser<ObjectType> {
+public class ValueBodyDeserializer<ObjectType> extends DelegatingDeserializer<ObjectType> {
 
     private static final EnumSet<Event> allStartEvents = EnumSet.of(
         Event.START_OBJECT,
@@ -43,17 +43,17 @@ public class JsonpValueBodyParser<ObjectType> extends DelegatingJsonpValueParser
 
     private final Supplier<ObjectType> constructor;
     private BiConsumer<ObjectType, Object> setter;
-    private JsonpValueParser<?> valueParser;
+    private JsonpDeserializer<?> valueDeserializer;
 
-    public JsonpValueBodyParser(Supplier<ObjectType> constructor) {
+    public ValueBodyDeserializer(Supplier<ObjectType> constructor) {
         super(allStartEvents);
         this.constructor = constructor;
     }
 
     @Override
-    public ObjectType parse(JsonParser parser, JsonpMapper mapper, Event event) {
+    public ObjectType deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
         ObjectType object = constructor.get();
-        Object value = valueParser.parse(parser, mapper, event);
+        Object value = valueDeserializer.deserialize(parser, mapper, event);
         setter.accept(object, value);
         return object;
     }
@@ -61,12 +61,12 @@ public class JsonpValueBodyParser<ObjectType> extends DelegatingJsonpValueParser
     @Override
     public <FieldType> void add(
         BiConsumer<ObjectType, FieldType> setter,
-        JsonpValueParser<FieldType> valueParser,
+        JsonpDeserializer<FieldType> valueParser,
         String name, String... deprecatedNames
     ) {
         @SuppressWarnings("unchecked")
         BiConsumer<ObjectType, Object> tempSetter = (BiConsumer<ObjectType, Object>) setter;
         this.setter = tempSetter;
-        this.valueParser = valueParser;
+        this.valueDeserializer = valueParser;
     }
 }

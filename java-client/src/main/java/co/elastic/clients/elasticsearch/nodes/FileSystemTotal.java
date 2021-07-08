@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -217,19 +217,19 @@ public final class FileSystemTotal implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FileSystemTotal
+	 * Json deserializer for FileSystemTotal
 	 */
-	public static final JsonpValueParser<FileSystemTotal> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FileSystemTotal::setupFileSystemTotalParser);
+	public static final JsonpDeserializer<FileSystemTotal> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FileSystemTotal::setupFileSystemTotalDeserializer);
 
-	protected static void setupFileSystemTotalParser(DelegatingJsonpValueParser<FileSystemTotal.Builder> op) {
+	protected static void setupFileSystemTotalDeserializer(DelegatingDeserializer<FileSystemTotal.Builder> op) {
 
-		op.add(Builder::available, JsonpValueParser.stringParser(), "available");
-		op.add(Builder::availableInBytes, JsonpValueParser.numberParser(), "available_in_bytes");
-		op.add(Builder::free, JsonpValueParser.stringParser(), "free");
-		op.add(Builder::freeInBytes, JsonpValueParser.numberParser(), "free_in_bytes");
-		op.add(Builder::total, JsonpValueParser.stringParser(), "total");
-		op.add(Builder::totalInBytes, JsonpValueParser.numberParser(), "total_in_bytes");
+		op.add(Builder::available, JsonpDeserializer.stringDeserializer(), "available");
+		op.add(Builder::availableInBytes, JsonpDeserializer.numberDeserializer(), "available_in_bytes");
+		op.add(Builder::free, JsonpDeserializer.stringDeserializer(), "free");
+		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
+		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
+		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
 
 	}
 

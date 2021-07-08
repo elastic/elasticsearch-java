@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -350,19 +350,19 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MountRequest
+	 * Json deserializer for MountRequest
 	 */
-	public static final JsonpValueParser<MountRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MountRequest::setupMountRequestParser);
+	public static final JsonpDeserializer<MountRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MountRequest::setupMountRequestDeserializer);
 
-	protected static void setupMountRequestParser(DelegatingJsonpValueParser<MountRequest.Builder> op) {
+	protected static void setupMountRequestDeserializer(DelegatingDeserializer<MountRequest.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::renamedIndex, JsonpValueParser.stringParser(), "renamed_index");
-		op.add(Builder::indexSettings, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"index_settings");
-		op.add(Builder::ignoreIndexSettings, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"ignore_index_settings");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::renamedIndex, JsonpDeserializer.stringDeserializer(), "renamed_index");
+		op.add(Builder::indexSettings,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "index_settings");
+		op.add(Builder::ignoreIndexSettings,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ignore_index_settings");
 
 	}
 
@@ -418,5 +418,5 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, MountResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, MountResponse.DESERIALIZER);
 }

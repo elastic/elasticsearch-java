@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -131,15 +131,15 @@ public final class Phase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Phase
+	 * Json deserializer for Phase
 	 */
-	public static final JsonpValueParser<Phase> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Phase::setupPhaseParser);
+	public static final JsonpDeserializer<Phase> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Phase::setupPhaseDeserializer);
 
-	protected static void setupPhaseParser(DelegatingJsonpValueParser<Phase.Builder> op) {
+	protected static void setupPhaseDeserializer(DelegatingDeserializer<Phase.Builder> op) {
 
-		op.add(Builder::actions, JsonpValueParser.jsonValueParser(), "actions");
-		op.add(Builder::minAge, JsonpValueParser.jsonValueParser(), "min_age");
+		op.add(Builder::actions, JsonpDeserializer.jsonValueDeserializer(), "actions");
+		op.add(Builder::minAge, JsonpDeserializer.jsonValueDeserializer(), "min_age");
 
 	}
 

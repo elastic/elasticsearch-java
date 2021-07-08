@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
 import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -539,28 +539,29 @@ public final class DeleteByQueryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteByQueryResponse
+	 * Json deserializer for DeleteByQueryResponse
 	 */
-	public static final JsonpValueParser<DeleteByQueryResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeleteByQueryResponse::setupDeleteByQueryResponseParser);
+	public static final JsonpDeserializer<DeleteByQueryResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DeleteByQueryResponse::setupDeleteByQueryResponseDeserializer);
 
-	protected static void setupDeleteByQueryResponseParser(
-			DelegatingJsonpValueParser<DeleteByQueryResponse.Builder> op) {
+	protected static void setupDeleteByQueryResponseDeserializer(
+			DelegatingDeserializer<DeleteByQueryResponse.Builder> op) {
 
-		op.add(Builder::batches, JsonpValueParser.numberParser(), "batches");
-		op.add(Builder::deleted, JsonpValueParser.numberParser(), "deleted");
-		op.add(Builder::failures, JsonpValueParser.arrayParser(BulkIndexByScrollFailure.JSONP_PARSER), "failures");
-		op.add(Builder::noops, JsonpValueParser.numberParser(), "noops");
-		op.add(Builder::requestsPerSecond, JsonpValueParser.numberParser(), "requests_per_second");
-		op.add(Builder::retries, Retries.JSONP_PARSER, "retries");
-		op.add(Builder::sliceId, JsonpValueParser.numberParser(), "slice_id");
-		op.add(Builder::task, JsonpValueParser.jsonValueParser(), "task");
-		op.add(Builder::throttledMillis, JsonpValueParser.numberParser(), "throttled_millis");
-		op.add(Builder::throttledUntilMillis, JsonpValueParser.numberParser(), "throttled_until_millis");
-		op.add(Builder::timedOut, JsonpValueParser.booleanParser(), "timed_out");
-		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::versionConflicts, JsonpValueParser.numberParser(), "version_conflicts");
+		op.add(Builder::batches, JsonpDeserializer.numberDeserializer(), "batches");
+		op.add(Builder::deleted, JsonpDeserializer.numberDeserializer(), "deleted");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(BulkIndexByScrollFailure.DESERIALIZER),
+				"failures");
+		op.add(Builder::noops, JsonpDeserializer.numberDeserializer(), "noops");
+		op.add(Builder::requestsPerSecond, JsonpDeserializer.numberDeserializer(), "requests_per_second");
+		op.add(Builder::retries, Retries.DESERIALIZER, "retries");
+		op.add(Builder::sliceId, JsonpDeserializer.numberDeserializer(), "slice_id");
+		op.add(Builder::task, JsonpDeserializer.jsonValueDeserializer(), "task");
+		op.add(Builder::throttledMillis, JsonpDeserializer.numberDeserializer(), "throttled_millis");
+		op.add(Builder::throttledUntilMillis, JsonpDeserializer.numberDeserializer(), "throttled_until_millis");
+		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
+		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::versionConflicts, JsonpDeserializer.numberDeserializer(), "version_conflicts");
 
 	}
 

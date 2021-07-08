@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -296,20 +296,21 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchInputRequestDefinition
+	 * Json deserializer for SearchInputRequestDefinition
 	 */
-	public static final JsonpValueParser<SearchInputRequestDefinition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchInputRequestDefinition::setupSearchInputRequestDefinitionParser);
+	public static final JsonpDeserializer<SearchInputRequestDefinition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchInputRequestDefinition::setupSearchInputRequestDefinitionDeserializer);
 
-	protected static void setupSearchInputRequestDefinitionParser(
-			DelegatingJsonpValueParser<SearchInputRequestDefinition.Builder> op) {
+	protected static void setupSearchInputRequestDefinitionDeserializer(
+			DelegatingDeserializer<SearchInputRequestDefinition.Builder> op) {
 
-		op.add(Builder::body, SearchInputRequestBody.JSONP_PARSER, "body");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::indicesOptions, IndicesOptions.JSONP_PARSER, "indices_options");
-		op.add(Builder::searchType, JsonpValueParser.jsonValueParser(), "search_type");
-		op.add(Builder::template, JsonpValueParser.jsonValueParser(), "template");
-		op.add(Builder::restTotalHitsAsInt, JsonpValueParser.booleanParser(), "rest_total_hits_as_int");
+		op.add(Builder::body, SearchInputRequestBody.DESERIALIZER, "body");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::indicesOptions, IndicesOptions.DESERIALIZER, "indices_options");
+		op.add(Builder::searchType, JsonpDeserializer.jsonValueDeserializer(), "search_type");
+		op.add(Builder::template, JsonpDeserializer.jsonValueDeserializer(), "template");
+		op.add(Builder::restTotalHitsAsInt, JsonpDeserializer.booleanDeserializer(), "rest_total_hits_as_int");
 
 	}
 

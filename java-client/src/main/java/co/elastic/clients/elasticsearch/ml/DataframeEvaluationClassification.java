@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -226,19 +226,19 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeEvaluationClassification
+	 * Json deserializer for DataframeEvaluationClassification
 	 */
-	public static final JsonpValueParser<DataframeEvaluationClassification> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeEvaluationClassification> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeEvaluationClassification::setupDataframeEvaluationClassificationParser);
+					DataframeEvaluationClassification::setupDataframeEvaluationClassificationDeserializer);
 
-	protected static void setupDataframeEvaluationClassificationParser(
-			DelegatingJsonpValueParser<DataframeEvaluationClassification.Builder> op) {
+	protected static void setupDataframeEvaluationClassificationDeserializer(
+			DelegatingDeserializer<DataframeEvaluationClassification.Builder> op) {
 
-		op.add(Builder::actualField, JsonpValueParser.stringParser(), "actual_field");
-		op.add(Builder::predictedField, JsonpValueParser.stringParser(), "predicted_field");
-		op.add(Builder::topClassesField, JsonpValueParser.stringParser(), "top_classes_field");
-		op.add(Builder::metrics, DataframeEvaluationClassificationMetrics.JSONP_PARSER, "metrics");
+		op.add(Builder::actualField, JsonpDeserializer.stringDeserializer(), "actual_field");
+		op.add(Builder::predictedField, JsonpDeserializer.stringDeserializer(), "predicted_field");
+		op.add(Builder::topClassesField, JsonpDeserializer.stringDeserializer(), "top_classes_field");
+		op.add(Builder::metrics, DataframeEvaluationClassificationMetrics.DESERIALIZER, "metrics");
 
 	}
 

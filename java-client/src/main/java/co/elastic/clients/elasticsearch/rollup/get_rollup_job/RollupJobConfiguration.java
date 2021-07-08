@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.rollup.get_rollup_job;
 
 import co.elastic.clients.elasticsearch.rollup.FieldMetric;
 import co.elastic.clients.elasticsearch.rollup.Groupings;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -315,22 +315,22 @@ public final class RollupJobConfiguration implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RollupJobConfiguration
+	 * Json deserializer for RollupJobConfiguration
 	 */
-	public static final JsonpValueParser<RollupJobConfiguration> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RollupJobConfiguration::setupRollupJobConfigurationParser);
+	public static final JsonpDeserializer<RollupJobConfiguration> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RollupJobConfiguration::setupRollupJobConfigurationDeserializer);
 
-	protected static void setupRollupJobConfigurationParser(
-			DelegatingJsonpValueParser<RollupJobConfiguration.Builder> op) {
+	protected static void setupRollupJobConfigurationDeserializer(
+			DelegatingDeserializer<RollupJobConfiguration.Builder> op) {
 
-		op.add(Builder::cron, JsonpValueParser.stringParser(), "cron");
-		op.add(Builder::groups, Groupings.JSONP_PARSER, "groups");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::indexPattern, JsonpValueParser.stringParser(), "index_pattern");
-		op.add(Builder::metrics, JsonpValueParser.arrayParser(FieldMetric.JSONP_PARSER), "metrics");
-		op.add(Builder::pageSize, JsonpValueParser.numberParser(), "page_size");
-		op.add(Builder::rollupIndex, JsonpValueParser.stringParser(), "rollup_index");
-		op.add(Builder::timeout, JsonpValueParser.jsonValueParser(), "timeout");
+		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
+		op.add(Builder::groups, Groupings.DESERIALIZER, "groups");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::indexPattern, JsonpDeserializer.stringDeserializer(), "index_pattern");
+		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(FieldMetric.DESERIALIZER), "metrics");
+		op.add(Builder::pageSize, JsonpDeserializer.numberDeserializer(), "page_size");
+		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");
+		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
 
 	}
 

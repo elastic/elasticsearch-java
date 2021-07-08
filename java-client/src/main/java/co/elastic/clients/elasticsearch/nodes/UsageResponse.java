@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch.nodes.usage.NodeUsage;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -158,15 +158,15 @@ public final class UsageResponse extends NodesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UsageResponse
+	 * Json deserializer for UsageResponse
 	 */
-	public static final JsonpValueParser<UsageResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UsageResponse::setupUsageResponseParser);
+	public static final JsonpDeserializer<UsageResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UsageResponse::setupUsageResponseDeserializer);
 
-	protected static void setupUsageResponseParser(DelegatingJsonpValueParser<UsageResponse.Builder> op) {
-		NodesResponseBase.setupNodesResponseBaseParser(op);
-		op.add(Builder::clusterName, JsonpValueParser.stringParser(), "cluster_name");
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(NodeUsage.JSONP_PARSER), "nodes");
+	protected static void setupUsageResponseDeserializer(DelegatingDeserializer<UsageResponse.Builder> op) {
+		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
+		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeUsage.DESERIALIZER), "nodes");
 
 	}
 

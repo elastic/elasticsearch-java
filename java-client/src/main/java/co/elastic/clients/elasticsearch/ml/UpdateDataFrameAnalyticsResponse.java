@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -372,26 +372,26 @@ public final class UpdateDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateDataFrameAnalyticsResponse
+	 * Json deserializer for UpdateDataFrameAnalyticsResponse
 	 */
-	public static final JsonpValueParser<UpdateDataFrameAnalyticsResponse> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<UpdateDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					UpdateDataFrameAnalyticsResponse::setupUpdateDataFrameAnalyticsResponseParser);
+					UpdateDataFrameAnalyticsResponse::setupUpdateDataFrameAnalyticsResponseDeserializer);
 
-	protected static void setupUpdateDataFrameAnalyticsResponseParser(
-			DelegatingJsonpValueParser<UpdateDataFrameAnalyticsResponse.Builder> op) {
+	protected static void setupUpdateDataFrameAnalyticsResponseDeserializer(
+			DelegatingDeserializer<UpdateDataFrameAnalyticsResponse.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::createTime, JsonpValueParser.numberParser(), "create_time");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
-		op.add(Builder::source, DataframeAnalyticsSource.JSONP_PARSER, "source");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::dest, DataframeAnalyticsDestination.JSONP_PARSER, "dest");
-		op.add(Builder::modelMemoryLimit, JsonpValueParser.jsonValueParser(), "model_memory_limit");
-		op.add(Builder::allowLazyStart, JsonpValueParser.booleanParser(), "allow_lazy_start");
-		op.add(Builder::maxNumThreads, JsonpValueParser.numberParser(), "max_num_threads");
-		op.add(Builder::analysis, DataframeAnalysisContainer.JSONP_PARSER, "analysis");
-		op.add(Builder::analyzedFields, JsonpValueParser.jsonValueParser(), "analyzed_fields");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::createTime, JsonpDeserializer.numberDeserializer(), "create_time");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::dest, DataframeAnalyticsDestination.DESERIALIZER, "dest");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(), "model_memory_limit");
+		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
+		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 
 	}
 

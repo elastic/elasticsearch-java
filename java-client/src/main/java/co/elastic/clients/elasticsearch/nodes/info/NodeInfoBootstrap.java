@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class NodeInfoBootstrap implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoBootstrap
+	 * Json deserializer for NodeInfoBootstrap
 	 */
-	public static final JsonpValueParser<NodeInfoBootstrap> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoBootstrap::setupNodeInfoBootstrapParser);
+	public static final JsonpDeserializer<NodeInfoBootstrap> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoBootstrap::setupNodeInfoBootstrapDeserializer);
 
-	protected static void setupNodeInfoBootstrapParser(DelegatingJsonpValueParser<NodeInfoBootstrap.Builder> op) {
+	protected static void setupNodeInfoBootstrapDeserializer(DelegatingDeserializer<NodeInfoBootstrap.Builder> op) {
 
-		op.add(Builder::memoryLock, JsonpValueParser.stringParser(), "memory_lock");
+		op.add(Builder::memoryLock, JsonpDeserializer.stringDeserializer(), "memory_lock");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -178,17 +178,17 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MlDataFrameAnalyticsJobs
+	 * Json deserializer for MlDataFrameAnalyticsJobs
 	 */
-	public static final JsonpValueParser<MlDataFrameAnalyticsJobs> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MlDataFrameAnalyticsJobs::setupMlDataFrameAnalyticsJobsParser);
+	public static final JsonpDeserializer<MlDataFrameAnalyticsJobs> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MlDataFrameAnalyticsJobs::setupMlDataFrameAnalyticsJobsDeserializer);
 
-	protected static void setupMlDataFrameAnalyticsJobsParser(
-			DelegatingJsonpValueParser<MlDataFrameAnalyticsJobs.Builder> op) {
+	protected static void setupMlDataFrameAnalyticsJobsDeserializer(
+			DelegatingDeserializer<MlDataFrameAnalyticsJobs.Builder> op) {
 
-		op.add(Builder::memoryUsage, MlDataFrameAnalyticsJobsMemory.JSONP_PARSER, "memory_usage");
-		op.add(Builder::_all, MlDataFrameAnalyticsJobsCount.JSONP_PARSER, "_all");
-		op.add(Builder::analysisCounts, JsonpValueParser.jsonValueParser(), "analysis_counts");
+		op.add(Builder::memoryUsage, MlDataFrameAnalyticsJobsMemory.DESERIALIZER, "memory_usage");
+		op.add(Builder::_all, MlDataFrameAnalyticsJobsCount.DESERIALIZER, "_all");
+		op.add(Builder::analysisCounts, JsonpDeserializer.jsonValueDeserializer(), "analysis_counts");
 
 	}
 

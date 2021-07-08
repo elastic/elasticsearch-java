@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -224,19 +224,18 @@ public final class Collector implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Collector
+	 * Json deserializer for Collector
 	 */
-	public static final JsonpValueParser<Collector> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Collector::setupCollectorParser);
+	public static final JsonpDeserializer<Collector> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Collector::setupCollectorDeserializer);
 
-	protected static void setupCollectorParser(DelegatingJsonpValueParser<Collector.Builder> op) {
+	protected static void setupCollectorDeserializer(DelegatingDeserializer<Collector.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
-		op.add(Builder::timeInNanos, JsonpValueParser.numberParser(), "time_in_nanos");
-		op.add(Builder::children,
-				JsonpValueParser.arrayParser(co.elastic.clients.elasticsearch._global.search.Collector.JSONP_PARSER),
-				"children");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(Builder::timeInNanos, JsonpDeserializer.numberDeserializer(), "time_in_nanos");
+		op.add(Builder::children, JsonpDeserializer
+				.arrayDeserializer(co.elastic.clients.elasticsearch._global.search.Collector.DESERIALIZER), "children");
 
 	}
 

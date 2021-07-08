@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -148,17 +148,17 @@ public final class ExecutionResultCondition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExecutionResultCondition
+	 * Json deserializer for ExecutionResultCondition
 	 */
-	public static final JsonpValueParser<ExecutionResultCondition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExecutionResultCondition::setupExecutionResultConditionParser);
+	public static final JsonpDeserializer<ExecutionResultCondition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExecutionResultCondition::setupExecutionResultConditionDeserializer);
 
-	protected static void setupExecutionResultConditionParser(
-			DelegatingJsonpValueParser<ExecutionResultCondition.Builder> op) {
+	protected static void setupExecutionResultConditionDeserializer(
+			DelegatingDeserializer<ExecutionResultCondition.Builder> op) {
 
-		op.add(Builder::met, JsonpValueParser.booleanParser(), "met");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
+		op.add(Builder::met, JsonpDeserializer.booleanDeserializer(), "met");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
 
 	}
 

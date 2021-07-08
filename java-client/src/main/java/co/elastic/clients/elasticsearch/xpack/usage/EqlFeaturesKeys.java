@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -193,18 +193,18 @@ public final class EqlFeaturesKeys implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for EqlFeaturesKeys
+	 * Json deserializer for EqlFeaturesKeys
 	 */
-	public static final JsonpValueParser<EqlFeaturesKeys> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, EqlFeaturesKeys::setupEqlFeaturesKeysParser);
+	public static final JsonpDeserializer<EqlFeaturesKeys> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, EqlFeaturesKeys::setupEqlFeaturesKeysDeserializer);
 
-	protected static void setupEqlFeaturesKeysParser(DelegatingJsonpValueParser<EqlFeaturesKeys.Builder> op) {
+	protected static void setupEqlFeaturesKeysDeserializer(DelegatingDeserializer<EqlFeaturesKeys.Builder> op) {
 
-		op.add(Builder::joinKeysTwo, JsonpValueParser.numberParser(), "join_keys_two");
-		op.add(Builder::joinKeysOne, JsonpValueParser.numberParser(), "join_keys_one");
-		op.add(Builder::joinKeysThree, JsonpValueParser.numberParser(), "join_keys_three");
-		op.add(Builder::joinKeysFiveOrMore, JsonpValueParser.numberParser(), "join_keys_five_or_more");
-		op.add(Builder::joinKeysFour, JsonpValueParser.numberParser(), "join_keys_four");
+		op.add(Builder::joinKeysTwo, JsonpDeserializer.numberDeserializer(), "join_keys_two");
+		op.add(Builder::joinKeysOne, JsonpDeserializer.numberDeserializer(), "join_keys_one");
+		op.add(Builder::joinKeysThree, JsonpDeserializer.numberDeserializer(), "join_keys_three");
+		op.add(Builder::joinKeysFiveOrMore, JsonpDeserializer.numberDeserializer(), "join_keys_five_or_more");
+		op.add(Builder::joinKeysFour, JsonpDeserializer.numberDeserializer(), "join_keys_four");
 
 	}
 

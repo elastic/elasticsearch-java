@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -131,17 +131,17 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoXpackSecurityAuthcRealmsStatus
+	 * Json deserializer for NodeInfoXpackSecurityAuthcRealmsStatus
 	 */
-	public static final JsonpValueParser<NodeInfoXpackSecurityAuthcRealmsStatus> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcRealmsStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					NodeInfoXpackSecurityAuthcRealmsStatus::setupNodeInfoXpackSecurityAuthcRealmsStatusParser);
+					NodeInfoXpackSecurityAuthcRealmsStatus::setupNodeInfoXpackSecurityAuthcRealmsStatusDeserializer);
 
-	protected static void setupNodeInfoXpackSecurityAuthcRealmsStatusParser(
-			DelegatingJsonpValueParser<NodeInfoXpackSecurityAuthcRealmsStatus.Builder> op) {
+	protected static void setupNodeInfoXpackSecurityAuthcRealmsStatusDeserializer(
+			DelegatingDeserializer<NodeInfoXpackSecurityAuthcRealmsStatus.Builder> op) {
 
-		op.add(Builder::enabled, JsonpValueParser.stringParser(), "enabled");
-		op.add(Builder::order, JsonpValueParser.stringParser(), "order");
+		op.add(Builder::enabled, JsonpDeserializer.stringDeserializer(), "enabled");
+		op.add(Builder::order, JsonpDeserializer.stringDeserializer(), "order");
 
 	}
 

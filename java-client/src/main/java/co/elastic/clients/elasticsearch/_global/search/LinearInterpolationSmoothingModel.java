@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,18 +147,18 @@ public final class LinearInterpolationSmoothingModel implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for LinearInterpolationSmoothingModel
+	 * Json deserializer for LinearInterpolationSmoothingModel
 	 */
-	public static final JsonpValueParser<LinearInterpolationSmoothingModel> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<LinearInterpolationSmoothingModel> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					LinearInterpolationSmoothingModel::setupLinearInterpolationSmoothingModelParser);
+					LinearInterpolationSmoothingModel::setupLinearInterpolationSmoothingModelDeserializer);
 
-	protected static void setupLinearInterpolationSmoothingModelParser(
-			DelegatingJsonpValueParser<LinearInterpolationSmoothingModel.Builder> op) {
+	protected static void setupLinearInterpolationSmoothingModelDeserializer(
+			DelegatingDeserializer<LinearInterpolationSmoothingModel.Builder> op) {
 
-		op.add(Builder::bigramLambda, JsonpValueParser.numberParser(), "bigram_lambda");
-		op.add(Builder::trigramLambda, JsonpValueParser.numberParser(), "trigram_lambda");
-		op.add(Builder::unigramLambda, JsonpValueParser.numberParser(), "unigram_lambda");
+		op.add(Builder::bigramLambda, JsonpDeserializer.numberDeserializer(), "bigram_lambda");
+		op.add(Builder::trigramLambda, JsonpDeserializer.numberDeserializer(), "trigram_lambda");
+		op.add(Builder::unigramLambda, JsonpDeserializer.numberDeserializer(), "unigram_lambda");
 
 	}
 

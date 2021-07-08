@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -313,21 +313,21 @@ public final class Status implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Status
+	 * Json deserializer for Status
 	 */
-	public static final JsonpValueParser<Status> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Status::setupStatusParser);
+	public static final JsonpDeserializer<Status> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Status::setupStatusDeserializer);
 
-	protected static void setupStatusParser(DelegatingJsonpValueParser<Status.Builder> op) {
+	protected static void setupStatusDeserializer(DelegatingDeserializer<Status.Builder> op) {
 
-		op.add(Builder::includeGlobalState, JsonpValueParser.booleanParser(), "include_global_state");
-		op.add(Builder::indices, JsonpValueParser.stringMapParser(SnapshotIndexStats.JSONP_PARSER), "indices");
-		op.add(Builder::repository, JsonpValueParser.stringParser(), "repository");
-		op.add(Builder::shardsStats, ShardsStats.JSONP_PARSER, "shards_stats");
-		op.add(Builder::snapshot, JsonpValueParser.stringParser(), "snapshot");
-		op.add(Builder::state, JsonpValueParser.stringParser(), "state");
-		op.add(Builder::stats, SnapshotStats.JSONP_PARSER, "stats");
-		op.add(Builder::uuid, JsonpValueParser.stringParser(), "uuid");
+		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(SnapshotIndexStats.DESERIALIZER), "indices");
+		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
+		op.add(Builder::shardsStats, ShardsStats.DESERIALIZER, "shards_stats");
+		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
+		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
+		op.add(Builder::stats, SnapshotStats.DESERIALIZER, "stats");
+		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
 
 	}
 

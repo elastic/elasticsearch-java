@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.get_script_context;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -166,15 +166,15 @@ public final class Context implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Context
+	 * Json deserializer for Context
 	 */
-	public static final JsonpValueParser<Context> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Context::setupContextParser);
+	public static final JsonpDeserializer<Context> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Context::setupContextDeserializer);
 
-	protected static void setupContextParser(DelegatingJsonpValueParser<Context.Builder> op) {
+	protected static void setupContextDeserializer(DelegatingDeserializer<Context.Builder> op) {
 
-		op.add(Builder::methods, JsonpValueParser.arrayParser(ContextMethod.JSONP_PARSER), "methods");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::methods, JsonpDeserializer.arrayDeserializer(ContextMethod.DESERIALIZER), "methods");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

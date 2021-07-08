@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -148,17 +148,17 @@ public final class CreateFollowIndexResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CreateFollowIndexResponse
+	 * Json deserializer for CreateFollowIndexResponse
 	 */
-	public static final JsonpValueParser<CreateFollowIndexResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CreateFollowIndexResponse::setupCreateFollowIndexResponseParser);
+	public static final JsonpDeserializer<CreateFollowIndexResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CreateFollowIndexResponse::setupCreateFollowIndexResponseDeserializer);
 
-	protected static void setupCreateFollowIndexResponseParser(
-			DelegatingJsonpValueParser<CreateFollowIndexResponse.Builder> op) {
+	protected static void setupCreateFollowIndexResponseDeserializer(
+			DelegatingDeserializer<CreateFollowIndexResponse.Builder> op) {
 
-		op.add(Builder::followIndexCreated, JsonpValueParser.booleanParser(), "follow_index_created");
-		op.add(Builder::followIndexShardsAcked, JsonpValueParser.booleanParser(), "follow_index_shards_acked");
-		op.add(Builder::indexFollowingStarted, JsonpValueParser.booleanParser(), "index_following_started");
+		op.add(Builder::followIndexCreated, JsonpDeserializer.booleanDeserializer(), "follow_index_created");
+		op.add(Builder::followIndexShardsAcked, JsonpDeserializer.booleanDeserializer(), "follow_index_shards_acked");
+		op.add(Builder::indexFollowingStarted, JsonpDeserializer.booleanDeserializer(), "index_following_started");
 
 	}
 

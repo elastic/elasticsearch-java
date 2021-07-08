@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -166,15 +166,15 @@ public final class GetBucketsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetBucketsResponse
+	 * Json deserializer for GetBucketsResponse
 	 */
-	public static final JsonpValueParser<GetBucketsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetBucketsResponse::setupGetBucketsResponseParser);
+	public static final JsonpDeserializer<GetBucketsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetBucketsResponse::setupGetBucketsResponseDeserializer);
 
-	protected static void setupGetBucketsResponseParser(DelegatingJsonpValueParser<GetBucketsResponse.Builder> op) {
+	protected static void setupGetBucketsResponseDeserializer(DelegatingDeserializer<GetBucketsResponse.Builder> op) {
 
-		op.add(Builder::buckets, JsonpValueParser.arrayParser(BucketSummary.JSONP_PARSER), "buckets");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
+		op.add(Builder::buckets, JsonpDeserializer.arrayDeserializer(BucketSummary.DESERIALIZER), "buckets");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
 
 	}
 

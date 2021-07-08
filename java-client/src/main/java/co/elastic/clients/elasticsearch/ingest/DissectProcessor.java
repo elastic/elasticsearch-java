@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -169,17 +169,17 @@ public final class DissectProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DissectProcessor
+	 * Json deserializer for DissectProcessor
 	 */
-	public static final JsonpValueParser<DissectProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DissectProcessor::setupDissectProcessorParser);
+	public static final JsonpDeserializer<DissectProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DissectProcessor::setupDissectProcessorDeserializer);
 
-	protected static void setupDissectProcessorParser(DelegatingJsonpValueParser<DissectProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::appendSeparator, JsonpValueParser.stringParser(), "append_separator");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::pattern, JsonpValueParser.stringParser(), "pattern");
+	protected static void setupDissectProcessorDeserializer(DelegatingDeserializer<DissectProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::appendSeparator, JsonpDeserializer.stringDeserializer(), "append_separator");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
 
 	}
 

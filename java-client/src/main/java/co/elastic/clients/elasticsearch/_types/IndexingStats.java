@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -470,29 +470,28 @@ public final class IndexingStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexingStats
+	 * Json deserializer for IndexingStats
 	 */
-	public static final JsonpValueParser<IndexingStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexingStats::setupIndexingStatsParser);
+	public static final JsonpDeserializer<IndexingStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexingStats::setupIndexingStatsDeserializer);
 
-	protected static void setupIndexingStatsParser(DelegatingJsonpValueParser<IndexingStats.Builder> op) {
+	protected static void setupIndexingStatsDeserializer(DelegatingDeserializer<IndexingStats.Builder> op) {
 
-		op.add(Builder::indexCurrent, JsonpValueParser.numberParser(), "index_current");
-		op.add(Builder::deleteCurrent, JsonpValueParser.numberParser(), "delete_current");
-		op.add(Builder::deleteTime, JsonpValueParser.stringParser(), "delete_time");
-		op.add(Builder::deleteTimeInMillis, JsonpValueParser.numberParser(), "delete_time_in_millis");
-		op.add(Builder::deleteTotal, JsonpValueParser.numberParser(), "delete_total");
-		op.add(Builder::isThrottled, JsonpValueParser.booleanParser(), "is_throttled");
-		op.add(Builder::noopUpdateTotal, JsonpValueParser.numberParser(), "noop_update_total");
-		op.add(Builder::throttleTime, JsonpValueParser.stringParser(), "throttle_time");
-		op.add(Builder::throttleTimeInMillis, JsonpValueParser.numberParser(), "throttle_time_in_millis");
-		op.add(Builder::indexTime, JsonpValueParser.stringParser(), "index_time");
-		op.add(Builder::indexTimeInMillis, JsonpValueParser.numberParser(), "index_time_in_millis");
-		op.add(Builder::indexTotal, JsonpValueParser.numberParser(), "index_total");
-		op.add(Builder::indexFailed, JsonpValueParser.numberParser(), "index_failed");
-		op.add(Builder::types,
-				JsonpValueParser.stringMapParser(co.elastic.clients.elasticsearch._types.IndexingStats.JSONP_PARSER),
-				"types");
+		op.add(Builder::indexCurrent, JsonpDeserializer.numberDeserializer(), "index_current");
+		op.add(Builder::deleteCurrent, JsonpDeserializer.numberDeserializer(), "delete_current");
+		op.add(Builder::deleteTime, JsonpDeserializer.stringDeserializer(), "delete_time");
+		op.add(Builder::deleteTimeInMillis, JsonpDeserializer.numberDeserializer(), "delete_time_in_millis");
+		op.add(Builder::deleteTotal, JsonpDeserializer.numberDeserializer(), "delete_total");
+		op.add(Builder::isThrottled, JsonpDeserializer.booleanDeserializer(), "is_throttled");
+		op.add(Builder::noopUpdateTotal, JsonpDeserializer.numberDeserializer(), "noop_update_total");
+		op.add(Builder::throttleTime, JsonpDeserializer.stringDeserializer(), "throttle_time");
+		op.add(Builder::throttleTimeInMillis, JsonpDeserializer.numberDeserializer(), "throttle_time_in_millis");
+		op.add(Builder::indexTime, JsonpDeserializer.stringDeserializer(), "index_time");
+		op.add(Builder::indexTimeInMillis, JsonpDeserializer.numberDeserializer(), "index_time_in_millis");
+		op.add(Builder::indexTotal, JsonpDeserializer.numberDeserializer(), "index_total");
+		op.add(Builder::indexFailed, JsonpDeserializer.numberDeserializer(), "index_failed");
+		op.add(Builder::types, JsonpDeserializer
+				.stringMapDeserializer(co.elastic.clients.elasticsearch._types.IndexingStats.DESERIALIZER), "types");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -162,16 +162,16 @@ public final class ModelPlotConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ModelPlotConfig
+	 * Json deserializer for ModelPlotConfig
 	 */
-	public static final JsonpValueParser<ModelPlotConfig> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ModelPlotConfig::setupModelPlotConfigParser);
+	public static final JsonpDeserializer<ModelPlotConfig> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ModelPlotConfig::setupModelPlotConfigDeserializer);
 
-	protected static void setupModelPlotConfigParser(DelegatingJsonpValueParser<ModelPlotConfig.Builder> op) {
+	protected static void setupModelPlotConfigDeserializer(DelegatingDeserializer<ModelPlotConfig.Builder> op) {
 
-		op.add(Builder::terms, JsonpValueParser.stringParser(), "terms");
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
-		op.add(Builder::annotationsEnabled, JsonpValueParser.booleanParser(), "annotations_enabled");
+		op.add(Builder::terms, JsonpDeserializer.stringDeserializer(), "terms");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::annotationsEnabled, JsonpDeserializer.booleanDeserializer(), "annotations_enabled");
 
 	}
 

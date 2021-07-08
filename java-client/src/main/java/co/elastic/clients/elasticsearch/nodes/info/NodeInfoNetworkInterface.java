@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,17 +147,17 @@ public final class NodeInfoNetworkInterface implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoNetworkInterface
+	 * Json deserializer for NodeInfoNetworkInterface
 	 */
-	public static final JsonpValueParser<NodeInfoNetworkInterface> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoNetworkInterface::setupNodeInfoNetworkInterfaceParser);
+	public static final JsonpDeserializer<NodeInfoNetworkInterface> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoNetworkInterface::setupNodeInfoNetworkInterfaceDeserializer);
 
-	protected static void setupNodeInfoNetworkInterfaceParser(
-			DelegatingJsonpValueParser<NodeInfoNetworkInterface.Builder> op) {
+	protected static void setupNodeInfoNetworkInterfaceDeserializer(
+			DelegatingDeserializer<NodeInfoNetworkInterface.Builder> op) {
 
-		op.add(Builder::address, JsonpValueParser.stringParser(), "address");
-		op.add(Builder::macAddress, JsonpValueParser.stringParser(), "mac_address");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::address, JsonpDeserializer.stringDeserializer(), "address");
+		op.add(Builder::macAddress, JsonpDeserializer.stringDeserializer(), "mac_address");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

@@ -20,7 +20,7 @@
 package co.elastic.clients.base;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
@@ -145,13 +145,13 @@ public class RestClientTransport implements Transport {
         if (endpoint.isError(statusCode)) {
             // API error
             ErrorT error = null;
-            JsonpValueParser<ErrorT> errorParser = endpoint.errorParser(statusCode);
+            JsonpDeserializer<ErrorT> errorParser = endpoint.errorParser(statusCode);
             if (errorParser != null) {
                 // Expecting a body
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 clientResp.getEntity().writeTo(baos);
                 JsonParser parser = mapper.jsonpProvider().createParser(new ByteArrayInputStream(baos.toByteArray()));
-                error = errorParser.parse(parser, mapper);
+                error = errorParser.deserialize(parser, mapper);
             }
 
             throw new ApiException(error);
@@ -167,12 +167,12 @@ public class RestClientTransport implements Transport {
         } else {
             // Successful response
             ResponseT response = null;
-            JsonpValueParser<ResponseT> responseParser = endpoint.responseParser();
+            JsonpDeserializer<ResponseT> responseParser = endpoint.responseParser();
             if (responseParser != null) {
                 // Expecting a body
                 InputStream content = clientResp.getEntity().getContent();
                 JsonParser parser = mapper.jsonpProvider().createParser(content);
-                response = responseParser.parse(parser, mapper);
+                response = responseParser.deserialize(parser, mapper);
             }
             return response;
         }

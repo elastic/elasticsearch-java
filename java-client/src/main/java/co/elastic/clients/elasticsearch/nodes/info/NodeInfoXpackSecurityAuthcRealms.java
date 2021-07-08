@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -270,21 +270,21 @@ public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoXpackSecurityAuthcRealms
+	 * Json deserializer for NodeInfoXpackSecurityAuthcRealms
 	 */
-	public static final JsonpValueParser<NodeInfoXpackSecurityAuthcRealms> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcRealms> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					NodeInfoXpackSecurityAuthcRealms::setupNodeInfoXpackSecurityAuthcRealmsParser);
+					NodeInfoXpackSecurityAuthcRealms::setupNodeInfoXpackSecurityAuthcRealmsDeserializer);
 
-	protected static void setupNodeInfoXpackSecurityAuthcRealmsParser(
-			DelegatingJsonpValueParser<NodeInfoXpackSecurityAuthcRealms.Builder> op) {
+	protected static void setupNodeInfoXpackSecurityAuthcRealmsDeserializer(
+			DelegatingDeserializer<NodeInfoXpackSecurityAuthcRealms.Builder> op) {
 
-		op.add(Builder::file, JsonpValueParser.stringMapParser(NodeInfoXpackSecurityAuthcRealmsStatus.JSONP_PARSER),
-				"file");
-		op.add(Builder::native_, JsonpValueParser.stringMapParser(NodeInfoXpackSecurityAuthcRealmsStatus.JSONP_PARSER),
-				"native");
-		op.add(Builder::pki, JsonpValueParser.stringMapParser(NodeInfoXpackSecurityAuthcRealmsStatus.JSONP_PARSER),
-				"pki");
+		op.add(Builder::file,
+				JsonpDeserializer.stringMapDeserializer(NodeInfoXpackSecurityAuthcRealmsStatus.DESERIALIZER), "file");
+		op.add(Builder::native_,
+				JsonpDeserializer.stringMapDeserializer(NodeInfoXpackSecurityAuthcRealmsStatus.DESERIALIZER), "native");
+		op.add(Builder::pki,
+				JsonpDeserializer.stringMapDeserializer(NodeInfoXpackSecurityAuthcRealmsStatus.DESERIALIZER), "pki");
 
 	}
 

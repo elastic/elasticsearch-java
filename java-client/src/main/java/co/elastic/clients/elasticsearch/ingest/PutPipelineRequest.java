@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ingest;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -348,17 +348,17 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutPipelineRequest
+	 * Json deserializer for PutPipelineRequest
 	 */
-	public static final JsonpValueParser<PutPipelineRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutPipelineRequest::setupPutPipelineRequestParser);
+	public static final JsonpDeserializer<PutPipelineRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer);
 
-	protected static void setupPutPipelineRequestParser(DelegatingJsonpValueParser<PutPipelineRequest.Builder> op) {
+	protected static void setupPutPipelineRequestDeserializer(DelegatingDeserializer<PutPipelineRequest.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::onFailure, JsonpValueParser.arrayParser(ProcessorContainer.JSONP_PARSER), "on_failure");
-		op.add(Builder::processors, JsonpValueParser.arrayParser(ProcessorContainer.JSONP_PARSER), "processors");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER), "on_failure");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER), "processors");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 
 	}
 
@@ -406,5 +406,5 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutPipelineResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutPipelineResponse.DESERIALIZER);
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class FieldNamesField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldNamesField
+	 * Json deserializer for FieldNamesField
 	 */
-	public static final JsonpValueParser<FieldNamesField> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldNamesField::setupFieldNamesFieldParser);
+	public static final JsonpDeserializer<FieldNamesField> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldNamesField::setupFieldNamesFieldDeserializer);
 
-	protected static void setupFieldNamesFieldParser(DelegatingJsonpValueParser<FieldNamesField.Builder> op) {
+	protected static void setupFieldNamesFieldDeserializer(DelegatingDeserializer<FieldNamesField.Builder> op) {
 
-		op.add(Builder::enabled, JsonpValueParser.booleanParser(), "enabled");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 

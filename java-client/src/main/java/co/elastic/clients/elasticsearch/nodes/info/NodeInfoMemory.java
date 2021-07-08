@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -125,15 +125,15 @@ public final class NodeInfoMemory implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoMemory
+	 * Json deserializer for NodeInfoMemory
 	 */
-	public static final JsonpValueParser<NodeInfoMemory> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoMemory::setupNodeInfoMemoryParser);
+	public static final JsonpDeserializer<NodeInfoMemory> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoMemory::setupNodeInfoMemoryDeserializer);
 
-	protected static void setupNodeInfoMemoryParser(DelegatingJsonpValueParser<NodeInfoMemory.Builder> op) {
+	protected static void setupNodeInfoMemoryDeserializer(DelegatingDeserializer<NodeInfoMemory.Builder> op) {
 
-		op.add(Builder::total, JsonpValueParser.stringParser(), "total");
-		op.add(Builder::totalInBytes, JsonpValueParser.numberParser(), "total_in_bytes");
+		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
+		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -127,17 +127,17 @@ public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeE
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeEvaluationOutlierDetectionMetrics
+	 * Json deserializer for DataframeEvaluationOutlierDetectionMetrics
 	 */
-	public static final JsonpValueParser<DataframeEvaluationOutlierDetectionMetrics> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeEvaluationOutlierDetectionMetrics> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeEvaluationOutlierDetectionMetrics::setupDataframeEvaluationOutlierDetectionMetricsParser);
+					DataframeEvaluationOutlierDetectionMetrics::setupDataframeEvaluationOutlierDetectionMetricsDeserializer);
 
-	protected static void setupDataframeEvaluationOutlierDetectionMetricsParser(
-			DelegatingJsonpValueParser<DataframeEvaluationOutlierDetectionMetrics.Builder> op) {
-		DataframeEvaluationMetrics.setupDataframeEvaluationMetricsParser(op);
-		op.add(Builder::confusionMatrix, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"confusion_matrix");
+	protected static void setupDataframeEvaluationOutlierDetectionMetricsDeserializer(
+			DelegatingDeserializer<DataframeEvaluationOutlierDetectionMetrics.Builder> op) {
+		DataframeEvaluationMetrics.setupDataframeEvaluationMetricsDeserializer(op);
+		op.add(Builder::confusionMatrix,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "confusion_matrix");
 
 	}
 

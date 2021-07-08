@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -136,15 +136,15 @@ public final class Page implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Page
+	 * Json deserializer for Page
 	 */
-	public static final JsonpValueParser<Page> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Page::setupPageParser);
+	public static final JsonpDeserializer<Page> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Page::setupPageDeserializer);
 
-	protected static void setupPageParser(DelegatingJsonpValueParser<Page.Builder> op) {
+	protected static void setupPageDeserializer(DelegatingDeserializer<Page.Builder> op) {
 
-		op.add(Builder::from, JsonpValueParser.numberParser(), "from");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
+		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}
 

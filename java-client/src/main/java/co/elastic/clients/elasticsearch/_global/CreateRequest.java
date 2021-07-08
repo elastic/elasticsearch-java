@@ -26,13 +26,13 @@ package co.elastic.clients.elasticsearch._global;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -348,19 +348,19 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for CreateRequest
+	 * Create a json deserializer for CreateRequest
 	 */
-	public static <TDocument> JsonpValueParser<CreateRequest<TDocument>> createCreateRequestParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForValue((Supplier<Builder<TDocument>>) Builder::new,
-				op -> CreateRequest.setupCreateRequestParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<CreateRequest<TDocument>> createCreateRequestDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TDocument>>) Builder::new,
+				op -> CreateRequest.setupCreateRequestDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupCreateRequestParser(
-			DelegatingJsonpValueParser<CreateRequest.Builder<TDocument>> op,
-			JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument> void setupCreateRequestDeserializer(
+			DelegatingDeserializer<CreateRequest.Builder<TDocument>> op,
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::value, tDocumentParser, "value");
+		op.add(Builder::value, tDocumentDeserializer, "value");
 
 	}
 
@@ -441,5 +441,5 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, CreateResponse.DESERIALIZER);
 }

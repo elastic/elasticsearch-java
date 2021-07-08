@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -231,19 +231,21 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetServiceCredentialsResponse
+	 * Json deserializer for GetServiceCredentialsResponse
 	 */
-	public static final JsonpValueParser<GetServiceCredentialsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetServiceCredentialsResponse::setupGetServiceCredentialsResponseParser);
+	public static final JsonpDeserializer<GetServiceCredentialsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					GetServiceCredentialsResponse::setupGetServiceCredentialsResponseDeserializer);
 
-	protected static void setupGetServiceCredentialsResponseParser(
-			DelegatingJsonpValueParser<GetServiceCredentialsResponse.Builder> op) {
+	protected static void setupGetServiceCredentialsResponseDeserializer(
+			DelegatingDeserializer<GetServiceCredentialsResponse.Builder> op) {
 
-		op.add(Builder::serviceAccount, JsonpValueParser.stringParser(), "service_account");
-		op.add(Builder::nodeName, JsonpValueParser.stringParser(), "node_name");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::tokens, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "tokens");
-		op.add(Builder::fileTokens, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::serviceAccount, JsonpDeserializer.stringDeserializer(), "service_account");
+		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::tokens, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"tokens");
+		op.add(Builder::fileTokens, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"file_tokens");
 
 	}

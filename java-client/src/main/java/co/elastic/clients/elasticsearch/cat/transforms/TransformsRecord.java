@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.transforms;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -1167,50 +1167,52 @@ public final class TransformsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TransformsRecord
+	 * Json deserializer for TransformsRecord
 	 */
-	public static final JsonpValueParser<TransformsRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TransformsRecord::setupTransformsRecordParser);
+	public static final JsonpDeserializer<TransformsRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TransformsRecord::setupTransformsRecordDeserializer);
 
-	protected static void setupTransformsRecordParser(DelegatingJsonpValueParser<TransformsRecord.Builder> op) {
+	protected static void setupTransformsRecordDeserializer(DelegatingDeserializer<TransformsRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::state, JsonpValueParser.stringParser(), "state", "s");
-		op.add(Builder::checkpoint, JsonpValueParser.stringParser(), "checkpoint", "c");
-		op.add(Builder::documentsProcessed, JsonpValueParser.stringParser(), "documents_processed", "docp",
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state", "s");
+		op.add(Builder::checkpoint, JsonpDeserializer.stringDeserializer(), "checkpoint", "c");
+		op.add(Builder::documentsProcessed, JsonpDeserializer.stringDeserializer(), "documents_processed", "docp",
 				"documentsProcessed");
-		op.add(Builder::checkpointProgress, JsonpValueParser.stringParser(), "checkpoint_progress", "cp",
+		op.add(Builder::checkpointProgress, JsonpDeserializer.stringDeserializer(), "checkpoint_progress", "cp",
 				"checkpointProgress");
-		op.add(Builder::lastSearchTime, JsonpValueParser.stringParser(), "last_search_time", "lst", "lastSearchTime");
-		op.add(Builder::changesLastDetectionTime, JsonpValueParser.stringParser(), "changes_last_detection_time",
+		op.add(Builder::lastSearchTime, JsonpDeserializer.stringDeserializer(), "last_search_time", "lst",
+				"lastSearchTime");
+		op.add(Builder::changesLastDetectionTime, JsonpDeserializer.stringDeserializer(), "changes_last_detection_time",
 				"cldt");
-		op.add(Builder::createTime, JsonpValueParser.stringParser(), "create_time", "ct", "createTime");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version", "v");
-		op.add(Builder::sourceIndex, JsonpValueParser.stringParser(), "source_index", "si", "sourceIndex");
-		op.add(Builder::destIndex, JsonpValueParser.stringParser(), "dest_index", "di", "destIndex");
-		op.add(Builder::pipeline, JsonpValueParser.stringParser(), "pipeline", "p");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description", "d");
-		op.add(Builder::transformType, JsonpValueParser.stringParser(), "transform_type", "tt");
-		op.add(Builder::frequency, JsonpValueParser.stringParser(), "frequency", "f");
-		op.add(Builder::maxPageSearchSize, JsonpValueParser.stringParser(), "max_page_search_size", "mpsz");
-		op.add(Builder::docsPerSecond, JsonpValueParser.stringParser(), "docs_per_second", "dps");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason", "r");
-		op.add(Builder::searchTotal, JsonpValueParser.stringParser(), "search_total", "st");
-		op.add(Builder::searchFailure, JsonpValueParser.stringParser(), "search_failure", "sf");
-		op.add(Builder::searchTime, JsonpValueParser.stringParser(), "search_time", "stime");
-		op.add(Builder::indexTotal, JsonpValueParser.stringParser(), "index_total", "it");
-		op.add(Builder::indexFailure, JsonpValueParser.stringParser(), "index_failure", "if");
-		op.add(Builder::indexTime, JsonpValueParser.stringParser(), "index_time", "itime");
-		op.add(Builder::documentsIndexed, JsonpValueParser.stringParser(), "documents_indexed", "doci");
-		op.add(Builder::deleteTime, JsonpValueParser.stringParser(), "delete_time", "dtime");
-		op.add(Builder::documentsDeleted, JsonpValueParser.stringParser(), "documents_deleted", "docd");
-		op.add(Builder::triggerCount, JsonpValueParser.stringParser(), "trigger_count", "tc");
-		op.add(Builder::pagesProcessed, JsonpValueParser.stringParser(), "pages_processed", "pp");
-		op.add(Builder::processingTime, JsonpValueParser.stringParser(), "processing_time", "pt");
-		op.add(Builder::checkpointDurationTimeExpAvg, JsonpValueParser.stringParser(),
+		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time", "ct", "createTime");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
+		op.add(Builder::sourceIndex, JsonpDeserializer.stringDeserializer(), "source_index", "si", "sourceIndex");
+		op.add(Builder::destIndex, JsonpDeserializer.stringDeserializer(), "dest_index", "di", "destIndex");
+		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline", "p");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description", "d");
+		op.add(Builder::transformType, JsonpDeserializer.stringDeserializer(), "transform_type", "tt");
+		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency", "f");
+		op.add(Builder::maxPageSearchSize, JsonpDeserializer.stringDeserializer(), "max_page_search_size", "mpsz");
+		op.add(Builder::docsPerSecond, JsonpDeserializer.stringDeserializer(), "docs_per_second", "dps");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason", "r");
+		op.add(Builder::searchTotal, JsonpDeserializer.stringDeserializer(), "search_total", "st");
+		op.add(Builder::searchFailure, JsonpDeserializer.stringDeserializer(), "search_failure", "sf");
+		op.add(Builder::searchTime, JsonpDeserializer.stringDeserializer(), "search_time", "stime");
+		op.add(Builder::indexTotal, JsonpDeserializer.stringDeserializer(), "index_total", "it");
+		op.add(Builder::indexFailure, JsonpDeserializer.stringDeserializer(), "index_failure", "if");
+		op.add(Builder::indexTime, JsonpDeserializer.stringDeserializer(), "index_time", "itime");
+		op.add(Builder::documentsIndexed, JsonpDeserializer.stringDeserializer(), "documents_indexed", "doci");
+		op.add(Builder::deleteTime, JsonpDeserializer.stringDeserializer(), "delete_time", "dtime");
+		op.add(Builder::documentsDeleted, JsonpDeserializer.stringDeserializer(), "documents_deleted", "docd");
+		op.add(Builder::triggerCount, JsonpDeserializer.stringDeserializer(), "trigger_count", "tc");
+		op.add(Builder::pagesProcessed, JsonpDeserializer.stringDeserializer(), "pages_processed", "pp");
+		op.add(Builder::processingTime, JsonpDeserializer.stringDeserializer(), "processing_time", "pt");
+		op.add(Builder::checkpointDurationTimeExpAvg, JsonpDeserializer.stringDeserializer(),
 				"checkpoint_duration_time_exp_avg", "cdtea", "checkpointTimeExpAvg");
-		op.add(Builder::indexedDocumentsExpAvg, JsonpValueParser.stringParser(), "indexed_documents_exp_avg", "idea");
-		op.add(Builder::processedDocumentsExpAvg, JsonpValueParser.stringParser(), "processed_documents_exp_avg",
+		op.add(Builder::indexedDocumentsExpAvg, JsonpDeserializer.stringDeserializer(), "indexed_documents_exp_avg",
+				"idea");
+		op.add(Builder::processedDocumentsExpAvg, JsonpDeserializer.stringDeserializer(), "processed_documents_exp_avg",
 				"pdea");
 
 	}

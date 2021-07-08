@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -239,19 +239,20 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ScriptedMetricAggregation
+	 * Json deserializer for ScriptedMetricAggregation
 	 */
-	public static final JsonpValueParser<ScriptedMetricAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ScriptedMetricAggregation::setupScriptedMetricAggregationParser);
+	public static final JsonpDeserializer<ScriptedMetricAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ScriptedMetricAggregation::setupScriptedMetricAggregationDeserializer);
 
-	protected static void setupScriptedMetricAggregationParser(
-			DelegatingJsonpValueParser<ScriptedMetricAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseParser(op);
-		op.add(Builder::combineScript, JsonpValueParser.jsonValueParser(), "combine_script");
-		op.add(Builder::initScript, JsonpValueParser.jsonValueParser(), "init_script");
-		op.add(Builder::mapScript, JsonpValueParser.jsonValueParser(), "map_script");
-		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
-		op.add(Builder::reduceScript, JsonpValueParser.jsonValueParser(), "reduce_script");
+	protected static void setupScriptedMetricAggregationDeserializer(
+			DelegatingDeserializer<ScriptedMetricAggregation.Builder> op) {
+		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+		op.add(Builder::combineScript, JsonpDeserializer.jsonValueDeserializer(), "combine_script");
+		op.add(Builder::initScript, JsonpDeserializer.jsonValueDeserializer(), "init_script");
+		op.add(Builder::mapScript, JsonpDeserializer.jsonValueDeserializer(), "map_script");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"params");
+		op.add(Builder::reduceScript, JsonpDeserializer.jsonValueDeserializer(), "reduce_script");
 
 	}
 

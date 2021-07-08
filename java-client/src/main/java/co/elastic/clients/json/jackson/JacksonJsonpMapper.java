@@ -20,7 +20,7 @@
 package co.elastic.clients.json.jackson;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
@@ -56,7 +56,7 @@ public class JacksonJsonpMapper implements JsonpMapper {
     }
 
     @Override
-    public <T> JsonpValueParser<T> getDeserializer(Class<T> clazz) {
+    public <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz) {
         return new JacksonValueParser<>(clazz);
     }
 
@@ -75,7 +75,7 @@ public class JacksonJsonpMapper implements JsonpMapper {
         }
     }
 
-    private class JacksonValueParser<T> extends JsonpValueParser<T> {
+    private class JacksonValueParser<T> extends JsonpDeserializer<T> {
 
         private final Class<T> clazz;
 
@@ -85,7 +85,7 @@ public class JacksonJsonpMapper implements JsonpMapper {
         }
 
         @Override
-        public T parse(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+        public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
             if (!(parser instanceof JacksonJsonpParser)) {
                 throw new IllegalArgumentException("Jackson' ObjectMapper can only be used with the JacksonJsonpProvider");

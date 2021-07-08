@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -113,15 +113,15 @@ public class WatchRecordQueuedStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WatchRecordQueuedStats
+	 * Json deserializer for WatchRecordQueuedStats
 	 */
-	public static final JsonpValueParser<WatchRecordQueuedStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WatchRecordQueuedStats::setupWatchRecordQueuedStatsParser);
+	public static final JsonpDeserializer<WatchRecordQueuedStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WatchRecordQueuedStats::setupWatchRecordQueuedStatsDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWatchRecordQueuedStatsParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWatchRecordQueuedStatsDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::executionTime, JsonpValueParser.stringParser(), "execution_time");
+		op.add(AbstractBuilder::executionTime, JsonpDeserializer.stringDeserializer(), "execution_time");
 
 	}
 

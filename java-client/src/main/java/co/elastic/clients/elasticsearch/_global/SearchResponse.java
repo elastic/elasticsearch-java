@@ -28,13 +28,13 @@ import co.elastic.clients.elasticsearch._global.search.Profile;
 import co.elastic.clients.elasticsearch._global.search.Suggest;
 import co.elastic.clients.elasticsearch._types.ClusterStatistics;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -644,34 +644,37 @@ public class SearchResponse<TDocument> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for SearchResponse
+	 * Create a json deserializer for SearchResponse
 	 */
-	public static <TDocument> JsonpValueParser<SearchResponse<TDocument>> createSearchResponseParser(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> SearchResponse.setupSearchResponseParser(op, tDocumentParser));
+	public static <TDocument> JsonpDeserializer<SearchResponse<TDocument>> createSearchResponseDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
+				op -> SearchResponse.setupSearchResponseDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupSearchResponseParser(
-			DelegatingJsonpValueParser<BuilderT> op, JsonpValueParser<TDocument> tDocumentParser) {
+	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupSearchResponseDeserializer(
+			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(AbstractBuilder::took, JsonpValueParser.numberParser(), "took");
-		op.add(AbstractBuilder::timedOut, JsonpValueParser.booleanParser(), "timed_out");
-		op.add(AbstractBuilder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
-		op.add(AbstractBuilder::hits, HitsMetadata.createHitsMetadataParser(tDocumentParser), "hits");
-		op.add(AbstractBuilder::aggregations, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"aggregations");
-		op.add(AbstractBuilder::_clusters, ClusterStatistics.JSONP_PARSER, "_clusters");
-		op.add(AbstractBuilder::documents, JsonpValueParser.arrayParser(tDocumentParser), "documents");
-		op.add(AbstractBuilder::fields, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "fields");
-		op.add(AbstractBuilder::maxScore, JsonpValueParser.numberParser(), "max_score");
-		op.add(AbstractBuilder::numReducePhases, JsonpValueParser.numberParser(), "num_reduce_phases");
-		op.add(AbstractBuilder::profile, Profile.JSONP_PARSER, "profile");
-		op.add(AbstractBuilder::pitId, JsonpValueParser.stringParser(), "pit_id");
-		op.add(AbstractBuilder::_scrollId, JsonpValueParser.stringParser(), "_scroll_id");
-		op.add(AbstractBuilder::suggest, JsonpValueParser.stringMapParser(
-				JsonpValueParser.arrayParser(Suggest.createSuggestParser(tDocumentParser))), "suggest");
-		op.add(AbstractBuilder::terminatedEarly, JsonpValueParser.booleanParser(), "terminated_early");
+		op.add(AbstractBuilder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(AbstractBuilder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
+		op.add(AbstractBuilder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(AbstractBuilder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
+		op.add(AbstractBuilder::aggregations,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");
+		op.add(AbstractBuilder::_clusters, ClusterStatistics.DESERIALIZER, "_clusters");
+		op.add(AbstractBuilder::documents, JsonpDeserializer.arrayDeserializer(tDocumentDeserializer), "documents");
+		op.add(AbstractBuilder::fields,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "fields");
+		op.add(AbstractBuilder::maxScore, JsonpDeserializer.numberDeserializer(), "max_score");
+		op.add(AbstractBuilder::numReducePhases, JsonpDeserializer.numberDeserializer(), "num_reduce_phases");
+		op.add(AbstractBuilder::profile, Profile.DESERIALIZER, "profile");
+		op.add(AbstractBuilder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
+		op.add(AbstractBuilder::_scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
+		op.add(AbstractBuilder::suggest,
+				JsonpDeserializer.stringMapDeserializer(
+						JsonpDeserializer.arrayDeserializer(Suggest.createSuggestDeserializer(tDocumentDeserializer))),
+				"suggest");
+		op.add(AbstractBuilder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
 
 	}
 

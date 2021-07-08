@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.analyze;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -151,15 +151,16 @@ public final class CharFilterDetail implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CharFilterDetail
+	 * Json deserializer for CharFilterDetail
 	 */
-	public static final JsonpValueParser<CharFilterDetail> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CharFilterDetail::setupCharFilterDetailParser);
+	public static final JsonpDeserializer<CharFilterDetail> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CharFilterDetail::setupCharFilterDetailDeserializer);
 
-	protected static void setupCharFilterDetailParser(DelegatingJsonpValueParser<CharFilterDetail.Builder> op) {
+	protected static void setupCharFilterDetailDeserializer(DelegatingDeserializer<CharFilterDetail.Builder> op) {
 
-		op.add(Builder::filteredText, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "filtered_text");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
+		op.add(Builder::filteredText, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"filtered_text");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}
 

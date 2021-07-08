@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -226,19 +226,19 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TrainedModelInferenceStats
+	 * Json deserializer for TrainedModelInferenceStats
 	 */
-	public static final JsonpValueParser<TrainedModelInferenceStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsParser);
+	public static final JsonpDeserializer<TrainedModelInferenceStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsDeserializer);
 
-	protected static void setupTrainedModelInferenceStatsParser(
-			DelegatingJsonpValueParser<TrainedModelInferenceStats.Builder> op) {
+	protected static void setupTrainedModelInferenceStatsDeserializer(
+			DelegatingDeserializer<TrainedModelInferenceStats.Builder> op) {
 
-		op.add(Builder::failureCount, JsonpValueParser.numberParser(), "failure_count");
-		op.add(Builder::inferenceCount, JsonpValueParser.numberParser(), "inference_count");
-		op.add(Builder::cacheMissCount, JsonpValueParser.numberParser(), "cache_miss_count");
-		op.add(Builder::missingAllFieldsCount, JsonpValueParser.numberParser(), "missing_all_fields_count");
-		op.add(Builder::timestamp, JsonpValueParser.jsonValueParser(), "timestamp");
+		op.add(Builder::failureCount, JsonpDeserializer.numberDeserializer(), "failure_count");
+		op.add(Builder::inferenceCount, JsonpDeserializer.numberDeserializer(), "inference_count");
+		op.add(Builder::cacheMissCount, JsonpDeserializer.numberDeserializer(), "cache_miss_count");
+		op.add(Builder::missingAllFieldsCount, JsonpDeserializer.numberDeserializer(), "missing_all_fields_count");
+		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
 
 	}
 

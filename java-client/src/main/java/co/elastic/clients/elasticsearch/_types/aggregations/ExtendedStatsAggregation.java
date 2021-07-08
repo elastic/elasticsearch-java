@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -104,15 +104,15 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExtendedStatsAggregation
+	 * Json deserializer for ExtendedStatsAggregation
 	 */
-	public static final JsonpValueParser<ExtendedStatsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExtendedStatsAggregation::setupExtendedStatsAggregationParser);
+	public static final JsonpDeserializer<ExtendedStatsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExtendedStatsAggregation::setupExtendedStatsAggregationDeserializer);
 
-	protected static void setupExtendedStatsAggregationParser(
-			DelegatingJsonpValueParser<ExtendedStatsAggregation.Builder> op) {
-		FormatMetricAggregationBase.setupFormatMetricAggregationBaseParser(op);
-		op.add(Builder::sigma, JsonpValueParser.numberParser(), "sigma");
+	protected static void setupExtendedStatsAggregationDeserializer(
+			DelegatingDeserializer<ExtendedStatsAggregation.Builder> op) {
+		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
+		op.add(Builder::sigma, JsonpDeserializer.numberDeserializer(), "sigma");
 
 	}
 

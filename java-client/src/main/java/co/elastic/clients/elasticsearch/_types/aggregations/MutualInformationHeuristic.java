@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,16 +124,16 @@ public final class MutualInformationHeuristic implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MutualInformationHeuristic
+	 * Json deserializer for MutualInformationHeuristic
 	 */
-	public static final JsonpValueParser<MutualInformationHeuristic> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MutualInformationHeuristic::setupMutualInformationHeuristicParser);
+	public static final JsonpDeserializer<MutualInformationHeuristic> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MutualInformationHeuristic::setupMutualInformationHeuristicDeserializer);
 
-	protected static void setupMutualInformationHeuristicParser(
-			DelegatingJsonpValueParser<MutualInformationHeuristic.Builder> op) {
+	protected static void setupMutualInformationHeuristicDeserializer(
+			DelegatingDeserializer<MutualInformationHeuristic.Builder> op) {
 
-		op.add(Builder::backgroundIsSuperset, JsonpValueParser.booleanParser(), "background_is_superset");
-		op.add(Builder::includeNegatives, JsonpValueParser.booleanParser(), "include_negatives");
+		op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
+		op.add(Builder::includeNegatives, JsonpDeserializer.booleanDeserializer(), "include_negatives");
 
 	}
 

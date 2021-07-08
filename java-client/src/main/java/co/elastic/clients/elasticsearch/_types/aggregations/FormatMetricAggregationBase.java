@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -82,10 +82,10 @@ public abstract class FormatMetricAggregationBase extends MetricAggregationBase 
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupFormatMetricAggregationBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
-		MetricAggregationBase.setupMetricAggregationBaseParser(op);
-		op.add(AbstractBuilder::format, JsonpValueParser.stringParser(), "format");
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupFormatMetricAggregationBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
+		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+		op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
 
 	}
 

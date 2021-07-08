@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class SimulateTemplateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SimulateTemplateResponse
+	 * Json deserializer for SimulateTemplateResponse
 	 */
-	public static final JsonpValueParser<SimulateTemplateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SimulateTemplateResponse::setupSimulateTemplateResponseParser);
+	public static final JsonpDeserializer<SimulateTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SimulateTemplateResponse::setupSimulateTemplateResponseDeserializer);
 
-	protected static void setupSimulateTemplateResponseParser(
-			DelegatingJsonpValueParser<SimulateTemplateResponse.Builder> op) {
+	protected static void setupSimulateTemplateResponseDeserializer(
+			DelegatingDeserializer<SimulateTemplateResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.stringParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
 
 	}
 

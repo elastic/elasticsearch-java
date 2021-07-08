@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -484,28 +484,28 @@ public final class Hyperparameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Hyperparameters
+	 * Json deserializer for Hyperparameters
 	 */
-	public static final JsonpValueParser<Hyperparameters> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Hyperparameters::setupHyperparametersParser);
+	public static final JsonpDeserializer<Hyperparameters> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Hyperparameters::setupHyperparametersDeserializer);
 
-	protected static void setupHyperparametersParser(DelegatingJsonpValueParser<Hyperparameters.Builder> op) {
+	protected static void setupHyperparametersDeserializer(DelegatingDeserializer<Hyperparameters.Builder> op) {
 
-		op.add(Builder::alpha, JsonpValueParser.numberParser(), "alpha");
-		op.add(Builder::lambda, JsonpValueParser.numberParser(), "lambda");
-		op.add(Builder::gamma, JsonpValueParser.numberParser(), "gamma");
-		op.add(Builder::eta, JsonpValueParser.numberParser(), "eta");
-		op.add(Builder::etaGrowthRatePerTree, JsonpValueParser.numberParser(), "eta_growth_rate_per_tree");
-		op.add(Builder::featureBagFraction, JsonpValueParser.numberParser(), "feature_bag_fraction");
-		op.add(Builder::downsampleFactor, JsonpValueParser.numberParser(), "downsample_factor");
-		op.add(Builder::maxAttemptsToAddTree, JsonpValueParser.numberParser(), "max_attempts_to_add_tree");
-		op.add(Builder::maxOptimizationRoundsPerHyperparameter, JsonpValueParser.numberParser(),
+		op.add(Builder::alpha, JsonpDeserializer.numberDeserializer(), "alpha");
+		op.add(Builder::lambda, JsonpDeserializer.numberDeserializer(), "lambda");
+		op.add(Builder::gamma, JsonpDeserializer.numberDeserializer(), "gamma");
+		op.add(Builder::eta, JsonpDeserializer.numberDeserializer(), "eta");
+		op.add(Builder::etaGrowthRatePerTree, JsonpDeserializer.numberDeserializer(), "eta_growth_rate_per_tree");
+		op.add(Builder::featureBagFraction, JsonpDeserializer.numberDeserializer(), "feature_bag_fraction");
+		op.add(Builder::downsampleFactor, JsonpDeserializer.numberDeserializer(), "downsample_factor");
+		op.add(Builder::maxAttemptsToAddTree, JsonpDeserializer.numberDeserializer(), "max_attempts_to_add_tree");
+		op.add(Builder::maxOptimizationRoundsPerHyperparameter, JsonpDeserializer.numberDeserializer(),
 				"max_optimization_rounds_per_hyperparameter");
-		op.add(Builder::maxTrees, JsonpValueParser.numberParser(), "max_trees");
-		op.add(Builder::numFolds, JsonpValueParser.numberParser(), "num_folds");
-		op.add(Builder::numSplitsPerFeature, JsonpValueParser.numberParser(), "num_splits_per_feature");
-		op.add(Builder::softTreeDepthLimit, JsonpValueParser.numberParser(), "soft_tree_depth_limit");
-		op.add(Builder::softTreeDepthTolerance, JsonpValueParser.numberParser(), "soft_tree_depth_tolerance");
+		op.add(Builder::maxTrees, JsonpDeserializer.numberDeserializer(), "max_trees");
+		op.add(Builder::numFolds, JsonpDeserializer.numberDeserializer(), "num_folds");
+		op.add(Builder::numSplitsPerFeature, JsonpDeserializer.numberDeserializer(), "num_splits_per_feature");
+		op.add(Builder::softTreeDepthLimit, JsonpDeserializer.numberDeserializer(), "soft_tree_depth_limit");
+		op.add(Builder::softTreeDepthTolerance, JsonpDeserializer.numberDeserializer(), "soft_tree_depth_tolerance");
 
 	}
 

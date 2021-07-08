@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -192,16 +192,17 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StartDatafeedRequest
+	 * Json deserializer for StartDatafeedRequest
 	 */
-	public static final JsonpValueParser<StartDatafeedRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestParser);
+	public static final JsonpDeserializer<StartDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestDeserializer);
 
-	protected static void setupStartDatafeedRequestParser(DelegatingJsonpValueParser<StartDatafeedRequest.Builder> op) {
+	protected static void setupStartDatafeedRequestDeserializer(
+			DelegatingDeserializer<StartDatafeedRequest.Builder> op) {
 
-		op.add(Builder::end, JsonpValueParser.jsonValueParser(), "end");
-		op.add(Builder::start, JsonpValueParser.jsonValueParser(), "start");
-		op.add(Builder::timeout, JsonpValueParser.jsonValueParser(), "timeout");
+		op.add(Builder::end, JsonpDeserializer.jsonValueDeserializer(), "end");
+		op.add(Builder::start, JsonpDeserializer.jsonValueDeserializer(), "start");
+		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
 
 	}
 
@@ -244,5 +245,5 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 				Map<String, String> params = new HashMap<>();
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, StartDatafeedResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, StartDatafeedResponse.DESERIALIZER);
 }

@@ -20,10 +20,10 @@
 package co.elastic.clients.elasticsearch.experiments.inheritance.final_;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 
 import jakarta.json.stream.JsonGenerator;
@@ -77,9 +77,9 @@ public final class FinalClass extends ChildClass {
 
     //---------------------------------------------------------------------------------------------
 
-    private static void setupFinalClassParser(DelegatingJsonpValueParser<Builder> op) {
+    private static void setupFinalClassParser(DelegatingDeserializer<Builder> op) {
         ChildClass.setupChildClassParser(op);
-        op.add(Builder::finalField, JsonpValueParser.stringParser(), "finalField");
+        op.add(Builder::finalField, JsonpDeserializer.stringDeserializer(), "finalField");
     }
 
     // Static methods cannot hide other static methods with a different return type or the same erased signature.
@@ -91,7 +91,7 @@ public final class FinalClass extends ChildClass {
     // the user and use a static field for the final parser, so that we can uniformly write SomeClass.PARSER
     // (even if users should rarely have to interact directly with the parser).
 
-    public static final JsonpValueParser<FinalClass> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(
+    public static final JsonpDeserializer<FinalClass> JSONP_PARSER = ObjectBuilderDeserializer.createForObject(
         Builder::new, FinalClass::setupFinalClassParser
     );
 

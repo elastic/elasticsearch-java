@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -307,20 +307,22 @@ public final class RareTermsAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RareTermsAggregation
+	 * Json deserializer for RareTermsAggregation
 	 */
-	public static final JsonpValueParser<RareTermsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RareTermsAggregation::setupRareTermsAggregationParser);
+	public static final JsonpDeserializer<RareTermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RareTermsAggregation::setupRareTermsAggregationDeserializer);
 
-	protected static void setupRareTermsAggregationParser(DelegatingJsonpValueParser<RareTermsAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::exclude, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "exclude");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::include, JsonpValueParser.jsonValueParser(), "include");
-		op.add(Builder::maxDocCount, JsonpValueParser.numberParser(), "max_doc_count");
-		op.add(Builder::missing, JsonpValueParser.jsonValueParser(), "missing");
-		op.add(Builder::precision, JsonpValueParser.numberParser(), "precision");
-		op.add(Builder::valueType, JsonpValueParser.stringParser(), "value_type");
+	protected static void setupRareTermsAggregationDeserializer(
+			DelegatingDeserializer<RareTermsAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"exclude");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::include, JsonpDeserializer.jsonValueDeserializer(), "include");
+		op.add(Builder::maxDocCount, JsonpDeserializer.numberDeserializer(), "max_doc_count");
+		op.add(Builder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
+		op.add(Builder::precision, JsonpDeserializer.numberDeserializer(), "precision");
+		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");
 
 	}
 

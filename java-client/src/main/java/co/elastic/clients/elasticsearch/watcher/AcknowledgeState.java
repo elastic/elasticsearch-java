@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -125,15 +125,15 @@ public final class AcknowledgeState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AcknowledgeState
+	 * Json deserializer for AcknowledgeState
 	 */
-	public static final JsonpValueParser<AcknowledgeState> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AcknowledgeState::setupAcknowledgeStateParser);
+	public static final JsonpDeserializer<AcknowledgeState> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AcknowledgeState::setupAcknowledgeStateDeserializer);
 
-	protected static void setupAcknowledgeStateParser(DelegatingJsonpValueParser<AcknowledgeState.Builder> op) {
+	protected static void setupAcknowledgeStateDeserializer(DelegatingDeserializer<AcknowledgeState.Builder> op) {
 
-		op.add(Builder::state, JsonpValueParser.jsonValueParser(), "state");
-		op.add(Builder::timestamp, JsonpValueParser.stringParser(), "timestamp");
+		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}
 

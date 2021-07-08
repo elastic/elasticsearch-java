@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -136,15 +136,15 @@ public final class HistogramOrder implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HistogramOrder
+	 * Json deserializer for HistogramOrder
 	 */
-	public static final JsonpValueParser<HistogramOrder> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HistogramOrder::setupHistogramOrderParser);
+	public static final JsonpDeserializer<HistogramOrder> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HistogramOrder::setupHistogramOrderDeserializer);
 
-	protected static void setupHistogramOrderParser(DelegatingJsonpValueParser<HistogramOrder.Builder> op) {
+	protected static void setupHistogramOrderDeserializer(DelegatingDeserializer<HistogramOrder.Builder> op) {
 
-		op.add(Builder::_count, JsonpValueParser.jsonValueParser(), "_count");
-		op.add(Builder::_key, JsonpValueParser.jsonValueParser(), "_key");
+		op.add(Builder::_count, JsonpDeserializer.jsonValueDeserializer(), "_count");
+		op.add(Builder::_key, JsonpDeserializer.jsonValueDeserializer(), "_key");
 
 	}
 

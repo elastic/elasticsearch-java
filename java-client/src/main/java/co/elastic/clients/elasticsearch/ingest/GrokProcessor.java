@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -251,19 +251,20 @@ public final class GrokProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GrokProcessor
+	 * Json deserializer for GrokProcessor
 	 */
-	public static final JsonpValueParser<GrokProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GrokProcessor::setupGrokProcessorParser);
+	public static final JsonpDeserializer<GrokProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GrokProcessor::setupGrokProcessorDeserializer);
 
-	protected static void setupGrokProcessorParser(DelegatingJsonpValueParser<GrokProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::patternDefinitions, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()),
-				"pattern_definitions");
-		op.add(Builder::patterns, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "patterns");
-		op.add(Builder::traceMatch, JsonpValueParser.booleanParser(), "trace_match");
+	protected static void setupGrokProcessorDeserializer(DelegatingDeserializer<GrokProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::patternDefinitions,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "pattern_definitions");
+		op.add(Builder::patterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"patterns");
+		op.add(Builder::traceMatch, JsonpDeserializer.booleanDeserializer(), "trace_match");
 
 	}
 

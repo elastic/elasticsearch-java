@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -201,18 +201,18 @@ public final class NodeInfoXpackSecurity implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoXpackSecurity
+	 * Json deserializer for NodeInfoXpackSecurity
 	 */
-	public static final JsonpValueParser<NodeInfoXpackSecurity> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoXpackSecurity::setupNodeInfoXpackSecurityParser);
+	public static final JsonpDeserializer<NodeInfoXpackSecurity> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoXpackSecurity::setupNodeInfoXpackSecurityDeserializer);
 
-	protected static void setupNodeInfoXpackSecurityParser(
-			DelegatingJsonpValueParser<NodeInfoXpackSecurity.Builder> op) {
+	protected static void setupNodeInfoXpackSecurityDeserializer(
+			DelegatingDeserializer<NodeInfoXpackSecurity.Builder> op) {
 
-		op.add(Builder::http, NodeInfoXpackSecuritySsl.JSONP_PARSER, "http");
-		op.add(Builder::enabled, JsonpValueParser.stringParser(), "enabled");
-		op.add(Builder::transport, NodeInfoXpackSecuritySsl.JSONP_PARSER, "transport");
-		op.add(Builder::authc, NodeInfoXpackSecurityAuthc.JSONP_PARSER, "authc");
+		op.add(Builder::http, NodeInfoXpackSecuritySsl.DESERIALIZER, "http");
+		op.add(Builder::enabled, JsonpDeserializer.stringDeserializer(), "enabled");
+		op.add(Builder::transport, NodeInfoXpackSecuritySsl.DESERIALIZER, "transport");
+		op.add(Builder::authc, NodeInfoXpackSecurityAuthc.DESERIALIZER, "authc");
 
 	}
 

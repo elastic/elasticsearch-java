@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -828,33 +828,38 @@ public final class SnapshotInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SnapshotInfo
+	 * Json deserializer for SnapshotInfo
 	 */
-	public static final JsonpValueParser<SnapshotInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SnapshotInfo::setupSnapshotInfoParser);
+	public static final JsonpDeserializer<SnapshotInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SnapshotInfo::setupSnapshotInfoDeserializer);
 
-	protected static void setupSnapshotInfoParser(DelegatingJsonpValueParser<SnapshotInfo.Builder> op) {
+	protected static void setupSnapshotInfoDeserializer(DelegatingDeserializer<SnapshotInfo.Builder> op) {
 
-		op.add(Builder::dataStreams, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "data_streams");
-		op.add(Builder::duration, JsonpValueParser.jsonValueParser(), "duration");
-		op.add(Builder::durationInMillis, JsonpValueParser.jsonValueParser(), "duration_in_millis");
-		op.add(Builder::endTime, JsonpValueParser.jsonValueParser(), "end_time");
-		op.add(Builder::endTimeInMillis, JsonpValueParser.jsonValueParser(), "end_time_in_millis");
-		op.add(Builder::failures, JsonpValueParser.arrayParser(SnapshotShardFailure.JSONP_PARSER), "failures");
-		op.add(Builder::includeGlobalState, JsonpValueParser.booleanParser(), "include_global_state");
-		op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
-		op.add(Builder::indexDetails, JsonpValueParser.stringMapParser(IndexDetails.JSONP_PARSER), "index_details");
-		op.add(Builder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "metadata");
-		op.add(Builder::reason, JsonpValueParser.stringParser(), "reason");
-		op.add(Builder::snapshot, JsonpValueParser.stringParser(), "snapshot");
-		op.add(Builder::shards, ShardStatistics.JSONP_PARSER, "shards");
-		op.add(Builder::startTime, JsonpValueParser.jsonValueParser(), "start_time");
-		op.add(Builder::startTimeInMillis, JsonpValueParser.jsonValueParser(), "start_time_in_millis");
-		op.add(Builder::state, JsonpValueParser.stringParser(), "state");
-		op.add(Builder::uuid, JsonpValueParser.stringParser(), "uuid");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
-		op.add(Builder::versionId, JsonpValueParser.numberParser(), "version_id");
-		op.add(Builder::featureStates, JsonpValueParser.arrayParser(InfoFeatureState.JSONP_PARSER), "feature_states");
+		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"data_streams");
+		op.add(Builder::duration, JsonpDeserializer.jsonValueDeserializer(), "duration");
+		op.add(Builder::durationInMillis, JsonpDeserializer.jsonValueDeserializer(), "duration_in_millis");
+		op.add(Builder::endTime, JsonpDeserializer.jsonValueDeserializer(), "end_time");
+		op.add(Builder::endTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "end_time_in_millis");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(SnapshotShardFailure.DESERIALIZER), "failures");
+		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"indices");
+		op.add(Builder::indexDetails, JsonpDeserializer.stringMapDeserializer(IndexDetails.DESERIALIZER),
+				"index_details");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"metadata");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "shards");
+		op.add(Builder::startTime, JsonpDeserializer.jsonValueDeserializer(), "start_time");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_time_in_millis");
+		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
+		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::versionId, JsonpDeserializer.numberDeserializer(), "version_id");
+		op.add(Builder::featureStates, JsonpDeserializer.arrayDeserializer(InfoFeatureState.DESERIALIZER),
+				"feature_states");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -102,14 +102,14 @@ public final class MatchAllQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MatchAllQuery
+	 * Json deserializer for MatchAllQuery
 	 */
-	public static final JsonpValueParser<MatchAllQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MatchAllQuery::setupMatchAllQueryParser);
+	public static final JsonpDeserializer<MatchAllQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MatchAllQuery::setupMatchAllQueryDeserializer);
 
-	protected static void setupMatchAllQueryParser(DelegatingJsonpValueParser<MatchAllQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::normField, JsonpValueParser.stringParser(), "norm_field");
+	protected static void setupMatchAllQueryDeserializer(DelegatingDeserializer<MatchAllQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::normField, JsonpDeserializer.stringDeserializer(), "norm_field");
 
 	}
 

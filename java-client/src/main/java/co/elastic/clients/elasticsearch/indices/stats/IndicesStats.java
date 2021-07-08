@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -224,18 +224,19 @@ public final class IndicesStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndicesStats
+	 * Json deserializer for IndicesStats
 	 */
-	public static final JsonpValueParser<IndicesStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndicesStats::setupIndicesStatsParser);
+	public static final JsonpDeserializer<IndicesStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndicesStats::setupIndicesStatsDeserializer);
 
-	protected static void setupIndicesStatsParser(DelegatingJsonpValueParser<IndicesStats.Builder> op) {
+	protected static void setupIndicesStatsDeserializer(DelegatingDeserializer<IndicesStats.Builder> op) {
 
-		op.add(Builder::primaries, IndexStats.JSONP_PARSER, "primaries");
-		op.add(Builder::shards, JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(ShardStats.JSONP_PARSER)),
+		op.add(Builder::primaries, IndexStats.DESERIALIZER, "primaries");
+		op.add(Builder::shards,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(ShardStats.DESERIALIZER)),
 				"shards");
-		op.add(Builder::total, IndexStats.JSONP_PARSER, "total");
-		op.add(Builder::uuid, JsonpValueParser.stringParser(), "uuid");
+		op.add(Builder::total, IndexStats.DESERIALIZER, "total");
+		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
 
 	}
 

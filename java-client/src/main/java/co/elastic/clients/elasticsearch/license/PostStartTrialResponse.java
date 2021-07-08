@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -177,18 +177,18 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PostStartTrialResponse
+	 * Json deserializer for PostStartTrialResponse
 	 */
-	public static final JsonpValueParser<PostStartTrialResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PostStartTrialResponse::setupPostStartTrialResponseParser);
+	public static final JsonpDeserializer<PostStartTrialResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PostStartTrialResponse::setupPostStartTrialResponseDeserializer);
 
-	protected static void setupPostStartTrialResponseParser(
-			DelegatingJsonpValueParser<PostStartTrialResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::errorMessage, JsonpValueParser.stringParser(), "error_message");
-		op.add(Builder::acknowledged, JsonpValueParser.booleanParser(), "acknowledged");
-		op.add(Builder::trialWasStarted, JsonpValueParser.booleanParser(), "trial_was_started");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
+	protected static void setupPostStartTrialResponseDeserializer(
+			DelegatingDeserializer<PostStartTrialResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::errorMessage, JsonpDeserializer.stringDeserializer(), "error_message");
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
+		op.add(Builder::trialWasStarted, JsonpDeserializer.booleanDeserializer(), "trial_was_started");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
 
 	}
 

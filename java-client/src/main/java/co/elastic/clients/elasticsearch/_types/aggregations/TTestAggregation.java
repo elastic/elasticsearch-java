@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -177,16 +177,16 @@ public final class TTestAggregation extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TTestAggregation
+	 * Json deserializer for TTestAggregation
 	 */
-	public static final JsonpValueParser<TTestAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TTestAggregation::setupTTestAggregationParser);
+	public static final JsonpDeserializer<TTestAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TTestAggregation::setupTTestAggregationDeserializer);
 
-	protected static void setupTTestAggregationParser(DelegatingJsonpValueParser<TTestAggregation.Builder> op) {
-		Aggregation.setupAggregationParser(op);
-		op.add(Builder::a, TestPopulation.JSONP_PARSER, "a");
-		op.add(Builder::b, TestPopulation.JSONP_PARSER, "b");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
+	protected static void setupTTestAggregationDeserializer(DelegatingDeserializer<TTestAggregation.Builder> op) {
+		Aggregation.setupAggregationDeserializer(op);
+		op.add(Builder::a, TestPopulation.DESERIALIZER, "a");
+		op.add(Builder::b, TestPopulation.DESERIALIZER, "b");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
 
 	}
 

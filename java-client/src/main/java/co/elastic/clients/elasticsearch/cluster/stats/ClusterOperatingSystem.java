@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -354,22 +354,22 @@ public final class ClusterOperatingSystem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterOperatingSystem
+	 * Json deserializer for ClusterOperatingSystem
 	 */
-	public static final JsonpValueParser<ClusterOperatingSystem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterOperatingSystem::setupClusterOperatingSystemParser);
+	public static final JsonpDeserializer<ClusterOperatingSystem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterOperatingSystem::setupClusterOperatingSystemDeserializer);
 
-	protected static void setupClusterOperatingSystemParser(
-			DelegatingJsonpValueParser<ClusterOperatingSystem.Builder> op) {
+	protected static void setupClusterOperatingSystemDeserializer(
+			DelegatingDeserializer<ClusterOperatingSystem.Builder> op) {
 
-		op.add(Builder::allocatedProcessors, JsonpValueParser.numberParser(), "allocated_processors");
-		op.add(Builder::availableProcessors, JsonpValueParser.numberParser(), "available_processors");
-		op.add(Builder::mem, OperatingSystemMemoryInfo.JSONP_PARSER, "mem");
-		op.add(Builder::names, JsonpValueParser.arrayParser(ClusterOperatingSystemName.JSONP_PARSER), "names");
-		op.add(Builder::prettyNames, JsonpValueParser.arrayParser(ClusterOperatingSystemName.JSONP_PARSER),
+		op.add(Builder::allocatedProcessors, JsonpDeserializer.numberDeserializer(), "allocated_processors");
+		op.add(Builder::availableProcessors, JsonpDeserializer.numberDeserializer(), "available_processors");
+		op.add(Builder::mem, OperatingSystemMemoryInfo.DESERIALIZER, "mem");
+		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemName.DESERIALIZER), "names");
+		op.add(Builder::prettyNames, JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemName.DESERIALIZER),
 				"pretty_names");
-		op.add(Builder::architectures, JsonpValueParser.arrayParser(ClusterOperatingSystemArchitecture.JSONP_PARSER),
-				"architectures");
+		op.add(Builder::architectures,
+				JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemArchitecture.DESERIALIZER), "architectures");
 
 	}
 

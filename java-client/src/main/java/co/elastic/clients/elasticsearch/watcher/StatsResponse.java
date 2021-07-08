@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.elasticsearch.watcher.stats.WatcherNodeStats;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -222,17 +222,17 @@ public final class StatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StatsResponse
+	 * Json deserializer for StatsResponse
 	 */
-	public static final JsonpValueParser<StatsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseParser);
+	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
 
-	protected static void setupStatsResponseParser(DelegatingJsonpValueParser<StatsResponse.Builder> op) {
+	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
-		op.add(Builder::clusterName, JsonpValueParser.stringParser(), "cluster_name");
-		op.add(Builder::manuallyStopped, JsonpValueParser.booleanParser(), "manually_stopped");
-		op.add(Builder::stats, JsonpValueParser.arrayParser(WatcherNodeStats.JSONP_PARSER), "stats");
-		op.add(Builder::_nodes, NodeStatistics.JSONP_PARSER, "_nodes");
+		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+		op.add(Builder::manuallyStopped, JsonpDeserializer.booleanDeserializer(), "manually_stopped");
+		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(WatcherNodeStats.DESERIALIZER), "stats");
+		op.add(Builder::_nodes, NodeStatistics.DESERIALIZER, "_nodes");
 
 	}
 

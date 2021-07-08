@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -101,14 +101,14 @@ public final class GetStatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetStatusResponse
+	 * Json deserializer for GetStatusResponse
 	 */
-	public static final JsonpValueParser<GetStatusResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetStatusResponse::setupGetStatusResponseParser);
+	public static final JsonpDeserializer<GetStatusResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer);
 
-	protected static void setupGetStatusResponseParser(DelegatingJsonpValueParser<GetStatusResponse.Builder> op) {
+	protected static void setupGetStatusResponseDeserializer(DelegatingDeserializer<GetStatusResponse.Builder> op) {
 
-		op.add(Builder::operationMode, JsonpValueParser.jsonValueParser(), "operation_mode");
+		op.add(Builder::operationMode, JsonpDeserializer.jsonValueDeserializer(), "operation_mode");
 
 	}
 

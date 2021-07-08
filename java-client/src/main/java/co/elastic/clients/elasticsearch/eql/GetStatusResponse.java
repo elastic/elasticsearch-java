@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -276,19 +276,19 @@ public final class GetStatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetStatusResponse
+	 * Json deserializer for GetStatusResponse
 	 */
-	public static final JsonpValueParser<GetStatusResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetStatusResponse::setupGetStatusResponseParser);
+	public static final JsonpDeserializer<GetStatusResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer);
 
-	protected static void setupGetStatusResponseParser(DelegatingJsonpValueParser<GetStatusResponse.Builder> op) {
+	protected static void setupGetStatusResponseDeserializer(DelegatingDeserializer<GetStatusResponse.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::isPartial, JsonpValueParser.booleanParser(), "is_partial");
-		op.add(Builder::isRunning, JsonpValueParser.booleanParser(), "is_running");
-		op.add(Builder::startTimeInMillis, JsonpValueParser.jsonValueParser(), "start_time_in_millis");
-		op.add(Builder::expirationTimeInMillis, JsonpValueParser.jsonValueParser(), "expiration_time_in_millis");
-		op.add(Builder::completionStatus, JsonpValueParser.numberParser(), "completion_status");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
+		op.add(Builder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_time_in_millis");
+		op.add(Builder::expirationTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "expiration_time_in_millis");
+		op.add(Builder::completionStatus, JsonpDeserializer.numberDeserializer(), "completion_status");
 
 	}
 

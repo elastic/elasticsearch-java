@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ml.JobStatistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,15 +109,16 @@ public final class MlDataFrameAnalyticsJobsMemory implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MlDataFrameAnalyticsJobsMemory
+	 * Json deserializer for MlDataFrameAnalyticsJobsMemory
 	 */
-	public static final JsonpValueParser<MlDataFrameAnalyticsJobsMemory> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MlDataFrameAnalyticsJobsMemory::setupMlDataFrameAnalyticsJobsMemoryParser);
+	public static final JsonpDeserializer<MlDataFrameAnalyticsJobsMemory> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					MlDataFrameAnalyticsJobsMemory::setupMlDataFrameAnalyticsJobsMemoryDeserializer);
 
-	protected static void setupMlDataFrameAnalyticsJobsMemoryParser(
-			DelegatingJsonpValueParser<MlDataFrameAnalyticsJobsMemory.Builder> op) {
+	protected static void setupMlDataFrameAnalyticsJobsMemoryDeserializer(
+			DelegatingDeserializer<MlDataFrameAnalyticsJobsMemory.Builder> op) {
 
-		op.add(Builder::peakUsageBytes, JobStatistics.JSONP_PARSER, "peak_usage_bytes");
+		op.add(Builder::peakUsageBytes, JobStatistics.DESERIALIZER, "peak_usage_bytes");
 
 	}
 

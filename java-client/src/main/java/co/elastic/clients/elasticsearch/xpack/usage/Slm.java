@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.slm.Statistics;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -140,15 +140,15 @@ public final class Slm extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Slm
+	 * Json deserializer for Slm
 	 */
-	public static final JsonpValueParser<Slm> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Slm::setupSlmParser);
+	public static final JsonpDeserializer<Slm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Slm::setupSlmDeserializer);
 
-	protected static void setupSlmParser(DelegatingJsonpValueParser<Slm.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::policyCount, JsonpValueParser.numberParser(), "policy_count");
-		op.add(Builder::policyStats, Statistics.JSONP_PARSER, "policy_stats");
+	protected static void setupSlmDeserializer(DelegatingDeserializer<Slm.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::policyCount, JsonpDeserializer.numberDeserializer(), "policy_count");
+		op.add(Builder::policyStats, Statistics.DESERIALIZER, "policy_stats");
 
 	}
 

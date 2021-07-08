@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -112,15 +112,15 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalMetricPrecision
+	 * Json deserializer for RankEvalMetricPrecision
 	 */
-	public static final JsonpValueParser<RankEvalMetricPrecision> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RankEvalMetricPrecision::setupRankEvalMetricPrecisionParser);
+	public static final JsonpDeserializer<RankEvalMetricPrecision> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RankEvalMetricPrecision::setupRankEvalMetricPrecisionDeserializer);
 
-	protected static void setupRankEvalMetricPrecisionParser(
-			DelegatingJsonpValueParser<RankEvalMetricPrecision.Builder> op) {
-		RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdParser(op);
-		op.add(Builder::ignoreUnlabeled, JsonpValueParser.booleanParser(), "ignore_unlabeled");
+	protected static void setupRankEvalMetricPrecisionDeserializer(
+			DelegatingDeserializer<RankEvalMetricPrecision.Builder> op) {
+		RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
+		op.add(Builder::ignoreUnlabeled, JsonpDeserializer.booleanDeserializer(), "ignore_unlabeled");
 
 	}
 

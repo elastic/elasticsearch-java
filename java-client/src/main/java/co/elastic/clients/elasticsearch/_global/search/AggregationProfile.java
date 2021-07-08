@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -266,19 +266,20 @@ public final class AggregationProfile implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AggregationProfile
+	 * Json deserializer for AggregationProfile
 	 */
-	public static final JsonpValueParser<AggregationProfile> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AggregationProfile::setupAggregationProfileParser);
+	public static final JsonpDeserializer<AggregationProfile> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AggregationProfile::setupAggregationProfileDeserializer);
 
-	protected static void setupAggregationProfileParser(DelegatingJsonpValueParser<AggregationProfile.Builder> op) {
+	protected static void setupAggregationProfileDeserializer(DelegatingDeserializer<AggregationProfile.Builder> op) {
 
-		op.add(Builder::breakdown, AggregationBreakdown.JSONP_PARSER, "breakdown");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::timeInNanos, JsonpValueParser.numberParser(), "time_in_nanos");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
-		op.add(Builder::debug, JsonpValueParser.jsonValueParser(), "debug");
-		op.add(Builder::children, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "children");
+		op.add(Builder::breakdown, AggregationBreakdown.DESERIALIZER, "breakdown");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::timeInNanos, JsonpDeserializer.numberDeserializer(), "time_in_nanos");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::debug, JsonpDeserializer.jsonValueDeserializer(), "debug");
+		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"children");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -597,35 +597,36 @@ public final class ModelSizeStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ModelSizeStats
+	 * Json deserializer for ModelSizeStats
 	 */
-	public static final JsonpValueParser<ModelSizeStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ModelSizeStats::setupModelSizeStatsParser);
+	public static final JsonpDeserializer<ModelSizeStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ModelSizeStats::setupModelSizeStatsDeserializer);
 
-	protected static void setupModelSizeStatsParser(DelegatingJsonpValueParser<ModelSizeStats.Builder> op) {
+	protected static void setupModelSizeStatsDeserializer(DelegatingDeserializer<ModelSizeStats.Builder> op) {
 
-		op.add(Builder::bucketAllocationFailuresCount, JsonpValueParser.numberParser(),
+		op.add(Builder::bucketAllocationFailuresCount, JsonpDeserializer.numberDeserializer(),
 				"bucket_allocation_failures_count");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::logTime, JsonpValueParser.jsonValueParser(), "log_time");
-		op.add(Builder::memoryStatus, JsonpValueParser.jsonValueParser(), "memory_status");
-		op.add(Builder::modelBytes, JsonpValueParser.numberParser(), "model_bytes");
-		op.add(Builder::modelBytesExceeded, JsonpValueParser.numberParser(), "model_bytes_exceeded");
-		op.add(Builder::modelBytesMemoryLimit, JsonpValueParser.numberParser(), "model_bytes_memory_limit");
-		op.add(Builder::peakModelBytes, JsonpValueParser.numberParser(), "peak_model_bytes");
-		op.add(Builder::assignmentMemoryBasis, JsonpValueParser.stringParser(), "assignment_memory_basis");
-		op.add(Builder::resultType, JsonpValueParser.stringParser(), "result_type");
-		op.add(Builder::totalByFieldCount, JsonpValueParser.numberParser(), "total_by_field_count");
-		op.add(Builder::totalOverFieldCount, JsonpValueParser.numberParser(), "total_over_field_count");
-		op.add(Builder::totalPartitionFieldCount, JsonpValueParser.numberParser(), "total_partition_field_count");
-		op.add(Builder::categorizationStatus, JsonpValueParser.stringParser(), "categorization_status");
-		op.add(Builder::categorizedDocCount, JsonpValueParser.numberParser(), "categorized_doc_count");
-		op.add(Builder::deadCategoryCount, JsonpValueParser.numberParser(), "dead_category_count");
-		op.add(Builder::failedCategoryCount, JsonpValueParser.numberParser(), "failed_category_count");
-		op.add(Builder::frequentCategoryCount, JsonpValueParser.numberParser(), "frequent_category_count");
-		op.add(Builder::rareCategoryCount, JsonpValueParser.numberParser(), "rare_category_count");
-		op.add(Builder::totalCategoryCount, JsonpValueParser.numberParser(), "total_category_count");
-		op.add(Builder::timestamp, JsonpValueParser.numberParser(), "timestamp");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::logTime, JsonpDeserializer.jsonValueDeserializer(), "log_time");
+		op.add(Builder::memoryStatus, JsonpDeserializer.jsonValueDeserializer(), "memory_status");
+		op.add(Builder::modelBytes, JsonpDeserializer.numberDeserializer(), "model_bytes");
+		op.add(Builder::modelBytesExceeded, JsonpDeserializer.numberDeserializer(), "model_bytes_exceeded");
+		op.add(Builder::modelBytesMemoryLimit, JsonpDeserializer.numberDeserializer(), "model_bytes_memory_limit");
+		op.add(Builder::peakModelBytes, JsonpDeserializer.numberDeserializer(), "peak_model_bytes");
+		op.add(Builder::assignmentMemoryBasis, JsonpDeserializer.stringDeserializer(), "assignment_memory_basis");
+		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
+		op.add(Builder::totalByFieldCount, JsonpDeserializer.numberDeserializer(), "total_by_field_count");
+		op.add(Builder::totalOverFieldCount, JsonpDeserializer.numberDeserializer(), "total_over_field_count");
+		op.add(Builder::totalPartitionFieldCount, JsonpDeserializer.numberDeserializer(),
+				"total_partition_field_count");
+		op.add(Builder::categorizationStatus, JsonpDeserializer.stringDeserializer(), "categorization_status");
+		op.add(Builder::categorizedDocCount, JsonpDeserializer.numberDeserializer(), "categorized_doc_count");
+		op.add(Builder::deadCategoryCount, JsonpDeserializer.numberDeserializer(), "dead_category_count");
+		op.add(Builder::failedCategoryCount, JsonpDeserializer.numberDeserializer(), "failed_category_count");
+		op.add(Builder::frequentCategoryCount, JsonpDeserializer.numberDeserializer(), "frequent_category_count");
+		op.add(Builder::rareCategoryCount, JsonpDeserializer.numberDeserializer(), "rare_category_count");
+		op.add(Builder::totalCategoryCount, JsonpDeserializer.numberDeserializer(), "total_category_count");
+		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
 
 	}
 

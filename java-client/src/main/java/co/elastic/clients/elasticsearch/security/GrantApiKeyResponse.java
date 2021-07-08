@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -178,17 +178,17 @@ public final class GrantApiKeyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GrantApiKeyResponse
+	 * Json deserializer for GrantApiKeyResponse
 	 */
-	public static final JsonpValueParser<GrantApiKeyResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GrantApiKeyResponse::setupGrantApiKeyResponseParser);
+	public static final JsonpDeserializer<GrantApiKeyResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GrantApiKeyResponse::setupGrantApiKeyResponseDeserializer);
 
-	protected static void setupGrantApiKeyResponseParser(DelegatingJsonpValueParser<GrantApiKeyResponse.Builder> op) {
+	protected static void setupGrantApiKeyResponseDeserializer(DelegatingDeserializer<GrantApiKeyResponse.Builder> op) {
 
-		op.add(Builder::apiKey, JsonpValueParser.stringParser(), "api_key");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::expiration, JsonpValueParser.jsonValueParser(), "expiration");
+		op.add(Builder::apiKey, JsonpDeserializer.stringDeserializer(), "api_key");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::expiration, JsonpDeserializer.jsonValueDeserializer(), "expiration");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class StopRollupJobResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StopRollupJobResponse
+	 * Json deserializer for StopRollupJobResponse
 	 */
-	public static final JsonpValueParser<StopRollupJobResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StopRollupJobResponse::setupStopRollupJobResponseParser);
+	public static final JsonpDeserializer<StopRollupJobResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StopRollupJobResponse::setupStopRollupJobResponseDeserializer);
 
-	protected static void setupStopRollupJobResponseParser(
-			DelegatingJsonpValueParser<StopRollupJobResponse.Builder> op) {
+	protected static void setupStopRollupJobResponseDeserializer(
+			DelegatingDeserializer<StopRollupJobResponse.Builder> op) {
 
-		op.add(Builder::stopped, JsonpValueParser.booleanParser(), "stopped");
+		op.add(Builder::stopped, JsonpDeserializer.booleanDeserializer(), "stopped");
 
 	}
 

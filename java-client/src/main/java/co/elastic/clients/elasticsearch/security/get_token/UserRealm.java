@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security.get_token;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class UserRealm implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UserRealm
+	 * Json deserializer for UserRealm
 	 */
-	public static final JsonpValueParser<UserRealm> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UserRealm::setupUserRealmParser);
+	public static final JsonpDeserializer<UserRealm> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UserRealm::setupUserRealmDeserializer);
 
-	protected static void setupUserRealmParser(DelegatingJsonpValueParser<UserRealm.Builder> op) {
+	protected static void setupUserRealmDeserializer(DelegatingDeserializer<UserRealm.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

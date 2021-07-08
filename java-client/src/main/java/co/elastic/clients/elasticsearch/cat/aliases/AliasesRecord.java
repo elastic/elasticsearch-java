@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.aliases;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -276,19 +276,20 @@ public final class AliasesRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AliasesRecord
+	 * Json deserializer for AliasesRecord
 	 */
-	public static final JsonpValueParser<AliasesRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AliasesRecord::setupAliasesRecordParser);
+	public static final JsonpDeserializer<AliasesRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AliasesRecord::setupAliasesRecordDeserializer);
 
-	protected static void setupAliasesRecordParser(DelegatingJsonpValueParser<AliasesRecord.Builder> op) {
+	protected static void setupAliasesRecordDeserializer(DelegatingDeserializer<AliasesRecord.Builder> op) {
 
-		op.add(Builder::alias, JsonpValueParser.stringParser(), "alias", "a");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index", "i", "idx");
-		op.add(Builder::filter, JsonpValueParser.stringParser(), "filter", "f", "fi");
-		op.add(Builder::routing_index, JsonpValueParser.stringParser(), "routing.index", "ri", "routingIndex");
-		op.add(Builder::routing_search, JsonpValueParser.stringParser(), "routing.search", "rs", "routingSearch");
-		op.add(Builder::isWriteIndex, JsonpValueParser.stringParser(), "is_write_index", "w", "isWriteIndex");
+		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias", "a");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "i", "idx");
+		op.add(Builder::filter, JsonpDeserializer.stringDeserializer(), "filter", "f", "fi");
+		op.add(Builder::routing_index, JsonpDeserializer.stringDeserializer(), "routing.index", "ri", "routingIndex");
+		op.add(Builder::routing_search, JsonpDeserializer.stringDeserializer(), "routing.search", "rs",
+				"routingSearch");
+		op.add(Builder::isWriteIndex, JsonpDeserializer.stringDeserializer(), "is_write_index", "w", "isWriteIndex");
 
 	}
 

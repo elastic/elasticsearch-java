@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.termvectors;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -165,15 +165,15 @@ public final class TermVector implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TermVector
+	 * Json deserializer for TermVector
 	 */
-	public static final JsonpValueParser<TermVector> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TermVector::setupTermVectorParser);
+	public static final JsonpDeserializer<TermVector> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TermVector::setupTermVectorDeserializer);
 
-	protected static void setupTermVectorParser(DelegatingJsonpValueParser<TermVector.Builder> op) {
+	protected static void setupTermVectorDeserializer(DelegatingDeserializer<TermVector.Builder> op) {
 
-		op.add(Builder::fieldStatistics, FieldStatistics.JSONP_PARSER, "field_statistics");
-		op.add(Builder::terms, JsonpValueParser.stringMapParser(Term.JSONP_PARSER), "terms");
+		op.add(Builder::fieldStatistics, FieldStatistics.DESERIALIZER, "field_statistics");
+		op.add(Builder::terms, JsonpDeserializer.stringMapDeserializer(Term.DESERIALIZER), "terms");
 
 	}
 

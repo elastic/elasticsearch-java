@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -162,16 +162,16 @@ public final class DocumentRating implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DocumentRating
+	 * Json deserializer for DocumentRating
 	 */
-	public static final JsonpValueParser<DocumentRating> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DocumentRating::setupDocumentRatingParser);
+	public static final JsonpDeserializer<DocumentRating> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DocumentRating::setupDocumentRatingDeserializer);
 
-	protected static void setupDocumentRatingParser(DelegatingJsonpValueParser<DocumentRating.Builder> op) {
+	protected static void setupDocumentRatingDeserializer(DelegatingDeserializer<DocumentRating.Builder> op) {
 
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::_index, JsonpValueParser.stringParser(), "_index");
-		op.add(Builder::rating, JsonpValueParser.numberParser(), "rating");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::rating, JsonpDeserializer.numberDeserializer(), "rating");
 
 	}
 

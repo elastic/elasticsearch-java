@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -557,14 +557,14 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CountRequest
+	 * Json deserializer for CountRequest
 	 */
-	public static final JsonpValueParser<CountRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CountRequest::setupCountRequestParser);
+	public static final JsonpDeserializer<CountRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CountRequest::setupCountRequestDeserializer);
 
-	protected static void setupCountRequestParser(DelegatingJsonpValueParser<CountRequest.Builder> op) {
+	protected static void setupCountRequestDeserializer(DelegatingDeserializer<CountRequest.Builder> op) {
 
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
 
 	}
 
@@ -667,5 +667,5 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CountResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, CountResponse.DESERIALIZER);
 }

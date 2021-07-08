@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -175,16 +175,16 @@ public final class BoostingQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BoostingQuery
+	 * Json deserializer for BoostingQuery
 	 */
-	public static final JsonpValueParser<BoostingQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BoostingQuery::setupBoostingQueryParser);
+	public static final JsonpDeserializer<BoostingQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BoostingQuery::setupBoostingQueryDeserializer);
 
-	protected static void setupBoostingQueryParser(DelegatingJsonpValueParser<BoostingQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::negativeBoost, JsonpValueParser.numberParser(), "negative_boost");
-		op.add(Builder::negative, QueryContainer.JSONP_PARSER, "negative");
-		op.add(Builder::positive, QueryContainer.JSONP_PARSER, "positive");
+	protected static void setupBoostingQueryDeserializer(DelegatingDeserializer<BoostingQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::negativeBoost, JsonpDeserializer.numberDeserializer(), "negative_boost");
+		op.add(Builder::negative, QueryContainer.DESERIALIZER, "negative");
+		op.add(Builder::positive, QueryContainer.DESERIALIZER, "positive");
 
 	}
 

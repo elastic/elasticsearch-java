@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -194,18 +194,18 @@ public final class NodeBufferPool implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeBufferPool
+	 * Json deserializer for NodeBufferPool
 	 */
-	public static final JsonpValueParser<NodeBufferPool> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeBufferPool::setupNodeBufferPoolParser);
+	public static final JsonpDeserializer<NodeBufferPool> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeBufferPool::setupNodeBufferPoolDeserializer);
 
-	protected static void setupNodeBufferPoolParser(DelegatingJsonpValueParser<NodeBufferPool.Builder> op) {
+	protected static void setupNodeBufferPoolDeserializer(DelegatingDeserializer<NodeBufferPool.Builder> op) {
 
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
-		op.add(Builder::totalCapacity, JsonpValueParser.stringParser(), "total_capacity");
-		op.add(Builder::totalCapacityInBytes, JsonpValueParser.numberParser(), "total_capacity_in_bytes");
-		op.add(Builder::used, JsonpValueParser.stringParser(), "used");
-		op.add(Builder::usedInBytes, JsonpValueParser.numberParser(), "used_in_bytes");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::totalCapacity, JsonpDeserializer.stringDeserializer(), "total_capacity");
+		op.add(Builder::totalCapacityInBytes, JsonpDeserializer.numberDeserializer(), "total_capacity_in_bytes");
+		op.add(Builder::used, JsonpDeserializer.stringDeserializer(), "used");
+		op.add(Builder::usedInBytes, JsonpDeserializer.numberDeserializer(), "used_in_bytes");
 
 	}
 

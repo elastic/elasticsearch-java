@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -213,14 +213,14 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CloneRequest
+	 * Json deserializer for CloneRequest
 	 */
-	public static final JsonpValueParser<CloneRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CloneRequest::setupCloneRequestParser);
+	public static final JsonpDeserializer<CloneRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CloneRequest::setupCloneRequestDeserializer);
 
-	protected static void setupCloneRequestParser(DelegatingJsonpValueParser<CloneRequest.Builder> op) {
+	protected static void setupCloneRequestDeserializer(DelegatingDeserializer<CloneRequest.Builder> op) {
 
-		op.add(Builder::indices, JsonpValueParser.stringParser(), "indices");
+		op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices");
 
 	}
 
@@ -278,5 +278,5 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CloneResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, CloneResponse.DESERIALIZER);
 }

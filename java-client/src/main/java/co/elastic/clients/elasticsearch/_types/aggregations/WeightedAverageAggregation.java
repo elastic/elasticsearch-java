@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -207,18 +207,18 @@ public final class WeightedAverageAggregation extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WeightedAverageAggregation
+	 * Json deserializer for WeightedAverageAggregation
 	 */
-	public static final JsonpValueParser<WeightedAverageAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WeightedAverageAggregation::setupWeightedAverageAggregationParser);
+	public static final JsonpDeserializer<WeightedAverageAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WeightedAverageAggregation::setupWeightedAverageAggregationDeserializer);
 
-	protected static void setupWeightedAverageAggregationParser(
-			DelegatingJsonpValueParser<WeightedAverageAggregation.Builder> op) {
-		Aggregation.setupAggregationParser(op);
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
-		op.add(Builder::value, WeightedAverageValue.JSONP_PARSER, "value");
-		op.add(Builder::valueType, JsonpValueParser.jsonValueParser(), "value_type");
-		op.add(Builder::weight, WeightedAverageValue.JSONP_PARSER, "weight");
+	protected static void setupWeightedAverageAggregationDeserializer(
+			DelegatingDeserializer<WeightedAverageAggregation.Builder> op) {
+		Aggregation.setupAggregationDeserializer(op);
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::value, WeightedAverageValue.DESERIALIZER, "value");
+		op.add(Builder::valueType, JsonpDeserializer.jsonValueDeserializer(), "value_type");
+		op.add(Builder::weight, WeightedAverageValue.DESERIALIZER, "weight");
 
 	}
 

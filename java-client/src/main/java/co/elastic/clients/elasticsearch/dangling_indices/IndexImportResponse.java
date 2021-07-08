@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.dangling_indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class IndexImportResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexImportResponse
+	 * Json deserializer for IndexImportResponse
 	 */
-	public static final JsonpValueParser<IndexImportResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexImportResponse::setupIndexImportResponseParser);
+	public static final JsonpDeserializer<IndexImportResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexImportResponse::setupIndexImportResponseDeserializer);
 
-	protected static void setupIndexImportResponseParser(DelegatingJsonpValueParser<IndexImportResponse.Builder> op) {
+	protected static void setupIndexImportResponseDeserializer(DelegatingDeserializer<IndexImportResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.numberParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -526,30 +526,33 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DateHistogramAggregation
+	 * Json deserializer for DateHistogramAggregation
 	 */
-	public static final JsonpValueParser<DateHistogramAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DateHistogramAggregation::setupDateHistogramAggregationParser);
+	public static final JsonpDeserializer<DateHistogramAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DateHistogramAggregation::setupDateHistogramAggregationDeserializer);
 
-	protected static void setupDateHistogramAggregationParser(
-			DelegatingJsonpValueParser<DateHistogramAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::calendarInterval, JsonpValueParser.jsonValueParser(), "calendar_interval");
-		op.add(Builder::extendedBounds, ExtendedBounds.createExtendedBoundsParser(JsonpValueParser.jsonValueParser()),
+	protected static void setupDateHistogramAggregationDeserializer(
+			DelegatingDeserializer<DateHistogramAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::calendarInterval, JsonpDeserializer.jsonValueDeserializer(), "calendar_interval");
+		op.add(Builder::extendedBounds,
+				ExtendedBounds.createExtendedBoundsDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"extended_bounds");
-		op.add(Builder::hardBounds, ExtendedBounds.createExtendedBoundsParser(JsonpValueParser.jsonValueParser()),
+		op.add(Builder::hardBounds,
+				ExtendedBounds.createExtendedBoundsDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"hard_bounds");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::fixedInterval, JsonpValueParser.jsonValueParser(), "fixed_interval");
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
-		op.add(Builder::interval, JsonpValueParser.jsonValueParser(), "interval");
-		op.add(Builder::minDocCount, JsonpValueParser.numberParser(), "min_doc_count");
-		op.add(Builder::missing, JsonpValueParser.stringParser(), "missing");
-		op.add(Builder::offset, JsonpValueParser.jsonValueParser(), "offset");
-		op.add(Builder::order, HistogramOrder.JSONP_PARSER, "order");
-		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
-		op.add(Builder::script, JsonpValueParser.jsonValueParser(), "script");
-		op.add(Builder::timeZone, JsonpValueParser.stringParser(), "time_zone");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::fixedInterval, JsonpDeserializer.jsonValueDeserializer(), "fixed_interval");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::interval, JsonpDeserializer.jsonValueDeserializer(), "interval");
+		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
+		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::offset, JsonpDeserializer.jsonValueDeserializer(), "offset");
+		op.add(Builder::order, HistogramOrder.DESERIALIZER, "order");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"params");
+		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
 	}
 

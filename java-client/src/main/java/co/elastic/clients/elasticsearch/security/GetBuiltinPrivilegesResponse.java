@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -175,16 +175,17 @@ public final class GetBuiltinPrivilegesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetBuiltinPrivilegesResponse
+	 * Json deserializer for GetBuiltinPrivilegesResponse
 	 */
-	public static final JsonpValueParser<GetBuiltinPrivilegesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseParser);
+	public static final JsonpDeserializer<GetBuiltinPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseDeserializer);
 
-	protected static void setupGetBuiltinPrivilegesResponseParser(
-			DelegatingJsonpValueParser<GetBuiltinPrivilegesResponse.Builder> op) {
+	protected static void setupGetBuiltinPrivilegesResponseDeserializer(
+			DelegatingDeserializer<GetBuiltinPrivilegesResponse.Builder> op) {
 
-		op.add(Builder::cluster, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "cluster");
-		op.add(Builder::index, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "index");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"cluster");
+		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
 
 	}
 

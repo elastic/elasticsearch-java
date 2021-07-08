@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -173,15 +173,15 @@ public final class DisMaxQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DisMaxQuery
+	 * Json deserializer for DisMaxQuery
 	 */
-	public static final JsonpValueParser<DisMaxQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DisMaxQuery::setupDisMaxQueryParser);
+	public static final JsonpDeserializer<DisMaxQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DisMaxQuery::setupDisMaxQueryDeserializer);
 
-	protected static void setupDisMaxQueryParser(DelegatingJsonpValueParser<DisMaxQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::queries, JsonpValueParser.arrayParser(QueryContainer.JSONP_PARSER), "queries");
-		op.add(Builder::tieBreaker, JsonpValueParser.numberParser(), "tie_breaker");
+	protected static void setupDisMaxQueryDeserializer(DelegatingDeserializer<DisMaxQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::queries, JsonpDeserializer.arrayDeserializer(QueryContainer.DESERIALIZER), "queries");
+		op.add(Builder::tieBreaker, JsonpDeserializer.numberDeserializer(), "tie_breaker");
 
 	}
 

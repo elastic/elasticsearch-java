@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.reload_search_analyzers.ReloadDetails;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -174,16 +174,18 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReloadSearchAnalyzersResponse
+	 * Json deserializer for ReloadSearchAnalyzersResponse
 	 */
-	public static final JsonpValueParser<ReloadSearchAnalyzersResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReloadSearchAnalyzersResponse::setupReloadSearchAnalyzersResponseParser);
+	public static final JsonpDeserializer<ReloadSearchAnalyzersResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					ReloadSearchAnalyzersResponse::setupReloadSearchAnalyzersResponseDeserializer);
 
-	protected static void setupReloadSearchAnalyzersResponseParser(
-			DelegatingJsonpValueParser<ReloadSearchAnalyzersResponse.Builder> op) {
+	protected static void setupReloadSearchAnalyzersResponseDeserializer(
+			DelegatingDeserializer<ReloadSearchAnalyzersResponse.Builder> op) {
 
-		op.add(Builder::reloadDetails, JsonpValueParser.arrayParser(ReloadDetails.JSONP_PARSER), "reload_details");
-		op.add(Builder::_shards, ShardStatistics.JSONP_PARSER, "_shards");
+		op.add(Builder::reloadDetails, JsonpDeserializer.arrayDeserializer(ReloadDetails.DESERIALIZER),
+				"reload_details");
+		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
 
 	}
 

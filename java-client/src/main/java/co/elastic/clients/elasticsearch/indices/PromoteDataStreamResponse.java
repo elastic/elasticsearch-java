@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,15 +101,15 @@ public final class PromoteDataStreamResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PromoteDataStreamResponse
+	 * Json deserializer for PromoteDataStreamResponse
 	 */
-	public static final JsonpValueParser<PromoteDataStreamResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PromoteDataStreamResponse::setupPromoteDataStreamResponseParser);
+	public static final JsonpDeserializer<PromoteDataStreamResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PromoteDataStreamResponse::setupPromoteDataStreamResponseDeserializer);
 
-	protected static void setupPromoteDataStreamResponseParser(
-			DelegatingJsonpValueParser<PromoteDataStreamResponse.Builder> op) {
+	protected static void setupPromoteDataStreamResponseDeserializer(
+			DelegatingDeserializer<PromoteDataStreamResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.numberParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
 
 	}
 

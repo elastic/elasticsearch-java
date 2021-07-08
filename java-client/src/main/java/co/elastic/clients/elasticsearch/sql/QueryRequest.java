@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -415,22 +415,22 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for QueryRequest
+	 * Json deserializer for QueryRequest
 	 */
-	public static final JsonpValueParser<QueryRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, QueryRequest::setupQueryRequestParser);
+	public static final JsonpDeserializer<QueryRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, QueryRequest::setupQueryRequestDeserializer);
 
-	protected static void setupQueryRequestParser(DelegatingJsonpValueParser<QueryRequest.Builder> op) {
+	protected static void setupQueryRequestDeserializer(DelegatingDeserializer<QueryRequest.Builder> op) {
 
-		op.add(Builder::columnar, JsonpValueParser.booleanParser(), "columnar");
-		op.add(Builder::cursor, JsonpValueParser.stringParser(), "cursor");
-		op.add(Builder::fetchSize, JsonpValueParser.numberParser(), "fetch_size");
-		op.add(Builder::filter, QueryContainer.JSONP_PARSER, "filter");
-		op.add(Builder::query, JsonpValueParser.stringParser(), "query");
-		op.add(Builder::requestTimeout, JsonpValueParser.jsonValueParser(), "request_timeout");
-		op.add(Builder::pageTimeout, JsonpValueParser.jsonValueParser(), "page_timeout");
-		op.add(Builder::timeZone, JsonpValueParser.stringParser(), "time_zone");
-		op.add(Builder::fieldMultiValueLeniency, JsonpValueParser.booleanParser(), "field_multi_value_leniency");
+		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
+		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
+		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
+		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::requestTimeout, JsonpDeserializer.jsonValueDeserializer(), "request_timeout");
+		op.add(Builder::pageTimeout, JsonpDeserializer.jsonValueDeserializer(), "page_timeout");
+		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
+		op.add(Builder::fieldMultiValueLeniency, JsonpDeserializer.booleanDeserializer(), "field_multi_value_leniency");
 
 	}
 
@@ -460,5 +460,5 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, QueryResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, QueryResponse.DESERIALIZER);
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -233,18 +233,18 @@ public final class SpanNotQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SpanNotQuery
+	 * Json deserializer for SpanNotQuery
 	 */
-	public static final JsonpValueParser<SpanNotQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SpanNotQuery::setupSpanNotQueryParser);
+	public static final JsonpDeserializer<SpanNotQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SpanNotQuery::setupSpanNotQueryDeserializer);
 
-	protected static void setupSpanNotQueryParser(DelegatingJsonpValueParser<SpanNotQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::dist, JsonpValueParser.numberParser(), "dist");
-		op.add(Builder::exclude, SpanQuery.JSONP_PARSER, "exclude");
-		op.add(Builder::include, SpanQuery.JSONP_PARSER, "include");
-		op.add(Builder::post, JsonpValueParser.numberParser(), "post");
-		op.add(Builder::pre, JsonpValueParser.numberParser(), "pre");
+	protected static void setupSpanNotQueryDeserializer(DelegatingDeserializer<SpanNotQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::dist, JsonpDeserializer.numberDeserializer(), "dist");
+		op.add(Builder::exclude, SpanQuery.DESERIALIZER, "exclude");
+		op.add(Builder::include, SpanQuery.DESERIALIZER, "include");
+		op.add(Builder::post, JsonpDeserializer.numberDeserializer(), "post");
+		op.add(Builder::pre, JsonpDeserializer.numberDeserializer(), "pre");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -203,16 +203,16 @@ public final class PipelineConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PipelineConfig
+	 * Json deserializer for PipelineConfig
 	 */
-	public static final JsonpValueParser<PipelineConfig> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PipelineConfig::setupPipelineConfigParser);
+	public static final JsonpDeserializer<PipelineConfig> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PipelineConfig::setupPipelineConfigDeserializer);
 
-	protected static void setupPipelineConfigParser(DelegatingJsonpValueParser<PipelineConfig.Builder> op) {
+	protected static void setupPipelineConfigDeserializer(DelegatingDeserializer<PipelineConfig.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::processors, JsonpValueParser.arrayParser(ProcessorContainer.JSONP_PARSER), "processors");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER), "processors");
 
 	}
 

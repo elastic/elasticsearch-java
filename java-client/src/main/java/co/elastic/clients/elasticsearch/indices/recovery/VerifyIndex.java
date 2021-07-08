@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -185,17 +185,18 @@ public final class VerifyIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for VerifyIndex
+	 * Json deserializer for VerifyIndex
 	 */
-	public static final JsonpValueParser<VerifyIndex> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, VerifyIndex::setupVerifyIndexParser);
+	public static final JsonpDeserializer<VerifyIndex> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, VerifyIndex::setupVerifyIndexDeserializer);
 
-	protected static void setupVerifyIndexParser(DelegatingJsonpValueParser<VerifyIndex.Builder> op) {
+	protected static void setupVerifyIndexDeserializer(DelegatingDeserializer<VerifyIndex.Builder> op) {
 
-		op.add(Builder::checkIndexTime, JsonpValueParser.jsonValueParser(), "check_index_time");
-		op.add(Builder::checkIndexTimeInMillis, JsonpValueParser.jsonValueParser(), "check_index_time_in_millis");
-		op.add(Builder::totalTime, JsonpValueParser.jsonValueParser(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.jsonValueParser(), "total_time_in_millis");
+		op.add(Builder::checkIndexTime, JsonpDeserializer.jsonValueDeserializer(), "check_index_time");
+		op.add(Builder::checkIndexTimeInMillis, JsonpDeserializer.jsonValueDeserializer(),
+				"check_index_time_in_millis");
+		op.add(Builder::totalTime, JsonpDeserializer.jsonValueDeserializer(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "total_time_in_millis");
 
 	}
 

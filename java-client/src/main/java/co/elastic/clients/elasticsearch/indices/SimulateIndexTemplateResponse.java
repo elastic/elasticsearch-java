@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -39,7 +39,7 @@ public final class SimulateIndexTemplateResponse {
 	 */
 	public static final SimulateIndexTemplateResponse INSTANCE = new SimulateIndexTemplateResponse();
 
-	public static final JsonpValueParser<SimulateIndexTemplateResponse> JSONP_PARSER = JsonpValueParser
+	public static final JsonpDeserializer<SimulateIndexTemplateResponse> DESERIALIZER = JsonpDeserializer
 			.fixedValue(SimulateIndexTemplateResponse.INSTANCE);
 
 }

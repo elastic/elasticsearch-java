@@ -28,11 +28,11 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._global.rank_eval.RankEvalMetric;
 import co.elastic.clients.elasticsearch._global.rank_eval.RankEvalRequestItem;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -361,15 +361,15 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalRequest
+	 * Json deserializer for RankEvalRequest
 	 */
-	public static final JsonpValueParser<RankEvalRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RankEvalRequest::setupRankEvalRequestParser);
+	public static final JsonpDeserializer<RankEvalRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RankEvalRequest::setupRankEvalRequestDeserializer);
 
-	protected static void setupRankEvalRequestParser(DelegatingJsonpValueParser<RankEvalRequest.Builder> op) {
+	protected static void setupRankEvalRequestDeserializer(DelegatingDeserializer<RankEvalRequest.Builder> op) {
 
-		op.add(Builder::requests, JsonpValueParser.arrayParser(RankEvalRequestItem.JSONP_PARSER), "requests");
-		op.add(Builder::metric, RankEvalMetric.JSONP_PARSER, "metric");
+		op.add(Builder::requests, JsonpDeserializer.arrayDeserializer(RankEvalRequestItem.DESERIALIZER), "requests");
+		op.add(Builder::metric, RankEvalMetric.DESERIALIZER, "metric");
 
 	}
 
@@ -427,5 +427,5 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RankEvalResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, RankEvalResponse.DESERIALIZER);
 }

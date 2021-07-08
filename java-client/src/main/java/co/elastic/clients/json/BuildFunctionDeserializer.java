@@ -23,22 +23,22 @@ import jakarta.json.stream.JsonParser;
 import java.util.function.Function;
 
 /**
- * An object parser based on a builder object parser and a build function
+ * An object deserializer based on a builder object deserializer and a build function
  */
-public class JsonpObjectBuildFuncParser<T, B> extends JsonpValueParser<T> {
+public class BuildFunctionDeserializer<T, B> extends JsonpDeserializer<T> {
 
-    private final JsonpValueParser<B> builderParser;
+    private final JsonpDeserializer<B> builderDeserializer;
     private final Function<B, T> build;
 
-    public JsonpObjectBuildFuncParser(JsonpValueParser<B> builderParser, Function<B, T> build) {
-        super(builderParser.acceptedEvents());
-        this.builderParser = builderParser;
+    public BuildFunctionDeserializer(JsonpDeserializer<B> builderDeserializer, Function<B, T> build) {
+        super(builderDeserializer.acceptedEvents());
+        this.builderDeserializer = builderDeserializer;
         this.build = build;
     }
 
     @Override
-    public T parse(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-        B builder = builderParser.parse(parser, mapper, event);
+    public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+        B builder = builderDeserializer.deserialize(parser, mapper, event);
         return build.apply(builder);
     }
 }

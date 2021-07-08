@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch._global;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -120,19 +120,20 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json parser for ScriptsPainlessExecuteResponse
+	 * Create a json deserializer for ScriptsPainlessExecuteResponse
 	 */
-	public static <TResult> JsonpValueParser<ScriptsPainlessExecuteResponse<TResult>> createScriptsPainlessExecuteResponseParser(
-			JsonpValueParser<TResult> tResultParser) {
-		return JsonpObjectBuilderParser.createForObject((Supplier<Builder<TResult>>) Builder::new,
-				op -> ScriptsPainlessExecuteResponse.setupScriptsPainlessExecuteResponseParser(op, tResultParser));
+	public static <TResult> JsonpDeserializer<ScriptsPainlessExecuteResponse<TResult>> createScriptsPainlessExecuteResponseDeserializer(
+			JsonpDeserializer<TResult> tResultDeserializer) {
+		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TResult>>) Builder::new,
+				op -> ScriptsPainlessExecuteResponse.setupScriptsPainlessExecuteResponseDeserializer(op,
+						tResultDeserializer));
 	};
 
-	protected static <TResult> void setupScriptsPainlessExecuteResponseParser(
-			DelegatingJsonpValueParser<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
-			JsonpValueParser<TResult> tResultParser) {
+	protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(
+			DelegatingDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
+			JsonpDeserializer<TResult> tResultDeserializer) {
 
-		op.add(Builder::result, tResultParser, "result");
+		op.add(Builder::result, tResultDeserializer, "result");
 
 	}
 

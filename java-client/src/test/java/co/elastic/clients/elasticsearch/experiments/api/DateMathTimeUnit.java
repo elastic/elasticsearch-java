@@ -20,7 +20,7 @@
 package co.elastic.clients.elasticsearch.experiments.api;
 
 import co.elastic.clients.util.StringEnum;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 
 public enum DateMathTimeUnit implements StringEnum {
 
@@ -41,9 +41,9 @@ public enum DateMathTimeUnit implements StringEnum {
         return this.jsonValue;
     }
 
-    public static final JsonpValueParser<DateMathTimeUnit> PARSER;
+    public static final JsonpDeserializer<DateMathTimeUnit> PARSER;
 
     static {
-        PARSER = new StringEnum.JsonpParser<>(DateMathTimeUnit.values());
+        PARSER = new Deserializer<>(DateMathTimeUnit.values());
     }
 }

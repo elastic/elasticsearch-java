@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ilm;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -105,14 +105,14 @@ public final class StopRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StopRequest
+	 * Json deserializer for StopRequest
 	 */
-	public static final JsonpValueParser<StopRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StopRequest::setupStopRequestParser);
+	public static final JsonpDeserializer<StopRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StopRequest::setupStopRequestDeserializer);
 
-	protected static void setupStopRequestParser(DelegatingJsonpValueParser<StopRequest.Builder> op) {
+	protected static void setupStopRequestDeserializer(DelegatingDeserializer<StopRequest.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.booleanParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.booleanDeserializer(), "stub");
 
 	}
 
@@ -138,5 +138,5 @@ public final class StopRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, StopResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, StopResponse.DESERIALIZER);
 }

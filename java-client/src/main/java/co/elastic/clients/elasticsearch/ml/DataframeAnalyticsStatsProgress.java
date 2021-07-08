@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -135,16 +135,17 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeAnalyticsStatsProgress
+	 * Json deserializer for DataframeAnalyticsStatsProgress
 	 */
-	public static final JsonpValueParser<DataframeAnalyticsStatsProgress> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataframeAnalyticsStatsProgress::setupDataframeAnalyticsStatsProgressParser);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsProgress> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					DataframeAnalyticsStatsProgress::setupDataframeAnalyticsStatsProgressDeserializer);
 
-	protected static void setupDataframeAnalyticsStatsProgressParser(
-			DelegatingJsonpValueParser<DataframeAnalyticsStatsProgress.Builder> op) {
+	protected static void setupDataframeAnalyticsStatsProgressDeserializer(
+			DelegatingDeserializer<DataframeAnalyticsStatsProgress.Builder> op) {
 
-		op.add(Builder::phase, JsonpValueParser.stringParser(), "phase");
-		op.add(Builder::progressPercent, JsonpValueParser.numberParser(), "progress_percent");
+		op.add(Builder::phase, JsonpDeserializer.stringDeserializer(), "phase");
+		op.add(Builder::progressPercent, JsonpDeserializer.numberDeserializer(), "progress_percent");
 
 	}
 

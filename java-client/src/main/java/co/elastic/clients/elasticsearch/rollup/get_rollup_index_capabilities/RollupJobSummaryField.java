@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_index_capabilities;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -161,17 +161,17 @@ public final class RollupJobSummaryField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RollupJobSummaryField
+	 * Json deserializer for RollupJobSummaryField
 	 */
-	public static final JsonpValueParser<RollupJobSummaryField> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RollupJobSummaryField::setupRollupJobSummaryFieldParser);
+	public static final JsonpDeserializer<RollupJobSummaryField> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RollupJobSummaryField::setupRollupJobSummaryFieldDeserializer);
 
-	protected static void setupRollupJobSummaryFieldParser(
-			DelegatingJsonpValueParser<RollupJobSummaryField.Builder> op) {
+	protected static void setupRollupJobSummaryFieldDeserializer(
+			DelegatingDeserializer<RollupJobSummaryField.Builder> op) {
 
-		op.add(Builder::agg, JsonpValueParser.stringParser(), "agg");
-		op.add(Builder::timeZone, JsonpValueParser.stringParser(), "time_zone");
-		op.add(Builder::calendarInterval, JsonpValueParser.jsonValueParser(), "calendar_interval");
+		op.add(Builder::agg, JsonpDeserializer.stringDeserializer(), "agg");
+		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
+		op.add(Builder::calendarInterval, JsonpDeserializer.jsonValueDeserializer(), "calendar_interval");
 
 	}
 

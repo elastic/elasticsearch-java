@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.master;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -210,17 +210,17 @@ public final class MasterRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MasterRecord
+	 * Json deserializer for MasterRecord
 	 */
-	public static final JsonpValueParser<MasterRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MasterRecord::setupMasterRecordParser);
+	public static final JsonpDeserializer<MasterRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MasterRecord::setupMasterRecordDeserializer);
 
-	protected static void setupMasterRecordParser(DelegatingJsonpValueParser<MasterRecord.Builder> op) {
+	protected static void setupMasterRecordDeserializer(DelegatingDeserializer<MasterRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host", "h");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node", "n");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.indices.IndicesRecord;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -141,14 +141,14 @@ public final class IndicesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndicesResponse
+	 * Json deserializer for IndicesResponse
 	 */
-	public static final JsonpValueParser<IndicesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndicesResponse::setupIndicesResponseParser);
+	public static final JsonpDeserializer<IndicesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndicesResponse::setupIndicesResponseDeserializer);
 
-	protected static void setupIndicesResponseParser(DelegatingJsonpValueParser<IndicesResponse.Builder> op) {
+	protected static void setupIndicesResponseDeserializer(DelegatingDeserializer<IndicesResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(IndicesRecord.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(IndicesRecord.DESERIALIZER), "value");
 
 	}
 

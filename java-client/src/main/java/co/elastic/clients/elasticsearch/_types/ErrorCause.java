@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch._global.scripts_painless_execute.PainlessExecutionPosition;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -1074,48 +1074,49 @@ public class ErrorCause implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ErrorCause
+	 * Json deserializer for ErrorCause
 	 */
-	public static final JsonpValueParser<ErrorCause> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ErrorCause::setupErrorCauseParser);
+	public static final JsonpDeserializer<ErrorCause> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ErrorCause::setupErrorCauseDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupErrorCauseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupErrorCauseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::type, JsonpValueParser.stringParser(), "type");
-		op.add(AbstractBuilder::reason, JsonpValueParser.stringParser(), "reason");
-		op.add(AbstractBuilder::causedBy, co.elastic.clients.elasticsearch._types.ErrorCause.JSONP_PARSER, "caused_by");
-		op.add(AbstractBuilder::shard, JsonpValueParser.jsonValueParser(), "shard");
-		op.add(AbstractBuilder::stackTrace, JsonpValueParser.stringParser(), "stack_trace");
+		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(AbstractBuilder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(AbstractBuilder::causedBy, co.elastic.clients.elasticsearch._types.ErrorCause.DESERIALIZER, "caused_by");
+		op.add(AbstractBuilder::shard, JsonpDeserializer.jsonValueDeserializer(), "shard");
+		op.add(AbstractBuilder::stackTrace, JsonpDeserializer.stringDeserializer(), "stack_trace");
 		op.add(AbstractBuilder::rootCause,
-				JsonpValueParser.arrayParser(co.elastic.clients.elasticsearch._types.ErrorCause.JSONP_PARSER),
+				JsonpDeserializer.arrayDeserializer(co.elastic.clients.elasticsearch._types.ErrorCause.DESERIALIZER),
 				"root_cause");
-		op.add(AbstractBuilder::bytesLimit, JsonpValueParser.numberParser(), "bytes_limit");
-		op.add(AbstractBuilder::bytesWanted, JsonpValueParser.numberParser(), "bytes_wanted");
-		op.add(AbstractBuilder::column, JsonpValueParser.numberParser(), "column");
-		op.add(AbstractBuilder::col, JsonpValueParser.numberParser(), "col");
-		op.add(AbstractBuilder::failedShards, JsonpValueParser.arrayParser(ShardFailure.JSONP_PARSER), "failed_shards");
-		op.add(AbstractBuilder::grouped, JsonpValueParser.booleanParser(), "grouped");
-		op.add(AbstractBuilder::index, JsonpValueParser.stringParser(), "index");
-		op.add(AbstractBuilder::indexUuid, JsonpValueParser.stringParser(), "index_uuid");
-		op.add(AbstractBuilder::language, JsonpValueParser.stringParser(), "language");
-		op.add(AbstractBuilder::licensedExpiredFeature, JsonpValueParser.stringParser(), "licensed_expired_feature");
-		op.add(AbstractBuilder::line, JsonpValueParser.numberParser(), "line");
-		op.add(AbstractBuilder::maxBuckets, JsonpValueParser.numberParser(), "max_buckets");
-		op.add(AbstractBuilder::phase, JsonpValueParser.stringParser(), "phase");
-		op.add(AbstractBuilder::propertyName, JsonpValueParser.stringParser(), "property_name");
-		op.add(AbstractBuilder::processorType, JsonpValueParser.stringParser(), "processor_type");
-		op.add(AbstractBuilder::resourceId, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(AbstractBuilder::bytesLimit, JsonpDeserializer.numberDeserializer(), "bytes_limit");
+		op.add(AbstractBuilder::bytesWanted, JsonpDeserializer.numberDeserializer(), "bytes_wanted");
+		op.add(AbstractBuilder::column, JsonpDeserializer.numberDeserializer(), "column");
+		op.add(AbstractBuilder::col, JsonpDeserializer.numberDeserializer(), "col");
+		op.add(AbstractBuilder::failedShards, JsonpDeserializer.arrayDeserializer(ShardFailure.DESERIALIZER),
+				"failed_shards");
+		op.add(AbstractBuilder::grouped, JsonpDeserializer.booleanDeserializer(), "grouped");
+		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(AbstractBuilder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
+		op.add(AbstractBuilder::language, JsonpDeserializer.stringDeserializer(), "language");
+		op.add(AbstractBuilder::licensedExpiredFeature, JsonpDeserializer.stringDeserializer(),
+				"licensed_expired_feature");
+		op.add(AbstractBuilder::line, JsonpDeserializer.numberDeserializer(), "line");
+		op.add(AbstractBuilder::maxBuckets, JsonpDeserializer.numberDeserializer(), "max_buckets");
+		op.add(AbstractBuilder::phase, JsonpDeserializer.stringDeserializer(), "phase");
+		op.add(AbstractBuilder::propertyName, JsonpDeserializer.stringDeserializer(), "property_name");
+		op.add(AbstractBuilder::processorType, JsonpDeserializer.stringDeserializer(), "processor_type");
+		op.add(AbstractBuilder::resourceId, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"resource_id", "resource.id");
-		op.add(AbstractBuilder::resourceType, JsonpValueParser.stringParser(), "resource_type", "resource.type");
-		op.add(AbstractBuilder::script, JsonpValueParser.stringParser(), "script");
-		op.add(AbstractBuilder::scriptStack, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"script_stack");
-		op.add(AbstractBuilder::header,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(JsonpValueParser.stringParser())),
-				"header");
-		op.add(AbstractBuilder::lang, JsonpValueParser.stringParser(), "lang");
-		op.add(AbstractBuilder::position, PainlessExecutionPosition.JSONP_PARSER, "position");
+		op.add(AbstractBuilder::resourceType, JsonpDeserializer.stringDeserializer(), "resource_type", "resource.type");
+		op.add(AbstractBuilder::script, JsonpDeserializer.stringDeserializer(), "script");
+		op.add(AbstractBuilder::scriptStack,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "script_stack");
+		op.add(AbstractBuilder::header, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "header");
+		op.add(AbstractBuilder::lang, JsonpDeserializer.stringDeserializer(), "lang");
+		op.add(AbstractBuilder::position, PainlessExecutionPosition.DESERIALIZER, "position");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -219,18 +219,18 @@ public final class IndexRoutingAllocation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexRoutingAllocation
+	 * Json deserializer for IndexRoutingAllocation
 	 */
-	public static final JsonpValueParser<IndexRoutingAllocation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexRoutingAllocation::setupIndexRoutingAllocationParser);
+	public static final JsonpDeserializer<IndexRoutingAllocation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexRoutingAllocation::setupIndexRoutingAllocationDeserializer);
 
-	protected static void setupIndexRoutingAllocationParser(
-			DelegatingJsonpValueParser<IndexRoutingAllocation.Builder> op) {
+	protected static void setupIndexRoutingAllocationDeserializer(
+			DelegatingDeserializer<IndexRoutingAllocation.Builder> op) {
 
-		op.add(Builder::enable, JsonpValueParser.jsonValueParser(), "enable");
-		op.add(Builder::include, IndexRoutingAllocationInclude.JSONP_PARSER, "include");
-		op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery.JSONP_PARSER, "initial_recovery");
-		op.add(Builder::disk, IndexRoutingAllocationDisk.JSONP_PARSER, "disk");
+		op.add(Builder::enable, JsonpDeserializer.jsonValueDeserializer(), "enable");
+		op.add(Builder::include, IndexRoutingAllocationInclude.DESERIALIZER, "include");
+		op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery.DESERIALIZER, "initial_recovery");
+		op.add(Builder::disk, IndexRoutingAllocationDisk.DESERIALIZER, "disk");
 
 	}
 

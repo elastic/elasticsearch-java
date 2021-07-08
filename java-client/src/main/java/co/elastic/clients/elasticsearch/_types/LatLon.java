@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class LatLon implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for LatLon
+	 * Json deserializer for LatLon
 	 */
-	public static final JsonpValueParser<LatLon> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			LatLon::setupLatLonParser);
+	public static final JsonpDeserializer<LatLon> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			LatLon::setupLatLonDeserializer);
 
-	protected static void setupLatLonParser(DelegatingJsonpValueParser<LatLon.Builder> op) {
+	protected static void setupLatLonDeserializer(DelegatingDeserializer<LatLon.Builder> op) {
 
-		op.add(Builder::lat, JsonpValueParser.numberParser(), "lat");
-		op.add(Builder::lon, JsonpValueParser.numberParser(), "lon");
+		op.add(Builder::lat, JsonpDeserializer.numberDeserializer(), "lat");
+		op.add(Builder::lon, JsonpDeserializer.numberDeserializer(), "lon");
 
 	}
 

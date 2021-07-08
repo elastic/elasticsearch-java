@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -65,7 +65,7 @@ public class SuggestContainer extends TaggedUnion<SuggestContainer.Tag, Object> 
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private SuggestContainer(Builder builder) {
@@ -260,24 +260,25 @@ public class SuggestContainer extends TaggedUnion<SuggestContainer.Tag, Object> 
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<SuggestContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(SuggestContainer::buildJsonpParser);
+	public static final JsonpDeserializer<SuggestContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(SuggestContainer::buildDeserializer);
 
-	private static JsonpValueParser<SuggestContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<SuggestContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::completion, CompletionSuggester.JSONP_PARSER, "completion");
-		op.add(Builder::phrase, PhraseSuggester.JSONP_PARSER, "phrase");
-		op.add(Builder::prefix, JsonpValueParser.stringParser(), "prefix");
-		op.add(Builder::regex, JsonpValueParser.stringParser(), "regex");
-		op.add(Builder::term, TermSuggester.JSONP_PARSER, "term");
-		op.add(Builder::text, JsonpValueParser.stringParser(), "text");
+		op.add(Builder::completion, CompletionSuggester.DESERIALIZER, "completion");
+		op.add(Builder::phrase, PhraseSuggester.DESERIALIZER, "phrase");
+		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
+		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
+		op.add(Builder::term, TermSuggester.DESERIALIZER, "term");
+		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

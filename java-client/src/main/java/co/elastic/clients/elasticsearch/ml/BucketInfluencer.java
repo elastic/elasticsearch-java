@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -402,24 +402,24 @@ public final class BucketInfluencer implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BucketInfluencer
+	 * Json deserializer for BucketInfluencer
 	 */
-	public static final JsonpValueParser<BucketInfluencer> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BucketInfluencer::setupBucketInfluencerParser);
+	public static final JsonpDeserializer<BucketInfluencer> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BucketInfluencer::setupBucketInfluencerDeserializer);
 
-	protected static void setupBucketInfluencerParser(DelegatingJsonpValueParser<BucketInfluencer.Builder> op) {
+	protected static void setupBucketInfluencerDeserializer(DelegatingDeserializer<BucketInfluencer.Builder> op) {
 
-		op.add(Builder::bucketSpan, JsonpValueParser.numberParser(), "bucket_span");
-		op.add(Builder::influencerScore, JsonpValueParser.numberParser(), "influencer_score");
-		op.add(Builder::influencerFieldName, JsonpValueParser.stringParser(), "influencer_field_name");
-		op.add(Builder::influencerFieldValue, JsonpValueParser.stringParser(), "influencer_field_value");
-		op.add(Builder::initialInfluencerScore, JsonpValueParser.numberParser(), "initial_influencer_score");
-		op.add(Builder::isInterim, JsonpValueParser.booleanParser(), "is_interim");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::probability, JsonpValueParser.numberParser(), "probability");
-		op.add(Builder::resultType, JsonpValueParser.stringParser(), "result_type");
-		op.add(Builder::timestamp, JsonpValueParser.jsonValueParser(), "timestamp");
-		op.add(Builder::foo, JsonpValueParser.stringParser(), "foo");
+		op.add(Builder::bucketSpan, JsonpDeserializer.numberDeserializer(), "bucket_span");
+		op.add(Builder::influencerScore, JsonpDeserializer.numberDeserializer(), "influencer_score");
+		op.add(Builder::influencerFieldName, JsonpDeserializer.stringDeserializer(), "influencer_field_name");
+		op.add(Builder::influencerFieldValue, JsonpDeserializer.stringDeserializer(), "influencer_field_value");
+		op.add(Builder::initialInfluencerScore, JsonpDeserializer.numberDeserializer(), "initial_influencer_score");
+		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
+		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
+		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::foo, JsonpDeserializer.stringDeserializer(), "foo");
 
 	}
 

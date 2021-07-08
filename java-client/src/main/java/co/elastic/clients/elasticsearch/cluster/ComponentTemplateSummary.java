@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -313,19 +313,20 @@ public final class ComponentTemplateSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ComponentTemplateSummary
+	 * Json deserializer for ComponentTemplateSummary
 	 */
-	public static final JsonpValueParser<ComponentTemplateSummary> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ComponentTemplateSummary::setupComponentTemplateSummaryParser);
+	public static final JsonpDeserializer<ComponentTemplateSummary> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ComponentTemplateSummary::setupComponentTemplateSummaryDeserializer);
 
-	protected static void setupComponentTemplateSummaryParser(
-			DelegatingJsonpValueParser<ComponentTemplateSummary.Builder> op) {
+	protected static void setupComponentTemplateSummaryDeserializer(
+			DelegatingDeserializer<ComponentTemplateSummary.Builder> op) {
 
-		op.add(Builder::_meta, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "_meta");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::settings, JsonpValueParser.stringMapParser(IndexSettings.JSONP_PARSER), "settings");
-		op.add(Builder::mappings, TypeMapping.JSONP_PARSER, "mappings");
-		op.add(Builder::aliases, JsonpValueParser.stringMapParser(AliasDefinition.JSONP_PARSER), "aliases");
+		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"_meta");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings.DESERIALIZER), "settings");
+		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition.DESERIALIZER), "aliases");
 
 	}
 

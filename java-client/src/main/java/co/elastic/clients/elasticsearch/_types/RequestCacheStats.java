@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -201,18 +201,18 @@ public final class RequestCacheStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RequestCacheStats
+	 * Json deserializer for RequestCacheStats
 	 */
-	public static final JsonpValueParser<RequestCacheStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RequestCacheStats::setupRequestCacheStatsParser);
+	public static final JsonpDeserializer<RequestCacheStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RequestCacheStats::setupRequestCacheStatsDeserializer);
 
-	protected static void setupRequestCacheStatsParser(DelegatingJsonpValueParser<RequestCacheStats.Builder> op) {
+	protected static void setupRequestCacheStatsDeserializer(DelegatingDeserializer<RequestCacheStats.Builder> op) {
 
-		op.add(Builder::evictions, JsonpValueParser.numberParser(), "evictions");
-		op.add(Builder::hitCount, JsonpValueParser.numberParser(), "hit_count");
-		op.add(Builder::memorySize, JsonpValueParser.stringParser(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpValueParser.numberParser(), "memory_size_in_bytes");
-		op.add(Builder::missCount, JsonpValueParser.numberParser(), "miss_count");
+		op.add(Builder::evictions, JsonpDeserializer.numberDeserializer(), "evictions");
+		op.add(Builder::hitCount, JsonpDeserializer.numberDeserializer(), "hit_count");
+		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
+		op.add(Builder::memorySizeInBytes, JsonpDeserializer.numberDeserializer(), "memory_size_in_bytes");
+		op.add(Builder::missCount, JsonpDeserializer.numberDeserializer(), "miss_count");
 
 	}
 

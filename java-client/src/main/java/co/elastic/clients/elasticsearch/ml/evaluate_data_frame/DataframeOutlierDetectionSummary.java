@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -274,19 +274,21 @@ public final class DataframeOutlierDetectionSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeOutlierDetectionSummary
+	 * Json deserializer for DataframeOutlierDetectionSummary
 	 */
-	public static final JsonpValueParser<DataframeOutlierDetectionSummary> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeOutlierDetectionSummary> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeOutlierDetectionSummary::setupDataframeOutlierDetectionSummaryParser);
+					DataframeOutlierDetectionSummary::setupDataframeOutlierDetectionSummaryDeserializer);
 
-	protected static void setupDataframeOutlierDetectionSummaryParser(
-			DelegatingJsonpValueParser<DataframeOutlierDetectionSummary.Builder> op) {
+	protected static void setupDataframeOutlierDetectionSummaryDeserializer(
+			DelegatingDeserializer<DataframeOutlierDetectionSummary.Builder> op) {
 
-		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc.JSONP_PARSER, "auc_roc");
-		op.add(Builder::precision, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()), "precision");
-		op.add(Builder::recall, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()), "recall");
-		op.add(Builder::confusionMatrix, JsonpValueParser.stringMapParser(ConfusionMatrixTreshold.JSONP_PARSER),
+		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc.DESERIALIZER, "auc_roc");
+		op.add(Builder::precision, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+				"precision");
+		op.add(Builder::recall, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+				"recall");
+		op.add(Builder::confusionMatrix, JsonpDeserializer.stringMapDeserializer(ConfusionMatrixTreshold.DESERIALIZER),
 				"confusion_matrix");
 
 	}

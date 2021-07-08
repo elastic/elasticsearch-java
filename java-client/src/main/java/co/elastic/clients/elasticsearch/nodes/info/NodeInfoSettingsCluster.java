@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.elasticsearch.indices.IndexRouting;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -201,18 +201,18 @@ public final class NodeInfoSettingsCluster implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoSettingsCluster
+	 * Json deserializer for NodeInfoSettingsCluster
 	 */
-	public static final JsonpValueParser<NodeInfoSettingsCluster> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoSettingsCluster::setupNodeInfoSettingsClusterParser);
+	public static final JsonpDeserializer<NodeInfoSettingsCluster> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoSettingsCluster::setupNodeInfoSettingsClusterDeserializer);
 
-	protected static void setupNodeInfoSettingsClusterParser(
-			DelegatingJsonpValueParser<NodeInfoSettingsCluster.Builder> op) {
+	protected static void setupNodeInfoSettingsClusterDeserializer(
+			DelegatingDeserializer<NodeInfoSettingsCluster.Builder> op) {
 
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::routing, IndexRouting.JSONP_PARSER, "routing");
-		op.add(Builder::election, NodeInfoSettingsClusterElection.JSONP_PARSER, "election");
-		op.add(Builder::initialMasterNodes, JsonpValueParser.stringParser(), "initial_master_nodes");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::routing, IndexRouting.DESERIALIZER, "routing");
+		op.add(Builder::election, NodeInfoSettingsClusterElection.DESERIALIZER, "election");
+		op.add(Builder::initialMasterNodes, JsonpDeserializer.stringDeserializer(), "initial_master_nodes");
 
 	}
 

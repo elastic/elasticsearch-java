@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.security.get_service_accounts.RoleDescriptorWrapper;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -72,15 +72,15 @@ public final class GetServiceAccountsResponse extends AdditionalProperties<Strin
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetServiceAccountsResponse
+	 * Json deserializer for GetServiceAccountsResponse
 	 */
-	public static final JsonpValueParser<GetServiceAccountsResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetServiceAccountsResponse::setupGetServiceAccountsResponseParser);
+	public static final JsonpDeserializer<GetServiceAccountsResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetServiceAccountsResponse::setupGetServiceAccountsResponseDeserializer);
 
-	protected static void setupGetServiceAccountsResponseParser(
-			DelegatingJsonpValueParser<GetServiceAccountsResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				RoleDescriptorWrapper.JSONP_PARSER);
+	protected static void setupGetServiceAccountsResponseDeserializer(
+			DelegatingDeserializer<GetServiceAccountsResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				RoleDescriptorWrapper.DESERIALIZER);
 
 	}
 

@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics.DataframePreviewConfig;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -159,16 +159,16 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PreviewDataFrameAnalyticsRequest
+	 * Json deserializer for PreviewDataFrameAnalyticsRequest
 	 */
-	public static final JsonpValueParser<PreviewDataFrameAnalyticsRequest> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<PreviewDataFrameAnalyticsRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestParser);
+					PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestDeserializer);
 
-	protected static void setupPreviewDataFrameAnalyticsRequestParser(
-			DelegatingJsonpValueParser<PreviewDataFrameAnalyticsRequest.Builder> op) {
+	protected static void setupPreviewDataFrameAnalyticsRequestDeserializer(
+			DelegatingDeserializer<PreviewDataFrameAnalyticsRequest.Builder> op) {
 
-		op.add(Builder::config, DataframePreviewConfig.JSONP_PARSER, "config");
+		op.add(Builder::config, DataframePreviewConfig.DESERIALIZER, "config");
 
 	}
 
@@ -219,5 +219,5 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PreviewDataFrameAnalyticsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PreviewDataFrameAnalyticsResponse.DESERIALIZER);
 }

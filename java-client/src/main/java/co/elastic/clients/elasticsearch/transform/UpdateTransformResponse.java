@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._global.reindex.Destination;
 import co.elastic.clients.elasticsearch._global.reindex.Source;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -355,24 +355,24 @@ public final class UpdateTransformResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateTransformResponse
+	 * Json deserializer for UpdateTransformResponse
 	 */
-	public static final JsonpValueParser<UpdateTransformResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateTransformResponse::setupUpdateTransformResponseParser);
+	public static final JsonpDeserializer<UpdateTransformResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpdateTransformResponse::setupUpdateTransformResponseDeserializer);
 
-	protected static void setupUpdateTransformResponseParser(
-			DelegatingJsonpValueParser<UpdateTransformResponse.Builder> op) {
+	protected static void setupUpdateTransformResponseDeserializer(
+			DelegatingDeserializer<UpdateTransformResponse.Builder> op) {
 
-		op.add(Builder::createTime, JsonpValueParser.numberParser(), "create_time");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::dest, Destination.JSONP_PARSER, "dest");
-		op.add(Builder::frequency, JsonpValueParser.jsonValueParser(), "frequency");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::pivot, Pivot.JSONP_PARSER, "pivot");
-		op.add(Builder::settings, Settings.JSONP_PARSER, "settings");
-		op.add(Builder::source, Source.JSONP_PARSER, "source");
-		op.add(Builder::sync, SyncContainer.JSONP_PARSER, "sync");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
+		op.add(Builder::createTime, JsonpDeserializer.numberDeserializer(), "create_time");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::dest, Destination.DESERIALIZER, "dest");
+		op.add(Builder::frequency, JsonpDeserializer.jsonValueDeserializer(), "frequency");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::pivot, Pivot.DESERIALIZER, "pivot");
+		op.add(Builder::settings, Settings.DESERIALIZER, "settings");
+		op.add(Builder::source, Source.DESERIALIZER, "source");
+		op.add(Builder::sync, SyncContainer.DESERIALIZER, "sync");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}
 

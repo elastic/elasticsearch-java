@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,16 +147,16 @@ public final class ClusterStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStatistics
+	 * Json deserializer for ClusterStatistics
 	 */
-	public static final JsonpValueParser<ClusterStatistics> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterStatistics::setupClusterStatisticsParser);
+	public static final JsonpDeserializer<ClusterStatistics> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterStatistics::setupClusterStatisticsDeserializer);
 
-	protected static void setupClusterStatisticsParser(DelegatingJsonpValueParser<ClusterStatistics.Builder> op) {
+	protected static void setupClusterStatisticsDeserializer(DelegatingDeserializer<ClusterStatistics.Builder> op) {
 
-		op.add(Builder::skipped, JsonpValueParser.numberParser(), "skipped");
-		op.add(Builder::successful, JsonpValueParser.numberParser(), "successful");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
+		op.add(Builder::skipped, JsonpDeserializer.numberDeserializer(), "skipped");
+		op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
 
 	}
 

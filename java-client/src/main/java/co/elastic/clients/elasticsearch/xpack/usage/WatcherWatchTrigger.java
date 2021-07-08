@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -146,15 +146,15 @@ public final class WatcherWatchTrigger implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for WatcherWatchTrigger
+	 * Json deserializer for WatcherWatchTrigger
 	 */
-	public static final JsonpValueParser<WatcherWatchTrigger> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, WatcherWatchTrigger::setupWatcherWatchTriggerParser);
+	public static final JsonpDeserializer<WatcherWatchTrigger> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, WatcherWatchTrigger::setupWatcherWatchTriggerDeserializer);
 
-	protected static void setupWatcherWatchTriggerParser(DelegatingJsonpValueParser<WatcherWatchTrigger.Builder> op) {
+	protected static void setupWatcherWatchTriggerDeserializer(DelegatingDeserializer<WatcherWatchTrigger.Builder> op) {
 
-		op.add(Builder::schedule, WatcherWatchTriggerSchedule.JSONP_PARSER, "schedule");
-		op.add(Builder::_all, Counter.JSONP_PARSER, "_all");
+		op.add(Builder::schedule, WatcherWatchTriggerSchedule.DESERIALIZER, "schedule");
+		op.add(Builder::_all, Counter.DESERIALIZER, "_all");
 
 	}
 

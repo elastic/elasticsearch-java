@@ -21,7 +21,7 @@ package co.elastic.clients.util;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 
 import jakarta.json.stream.JsonParser;
 import java.util.EnumSet;
@@ -45,15 +45,15 @@ public class NamedValue<T> {
         return this.value;
     }
 
-    public static <T> JsonpValueParser<NamedValue<T>> parser(Supplier<JsonpValueParser<T>> valueParserBuilder) {
-        return new JsonpValueParser<NamedValue<T>>(EnumSet.of(JsonParser.Event.START_OBJECT)) {
+    public static <T> JsonpDeserializer<NamedValue<T>> deserializer(Supplier<JsonpDeserializer<T>> valueParserBuilder) {
+        return new JsonpDeserializer<NamedValue<T>>(EnumSet.of(JsonParser.Event.START_OBJECT)) {
             @Override
-            public NamedValue<T> parse(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+            public NamedValue<T> deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
                 JsonpUtils.expectEvent(parser, JsonParser.Event.KEY_NAME, event);
                 String name = parser.getString();
 
-                T value = valueParserBuilder.get().parse(parser, mapper);
+                T value = valueParserBuilder.get().deserialize(parser, mapper);
                 JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
 
                 return new NamedValue<>(name, value);

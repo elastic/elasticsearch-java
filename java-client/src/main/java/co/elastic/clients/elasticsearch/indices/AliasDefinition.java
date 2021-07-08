@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -233,18 +233,18 @@ public final class AliasDefinition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AliasDefinition
+	 * Json deserializer for AliasDefinition
 	 */
-	public static final JsonpValueParser<AliasDefinition> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AliasDefinition::setupAliasDefinitionParser);
+	public static final JsonpDeserializer<AliasDefinition> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AliasDefinition::setupAliasDefinitionDeserializer);
 
-	protected static void setupAliasDefinitionParser(DelegatingJsonpValueParser<AliasDefinition.Builder> op) {
+	protected static void setupAliasDefinitionDeserializer(DelegatingDeserializer<AliasDefinition.Builder> op) {
 
-		op.add(Builder::filter, QueryContainer.JSONP_PARSER, "filter");
-		op.add(Builder::indexRouting, JsonpValueParser.stringParser(), "index_routing");
-		op.add(Builder::isWriteIndex, JsonpValueParser.booleanParser(), "is_write_index");
-		op.add(Builder::routing, JsonpValueParser.stringParser(), "routing");
-		op.add(Builder::searchRouting, JsonpValueParser.stringParser(), "search_routing");
+		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
+		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
 
 	}
 

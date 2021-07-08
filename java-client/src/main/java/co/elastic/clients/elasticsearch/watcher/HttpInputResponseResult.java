@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -173,19 +173,18 @@ public final class HttpInputResponseResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HttpInputResponseResult
+	 * Json deserializer for HttpInputResponseResult
 	 */
-	public static final JsonpValueParser<HttpInputResponseResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HttpInputResponseResult::setupHttpInputResponseResultParser);
+	public static final JsonpDeserializer<HttpInputResponseResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HttpInputResponseResult::setupHttpInputResponseResultDeserializer);
 
-	protected static void setupHttpInputResponseResultParser(
-			DelegatingJsonpValueParser<HttpInputResponseResult.Builder> op) {
+	protected static void setupHttpInputResponseResultDeserializer(
+			DelegatingDeserializer<HttpInputResponseResult.Builder> op) {
 
-		op.add(Builder::body, JsonpValueParser.stringParser(), "body");
-		op.add(Builder::headers,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(JsonpValueParser.stringParser())),
-				"headers");
-		op.add(Builder::status, JsonpValueParser.numberParser(), "status");
+		op.add(Builder::body, JsonpDeserializer.stringDeserializer(), "body");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
+		op.add(Builder::status, JsonpDeserializer.numberDeserializer(), "status");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -132,15 +132,15 @@ public final class StoredScript implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StoredScript
+	 * Json deserializer for StoredScript
 	 */
-	public static final JsonpValueParser<StoredScript> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StoredScript::setupStoredScriptParser);
+	public static final JsonpDeserializer<StoredScript> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StoredScript::setupStoredScriptDeserializer);
 
-	protected static void setupStoredScriptParser(DelegatingJsonpValueParser<StoredScript.Builder> op) {
+	protected static void setupStoredScriptDeserializer(DelegatingDeserializer<StoredScript.Builder> op) {
 
-		op.add(Builder::lang, JsonpValueParser.jsonValueParser(), "lang");
-		op.add(Builder::source, JsonpValueParser.stringParser(), "source");
+		op.add(Builder::lang, JsonpDeserializer.jsonValueDeserializer(), "lang");
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -178,17 +178,19 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeEvaluationClassificationMetrics
+	 * Json deserializer for DataframeEvaluationClassificationMetrics
 	 */
-	public static final JsonpValueParser<DataframeEvaluationClassificationMetrics> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeEvaluationClassificationMetrics> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeEvaluationClassificationMetrics::setupDataframeEvaluationClassificationMetricsParser);
+					DataframeEvaluationClassificationMetrics::setupDataframeEvaluationClassificationMetricsDeserializer);
 
-	protected static void setupDataframeEvaluationClassificationMetricsParser(
-			DelegatingJsonpValueParser<DataframeEvaluationClassificationMetrics.Builder> op) {
-		DataframeEvaluationMetrics.setupDataframeEvaluationMetricsParser(op);
-		op.add(Builder::accuracy, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "accuracy");
-		op.add(Builder::multiclassConfusionMatrix, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
+	protected static void setupDataframeEvaluationClassificationMetricsDeserializer(
+			DelegatingDeserializer<DataframeEvaluationClassificationMetrics.Builder> op) {
+		DataframeEvaluationMetrics.setupDataframeEvaluationMetricsDeserializer(op);
+		op.add(Builder::accuracy, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"accuracy");
+		op.add(Builder::multiclassConfusionMatrix,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"multiclass_confusion_matrix");
 
 	}

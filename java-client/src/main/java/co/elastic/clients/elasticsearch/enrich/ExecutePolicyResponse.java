@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch.enrich.execute_policy.ExecuteEnrichPolicyStatus;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -141,16 +141,16 @@ public final class ExecutePolicyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExecutePolicyResponse
+	 * Json deserializer for ExecutePolicyResponse
 	 */
-	public static final JsonpValueParser<ExecutePolicyResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExecutePolicyResponse::setupExecutePolicyResponseParser);
+	public static final JsonpDeserializer<ExecutePolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExecutePolicyResponse::setupExecutePolicyResponseDeserializer);
 
-	protected static void setupExecutePolicyResponseParser(
-			DelegatingJsonpValueParser<ExecutePolicyResponse.Builder> op) {
+	protected static void setupExecutePolicyResponseDeserializer(
+			DelegatingDeserializer<ExecutePolicyResponse.Builder> op) {
 
-		op.add(Builder::status, ExecuteEnrichPolicyStatus.JSONP_PARSER, "status");
-		op.add(Builder::taskId, JsonpValueParser.jsonValueParser(), "task_id");
+		op.add(Builder::status, ExecuteEnrichPolicyStatus.DESERIALIZER, "status");
+		op.add(Builder::taskId, JsonpDeserializer.jsonValueDeserializer(), "task_id");
 
 	}
 

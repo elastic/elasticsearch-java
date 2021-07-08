@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -158,11 +158,13 @@ public abstract class MatrixAggregation extends Aggregation {
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMatrixAggregationParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
-		Aggregation.setupAggregationParser(op);
-		op.add(AbstractBuilder::fields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "fields");
-		op.add(AbstractBuilder::missing, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()), "missing");
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMatrixAggregationDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
+		Aggregation.setupAggregationDeserializer(op);
+		op.add(AbstractBuilder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"fields");
+		op.add(AbstractBuilder::missing,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()), "missing");
 
 	}
 

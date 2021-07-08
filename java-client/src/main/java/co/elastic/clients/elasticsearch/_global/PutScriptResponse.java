@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -68,13 +68,13 @@ public final class PutScriptResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutScriptResponse
+	 * Json deserializer for PutScriptResponse
 	 */
-	public static final JsonpValueParser<PutScriptResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutScriptResponse::setupPutScriptResponseParser);
+	public static final JsonpDeserializer<PutScriptResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutScriptResponse::setupPutScriptResponseDeserializer);
 
-	protected static void setupPutScriptResponseParser(DelegatingJsonpValueParser<PutScriptResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
+	protected static void setupPutScriptResponseDeserializer(DelegatingDeserializer<PutScriptResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

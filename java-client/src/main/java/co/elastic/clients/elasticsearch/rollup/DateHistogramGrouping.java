@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -278,21 +278,21 @@ public final class DateHistogramGrouping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DateHistogramGrouping
+	 * Json deserializer for DateHistogramGrouping
 	 */
-	public static final JsonpValueParser<DateHistogramGrouping> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DateHistogramGrouping::setupDateHistogramGroupingParser);
+	public static final JsonpDeserializer<DateHistogramGrouping> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DateHistogramGrouping::setupDateHistogramGroupingDeserializer);
 
-	protected static void setupDateHistogramGroupingParser(
-			DelegatingJsonpValueParser<DateHistogramGrouping.Builder> op) {
+	protected static void setupDateHistogramGroupingDeserializer(
+			DelegatingDeserializer<DateHistogramGrouping.Builder> op) {
 
-		op.add(Builder::delay, JsonpValueParser.jsonValueParser(), "delay");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
-		op.add(Builder::interval, JsonpValueParser.jsonValueParser(), "interval");
-		op.add(Builder::calendarInterval, JsonpValueParser.jsonValueParser(), "calendar_interval");
-		op.add(Builder::fixedInterval, JsonpValueParser.jsonValueParser(), "fixed_interval");
-		op.add(Builder::timeZone, JsonpValueParser.stringParser(), "time_zone");
+		op.add(Builder::delay, JsonpDeserializer.jsonValueDeserializer(), "delay");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::interval, JsonpDeserializer.jsonValueDeserializer(), "interval");
+		op.add(Builder::calendarInterval, JsonpDeserializer.jsonValueDeserializer(), "calendar_interval");
+		op.add(Builder::fixedInterval, JsonpDeserializer.jsonValueDeserializer(), "fixed_interval");
+		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
 	}
 

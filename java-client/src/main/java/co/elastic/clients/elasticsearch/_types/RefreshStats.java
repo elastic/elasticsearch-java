@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -225,19 +225,20 @@ public final class RefreshStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RefreshStats
+	 * Json deserializer for RefreshStats
 	 */
-	public static final JsonpValueParser<RefreshStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RefreshStats::setupRefreshStatsParser);
+	public static final JsonpDeserializer<RefreshStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RefreshStats::setupRefreshStatsDeserializer);
 
-	protected static void setupRefreshStatsParser(DelegatingJsonpValueParser<RefreshStats.Builder> op) {
+	protected static void setupRefreshStatsDeserializer(DelegatingDeserializer<RefreshStats.Builder> op) {
 
-		op.add(Builder::externalTotal, JsonpValueParser.numberParser(), "external_total");
-		op.add(Builder::externalTotalTimeInMillis, JsonpValueParser.numberParser(), "external_total_time_in_millis");
-		op.add(Builder::listeners, JsonpValueParser.numberParser(), "listeners");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::totalTime, JsonpValueParser.stringParser(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.numberParser(), "total_time_in_millis");
+		op.add(Builder::externalTotal, JsonpDeserializer.numberDeserializer(), "external_total");
+		op.add(Builder::externalTotalTimeInMillis, JsonpDeserializer.numberDeserializer(),
+				"external_total_time_in_millis");
+		op.add(Builder::listeners, JsonpDeserializer.numberDeserializer(), "listeners");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.numberDeserializer(), "total_time_in_millis");
 
 	}
 

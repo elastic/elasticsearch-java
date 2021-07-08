@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.segments;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -148,16 +148,16 @@ public final class ShardSegmentRouting implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardSegmentRouting
+	 * Json deserializer for ShardSegmentRouting
 	 */
-	public static final JsonpValueParser<ShardSegmentRouting> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardSegmentRouting::setupShardSegmentRoutingParser);
+	public static final JsonpDeserializer<ShardSegmentRouting> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardSegmentRouting::setupShardSegmentRoutingDeserializer);
 
-	protected static void setupShardSegmentRoutingParser(DelegatingJsonpValueParser<ShardSegmentRouting.Builder> op) {
+	protected static void setupShardSegmentRoutingDeserializer(DelegatingDeserializer<ShardSegmentRouting.Builder> op) {
 
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::primary, JsonpValueParser.booleanParser(), "primary");
-		op.add(Builder::state, JsonpValueParser.stringParser(), "state");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
+		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
 
 	}
 

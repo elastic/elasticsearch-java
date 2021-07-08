@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.help;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class HelpRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HelpRecord
+	 * Json deserializer for HelpRecord
 	 */
-	public static final JsonpValueParser<HelpRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HelpRecord::setupHelpRecordParser);
+	public static final JsonpDeserializer<HelpRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HelpRecord::setupHelpRecordDeserializer);
 
-	protected static void setupHelpRecordParser(DelegatingJsonpValueParser<HelpRecord.Builder> op) {
+	protected static void setupHelpRecordDeserializer(DelegatingDeserializer<HelpRecord.Builder> op) {
 
-		op.add(Builder::endpoint, JsonpValueParser.stringParser(), "endpoint");
+		op.add(Builder::endpoint, JsonpDeserializer.stringDeserializer(), "endpoint");
 
 	}
 

@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.elasticsearch.cluster.state.ClusterStateBlocks;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -564,27 +564,27 @@ public final class StateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for StateResponse
+	 * Json deserializer for StateResponse
 	 */
-	public static final JsonpValueParser<StateResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, StateResponse::setupStateResponseParser);
+	public static final JsonpDeserializer<StateResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, StateResponse::setupStateResponseDeserializer);
 
-	protected static void setupStateResponseParser(DelegatingJsonpValueParser<StateResponse.Builder> op) {
+	protected static void setupStateResponseDeserializer(DelegatingDeserializer<StateResponse.Builder> op) {
 
-		op.add(Builder::clusterName, JsonpValueParser.stringParser(), "cluster_name");
-		op.add(Builder::clusterUuid, JsonpValueParser.stringParser(), "cluster_uuid");
-		op.add(Builder::masterNode, JsonpValueParser.stringParser(), "master_node");
-		op.add(Builder::state, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "state");
-		op.add(Builder::stateUuid, JsonpValueParser.stringParser(), "state_uuid");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::blocks, ClusterStateBlocks.JSONP_PARSER, "blocks");
-		op.add(Builder::metadata, ClusterStateMetadata.JSONP_PARSER, "metadata");
-		op.add(Builder::nodes, JsonpValueParser.stringMapParser(NodeAttributes.JSONP_PARSER), "nodes");
-		op.add(Builder::routingTable, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"routing_table");
-		op.add(Builder::routingNodes, ClusterStateRoutingNodes.JSONP_PARSER, "routing_nodes");
-		op.add(Builder::snapshots, ClusterStateSnapshots.JSONP_PARSER, "snapshots");
-		op.add(Builder::snapshotDeletions, ClusterStateDeletedSnapshots.JSONP_PARSER, "snapshot_deletions");
+		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
+		op.add(Builder::masterNode, JsonpDeserializer.stringDeserializer(), "master_node");
+		op.add(Builder::state, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "state");
+		op.add(Builder::stateUuid, JsonpDeserializer.stringDeserializer(), "state_uuid");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::blocks, ClusterStateBlocks.DESERIALIZER, "blocks");
+		op.add(Builder::metadata, ClusterStateMetadata.DESERIALIZER, "metadata");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes.DESERIALIZER), "nodes");
+		op.add(Builder::routingTable,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "routing_table");
+		op.add(Builder::routingNodes, ClusterStateRoutingNodes.DESERIALIZER, "routing_nodes");
+		op.add(Builder::snapshots, ClusterStateSnapshots.DESERIALIZER, "snapshots");
+		op.add(Builder::snapshotDeletions, ClusterStateDeletedSnapshots.DESERIALIZER, "snapshot_deletions");
 
 	}
 

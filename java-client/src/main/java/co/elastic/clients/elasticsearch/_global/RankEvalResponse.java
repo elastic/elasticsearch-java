@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._global.rank_eval.RankEvalMetricDetail;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -213,16 +213,17 @@ public final class RankEvalResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalResponse
+	 * Json deserializer for RankEvalResponse
 	 */
-	public static final JsonpValueParser<RankEvalResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RankEvalResponse::setupRankEvalResponseParser);
+	public static final JsonpDeserializer<RankEvalResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RankEvalResponse::setupRankEvalResponseDeserializer);
 
-	protected static void setupRankEvalResponseParser(DelegatingJsonpValueParser<RankEvalResponse.Builder> op) {
+	protected static void setupRankEvalResponseDeserializer(DelegatingDeserializer<RankEvalResponse.Builder> op) {
 
-		op.add(Builder::metricScore, JsonpValueParser.numberParser(), "metric_score");
-		op.add(Builder::details, JsonpValueParser.stringMapParser(RankEvalMetricDetail.JSONP_PARSER), "details");
-		op.add(Builder::failures, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "failures");
+		op.add(Builder::metricScore, JsonpDeserializer.numberDeserializer(), "metric_score");
+		op.add(Builder::details, JsonpDeserializer.stringMapDeserializer(RankEvalMetricDetail.DESERIALIZER), "details");
+		op.add(Builder::failures, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"failures");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -192,17 +192,17 @@ public final class OperatingSystem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for OperatingSystem
+	 * Json deserializer for OperatingSystem
 	 */
-	public static final JsonpValueParser<OperatingSystem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, OperatingSystem::setupOperatingSystemParser);
+	public static final JsonpDeserializer<OperatingSystem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, OperatingSystem::setupOperatingSystemDeserializer);
 
-	protected static void setupOperatingSystemParser(DelegatingJsonpValueParser<OperatingSystem.Builder> op) {
+	protected static void setupOperatingSystemDeserializer(DelegatingDeserializer<OperatingSystem.Builder> op) {
 
-		op.add(Builder::cpu, Cpu.JSONP_PARSER, "cpu");
-		op.add(Builder::mem, ExtendedMemoryStats.JSONP_PARSER, "mem");
-		op.add(Builder::swap, MemoryStats.JSONP_PARSER, "swap");
-		op.add(Builder::timestamp, JsonpValueParser.numberParser(), "timestamp");
+		op.add(Builder::cpu, Cpu.DESERIALIZER, "cpu");
+		op.add(Builder::mem, ExtendedMemoryStats.DESERIALIZER, "mem");
+		op.add(Builder::swap, MemoryStats.DESERIALIZER, "swap");
+		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
 
 	}
 

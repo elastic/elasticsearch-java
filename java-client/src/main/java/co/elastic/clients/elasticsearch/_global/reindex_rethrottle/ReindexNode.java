@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global.reindex_rethrottle;
 
 import co.elastic.clients.elasticsearch._spec_utils.BaseNode;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -98,14 +98,14 @@ public final class ReindexNode extends BaseNode {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ReindexNode
+	 * Json deserializer for ReindexNode
 	 */
-	public static final JsonpValueParser<ReindexNode> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ReindexNode::setupReindexNodeParser);
+	public static final JsonpDeserializer<ReindexNode> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ReindexNode::setupReindexNodeDeserializer);
 
-	protected static void setupReindexNodeParser(DelegatingJsonpValueParser<ReindexNode.Builder> op) {
-		BaseNode.setupBaseNodeParser(op);
-		op.add(Builder::tasks, JsonpValueParser.jsonValueParser(), "tasks");
+	protected static void setupReindexNodeDeserializer(DelegatingDeserializer<ReindexNode.Builder> op) {
+		BaseNode.setupBaseNodeDeserializer(op);
+		op.add(Builder::tasks, JsonpDeserializer.jsonValueDeserializer(), "tasks");
 
 	}
 

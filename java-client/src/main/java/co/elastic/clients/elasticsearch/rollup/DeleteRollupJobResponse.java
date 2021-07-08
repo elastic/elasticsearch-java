@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.rollup.delete_rollup_job.TaskFailure;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -147,15 +147,15 @@ public final class DeleteRollupJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DeleteRollupJobResponse
+	 * Json deserializer for DeleteRollupJobResponse
 	 */
-	public static final JsonpValueParser<DeleteRollupJobResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DeleteRollupJobResponse::setupDeleteRollupJobResponseParser);
+	public static final JsonpDeserializer<DeleteRollupJobResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DeleteRollupJobResponse::setupDeleteRollupJobResponseDeserializer);
 
-	protected static void setupDeleteRollupJobResponseParser(
-			DelegatingJsonpValueParser<DeleteRollupJobResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::taskFailures, JsonpValueParser.arrayParser(TaskFailure.JSONP_PARSER), "task_failures");
+	protected static void setupDeleteRollupJobResponseDeserializer(
+			DelegatingDeserializer<DeleteRollupJobResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::taskFailures, JsonpDeserializer.arrayDeserializer(TaskFailure.DESERIALIZER), "task_failures");
 
 	}
 

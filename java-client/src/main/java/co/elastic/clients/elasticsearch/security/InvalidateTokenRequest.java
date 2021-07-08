@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -198,18 +198,18 @@ public final class InvalidateTokenRequest extends RequestBase implements ToJsonp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for InvalidateTokenRequest
+	 * Json deserializer for InvalidateTokenRequest
 	 */
-	public static final JsonpValueParser<InvalidateTokenRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, InvalidateTokenRequest::setupInvalidateTokenRequestParser);
+	public static final JsonpDeserializer<InvalidateTokenRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, InvalidateTokenRequest::setupInvalidateTokenRequestDeserializer);
 
-	protected static void setupInvalidateTokenRequestParser(
-			DelegatingJsonpValueParser<InvalidateTokenRequest.Builder> op) {
+	protected static void setupInvalidateTokenRequestDeserializer(
+			DelegatingDeserializer<InvalidateTokenRequest.Builder> op) {
 
-		op.add(Builder::token, JsonpValueParser.stringParser(), "token");
-		op.add(Builder::refreshToken, JsonpValueParser.stringParser(), "refresh_token");
-		op.add(Builder::realmName, JsonpValueParser.stringParser(), "realm_name");
-		op.add(Builder::username, JsonpValueParser.stringParser(), "username");
+		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
+		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
+		op.add(Builder::realmName, JsonpDeserializer.stringDeserializer(), "realm_name");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
 
@@ -235,5 +235,5 @@ public final class InvalidateTokenRequest extends RequestBase implements ToJsonp
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, InvalidateTokenResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, InvalidateTokenResponse.DESERIALIZER);
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.explain;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -190,16 +190,16 @@ public final class Explanation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Explanation
+	 * Json deserializer for Explanation
 	 */
-	public static final JsonpValueParser<Explanation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, Explanation::setupExplanationParser);
+	public static final JsonpDeserializer<Explanation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Explanation::setupExplanationDeserializer);
 
-	protected static void setupExplanationParser(DelegatingJsonpValueParser<Explanation.Builder> op) {
+	protected static void setupExplanationDeserializer(DelegatingDeserializer<Explanation.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::details, JsonpValueParser.arrayParser(ExplanationDetail.JSONP_PARSER), "details");
-		op.add(Builder::value, JsonpValueParser.numberParser(), "value");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(ExplanationDetail.DESERIALIZER), "details");
+		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
 
 	}
 

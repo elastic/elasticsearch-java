@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -115,16 +115,16 @@ public final class DataframeEvaluationRegressionMetricsHuber implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeEvaluationRegressionMetricsHuber
+	 * Json deserializer for DataframeEvaluationRegressionMetricsHuber
 	 */
-	public static final JsonpValueParser<DataframeEvaluationRegressionMetricsHuber> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeEvaluationRegressionMetricsHuber> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeEvaluationRegressionMetricsHuber::setupDataframeEvaluationRegressionMetricsHuberParser);
+					DataframeEvaluationRegressionMetricsHuber::setupDataframeEvaluationRegressionMetricsHuberDeserializer);
 
-	protected static void setupDataframeEvaluationRegressionMetricsHuberParser(
-			DelegatingJsonpValueParser<DataframeEvaluationRegressionMetricsHuber.Builder> op) {
+	protected static void setupDataframeEvaluationRegressionMetricsHuberDeserializer(
+			DelegatingDeserializer<DataframeEvaluationRegressionMetricsHuber.Builder> op) {
 
-		op.add(Builder::delta, JsonpValueParser.numberParser(), "delta");
+		op.add(Builder::delta, JsonpDeserializer.numberDeserializer(), "delta");
 
 	}
 

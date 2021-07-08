@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch.cluster.health.IndexHealthStats;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -553,31 +553,31 @@ public final class HealthResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HealthResponse
+	 * Json deserializer for HealthResponse
 	 */
-	public static final JsonpValueParser<HealthResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HealthResponse::setupHealthResponseParser);
+	public static final JsonpDeserializer<HealthResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HealthResponse::setupHealthResponseDeserializer);
 
-	protected static void setupHealthResponseParser(DelegatingJsonpValueParser<HealthResponse.Builder> op) {
+	protected static void setupHealthResponseDeserializer(DelegatingDeserializer<HealthResponse.Builder> op) {
 
-		op.add(Builder::activePrimaryShards, JsonpValueParser.numberParser(), "active_primary_shards");
-		op.add(Builder::activeShards, JsonpValueParser.numberParser(), "active_shards");
-		op.add(Builder::activeShardsPercentAsNumber, JsonpValueParser.jsonValueParser(),
+		op.add(Builder::activePrimaryShards, JsonpDeserializer.numberDeserializer(), "active_primary_shards");
+		op.add(Builder::activeShards, JsonpDeserializer.numberDeserializer(), "active_shards");
+		op.add(Builder::activeShardsPercentAsNumber, JsonpDeserializer.jsonValueDeserializer(),
 				"active_shards_percent_as_number");
-		op.add(Builder::clusterName, JsonpValueParser.stringParser(), "cluster_name");
-		op.add(Builder::delayedUnassignedShards, JsonpValueParser.numberParser(), "delayed_unassigned_shards");
-		op.add(Builder::indices, JsonpValueParser.stringMapParser(IndexHealthStats.JSONP_PARSER), "indices");
-		op.add(Builder::initializingShards, JsonpValueParser.numberParser(), "initializing_shards");
-		op.add(Builder::numberOfDataNodes, JsonpValueParser.numberParser(), "number_of_data_nodes");
-		op.add(Builder::numberOfInFlightFetch, JsonpValueParser.numberParser(), "number_of_in_flight_fetch");
-		op.add(Builder::numberOfNodes, JsonpValueParser.numberParser(), "number_of_nodes");
-		op.add(Builder::numberOfPendingTasks, JsonpValueParser.numberParser(), "number_of_pending_tasks");
-		op.add(Builder::relocatingShards, JsonpValueParser.numberParser(), "relocating_shards");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
-		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpValueParser.jsonValueParser(),
+		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+		op.add(Builder::delayedUnassignedShards, JsonpDeserializer.numberDeserializer(), "delayed_unassigned_shards");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndexHealthStats.DESERIALIZER), "indices");
+		op.add(Builder::initializingShards, JsonpDeserializer.numberDeserializer(), "initializing_shards");
+		op.add(Builder::numberOfDataNodes, JsonpDeserializer.numberDeserializer(), "number_of_data_nodes");
+		op.add(Builder::numberOfInFlightFetch, JsonpDeserializer.numberDeserializer(), "number_of_in_flight_fetch");
+		op.add(Builder::numberOfNodes, JsonpDeserializer.numberDeserializer(), "number_of_nodes");
+		op.add(Builder::numberOfPendingTasks, JsonpDeserializer.numberDeserializer(), "number_of_pending_tasks");
+		op.add(Builder::relocatingShards, JsonpDeserializer.numberDeserializer(), "relocating_shards");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpDeserializer.jsonValueDeserializer(),
 				"task_max_waiting_in_queue_millis");
-		op.add(Builder::timedOut, JsonpValueParser.booleanParser(), "timed_out");
-		op.add(Builder::unassignedShards, JsonpValueParser.numberParser(), "unassigned_shards");
+		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
+		op.add(Builder::unassignedShards, JsonpDeserializer.numberDeserializer(), "unassigned_shards");
 
 	}
 

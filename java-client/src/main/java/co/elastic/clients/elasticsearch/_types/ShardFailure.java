@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -222,18 +222,18 @@ public final class ShardFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardFailure
+	 * Json deserializer for ShardFailure
 	 */
-	public static final JsonpValueParser<ShardFailure> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardFailure::setupShardFailureParser);
+	public static final JsonpDeserializer<ShardFailure> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardFailure::setupShardFailureDeserializer);
 
-	protected static void setupShardFailureParser(DelegatingJsonpValueParser<ShardFailure.Builder> op) {
+	protected static void setupShardFailureDeserializer(DelegatingDeserializer<ShardFailure.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::reason, ErrorCause.JSONP_PARSER, "reason");
-		op.add(Builder::shard, JsonpValueParser.numberParser(), "shard");
-		op.add(Builder::status, JsonpValueParser.stringParser(), "status");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::reason, ErrorCause.DESERIALIZER, "reason");
+		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
 
 	}
 

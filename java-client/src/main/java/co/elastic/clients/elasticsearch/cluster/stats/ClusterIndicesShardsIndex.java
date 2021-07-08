@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -192,17 +192,17 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterIndicesShardsIndex
+	 * Json deserializer for ClusterIndicesShardsIndex
 	 */
-	public static final JsonpValueParser<ClusterIndicesShardsIndex> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterIndicesShardsIndex::setupClusterIndicesShardsIndexParser);
+	public static final JsonpDeserializer<ClusterIndicesShardsIndex> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterIndicesShardsIndex::setupClusterIndicesShardsIndexDeserializer);
 
-	protected static void setupClusterIndicesShardsIndexParser(
-			DelegatingJsonpValueParser<ClusterIndicesShardsIndex.Builder> op) {
+	protected static void setupClusterIndicesShardsIndexDeserializer(
+			DelegatingDeserializer<ClusterIndicesShardsIndex.Builder> op) {
 
-		op.add(Builder::primaries, ClusterShardMetrics.JSONP_PARSER, "primaries");
-		op.add(Builder::replication, ClusterShardMetrics.JSONP_PARSER, "replication");
-		op.add(Builder::shards, ClusterShardMetrics.JSONP_PARSER, "shards");
+		op.add(Builder::primaries, ClusterShardMetrics.DESERIALIZER, "primaries");
+		op.add(Builder::replication, ClusterShardMetrics.DESERIALIZER, "replication");
+		op.add(Builder::shards, ClusterShardMetrics.DESERIALIZER, "shards");
 
 	}
 

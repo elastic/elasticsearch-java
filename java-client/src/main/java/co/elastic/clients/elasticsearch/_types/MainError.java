@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -187,15 +187,16 @@ public final class MainError extends ErrorCause {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for MainError
+	 * Json deserializer for MainError
 	 */
-	public static final JsonpValueParser<MainError> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, MainError::setupMainErrorParser);
+	public static final JsonpDeserializer<MainError> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, MainError::setupMainErrorDeserializer);
 
-	protected static void setupMainErrorParser(DelegatingJsonpValueParser<MainError.Builder> op) {
-		ErrorCause.setupErrorCauseParser(op);
-		op.add(Builder::headers, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "headers");
-		op.add(Builder::rootCause, JsonpValueParser.arrayParser(ErrorCause.JSONP_PARSER), "root_cause");
+	protected static void setupMainErrorDeserializer(DelegatingDeserializer<MainError.Builder> op) {
+		ErrorCause.setupErrorCauseDeserializer(op);
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"headers");
+		op.add(Builder::rootCause, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "root_cause");
 
 	}
 

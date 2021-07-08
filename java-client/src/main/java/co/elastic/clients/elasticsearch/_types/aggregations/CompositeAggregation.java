@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -215,18 +215,19 @@ public final class CompositeAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CompositeAggregation
+	 * Json deserializer for CompositeAggregation
 	 */
-	public static final JsonpValueParser<CompositeAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CompositeAggregation::setupCompositeAggregationParser);
+	public static final JsonpDeserializer<CompositeAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CompositeAggregation::setupCompositeAggregationDeserializer);
 
-	protected static void setupCompositeAggregationParser(DelegatingJsonpValueParser<CompositeAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseParser(op);
-		op.add(Builder::after, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "after");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::sources,
-				JsonpValueParser.arrayParser(JsonpValueParser.stringMapParser(CompositeAggregationSource.JSONP_PARSER)),
-				"sources");
+	protected static void setupCompositeAggregationDeserializer(
+			DelegatingDeserializer<CompositeAggregation.Builder> op) {
+		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::after, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"after");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::sources, JsonpDeserializer.arrayDeserializer(
+				JsonpDeserializer.stringMapDeserializer(CompositeAggregationSource.DESERIALIZER)), "sources");
 
 	}
 

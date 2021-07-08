@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -336,24 +336,24 @@ public final class PluginStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PluginStats
+	 * Json deserializer for PluginStats
 	 */
-	public static final JsonpValueParser<PluginStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PluginStats::setupPluginStatsParser);
+	public static final JsonpDeserializer<PluginStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PluginStats::setupPluginStatsDeserializer);
 
-	protected static void setupPluginStatsParser(DelegatingJsonpValueParser<PluginStats.Builder> op) {
+	protected static void setupPluginStatsDeserializer(DelegatingDeserializer<PluginStats.Builder> op) {
 
-		op.add(Builder::classname, JsonpValueParser.stringParser(), "classname");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::elasticsearchVersion, JsonpValueParser.stringParser(), "elasticsearch_version");
-		op.add(Builder::extendedPlugins, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::classname, JsonpDeserializer.stringDeserializer(), "classname");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::elasticsearchVersion, JsonpDeserializer.stringDeserializer(), "elasticsearch_version");
+		op.add(Builder::extendedPlugins, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extended_plugins");
-		op.add(Builder::hasNativeController, JsonpValueParser.booleanParser(), "has_native_controller");
-		op.add(Builder::javaVersion, JsonpValueParser.stringParser(), "java_version");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version");
-		op.add(Builder::licensed, JsonpValueParser.booleanParser(), "licensed");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::hasNativeController, JsonpDeserializer.booleanDeserializer(), "has_native_controller");
+		op.add(Builder::javaVersion, JsonpDeserializer.stringDeserializer(), "java_version");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::licensed, JsonpDeserializer.booleanDeserializer(), "licensed");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

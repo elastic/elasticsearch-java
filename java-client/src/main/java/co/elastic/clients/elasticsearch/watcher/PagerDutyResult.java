@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,14 +109,14 @@ public final class PagerDutyResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PagerDutyResult
+	 * Json deserializer for PagerDutyResult
 	 */
-	public static final JsonpValueParser<PagerDutyResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PagerDutyResult::setupPagerDutyResultParser);
+	public static final JsonpDeserializer<PagerDutyResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PagerDutyResult::setupPagerDutyResultDeserializer);
 
-	protected static void setupPagerDutyResultParser(DelegatingJsonpValueParser<PagerDutyResult.Builder> op) {
+	protected static void setupPagerDutyResultDeserializer(DelegatingDeserializer<PagerDutyResult.Builder> op) {
 
-		op.add(Builder::sentEvent, PagerDutyActionEventResult.JSONP_PARSER, "sent_event");
+		op.add(Builder::sentEvent, PagerDutyActionEventResult.DESERIALIZER, "sent_event");
 
 	}
 

@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -188,15 +188,15 @@ public final class PutFilterRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutFilterRequest
+	 * Json deserializer for PutFilterRequest
 	 */
-	public static final JsonpValueParser<PutFilterRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutFilterRequest::setupPutFilterRequestParser);
+	public static final JsonpDeserializer<PutFilterRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutFilterRequest::setupPutFilterRequestDeserializer);
 
-	protected static void setupPutFilterRequestParser(DelegatingJsonpValueParser<PutFilterRequest.Builder> op) {
+	protected static void setupPutFilterRequestDeserializer(DelegatingDeserializer<PutFilterRequest.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::items, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "items");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::items, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "items");
 
 	}
 
@@ -237,5 +237,5 @@ public final class PutFilterRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutFilterResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutFilterResponse.DESERIALIZER);
 }

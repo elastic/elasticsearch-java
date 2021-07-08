@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -108,16 +108,16 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalMetricDiscountedCumulativeGain
+	 * Json deserializer for RankEvalMetricDiscountedCumulativeGain
 	 */
-	public static final JsonpValueParser<RankEvalMetricDiscountedCumulativeGain> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<RankEvalMetricDiscountedCumulativeGain> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainParser);
+					RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainDeserializer);
 
-	protected static void setupRankEvalMetricDiscountedCumulativeGainParser(
-			DelegatingJsonpValueParser<RankEvalMetricDiscountedCumulativeGain.Builder> op) {
-		RankEvalMetricBase.setupRankEvalMetricBaseParser(op);
-		op.add(Builder::normalize, JsonpValueParser.booleanParser(), "normalize");
+	protected static void setupRankEvalMetricDiscountedCumulativeGainDeserializer(
+			DelegatingDeserializer<RankEvalMetricDiscountedCumulativeGain.Builder> op) {
+		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
+		op.add(Builder::normalize, JsonpDeserializer.booleanDeserializer(), "normalize");
 
 	}
 

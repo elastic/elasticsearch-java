@@ -19,8 +19,8 @@
 
 package co.elastic.clients.base;
 
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 
 public class ElasticsearchError {
 
@@ -53,15 +53,15 @@ public class ElasticsearchError {
     this.error = error;
   }
 
-  public static final JsonpValueParser<ElasticsearchError> PARSER;
+  public static final JsonpDeserializer<ElasticsearchError> PARSER;
 
   static {
-    JsonpObjectParser<ElasticsearchError> op = new JsonpObjectParser<>(
+    ObjectDeserializer<ElasticsearchError> op = new ObjectDeserializer<>(
         ElasticsearchError::new
     );
 
     op.add(ElasticsearchError::status, "status");
-    op.add(ElasticsearchError::error, JsonpValueParser.stringParser(), "error");
+    op.add(ElasticsearchError::error, JsonpDeserializer.stringDeserializer(), "error");
 
     PARSER = op;
   }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -223,18 +223,18 @@ public final class CalendarEvent implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CalendarEvent
+	 * Json deserializer for CalendarEvent
 	 */
-	public static final JsonpValueParser<CalendarEvent> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CalendarEvent::setupCalendarEventParser);
+	public static final JsonpDeserializer<CalendarEvent> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CalendarEvent::setupCalendarEventDeserializer);
 
-	protected static void setupCalendarEventParser(DelegatingJsonpValueParser<CalendarEvent.Builder> op) {
+	protected static void setupCalendarEventDeserializer(DelegatingDeserializer<CalendarEvent.Builder> op) {
 
-		op.add(Builder::calendarId, JsonpValueParser.stringParser(), "calendar_id");
-		op.add(Builder::eventId, JsonpValueParser.stringParser(), "event_id");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::endTime, JsonpValueParser.jsonValueParser(), "end_time");
-		op.add(Builder::startTime, JsonpValueParser.jsonValueParser(), "start_time");
+		op.add(Builder::calendarId, JsonpDeserializer.stringDeserializer(), "calendar_id");
+		op.add(Builder::eventId, JsonpDeserializer.stringDeserializer(), "event_id");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::endTime, JsonpDeserializer.jsonValueDeserializer(), "end_time");
+		op.add(Builder::startTime, JsonpDeserializer.jsonValueDeserializer(), "start_time");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.license.get;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -363,25 +363,25 @@ public final class LicenseInformation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for LicenseInformation
+	 * Json deserializer for LicenseInformation
 	 */
-	public static final JsonpValueParser<LicenseInformation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, LicenseInformation::setupLicenseInformationParser);
+	public static final JsonpDeserializer<LicenseInformation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, LicenseInformation::setupLicenseInformationDeserializer);
 
-	protected static void setupLicenseInformationParser(DelegatingJsonpValueParser<LicenseInformation.Builder> op) {
+	protected static void setupLicenseInformationDeserializer(DelegatingDeserializer<LicenseInformation.Builder> op) {
 
-		op.add(Builder::expiryDate, JsonpValueParser.stringParser(), "expiry_date");
-		op.add(Builder::expiryDateInMillis, JsonpValueParser.jsonValueParser(), "expiry_date_in_millis");
-		op.add(Builder::issueDate, JsonpValueParser.stringParser(), "issue_date");
-		op.add(Builder::issueDateInMillis, JsonpValueParser.jsonValueParser(), "issue_date_in_millis");
-		op.add(Builder::issuedTo, JsonpValueParser.stringParser(), "issued_to");
-		op.add(Builder::issuer, JsonpValueParser.stringParser(), "issuer");
-		op.add(Builder::maxNodes, JsonpValueParser.numberParser(), "max_nodes");
-		op.add(Builder::maxResourceUnits, JsonpValueParser.numberParser(), "max_resource_units");
-		op.add(Builder::status, JsonpValueParser.jsonValueParser(), "status");
-		op.add(Builder::type, JsonpValueParser.jsonValueParser(), "type");
-		op.add(Builder::uid, JsonpValueParser.stringParser(), "uid");
-		op.add(Builder::startDateInMillis, JsonpValueParser.jsonValueParser(), "start_date_in_millis");
+		op.add(Builder::expiryDate, JsonpDeserializer.stringDeserializer(), "expiry_date");
+		op.add(Builder::expiryDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "expiry_date_in_millis");
+		op.add(Builder::issueDate, JsonpDeserializer.stringDeserializer(), "issue_date");
+		op.add(Builder::issueDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "issue_date_in_millis");
+		op.add(Builder::issuedTo, JsonpDeserializer.stringDeserializer(), "issued_to");
+		op.add(Builder::issuer, JsonpDeserializer.stringDeserializer(), "issuer");
+		op.add(Builder::maxNodes, JsonpDeserializer.numberDeserializer(), "max_nodes");
+		op.add(Builder::maxResourceUnits, JsonpDeserializer.numberDeserializer(), "max_resource_units");
+		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");
+		op.add(Builder::startDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_date_in_millis");
 
 	}
 

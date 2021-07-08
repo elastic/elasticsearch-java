@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -104,15 +104,16 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SerialDifferencingAggregation
+	 * Json deserializer for SerialDifferencingAggregation
 	 */
-	public static final JsonpValueParser<SerialDifferencingAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SerialDifferencingAggregation::setupSerialDifferencingAggregationParser);
+	public static final JsonpDeserializer<SerialDifferencingAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					SerialDifferencingAggregation::setupSerialDifferencingAggregationDeserializer);
 
-	protected static void setupSerialDifferencingAggregationParser(
-			DelegatingJsonpValueParser<SerialDifferencingAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseParser(op);
-		op.add(Builder::lag, JsonpValueParser.numberParser(), "lag");
+	protected static void setupSerialDifferencingAggregationDeserializer(
+			DelegatingDeserializer<SerialDifferencingAggregation.Builder> op) {
+		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+		op.add(Builder::lag, JsonpDeserializer.numberDeserializer(), "lag");
 
 	}
 

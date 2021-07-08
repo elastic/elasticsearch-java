@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -124,15 +124,15 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShrinkResponse
+	 * Json deserializer for ShrinkResponse
 	 */
-	public static final JsonpValueParser<ShrinkResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShrinkResponse::setupShrinkResponseParser);
+	public static final JsonpDeserializer<ShrinkResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShrinkResponse::setupShrinkResponseDeserializer);
 
-	protected static void setupShrinkResponseParser(DelegatingJsonpValueParser<ShrinkResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseParser(op);
-		op.add(Builder::shardsAcknowledged, JsonpValueParser.booleanParser(), "shards_acknowledged");
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
+	protected static void setupShrinkResponseDeserializer(DelegatingDeserializer<ShrinkResponse.Builder> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 
 	}
 

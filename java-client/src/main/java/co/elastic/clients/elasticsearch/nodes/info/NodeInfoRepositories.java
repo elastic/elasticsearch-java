@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -108,14 +108,15 @@ public final class NodeInfoRepositories implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoRepositories
+	 * Json deserializer for NodeInfoRepositories
 	 */
-	public static final JsonpValueParser<NodeInfoRepositories> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoRepositories::setupNodeInfoRepositoriesParser);
+	public static final JsonpDeserializer<NodeInfoRepositories> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoRepositories::setupNodeInfoRepositoriesDeserializer);
 
-	protected static void setupNodeInfoRepositoriesParser(DelegatingJsonpValueParser<NodeInfoRepositories.Builder> op) {
+	protected static void setupNodeInfoRepositoriesDeserializer(
+			DelegatingDeserializer<NodeInfoRepositories.Builder> op) {
 
-		op.add(Builder::url, NodeInfoRepositoriesUrl.JSONP_PARSER, "url");
+		op.add(Builder::url, NodeInfoRepositoriesUrl.DESERIALIZER, "url");
 
 	}
 

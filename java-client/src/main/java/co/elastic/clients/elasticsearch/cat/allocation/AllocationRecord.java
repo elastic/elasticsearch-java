@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.allocation;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -376,22 +376,22 @@ public final class AllocationRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AllocationRecord
+	 * Json deserializer for AllocationRecord
 	 */
-	public static final JsonpValueParser<AllocationRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AllocationRecord::setupAllocationRecordParser);
+	public static final JsonpDeserializer<AllocationRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AllocationRecord::setupAllocationRecordDeserializer);
 
-	protected static void setupAllocationRecordParser(DelegatingJsonpValueParser<AllocationRecord.Builder> op) {
+	protected static void setupAllocationRecordDeserializer(DelegatingDeserializer<AllocationRecord.Builder> op) {
 
-		op.add(Builder::shards, JsonpValueParser.stringParser(), "shards", "s");
-		op.add(Builder::disk_indices, JsonpValueParser.jsonValueParser(), "disk.indices", "di", "diskIndices");
-		op.add(Builder::disk_used, JsonpValueParser.jsonValueParser(), "disk.used", "du", "diskUsed");
-		op.add(Builder::disk_avail, JsonpValueParser.jsonValueParser(), "disk.avail", "da", "diskAvail");
-		op.add(Builder::disk_total, JsonpValueParser.jsonValueParser(), "disk.total", "dt", "diskTotal");
-		op.add(Builder::disk_percent, JsonpValueParser.jsonValueParser(), "disk.percent", "dp", "diskPercent");
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host", "h");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node", "n");
+		op.add(Builder::shards, JsonpDeserializer.stringDeserializer(), "shards", "s");
+		op.add(Builder::disk_indices, JsonpDeserializer.jsonValueDeserializer(), "disk.indices", "di", "diskIndices");
+		op.add(Builder::disk_used, JsonpDeserializer.jsonValueDeserializer(), "disk.used", "du", "diskUsed");
+		op.add(Builder::disk_avail, JsonpDeserializer.jsonValueDeserializer(), "disk.avail", "da", "diskAvail");
+		op.add(Builder::disk_total, JsonpDeserializer.jsonValueDeserializer(), "disk.total", "dt", "diskTotal");
+		op.add(Builder::disk_percent, JsonpDeserializer.jsonValueDeserializer(), "disk.percent", "dp", "diskPercent");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -125,15 +125,15 @@ public final class TotalHits implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TotalHits
+	 * Json deserializer for TotalHits
 	 */
-	public static final JsonpValueParser<TotalHits> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TotalHits::setupTotalHitsParser);
+	public static final JsonpDeserializer<TotalHits> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TotalHits::setupTotalHitsDeserializer);
 
-	protected static void setupTotalHitsParser(DelegatingJsonpValueParser<TotalHits.Builder> op) {
+	protected static void setupTotalHitsDeserializer(DelegatingDeserializer<TotalHits.Builder> op) {
 
-		op.add(Builder::relation, JsonpValueParser.jsonValueParser(), "relation");
-		op.add(Builder::value, JsonpValueParser.numberParser(), "value");
+		op.add(Builder::relation, JsonpDeserializer.jsonValueDeserializer(), "relation");
+		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
 
 	}
 

@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.text_structure;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.ingest.PipelineConfig;
 import co.elastic.clients.elasticsearch.text_structure.find_structure.FieldStat;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -814,38 +814,40 @@ public final class FindStructureResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FindStructureResponse
+	 * Json deserializer for FindStructureResponse
 	 */
-	public static final JsonpValueParser<FindStructureResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FindStructureResponse::setupFindStructureResponseParser);
+	public static final JsonpDeserializer<FindStructureResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FindStructureResponse::setupFindStructureResponseDeserializer);
 
-	protected static void setupFindStructureResponseParser(
-			DelegatingJsonpValueParser<FindStructureResponse.Builder> op) {
+	protected static void setupFindStructureResponseDeserializer(
+			DelegatingDeserializer<FindStructureResponse.Builder> op) {
 
-		op.add(Builder::charset, JsonpValueParser.stringParser(), "charset");
-		op.add(Builder::hasHeaderRow, JsonpValueParser.booleanParser(), "has_header_row");
-		op.add(Builder::hasByteOrderMarker, JsonpValueParser.booleanParser(), "has_byte_order_marker");
-		op.add(Builder::format, JsonpValueParser.stringParser(), "format");
-		op.add(Builder::fieldStats, JsonpValueParser.stringMapParser(FieldStat.JSONP_PARSER), "field_stats");
-		op.add(Builder::sampleStart, JsonpValueParser.stringParser(), "sample_start");
-		op.add(Builder::numMessagesAnalyzed, JsonpValueParser.numberParser(), "num_messages_analyzed");
-		op.add(Builder::mappings, TypeMapping.JSONP_PARSER, "mappings");
-		op.add(Builder::quote, JsonpValueParser.stringParser(), "quote");
-		op.add(Builder::delimiter, JsonpValueParser.stringParser(), "delimiter");
-		op.add(Builder::needClientTimezone, JsonpValueParser.booleanParser(), "need_client_timezone");
-		op.add(Builder::numLinesAnalyzed, JsonpValueParser.numberParser(), "num_lines_analyzed");
-		op.add(Builder::columnNames, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "column_names");
-		op.add(Builder::explanation, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "explanation");
-		op.add(Builder::grokPattern, JsonpValueParser.stringParser(), "grok_pattern");
-		op.add(Builder::multilineStartPattern, JsonpValueParser.stringParser(), "multiline_start_pattern");
-		op.add(Builder::excludeLinesPattern, JsonpValueParser.stringParser(), "exclude_lines_pattern");
-		op.add(Builder::javaTimestampFormats, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"java_timestamp_formats");
-		op.add(Builder::jodaTimestampFormats, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"joda_timestamp_formats");
-		op.add(Builder::timestampField, JsonpValueParser.stringParser(), "timestamp_field");
-		op.add(Builder::shouldTrimFields, JsonpValueParser.booleanParser(), "should_trim_fields");
-		op.add(Builder::ingestPipeline, PipelineConfig.JSONP_PARSER, "ingest_pipeline");
+		op.add(Builder::charset, JsonpDeserializer.stringDeserializer(), "charset");
+		op.add(Builder::hasHeaderRow, JsonpDeserializer.booleanDeserializer(), "has_header_row");
+		op.add(Builder::hasByteOrderMarker, JsonpDeserializer.booleanDeserializer(), "has_byte_order_marker");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::fieldStats, JsonpDeserializer.stringMapDeserializer(FieldStat.DESERIALIZER), "field_stats");
+		op.add(Builder::sampleStart, JsonpDeserializer.stringDeserializer(), "sample_start");
+		op.add(Builder::numMessagesAnalyzed, JsonpDeserializer.numberDeserializer(), "num_messages_analyzed");
+		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::quote, JsonpDeserializer.stringDeserializer(), "quote");
+		op.add(Builder::delimiter, JsonpDeserializer.stringDeserializer(), "delimiter");
+		op.add(Builder::needClientTimezone, JsonpDeserializer.booleanDeserializer(), "need_client_timezone");
+		op.add(Builder::numLinesAnalyzed, JsonpDeserializer.numberDeserializer(), "num_lines_analyzed");
+		op.add(Builder::columnNames, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"column_names");
+		op.add(Builder::explanation, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"explanation");
+		op.add(Builder::grokPattern, JsonpDeserializer.stringDeserializer(), "grok_pattern");
+		op.add(Builder::multilineStartPattern, JsonpDeserializer.stringDeserializer(), "multiline_start_pattern");
+		op.add(Builder::excludeLinesPattern, JsonpDeserializer.stringDeserializer(), "exclude_lines_pattern");
+		op.add(Builder::javaTimestampFormats,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "java_timestamp_formats");
+		op.add(Builder::jodaTimestampFormats,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "joda_timestamp_formats");
+		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");
+		op.add(Builder::shouldTrimFields, JsonpDeserializer.booleanDeserializer(), "should_trim_fields");
+		op.add(Builder::ingestPipeline, PipelineConfig.DESERIALIZER, "ingest_pipeline");
 
 	}
 

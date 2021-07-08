@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -261,16 +261,17 @@ public final class DetectionRule implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DetectionRule
+	 * Json deserializer for DetectionRule
 	 */
-	public static final JsonpValueParser<DetectionRule> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DetectionRule::setupDetectionRuleParser);
+	public static final JsonpDeserializer<DetectionRule> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DetectionRule::setupDetectionRuleDeserializer);
 
-	protected static void setupDetectionRuleParser(DelegatingJsonpValueParser<DetectionRule.Builder> op) {
+	protected static void setupDetectionRuleDeserializer(DelegatingDeserializer<DetectionRule.Builder> op) {
 
-		op.add(Builder::actions, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "actions");
-		op.add(Builder::conditions, JsonpValueParser.arrayParser(RuleCondition.JSONP_PARSER), "conditions");
-		op.add(Builder::scope, JsonpValueParser.stringMapParser(FilterRef.JSONP_PARSER), "scope");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"actions");
+		op.add(Builder::conditions, JsonpDeserializer.arrayDeserializer(RuleCondition.DESERIALIZER), "conditions");
+		op.add(Builder::scope, JsonpDeserializer.stringMapDeserializer(FilterRef.DESERIALIZER), "scope");
 
 	}
 

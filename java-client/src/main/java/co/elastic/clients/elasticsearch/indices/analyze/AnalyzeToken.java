@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.analyze;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -224,19 +224,19 @@ public final class AnalyzeToken implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AnalyzeToken
+	 * Json deserializer for AnalyzeToken
 	 */
-	public static final JsonpValueParser<AnalyzeToken> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AnalyzeToken::setupAnalyzeTokenParser);
+	public static final JsonpDeserializer<AnalyzeToken> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AnalyzeToken::setupAnalyzeTokenDeserializer);
 
-	protected static void setupAnalyzeTokenParser(DelegatingJsonpValueParser<AnalyzeToken.Builder> op) {
+	protected static void setupAnalyzeTokenDeserializer(DelegatingDeserializer<AnalyzeToken.Builder> op) {
 
-		op.add(Builder::endOffset, JsonpValueParser.numberParser(), "end_offset");
-		op.add(Builder::position, JsonpValueParser.numberParser(), "position");
-		op.add(Builder::positionLength, JsonpValueParser.numberParser(), "position_length");
-		op.add(Builder::startOffset, JsonpValueParser.numberParser(), "start_offset");
-		op.add(Builder::token, JsonpValueParser.stringParser(), "token");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::endOffset, JsonpDeserializer.numberDeserializer(), "end_offset");
+		op.add(Builder::position, JsonpDeserializer.numberDeserializer(), "position");
+		op.add(Builder::positionLength, JsonpDeserializer.numberDeserializer(), "position_length");
+		op.add(Builder::startOffset, JsonpDeserializer.numberDeserializer(), "start_offset");
+		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

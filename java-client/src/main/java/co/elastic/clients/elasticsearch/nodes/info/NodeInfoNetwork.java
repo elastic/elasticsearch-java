@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -133,15 +133,15 @@ public final class NodeInfoNetwork implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoNetwork
+	 * Json deserializer for NodeInfoNetwork
 	 */
-	public static final JsonpValueParser<NodeInfoNetwork> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoNetwork::setupNodeInfoNetworkParser);
+	public static final JsonpDeserializer<NodeInfoNetwork> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoNetwork::setupNodeInfoNetworkDeserializer);
 
-	protected static void setupNodeInfoNetworkParser(DelegatingJsonpValueParser<NodeInfoNetwork.Builder> op) {
+	protected static void setupNodeInfoNetworkDeserializer(DelegatingDeserializer<NodeInfoNetwork.Builder> op) {
 
-		op.add(Builder::primaryInterface, NodeInfoNetworkInterface.JSONP_PARSER, "primary_interface");
-		op.add(Builder::refreshInterval, JsonpValueParser.numberParser(), "refresh_interval");
+		op.add(Builder::primaryInterface, NodeInfoNetworkInterface.DESERIALIZER, "primary_interface");
+		op.add(Builder::refreshInterval, JsonpDeserializer.numberDeserializer(), "refresh_interval");
 
 	}
 

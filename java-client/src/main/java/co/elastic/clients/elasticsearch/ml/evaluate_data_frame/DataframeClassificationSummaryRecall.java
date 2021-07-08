@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -167,17 +167,17 @@ public final class DataframeClassificationSummaryRecall implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeClassificationSummaryRecall
+	 * Json deserializer for DataframeClassificationSummaryRecall
 	 */
-	public static final JsonpValueParser<DataframeClassificationSummaryRecall> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeClassificationSummaryRecall> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeClassificationSummaryRecall::setupDataframeClassificationSummaryRecallParser);
+					DataframeClassificationSummaryRecall::setupDataframeClassificationSummaryRecallDeserializer);
 
-	protected static void setupDataframeClassificationSummaryRecallParser(
-			DelegatingJsonpValueParser<DataframeClassificationSummaryRecall.Builder> op) {
+	protected static void setupDataframeClassificationSummaryRecallDeserializer(
+			DelegatingDeserializer<DataframeClassificationSummaryRecall.Builder> op) {
 
-		op.add(Builder::classes, JsonpValueParser.arrayParser(DataframeEvaluationClass.JSONP_PARSER), "classes");
-		op.add(Builder::avgRecall, JsonpValueParser.numberParser(), "avg_recall");
+		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass.DESERIALIZER), "classes");
+		op.add(Builder::avgRecall, JsonpDeserializer.numberDeserializer(), "avg_recall");
 
 	}
 

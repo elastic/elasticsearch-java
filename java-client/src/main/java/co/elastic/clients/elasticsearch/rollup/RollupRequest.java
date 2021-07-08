@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -201,14 +201,14 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RollupRequest
+	 * Json deserializer for RollupRequest
 	 */
-	public static final JsonpValueParser<RollupRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RollupRequest::setupRollupRequestParser);
+	public static final JsonpDeserializer<RollupRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RollupRequest::setupRollupRequestDeserializer);
 
-	protected static void setupRollupRequestParser(DelegatingJsonpValueParser<RollupRequest.Builder> op) {
+	protected static void setupRollupRequestDeserializer(DelegatingDeserializer<RollupRequest.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.numberParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
 
 	}
 
@@ -258,5 +258,5 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 				params.put("stuba", request.stuba.toString());
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RollupResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, RollupResponse.DESERIALIZER);
 }

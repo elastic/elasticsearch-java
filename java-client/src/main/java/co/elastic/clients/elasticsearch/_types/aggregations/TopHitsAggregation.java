@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._global.search.Highlight;
 import co.elastic.clients.elasticsearch._types.ScriptField;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -545,26 +545,28 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TopHitsAggregation
+	 * Json deserializer for TopHitsAggregation
 	 */
-	public static final JsonpValueParser<TopHitsAggregation> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TopHitsAggregation::setupTopHitsAggregationParser);
+	public static final JsonpDeserializer<TopHitsAggregation> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TopHitsAggregation::setupTopHitsAggregationDeserializer);
 
-	protected static void setupTopHitsAggregationParser(DelegatingJsonpValueParser<TopHitsAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseParser(op);
-		op.add(Builder::docvalueFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+	protected static void setupTopHitsAggregationDeserializer(DelegatingDeserializer<TopHitsAggregation.Builder> op) {
+		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"docvalue_fields");
-		op.add(Builder::explain, JsonpValueParser.booleanParser(), "explain");
-		op.add(Builder::from, JsonpValueParser.numberParser(), "from");
-		op.add(Builder::highlight, Highlight.JSONP_PARSER, "highlight");
-		op.add(Builder::scriptFields, JsonpValueParser.stringMapParser(ScriptField.JSONP_PARSER), "script_fields");
-		op.add(Builder::size, JsonpValueParser.numberParser(), "size");
-		op.add(Builder::sort, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "sort");
-		op.add(Builder::_source, JsonpValueParser.jsonValueParser(), "_source");
-		op.add(Builder::storedFields, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "stored_fields");
-		op.add(Builder::trackScores, JsonpValueParser.booleanParser(), "track_scores");
-		op.add(Builder::version, JsonpValueParser.booleanParser(), "version");
-		op.add(Builder::seqNoPrimaryTerm, JsonpValueParser.booleanParser(), "seq_no_primary_term");
+		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
+		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
+		op.add(Builder::highlight, Highlight.DESERIALIZER, "highlight");
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+				"script_fields");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"stored_fields");
+		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
+		op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
+		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
 
 	}
 

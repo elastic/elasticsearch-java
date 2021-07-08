@@ -78,7 +78,7 @@ public class InheritanceTest extends Assert {
         JsonParser parser = provider.createParser(new StringReader(
             "{\"baseField\":\"baseValue\",\"childField\":\"childValue\",\"finalField\":\"finalValue\"}"));
 
-        FinalClass fc = FinalClass.JSONP_PARSER.parse(parser, new JsonbJsonpMapper());
+        FinalClass fc = FinalClass.JSONP_PARSER.deserialize(parser, new JsonbJsonpMapper());
 
         assertEquals("baseValue", fc.baseField());
         assertEquals("childValue", fc.childField());
@@ -88,7 +88,7 @@ public class InheritanceTest extends Assert {
         parser = provider.createParser(new StringReader(
             "{\"baseField\":\"baseValue\",\"childField\":\"childValue\"}"));
 
-        ChildClass cc = ChildClass.JSONP_PARSER.parse(parser, new JsonbJsonpMapper());
+        ChildClass cc = ChildClass.JSONP_PARSER.deserialize(parser, new JsonbJsonpMapper());
 
         assertEquals("baseValue", cc.baseField());
         assertEquals("childValue", cc.childField());

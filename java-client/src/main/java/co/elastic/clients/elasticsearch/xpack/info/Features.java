@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -915,40 +915,40 @@ public final class Features implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Features
+	 * Json deserializer for Features
 	 */
-	public static final JsonpValueParser<Features> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Features::setupFeaturesParser);
+	public static final JsonpDeserializer<Features> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Features::setupFeaturesDeserializer);
 
-	protected static void setupFeaturesParser(DelegatingJsonpValueParser<Features.Builder> op) {
+	protected static void setupFeaturesDeserializer(DelegatingDeserializer<Features.Builder> op) {
 
-		op.add(Builder::aggregateMetric, Feature.JSONP_PARSER, "aggregate_metric");
-		op.add(Builder::analytics, Feature.JSONP_PARSER, "analytics");
-		op.add(Builder::ccr, Feature.JSONP_PARSER, "ccr");
-		op.add(Builder::dataFrame, Feature.JSONP_PARSER, "data_frame");
-		op.add(Builder::dataScience, Feature.JSONP_PARSER, "data_science");
-		op.add(Builder::dataStreams, Feature.JSONP_PARSER, "data_streams");
-		op.add(Builder::dataTiers, Feature.JSONP_PARSER, "data_tiers");
-		op.add(Builder::enrich, Feature.JSONP_PARSER, "enrich");
-		op.add(Builder::eql, Feature.JSONP_PARSER, "eql");
-		op.add(Builder::flattened, Feature.JSONP_PARSER, "flattened");
-		op.add(Builder::frozenIndices, Feature.JSONP_PARSER, "frozen_indices");
-		op.add(Builder::graph, Feature.JSONP_PARSER, "graph");
-		op.add(Builder::ilm, Feature.JSONP_PARSER, "ilm");
-		op.add(Builder::logstash, Feature.JSONP_PARSER, "logstash");
-		op.add(Builder::ml, Feature.JSONP_PARSER, "ml");
-		op.add(Builder::monitoring, Feature.JSONP_PARSER, "monitoring");
-		op.add(Builder::rollup, Feature.JSONP_PARSER, "rollup");
-		op.add(Builder::runtimeFields, Feature.JSONP_PARSER, "runtime_fields");
-		op.add(Builder::searchableSnapshots, Feature.JSONP_PARSER, "searchable_snapshots");
-		op.add(Builder::security, Feature.JSONP_PARSER, "security");
-		op.add(Builder::slm, Feature.JSONP_PARSER, "slm");
-		op.add(Builder::spatial, Feature.JSONP_PARSER, "spatial");
-		op.add(Builder::sql, Feature.JSONP_PARSER, "sql");
-		op.add(Builder::transform, Feature.JSONP_PARSER, "transform");
-		op.add(Builder::vectors, Feature.JSONP_PARSER, "vectors");
-		op.add(Builder::votingOnly, Feature.JSONP_PARSER, "voting_only");
-		op.add(Builder::watcher, Feature.JSONP_PARSER, "watcher");
+		op.add(Builder::aggregateMetric, Feature.DESERIALIZER, "aggregate_metric");
+		op.add(Builder::analytics, Feature.DESERIALIZER, "analytics");
+		op.add(Builder::ccr, Feature.DESERIALIZER, "ccr");
+		op.add(Builder::dataFrame, Feature.DESERIALIZER, "data_frame");
+		op.add(Builder::dataScience, Feature.DESERIALIZER, "data_science");
+		op.add(Builder::dataStreams, Feature.DESERIALIZER, "data_streams");
+		op.add(Builder::dataTiers, Feature.DESERIALIZER, "data_tiers");
+		op.add(Builder::enrich, Feature.DESERIALIZER, "enrich");
+		op.add(Builder::eql, Feature.DESERIALIZER, "eql");
+		op.add(Builder::flattened, Feature.DESERIALIZER, "flattened");
+		op.add(Builder::frozenIndices, Feature.DESERIALIZER, "frozen_indices");
+		op.add(Builder::graph, Feature.DESERIALIZER, "graph");
+		op.add(Builder::ilm, Feature.DESERIALIZER, "ilm");
+		op.add(Builder::logstash, Feature.DESERIALIZER, "logstash");
+		op.add(Builder::ml, Feature.DESERIALIZER, "ml");
+		op.add(Builder::monitoring, Feature.DESERIALIZER, "monitoring");
+		op.add(Builder::rollup, Feature.DESERIALIZER, "rollup");
+		op.add(Builder::runtimeFields, Feature.DESERIALIZER, "runtime_fields");
+		op.add(Builder::searchableSnapshots, Feature.DESERIALIZER, "searchable_snapshots");
+		op.add(Builder::security, Feature.DESERIALIZER, "security");
+		op.add(Builder::slm, Feature.DESERIALIZER, "slm");
+		op.add(Builder::spatial, Feature.DESERIALIZER, "spatial");
+		op.add(Builder::sql, Feature.DESERIALIZER, "sql");
+		op.add(Builder::transform, Feature.DESERIALIZER, "transform");
+		op.add(Builder::vectors, Feature.DESERIALIZER, "vectors");
+		op.add(Builder::votingOnly, Feature.DESERIALIZER, "voting_only");
+		op.add(Builder::watcher, Feature.DESERIALIZER, "watcher");
 
 	}
 

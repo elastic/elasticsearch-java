@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.elasticsearch.indices.rollover.RolloverConditions;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -784,36 +784,38 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateBlockIndex
+	 * Json deserializer for ClusterStateBlockIndex
 	 */
-	public static final JsonpValueParser<ClusterStateBlockIndex> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClusterStateBlockIndex::setupClusterStateBlockIndexParser);
+	public static final JsonpDeserializer<ClusterStateBlockIndex> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ClusterStateBlockIndex::setupClusterStateBlockIndexDeserializer);
 
-	protected static void setupClusterStateBlockIndexParser(
-			DelegatingJsonpValueParser<ClusterStateBlockIndex.Builder> op) {
+	protected static void setupClusterStateBlockIndexDeserializer(
+			DelegatingDeserializer<ClusterStateBlockIndex.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::retryable, JsonpValueParser.booleanParser(), "retryable");
-		op.add(Builder::levels, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "levels");
-		op.add(Builder::aliases, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "aliases");
-		op.add(Builder::aliasesVersion, JsonpValueParser.numberParser(), "aliases_version");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
-		op.add(Builder::mappingVersion, JsonpValueParser.numberParser(), "mapping_version");
-		op.add(Builder::settingsVersion, JsonpValueParser.numberParser(), "settings_version");
-		op.add(Builder::routingNumShards, JsonpValueParser.numberParser(), "routing_num_shards");
-		op.add(Builder::state, JsonpValueParser.stringParser(), "state");
-		op.add(Builder::settings, JsonpValueParser.stringMapParser(IndexSettings.JSONP_PARSER), "settings");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::retryable, JsonpDeserializer.booleanDeserializer(), "retryable");
+		op.add(Builder::levels, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "levels");
+		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"aliases");
+		op.add(Builder::aliasesVersion, JsonpDeserializer.numberDeserializer(), "aliases_version");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::mappingVersion, JsonpDeserializer.numberDeserializer(), "mapping_version");
+		op.add(Builder::settingsVersion, JsonpDeserializer.numberDeserializer(), "settings_version");
+		op.add(Builder::routingNumShards, JsonpDeserializer.numberDeserializer(), "routing_num_shards");
+		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings.DESERIALIZER), "settings");
 		op.add(Builder::inSyncAllocations,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(JsonpValueParser.stringParser())),
+				JsonpDeserializer.stringMapDeserializer(
+						JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
 				"in_sync_allocations");
-		op.add(Builder::primaryTerms, JsonpValueParser.stringMapParser(JsonpValueParser.numberParser()),
+		op.add(Builder::primaryTerms, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
 				"primary_terms");
-		op.add(Builder::mappings, JsonpValueParser.stringMapParser(TypeMapping.JSONP_PARSER), "mappings");
-		op.add(Builder::rolloverInfo, JsonpValueParser.stringMapParser(RolloverConditions.JSONP_PARSER),
+		op.add(Builder::mappings, JsonpDeserializer.stringMapDeserializer(TypeMapping.DESERIALIZER), "mappings");
+		op.add(Builder::rolloverInfo, JsonpDeserializer.stringMapDeserializer(RolloverConditions.DESERIALIZER),
 				"rollover_info");
-		op.add(Builder::timestampRange, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"timestamp_range");
-		op.add(Builder::system, JsonpValueParser.booleanParser(), "system");
+		op.add(Builder::timestampRange,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "timestamp_range");
+		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
 
 	}
 

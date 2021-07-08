@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -197,16 +197,16 @@ public final class SnapshotIndexStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SnapshotIndexStats
+	 * Json deserializer for SnapshotIndexStats
 	 */
-	public static final JsonpValueParser<SnapshotIndexStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SnapshotIndexStats::setupSnapshotIndexStatsParser);
+	public static final JsonpDeserializer<SnapshotIndexStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SnapshotIndexStats::setupSnapshotIndexStatsDeserializer);
 
-	protected static void setupSnapshotIndexStatsParser(DelegatingJsonpValueParser<SnapshotIndexStats.Builder> op) {
+	protected static void setupSnapshotIndexStatsDeserializer(DelegatingDeserializer<SnapshotIndexStats.Builder> op) {
 
-		op.add(Builder::shards, JsonpValueParser.stringMapParser(SnapshotShardsStatus.JSONP_PARSER), "shards");
-		op.add(Builder::shardsStats, ShardsStats.JSONP_PARSER, "shards_stats");
-		op.add(Builder::stats, SnapshotStats.JSONP_PARSER, "stats");
+		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(SnapshotShardsStatus.DESERIALIZER), "shards");
+		op.add(Builder::shardsStats, ShardsStats.DESERIALIZER, "shards_stats");
+		op.add(Builder::stats, SnapshotStats.DESERIALIZER, "stats");
 
 	}
 

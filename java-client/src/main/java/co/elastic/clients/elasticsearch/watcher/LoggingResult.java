@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class LoggingResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for LoggingResult
+	 * Json deserializer for LoggingResult
 	 */
-	public static final JsonpValueParser<LoggingResult> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, LoggingResult::setupLoggingResultParser);
+	public static final JsonpDeserializer<LoggingResult> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, LoggingResult::setupLoggingResultDeserializer);
 
-	protected static void setupLoggingResultParser(DelegatingJsonpValueParser<LoggingResult.Builder> op) {
+	protected static void setupLoggingResultDeserializer(DelegatingDeserializer<LoggingResult.Builder> op) {
 
-		op.add(Builder::loggedText, JsonpValueParser.stringParser(), "logged_text");
+		op.add(Builder::loggedText, JsonpDeserializer.stringDeserializer(), "logged_text");
 
 	}
 

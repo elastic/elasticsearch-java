@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -315,22 +315,22 @@ public final class BulkStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for BulkStats
+	 * Json deserializer for BulkStats
 	 */
-	public static final JsonpValueParser<BulkStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, BulkStats::setupBulkStatsParser);
+	public static final JsonpDeserializer<BulkStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, BulkStats::setupBulkStatsDeserializer);
 
-	protected static void setupBulkStatsParser(DelegatingJsonpValueParser<BulkStats.Builder> op) {
+	protected static void setupBulkStatsDeserializer(DelegatingDeserializer<BulkStats.Builder> op) {
 
-		op.add(Builder::totalOperations, JsonpValueParser.numberParser(), "total_operations");
-		op.add(Builder::totalTime, JsonpValueParser.stringParser(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.numberParser(), "total_time_in_millis");
-		op.add(Builder::totalSize, JsonpValueParser.jsonValueParser(), "total_size");
-		op.add(Builder::totalSizeInBytes, JsonpValueParser.numberParser(), "total_size_in_bytes");
-		op.add(Builder::avgTime, JsonpValueParser.stringParser(), "avg_time");
-		op.add(Builder::avgTimeInMillis, JsonpValueParser.numberParser(), "avg_time_in_millis");
-		op.add(Builder::avgSize, JsonpValueParser.jsonValueParser(), "avg_size");
-		op.add(Builder::avgSizeInBytes, JsonpValueParser.numberParser(), "avg_size_in_bytes");
+		op.add(Builder::totalOperations, JsonpDeserializer.numberDeserializer(), "total_operations");
+		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.numberDeserializer(), "total_time_in_millis");
+		op.add(Builder::totalSize, JsonpDeserializer.jsonValueDeserializer(), "total_size");
+		op.add(Builder::totalSizeInBytes, JsonpDeserializer.numberDeserializer(), "total_size_in_bytes");
+		op.add(Builder::avgTime, JsonpDeserializer.stringDeserializer(), "avg_time");
+		op.add(Builder::avgTimeInMillis, JsonpDeserializer.numberDeserializer(), "avg_time_in_millis");
+		op.add(Builder::avgSize, JsonpDeserializer.jsonValueDeserializer(), "avg_size");
+		op.add(Builder::avgSizeInBytes, JsonpDeserializer.numberDeserializer(), "avg_size_in_bytes");
 
 	}
 

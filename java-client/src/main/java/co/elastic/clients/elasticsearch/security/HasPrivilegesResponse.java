@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -265,24 +265,24 @@ public final class HasPrivilegesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HasPrivilegesResponse
+	 * Json deserializer for HasPrivilegesResponse
 	 */
-	public static final JsonpValueParser<HasPrivilegesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HasPrivilegesResponse::setupHasPrivilegesResponseParser);
+	public static final JsonpDeserializer<HasPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HasPrivilegesResponse::setupHasPrivilegesResponseDeserializer);
 
-	protected static void setupHasPrivilegesResponseParser(
-			DelegatingJsonpValueParser<HasPrivilegesResponse.Builder> op) {
+	protected static void setupHasPrivilegesResponseDeserializer(
+			DelegatingDeserializer<HasPrivilegesResponse.Builder> op) {
 
 		op.add(Builder::application,
-				JsonpValueParser.stringMapParser(JsonpValueParser
-						.stringMapParser(JsonpValueParser.stringMapParser(JsonpValueParser.booleanParser()))),
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(
+						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.booleanDeserializer()))),
 				"application");
-		op.add(Builder::cluster, JsonpValueParser.stringMapParser(JsonpValueParser.booleanParser()), "cluster");
-		op.add(Builder::hasAllRequested, JsonpValueParser.booleanParser(), "has_all_requested");
-		op.add(Builder::index,
-				JsonpValueParser.stringMapParser(JsonpValueParser.stringMapParser(JsonpValueParser.booleanParser())),
-				"index");
-		op.add(Builder::username, JsonpValueParser.stringParser(), "username");
+		op.add(Builder::cluster, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.booleanDeserializer()),
+				"cluster");
+		op.add(Builder::hasAllRequested, JsonpDeserializer.booleanDeserializer(), "has_all_requested");
+		op.add(Builder::index, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.booleanDeserializer())), "index");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.shards;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -2588,127 +2588,137 @@ public final class ShardsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardsRecord
+	 * Json deserializer for ShardsRecord
 	 */
-	public static final JsonpValueParser<ShardsRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardsRecord::setupShardsRecordParser);
+	public static final JsonpDeserializer<ShardsRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardsRecord::setupShardsRecordDeserializer);
 
-	protected static void setupShardsRecordParser(DelegatingJsonpValueParser<ShardsRecord.Builder> op) {
+	protected static void setupShardsRecordDeserializer(DelegatingDeserializer<ShardsRecord.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index", "i", "idx");
-		op.add(Builder::shard, JsonpValueParser.stringParser(), "shard", "s", "sh");
-		op.add(Builder::prirep, JsonpValueParser.stringParser(), "prirep", "p", "pr", "primaryOrReplica");
-		op.add(Builder::state, JsonpValueParser.stringParser(), "state", "st");
-		op.add(Builder::docs, JsonpValueParser.stringParser(), "docs", "d", "dc");
-		op.add(Builder::store, JsonpValueParser.stringParser(), "store", "sto");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node", "n");
-		op.add(Builder::syncId, JsonpValueParser.stringParser(), "sync_id");
-		op.add(Builder::unassigned_reason, JsonpValueParser.stringParser(), "unassigned.reason", "ur");
-		op.add(Builder::unassigned_at, JsonpValueParser.stringParser(), "unassigned.at", "ua");
-		op.add(Builder::unassigned_for, JsonpValueParser.stringParser(), "unassigned.for", "uf");
-		op.add(Builder::unassigned_details, JsonpValueParser.stringParser(), "unassigned.details", "ud");
-		op.add(Builder::recoverysource_type, JsonpValueParser.stringParser(), "recoverysource.type", "rs");
-		op.add(Builder::completion_size, JsonpValueParser.stringParser(), "completion.size", "cs", "completionSize");
-		op.add(Builder::fielddata_memorySize, JsonpValueParser.stringParser(), "fielddata.memory_size", "fm",
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "i", "idx");
+		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "shard", "s", "sh");
+		op.add(Builder::prirep, JsonpDeserializer.stringDeserializer(), "prirep", "p", "pr", "primaryOrReplica");
+		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state", "st");
+		op.add(Builder::docs, JsonpDeserializer.stringDeserializer(), "docs", "d", "dc");
+		op.add(Builder::store, JsonpDeserializer.stringDeserializer(), "store", "sto");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");
+		op.add(Builder::syncId, JsonpDeserializer.stringDeserializer(), "sync_id");
+		op.add(Builder::unassigned_reason, JsonpDeserializer.stringDeserializer(), "unassigned.reason", "ur");
+		op.add(Builder::unassigned_at, JsonpDeserializer.stringDeserializer(), "unassigned.at", "ua");
+		op.add(Builder::unassigned_for, JsonpDeserializer.stringDeserializer(), "unassigned.for", "uf");
+		op.add(Builder::unassigned_details, JsonpDeserializer.stringDeserializer(), "unassigned.details", "ud");
+		op.add(Builder::recoverysource_type, JsonpDeserializer.stringDeserializer(), "recoverysource.type", "rs");
+		op.add(Builder::completion_size, JsonpDeserializer.stringDeserializer(), "completion.size", "cs",
+				"completionSize");
+		op.add(Builder::fielddata_memorySize, JsonpDeserializer.stringDeserializer(), "fielddata.memory_size", "fm",
 				"fielddataMemory");
-		op.add(Builder::fielddata_evictions, JsonpValueParser.stringParser(), "fielddata.evictions", "fe",
+		op.add(Builder::fielddata_evictions, JsonpDeserializer.stringDeserializer(), "fielddata.evictions", "fe",
 				"fielddataEvictions");
-		op.add(Builder::queryCache_memorySize, JsonpValueParser.stringParser(), "query_cache.memory_size", "qcm",
+		op.add(Builder::queryCache_memorySize, JsonpDeserializer.stringDeserializer(), "query_cache.memory_size", "qcm",
 				"queryCacheMemory");
-		op.add(Builder::queryCache_evictions, JsonpValueParser.stringParser(), "query_cache.evictions", "qce",
+		op.add(Builder::queryCache_evictions, JsonpDeserializer.stringDeserializer(), "query_cache.evictions", "qce",
 				"queryCacheEvictions");
-		op.add(Builder::flush_total, JsonpValueParser.stringParser(), "flush.total", "ft", "flushTotal");
-		op.add(Builder::flush_totalTime, JsonpValueParser.stringParser(), "flush.total_time", "ftt", "flushTotalTime");
-		op.add(Builder::get_current, JsonpValueParser.stringParser(), "get.current", "gc", "getCurrent");
-		op.add(Builder::get_time, JsonpValueParser.stringParser(), "get.time", "gti", "getTime");
-		op.add(Builder::get_total, JsonpValueParser.stringParser(), "get.total", "gto", "getTotal");
-		op.add(Builder::get_existsTime, JsonpValueParser.stringParser(), "get.exists_time", "geti", "getExistsTime");
-		op.add(Builder::get_existsTotal, JsonpValueParser.stringParser(), "get.exists_total", "geto", "getExistsTotal");
-		op.add(Builder::get_missingTime, JsonpValueParser.stringParser(), "get.missing_time", "gmti", "getMissingTime");
-		op.add(Builder::get_missingTotal, JsonpValueParser.stringParser(), "get.missing_total", "gmto",
+		op.add(Builder::flush_total, JsonpDeserializer.stringDeserializer(), "flush.total", "ft", "flushTotal");
+		op.add(Builder::flush_totalTime, JsonpDeserializer.stringDeserializer(), "flush.total_time", "ftt",
+				"flushTotalTime");
+		op.add(Builder::get_current, JsonpDeserializer.stringDeserializer(), "get.current", "gc", "getCurrent");
+		op.add(Builder::get_time, JsonpDeserializer.stringDeserializer(), "get.time", "gti", "getTime");
+		op.add(Builder::get_total, JsonpDeserializer.stringDeserializer(), "get.total", "gto", "getTotal");
+		op.add(Builder::get_existsTime, JsonpDeserializer.stringDeserializer(), "get.exists_time", "geti",
+				"getExistsTime");
+		op.add(Builder::get_existsTotal, JsonpDeserializer.stringDeserializer(), "get.exists_total", "geto",
+				"getExistsTotal");
+		op.add(Builder::get_missingTime, JsonpDeserializer.stringDeserializer(), "get.missing_time", "gmti",
+				"getMissingTime");
+		op.add(Builder::get_missingTotal, JsonpDeserializer.stringDeserializer(), "get.missing_total", "gmto",
 				"getMissingTotal");
-		op.add(Builder::indexing_deleteCurrent, JsonpValueParser.stringParser(), "indexing.delete_current", "idc",
-				"indexingDeleteCurrent");
-		op.add(Builder::indexing_deleteTime, JsonpValueParser.stringParser(), "indexing.delete_time", "idti",
+		op.add(Builder::indexing_deleteCurrent, JsonpDeserializer.stringDeserializer(), "indexing.delete_current",
+				"idc", "indexingDeleteCurrent");
+		op.add(Builder::indexing_deleteTime, JsonpDeserializer.stringDeserializer(), "indexing.delete_time", "idti",
 				"indexingDeleteTime");
-		op.add(Builder::indexing_deleteTotal, JsonpValueParser.stringParser(), "indexing.delete_total", "idto",
+		op.add(Builder::indexing_deleteTotal, JsonpDeserializer.stringDeserializer(), "indexing.delete_total", "idto",
 				"indexingDeleteTotal");
-		op.add(Builder::indexing_indexCurrent, JsonpValueParser.stringParser(), "indexing.index_current", "iic",
+		op.add(Builder::indexing_indexCurrent, JsonpDeserializer.stringDeserializer(), "indexing.index_current", "iic",
 				"indexingIndexCurrent");
-		op.add(Builder::indexing_indexTime, JsonpValueParser.stringParser(), "indexing.index_time", "iiti",
+		op.add(Builder::indexing_indexTime, JsonpDeserializer.stringDeserializer(), "indexing.index_time", "iiti",
 				"indexingIndexTime");
-		op.add(Builder::indexing_indexTotal, JsonpValueParser.stringParser(), "indexing.index_total", "iito",
+		op.add(Builder::indexing_indexTotal, JsonpDeserializer.stringDeserializer(), "indexing.index_total", "iito",
 				"indexingIndexTotal");
-		op.add(Builder::indexing_indexFailed, JsonpValueParser.stringParser(), "indexing.index_failed", "iif",
+		op.add(Builder::indexing_indexFailed, JsonpDeserializer.stringDeserializer(), "indexing.index_failed", "iif",
 				"indexingIndexFailed");
-		op.add(Builder::merges_current, JsonpValueParser.stringParser(), "merges.current", "mc", "mergesCurrent");
-		op.add(Builder::merges_currentDocs, JsonpValueParser.stringParser(), "merges.current_docs", "mcd",
+		op.add(Builder::merges_current, JsonpDeserializer.stringDeserializer(), "merges.current", "mc",
+				"mergesCurrent");
+		op.add(Builder::merges_currentDocs, JsonpDeserializer.stringDeserializer(), "merges.current_docs", "mcd",
 				"mergesCurrentDocs");
-		op.add(Builder::merges_currentSize, JsonpValueParser.stringParser(), "merges.current_size", "mcs",
+		op.add(Builder::merges_currentSize, JsonpDeserializer.stringDeserializer(), "merges.current_size", "mcs",
 				"mergesCurrentSize");
-		op.add(Builder::merges_total, JsonpValueParser.stringParser(), "merges.total", "mt", "mergesTotal");
-		op.add(Builder::merges_totalDocs, JsonpValueParser.stringParser(), "merges.total_docs", "mtd",
+		op.add(Builder::merges_total, JsonpDeserializer.stringDeserializer(), "merges.total", "mt", "mergesTotal");
+		op.add(Builder::merges_totalDocs, JsonpDeserializer.stringDeserializer(), "merges.total_docs", "mtd",
 				"mergesTotalDocs");
-		op.add(Builder::merges_totalSize, JsonpValueParser.stringParser(), "merges.total_size", "mts",
+		op.add(Builder::merges_totalSize, JsonpDeserializer.stringDeserializer(), "merges.total_size", "mts",
 				"mergesTotalSize");
-		op.add(Builder::merges_totalTime, JsonpValueParser.stringParser(), "merges.total_time", "mtt",
+		op.add(Builder::merges_totalTime, JsonpDeserializer.stringDeserializer(), "merges.total_time", "mtt",
 				"mergesTotalTime");
-		op.add(Builder::refresh_total, JsonpValueParser.stringParser(), "refresh.total");
-		op.add(Builder::refresh_time, JsonpValueParser.stringParser(), "refresh.time");
-		op.add(Builder::refresh_externalTotal, JsonpValueParser.stringParser(), "refresh.external_total", "rto",
+		op.add(Builder::refresh_total, JsonpDeserializer.stringDeserializer(), "refresh.total");
+		op.add(Builder::refresh_time, JsonpDeserializer.stringDeserializer(), "refresh.time");
+		op.add(Builder::refresh_externalTotal, JsonpDeserializer.stringDeserializer(), "refresh.external_total", "rto",
 				"refreshTotal");
-		op.add(Builder::refresh_externalTime, JsonpValueParser.stringParser(), "refresh.external_time", "rti",
+		op.add(Builder::refresh_externalTime, JsonpDeserializer.stringDeserializer(), "refresh.external_time", "rti",
 				"refreshTime");
-		op.add(Builder::refresh_listeners, JsonpValueParser.stringParser(), "refresh.listeners", "rli",
+		op.add(Builder::refresh_listeners, JsonpDeserializer.stringDeserializer(), "refresh.listeners", "rli",
 				"refreshListeners");
-		op.add(Builder::search_fetchCurrent, JsonpValueParser.stringParser(), "search.fetch_current", "sfc",
+		op.add(Builder::search_fetchCurrent, JsonpDeserializer.stringDeserializer(), "search.fetch_current", "sfc",
 				"searchFetchCurrent");
-		op.add(Builder::search_fetchTime, JsonpValueParser.stringParser(), "search.fetch_time", "sfti",
+		op.add(Builder::search_fetchTime, JsonpDeserializer.stringDeserializer(), "search.fetch_time", "sfti",
 				"searchFetchTime");
-		op.add(Builder::search_fetchTotal, JsonpValueParser.stringParser(), "search.fetch_total", "sfto",
+		op.add(Builder::search_fetchTotal, JsonpDeserializer.stringDeserializer(), "search.fetch_total", "sfto",
 				"searchFetchTotal");
-		op.add(Builder::search_openContexts, JsonpValueParser.stringParser(), "search.open_contexts", "so",
+		op.add(Builder::search_openContexts, JsonpDeserializer.stringDeserializer(), "search.open_contexts", "so",
 				"searchOpenContexts");
-		op.add(Builder::search_queryCurrent, JsonpValueParser.stringParser(), "search.query_current", "sqc",
+		op.add(Builder::search_queryCurrent, JsonpDeserializer.stringDeserializer(), "search.query_current", "sqc",
 				"searchQueryCurrent");
-		op.add(Builder::search_queryTime, JsonpValueParser.stringParser(), "search.query_time", "sqti",
+		op.add(Builder::search_queryTime, JsonpDeserializer.stringDeserializer(), "search.query_time", "sqti",
 				"searchQueryTime");
-		op.add(Builder::search_queryTotal, JsonpValueParser.stringParser(), "search.query_total", "sqto",
+		op.add(Builder::search_queryTotal, JsonpDeserializer.stringDeserializer(), "search.query_total", "sqto",
 				"searchQueryTotal");
-		op.add(Builder::search_scrollCurrent, JsonpValueParser.stringParser(), "search.scroll_current", "scc",
+		op.add(Builder::search_scrollCurrent, JsonpDeserializer.stringDeserializer(), "search.scroll_current", "scc",
 				"searchScrollCurrent");
-		op.add(Builder::search_scrollTime, JsonpValueParser.stringParser(), "search.scroll_time", "scti",
+		op.add(Builder::search_scrollTime, JsonpDeserializer.stringDeserializer(), "search.scroll_time", "scti",
 				"searchScrollTime");
-		op.add(Builder::search_scrollTotal, JsonpValueParser.stringParser(), "search.scroll_total", "scto",
+		op.add(Builder::search_scrollTotal, JsonpDeserializer.stringDeserializer(), "search.scroll_total", "scto",
 				"searchScrollTotal");
-		op.add(Builder::segments_count, JsonpValueParser.stringParser(), "segments.count", "sc", "segmentsCount");
-		op.add(Builder::segments_memory, JsonpValueParser.stringParser(), "segments.memory", "sm", "segmentsMemory");
-		op.add(Builder::segments_indexWriterMemory, JsonpValueParser.stringParser(), "segments.index_writer_memory",
-				"siwm", "segmentsIndexWriterMemory");
-		op.add(Builder::segments_versionMapMemory, JsonpValueParser.stringParser(), "segments.version_map_memory",
-				"svmm", "segmentsVersionMapMemory");
-		op.add(Builder::segments_fixedBitsetMemory, JsonpValueParser.stringParser(), "segments.fixed_bitset_memory",
-				"sfbm", "fixedBitsetMemory");
-		op.add(Builder::seqNo_max, JsonpValueParser.stringParser(), "seq_no.max", "sqm", "maxSeqNo");
-		op.add(Builder::seqNo_localCheckpoint, JsonpValueParser.stringParser(), "seq_no.local_checkpoint", "sql",
+		op.add(Builder::segments_count, JsonpDeserializer.stringDeserializer(), "segments.count", "sc",
+				"segmentsCount");
+		op.add(Builder::segments_memory, JsonpDeserializer.stringDeserializer(), "segments.memory", "sm",
+				"segmentsMemory");
+		op.add(Builder::segments_indexWriterMemory, JsonpDeserializer.stringDeserializer(),
+				"segments.index_writer_memory", "siwm", "segmentsIndexWriterMemory");
+		op.add(Builder::segments_versionMapMemory, JsonpDeserializer.stringDeserializer(),
+				"segments.version_map_memory", "svmm", "segmentsVersionMapMemory");
+		op.add(Builder::segments_fixedBitsetMemory, JsonpDeserializer.stringDeserializer(),
+				"segments.fixed_bitset_memory", "sfbm", "fixedBitsetMemory");
+		op.add(Builder::seqNo_max, JsonpDeserializer.stringDeserializer(), "seq_no.max", "sqm", "maxSeqNo");
+		op.add(Builder::seqNo_localCheckpoint, JsonpDeserializer.stringDeserializer(), "seq_no.local_checkpoint", "sql",
 				"localCheckpoint");
-		op.add(Builder::seqNo_globalCheckpoint, JsonpValueParser.stringParser(), "seq_no.global_checkpoint", "sqg",
-				"globalCheckpoint");
-		op.add(Builder::warmer_current, JsonpValueParser.stringParser(), "warmer.current", "wc", "warmerCurrent");
-		op.add(Builder::warmer_total, JsonpValueParser.stringParser(), "warmer.total", "wto", "warmerTotal");
-		op.add(Builder::warmer_totalTime, JsonpValueParser.stringParser(), "warmer.total_time", "wtt",
+		op.add(Builder::seqNo_globalCheckpoint, JsonpDeserializer.stringDeserializer(), "seq_no.global_checkpoint",
+				"sqg", "globalCheckpoint");
+		op.add(Builder::warmer_current, JsonpDeserializer.stringDeserializer(), "warmer.current", "wc",
+				"warmerCurrent");
+		op.add(Builder::warmer_total, JsonpDeserializer.stringDeserializer(), "warmer.total", "wto", "warmerTotal");
+		op.add(Builder::warmer_totalTime, JsonpDeserializer.stringDeserializer(), "warmer.total_time", "wtt",
 				"warmerTotalTime");
-		op.add(Builder::path_data, JsonpValueParser.stringParser(), "path.data", "pd", "dataPath");
-		op.add(Builder::path_state, JsonpValueParser.stringParser(), "path.state", "ps", "statsPath");
-		op.add(Builder::bulk_totalOperations, JsonpValueParser.stringParser(), "bulk.total_operations", "bto",
+		op.add(Builder::path_data, JsonpDeserializer.stringDeserializer(), "path.data", "pd", "dataPath");
+		op.add(Builder::path_state, JsonpDeserializer.stringDeserializer(), "path.state", "ps", "statsPath");
+		op.add(Builder::bulk_totalOperations, JsonpDeserializer.stringDeserializer(), "bulk.total_operations", "bto",
 				"bulkTotalOperations");
-		op.add(Builder::bulk_totalTime, JsonpValueParser.stringParser(), "bulk.total_time", "btti", "bulkTotalTime");
-		op.add(Builder::bulk_totalSizeInBytes, JsonpValueParser.stringParser(), "bulk.total_size_in_bytes", "btsi",
-				"bulkTotalSizeInBytes");
-		op.add(Builder::bulk_avgTime, JsonpValueParser.stringParser(), "bulk.avg_time", "bati", "bulkAvgTime");
-		op.add(Builder::bulk_avgSizeInBytes, JsonpValueParser.stringParser(), "bulk.avg_size_in_bytes", "basi",
+		op.add(Builder::bulk_totalTime, JsonpDeserializer.stringDeserializer(), "bulk.total_time", "btti",
+				"bulkTotalTime");
+		op.add(Builder::bulk_totalSizeInBytes, JsonpDeserializer.stringDeserializer(), "bulk.total_size_in_bytes",
+				"btsi", "bulkTotalSizeInBytes");
+		op.add(Builder::bulk_avgTime, JsonpDeserializer.stringDeserializer(), "bulk.avg_time", "bati", "bulkAvgTime");
+		op.add(Builder::bulk_avgSizeInBytes, JsonpDeserializer.stringDeserializer(), "bulk.avg_size_in_bytes", "basi",
 				"bulkAvgSizeInBytes");
 
 	}

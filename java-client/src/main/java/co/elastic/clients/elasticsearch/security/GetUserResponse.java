@@ -24,10 +24,10 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.AdditionalProperties;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -71,13 +71,14 @@ public final class GetUserResponse extends AdditionalProperties<String, User> {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetUserResponse
+	 * Json deserializer for GetUserResponse
 	 */
-	public static final JsonpValueParser<GetUserResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetUserResponse::setupGetUserResponseParser);
+	public static final JsonpDeserializer<GetUserResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetUserResponse::setupGetUserResponseDeserializer);
 
-	protected static void setupGetUserResponseParser(DelegatingJsonpValueParser<GetUserResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(), User.JSONP_PARSER);
+	protected static void setupGetUserResponseDeserializer(DelegatingDeserializer<GetUserResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				User.DESERIALIZER);
 
 	}
 

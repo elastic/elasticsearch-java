@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,14 +109,14 @@ public final class SecurityRolesDls implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SecurityRolesDls
+	 * Json deserializer for SecurityRolesDls
 	 */
-	public static final JsonpValueParser<SecurityRolesDls> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SecurityRolesDls::setupSecurityRolesDlsParser);
+	public static final JsonpDeserializer<SecurityRolesDls> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SecurityRolesDls::setupSecurityRolesDlsDeserializer);
 
-	protected static void setupSecurityRolesDlsParser(DelegatingJsonpValueParser<SecurityRolesDls.Builder> op) {
+	protected static void setupSecurityRolesDlsDeserializer(DelegatingDeserializer<SecurityRolesDls.Builder> op) {
 
-		op.add(Builder::bitSetCache, SecurityRolesDlsBitSetCache.JSONP_PARSER, "bit_set_cache");
+		op.add(Builder::bitSetCache, SecurityRolesDlsBitSetCache.DESERIALIZER, "bit_set_cache");
 
 	}
 

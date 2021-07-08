@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._global.rank_eval;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -306,18 +306,19 @@ public final class RankEvalRequestItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RankEvalRequestItem
+	 * Json deserializer for RankEvalRequestItem
 	 */
-	public static final JsonpValueParser<RankEvalRequestItem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RankEvalRequestItem::setupRankEvalRequestItemParser);
+	public static final JsonpDeserializer<RankEvalRequestItem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RankEvalRequestItem::setupRankEvalRequestItemDeserializer);
 
-	protected static void setupRankEvalRequestItemParser(DelegatingJsonpValueParser<RankEvalRequestItem.Builder> op) {
+	protected static void setupRankEvalRequestItemDeserializer(DelegatingDeserializer<RankEvalRequestItem.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::request, RankEvalQuery.JSONP_PARSER, "request");
-		op.add(Builder::ratings, JsonpValueParser.arrayParser(DocumentRating.JSONP_PARSER), "ratings");
-		op.add(Builder::templateId, JsonpValueParser.stringParser(), "template_id");
-		op.add(Builder::params, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "params");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::request, RankEvalQuery.DESERIALIZER, "request");
+		op.add(Builder::ratings, JsonpDeserializer.arrayDeserializer(DocumentRating.DESERIALIZER), "ratings");
+		op.add(Builder::templateId, JsonpDeserializer.stringDeserializer(), "template_id");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"params");
 
 	}
 

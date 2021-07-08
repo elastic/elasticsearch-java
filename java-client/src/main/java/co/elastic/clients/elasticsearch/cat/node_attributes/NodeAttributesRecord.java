@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.node_attributes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -342,21 +342,22 @@ public final class NodeAttributesRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeAttributesRecord
+	 * Json deserializer for NodeAttributesRecord
 	 */
-	public static final JsonpValueParser<NodeAttributesRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeAttributesRecord::setupNodeAttributesRecordParser);
+	public static final JsonpDeserializer<NodeAttributesRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeAttributesRecord::setupNodeAttributesRecordDeserializer);
 
-	protected static void setupNodeAttributesRecordParser(DelegatingJsonpValueParser<NodeAttributesRecord.Builder> op) {
+	protected static void setupNodeAttributesRecordDeserializer(
+			DelegatingDeserializer<NodeAttributesRecord.Builder> op) {
 
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::pid, JsonpValueParser.stringParser(), "pid");
-		op.add(Builder::host, JsonpValueParser.stringParser(), "host", "h");
-		op.add(Builder::ip, JsonpValueParser.stringParser(), "ip", "i");
-		op.add(Builder::port, JsonpValueParser.stringParser(), "port");
-		op.add(Builder::attr, JsonpValueParser.stringParser(), "attr");
-		op.add(Builder::value, JsonpValueParser.stringParser(), "value");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::pid, JsonpDeserializer.stringDeserializer(), "pid");
+		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");
+		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip", "i");
+		op.add(Builder::port, JsonpDeserializer.stringDeserializer(), "port");
+		op.add(Builder::attr, JsonpDeserializer.stringDeserializer(), "attr");
+		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -147,16 +147,16 @@ public final class ShardSequenceNumber implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardSequenceNumber
+	 * Json deserializer for ShardSequenceNumber
 	 */
-	public static final JsonpValueParser<ShardSequenceNumber> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardSequenceNumber::setupShardSequenceNumberParser);
+	public static final JsonpDeserializer<ShardSequenceNumber> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardSequenceNumber::setupShardSequenceNumberDeserializer);
 
-	protected static void setupShardSequenceNumberParser(DelegatingJsonpValueParser<ShardSequenceNumber.Builder> op) {
+	protected static void setupShardSequenceNumberDeserializer(DelegatingDeserializer<ShardSequenceNumber.Builder> op) {
 
-		op.add(Builder::globalCheckpoint, JsonpValueParser.numberParser(), "global_checkpoint");
-		op.add(Builder::localCheckpoint, JsonpValueParser.numberParser(), "local_checkpoint");
-		op.add(Builder::maxSeqNo, JsonpValueParser.numberParser(), "max_seq_no");
+		op.add(Builder::globalCheckpoint, JsonpDeserializer.numberDeserializer(), "global_checkpoint");
+		op.add(Builder::localCheckpoint, JsonpDeserializer.numberDeserializer(), "local_checkpoint");
+		op.add(Builder::maxSeqNo, JsonpDeserializer.numberDeserializer(), "max_seq_no");
 
 	}
 

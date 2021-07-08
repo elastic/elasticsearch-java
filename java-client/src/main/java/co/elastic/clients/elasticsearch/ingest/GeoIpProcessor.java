@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -242,19 +242,20 @@ public final class GeoIpProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GeoIpProcessor
+	 * Json deserializer for GeoIpProcessor
 	 */
-	public static final JsonpValueParser<GeoIpProcessor> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GeoIpProcessor::setupGeoIpProcessorParser);
+	public static final JsonpDeserializer<GeoIpProcessor> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GeoIpProcessor::setupGeoIpProcessorDeserializer);
 
-	protected static void setupGeoIpProcessorParser(DelegatingJsonpValueParser<GeoIpProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseParser(op);
-		op.add(Builder::databaseFile, JsonpValueParser.stringParser(), "database_file");
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::firstOnly, JsonpValueParser.booleanParser(), "first_only");
-		op.add(Builder::ignoreMissing, JsonpValueParser.booleanParser(), "ignore_missing");
-		op.add(Builder::properties, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "properties");
-		op.add(Builder::targetField, JsonpValueParser.stringParser(), "target_field");
+	protected static void setupGeoIpProcessorDeserializer(DelegatingDeserializer<GeoIpProcessor.Builder> op) {
+		ProcessorBase.setupProcessorBaseDeserializer(op);
+		op.add(Builder::databaseFile, JsonpDeserializer.stringDeserializer(), "database_file");
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::firstOnly, JsonpDeserializer.booleanDeserializer(), "first_only");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"properties");
+		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}
 

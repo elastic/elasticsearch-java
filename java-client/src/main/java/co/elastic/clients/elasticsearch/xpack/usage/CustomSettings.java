@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -212,16 +212,18 @@ public final class CustomSettings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CustomSettings
+	 * Json deserializer for CustomSettings
 	 */
-	public static final JsonpValueParser<CustomSettings> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CustomSettings::setupCustomSettingsParser);
+	public static final JsonpDeserializer<CustomSettings> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CustomSettings::setupCustomSettingsDeserializer);
 
-	protected static void setupCustomSettingsParser(DelegatingJsonpValueParser<CustomSettings.Builder> op) {
+	protected static void setupCustomSettingsDeserializer(DelegatingDeserializer<CustomSettings.Builder> op) {
 
-		op.add(Builder::customUrls, JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser()), "custom_urls");
-		op.add(Builder::createdBy, JsonpValueParser.stringParser(), "created_by");
-		op.add(Builder::jobTags, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "job_tags");
+		op.add(Builder::customUrls, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"custom_urls");
+		op.add(Builder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by");
+		op.add(Builder::jobTags, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"job_tags");
 
 	}
 

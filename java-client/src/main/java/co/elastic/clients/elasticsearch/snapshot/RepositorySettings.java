@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -220,18 +220,18 @@ public final class RepositorySettings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RepositorySettings
+	 * Json deserializer for RepositorySettings
 	 */
-	public static final JsonpValueParser<RepositorySettings> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RepositorySettings::setupRepositorySettingsParser);
+	public static final JsonpDeserializer<RepositorySettings> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RepositorySettings::setupRepositorySettingsDeserializer);
 
-	protected static void setupRepositorySettingsParser(DelegatingJsonpValueParser<RepositorySettings.Builder> op) {
+	protected static void setupRepositorySettingsDeserializer(DelegatingDeserializer<RepositorySettings.Builder> op) {
 
-		op.add(Builder::chunkSize, JsonpValueParser.stringParser(), "chunk_size");
-		op.add(Builder::compress, JsonpValueParser.jsonValueParser(), "compress");
-		op.add(Builder::concurrentStreams, JsonpValueParser.jsonValueParser(), "concurrent_streams");
-		op.add(Builder::location, JsonpValueParser.stringParser(), "location");
-		op.add(Builder::readOnly, JsonpValueParser.jsonValueParser(), "read_only", "readonly");
+		op.add(Builder::chunkSize, JsonpDeserializer.stringDeserializer(), "chunk_size");
+		op.add(Builder::compress, JsonpDeserializer.jsonValueDeserializer(), "compress");
+		op.add(Builder::concurrentStreams, JsonpDeserializer.jsonValueDeserializer(), "concurrent_streams");
+		op.add(Builder::location, JsonpDeserializer.stringDeserializer(), "location");
+		op.add(Builder::readOnly, JsonpDeserializer.jsonValueDeserializer(), "read_only", "readonly");
 
 	}
 

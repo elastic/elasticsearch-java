@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -189,18 +189,19 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldValueFactorScoreFunction
+	 * Json deserializer for FieldValueFactorScoreFunction
 	 */
-	public static final JsonpValueParser<FieldValueFactorScoreFunction> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionParser);
+	public static final JsonpDeserializer<FieldValueFactorScoreFunction> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionDeserializer);
 
-	protected static void setupFieldValueFactorScoreFunctionParser(
-			DelegatingJsonpValueParser<FieldValueFactorScoreFunction.Builder> op) {
-		ScoreFunctionBase.setupScoreFunctionBaseParser(op);
-		op.add(Builder::field, JsonpValueParser.stringParser(), "field");
-		op.add(Builder::factor, JsonpValueParser.numberParser(), "factor");
-		op.add(Builder::missing, JsonpValueParser.numberParser(), "missing");
-		op.add(Builder::modifier, JsonpValueParser.jsonValueParser(), "modifier");
+	protected static void setupFieldValueFactorScoreFunctionDeserializer(
+			DelegatingDeserializer<FieldValueFactorScoreFunction.Builder> op) {
+		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::factor, JsonpDeserializer.numberDeserializer(), "factor");
+		op.add(Builder::missing, JsonpDeserializer.numberDeserializer(), "missing");
+		op.add(Builder::modifier, JsonpDeserializer.jsonValueDeserializer(), "modifier");
 
 	}
 

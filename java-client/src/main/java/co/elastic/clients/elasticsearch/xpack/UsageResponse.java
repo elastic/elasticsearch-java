@@ -41,11 +41,11 @@ import co.elastic.clients.elasticsearch.xpack.usage.Slm;
 import co.elastic.clients.elasticsearch.xpack.usage.Sql;
 import co.elastic.clients.elasticsearch.xpack.usage.Vector;
 import co.elastic.clients.elasticsearch.xpack.usage.Watcher;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -947,40 +947,40 @@ public final class UsageResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UsageResponse
+	 * Json deserializer for UsageResponse
 	 */
-	public static final JsonpValueParser<UsageResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UsageResponse::setupUsageResponseParser);
+	public static final JsonpDeserializer<UsageResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UsageResponse::setupUsageResponseDeserializer);
 
-	protected static void setupUsageResponseParser(DelegatingJsonpValueParser<UsageResponse.Builder> op) {
+	protected static void setupUsageResponseDeserializer(DelegatingDeserializer<UsageResponse.Builder> op) {
 
-		op.add(Builder::aggregateMetric, Base.JSONP_PARSER, "aggregate_metric");
-		op.add(Builder::analytics, Analytics.JSONP_PARSER, "analytics");
-		op.add(Builder::watcher, Watcher.JSONP_PARSER, "watcher");
-		op.add(Builder::ccr, Ccr.JSONP_PARSER, "ccr");
-		op.add(Builder::dataFrame, Base.JSONP_PARSER, "data_frame");
-		op.add(Builder::dataScience, Base.JSONP_PARSER, "data_science");
-		op.add(Builder::dataStreams, DataStreams.JSONP_PARSER, "data_streams");
-		op.add(Builder::dataTiers, DataTiers.JSONP_PARSER, "data_tiers");
-		op.add(Builder::enrich, Base.JSONP_PARSER, "enrich");
-		op.add(Builder::eql, Eql.JSONP_PARSER, "eql");
-		op.add(Builder::flattened, Flattened.JSONP_PARSER, "flattened");
-		op.add(Builder::frozenIndices, FrozenIndices.JSONP_PARSER, "frozen_indices");
-		op.add(Builder::graph, Base.JSONP_PARSER, "graph");
-		op.add(Builder::ilm, Ilm.JSONP_PARSER, "ilm");
-		op.add(Builder::logstash, Base.JSONP_PARSER, "logstash");
-		op.add(Builder::ml, MachineLearning.JSONP_PARSER, "ml");
-		op.add(Builder::monitoring, Monitoring.JSONP_PARSER, "monitoring");
-		op.add(Builder::rollup, Base.JSONP_PARSER, "rollup");
-		op.add(Builder::runtimeFields, RuntimeFieldTypes.JSONP_PARSER, "runtime_fields");
-		op.add(Builder::spatial, Base.JSONP_PARSER, "spatial");
-		op.add(Builder::searchableSnapshots, SearchableSnapshots.JSONP_PARSER, "searchable_snapshots");
-		op.add(Builder::security, Security.JSONP_PARSER, "security");
-		op.add(Builder::slm, Slm.JSONP_PARSER, "slm");
-		op.add(Builder::sql, Sql.JSONP_PARSER, "sql");
-		op.add(Builder::transform, Base.JSONP_PARSER, "transform");
-		op.add(Builder::vectors, Vector.JSONP_PARSER, "vectors");
-		op.add(Builder::votingOnly, Base.JSONP_PARSER, "voting_only");
+		op.add(Builder::aggregateMetric, Base.DESERIALIZER, "aggregate_metric");
+		op.add(Builder::analytics, Analytics.DESERIALIZER, "analytics");
+		op.add(Builder::watcher, Watcher.DESERIALIZER, "watcher");
+		op.add(Builder::ccr, Ccr.DESERIALIZER, "ccr");
+		op.add(Builder::dataFrame, Base.DESERIALIZER, "data_frame");
+		op.add(Builder::dataScience, Base.DESERIALIZER, "data_science");
+		op.add(Builder::dataStreams, DataStreams.DESERIALIZER, "data_streams");
+		op.add(Builder::dataTiers, DataTiers.DESERIALIZER, "data_tiers");
+		op.add(Builder::enrich, Base.DESERIALIZER, "enrich");
+		op.add(Builder::eql, Eql.DESERIALIZER, "eql");
+		op.add(Builder::flattened, Flattened.DESERIALIZER, "flattened");
+		op.add(Builder::frozenIndices, FrozenIndices.DESERIALIZER, "frozen_indices");
+		op.add(Builder::graph, Base.DESERIALIZER, "graph");
+		op.add(Builder::ilm, Ilm.DESERIALIZER, "ilm");
+		op.add(Builder::logstash, Base.DESERIALIZER, "logstash");
+		op.add(Builder::ml, MachineLearning.DESERIALIZER, "ml");
+		op.add(Builder::monitoring, Monitoring.DESERIALIZER, "monitoring");
+		op.add(Builder::rollup, Base.DESERIALIZER, "rollup");
+		op.add(Builder::runtimeFields, RuntimeFieldTypes.DESERIALIZER, "runtime_fields");
+		op.add(Builder::spatial, Base.DESERIALIZER, "spatial");
+		op.add(Builder::searchableSnapshots, SearchableSnapshots.DESERIALIZER, "searchable_snapshots");
+		op.add(Builder::security, Security.DESERIALIZER, "security");
+		op.add(Builder::slm, Slm.DESERIALIZER, "slm");
+		op.add(Builder::sql, Sql.DESERIALIZER, "sql");
+		op.add(Builder::transform, Base.DESERIALIZER, "transform");
+		op.add(Builder::vectors, Vector.DESERIALIZER, "vectors");
+		op.add(Builder::votingOnly, Base.DESERIALIZER, "voting_only");
 
 	}
 

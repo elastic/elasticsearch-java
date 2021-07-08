@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -147,17 +147,17 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeEvaluationSummaryAucRoc
+	 * Json deserializer for DataframeEvaluationSummaryAucRoc
 	 */
-	public static final JsonpValueParser<DataframeEvaluationSummaryAucRoc> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeEvaluationSummaryAucRoc> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeEvaluationSummaryAucRoc::setupDataframeEvaluationSummaryAucRocParser);
+					DataframeEvaluationSummaryAucRoc::setupDataframeEvaluationSummaryAucRocDeserializer);
 
-	protected static void setupDataframeEvaluationSummaryAucRocParser(
-			DelegatingJsonpValueParser<DataframeEvaluationSummaryAucRoc.Builder> op) {
-		DataframeEvaluationValue.setupDataframeEvaluationValueParser(op);
-		op.add(Builder::curve, JsonpValueParser.arrayParser(DataframeEvaluationSummaryAucRocCurveItem.JSONP_PARSER),
-				"curve");
+	protected static void setupDataframeEvaluationSummaryAucRocDeserializer(
+			DelegatingDeserializer<DataframeEvaluationSummaryAucRoc.Builder> op) {
+		DataframeEvaluationValue.setupDataframeEvaluationValueDeserializer(op);
+		op.add(Builder::curve,
+				JsonpDeserializer.arrayDeserializer(DataframeEvaluationSummaryAucRocCurveItem.DESERIALIZER), "curve");
 
 	}
 

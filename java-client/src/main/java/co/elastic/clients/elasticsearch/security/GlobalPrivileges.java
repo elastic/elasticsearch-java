@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -109,14 +109,14 @@ public final class GlobalPrivileges implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GlobalPrivileges
+	 * Json deserializer for GlobalPrivileges
 	 */
-	public static final JsonpValueParser<GlobalPrivileges> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GlobalPrivileges::setupGlobalPrivilegesParser);
+	public static final JsonpDeserializer<GlobalPrivileges> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GlobalPrivileges::setupGlobalPrivilegesDeserializer);
 
-	protected static void setupGlobalPrivilegesParser(DelegatingJsonpValueParser<GlobalPrivileges.Builder> op) {
+	protected static void setupGlobalPrivilegesDeserializer(DelegatingDeserializer<GlobalPrivileges.Builder> op) {
 
-		op.add(Builder::application, ApplicationGlobalUserPrivileges.JSONP_PARSER, "application");
+		op.add(Builder::application, ApplicationGlobalUserPrivileges.DESERIALIZER, "application");
 
 	}
 

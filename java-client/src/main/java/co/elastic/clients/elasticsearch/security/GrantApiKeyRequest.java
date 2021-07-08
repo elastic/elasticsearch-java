@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKey;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -226,18 +226,18 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GrantApiKeyRequest
+	 * Json deserializer for GrantApiKeyRequest
 	 */
-	public static final JsonpValueParser<GrantApiKeyRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GrantApiKeyRequest::setupGrantApiKeyRequestParser);
+	public static final JsonpDeserializer<GrantApiKeyRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GrantApiKeyRequest::setupGrantApiKeyRequestDeserializer);
 
-	protected static void setupGrantApiKeyRequestParser(DelegatingJsonpValueParser<GrantApiKeyRequest.Builder> op) {
+	protected static void setupGrantApiKeyRequestDeserializer(DelegatingDeserializer<GrantApiKeyRequest.Builder> op) {
 
-		op.add(Builder::apiKey, ApiKey.JSONP_PARSER, "api_key");
-		op.add(Builder::grantType, JsonpValueParser.jsonValueParser(), "grant_type");
-		op.add(Builder::accessToken, JsonpValueParser.stringParser(), "access_token");
-		op.add(Builder::username, JsonpValueParser.stringParser(), "username");
-		op.add(Builder::password, JsonpValueParser.stringParser(), "password");
+		op.add(Builder::apiKey, ApiKey.DESERIALIZER, "api_key");
+		op.add(Builder::grantType, JsonpDeserializer.jsonValueDeserializer(), "grant_type");
+		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
+		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
+		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 
 	}
 
@@ -263,5 +263,5 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, GrantApiKeyResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, GrantApiKeyResponse.DESERIALIZER);
 }

@@ -21,7 +21,7 @@ package co.elastic.clients.elasticsearch.experiments.base;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 
 import jakarta.json.stream.JsonGenerator;
@@ -40,7 +40,7 @@ public class Variants<T> {
   private Function<Builder<T>, Builder<T>> builderFunc;
 
   private Map<Class<?>, String> variantNames;
-  private Map<String, JsonpValueParser<? extends T>> parsers;
+  private Map<String, JsonpDeserializer<? extends T>> parsers;
 
   /**
    * Builds a new {@code Variants} from a builder-creation function. This approach allows the object to be built lazily,
@@ -64,7 +64,7 @@ public class Variants<T> {
     return variantNames.get(clazz);
   }
 
-  public JsonpValueParser<? extends T> variantParser(String name) {
+  public JsonpDeserializer<? extends T> variantParser(String name) {
     build();
     return parsers.get(name);
   }
@@ -86,9 +86,9 @@ public class Variants<T> {
 
   public static class Builder<BT> {
     private final Map<Class<?>, String> variantNames = new HashMap<>();
-    private final Map<String, JsonpValueParser<? extends BT>> parsers = new HashMap<>();
+    private final Map<String, JsonpDeserializer<? extends BT>> parsers = new HashMap<>();
 
-    public Builder<BT> add(String name, Class<? extends BT> clazz, JsonpValueParser<? extends BT> parser) {
+    public Builder<BT> add(String name, Class<? extends BT> clazz, JsonpDeserializer<? extends BT> parser) {
       variantNames.put(clazz, name);
       parsers.put(name, parser);
       return this;
@@ -112,18 +112,18 @@ public class Variants<T> {
     /**
      * Creates a parser for externally tagged variants
      */
-    public static <T> JsonpValueParser<T> pparser(Variants<T> variants) {
-      return JsonpValueParser.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, params, event) -> {
+    public static <T> JsonpDeserializer<T> pparser(Variants<T> variants) {
+      return JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, params, event) -> {
         JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
 
         String variant = parser.getString();
-        JsonpValueParser<? extends T> variantParser = variants.variantParser(variant);
+        JsonpDeserializer<? extends T> variantParser = variants.variantParser(variant);
 
         if (variantParser == null) {
           throw new JsonParsingException("Unknown variant [" + variant + "]", parser.getLocation());
         }
 
-        T result = variantParser.parse(parser, params);
+        T result = variantParser.deserialize(parser, params);
 
         JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
 

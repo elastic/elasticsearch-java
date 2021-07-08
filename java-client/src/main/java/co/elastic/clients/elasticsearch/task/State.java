@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.task;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -388,26 +388,25 @@ public final class State implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for State
+	 * Json deserializer for State
 	 */
-	public static final JsonpValueParser<State> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			State::setupStateParser);
+	public static final JsonpDeserializer<State> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			State::setupStateDeserializer);
 
-	protected static void setupStateParser(DelegatingJsonpValueParser<State.Builder> op) {
+	protected static void setupStateDeserializer(DelegatingDeserializer<State.Builder> op) {
 
-		op.add(Builder::action, JsonpValueParser.stringParser(), "action");
-		op.add(Builder::cancellable, JsonpValueParser.booleanParser(), "cancellable");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::headers,
-				JsonpValueParser.stringMapParser(JsonpValueParser.arrayParser(JsonpValueParser.stringParser())),
-				"headers");
-		op.add(Builder::id, JsonpValueParser.numberParser(), "id");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::parentTaskId, JsonpValueParser.jsonValueParser(), "parent_task_id");
-		op.add(Builder::runningTimeInNanos, JsonpValueParser.numberParser(), "running_time_in_nanos");
-		op.add(Builder::startTimeInMillis, JsonpValueParser.numberParser(), "start_time_in_millis");
-		op.add(Builder::status, Status.JSONP_PARSER, "status");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
+		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
+		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
+		op.add(Builder::id, JsonpDeserializer.numberDeserializer(), "id");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::parentTaskId, JsonpDeserializer.jsonValueDeserializer(), "parent_task_id");
+		op.add(Builder::runningTimeInNanos, JsonpDeserializer.numberDeserializer(), "running_time_in_nanos");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
+		op.add(Builder::status, Status.DESERIALIZER, "status");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

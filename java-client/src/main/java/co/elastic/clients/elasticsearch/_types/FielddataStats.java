@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -226,17 +226,17 @@ public final class FielddataStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FielddataStats
+	 * Json deserializer for FielddataStats
 	 */
-	public static final JsonpValueParser<FielddataStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FielddataStats::setupFielddataStatsParser);
+	public static final JsonpDeserializer<FielddataStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FielddataStats::setupFielddataStatsDeserializer);
 
-	protected static void setupFielddataStatsParser(DelegatingJsonpValueParser<FielddataStats.Builder> op) {
+	protected static void setupFielddataStatsDeserializer(DelegatingDeserializer<FielddataStats.Builder> op) {
 
-		op.add(Builder::evictions, JsonpValueParser.numberParser(), "evictions");
-		op.add(Builder::memorySize, JsonpValueParser.jsonValueParser(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpValueParser.numberParser(), "memory_size_in_bytes");
-		op.add(Builder::fields, JsonpValueParser.stringMapParser(FieldMemoryUsage.JSONP_PARSER), "fields");
+		op.add(Builder::evictions, JsonpDeserializer.numberDeserializer(), "evictions");
+		op.add(Builder::memorySize, JsonpDeserializer.jsonValueDeserializer(), "memory_size");
+		op.add(Builder::memorySizeInBytes, JsonpDeserializer.numberDeserializer(), "memory_size_in_bytes");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(FieldMemoryUsage.DESERIALIZER), "fields");
 
 	}
 

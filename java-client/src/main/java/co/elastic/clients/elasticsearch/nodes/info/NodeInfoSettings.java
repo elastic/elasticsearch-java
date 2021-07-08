@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -550,27 +550,27 @@ public final class NodeInfoSettings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoSettings
+	 * Json deserializer for NodeInfoSettings
 	 */
-	public static final JsonpValueParser<NodeInfoSettings> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoSettings::setupNodeInfoSettingsParser);
+	public static final JsonpDeserializer<NodeInfoSettings> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoSettings::setupNodeInfoSettingsDeserializer);
 
-	protected static void setupNodeInfoSettingsParser(DelegatingJsonpValueParser<NodeInfoSettings.Builder> op) {
+	protected static void setupNodeInfoSettingsDeserializer(DelegatingDeserializer<NodeInfoSettings.Builder> op) {
 
-		op.add(Builder::cluster, NodeInfoSettingsCluster.JSONP_PARSER, "cluster");
-		op.add(Builder::node, NodeInfoSettingsNode.JSONP_PARSER, "node");
-		op.add(Builder::path, NodeInfoPath.JSONP_PARSER, "path");
-		op.add(Builder::repositories, NodeInfoRepositories.JSONP_PARSER, "repositories");
-		op.add(Builder::discovery, NodeInfoDiscover.JSONP_PARSER, "discovery");
-		op.add(Builder::action, NodeInfoAction.JSONP_PARSER, "action");
-		op.add(Builder::client, NodeInfoClient.JSONP_PARSER, "client");
-		op.add(Builder::http, NodeInfoSettingsHttp.JSONP_PARSER, "http");
-		op.add(Builder::bootstrap, NodeInfoBootstrap.JSONP_PARSER, "bootstrap");
-		op.add(Builder::transport, NodeInfoSettingsTransport.JSONP_PARSER, "transport");
-		op.add(Builder::network, NodeInfoSettingsNetwork.JSONP_PARSER, "network");
-		op.add(Builder::xpack, NodeInfoXpack.JSONP_PARSER, "xpack");
-		op.add(Builder::script, NodeInfoScript.JSONP_PARSER, "script");
-		op.add(Builder::search, NodeInfoSearch.JSONP_PARSER, "search");
+		op.add(Builder::cluster, NodeInfoSettingsCluster.DESERIALIZER, "cluster");
+		op.add(Builder::node, NodeInfoSettingsNode.DESERIALIZER, "node");
+		op.add(Builder::path, NodeInfoPath.DESERIALIZER, "path");
+		op.add(Builder::repositories, NodeInfoRepositories.DESERIALIZER, "repositories");
+		op.add(Builder::discovery, NodeInfoDiscover.DESERIALIZER, "discovery");
+		op.add(Builder::action, NodeInfoAction.DESERIALIZER, "action");
+		op.add(Builder::client, NodeInfoClient.DESERIALIZER, "client");
+		op.add(Builder::http, NodeInfoSettingsHttp.DESERIALIZER, "http");
+		op.add(Builder::bootstrap, NodeInfoBootstrap.DESERIALIZER, "bootstrap");
+		op.add(Builder::transport, NodeInfoSettingsTransport.DESERIALIZER, "transport");
+		op.add(Builder::network, NodeInfoSettingsNetwork.DESERIALIZER, "network");
+		op.add(Builder::xpack, NodeInfoXpack.DESERIALIZER, "xpack");
+		op.add(Builder::script, NodeInfoScript.DESERIALIZER, "script");
+		op.add(Builder::search, NodeInfoSearch.DESERIALIZER, "search");
 
 	}
 

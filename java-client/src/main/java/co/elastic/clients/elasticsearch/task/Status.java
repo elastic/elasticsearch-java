@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.task;
 
 import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -549,30 +549,31 @@ public final class Status implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Status
+	 * Json deserializer for Status
 	 */
-	public static final JsonpValueParser<Status> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Status::setupStatusParser);
+	public static final JsonpDeserializer<Status> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Status::setupStatusDeserializer);
 
-	protected static void setupStatusParser(DelegatingJsonpValueParser<Status.Builder> op) {
+	protected static void setupStatusDeserializer(DelegatingDeserializer<Status.Builder> op) {
 
-		op.add(Builder::batches, JsonpValueParser.numberParser(), "batches");
-		op.add(Builder::canceled, JsonpValueParser.stringParser(), "canceled");
-		op.add(Builder::created, JsonpValueParser.numberParser(), "created");
-		op.add(Builder::deleted, JsonpValueParser.numberParser(), "deleted");
-		op.add(Builder::noops, JsonpValueParser.numberParser(), "noops");
-		op.add(Builder::failures, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "failures");
-		op.add(Builder::requestsPerSecond, JsonpValueParser.numberParser(), "requests_per_second");
-		op.add(Builder::retries, Retries.JSONP_PARSER, "retries");
-		op.add(Builder::throttled, JsonpValueParser.jsonValueParser(), "throttled");
-		op.add(Builder::throttledMillis, JsonpValueParser.numberParser(), "throttled_millis");
-		op.add(Builder::throttledUntil, JsonpValueParser.jsonValueParser(), "throttled_until");
-		op.add(Builder::throttledUntilMillis, JsonpValueParser.numberParser(), "throttled_until_millis");
-		op.add(Builder::timedOut, JsonpValueParser.booleanParser(), "timed_out");
-		op.add(Builder::took, JsonpValueParser.numberParser(), "took");
-		op.add(Builder::total, JsonpValueParser.numberParser(), "total");
-		op.add(Builder::updated, JsonpValueParser.numberParser(), "updated");
-		op.add(Builder::versionConflicts, JsonpValueParser.numberParser(), "version_conflicts");
+		op.add(Builder::batches, JsonpDeserializer.numberDeserializer(), "batches");
+		op.add(Builder::canceled, JsonpDeserializer.stringDeserializer(), "canceled");
+		op.add(Builder::created, JsonpDeserializer.numberDeserializer(), "created");
+		op.add(Builder::deleted, JsonpDeserializer.numberDeserializer(), "deleted");
+		op.add(Builder::noops, JsonpDeserializer.numberDeserializer(), "noops");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"failures");
+		op.add(Builder::requestsPerSecond, JsonpDeserializer.numberDeserializer(), "requests_per_second");
+		op.add(Builder::retries, Retries.DESERIALIZER, "retries");
+		op.add(Builder::throttled, JsonpDeserializer.jsonValueDeserializer(), "throttled");
+		op.add(Builder::throttledMillis, JsonpDeserializer.numberDeserializer(), "throttled_millis");
+		op.add(Builder::throttledUntil, JsonpDeserializer.jsonValueDeserializer(), "throttled_until");
+		op.add(Builder::throttledUntilMillis, JsonpDeserializer.numberDeserializer(), "throttled_until_millis");
+		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
+		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::updated, JsonpDeserializer.numberDeserializer(), "updated");
+		op.add(Builder::versionConflicts, JsonpDeserializer.numberDeserializer(), "version_conflicts");
 
 	}
 

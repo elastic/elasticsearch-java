@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.slm;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -43,7 +43,7 @@ public final class GetStatsRequest extends RequestBase {
 	 */
 	public static final GetStatsRequest INSTANCE = new GetStatsRequest();
 
-	public static final JsonpValueParser<GetStatsRequest> JSONP_PARSER = JsonpValueParser
+	public static final JsonpDeserializer<GetStatsRequest> DESERIALIZER = JsonpDeserializer
 			.fixedValue(GetStatsRequest.INSTANCE);
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,5 +68,5 @@ public final class GetStatsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetStatsResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), false, GetStatsResponse.DESERIALIZER);
 }

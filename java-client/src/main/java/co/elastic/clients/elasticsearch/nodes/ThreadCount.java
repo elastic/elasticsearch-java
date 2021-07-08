@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -216,19 +216,19 @@ public final class ThreadCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ThreadCount
+	 * Json deserializer for ThreadCount
 	 */
-	public static final JsonpValueParser<ThreadCount> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ThreadCount::setupThreadCountParser);
+	public static final JsonpDeserializer<ThreadCount> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ThreadCount::setupThreadCountDeserializer);
 
-	protected static void setupThreadCountParser(DelegatingJsonpValueParser<ThreadCount.Builder> op) {
+	protected static void setupThreadCountDeserializer(DelegatingDeserializer<ThreadCount.Builder> op) {
 
-		op.add(Builder::active, JsonpValueParser.numberParser(), "active");
-		op.add(Builder::completed, JsonpValueParser.numberParser(), "completed");
-		op.add(Builder::largest, JsonpValueParser.numberParser(), "largest");
-		op.add(Builder::queue, JsonpValueParser.numberParser(), "queue");
-		op.add(Builder::rejected, JsonpValueParser.numberParser(), "rejected");
-		op.add(Builder::threads, JsonpValueParser.numberParser(), "threads");
+		op.add(Builder::active, JsonpDeserializer.numberDeserializer(), "active");
+		op.add(Builder::completed, JsonpDeserializer.numberDeserializer(), "completed");
+		op.add(Builder::largest, JsonpDeserializer.numberDeserializer(), "largest");
+		op.add(Builder::queue, JsonpDeserializer.numberDeserializer(), "queue");
+		op.add(Builder::rejected, JsonpDeserializer.numberDeserializer(), "rejected");
+		op.add(Builder::threads, JsonpDeserializer.numberDeserializer(), "threads");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -134,16 +134,16 @@ public class Base implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Base
+	 * Json deserializer for Base
 	 */
-	public static final JsonpValueParser<Base> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Base::setupBaseParser);
+	public static final JsonpDeserializer<Base> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Base::setupBaseDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::available, JsonpValueParser.booleanParser(), "available");
-		op.add(AbstractBuilder::enabled, JsonpValueParser.booleanParser(), "enabled");
+		op.add(AbstractBuilder::available, JsonpDeserializer.booleanDeserializer(), "available");
+		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 

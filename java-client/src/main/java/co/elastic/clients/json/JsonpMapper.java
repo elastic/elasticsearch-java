@@ -41,7 +41,7 @@ public interface JsonpMapper {
     /**
      * Get the deserializer for a class.
      */
-    <T> JsonpValueParser<T> getDeserializer(Class<T> clazz);
+    <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz);
 
     /**
      * Serialize an object.

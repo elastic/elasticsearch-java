@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -174,14 +174,14 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpgradeRequest
+	 * Json deserializer for UpgradeRequest
 	 */
-	public static final JsonpValueParser<UpgradeRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpgradeRequest::setupUpgradeRequestParser);
+	public static final JsonpDeserializer<UpgradeRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpgradeRequest::setupUpgradeRequestDeserializer);
 
-	protected static void setupUpgradeRequestParser(DelegatingJsonpValueParser<UpgradeRequest.Builder> op) {
+	protected static void setupUpgradeRequestDeserializer(DelegatingDeserializer<UpgradeRequest.Builder> op) {
 
-		op.add(Builder::stubC, JsonpValueParser.numberParser(), "stub_c");
+		op.add(Builder::stubC, JsonpDeserializer.numberDeserializer(), "stub_c");
 
 	}
 
@@ -231,5 +231,5 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 				params.put("stub_a", request.stubA.toString());
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, UpgradeResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, UpgradeResponse.DESERIALIZER);
 }

@@ -24,9 +24,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch.experiments.api.query.Query;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ToJsonp;
 
 import javax.annotation.Nonnull;
@@ -272,24 +272,24 @@ public class FooRequest implements ToJsonp {
   // (formally not needed for requests)
   //===========================================
 
-  private static final JsonpValueParser<FooRequest> PARSER;
+  private static final JsonpDeserializer<FooRequest> PARSER;
 
-  public static JsonpValueParser<FooRequest> parser() {
+  public static JsonpDeserializer<FooRequest> parser() {
     return PARSER;
   }
 
   static {
-    JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+    ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-    op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-    op.add(Builder::routing, JsonpValueParser.stringParser(), "routing");
+    op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+    op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
     op.add(Builder::value, "value"); // primitive type
     op.add(Builder::size, "size");
-    op.add(Builder::indices, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "indices");
+    op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices");
     op.add(Builder::bar, Bar.parser(), "bar");
     op.add(Builder::query, Query.parser(), "query");
 
-    PARSER = new JsonpObjectBuilderParser<FooRequest>(op);
+    PARSER = new ObjectBuilderDeserializer<FooRequest>(op);
   }
 
   //===========================================

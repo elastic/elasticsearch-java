@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -156,16 +156,16 @@ public final class SearchableSnapshots extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SearchableSnapshots
+	 * Json deserializer for SearchableSnapshots
 	 */
-	public static final JsonpValueParser<SearchableSnapshots> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SearchableSnapshots::setupSearchableSnapshotsParser);
+	public static final JsonpDeserializer<SearchableSnapshots> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SearchableSnapshots::setupSearchableSnapshotsDeserializer);
 
-	protected static void setupSearchableSnapshotsParser(DelegatingJsonpValueParser<SearchableSnapshots.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::indicesCount, JsonpValueParser.numberParser(), "indices_count");
-		op.add(Builder::fullCopyIndicesCount, JsonpValueParser.numberParser(), "full_copy_indices_count");
-		op.add(Builder::sharedCacheIndicesCount, JsonpValueParser.numberParser(), "shared_cache_indices_count");
+	protected static void setupSearchableSnapshotsDeserializer(DelegatingDeserializer<SearchableSnapshots.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::indicesCount, JsonpDeserializer.numberDeserializer(), "indices_count");
+		op.add(Builder::fullCopyIndicesCount, JsonpDeserializer.numberDeserializer(), "full_copy_indices_count");
+		op.add(Builder::sharedCacheIndicesCount, JsonpDeserializer.numberDeserializer(), "shared_cache_indices_count");
 
 	}
 

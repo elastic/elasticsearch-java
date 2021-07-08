@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -239,17 +239,18 @@ public final class HttpInput implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for HttpInput
+	 * Json deserializer for HttpInput
 	 */
-	public static final JsonpValueParser<HttpInput> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, HttpInput::setupHttpInputParser);
+	public static final JsonpDeserializer<HttpInput> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, HttpInput::setupHttpInputDeserializer);
 
-	protected static void setupHttpInputParser(DelegatingJsonpValueParser<HttpInput.Builder> op) {
+	protected static void setupHttpInputDeserializer(DelegatingDeserializer<HttpInput.Builder> op) {
 
-		op.add(Builder::http, co.elastic.clients.elasticsearch.watcher.HttpInput.JSONP_PARSER, "http");
-		op.add(Builder::extract, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "extract");
-		op.add(Builder::request, HttpInputRequestDefinition.JSONP_PARSER, "request");
-		op.add(Builder::responseContentType, JsonpValueParser.jsonValueParser(), "response_content_type");
+		op.add(Builder::http, co.elastic.clients.elasticsearch.watcher.HttpInput.DESERIALIZER, "http");
+		op.add(Builder::extract, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"extract");
+		op.add(Builder::request, HttpInputRequestDefinition.DESERIALIZER, "request");
+		op.add(Builder::responseContentType, JsonpDeserializer.jsonValueDeserializer(), "response_content_type");
 
 	}
 

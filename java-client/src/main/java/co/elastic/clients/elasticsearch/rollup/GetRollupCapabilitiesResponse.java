@@ -25,10 +25,10 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.rollup.get_rollup_capabilities.RollupCapabilities;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -72,15 +72,16 @@ public final class GetRollupCapabilitiesResponse extends AdditionalProperties<St
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetRollupCapabilitiesResponse
+	 * Json deserializer for GetRollupCapabilitiesResponse
 	 */
-	public static final JsonpValueParser<GetRollupCapabilitiesResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetRollupCapabilitiesResponse::setupGetRollupCapabilitiesResponseParser);
+	public static final JsonpDeserializer<GetRollupCapabilitiesResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					GetRollupCapabilitiesResponse::setupGetRollupCapabilitiesResponseDeserializer);
 
-	protected static void setupGetRollupCapabilitiesResponseParser(
-			DelegatingJsonpValueParser<GetRollupCapabilitiesResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesParser(op, JsonpValueParser.stringParser(),
-				RollupCapabilities.JSONP_PARSER);
+	protected static void setupGetRollupCapabilitiesResponseDeserializer(
+			DelegatingDeserializer<GetRollupCapabilitiesResponse.Builder> op) {
+		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				RollupCapabilities.DESERIALIZER);
 
 	}
 

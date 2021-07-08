@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -179,17 +179,17 @@ public final class CommandCancelAction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CommandCancelAction
+	 * Json deserializer for CommandCancelAction
 	 */
-	public static final JsonpValueParser<CommandCancelAction> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CommandCancelAction::setupCommandCancelActionParser);
+	public static final JsonpDeserializer<CommandCancelAction> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CommandCancelAction::setupCommandCancelActionDeserializer);
 
-	protected static void setupCommandCancelActionParser(DelegatingJsonpValueParser<CommandCancelAction.Builder> op) {
+	protected static void setupCommandCancelActionDeserializer(DelegatingDeserializer<CommandCancelAction.Builder> op) {
 
-		op.add(Builder::index, JsonpValueParser.stringParser(), "index");
-		op.add(Builder::shard, JsonpValueParser.numberParser(), "shard");
-		op.add(Builder::node, JsonpValueParser.stringParser(), "node");
-		op.add(Builder::allowPrimary, JsonpValueParser.booleanParser(), "allow_primary");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::allowPrimary, JsonpDeserializer.booleanDeserializer(), "allow_primary");
 
 	}
 

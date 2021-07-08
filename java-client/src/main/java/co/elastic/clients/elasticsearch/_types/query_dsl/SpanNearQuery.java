@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -203,16 +203,16 @@ public final class SpanNearQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for SpanNearQuery
+	 * Json deserializer for SpanNearQuery
 	 */
-	public static final JsonpValueParser<SpanNearQuery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, SpanNearQuery::setupSpanNearQueryParser);
+	public static final JsonpDeserializer<SpanNearQuery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, SpanNearQuery::setupSpanNearQueryDeserializer);
 
-	protected static void setupSpanNearQueryParser(DelegatingJsonpValueParser<SpanNearQuery.Builder> op) {
-		QueryBase.setupQueryBaseParser(op);
-		op.add(Builder::clauses, JsonpValueParser.arrayParser(SpanQuery.JSONP_PARSER), "clauses");
-		op.add(Builder::inOrder, JsonpValueParser.booleanParser(), "in_order");
-		op.add(Builder::slop, JsonpValueParser.numberParser(), "slop");
+	protected static void setupSpanNearQueryDeserializer(DelegatingDeserializer<SpanNearQuery.Builder> op) {
+		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::clauses, JsonpDeserializer.arrayDeserializer(SpanQuery.DESERIALIZER), "clauses");
+		op.add(Builder::inOrder, JsonpDeserializer.booleanDeserializer(), "in_order");
+		op.add(Builder::slop, JsonpDeserializer.numberDeserializer(), "slop");
 
 	}
 

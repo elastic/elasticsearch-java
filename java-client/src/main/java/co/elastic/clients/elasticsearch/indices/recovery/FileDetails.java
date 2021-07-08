@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -148,16 +148,16 @@ public final class FileDetails implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FileDetails
+	 * Json deserializer for FileDetails
 	 */
-	public static final JsonpValueParser<FileDetails> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FileDetails::setupFileDetailsParser);
+	public static final JsonpDeserializer<FileDetails> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FileDetails::setupFileDetailsDeserializer);
 
-	protected static void setupFileDetailsParser(DelegatingJsonpValueParser<FileDetails.Builder> op) {
+	protected static void setupFileDetailsDeserializer(DelegatingDeserializer<FileDetails.Builder> op) {
 
-		op.add(Builder::length, JsonpValueParser.numberParser(), "length");
-		op.add(Builder::name, JsonpValueParser.stringParser(), "name");
-		op.add(Builder::recovered, JsonpValueParser.numberParser(), "recovered");
+		op.add(Builder::length, JsonpDeserializer.numberDeserializer(), "length");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::recovered, JsonpDeserializer.numberDeserializer(), "recovered");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.elasticsearch.sql.query.Column;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -233,17 +233,17 @@ public final class QueryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for QueryResponse
+	 * Json deserializer for QueryResponse
 	 */
-	public static final JsonpValueParser<QueryResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, QueryResponse::setupQueryResponseParser);
+	public static final JsonpDeserializer<QueryResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, QueryResponse::setupQueryResponseDeserializer);
 
-	protected static void setupQueryResponseParser(DelegatingJsonpValueParser<QueryResponse.Builder> op) {
+	protected static void setupQueryResponseDeserializer(DelegatingDeserializer<QueryResponse.Builder> op) {
 
-		op.add(Builder::columns, JsonpValueParser.arrayParser(Column.JSONP_PARSER), "columns");
-		op.add(Builder::cursor, JsonpValueParser.stringParser(), "cursor");
-		op.add(Builder::rows,
-				JsonpValueParser.arrayParser(JsonpValueParser.arrayParser(JsonpValueParser.jsonValueParser())), "rows");
+		op.add(Builder::columns, JsonpDeserializer.arrayDeserializer(Column.DESERIALIZER), "columns");
+		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
+		op.add(Builder::rows, JsonpDeserializer.arrayDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer())), "rows");
 
 	}
 

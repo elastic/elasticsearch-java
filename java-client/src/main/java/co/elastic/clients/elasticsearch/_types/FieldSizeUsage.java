@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -132,15 +132,15 @@ public final class FieldSizeUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for FieldSizeUsage
+	 * Json deserializer for FieldSizeUsage
 	 */
-	public static final JsonpValueParser<FieldSizeUsage> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, FieldSizeUsage::setupFieldSizeUsageParser);
+	public static final JsonpDeserializer<FieldSizeUsage> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, FieldSizeUsage::setupFieldSizeUsageDeserializer);
 
-	protected static void setupFieldSizeUsageParser(DelegatingJsonpValueParser<FieldSizeUsage.Builder> op) {
+	protected static void setupFieldSizeUsageDeserializer(DelegatingDeserializer<FieldSizeUsage.Builder> op) {
 
-		op.add(Builder::size, JsonpValueParser.jsonValueParser(), "size");
-		op.add(Builder::sizeInBytes, JsonpValueParser.numberParser(), "size_in_bytes");
+		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
 
 	}
 

@@ -23,10 +23,10 @@
 
 package co.elastic.clients.elasticsearch._global.search;
 
+import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuildFuncParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.StringEnum;
@@ -58,7 +58,7 @@ public class SmoothingModelContainer extends TaggedUnion<SmoothingModelContainer
 			return this.jsonValue;
 		}
 
-		public static StringEnum.JsonpParser<Tag> PARSER = new StringEnum.JsonpParser<>(Tag.values());
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
 	}
 
 	private SmoothingModelContainer(Builder builder) {
@@ -172,21 +172,22 @@ public class SmoothingModelContainer extends TaggedUnion<SmoothingModelContainer
 
 	}
 
-	// Variants can be recursive data structures. Building the union's parser lazily
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
 	// avoids cyclic dependencies between static class initialization code, which
 	// can lead to unwanted things like NPEs or stack overflows
 
-	public static final JsonpValueParser<SmoothingModelContainer> JSONP_PARSER = JsonpValueParser
-			.lazy(SmoothingModelContainer::buildJsonpParser);
+	public static final JsonpDeserializer<SmoothingModelContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(SmoothingModelContainer::buildDeserializer);
 
-	private static JsonpValueParser<SmoothingModelContainer> buildJsonpParser() {
-		JsonpObjectParser<Builder> op = new JsonpObjectParser<>(Builder::new);
+	private static JsonpDeserializer<SmoothingModelContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::laplace, LaplaceSmoothingModel.JSONP_PARSER, "laplace");
-		op.add(Builder::linearInterpolation, LinearInterpolationSmoothingModel.JSONP_PARSER, "linear_interpolation");
-		op.add(Builder::stupidBackoff, StupidBackoffSmoothingModel.JSONP_PARSER, "stupid_backoff");
+		op.add(Builder::laplace, LaplaceSmoothingModel.DESERIALIZER, "laplace");
+		op.add(Builder::linearInterpolation, LinearInterpolationSmoothingModel.DESERIALIZER, "linear_interpolation");
+		op.add(Builder::stupidBackoff, StupidBackoffSmoothingModel.DESERIALIZER, "stupid_backoff");
 
-		return new JsonpObjectBuildFuncParser<>(op, Builder::build);
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

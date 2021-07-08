@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -173,14 +173,14 @@ public final class IndexImportRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexImportRequest
+	 * Json deserializer for IndexImportRequest
 	 */
-	public static final JsonpValueParser<IndexImportRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexImportRequest::setupIndexImportRequestParser);
+	public static final JsonpDeserializer<IndexImportRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexImportRequest::setupIndexImportRequestDeserializer);
 
-	protected static void setupIndexImportRequestParser(DelegatingJsonpValueParser<IndexImportRequest.Builder> op) {
+	protected static void setupIndexImportRequestDeserializer(DelegatingDeserializer<IndexImportRequest.Builder> op) {
 
-		op.add(Builder::stubC, JsonpValueParser.stringParser(), "stub_c");
+		op.add(Builder::stubC, JsonpDeserializer.stringDeserializer(), "stub_c");
 
 	}
 
@@ -225,5 +225,5 @@ public final class IndexImportRequest extends RequestBase implements ToJsonp {
 				params.put("stub_b", request.stubB);
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, IndexImportResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, IndexImportResponse.DESERIALIZER);
 }

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cat.trained_models;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -642,32 +642,35 @@ public final class TrainedModelsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TrainedModelsRecord
+	 * Json deserializer for TrainedModelsRecord
 	 */
-	public static final JsonpValueParser<TrainedModelsRecord> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TrainedModelsRecord::setupTrainedModelsRecordParser);
+	public static final JsonpDeserializer<TrainedModelsRecord> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TrainedModelsRecord::setupTrainedModelsRecordDeserializer);
 
-	protected static void setupTrainedModelsRecordParser(DelegatingJsonpValueParser<TrainedModelsRecord.Builder> op) {
+	protected static void setupTrainedModelsRecordDeserializer(DelegatingDeserializer<TrainedModelsRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.stringParser(), "id");
-		op.add(Builder::createdBy, JsonpValueParser.stringParser(), "created_by", "c", "createdBy");
-		op.add(Builder::heapSize, JsonpValueParser.jsonValueParser(), "heap_size", "hs", "modelHeapSize");
-		op.add(Builder::operations, JsonpValueParser.stringParser(), "operations", "o", "modelOperations");
-		op.add(Builder::license, JsonpValueParser.stringParser(), "license", "l");
-		op.add(Builder::createTime, JsonpValueParser.stringParser(), "create_time", "ct");
-		op.add(Builder::version, JsonpValueParser.stringParser(), "version", "v");
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description", "d");
-		op.add(Builder::ingest_pipelines, JsonpValueParser.stringParser(), "ingest.pipelines", "ip", "ingestPipelines");
-		op.add(Builder::ingest_count, JsonpValueParser.stringParser(), "ingest.count", "ic", "ingestCount");
-		op.add(Builder::ingest_time, JsonpValueParser.stringParser(), "ingest.time", "it", "ingestTime");
-		op.add(Builder::ingest_current, JsonpValueParser.stringParser(), "ingest.current", "icurr", "ingestCurrent");
-		op.add(Builder::ingest_failed, JsonpValueParser.stringParser(), "ingest.failed", "if", "ingestFailed");
-		op.add(Builder::dataFrame_id, JsonpValueParser.stringParser(), "data_frame.id", "dfid", "dataFrameAnalytics");
-		op.add(Builder::dataFrame_createTime, JsonpValueParser.stringParser(), "data_frame.create_time", "dft",
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by", "c", "createdBy");
+		op.add(Builder::heapSize, JsonpDeserializer.jsonValueDeserializer(), "heap_size", "hs", "modelHeapSize");
+		op.add(Builder::operations, JsonpDeserializer.stringDeserializer(), "operations", "o", "modelOperations");
+		op.add(Builder::license, JsonpDeserializer.stringDeserializer(), "license", "l");
+		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time", "ct");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description", "d");
+		op.add(Builder::ingest_pipelines, JsonpDeserializer.stringDeserializer(), "ingest.pipelines", "ip",
+				"ingestPipelines");
+		op.add(Builder::ingest_count, JsonpDeserializer.stringDeserializer(), "ingest.count", "ic", "ingestCount");
+		op.add(Builder::ingest_time, JsonpDeserializer.stringDeserializer(), "ingest.time", "it", "ingestTime");
+		op.add(Builder::ingest_current, JsonpDeserializer.stringDeserializer(), "ingest.current", "icurr",
+				"ingestCurrent");
+		op.add(Builder::ingest_failed, JsonpDeserializer.stringDeserializer(), "ingest.failed", "if", "ingestFailed");
+		op.add(Builder::dataFrame_id, JsonpDeserializer.stringDeserializer(), "data_frame.id", "dfid",
+				"dataFrameAnalytics");
+		op.add(Builder::dataFrame_createTime, JsonpDeserializer.stringDeserializer(), "data_frame.create_time", "dft",
 				"dataFrameAnalyticsTime");
-		op.add(Builder::dataFrame_sourceIndex, JsonpValueParser.stringParser(), "data_frame.source_index", "dfsi",
-				"dataFrameAnalyticsSrcIndex");
-		op.add(Builder::dataFrame_analysis, JsonpValueParser.stringParser(), "data_frame.analysis", "dfa",
+		op.add(Builder::dataFrame_sourceIndex, JsonpDeserializer.stringDeserializer(), "data_frame.source_index",
+				"dfsi", "dataFrameAnalyticsSrcIndex");
+		op.add(Builder::dataFrame_analysis, JsonpDeserializer.stringDeserializer(), "data_frame.analysis", "dfa",
 				"dataFrameAnalyticsAnalysis");
 
 	}

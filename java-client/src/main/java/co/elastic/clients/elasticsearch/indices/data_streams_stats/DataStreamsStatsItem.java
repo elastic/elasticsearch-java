@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.data_streams_stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -202,18 +202,19 @@ public final class DataStreamsStatsItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataStreamsStatsItem
+	 * Json deserializer for DataStreamsStatsItem
 	 */
-	public static final JsonpValueParser<DataStreamsStatsItem> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, DataStreamsStatsItem::setupDataStreamsStatsItemParser);
+	public static final JsonpDeserializer<DataStreamsStatsItem> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, DataStreamsStatsItem::setupDataStreamsStatsItemDeserializer);
 
-	protected static void setupDataStreamsStatsItemParser(DelegatingJsonpValueParser<DataStreamsStatsItem.Builder> op) {
+	protected static void setupDataStreamsStatsItemDeserializer(
+			DelegatingDeserializer<DataStreamsStatsItem.Builder> op) {
 
-		op.add(Builder::backingIndices, JsonpValueParser.numberParser(), "backing_indices");
-		op.add(Builder::dataStream, JsonpValueParser.stringParser(), "data_stream");
-		op.add(Builder::storeSize, JsonpValueParser.jsonValueParser(), "store_size");
-		op.add(Builder::storeSizeBytes, JsonpValueParser.numberParser(), "store_size_bytes");
-		op.add(Builder::maximumTimestamp, JsonpValueParser.numberParser(), "maximum_timestamp");
+		op.add(Builder::backingIndices, JsonpDeserializer.numberDeserializer(), "backing_indices");
+		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
+		op.add(Builder::storeSize, JsonpDeserializer.jsonValueDeserializer(), "store_size");
+		op.add(Builder::storeSizeBytes, JsonpDeserializer.numberDeserializer(), "store_size_bytes");
+		op.add(Builder::maximumTimestamp, JsonpDeserializer.numberDeserializer(), "maximum_timestamp");
 
 	}
 

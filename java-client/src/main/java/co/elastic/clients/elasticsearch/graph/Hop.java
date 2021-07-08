@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -211,16 +211,16 @@ public final class Hop implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Hop
+	 * Json deserializer for Hop
 	 */
-	public static final JsonpValueParser<Hop> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Hop::setupHopParser);
+	public static final JsonpDeserializer<Hop> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Hop::setupHopDeserializer);
 
-	protected static void setupHopParser(DelegatingJsonpValueParser<Hop.Builder> op) {
+	protected static void setupHopDeserializer(DelegatingDeserializer<Hop.Builder> op) {
 
-		op.add(Builder::connections, co.elastic.clients.elasticsearch.graph.Hop.JSONP_PARSER, "connections");
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
-		op.add(Builder::vertices, JsonpValueParser.arrayParser(VertexDefinition.JSONP_PARSER), "vertices");
+		op.add(Builder::connections, co.elastic.clients.elasticsearch.graph.Hop.DESERIALIZER, "connections");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(VertexDefinition.DESERIALIZER), "vertices");
 
 	}
 

@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -161,15 +161,15 @@ public final class Eql extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Eql
+	 * Json deserializer for Eql
 	 */
-	public static final JsonpValueParser<Eql> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Eql::setupEqlParser);
+	public static final JsonpDeserializer<Eql> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			Eql::setupEqlDeserializer);
 
-	protected static void setupEqlParser(DelegatingJsonpValueParser<Eql.Builder> op) {
-		Base.setupBaseParser(op);
-		op.add(Builder::features, EqlFeatures.JSONP_PARSER, "features");
-		op.add(Builder::queries, JsonpValueParser.stringMapParser(Query.JSONP_PARSER), "queries");
+	protected static void setupEqlDeserializer(DelegatingDeserializer<Eql.Builder> op) {
+		Base.setupBaseDeserializer(op);
+		op.add(Builder::features, EqlFeatures.DESERIALIZER, "features");
+		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query.DESERIALIZER), "queries");
 
 	}
 

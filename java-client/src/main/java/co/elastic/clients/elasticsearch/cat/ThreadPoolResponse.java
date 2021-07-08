@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.thread_pool.ThreadPoolRecord;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -141,14 +141,14 @@ public final class ThreadPoolResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ThreadPoolResponse
+	 * Json deserializer for ThreadPoolResponse
 	 */
-	public static final JsonpValueParser<ThreadPoolResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ThreadPoolResponse::setupThreadPoolResponseParser);
+	public static final JsonpDeserializer<ThreadPoolResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ThreadPoolResponse::setupThreadPoolResponseDeserializer);
 
-	protected static void setupThreadPoolResponseParser(DelegatingJsonpValueParser<ThreadPoolResponse.Builder> op) {
+	protected static void setupThreadPoolResponseDeserializer(DelegatingDeserializer<ThreadPoolResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpValueParser.arrayParser(ThreadPoolRecord.JSONP_PARSER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(ThreadPoolRecord.DESERIALIZER), "value");
 
 	}
 

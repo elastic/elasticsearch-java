@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -196,16 +196,16 @@ public final class CompletionStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CompletionStats
+	 * Json deserializer for CompletionStats
 	 */
-	public static final JsonpValueParser<CompletionStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CompletionStats::setupCompletionStatsParser);
+	public static final JsonpDeserializer<CompletionStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CompletionStats::setupCompletionStatsDeserializer);
 
-	protected static void setupCompletionStatsParser(DelegatingJsonpValueParser<CompletionStats.Builder> op) {
+	protected static void setupCompletionStatsDeserializer(DelegatingDeserializer<CompletionStats.Builder> op) {
 
-		op.add(Builder::sizeInBytes, JsonpValueParser.numberParser(), "size_in_bytes");
-		op.add(Builder::size, JsonpValueParser.jsonValueParser(), "size");
-		op.add(Builder::fields, JsonpValueParser.stringMapParser(FieldSizeUsage.JSONP_PARSER), "fields");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
+		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(FieldSizeUsage.DESERIALIZER), "fields");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch._global;
 
 import co.elastic.clients.elasticsearch._types.StoredScript;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -164,16 +164,16 @@ public final class GetScriptResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetScriptResponse
+	 * Json deserializer for GetScriptResponse
 	 */
-	public static final JsonpValueParser<GetScriptResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetScriptResponse::setupGetScriptResponseParser);
+	public static final JsonpDeserializer<GetScriptResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetScriptResponse::setupGetScriptResponseDeserializer);
 
-	protected static void setupGetScriptResponseParser(DelegatingJsonpValueParser<GetScriptResponse.Builder> op) {
+	protected static void setupGetScriptResponseDeserializer(DelegatingDeserializer<GetScriptResponse.Builder> op) {
 
-		op.add(Builder::_id, JsonpValueParser.stringParser(), "_id");
-		op.add(Builder::found, JsonpValueParser.booleanParser(), "found");
-		op.add(Builder::script, StoredScript.JSONP_PARSER, "script");
+		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
+		op.add(Builder::script, StoredScript.DESERIALIZER, "script");
 
 	}
 

@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_api_key.ApiKey;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -143,14 +143,14 @@ public final class GetApiKeyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for GetApiKeyResponse
+	 * Json deserializer for GetApiKeyResponse
 	 */
-	public static final JsonpValueParser<GetApiKeyResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, GetApiKeyResponse::setupGetApiKeyResponseParser);
+	public static final JsonpDeserializer<GetApiKeyResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, GetApiKeyResponse::setupGetApiKeyResponseDeserializer);
 
-	protected static void setupGetApiKeyResponseParser(DelegatingJsonpValueParser<GetApiKeyResponse.Builder> op) {
+	protected static void setupGetApiKeyResponseDeserializer(DelegatingDeserializer<GetApiKeyResponse.Builder> op) {
 
-		op.add(Builder::apiKeys, JsonpValueParser.arrayParser(ApiKey.JSONP_PARSER), "api_keys");
+		op.add(Builder::apiKeys, JsonpDeserializer.arrayDeserializer(ApiKey.DESERIALIZER), "api_keys");
 
 	}
 

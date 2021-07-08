@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -101,14 +101,14 @@ public final class RollupResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for RollupResponse
+	 * Json deserializer for RollupResponse
 	 */
-	public static final JsonpValueParser<RollupResponse> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, RollupResponse::setupRollupResponseParser);
+	public static final JsonpDeserializer<RollupResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, RollupResponse::setupRollupResponseDeserializer);
 
-	protected static void setupRollupResponseParser(DelegatingJsonpValueParser<RollupResponse.Builder> op) {
+	protected static void setupRollupResponseDeserializer(DelegatingDeserializer<RollupResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpValueParser.numberParser(), "stub");
+		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
 
 	}
 

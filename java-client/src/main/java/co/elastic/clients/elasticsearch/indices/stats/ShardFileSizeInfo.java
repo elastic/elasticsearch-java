@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -242,19 +242,19 @@ public final class ShardFileSizeInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardFileSizeInfo
+	 * Json deserializer for ShardFileSizeInfo
 	 */
-	public static final JsonpValueParser<ShardFileSizeInfo> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardFileSizeInfo::setupShardFileSizeInfoParser);
+	public static final JsonpDeserializer<ShardFileSizeInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardFileSizeInfo::setupShardFileSizeInfoDeserializer);
 
-	protected static void setupShardFileSizeInfoParser(DelegatingJsonpValueParser<ShardFileSizeInfo.Builder> op) {
+	protected static void setupShardFileSizeInfoDeserializer(DelegatingDeserializer<ShardFileSizeInfo.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::sizeInBytes, JsonpValueParser.numberParser(), "size_in_bytes");
-		op.add(Builder::minSizeInBytes, JsonpValueParser.numberParser(), "min_size_in_bytes");
-		op.add(Builder::maxSizeInBytes, JsonpValueParser.numberParser(), "max_size_in_bytes");
-		op.add(Builder::averageSizeInBytes, JsonpValueParser.numberParser(), "average_size_in_bytes");
-		op.add(Builder::count, JsonpValueParser.numberParser(), "count");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
+		op.add(Builder::minSizeInBytes, JsonpDeserializer.numberDeserializer(), "min_size_in_bytes");
+		op.add(Builder::maxSizeInBytes, JsonpDeserializer.numberDeserializer(), "max_size_in_bytes");
+		op.add(Builder::averageSizeInBytes, JsonpDeserializer.numberDeserializer(), "average_size_in_bytes");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
 
 	}
 

@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -182,16 +182,16 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for UpdateModelSnapshotRequest
+	 * Json deserializer for UpdateModelSnapshotRequest
 	 */
-	public static final JsonpValueParser<UpdateModelSnapshotRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, UpdateModelSnapshotRequest::setupUpdateModelSnapshotRequestParser);
+	public static final JsonpDeserializer<UpdateModelSnapshotRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, UpdateModelSnapshotRequest::setupUpdateModelSnapshotRequestDeserializer);
 
-	protected static void setupUpdateModelSnapshotRequestParser(
-			DelegatingJsonpValueParser<UpdateModelSnapshotRequest.Builder> op) {
+	protected static void setupUpdateModelSnapshotRequestDeserializer(
+			DelegatingDeserializer<UpdateModelSnapshotRequest.Builder> op) {
 
-		op.add(Builder::description, JsonpValueParser.stringParser(), "description");
-		op.add(Builder::retain, JsonpValueParser.booleanParser(), "retain");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::retain, JsonpDeserializer.booleanDeserializer(), "retain");
 
 	}
 
@@ -239,5 +239,5 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateModelSnapshotResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, UpdateModelSnapshotResponse.DESERIALIZER);
 }

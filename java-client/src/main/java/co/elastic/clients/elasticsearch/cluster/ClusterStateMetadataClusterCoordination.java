@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -268,21 +268,22 @@ public final class ClusterStateMetadataClusterCoordination implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClusterStateMetadataClusterCoordination
+	 * Json deserializer for ClusterStateMetadataClusterCoordination
 	 */
-	public static final JsonpValueParser<ClusterStateMetadataClusterCoordination> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<ClusterStateMetadataClusterCoordination> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					ClusterStateMetadataClusterCoordination::setupClusterStateMetadataClusterCoordinationParser);
+					ClusterStateMetadataClusterCoordination::setupClusterStateMetadataClusterCoordinationDeserializer);
 
-	protected static void setupClusterStateMetadataClusterCoordinationParser(
-			DelegatingJsonpValueParser<ClusterStateMetadataClusterCoordination.Builder> op) {
+	protected static void setupClusterStateMetadataClusterCoordinationDeserializer(
+			DelegatingDeserializer<ClusterStateMetadataClusterCoordination.Builder> op) {
 
-		op.add(Builder::term, JsonpValueParser.numberParser(), "term");
-		op.add(Builder::lastCommittedConfig, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"last_committed_config");
-		op.add(Builder::lastAcceptedConfig, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
+		op.add(Builder::term, JsonpDeserializer.numberDeserializer(), "term");
+		op.add(Builder::lastCommittedConfig,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "last_committed_config");
+		op.add(Builder::lastAcceptedConfig, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"last_accepted_config");
-		op.add(Builder::votingConfigExclusions, JsonpValueParser.arrayParser(VotingConfigExclusionsItem.JSONP_PARSER),
+		op.add(Builder::votingConfigExclusions,
+				JsonpDeserializer.arrayDeserializer(VotingConfigExclusionsItem.DESERIALIZER),
 				"voting_config_exclusions");
 
 	}

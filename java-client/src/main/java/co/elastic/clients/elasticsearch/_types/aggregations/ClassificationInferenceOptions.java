@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -254,20 +254,21 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ClassificationInferenceOptions
+	 * Json deserializer for ClassificationInferenceOptions
 	 */
-	public static final JsonpValueParser<ClassificationInferenceOptions> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ClassificationInferenceOptions::setupClassificationInferenceOptionsParser);
+	public static final JsonpDeserializer<ClassificationInferenceOptions> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new,
+					ClassificationInferenceOptions::setupClassificationInferenceOptionsDeserializer);
 
-	protected static void setupClassificationInferenceOptionsParser(
-			DelegatingJsonpValueParser<ClassificationInferenceOptions.Builder> op) {
+	protected static void setupClassificationInferenceOptionsDeserializer(
+			DelegatingDeserializer<ClassificationInferenceOptions.Builder> op) {
 
-		op.add(Builder::numTopClasses, JsonpValueParser.numberParser(), "num_top_classes");
-		op.add(Builder::numTopFeatureImportanceValues, JsonpValueParser.numberParser(),
+		op.add(Builder::numTopClasses, JsonpDeserializer.numberDeserializer(), "num_top_classes");
+		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.numberDeserializer(),
 				"num_top_feature_importance_values");
-		op.add(Builder::predictionFieldType, JsonpValueParser.stringParser(), "prediction_field_type");
-		op.add(Builder::resultsField, JsonpValueParser.stringParser(), "results_field");
-		op.add(Builder::topClassesResultsField, JsonpValueParser.stringParser(), "top_classes_results_field");
+		op.add(Builder::predictionFieldType, JsonpDeserializer.stringDeserializer(), "prediction_field_type");
+		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
+		op.add(Builder::topClassesResultsField, JsonpDeserializer.stringDeserializer(), "top_classes_results_field");
 
 	}
 

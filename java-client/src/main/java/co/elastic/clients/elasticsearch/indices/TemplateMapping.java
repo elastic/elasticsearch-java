@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -312,19 +312,21 @@ public final class TemplateMapping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for TemplateMapping
+	 * Json deserializer for TemplateMapping
 	 */
-	public static final JsonpValueParser<TemplateMapping> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, TemplateMapping::setupTemplateMappingParser);
+	public static final JsonpDeserializer<TemplateMapping> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TemplateMapping::setupTemplateMappingDeserializer);
 
-	protected static void setupTemplateMappingParser(DelegatingJsonpValueParser<TemplateMapping.Builder> op) {
+	protected static void setupTemplateMappingDeserializer(DelegatingDeserializer<TemplateMapping.Builder> op) {
 
-		op.add(Builder::aliases, JsonpValueParser.stringMapParser(Alias.JSONP_PARSER), "aliases");
-		op.add(Builder::indexPatterns, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "index_patterns");
-		op.add(Builder::mappings, TypeMapping.JSONP_PARSER, "mappings");
-		op.add(Builder::order, JsonpValueParser.numberParser(), "order");
-		op.add(Builder::settings, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "settings");
-		op.add(Builder::version, JsonpValueParser.numberParser(), "version");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"index_patterns");
+		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::order, JsonpDeserializer.numberDeserializer(), "order");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"settings");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 
 	}
 

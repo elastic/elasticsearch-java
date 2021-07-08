@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -167,18 +167,18 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for DataframeClassificationSummaryMulticlassConfusionMatrix
+	 * Json deserializer for DataframeClassificationSummaryMulticlassConfusionMatrix
 	 */
-	public static final JsonpValueParser<DataframeClassificationSummaryMulticlassConfusionMatrix> JSONP_PARSER = JsonpObjectBuilderParser
+	public static final JsonpDeserializer<DataframeClassificationSummaryMulticlassConfusionMatrix> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					DataframeClassificationSummaryMulticlassConfusionMatrix::setupDataframeClassificationSummaryMulticlassConfusionMatrixParser);
+					DataframeClassificationSummaryMulticlassConfusionMatrix::setupDataframeClassificationSummaryMulticlassConfusionMatrixDeserializer);
 
-	protected static void setupDataframeClassificationSummaryMulticlassConfusionMatrixParser(
-			DelegatingJsonpValueParser<DataframeClassificationSummaryMulticlassConfusionMatrix.Builder> op) {
+	protected static void setupDataframeClassificationSummaryMulticlassConfusionMatrixDeserializer(
+			DelegatingDeserializer<DataframeClassificationSummaryMulticlassConfusionMatrix.Builder> op) {
 
-		op.add(Builder::confusionMatrix, JsonpValueParser.arrayParser(ConfusionMatrixItem.JSONP_PARSER),
+		op.add(Builder::confusionMatrix, JsonpDeserializer.arrayDeserializer(ConfusionMatrixItem.DESERIALIZER),
 				"confusion_matrix");
-		op.add(Builder::otherActualClassCount, JsonpValueParser.numberParser(), "other_actual_class_count");
+		op.add(Builder::otherActualClassCount, JsonpDeserializer.numberDeserializer(), "other_actual_class_count");
 
 	}
 

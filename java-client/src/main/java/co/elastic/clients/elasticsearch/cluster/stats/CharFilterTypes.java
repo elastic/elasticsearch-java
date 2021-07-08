@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -571,23 +571,27 @@ public final class CharFilterTypes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for CharFilterTypes
+	 * Json deserializer for CharFilterTypes
 	 */
-	public static final JsonpValueParser<CharFilterTypes> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, CharFilterTypes::setupCharFilterTypesParser);
+	public static final JsonpDeserializer<CharFilterTypes> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, CharFilterTypes::setupCharFilterTypesDeserializer);
 
-	protected static void setupCharFilterTypesParser(DelegatingJsonpValueParser<CharFilterTypes.Builder> op) {
+	protected static void setupCharFilterTypesDeserializer(DelegatingDeserializer<CharFilterTypes.Builder> op) {
 
-		op.add(Builder::charFilterTypes, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "char_filter_types");
-		op.add(Builder::tokenizerTypes, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "tokenizer_types");
-		op.add(Builder::filterTypes, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "filter_types");
-		op.add(Builder::analyzerTypes, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "analyzer_types");
-		op.add(Builder::builtInCharFilters, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER),
+		op.add(Builder::charFilterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+				"char_filter_types");
+		op.add(Builder::tokenizerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+				"tokenizer_types");
+		op.add(Builder::filterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER), "filter_types");
+		op.add(Builder::analyzerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER), "analyzer_types");
+		op.add(Builder::builtInCharFilters, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
 				"built_in_char_filters");
-		op.add(Builder::builtInTokenizers, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER),
+		op.add(Builder::builtInTokenizers, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
 				"built_in_tokenizers");
-		op.add(Builder::builtInFilters, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "built_in_filters");
-		op.add(Builder::builtInAnalyzers, JsonpValueParser.arrayParser(FieldTypes.JSONP_PARSER), "built_in_analyzers");
+		op.add(Builder::builtInFilters, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+				"built_in_filters");
+		op.add(Builder::builtInAnalyzers, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+				"built_in_analyzers");
 
 	}
 

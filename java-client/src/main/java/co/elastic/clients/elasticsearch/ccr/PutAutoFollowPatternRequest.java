@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ccr;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -552,31 +552,34 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for PutAutoFollowPatternRequest
+	 * Json deserializer for PutAutoFollowPatternRequest
 	 */
-	public static final JsonpValueParser<PutAutoFollowPatternRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestParser);
+	public static final JsonpDeserializer<PutAutoFollowPatternRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer);
 
-	protected static void setupPutAutoFollowPatternRequestParser(
-			DelegatingJsonpValueParser<PutAutoFollowPatternRequest.Builder> op) {
+	protected static void setupPutAutoFollowPatternRequestDeserializer(
+			DelegatingDeserializer<PutAutoFollowPatternRequest.Builder> op) {
 
-		op.add(Builder::remoteCluster, JsonpValueParser.stringParser(), "remote_cluster");
-		op.add(Builder::followIndexPattern, JsonpValueParser.stringParser(), "follow_index_pattern");
-		op.add(Builder::leaderIndexPatterns, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()),
-				"leader_index_patterns");
-		op.add(Builder::maxOutstandingReadRequests, JsonpValueParser.numberParser(), "max_outstanding_read_requests");
-		op.add(Builder::settings, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()), "settings");
-		op.add(Builder::maxOutstandingWriteRequests, JsonpValueParser.numberParser(), "max_outstanding_write_requests");
-		op.add(Builder::readPollTimeout, JsonpValueParser.jsonValueParser(), "read_poll_timeout");
-		op.add(Builder::maxReadRequestOperationCount, JsonpValueParser.numberParser(),
+		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
+		op.add(Builder::followIndexPattern, JsonpDeserializer.stringDeserializer(), "follow_index_pattern");
+		op.add(Builder::leaderIndexPatterns,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "leader_index_patterns");
+		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.numberDeserializer(),
+				"max_outstanding_read_requests");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"settings");
+		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.numberDeserializer(),
+				"max_outstanding_write_requests");
+		op.add(Builder::readPollTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_poll_timeout");
+		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.numberDeserializer(),
 				"max_read_request_operation_count");
-		op.add(Builder::maxReadRequestSize, JsonpValueParser.jsonValueParser(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpValueParser.jsonValueParser(), "max_retry_delay");
-		op.add(Builder::maxWriteBufferCount, JsonpValueParser.numberParser(), "max_write_buffer_count");
-		op.add(Builder::maxWriteBufferSize, JsonpValueParser.jsonValueParser(), "max_write_buffer_size");
-		op.add(Builder::maxWriteRequestOperationCount, JsonpValueParser.numberParser(),
+		op.add(Builder::maxReadRequestSize, JsonpDeserializer.jsonValueDeserializer(), "max_read_request_size");
+		op.add(Builder::maxRetryDelay, JsonpDeserializer.jsonValueDeserializer(), "max_retry_delay");
+		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.numberDeserializer(), "max_write_buffer_count");
+		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.jsonValueDeserializer(), "max_write_buffer_size");
+		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.numberDeserializer(),
 				"max_write_request_operation_count");
-		op.add(Builder::maxWriteRequestSize, JsonpValueParser.jsonValueParser(), "max_write_request_size");
+		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.jsonValueDeserializer(), "max_write_request_size");
 
 	}
 
@@ -617,5 +620,5 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutAutoFollowPatternResponse.JSONP_PARSER);
+			}, Endpoint.Simple.emptyMap(), true, PutAutoFollowPatternResponse.DESERIALIZER);
 }

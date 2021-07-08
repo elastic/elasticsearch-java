@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.indices.put_index_template;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.Alias;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -216,16 +216,17 @@ public final class IndexTemplateMapping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for IndexTemplateMapping
+	 * Json deserializer for IndexTemplateMapping
 	 */
-	public static final JsonpValueParser<IndexTemplateMapping> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, IndexTemplateMapping::setupIndexTemplateMappingParser);
+	public static final JsonpDeserializer<IndexTemplateMapping> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, IndexTemplateMapping::setupIndexTemplateMappingDeserializer);
 
-	protected static void setupIndexTemplateMappingParser(DelegatingJsonpValueParser<IndexTemplateMapping.Builder> op) {
+	protected static void setupIndexTemplateMappingDeserializer(
+			DelegatingDeserializer<IndexTemplateMapping.Builder> op) {
 
-		op.add(Builder::aliases, JsonpValueParser.stringMapParser(Alias.JSONP_PARSER), "aliases");
-		op.add(Builder::mappings, TypeMapping.JSONP_PARSER, "mappings");
-		op.add(Builder::settings, IndexSettings.JSONP_PARSER, "settings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::settings, IndexSettings.DESERIALIZER, "settings");
 
 	}
 

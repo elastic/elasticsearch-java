@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -111,14 +111,14 @@ public final class AnalysisMemoryLimit implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for AnalysisMemoryLimit
+	 * Json deserializer for AnalysisMemoryLimit
 	 */
-	public static final JsonpValueParser<AnalysisMemoryLimit> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, AnalysisMemoryLimit::setupAnalysisMemoryLimitParser);
+	public static final JsonpDeserializer<AnalysisMemoryLimit> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, AnalysisMemoryLimit::setupAnalysisMemoryLimitDeserializer);
 
-	protected static void setupAnalysisMemoryLimitParser(DelegatingJsonpValueParser<AnalysisMemoryLimit.Builder> op) {
+	protected static void setupAnalysisMemoryLimitDeserializer(DelegatingDeserializer<AnalysisMemoryLimit.Builder> op) {
 
-		op.add(Builder::modelMemoryLimit, JsonpValueParser.stringParser(), "model_memory_limit");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 
 	}
 

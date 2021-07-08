@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -798,35 +798,36 @@ public final class Anomaly implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for Anomaly
+	 * Json deserializer for Anomaly
 	 */
-	public static final JsonpValueParser<Anomaly> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			Anomaly::setupAnomalyParser);
+	public static final JsonpDeserializer<Anomaly> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, Anomaly::setupAnomalyDeserializer);
 
-	protected static void setupAnomalyParser(DelegatingJsonpValueParser<Anomaly.Builder> op) {
+	protected static void setupAnomalyDeserializer(DelegatingDeserializer<Anomaly.Builder> op) {
 
-		op.add(Builder::actual, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "actual");
-		op.add(Builder::bucketSpan, JsonpValueParser.jsonValueParser(), "bucket_span");
-		op.add(Builder::byFieldName, JsonpValueParser.stringParser(), "by_field_name");
-		op.add(Builder::byFieldValue, JsonpValueParser.stringParser(), "by_field_value");
-		op.add(Builder::causes, JsonpValueParser.arrayParser(AnomalyCause.JSONP_PARSER), "causes");
-		op.add(Builder::detectorIndex, JsonpValueParser.numberParser(), "detector_index");
-		op.add(Builder::fieldName, JsonpValueParser.stringParser(), "field_name");
-		op.add(Builder::function, JsonpValueParser.stringParser(), "function");
-		op.add(Builder::functionDescription, JsonpValueParser.stringParser(), "function_description");
-		op.add(Builder::influencers, JsonpValueParser.arrayParser(Influence.JSONP_PARSER), "influencers");
-		op.add(Builder::initialRecordScore, JsonpValueParser.numberParser(), "initial_record_score");
-		op.add(Builder::isInterim, JsonpValueParser.booleanParser(), "is_interim");
-		op.add(Builder::jobId, JsonpValueParser.stringParser(), "job_id");
-		op.add(Builder::overFieldName, JsonpValueParser.stringParser(), "over_field_name");
-		op.add(Builder::overFieldValue, JsonpValueParser.stringParser(), "over_field_value");
-		op.add(Builder::partitionFieldName, JsonpValueParser.stringParser(), "partition_field_name");
-		op.add(Builder::partitionFieldValue, JsonpValueParser.stringParser(), "partition_field_value");
-		op.add(Builder::probability, JsonpValueParser.numberParser(), "probability");
-		op.add(Builder::recordScore, JsonpValueParser.numberParser(), "record_score");
-		op.add(Builder::resultType, JsonpValueParser.stringParser(), "result_type");
-		op.add(Builder::timestamp, JsonpValueParser.jsonValueParser(), "timestamp");
-		op.add(Builder::typical, JsonpValueParser.arrayParser(JsonpValueParser.numberParser()), "typical");
+		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "actual");
+		op.add(Builder::bucketSpan, JsonpDeserializer.jsonValueDeserializer(), "bucket_span");
+		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
+		op.add(Builder::byFieldValue, JsonpDeserializer.stringDeserializer(), "by_field_value");
+		op.add(Builder::causes, JsonpDeserializer.arrayDeserializer(AnomalyCause.DESERIALIZER), "causes");
+		op.add(Builder::detectorIndex, JsonpDeserializer.numberDeserializer(), "detector_index");
+		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
+		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
+		op.add(Builder::functionDescription, JsonpDeserializer.stringDeserializer(), "function_description");
+		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence.DESERIALIZER), "influencers");
+		op.add(Builder::initialRecordScore, JsonpDeserializer.numberDeserializer(), "initial_record_score");
+		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
+		op.add(Builder::overFieldValue, JsonpDeserializer.stringDeserializer(), "over_field_value");
+		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
+		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
+		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
+		op.add(Builder::recordScore, JsonpDeserializer.numberDeserializer(), "record_score");
+		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
+		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
+				"typical");
 
 	}
 

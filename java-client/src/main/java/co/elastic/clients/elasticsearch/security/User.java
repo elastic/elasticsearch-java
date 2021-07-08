@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -287,21 +287,22 @@ public class User implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for User
+	 * Json deserializer for User
 	 */
-	public static final JsonpValueParser<User> JSONP_PARSER = JsonpObjectBuilderParser.createForObject(Builder::new,
-			User::setupUserParser);
+	public static final JsonpDeserializer<User> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
+			User::setupUserDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupUserParser(
-			DelegatingJsonpValueParser<BuilderT> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupUserDeserializer(
+			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::email, JsonpValueParser.stringParser(), "email");
-		op.add(AbstractBuilder::fullName, JsonpValueParser.stringParser(), "full_name");
-		op.add(AbstractBuilder::metadata, JsonpValueParser.stringMapParser(JsonpValueParser.jsonValueParser()),
-				"metadata");
-		op.add(AbstractBuilder::roles, JsonpValueParser.arrayParser(JsonpValueParser.stringParser()), "roles");
-		op.add(AbstractBuilder::username, JsonpValueParser.stringParser(), "username");
-		op.add(AbstractBuilder::enabled, JsonpValueParser.booleanParser(), "enabled");
+		op.add(AbstractBuilder::email, JsonpDeserializer.stringDeserializer(), "email");
+		op.add(AbstractBuilder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
+		op.add(AbstractBuilder::metadata,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "metadata");
+		op.add(AbstractBuilder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"roles");
+		op.add(AbstractBuilder::username, JsonpDeserializer.stringDeserializer(), "username");
+		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 

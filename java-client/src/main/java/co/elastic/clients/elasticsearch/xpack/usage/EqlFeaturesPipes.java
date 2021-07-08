@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -124,15 +124,15 @@ public final class EqlFeaturesPipes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for EqlFeaturesPipes
+	 * Json deserializer for EqlFeaturesPipes
 	 */
-	public static final JsonpValueParser<EqlFeaturesPipes> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, EqlFeaturesPipes::setupEqlFeaturesPipesParser);
+	public static final JsonpDeserializer<EqlFeaturesPipes> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, EqlFeaturesPipes::setupEqlFeaturesPipesDeserializer);
 
-	protected static void setupEqlFeaturesPipesParser(DelegatingJsonpValueParser<EqlFeaturesPipes.Builder> op) {
+	protected static void setupEqlFeaturesPipesDeserializer(DelegatingDeserializer<EqlFeaturesPipes.Builder> op) {
 
-		op.add(Builder::pipeTail, JsonpValueParser.numberParser(), "pipe_tail");
-		op.add(Builder::pipeHead, JsonpValueParser.numberParser(), "pipe_head");
+		op.add(Builder::pipeTail, JsonpDeserializer.numberDeserializer(), "pipe_tail");
+		op.add(Builder::pipeHead, JsonpDeserializer.numberDeserializer(), "pipe_head");
 
 	}
 

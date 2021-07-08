@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -547,14 +547,14 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ExplainRequest
+	 * Json deserializer for ExplainRequest
 	 */
-	public static final JsonpValueParser<ExplainRequest> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ExplainRequest::setupExplainRequestParser);
+	public static final JsonpDeserializer<ExplainRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ExplainRequest::setupExplainRequestDeserializer);
 
-	protected static void setupExplainRequestParser(DelegatingJsonpValueParser<ExplainRequest.Builder> op) {
+	protected static void setupExplainRequestDeserializer(DelegatingDeserializer<ExplainRequest.Builder> op) {
 
-		op.add(Builder::query, QueryContainer.JSONP_PARSER, "query");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
 
 	}
 
@@ -662,7 +662,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	 * Create an "{@code explain}" endpoint.
 	 */
 	public static <TDocument> Endpoint<ExplainRequest, ExplainResponse<TDocument>, ElasticsearchError> createExplainEndpoint(
-			JsonpValueParser<TDocument> tDocumentParser) {
-		return ENDPOINT.withResponseParser(ExplainResponse.createExplainResponseParser(tDocumentParser));
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		return ENDPOINT
+				.withResponseDeserializer(ExplainResponse.createExplainResponseDeserializer(tDocumentDeserializer));
 	}
 }

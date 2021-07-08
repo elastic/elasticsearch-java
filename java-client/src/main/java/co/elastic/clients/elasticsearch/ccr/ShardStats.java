@@ -24,11 +24,11 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -817,43 +817,47 @@ public final class ShardStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardStats
+	 * Json deserializer for ShardStats
 	 */
-	public static final JsonpValueParser<ShardStats> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardStats::setupShardStatsParser);
+	public static final JsonpDeserializer<ShardStats> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardStats::setupShardStatsDeserializer);
 
-	protected static void setupShardStatsParser(DelegatingJsonpValueParser<ShardStats.Builder> op) {
+	protected static void setupShardStatsDeserializer(DelegatingDeserializer<ShardStats.Builder> op) {
 
-		op.add(Builder::bytesRead, JsonpValueParser.numberParser(), "bytes_read");
-		op.add(Builder::failedReadRequests, JsonpValueParser.numberParser(), "failed_read_requests");
-		op.add(Builder::failedWriteRequests, JsonpValueParser.numberParser(), "failed_write_requests");
-		op.add(Builder::fatalException, ErrorCause.JSONP_PARSER, "fatal_exception");
-		op.add(Builder::followerAliasesVersion, JsonpValueParser.numberParser(), "follower_aliases_version");
-		op.add(Builder::followerGlobalCheckpoint, JsonpValueParser.numberParser(), "follower_global_checkpoint");
-		op.add(Builder::followerIndex, JsonpValueParser.stringParser(), "follower_index");
-		op.add(Builder::followerMappingVersion, JsonpValueParser.numberParser(), "follower_mapping_version");
-		op.add(Builder::followerMaxSeqNo, JsonpValueParser.numberParser(), "follower_max_seq_no");
-		op.add(Builder::followerSettingsVersion, JsonpValueParser.numberParser(), "follower_settings_version");
-		op.add(Builder::lastRequestedSeqNo, JsonpValueParser.numberParser(), "last_requested_seq_no");
-		op.add(Builder::leaderGlobalCheckpoint, JsonpValueParser.numberParser(), "leader_global_checkpoint");
-		op.add(Builder::leaderIndex, JsonpValueParser.stringParser(), "leader_index");
-		op.add(Builder::leaderMaxSeqNo, JsonpValueParser.numberParser(), "leader_max_seq_no");
-		op.add(Builder::operationsRead, JsonpValueParser.numberParser(), "operations_read");
-		op.add(Builder::operationsWritten, JsonpValueParser.numberParser(), "operations_written");
-		op.add(Builder::outstandingReadRequests, JsonpValueParser.numberParser(), "outstanding_read_requests");
-		op.add(Builder::outstandingWriteRequests, JsonpValueParser.numberParser(), "outstanding_write_requests");
-		op.add(Builder::readExceptions, JsonpValueParser.arrayParser(ReadException.JSONP_PARSER), "read_exceptions");
-		op.add(Builder::remoteCluster, JsonpValueParser.stringParser(), "remote_cluster");
-		op.add(Builder::shardId, JsonpValueParser.numberParser(), "shard_id");
-		op.add(Builder::successfulReadRequests, JsonpValueParser.numberParser(), "successful_read_requests");
-		op.add(Builder::successfulWriteRequests, JsonpValueParser.numberParser(), "successful_write_requests");
-		op.add(Builder::timeSinceLastReadMillis, JsonpValueParser.jsonValueParser(), "time_since_last_read_millis");
-		op.add(Builder::totalReadRemoteExecTimeMillis, JsonpValueParser.jsonValueParser(),
+		op.add(Builder::bytesRead, JsonpDeserializer.numberDeserializer(), "bytes_read");
+		op.add(Builder::failedReadRequests, JsonpDeserializer.numberDeserializer(), "failed_read_requests");
+		op.add(Builder::failedWriteRequests, JsonpDeserializer.numberDeserializer(), "failed_write_requests");
+		op.add(Builder::fatalException, ErrorCause.DESERIALIZER, "fatal_exception");
+		op.add(Builder::followerAliasesVersion, JsonpDeserializer.numberDeserializer(), "follower_aliases_version");
+		op.add(Builder::followerGlobalCheckpoint, JsonpDeserializer.numberDeserializer(), "follower_global_checkpoint");
+		op.add(Builder::followerIndex, JsonpDeserializer.stringDeserializer(), "follower_index");
+		op.add(Builder::followerMappingVersion, JsonpDeserializer.numberDeserializer(), "follower_mapping_version");
+		op.add(Builder::followerMaxSeqNo, JsonpDeserializer.numberDeserializer(), "follower_max_seq_no");
+		op.add(Builder::followerSettingsVersion, JsonpDeserializer.numberDeserializer(), "follower_settings_version");
+		op.add(Builder::lastRequestedSeqNo, JsonpDeserializer.numberDeserializer(), "last_requested_seq_no");
+		op.add(Builder::leaderGlobalCheckpoint, JsonpDeserializer.numberDeserializer(), "leader_global_checkpoint");
+		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
+		op.add(Builder::leaderMaxSeqNo, JsonpDeserializer.numberDeserializer(), "leader_max_seq_no");
+		op.add(Builder::operationsRead, JsonpDeserializer.numberDeserializer(), "operations_read");
+		op.add(Builder::operationsWritten, JsonpDeserializer.numberDeserializer(), "operations_written");
+		op.add(Builder::outstandingReadRequests, JsonpDeserializer.numberDeserializer(), "outstanding_read_requests");
+		op.add(Builder::outstandingWriteRequests, JsonpDeserializer.numberDeserializer(), "outstanding_write_requests");
+		op.add(Builder::readExceptions, JsonpDeserializer.arrayDeserializer(ReadException.DESERIALIZER),
+				"read_exceptions");
+		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
+		op.add(Builder::shardId, JsonpDeserializer.numberDeserializer(), "shard_id");
+		op.add(Builder::successfulReadRequests, JsonpDeserializer.numberDeserializer(), "successful_read_requests");
+		op.add(Builder::successfulWriteRequests, JsonpDeserializer.numberDeserializer(), "successful_write_requests");
+		op.add(Builder::timeSinceLastReadMillis, JsonpDeserializer.jsonValueDeserializer(),
+				"time_since_last_read_millis");
+		op.add(Builder::totalReadRemoteExecTimeMillis, JsonpDeserializer.jsonValueDeserializer(),
 				"total_read_remote_exec_time_millis");
-		op.add(Builder::totalReadTimeMillis, JsonpValueParser.jsonValueParser(), "total_read_time_millis");
-		op.add(Builder::totalWriteTimeMillis, JsonpValueParser.jsonValueParser(), "total_write_time_millis");
-		op.add(Builder::writeBufferOperationCount, JsonpValueParser.numberParser(), "write_buffer_operation_count");
-		op.add(Builder::writeBufferSizeInBytes, JsonpValueParser.jsonValueParser(), "write_buffer_size_in_bytes");
+		op.add(Builder::totalReadTimeMillis, JsonpDeserializer.jsonValueDeserializer(), "total_read_time_millis");
+		op.add(Builder::totalWriteTimeMillis, JsonpDeserializer.jsonValueDeserializer(), "total_write_time_millis");
+		op.add(Builder::writeBufferOperationCount, JsonpDeserializer.numberDeserializer(),
+				"write_buffer_operation_count");
+		op.add(Builder::writeBufferSizeInBytes, JsonpDeserializer.jsonValueDeserializer(),
+				"write_buffer_size_in_bytes");
 
 	}
 

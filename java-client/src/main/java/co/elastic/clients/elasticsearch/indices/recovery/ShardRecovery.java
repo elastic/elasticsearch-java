@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
@@ -519,29 +519,29 @@ public final class ShardRecovery implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for ShardRecovery
+	 * Json deserializer for ShardRecovery
 	 */
-	public static final JsonpValueParser<ShardRecovery> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, ShardRecovery::setupShardRecoveryParser);
+	public static final JsonpDeserializer<ShardRecovery> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, ShardRecovery::setupShardRecoveryDeserializer);
 
-	protected static void setupShardRecoveryParser(DelegatingJsonpValueParser<ShardRecovery.Builder> op) {
+	protected static void setupShardRecoveryDeserializer(DelegatingDeserializer<ShardRecovery.Builder> op) {
 
-		op.add(Builder::id, JsonpValueParser.numberParser(), "id");
-		op.add(Builder::index, RecoveryIndexStatus.JSONP_PARSER, "index");
-		op.add(Builder::primary, JsonpValueParser.booleanParser(), "primary");
-		op.add(Builder::source, RecoveryOrigin.JSONP_PARSER, "source");
-		op.add(Builder::stage, JsonpValueParser.stringParser(), "stage");
-		op.add(Builder::start, RecoveryStartStatus.JSONP_PARSER, "start");
-		op.add(Builder::startTime, JsonpValueParser.stringParser(), "start_time");
-		op.add(Builder::startTimeInMillis, JsonpValueParser.jsonValueParser(), "start_time_in_millis");
-		op.add(Builder::stopTime, JsonpValueParser.stringParser(), "stop_time");
-		op.add(Builder::stopTimeInMillis, JsonpValueParser.jsonValueParser(), "stop_time_in_millis");
-		op.add(Builder::target, RecoveryOrigin.JSONP_PARSER, "target");
-		op.add(Builder::totalTime, JsonpValueParser.stringParser(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpValueParser.jsonValueParser(), "total_time_in_millis");
-		op.add(Builder::translog, TranslogStatus.JSONP_PARSER, "translog");
-		op.add(Builder::type, JsonpValueParser.stringParser(), "type");
-		op.add(Builder::verifyIndex, VerifyIndex.JSONP_PARSER, "verify_index");
+		op.add(Builder::id, JsonpDeserializer.numberDeserializer(), "id");
+		op.add(Builder::index, RecoveryIndexStatus.DESERIALIZER, "index");
+		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
+		op.add(Builder::source, RecoveryOrigin.DESERIALIZER, "source");
+		op.add(Builder::stage, JsonpDeserializer.stringDeserializer(), "stage");
+		op.add(Builder::start, RecoveryStartStatus.DESERIALIZER, "start");
+		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_time_in_millis");
+		op.add(Builder::stopTime, JsonpDeserializer.stringDeserializer(), "stop_time");
+		op.add(Builder::stopTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "stop_time_in_millis");
+		op.add(Builder::target, RecoveryOrigin.DESERIALIZER, "target");
+		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "total_time_in_millis");
+		op.add(Builder::translog, TranslogStatus.DESERIALIZER, "translog");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::verifyIndex, VerifyIndex.DESERIALIZER, "verify_index");
 
 	}
 

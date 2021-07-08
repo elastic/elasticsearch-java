@@ -23,11 +23,11 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingJsonpValueParser;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpObjectBuilderParser;
-import co.elastic.clients.json.JsonpObjectParser;
-import co.elastic.clients.json.JsonpValueParser;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -120,15 +120,15 @@ public final class NodeInfoXpackSecuritySsl implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json parser for NodeInfoXpackSecuritySsl
+	 * Json deserializer for NodeInfoXpackSecuritySsl
 	 */
-	public static final JsonpValueParser<NodeInfoXpackSecuritySsl> JSONP_PARSER = JsonpObjectBuilderParser
-			.createForObject(Builder::new, NodeInfoXpackSecuritySsl::setupNodeInfoXpackSecuritySslParser);
+	public static final JsonpDeserializer<NodeInfoXpackSecuritySsl> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, NodeInfoXpackSecuritySsl::setupNodeInfoXpackSecuritySslDeserializer);
 
-	protected static void setupNodeInfoXpackSecuritySslParser(
-			DelegatingJsonpValueParser<NodeInfoXpackSecuritySsl.Builder> op) {
+	protected static void setupNodeInfoXpackSecuritySslDeserializer(
+			DelegatingDeserializer<NodeInfoXpackSecuritySsl.Builder> op) {
 
-		op.add(Builder::ssl, JsonpValueParser.stringMapParser(JsonpValueParser.stringParser()), "ssl");
+		op.add(Builder::ssl, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "ssl");
 
 	}
 
