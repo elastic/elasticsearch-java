@@ -71,7 +71,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	private final String description;
 
 	@Nullable
-	private final ModelPlotConfigEnabled modelPlotConfig;
+	private final ModelPlotConfig modelPlotConfig;
 
 	@Nullable
 	private final Number dailyModelSnapshotRetentionAfterDays;
@@ -186,7 +186,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code model_plot_config}
 	 */
 	@Nullable
-	public ModelPlotConfigEnabled modelPlotConfig() {
+	public ModelPlotConfig modelPlotConfig() {
 		return this.modelPlotConfig;
 	}
 
@@ -413,7 +413,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		private String description;
 
 		@Nullable
-		private ModelPlotConfigEnabled modelPlotConfig;
+		private ModelPlotConfig modelPlotConfig;
 
 		@Nullable
 		private Number dailyModelSnapshotRetentionAfterDays;
@@ -544,7 +544,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlotConfig(@Nullable ModelPlotConfigEnabled value) {
+		public Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
 			this.modelPlotConfig = value;
 			return this;
 		}
@@ -552,9 +552,8 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlotConfig(
-				Function<ModelPlotConfigEnabled.Builder, ObjectBuilder<ModelPlotConfigEnabled>> fn) {
-			return this.modelPlotConfig(fn.apply(new ModelPlotConfigEnabled.Builder()).build());
+		public Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**
@@ -731,7 +730,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::categorizationFilters,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::modelPlotConfig, ModelPlotConfigEnabled.DESERIALIZER, "model_plot_config");
+		op.add(Builder::modelPlotConfig, ModelPlotConfig.DESERIALIZER, "model_plot_config");
 		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.numberDeserializer(),
 				"daily_model_snapshot_retention_after_days");
 		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),

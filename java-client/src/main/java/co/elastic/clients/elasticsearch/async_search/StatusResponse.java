@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: async_search.status.Response
 public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	private final Number completionStatus;
 
@@ -51,7 +51,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 
 	protected StatusResponse(Builder<TDocument> builder) {
 		super(builder);
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.completionStatus = Objects.requireNonNull(builder.completionStatus, "completion_status");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -60,8 +60,8 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		super.toJsonpInternal(generator, mapper);
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 		generator.writeKey("completion_status");
 		generator.write(this.completionStatus.doubleValue());
@@ -90,7 +90,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	public static class Builder<TDocument> extends AsyncSearchResponseBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<StatusResponse<TDocument>> {
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		private Number completionStatus;
 
@@ -100,16 +100,16 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder<TDocument> _shards(ShardStatistics value) {
-			this._shards = value;
+		public Builder<TDocument> shards(ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder<TDocument> _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -162,7 +162,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 			DelegatingDeserializer<StatusResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
 		op.add(Builder::completionStatus, JsonpDeserializer.numberDeserializer(), "completion_status");
 
 	}

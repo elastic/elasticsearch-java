@@ -49,13 +49,10 @@ public final class ModelSizeStats implements ToJsonp {
 
 	private final Number modelBytes;
 
-	@Nullable
 	private final Number modelBytesExceeded;
 
-	@Nullable
 	private final Number modelBytesMemoryLimit;
 
-	@Nullable
 	private final Number peakModelBytes;
 
 	@Nullable
@@ -69,7 +66,7 @@ public final class ModelSizeStats implements ToJsonp {
 
 	private final Number totalPartitionFieldCount;
 
-	private final String categorizationStatus;
+	private final JsonValue categorizationStatus;
 
 	private final Number categorizedDocCount;
 
@@ -96,9 +93,9 @@ public final class ModelSizeStats implements ToJsonp {
 		this.logTime = Objects.requireNonNull(builder.logTime, "log_time");
 		this.memoryStatus = Objects.requireNonNull(builder.memoryStatus, "memory_status");
 		this.modelBytes = Objects.requireNonNull(builder.modelBytes, "model_bytes");
-		this.modelBytesExceeded = builder.modelBytesExceeded;
-		this.modelBytesMemoryLimit = builder.modelBytesMemoryLimit;
-		this.peakModelBytes = builder.peakModelBytes;
+		this.modelBytesExceeded = Objects.requireNonNull(builder.modelBytesExceeded, "model_bytes_exceeded");
+		this.modelBytesMemoryLimit = Objects.requireNonNull(builder.modelBytesMemoryLimit, "model_bytes_memory_limit");
+		this.peakModelBytes = Objects.requireNonNull(builder.peakModelBytes, "peak_model_bytes");
 		this.assignmentMemoryBasis = builder.assignmentMemoryBasis;
 		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
 		this.totalByFieldCount = Objects.requireNonNull(builder.totalByFieldCount, "total_by_field_count");
@@ -154,7 +151,6 @@ public final class ModelSizeStats implements ToJsonp {
 	/**
 	 * API name: {@code model_bytes_exceeded}
 	 */
-	@Nullable
 	public Number modelBytesExceeded() {
 		return this.modelBytesExceeded;
 	}
@@ -162,7 +158,6 @@ public final class ModelSizeStats implements ToJsonp {
 	/**
 	 * API name: {@code model_bytes_memory_limit}
 	 */
-	@Nullable
 	public Number modelBytesMemoryLimit() {
 		return this.modelBytesMemoryLimit;
 	}
@@ -170,7 +165,6 @@ public final class ModelSizeStats implements ToJsonp {
 	/**
 	 * API name: {@code peak_model_bytes}
 	 */
-	@Nullable
 	public Number peakModelBytes() {
 		return this.peakModelBytes;
 	}
@@ -214,7 +208,7 @@ public final class ModelSizeStats implements ToJsonp {
 	/**
 	 * API name: {@code categorization_status}
 	 */
-	public String categorizationStatus() {
+	public JsonValue categorizationStatus() {
 		return this.categorizationStatus;
 	}
 
@@ -294,24 +288,15 @@ public final class ModelSizeStats implements ToJsonp {
 		generator.writeKey("model_bytes");
 		generator.write(this.modelBytes.doubleValue());
 
-		if (this.modelBytesExceeded != null) {
+		generator.writeKey("model_bytes_exceeded");
+		generator.write(this.modelBytesExceeded.doubleValue());
 
-			generator.writeKey("model_bytes_exceeded");
-			generator.write(this.modelBytesExceeded.doubleValue());
+		generator.writeKey("model_bytes_memory_limit");
+		generator.write(this.modelBytesMemoryLimit.doubleValue());
 
-		}
-		if (this.modelBytesMemoryLimit != null) {
+		generator.writeKey("peak_model_bytes");
+		generator.write(this.peakModelBytes.doubleValue());
 
-			generator.writeKey("model_bytes_memory_limit");
-			generator.write(this.modelBytesMemoryLimit.doubleValue());
-
-		}
-		if (this.peakModelBytes != null) {
-
-			generator.writeKey("peak_model_bytes");
-			generator.write(this.peakModelBytes.doubleValue());
-
-		}
 		if (this.assignmentMemoryBasis != null) {
 
 			generator.writeKey("assignment_memory_basis");
@@ -377,13 +362,10 @@ public final class ModelSizeStats implements ToJsonp {
 
 		private Number modelBytes;
 
-		@Nullable
 		private Number modelBytesExceeded;
 
-		@Nullable
 		private Number modelBytesMemoryLimit;
 
-		@Nullable
 		private Number peakModelBytes;
 
 		@Nullable
@@ -397,7 +379,7 @@ public final class ModelSizeStats implements ToJsonp {
 
 		private Number totalPartitionFieldCount;
 
-		private String categorizationStatus;
+		private JsonValue categorizationStatus;
 
 		private Number categorizedDocCount;
 
@@ -457,7 +439,7 @@ public final class ModelSizeStats implements ToJsonp {
 		/**
 		 * API name: {@code model_bytes_exceeded}
 		 */
-		public Builder modelBytesExceeded(@Nullable Number value) {
+		public Builder modelBytesExceeded(Number value) {
 			this.modelBytesExceeded = value;
 			return this;
 		}
@@ -465,7 +447,7 @@ public final class ModelSizeStats implements ToJsonp {
 		/**
 		 * API name: {@code model_bytes_memory_limit}
 		 */
-		public Builder modelBytesMemoryLimit(@Nullable Number value) {
+		public Builder modelBytesMemoryLimit(Number value) {
 			this.modelBytesMemoryLimit = value;
 			return this;
 		}
@@ -473,7 +455,7 @@ public final class ModelSizeStats implements ToJsonp {
 		/**
 		 * API name: {@code peak_model_bytes}
 		 */
-		public Builder peakModelBytes(@Nullable Number value) {
+		public Builder peakModelBytes(Number value) {
 			this.peakModelBytes = value;
 			return this;
 		}
@@ -521,7 +503,7 @@ public final class ModelSizeStats implements ToJsonp {
 		/**
 		 * API name: {@code categorization_status}
 		 */
-		public Builder categorizationStatus(String value) {
+		public Builder categorizationStatus(JsonValue value) {
 			this.categorizationStatus = value;
 			return this;
 		}
@@ -619,7 +601,7 @@ public final class ModelSizeStats implements ToJsonp {
 		op.add(Builder::totalOverFieldCount, JsonpDeserializer.numberDeserializer(), "total_over_field_count");
 		op.add(Builder::totalPartitionFieldCount, JsonpDeserializer.numberDeserializer(),
 				"total_partition_field_count");
-		op.add(Builder::categorizationStatus, JsonpDeserializer.stringDeserializer(), "categorization_status");
+		op.add(Builder::categorizationStatus, JsonpDeserializer.jsonValueDeserializer(), "categorization_status");
 		op.add(Builder::categorizedDocCount, JsonpDeserializer.numberDeserializer(), "categorized_doc_count");
 		op.add(Builder::deadCategoryCount, JsonpDeserializer.numberDeserializer(), "dead_category_count");
 		op.add(Builder::failedCategoryCount, JsonpDeserializer.numberDeserializer(), "failed_category_count");

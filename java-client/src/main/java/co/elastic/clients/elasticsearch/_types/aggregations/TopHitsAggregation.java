@@ -69,7 +69,7 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 	private final List<JsonValue> sort;
 
 	@Nullable
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	@Nullable
 	private final List<String> storedFields;
@@ -94,7 +94,7 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 		this.scriptFields = builder.scriptFields;
 		this.size = builder.size;
 		this.sort = builder.sort;
-		this._source = builder._source;
+		this.source = builder.source;
 		this.storedFields = builder.storedFields;
 		this.trackScores = builder.trackScores;
 		this.version = builder.version;
@@ -162,8 +162,8 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
@@ -258,10 +258,10 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 			generator.writeEnd();
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
-			generator.write(this._source);
+			generator.write(this.source);
 
 		}
 		if (this.storedFields != null) {
@@ -326,7 +326,7 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 		private List<JsonValue> sort;
 
 		@Nullable
-		private JsonValue _source;
+		private JsonValue source;
 
 		@Nullable
 		private List<String> storedFields;
@@ -469,8 +469,8 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(@Nullable JsonValue value) {
-			this._source = value;
+		public Builder source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
@@ -561,7 +561,7 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 				"script_fields");
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
-		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
 		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");

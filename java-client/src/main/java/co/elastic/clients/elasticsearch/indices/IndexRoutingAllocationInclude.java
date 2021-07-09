@@ -37,17 +37,17 @@ import javax.annotation.Nullable;
 // typedef: indices._types.IndexRoutingAllocationInclude
 public final class IndexRoutingAllocationInclude implements ToJsonp {
 	@Nullable
-	private final String _tierPreference;
+	private final String tierPreference;
 
 	@Nullable
-	private final String _id;
+	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected IndexRoutingAllocationInclude(Builder builder) {
 
-		this._tierPreference = builder._tierPreference;
-		this._id = builder._id;
+		this.tierPreference = builder.tierPreference;
+		this.id = builder.id;
 
 	}
 
@@ -55,16 +55,16 @@ public final class IndexRoutingAllocationInclude implements ToJsonp {
 	 * API name: {@code _tier_preference}
 	 */
 	@Nullable
-	public String _tierPreference() {
-		return this._tierPreference;
+	public String tierPreference() {
+		return this.tierPreference;
 	}
 
 	/**
 	 * API name: {@code _id}
 	 */
 	@Nullable
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -78,16 +78,16 @@ public final class IndexRoutingAllocationInclude implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this._tierPreference != null) {
+		if (this.tierPreference != null) {
 
 			generator.writeKey("_tier_preference");
-			generator.write(this._tierPreference);
+			generator.write(this.tierPreference);
 
 		}
-		if (this._id != null) {
+		if (this.id != null) {
 
 			generator.writeKey("_id");
-			generator.write(this._id);
+			generator.write(this.id);
 
 		}
 
@@ -100,24 +100,24 @@ public final class IndexRoutingAllocationInclude implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<IndexRoutingAllocationInclude> {
 		@Nullable
-		private String _tierPreference;
+		private String tierPreference;
 
 		@Nullable
-		private String _id;
+		private String id;
 
 		/**
 		 * API name: {@code _tier_preference}
 		 */
-		public Builder _tierPreference(@Nullable String value) {
-			this._tierPreference = value;
+		public Builder tierPreference(@Nullable String value) {
+			this.tierPreference = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(@Nullable String value) {
-			this._id = value;
+		public Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -145,8 +145,8 @@ public final class IndexRoutingAllocationInclude implements ToJsonp {
 	protected static void setupIndexRoutingAllocationIncludeDeserializer(
 			DelegatingDeserializer<IndexRoutingAllocationInclude.Builder> op) {
 
-		op.add(Builder::_tierPreference, JsonpDeserializer.stringDeserializer(), "_tier_preference");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::tierPreference, JsonpDeserializer.stringDeserializer(), "_tier_preference");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 
 	}
 

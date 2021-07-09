@@ -63,7 +63,7 @@ public final class Source implements ToJsonp {
 	private final List<JsonValue> sort;
 
 	@Nullable
-	private final List<String> _source;
+	private final List<String> source;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ public final class Source implements ToJsonp {
 		this.size = builder.size;
 		this.slice = builder.slice;
 		this.sort = builder.sort;
-		this._source = builder._source;
+		this.source = builder.source;
 
 	}
 
@@ -130,8 +130,8 @@ public final class Source implements ToJsonp {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public List<String> _source() {
-		return this._source;
+	public List<String> source() {
+		return this.source;
 	}
 
 	/**
@@ -188,11 +188,11 @@ public final class Source implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
 			generator.writeStartArray();
-			for (String item0 : this._source) {
+			for (String item0 : this.source) {
 				generator.write(item0);
 
 			}
@@ -226,7 +226,7 @@ public final class Source implements ToJsonp {
 		private List<JsonValue> sort;
 
 		@Nullable
-		private List<String> _source;
+		private List<String> source;
 
 		/**
 		 * API name: {@code index}
@@ -338,27 +338,27 @@ public final class Source implements ToJsonp {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(@Nullable List<String> value) {
-			this._source = value;
+		public Builder source(@Nullable List<String> value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(String... value) {
-			this._source = Arrays.asList(value);
+		public Builder source(String... value) {
+			this.source = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #_source(List)}, creating the list if needed.
+		 * Add a value to {@link #source(List)}, creating the list if needed.
 		 */
-		public Builder add_source(String value) {
-			if (this._source == null) {
-				this._source = new ArrayList<>();
+		public Builder addSource(String value) {
+			if (this.source == null) {
+				this.source = new ArrayList<>();
 			}
-			this._source.add(value);
+			this.source.add(value);
 			return this;
 		}
 
@@ -390,8 +390,7 @@ public final class Source implements ToJsonp {
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 		op.add(Builder::slice, SlicedScroll.DESERIALIZER, "slice");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
-		op.add(Builder::_source, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"_source");
+		op.add(Builder::source, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "_source");
 
 	}
 

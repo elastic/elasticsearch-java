@@ -44,14 +44,14 @@ import javax.annotation.Nullable;
 public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 	private final List<ReloadDetails> reloadDetails;
 
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ReloadSearchAnalyzersResponse(Builder builder) {
 
 		this.reloadDetails = Objects.requireNonNull(builder.reloadDetails, "reload_details");
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 
 	}
 
@@ -65,8 +65,8 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -89,7 +89,7 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 	}
 
@@ -101,7 +101,7 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ReloadSearchAnalyzersResponse> {
 		private List<ReloadDetails> reloadDetails;
 
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		/**
 		 * API name: {@code reload_details}
@@ -147,16 +147,16 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(ShardStatistics value) {
-			this._shards = value;
+		public Builder shards(ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -185,7 +185,7 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 
 		op.add(Builder::reloadDetails, JsonpDeserializer.arrayDeserializer(ReloadDetails.DESERIALIZER),
 				"reload_details");
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
 
 	}
 

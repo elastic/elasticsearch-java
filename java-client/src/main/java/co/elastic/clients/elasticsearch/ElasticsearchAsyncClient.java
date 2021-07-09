@@ -91,6 +91,8 @@ import co.elastic.clients.elasticsearch._global.SearchShardsRequest;
 import co.elastic.clients.elasticsearch._global.SearchShardsResponse;
 import co.elastic.clients.elasticsearch._global.SearchTemplateRequest;
 import co.elastic.clients.elasticsearch._global.SearchTemplateResponse;
+import co.elastic.clients.elasticsearch._global.TermsEnumRequest;
+import co.elastic.clients.elasticsearch._global.TermsEnumResponse;
 import co.elastic.clients.elasticsearch._global.TermvectorsRequest;
 import co.elastic.clients.elasticsearch._global.TermvectorsResponse;
 import co.elastic.clients.elasticsearch._global.UpdateByQueryRequest;
@@ -1319,6 +1321,41 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 			Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
+	}
+
+	// ----- Endpoint: terms_enum
+
+	/**
+	 * The terms enum API can be used to discover terms in the index that begin with
+	 * the provided string. It is designed for low-latency look-ups used in
+	 * auto-complete scenarios.
+	 *
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<TermsEnumResponse> termsEnum(TermsEnumRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, TermsEnumRequest.ENDPOINT, this.requestOptions);
+	}
+
+	/**
+	 * The terms enum API can be used to discover terms in the index that begin with
+	 * the provided string. It is designed for low-latency look-ups used in
+	 * auto-complete scenarios.
+	 *
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
+	 *      on elastic.co</a>
+	 * @param fn
+	 *            a function that initializes a freshly created builder. This
+	 *            function can either return its builder argument after having set
+	 *            its properties or return another builder.
+	 */
+
+	public final CompletableFuture<TermsEnumResponse> termsEnum(
+			Function<TermsEnumRequest.Builder, ObjectBuilder<TermsEnumRequest>> fn) throws IOException {
+		return termsEnum(fn.apply(new TermsEnumRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: termvectors

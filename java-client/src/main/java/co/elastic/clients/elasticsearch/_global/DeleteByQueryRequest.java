@@ -127,13 +127,13 @@ public final class DeleteByQueryRequest extends RequestBase implements ToJsonp {
 	private final List<String> sort;
 
 	@Nullable
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	@Nullable
-	private final List<String> _sourceExcludes;
+	private final List<String> sourceExcludes;
 
 	@Nullable
-	private final List<String> _sourceIncludes;
+	private final List<String> sourceIncludes;
 
 	@Nullable
 	private final List<String> stats;
@@ -191,9 +191,9 @@ public final class DeleteByQueryRequest extends RequestBase implements ToJsonp {
 		this.size = builder.size;
 		this.slices = builder.slices;
 		this.sort = builder.sort;
-		this._source = builder._source;
-		this._sourceExcludes = builder._sourceExcludes;
-		this._sourceIncludes = builder._sourceIncludes;
+		this.source = builder.source;
+		this.sourceExcludes = builder.sourceExcludes;
+		this.sourceIncludes = builder.sourceIncludes;
 		this.stats = builder.stats;
 		this.terminateAfter = builder.terminateAfter;
 		this.timeout = builder.timeout;
@@ -409,24 +409,24 @@ public final class DeleteByQueryRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
 	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
-	public List<String> _sourceExcludes() {
-		return this._sourceExcludes;
+	public List<String> sourceExcludes() {
+		return this.sourceExcludes;
 	}
 
 	/**
 	 * API name: {@code _source_includes}
 	 */
 	@Nullable
-	public List<String> _sourceIncludes() {
-		return this._sourceIncludes;
+	public List<String> sourceIncludes() {
+		return this.sourceIncludes;
 	}
 
 	/**
@@ -614,13 +614,13 @@ public final class DeleteByQueryRequest extends RequestBase implements ToJsonp {
 		private List<String> sort;
 
 		@Nullable
-		private JsonValue _source;
+		private JsonValue source;
 
 		@Nullable
-		private List<String> _sourceExcludes;
+		private List<String> sourceExcludes;
 
 		@Nullable
-		private List<String> _sourceIncludes;
+		private List<String> sourceIncludes;
 
 		@Nullable
 		private List<String> stats;
@@ -909,62 +909,62 @@ public final class DeleteByQueryRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(@Nullable JsonValue value) {
-			this._source = value;
+		public Builder source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder _sourceExcludes(@Nullable List<String> value) {
-			this._sourceExcludes = value;
+		public Builder sourceExcludes(@Nullable List<String> value) {
+			this.sourceExcludes = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder _sourceExcludes(String... value) {
-			this._sourceExcludes = Arrays.asList(value);
+		public Builder sourceExcludes(String... value) {
+			this.sourceExcludes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #_sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
-		public Builder add_sourceExcludes(String value) {
-			if (this._sourceExcludes == null) {
-				this._sourceExcludes = new ArrayList<>();
+		public Builder addSourceExcludes(String value) {
+			if (this.sourceExcludes == null) {
+				this.sourceExcludes = new ArrayList<>();
 			}
-			this._sourceExcludes.add(value);
+			this.sourceExcludes.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_includes}
 		 */
-		public Builder _sourceIncludes(@Nullable List<String> value) {
-			this._sourceIncludes = value;
+		public Builder sourceIncludes(@Nullable List<String> value) {
+			this.sourceIncludes = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_includes}
 		 */
-		public Builder _sourceIncludes(String... value) {
-			this._sourceIncludes = Arrays.asList(value);
+		public Builder sourceIncludes(String... value) {
+			this.sourceIncludes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #_sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
-		public Builder add_sourceIncludes(String value) {
-			if (this._sourceIncludes == null) {
-				this._sourceIncludes = new ArrayList<>();
+		public Builder addSourceIncludes(String value) {
+			if (this.sourceIncludes == null) {
+				this.sourceIncludes = new ArrayList<>();
 			}
-			this._sourceIncludes.add(value);
+			this.sourceIncludes.add(value);
 			return this;
 		}
 
@@ -1218,16 +1218,16 @@ public final class DeleteByQueryRequest extends RequestBase implements ToJsonp {
 				if (request.sort != null) {
 					params.put("sort", request.sort.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request._source != null) {
-					params.put("_source", request._source.toString());
+				if (request.source != null) {
+					params.put("_source", request.source.toString());
 				}
-				if (request._sourceExcludes != null) {
+				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
-							request._sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request._sourceIncludes != null) {
+				if (request.sourceIncludes != null) {
 					params.put("_source_includes",
-							request._sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.stats != null) {
 					params.put("stats", request.stats.stream().map(v -> v).collect(Collectors.joining(",")));

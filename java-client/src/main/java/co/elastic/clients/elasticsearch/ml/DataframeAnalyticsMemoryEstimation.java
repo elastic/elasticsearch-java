@@ -30,16 +30,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsMemoryEstimation
 public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
-	private final JsonValue expectedMemoryWithDisk;
+	private final String expectedMemoryWithDisk;
 
-	private final JsonValue expectedMemoryWithoutDisk;
+	private final String expectedMemoryWithoutDisk;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +60,7 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 	 *
 	 * API name: {@code expected_memory_with_disk}
 	 */
-	public JsonValue expectedMemoryWithDisk() {
+	public String expectedMemoryWithDisk() {
 		return this.expectedMemoryWithDisk;
 	}
 
@@ -70,7 +70,7 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 	 *
 	 * API name: {@code expected_memory_without_disk}
 	 */
-	public JsonValue expectedMemoryWithoutDisk() {
+	public String expectedMemoryWithoutDisk() {
 		return this.expectedMemoryWithoutDisk;
 	}
 
@@ -99,9 +99,9 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 	 * Builder for {@link DataframeAnalyticsMemoryEstimation}.
 	 */
 	public static class Builder implements ObjectBuilder<DataframeAnalyticsMemoryEstimation> {
-		private JsonValue expectedMemoryWithDisk;
+		private String expectedMemoryWithDisk;
 
-		private JsonValue expectedMemoryWithoutDisk;
+		private String expectedMemoryWithoutDisk;
 
 		/**
 		 * Estimated memory usage under the assumption that overflowing to disk is
@@ -111,7 +111,7 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 		 *
 		 * API name: {@code expected_memory_with_disk}
 		 */
-		public Builder expectedMemoryWithDisk(JsonValue value) {
+		public Builder expectedMemoryWithDisk(String value) {
 			this.expectedMemoryWithDisk = value;
 			return this;
 		}
@@ -122,7 +122,7 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 		 *
 		 * API name: {@code expected_memory_without_disk}
 		 */
-		public Builder expectedMemoryWithoutDisk(JsonValue value) {
+		public Builder expectedMemoryWithoutDisk(String value) {
 			this.expectedMemoryWithoutDisk = value;
 			return this;
 		}
@@ -151,8 +151,8 @@ public final class DataframeAnalyticsMemoryEstimation implements ToJsonp {
 	protected static void setupDataframeAnalyticsMemoryEstimationDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsMemoryEstimation.Builder> op) {
 
-		op.add(Builder::expectedMemoryWithDisk, JsonpDeserializer.jsonValueDeserializer(), "expected_memory_with_disk");
-		op.add(Builder::expectedMemoryWithoutDisk, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::expectedMemoryWithDisk, JsonpDeserializer.stringDeserializer(), "expected_memory_with_disk");
+		op.add(Builder::expectedMemoryWithoutDisk, JsonpDeserializer.stringDeserializer(),
 				"expected_memory_without_disk");
 
 	}

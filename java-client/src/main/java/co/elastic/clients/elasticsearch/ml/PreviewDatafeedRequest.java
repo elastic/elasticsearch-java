@@ -26,33 +26,88 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Request
-public final class PreviewDatafeedRequest extends RequestBase {
+public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp {
+	@Nullable
 	private final String datafeedId;
+
+	@Nullable
+	private final Job jobConfig;
+
+	@Nullable
+	private final Datafeed datafeedConfig;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected PreviewDatafeedRequest(Builder builder) {
 
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
+		this.datafeedId = builder.datafeedId;
+		this.jobConfig = builder.jobConfig;
+		this.datafeedConfig = builder.datafeedConfig;
 
 	}
 
 	/**
 	 * API name: {@code datafeed_id}
 	 */
+	@Nullable
 	public String datafeedId() {
 		return this.datafeedId;
+	}
+
+	/**
+	 * API name: {@code job_config}
+	 */
+	@Nullable
+	public Job jobConfig() {
+		return this.jobConfig;
+	}
+
+	/**
+	 * API name: {@code datafeed_config}
+	 */
+	@Nullable
+	public Datafeed datafeedConfig() {
+		return this.datafeedConfig;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.jobConfig != null) {
+
+			generator.writeKey("job_config");
+			this.jobConfig.toJsonp(generator, mapper);
+
+		}
+		if (this.datafeedConfig != null) {
+
+			generator.writeKey("datafeed_config");
+			this.datafeedConfig.toJsonp(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -61,14 +116,51 @@ public final class PreviewDatafeedRequest extends RequestBase {
 	 * Builder for {@link PreviewDatafeedRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PreviewDatafeedRequest> {
+		@Nullable
 		private String datafeedId;
+
+		@Nullable
+		private Job jobConfig;
+
+		@Nullable
+		private Datafeed datafeedConfig;
 
 		/**
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(String value) {
+		public Builder datafeedId(@Nullable String value) {
 			this.datafeedId = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code job_config}
+		 */
+		public Builder jobConfig(@Nullable Job value) {
+			this.jobConfig = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code job_config}
+		 */
+		public Builder jobConfig(Function<Job.Builder, ObjectBuilder<Job>> fn) {
+			return this.jobConfig(fn.apply(new Job.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code datafeed_config}
+		 */
+		public Builder datafeedConfig(@Nullable Datafeed value) {
+			this.datafeedConfig = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code datafeed_config}
+		 */
+		public Builder datafeedConfig(Function<Datafeed.Builder, ObjectBuilder<Datafeed>> fn) {
+			return this.datafeedConfig(fn.apply(new Datafeed.Builder()).build());
 		}
 
 		/**
@@ -81,6 +173,22 @@ public final class PreviewDatafeedRequest extends RequestBase {
 
 			return new PreviewDatafeedRequest(this);
 		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for PreviewDatafeedRequest
+	 */
+	public static final JsonpDeserializer<PreviewDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, PreviewDatafeedRequest::setupPreviewDatafeedRequestDeserializer);
+
+	protected static void setupPreviewDatafeedRequestDeserializer(
+			DelegatingDeserializer<PreviewDatafeedRequest.Builder> op) {
+
+		op.add(Builder::jobConfig, Job.DESERIALIZER, "job_config");
+		op.add(Builder::datafeedConfig, Datafeed.DESERIALIZER, "datafeed_config");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -128,7 +236,7 @@ public final class PreviewDatafeedRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, Endpoint.Simple.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code ml.preview_datafeed}" endpoint.

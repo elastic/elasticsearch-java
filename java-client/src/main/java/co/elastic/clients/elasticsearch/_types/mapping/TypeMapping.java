@@ -61,13 +61,13 @@ public final class TypeMapping implements ToJsonp {
 	private final List<Map<String, DynamicTemplate>> dynamicTemplates;
 
 	@Nullable
-	private final FieldNamesField _fieldNames;
+	private final FieldNamesField fieldNames;
 
 	@Nullable
 	private final IndexField indexField;
 
 	@Nullable
-	private final Map<String, JsonValue> _meta;
+	private final Map<String, JsonValue> meta;
 
 	@Nullable
 	private final Boolean numericDetection;
@@ -76,13 +76,13 @@ public final class TypeMapping implements ToJsonp {
 	private final Map<String, JsonValue> properties;
 
 	@Nullable
-	private final RoutingField _routing;
+	private final RoutingField routing;
 
 	@Nullable
-	private final SizeField _size;
+	private final SizeField size;
 
 	@Nullable
-	private final SourceField _source;
+	private final SourceField source;
 
 	@Nullable
 	private final Map<String, RuntimeField> runtime;
@@ -96,14 +96,14 @@ public final class TypeMapping implements ToJsonp {
 		this.dynamic = builder.dynamic;
 		this.dynamicDateFormats = builder.dynamicDateFormats;
 		this.dynamicTemplates = builder.dynamicTemplates;
-		this._fieldNames = builder._fieldNames;
+		this.fieldNames = builder.fieldNames;
 		this.indexField = builder.indexField;
-		this._meta = builder._meta;
+		this.meta = builder.meta;
 		this.numericDetection = builder.numericDetection;
 		this.properties = builder.properties;
-		this._routing = builder._routing;
-		this._size = builder._size;
-		this._source = builder._source;
+		this.routing = builder.routing;
+		this.size = builder.size;
+		this.source = builder.source;
 		this.runtime = builder.runtime;
 
 	}
@@ -152,8 +152,8 @@ public final class TypeMapping implements ToJsonp {
 	 * API name: {@code _field_names}
 	 */
 	@Nullable
-	public FieldNamesField _fieldNames() {
-		return this._fieldNames;
+	public FieldNamesField fieldNames() {
+		return this.fieldNames;
 	}
 
 	/**
@@ -168,8 +168,8 @@ public final class TypeMapping implements ToJsonp {
 	 * API name: {@code _meta}
 	 */
 	@Nullable
-	public Map<String, JsonValue> _meta() {
-		return this._meta;
+	public Map<String, JsonValue> meta() {
+		return this.meta;
 	}
 
 	/**
@@ -192,24 +192,24 @@ public final class TypeMapping implements ToJsonp {
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public RoutingField _routing() {
-		return this._routing;
+	public RoutingField routing() {
+		return this.routing;
 	}
 
 	/**
 	 * API name: {@code _size}
 	 */
 	@Nullable
-	public SizeField _size() {
-		return this._size;
+	public SizeField size() {
+		return this.size;
 	}
 
 	/**
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public SourceField _source() {
-		return this._source;
+	public SourceField source() {
+		return this.source;
 	}
 
 	/**
@@ -277,10 +277,10 @@ public final class TypeMapping implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this._fieldNames != null) {
+		if (this.fieldNames != null) {
 
 			generator.writeKey("_field_names");
-			this._fieldNames.toJsonp(generator, mapper);
+			this.fieldNames.toJsonp(generator, mapper);
 
 		}
 		if (this.indexField != null) {
@@ -289,11 +289,11 @@ public final class TypeMapping implements ToJsonp {
 			this.indexField.toJsonp(generator, mapper);
 
 		}
-		if (this._meta != null) {
+		if (this.meta != null) {
 
 			generator.writeKey("_meta");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this._meta.entrySet()) {
+			for (Map.Entry<String, JsonValue> item0 : this.meta.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.write(item0.getValue());
 
@@ -319,22 +319,22 @@ public final class TypeMapping implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this._routing != null) {
+		if (this.routing != null) {
 
 			generator.writeKey("_routing");
-			this._routing.toJsonp(generator, mapper);
+			this.routing.toJsonp(generator, mapper);
 
 		}
-		if (this._size != null) {
+		if (this.size != null) {
 
 			generator.writeKey("_size");
-			this._size.toJsonp(generator, mapper);
+			this.size.toJsonp(generator, mapper);
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
-			this._source.toJsonp(generator, mapper);
+			this.source.toJsonp(generator, mapper);
 
 		}
 		if (this.runtime != null) {
@@ -374,13 +374,13 @@ public final class TypeMapping implements ToJsonp {
 		private List<Map<String, DynamicTemplate>> dynamicTemplates;
 
 		@Nullable
-		private FieldNamesField _fieldNames;
+		private FieldNamesField fieldNames;
 
 		@Nullable
 		private IndexField indexField;
 
 		@Nullable
-		private Map<String, JsonValue> _meta;
+		private Map<String, JsonValue> meta;
 
 		@Nullable
 		private Boolean numericDetection;
@@ -389,13 +389,13 @@ public final class TypeMapping implements ToJsonp {
 		private Map<String, JsonValue> properties;
 
 		@Nullable
-		private RoutingField _routing;
+		private RoutingField routing;
 
 		@Nullable
-		private SizeField _size;
+		private SizeField size;
 
 		@Nullable
-		private SourceField _source;
+		private SourceField source;
 
 		@Nullable
 		private Map<String, RuntimeField> runtime;
@@ -489,16 +489,16 @@ public final class TypeMapping implements ToJsonp {
 		/**
 		 * API name: {@code _field_names}
 		 */
-		public Builder _fieldNames(@Nullable FieldNamesField value) {
-			this._fieldNames = value;
+		public Builder fieldNames(@Nullable FieldNamesField value) {
+			this.fieldNames = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _field_names}
 		 */
-		public Builder _fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
-			return this._fieldNames(fn.apply(new FieldNamesField.Builder()).build());
+		public Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
+			return this.fieldNames(fn.apply(new FieldNamesField.Builder()).build());
 		}
 
 		/**
@@ -519,19 +519,19 @@ public final class TypeMapping implements ToJsonp {
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder _meta(@Nullable Map<String, JsonValue> value) {
-			this._meta = value;
+		public Builder meta(@Nullable Map<String, JsonValue> value) {
+			this.meta = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #_meta(Map)}, creating the map if needed.
+		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonValue value) {
-			if (this._meta == null) {
-				this._meta = new HashMap<>();
+		public Builder putMeta(String key, JsonValue value) {
+			if (this.meta == null) {
+				this.meta = new HashMap<>();
 			}
-			this._meta.put(key, value);
+			this.meta.put(key, value);
 			return this;
 		}
 
@@ -565,46 +565,46 @@ public final class TypeMapping implements ToJsonp {
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder _routing(@Nullable RoutingField value) {
-			this._routing = value;
+		public Builder routing(@Nullable RoutingField value) {
+			this.routing = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder _routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
-			return this._routing(fn.apply(new RoutingField.Builder()).build());
+		public Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
+			return this.routing(fn.apply(new RoutingField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _size}
 		 */
-		public Builder _size(@Nullable SizeField value) {
-			this._size = value;
+		public Builder size(@Nullable SizeField value) {
+			this.size = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _size}
 		 */
-		public Builder _size(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {
-			return this._size(fn.apply(new SizeField.Builder()).build());
+		public Builder size(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {
+			return this.size(fn.apply(new SizeField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(@Nullable SourceField value) {
-			this._source = value;
+		public Builder source(@Nullable SourceField value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
-			return this._source(fn.apply(new SourceField.Builder()).build());
+		public Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
+			return this.source(fn.apply(new SourceField.Builder()).build());
 		}
 
 		/**
@@ -669,16 +669,16 @@ public final class TypeMapping implements ToJsonp {
 				"dynamic_date_formats");
 		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(DynamicTemplate.DESERIALIZER)), "dynamic_templates");
-		op.add(Builder::_fieldNames, FieldNamesField.DESERIALIZER, "_field_names");
+		op.add(Builder::fieldNames, FieldNamesField.DESERIALIZER, "_field_names");
 		op.add(Builder::indexField, IndexField.DESERIALIZER, "index_field");
-		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"_meta");
 		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
 		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"properties");
-		op.add(Builder::_routing, RoutingField.DESERIALIZER, "_routing");
-		op.add(Builder::_size, SizeField.DESERIALIZER, "_size");
-		op.add(Builder::_source, SourceField.DESERIALIZER, "_source");
+		op.add(Builder::routing, RoutingField.DESERIALIZER, "_routing");
+		op.add(Builder::size, SizeField.DESERIALIZER, "_size");
+		op.add(Builder::source, SourceField.DESERIALIZER, "_source");
 		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER), "runtime");
 
 	}

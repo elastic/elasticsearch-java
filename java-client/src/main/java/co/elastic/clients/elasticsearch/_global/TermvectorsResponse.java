@@ -46,9 +46,9 @@ import javax.annotation.Nullable;
 public final class TermvectorsResponse implements ToJsonp {
 	private final Boolean found;
 
-	private final String _id;
+	private final String id;
 
-	private final String _index;
+	private final String index;
 
 	@Nullable
 	private final Map<String, TermVector> termVectors;
@@ -56,21 +56,21 @@ public final class TermvectorsResponse implements ToJsonp {
 	private final Number took;
 
 	@Nullable
-	private final String _type;
+	private final String type;
 
-	private final Number _version;
+	private final Number version;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected TermvectorsResponse(Builder builder) {
 
 		this.found = Objects.requireNonNull(builder.found, "found");
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._index = Objects.requireNonNull(builder._index, "_index");
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.index = Objects.requireNonNull(builder.index, "_index");
 		this.termVectors = builder.termVectors;
 		this.took = Objects.requireNonNull(builder.took, "took");
-		this._type = builder._type;
-		this._version = Objects.requireNonNull(builder._version, "_version");
+		this.type = builder.type;
+		this.version = Objects.requireNonNull(builder.version, "_version");
 
 	}
 
@@ -84,15 +84,15 @@ public final class TermvectorsResponse implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _index}
 	 */
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -114,15 +114,15 @@ public final class TermvectorsResponse implements ToJsonp {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String _type() {
-		return this._type;
+	public String type() {
+		return this.type;
 	}
 
 	/**
 	 * API name: {@code _version}
 	 */
-	public Number _version() {
-		return this._version;
+	public Number version() {
+		return this.version;
 	}
 
 	/**
@@ -140,10 +140,10 @@ public final class TermvectorsResponse implements ToJsonp {
 		generator.write(this.found);
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("_index");
-		generator.write(this._index);
+		generator.write(this.index);
 
 		if (this.termVectors != null) {
 
@@ -161,15 +161,15 @@ public final class TermvectorsResponse implements ToJsonp {
 		generator.writeKey("took");
 		generator.write(this.took.doubleValue());
 
-		if (this._type != null) {
+		if (this.type != null) {
 
 			generator.writeKey("_type");
-			generator.write(this._type);
+			generator.write(this.type);
 
 		}
 
 		generator.writeKey("_version");
-		generator.write(this._version.doubleValue());
+		generator.write(this.version.doubleValue());
 
 	}
 
@@ -181,9 +181,9 @@ public final class TermvectorsResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<TermvectorsResponse> {
 		private Boolean found;
 
-		private String _id;
+		private String id;
 
-		private String _index;
+		private String index;
 
 		@Nullable
 		private Map<String, TermVector> termVectors;
@@ -191,9 +191,9 @@ public final class TermvectorsResponse implements ToJsonp {
 		private Number took;
 
 		@Nullable
-		private String _type;
+		private String type;
 
-		private Number _version;
+		private Number version;
 
 		/**
 		 * API name: {@code found}
@@ -206,16 +206,16 @@ public final class TermvectorsResponse implements ToJsonp {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(String value) {
-			this._id = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder _index(String value) {
-			this._index = value;
+		public Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -263,16 +263,16 @@ public final class TermvectorsResponse implements ToJsonp {
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder _type(@Nullable String value) {
-			this._type = value;
+		public Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder _version(Number value) {
-			this._version = value;
+		public Builder version(Number value) {
+			this.version = value;
 			return this;
 		}
 
@@ -299,12 +299,12 @@ public final class TermvectorsResponse implements ToJsonp {
 	protected static void setupTermvectorsResponseDeserializer(DelegatingDeserializer<TermvectorsResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::termVectors, JsonpDeserializer.stringMapDeserializer(TermVector.DESERIALIZER), "term_vectors");
 		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
-		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(Builder::_version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
 
 	}
 

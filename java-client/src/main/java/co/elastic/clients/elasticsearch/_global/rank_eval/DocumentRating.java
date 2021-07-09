@@ -38,9 +38,9 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.DocumentRating
 public final class DocumentRating implements ToJsonp {
-	private final String _id;
+	private final String id;
 
-	private final String _index;
+	private final String index;
 
 	private final Number rating;
 
@@ -48,8 +48,8 @@ public final class DocumentRating implements ToJsonp {
 
 	protected DocumentRating(Builder builder) {
 
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._index = Objects.requireNonNull(builder._index, "_index");
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.index = Objects.requireNonNull(builder.index, "_index");
 		this.rating = Objects.requireNonNull(builder.rating, "rating");
 
 	}
@@ -59,8 +59,8 @@ public final class DocumentRating implements ToJsonp {
 	 *
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -69,8 +69,8 @@ public final class DocumentRating implements ToJsonp {
 	 *
 	 * API name: {@code _index}
 	 */
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -94,10 +94,10 @@ public final class DocumentRating implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("_index");
-		generator.write(this._index);
+		generator.write(this.index);
 
 		generator.writeKey("rating");
 		generator.write(this.rating.doubleValue());
@@ -110,9 +110,9 @@ public final class DocumentRating implements ToJsonp {
 	 * Builder for {@link DocumentRating}.
 	 */
 	public static class Builder implements ObjectBuilder<DocumentRating> {
-		private String _id;
+		private String id;
 
-		private String _index;
+		private String index;
 
 		private Number rating;
 
@@ -121,8 +121,8 @@ public final class DocumentRating implements ToJsonp {
 		 *
 		 * API name: {@code _id}
 		 */
-		public Builder _id(String value) {
-			this._id = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -132,8 +132,8 @@ public final class DocumentRating implements ToJsonp {
 		 *
 		 * API name: {@code _index}
 		 */
-		public Builder _index(String value) {
-			this._index = value;
+		public Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -169,8 +169,8 @@ public final class DocumentRating implements ToJsonp {
 
 	protected static void setupDocumentRatingDeserializer(DelegatingDeserializer<DocumentRating.Builder> op) {
 
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::rating, JsonpDeserializer.numberDeserializer(), "rating");
 
 	}

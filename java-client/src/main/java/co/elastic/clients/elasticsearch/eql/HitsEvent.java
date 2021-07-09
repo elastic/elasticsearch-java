@@ -44,11 +44,11 @@ import javax.annotation.Nullable;
 
 // typedef: eql._types.HitsEvent
 public final class HitsEvent<TEvent> implements ToJsonp {
-	private final String _index;
+	private final String index;
 
-	private final String _id;
+	private final String id;
 
-	private final TEvent _source;
+	private final TEvent source;
 
 	@Nullable
 	private final Map<String, List<JsonValue>> fields;
@@ -60,9 +60,9 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 	protected HitsEvent(Builder<TEvent> builder) {
 
-		this._index = Objects.requireNonNull(builder._index, "_index");
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._source = Objects.requireNonNull(builder._source, "_source");
+		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.source = Objects.requireNonNull(builder.source, "_source");
 		this.fields = builder.fields;
 		this.tEventSerializer = builder.tEventSerializer;
 
@@ -73,8 +73,8 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 	 *
 	 * API name: {@code _index}
 	 */
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -82,8 +82,8 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 	 *
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -91,8 +91,8 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 	 *
 	 * API name: {@code _source}
 	 */
-	public TEvent _source() {
-		return this._source;
+	public TEvent source() {
+		return this.source;
 	}
 
 	/**
@@ -115,13 +115,13 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_index");
-		generator.write(this._index);
+		generator.write(this.index);
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("_source");
-		JsonpUtils.serialize(this._source, generator, tEventSerializer, mapper);
+		JsonpUtils.serialize(this.source, generator, tEventSerializer, mapper);
 
 		if (this.fields != null) {
 
@@ -149,11 +149,11 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 	 * Builder for {@link HitsEvent}.
 	 */
 	public static class Builder<TEvent> implements ObjectBuilder<HitsEvent<TEvent>> {
-		private String _index;
+		private String index;
 
-		private String _id;
+		private String id;
 
-		private TEvent _source;
+		private TEvent source;
 
 		@Nullable
 		private Map<String, List<JsonValue>> fields;
@@ -166,8 +166,8 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 		 *
 		 * API name: {@code _index}
 		 */
-		public Builder<TEvent> _index(String value) {
-			this._index = value;
+		public Builder<TEvent> index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -176,8 +176,8 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 		 *
 		 * API name: {@code _id}
 		 */
-		public Builder<TEvent> _id(String value) {
-			this._id = value;
+		public Builder<TEvent> id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -186,8 +186,8 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 		 *
 		 * API name: {@code _source}
 		 */
-		public Builder<TEvent> _source(TEvent value) {
-			this._source = value;
+		public Builder<TEvent> source(TEvent value) {
+			this.source = value;
 			return this;
 		}
 
@@ -246,9 +246,9 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 	protected static <TEvent> void setupHitsEventDeserializer(DelegatingDeserializer<HitsEvent.Builder<TEvent>> op,
 			JsonpDeserializer<TEvent> tEventDeserializer) {
 
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_source, tEventDeserializer, "_source");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::source, tEventDeserializer, "_source");
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer())), "fields");
 

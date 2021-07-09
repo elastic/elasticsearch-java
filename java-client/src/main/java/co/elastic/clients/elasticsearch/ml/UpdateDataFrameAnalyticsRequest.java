@@ -33,7 +33,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -50,7 +49,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	private final String description;
 
 	@Nullable
-	private final JsonValue modelMemoryLimit;
+	private final String modelMemoryLimit;
 
 	@Nullable
 	private final Number maxNumThreads;
@@ -102,7 +101,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
-	public JsonValue modelMemoryLimit() {
+	public String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -181,7 +180,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		private String description;
 
 		@Nullable
-		private JsonValue modelMemoryLimit;
+		private String modelMemoryLimit;
 
 		@Nullable
 		private Number maxNumThreads;
@@ -221,7 +220,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 *
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(@Nullable JsonValue value) {
+		public Builder modelMemoryLimit(@Nullable String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -276,7 +275,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 			DelegatingDeserializer<UpdateDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::modelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(), "model_memory_limit");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 

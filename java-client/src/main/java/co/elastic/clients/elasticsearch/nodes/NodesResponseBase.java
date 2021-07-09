@@ -38,13 +38,13 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.NodesResponseBase
 public abstract class NodesResponseBase implements ToJsonp {
-	private final NodeStatistics _nodes;
+	private final NodeStatistics nodeStats;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected NodesResponseBase(AbstractBuilder<?> builder) {
 
-		this._nodes = Objects.requireNonNull(builder._nodes, "_nodes");
+		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
 
 	}
 
@@ -54,8 +54,8 @@ public abstract class NodesResponseBase implements ToJsonp {
 	 *
 	 * API name: {@code _nodes}
 	 */
-	public NodeStatistics _nodes() {
-		return this._nodes;
+	public NodeStatistics nodeStats() {
+		return this.nodeStats;
 	}
 
 	/**
@@ -70,12 +70,12 @@ public abstract class NodesResponseBase implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_nodes");
-		this._nodes.toJsonp(generator, mapper);
+		this.nodeStats.toJsonp(generator, mapper);
 
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
-		private NodeStatistics _nodes;
+		private NodeStatistics nodeStats;
 
 		/**
 		 * Contains statistics about the number of nodes selected by the request’s node
@@ -83,8 +83,8 @@ public abstract class NodesResponseBase implements ToJsonp {
 		 *
 		 * API name: {@code _nodes}
 		 */
-		public BuilderT _nodes(NodeStatistics value) {
-			this._nodes = value;
+		public BuilderT nodeStats(NodeStatistics value) {
+			this.nodeStats = value;
 			return self();
 		}
 
@@ -94,8 +94,8 @@ public abstract class NodesResponseBase implements ToJsonp {
 		 *
 		 * API name: {@code _nodes}
 		 */
-		public BuilderT _nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-			return this._nodes(fn.apply(new NodeStatistics.Builder()).build());
+		public BuilderT nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		protected abstract BuilderT self();
@@ -106,7 +106,7 @@ public abstract class NodesResponseBase implements ToJsonp {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupNodesResponseBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::_nodes, NodeStatistics.DESERIALIZER, "_nodes");
+		op.add(AbstractBuilder::nodeStats, NodeStatistics.DESERIALIZER, "_nodes");
 
 	}
 

@@ -56,27 +56,27 @@ public final class Hit<TDocument> implements ToJsonp {
 	@Nullable
 	private final Boolean found;
 
-	private final String _id;
+	private final String id;
 
-	private final String _index;
-
-	@Nullable
-	private final Number _primaryTerm;
+	private final String index;
 
 	@Nullable
-	private final JsonValue _routing;
+	private final Number primaryTerm;
 
 	@Nullable
-	private final Number _seqNo;
+	private final JsonValue routing;
 
 	@Nullable
-	private final TDocument _source;
+	private final Number seqNo;
 
 	@Nullable
-	private final String _type;
+	private final TDocument source;
 
 	@Nullable
-	private final Number _version;
+	private final String type;
+
+	@Nullable
+	private final Number version;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -88,14 +88,14 @@ public final class Hit<TDocument> implements ToJsonp {
 		this.error = builder.error;
 		this.fields = builder.fields;
 		this.found = builder.found;
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._index = Objects.requireNonNull(builder._index, "_index");
-		this._primaryTerm = builder._primaryTerm;
-		this._routing = builder._routing;
-		this._seqNo = builder._seqNo;
-		this._source = builder._source;
-		this._type = builder._type;
-		this._version = builder._version;
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.primaryTerm = builder.primaryTerm;
+		this.routing = builder.routing;
+		this.seqNo = builder.seqNo;
+		this.source = builder.source;
+		this.type = builder.type;
+		this.version = builder.version;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -127,63 +127,63 @@ public final class Hit<TDocument> implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _index}
 	 */
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
-	public Number _primaryTerm() {
-		return this._primaryTerm;
+	public Number primaryTerm() {
+		return this.primaryTerm;
 	}
 
 	/**
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public JsonValue _routing() {
-		return this._routing;
+	public JsonValue routing() {
+		return this.routing;
 	}
 
 	/**
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Number _seqNo() {
-		return this._seqNo;
+	public Number seqNo() {
+		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public TDocument _source() {
-		return this._source;
+	public TDocument source() {
+		return this.source;
 	}
 
 	/**
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String _type() {
-		return this._type;
+	public String type() {
+		return this.type;
 	}
 
 	/**
 	 * API name: {@code _version}
 	 */
 	@Nullable
-	public Number _version() {
-		return this._version;
+	public Number version() {
+		return this.version;
 	}
 
 	/**
@@ -223,45 +223,45 @@ public final class Hit<TDocument> implements ToJsonp {
 		}
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("_index");
-		generator.write(this._index);
+		generator.write(this.index);
 
-		if (this._primaryTerm != null) {
+		if (this.primaryTerm != null) {
 
 			generator.writeKey("_primary_term");
-			generator.write(this._primaryTerm.doubleValue());
+			generator.write(this.primaryTerm.doubleValue());
 
 		}
-		if (this._routing != null) {
+		if (this.routing != null) {
 
 			generator.writeKey("_routing");
-			generator.write(this._routing);
+			generator.write(this.routing);
 
 		}
-		if (this._seqNo != null) {
+		if (this.seqNo != null) {
 
 			generator.writeKey("_seq_no");
-			generator.write(this._seqNo.doubleValue());
+			generator.write(this.seqNo.doubleValue());
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
-			JsonpUtils.serialize(this._source, generator, tDocumentSerializer, mapper);
+			JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
 
 		}
-		if (this._type != null) {
+		if (this.type != null) {
 
 			generator.writeKey("_type");
-			generator.write(this._type);
+			generator.write(this.type);
 
 		}
-		if (this._version != null) {
+		if (this.version != null) {
 
 			generator.writeKey("_version");
-			generator.write(this._version.doubleValue());
+			generator.write(this.version.doubleValue());
 
 		}
 
@@ -282,27 +282,27 @@ public final class Hit<TDocument> implements ToJsonp {
 		@Nullable
 		private Boolean found;
 
-		private String _id;
+		private String id;
 
-		private String _index;
-
-		@Nullable
-		private Number _primaryTerm;
+		private String index;
 
 		@Nullable
-		private JsonValue _routing;
+		private Number primaryTerm;
 
 		@Nullable
-		private Number _seqNo;
+		private JsonValue routing;
 
 		@Nullable
-		private TDocument _source;
+		private Number seqNo;
 
 		@Nullable
-		private String _type;
+		private TDocument source;
 
 		@Nullable
-		private Number _version;
+		private String type;
+
+		@Nullable
+		private Number version;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -352,64 +352,64 @@ public final class Hit<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder<TDocument> _id(String value) {
-			this._id = value;
+		public Builder<TDocument> id(String value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder<TDocument> _index(String value) {
-			this._index = value;
+		public Builder<TDocument> index(String value) {
+			this.index = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder<TDocument> _primaryTerm(@Nullable Number value) {
-			this._primaryTerm = value;
+		public Builder<TDocument> primaryTerm(@Nullable Number value) {
+			this.primaryTerm = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder<TDocument> _routing(@Nullable JsonValue value) {
-			this._routing = value;
+		public Builder<TDocument> routing(@Nullable JsonValue value) {
+			this.routing = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> _seqNo(@Nullable Number value) {
-			this._seqNo = value;
+		public Builder<TDocument> seqNo(@Nullable Number value) {
+			this.seqNo = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder<TDocument> _source(@Nullable TDocument value) {
-			this._source = value;
+		public Builder<TDocument> source(@Nullable TDocument value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder<TDocument> _type(@Nullable String value) {
-			this._type = value;
+		public Builder<TDocument> type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder<TDocument> _version(@Nullable Number value) {
-			this._version = value;
+		public Builder<TDocument> version(@Nullable Number value) {
+			this.version = value;
 			return this;
 		}
 
@@ -453,14 +453,14 @@ public final class Hit<TDocument> implements ToJsonp {
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::_primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(Builder::_routing, JsonpDeserializer.jsonValueDeserializer(), "_routing");
-		op.add(Builder::_seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(Builder::_source, tDocumentDeserializer, "_source");
-		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(Builder::_version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "_routing");
+		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
+		op.add(Builder::source, tDocumentDeserializer, "_source");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
 
 	}
 

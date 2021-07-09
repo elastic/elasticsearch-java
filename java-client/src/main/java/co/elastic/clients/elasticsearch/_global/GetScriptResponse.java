@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get_script.Response
 public final class GetScriptResponse implements ToJsonp {
-	private final String _id;
+	private final String id;
 
 	private final Boolean found;
 
@@ -51,7 +51,7 @@ public final class GetScriptResponse implements ToJsonp {
 
 	protected GetScriptResponse(Builder builder) {
 
-		this._id = Objects.requireNonNull(builder._id, "_id");
+		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.found = Objects.requireNonNull(builder.found, "found");
 		this.script = builder.script;
 
@@ -60,8 +60,8 @@ public final class GetScriptResponse implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -91,7 +91,7 @@ public final class GetScriptResponse implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("found");
 		generator.write(this.found);
@@ -111,7 +111,7 @@ public final class GetScriptResponse implements ToJsonp {
 	 * Builder for {@link GetScriptResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetScriptResponse> {
-		private String _id;
+		private String id;
 
 		private Boolean found;
 
@@ -121,8 +121,8 @@ public final class GetScriptResponse implements ToJsonp {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(String value) {
-			this._id = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -171,7 +171,7 @@ public final class GetScriptResponse implements ToJsonp {
 
 	protected static void setupGetScriptResponseDeserializer(DelegatingDeserializer<GetScriptResponse.Builder> op) {
 
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::script, StoredScript.DESERIALIZER, "script");
 

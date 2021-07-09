@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class TranslateResponse implements ToJsonp {
 	private final Number size;
 
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	private final List<Map<String, String>> fields;
 
@@ -56,7 +56,7 @@ public final class TranslateResponse implements ToJsonp {
 	protected TranslateResponse(Builder builder) {
 
 		this.size = Objects.requireNonNull(builder.size, "size");
-		this._source = Objects.requireNonNull(builder._source, "_source");
+		this.source = Objects.requireNonNull(builder.source, "_source");
 		this.fields = Objects.requireNonNull(builder.fields, "fields");
 		this.sort = Objects.requireNonNull(builder.sort, "sort");
 
@@ -72,8 +72,8 @@ public final class TranslateResponse implements ToJsonp {
 	/**
 	 * API name: {@code _source}
 	 */
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
@@ -105,7 +105,7 @@ public final class TranslateResponse implements ToJsonp {
 		generator.write(this.size.doubleValue());
 
 		generator.writeKey("_source");
-		generator.write(this._source);
+		generator.write(this.source);
 
 		generator.writeKey("fields");
 		generator.writeStartArray();
@@ -139,7 +139,7 @@ public final class TranslateResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<TranslateResponse> {
 		private Number size;
 
-		private JsonValue _source;
+		private JsonValue source;
 
 		private List<Map<String, String>> fields;
 
@@ -156,8 +156,8 @@ public final class TranslateResponse implements ToJsonp {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(JsonValue value) {
-			this._source = value;
+		public Builder source(JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
@@ -238,7 +238,7 @@ public final class TranslateResponse implements ToJsonp {
 	protected static void setupTranslateResponseDeserializer(DelegatingDeserializer<TranslateResponse.Builder> op) {
 
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
-		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())), "fields");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");

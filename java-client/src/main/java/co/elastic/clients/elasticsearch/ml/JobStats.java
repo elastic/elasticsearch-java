@@ -40,7 +40,6 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.JobStats
 public final class JobStats implements ToJsonp {
-	@Nullable
 	private final String assignmentExplanation;
 
 	private final DataCounts dataCounts;
@@ -51,7 +50,6 @@ public final class JobStats implements ToJsonp {
 
 	private final ModelSizeStats modelSizeStats;
 
-	@Nullable
 	private final DiscoveryNode node;
 
 	@Nullable
@@ -68,12 +66,12 @@ public final class JobStats implements ToJsonp {
 
 	protected JobStats(Builder builder) {
 
-		this.assignmentExplanation = builder.assignmentExplanation;
+		this.assignmentExplanation = Objects.requireNonNull(builder.assignmentExplanation, "assignment_explanation");
 		this.dataCounts = Objects.requireNonNull(builder.dataCounts, "data_counts");
 		this.forecastsStats = Objects.requireNonNull(builder.forecastsStats, "forecasts_stats");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.modelSizeStats = Objects.requireNonNull(builder.modelSizeStats, "model_size_stats");
-		this.node = builder.node;
+		this.node = Objects.requireNonNull(builder.node, "node");
 		this.openTime = builder.openTime;
 		this.state = Objects.requireNonNull(builder.state, "state");
 		this.timingStats = Objects.requireNonNull(builder.timingStats, "timing_stats");
@@ -84,7 +82,6 @@ public final class JobStats implements ToJsonp {
 	/**
 	 * API name: {@code assignment_explanation}
 	 */
-	@Nullable
 	public String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
@@ -120,7 +117,6 @@ public final class JobStats implements ToJsonp {
 	/**
 	 * API name: {@code node}
 	 */
-	@Nullable
 	public DiscoveryNode node() {
 		return this.node;
 	}
@@ -166,12 +162,8 @@ public final class JobStats implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.assignmentExplanation != null) {
-
-			generator.writeKey("assignment_explanation");
-			generator.write(this.assignmentExplanation);
-
-		}
+		generator.writeKey("assignment_explanation");
+		generator.write(this.assignmentExplanation);
 
 		generator.writeKey("data_counts");
 		this.dataCounts.toJsonp(generator, mapper);
@@ -185,12 +177,9 @@ public final class JobStats implements ToJsonp {
 		generator.writeKey("model_size_stats");
 		this.modelSizeStats.toJsonp(generator, mapper);
 
-		if (this.node != null) {
+		generator.writeKey("node");
+		this.node.toJsonp(generator, mapper);
 
-			generator.writeKey("node");
-			this.node.toJsonp(generator, mapper);
-
-		}
 		if (this.openTime != null) {
 
 			generator.writeKey("open_time");
@@ -219,7 +208,6 @@ public final class JobStats implements ToJsonp {
 	 * Builder for {@link JobStats}.
 	 */
 	public static class Builder implements ObjectBuilder<JobStats> {
-		@Nullable
 		private String assignmentExplanation;
 
 		private DataCounts dataCounts;
@@ -230,7 +218,6 @@ public final class JobStats implements ToJsonp {
 
 		private ModelSizeStats modelSizeStats;
 
-		@Nullable
 		private DiscoveryNode node;
 
 		@Nullable
@@ -246,7 +233,7 @@ public final class JobStats implements ToJsonp {
 		/**
 		 * API name: {@code assignment_explanation}
 		 */
-		public Builder assignmentExplanation(@Nullable String value) {
+		public Builder assignmentExplanation(String value) {
 			this.assignmentExplanation = value;
 			return this;
 		}
@@ -308,7 +295,7 @@ public final class JobStats implements ToJsonp {
 		/**
 		 * API name: {@code node}
 		 */
-		public Builder node(@Nullable DiscoveryNode value) {
+		public Builder node(DiscoveryNode value) {
 			this.node = value;
 			return this;
 		}

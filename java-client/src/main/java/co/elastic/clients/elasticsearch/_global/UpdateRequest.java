@@ -90,10 +90,10 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	private final JsonValue waitForActiveShards;
 
 	@Nullable
-	private final List<String> _sourceExcludes;
+	private final List<String> sourceExcludes;
 
 	@Nullable
-	private final List<String> _sourceIncludes;
+	private final List<String> sourceIncludes;
 
 	@Nullable
 	private final Boolean detectNoop;
@@ -111,7 +111,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	private final Boolean scriptedUpsert;
 
 	@Nullable
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	@Nullable
 	private final TDocument upsert;
@@ -139,14 +139,14 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		this.sourceEnabled = builder.sourceEnabled;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this._sourceExcludes = builder._sourceExcludes;
-		this._sourceIncludes = builder._sourceIncludes;
+		this.sourceExcludes = builder.sourceExcludes;
+		this.sourceIncludes = builder.sourceIncludes;
 		this.detectNoop = builder.detectNoop;
 		this.doc = builder.doc;
 		this.docAsUpsert = builder.docAsUpsert;
 		this.script = builder.script;
 		this.scriptedUpsert = builder.scriptedUpsert;
-		this._source = builder._source;
+		this.source = builder.source;
 		this.upsert = builder.upsert;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 		this.tPartialDocumentSerializer = builder.tPartialDocumentSerializer;
@@ -259,16 +259,16 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
-	public List<String> _sourceExcludes() {
-		return this._sourceExcludes;
+	public List<String> sourceExcludes() {
+		return this.sourceExcludes;
 	}
 
 	/**
 	 * API name: {@code _source_includes}
 	 */
 	@Nullable
-	public List<String> _sourceIncludes() {
-		return this._sourceIncludes;
+	public List<String> sourceIncludes() {
+		return this.sourceIncludes;
 	}
 
 	/**
@@ -315,8 +315,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
@@ -368,10 +368,10 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 			generator.write(this.scriptedUpsert);
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
-			generator.write(this._source);
+			generator.write(this.source);
 
 		}
 		if (this.upsert != null) {
@@ -429,10 +429,10 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private JsonValue waitForActiveShards;
 
 		@Nullable
-		private List<String> _sourceExcludes;
+		private List<String> sourceExcludes;
 
 		@Nullable
-		private List<String> _sourceIncludes;
+		private List<String> sourceIncludes;
 
 		@Nullable
 		private Boolean detectNoop;
@@ -450,7 +450,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private Boolean scriptedUpsert;
 
 		@Nullable
-		private JsonValue _source;
+		private JsonValue source;
 
 		@Nullable
 		private TDocument upsert;
@@ -568,54 +568,54 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		/**
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder<TDocument, TPartialDocument> _sourceExcludes(@Nullable List<String> value) {
-			this._sourceExcludes = value;
+		public Builder<TDocument, TPartialDocument> sourceExcludes(@Nullable List<String> value) {
+			this.sourceExcludes = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder<TDocument, TPartialDocument> _sourceExcludes(String... value) {
-			this._sourceExcludes = Arrays.asList(value);
+		public Builder<TDocument, TPartialDocument> sourceExcludes(String... value) {
+			this.sourceExcludes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #_sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
-		public Builder<TDocument, TPartialDocument> add_sourceExcludes(String value) {
-			if (this._sourceExcludes == null) {
-				this._sourceExcludes = new ArrayList<>();
+		public Builder<TDocument, TPartialDocument> addSourceExcludes(String value) {
+			if (this.sourceExcludes == null) {
+				this.sourceExcludes = new ArrayList<>();
 			}
-			this._sourceExcludes.add(value);
+			this.sourceExcludes.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_includes}
 		 */
-		public Builder<TDocument, TPartialDocument> _sourceIncludes(@Nullable List<String> value) {
-			this._sourceIncludes = value;
+		public Builder<TDocument, TPartialDocument> sourceIncludes(@Nullable List<String> value) {
+			this.sourceIncludes = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_includes}
 		 */
-		public Builder<TDocument, TPartialDocument> _sourceIncludes(String... value) {
-			this._sourceIncludes = Arrays.asList(value);
+		public Builder<TDocument, TPartialDocument> sourceIncludes(String... value) {
+			this.sourceIncludes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #_sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
-		public Builder<TDocument, TPartialDocument> add_sourceIncludes(String value) {
-			if (this._sourceIncludes == null) {
-				this._sourceIncludes = new ArrayList<>();
+		public Builder<TDocument, TPartialDocument> addSourceIncludes(String value) {
+			if (this.sourceIncludes == null) {
+				this.sourceIncludes = new ArrayList<>();
 			}
-			this._sourceIncludes.add(value);
+			this.sourceIncludes.add(value);
 			return this;
 		}
 
@@ -662,8 +662,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder<TDocument, TPartialDocument> _source(@Nullable JsonValue value) {
-			this._source = value;
+		public Builder<TDocument, TPartialDocument> source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
@@ -731,7 +731,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		op.add(Builder::docAsUpsert, JsonpDeserializer.booleanDeserializer(), "doc_as_upsert");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::scriptedUpsert, JsonpDeserializer.booleanDeserializer(), "scripted_upsert");
-		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::upsert, tDocumentDeserializer, "upsert");
 
 	}
@@ -820,13 +820,13 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
 				}
-				if (request._sourceExcludes != null) {
+				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
-							request._sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request._sourceIncludes != null) {
+				if (request.sourceIncludes != null) {
 					params.put("_source_includes",
-							request._sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

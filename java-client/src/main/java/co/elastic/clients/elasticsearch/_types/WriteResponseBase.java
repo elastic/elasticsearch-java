@@ -41,22 +41,22 @@ import javax.annotation.Nullable;
 
 // typedef: _types.WriteResponseBase
 public abstract class WriteResponseBase implements ToJsonp {
-	private final String _id;
+	private final String id;
 
-	private final String _index;
+	private final String index;
 
-	private final Number _primaryTerm;
+	private final Number primaryTerm;
 
 	private final JsonValue result;
 
-	private final Number _seqNo;
+	private final Number seqNo;
 
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	@Nullable
-	private final String _type;
+	private final String type;
 
-	private final Number _version;
+	private final Number version;
 
 	@Nullable
 	private final Boolean forcedRefresh;
@@ -68,14 +68,14 @@ public abstract class WriteResponseBase implements ToJsonp {
 
 	protected WriteResponseBase(AbstractBuilder<?> builder) {
 
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._index = Objects.requireNonNull(builder._index, "_index");
-		this._primaryTerm = Objects.requireNonNull(builder._primaryTerm, "_primary_term");
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "_primary_term");
 		this.result = Objects.requireNonNull(builder.result, "result");
-		this._seqNo = Objects.requireNonNull(builder._seqNo, "_seq_no");
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
-		this._type = builder._type;
-		this._version = Objects.requireNonNull(builder._version, "_version");
+		this.seqNo = Objects.requireNonNull(builder.seqNo, "_seq_no");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
+		this.type = builder.type;
+		this.version = Objects.requireNonNull(builder.version, "_version");
 		this.forcedRefresh = builder.forcedRefresh;
 		this.error = builder.error;
 
@@ -84,22 +84,22 @@ public abstract class WriteResponseBase implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _index}
 	 */
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
 	 * API name: {@code _primary_term}
 	 */
-	public Number _primaryTerm() {
-		return this._primaryTerm;
+	public Number primaryTerm() {
+		return this.primaryTerm;
 	}
 
 	/**
@@ -112,30 +112,30 @@ public abstract class WriteResponseBase implements ToJsonp {
 	/**
 	 * API name: {@code _seq_no}
 	 */
-	public Number _seqNo() {
-		return this._seqNo;
+	public Number seqNo() {
+		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String _type() {
-		return this._type;
+	public String type() {
+		return this.type;
 	}
 
 	/**
 	 * API name: {@code _version}
 	 */
-	public Number _version() {
-		return this._version;
+	public Number version() {
+		return this.version;
 	}
 
 	/**
@@ -166,32 +166,32 @@ public abstract class WriteResponseBase implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("_index");
-		generator.write(this._index);
+		generator.write(this.index);
 
 		generator.writeKey("_primary_term");
-		generator.write(this._primaryTerm.doubleValue());
+		generator.write(this.primaryTerm.doubleValue());
 
 		generator.writeKey("result");
 		generator.write(this.result);
 
 		generator.writeKey("_seq_no");
-		generator.write(this._seqNo.doubleValue());
+		generator.write(this.seqNo.doubleValue());
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
-		if (this._type != null) {
+		if (this.type != null) {
 
 			generator.writeKey("_type");
-			generator.write(this._type);
+			generator.write(this.type);
 
 		}
 
 		generator.writeKey("_version");
-		generator.write(this._version.doubleValue());
+		generator.write(this.version.doubleValue());
 
 		if (this.forcedRefresh != null) {
 
@@ -209,22 +209,22 @@ public abstract class WriteResponseBase implements ToJsonp {
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
-		private String _id;
+		private String id;
 
-		private String _index;
+		private String index;
 
-		private Number _primaryTerm;
+		private Number primaryTerm;
 
 		private JsonValue result;
 
-		private Number _seqNo;
+		private Number seqNo;
 
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		@Nullable
-		private String _type;
+		private String type;
 
-		private Number _version;
+		private Number version;
 
 		@Nullable
 		private Boolean forcedRefresh;
@@ -235,24 +235,24 @@ public abstract class WriteResponseBase implements ToJsonp {
 		/**
 		 * API name: {@code _id}
 		 */
-		public BuilderT _id(String value) {
-			this._id = value;
+		public BuilderT id(String value) {
+			this.id = value;
 			return self();
 		}
 
 		/**
 		 * API name: {@code _index}
 		 */
-		public BuilderT _index(String value) {
-			this._index = value;
+		public BuilderT index(String value) {
+			this.index = value;
 			return self();
 		}
 
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public BuilderT _primaryTerm(Number value) {
-			this._primaryTerm = value;
+		public BuilderT primaryTerm(Number value) {
+			this.primaryTerm = value;
 			return self();
 		}
 
@@ -267,39 +267,39 @@ public abstract class WriteResponseBase implements ToJsonp {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public BuilderT _seqNo(Number value) {
-			this._seqNo = value;
+		public BuilderT seqNo(Number value) {
+			this.seqNo = value;
 			return self();
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT _shards(ShardStatistics value) {
-			this._shards = value;
+		public BuilderT shards(ShardStatistics value) {
+			this.shards = value;
 			return self();
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _type}
 		 */
-		public BuilderT _type(@Nullable String value) {
-			this._type = value;
+		public BuilderT type(@Nullable String value) {
+			this.type = value;
 			return self();
 		}
 
 		/**
 		 * API name: {@code _version}
 		 */
-		public BuilderT _version(Number value) {
-			this._version = value;
+		public BuilderT version(Number value) {
+			this.version = value;
 			return self();
 		}
 
@@ -334,14 +334,14 @@ public abstract class WriteResponseBase implements ToJsonp {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteResponseBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(AbstractBuilder::_index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(AbstractBuilder::_primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
 		op.add(AbstractBuilder::result, JsonpDeserializer.jsonValueDeserializer(), "result");
-		op.add(AbstractBuilder::_seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(AbstractBuilder::_shards, ShardStatistics.DESERIALIZER, "_shards");
-		op.add(AbstractBuilder::_type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(AbstractBuilder::_version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(AbstractBuilder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
+		op.add(AbstractBuilder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(AbstractBuilder::version, JsonpDeserializer.numberDeserializer(), "_version");
 		op.add(AbstractBuilder::forcedRefresh, JsonpDeserializer.booleanDeserializer(), "forced_refresh");
 		op.add(AbstractBuilder::error, ErrorCause.DESERIALIZER, "error");
 

@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Response
 public final class ExecuteWatchResponse implements ToJsonp {
-	private final String _id;
+	private final String id;
 
 	private final WatchRecord watchRecord;
 
@@ -47,7 +47,7 @@ public final class ExecuteWatchResponse implements ToJsonp {
 
 	protected ExecuteWatchResponse(Builder builder) {
 
-		this._id = Objects.requireNonNull(builder._id, "_id");
+		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.watchRecord = Objects.requireNonNull(builder.watchRecord, "watch_record");
 
 	}
@@ -55,8 +55,8 @@ public final class ExecuteWatchResponse implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public final class ExecuteWatchResponse implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("watch_record");
 		this.watchRecord.toJsonp(generator, mapper);
@@ -91,15 +91,15 @@ public final class ExecuteWatchResponse implements ToJsonp {
 	 * Builder for {@link ExecuteWatchResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<ExecuteWatchResponse> {
-		private String _id;
+		private String id;
 
 		private WatchRecord watchRecord;
 
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(String value) {
-			this._id = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -141,7 +141,7 @@ public final class ExecuteWatchResponse implements ToJsonp {
 	protected static void setupExecuteWatchResponseDeserializer(
 			DelegatingDeserializer<ExecuteWatchResponse.Builder> op) {
 
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::watchRecord, WatchRecord.DESERIALIZER, "watch_record");
 
 	}

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.Response
 public final class DataStreamsStatsResponse implements ToJsonp {
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	private final Number backingIndices;
 
@@ -61,7 +61,7 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 
 	protected DataStreamsStatsResponse(Builder builder) {
 
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.backingIndices = Objects.requireNonNull(builder.backingIndices, "backing_indices");
 		this.dataStreamCount = Objects.requireNonNull(builder.dataStreamCount, "data_stream_count");
 		this.totalStoreSizes = builder.totalStoreSizes;
@@ -73,8 +73,8 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -125,7 +125,7 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 		generator.writeKey("backing_indices");
 		generator.write(this.backingIndices.doubleValue());
@@ -159,7 +159,7 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 	 * Builder for {@link DataStreamsStatsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<DataStreamsStatsResponse> {
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		private Number backingIndices;
 
@@ -175,16 +175,16 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(ShardStatistics value) {
-			this._shards = value;
+		public Builder shards(ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -283,7 +283,7 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 	protected static void setupDataStreamsStatsResponseDeserializer(
 			DelegatingDeserializer<DataStreamsStatsResponse.Builder> op) {
 
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
 		op.add(Builder::backingIndices, JsonpDeserializer.numberDeserializer(), "backing_indices");
 		op.add(Builder::dataStreamCount, JsonpDeserializer.numberDeserializer(), "data_stream_count");
 		op.add(Builder::totalStoreSizes, JsonpDeserializer.jsonValueDeserializer(), "total_store_sizes");

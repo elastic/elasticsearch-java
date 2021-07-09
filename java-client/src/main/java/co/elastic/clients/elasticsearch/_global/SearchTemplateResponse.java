@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Response
 public final class SearchTemplateResponse<TDocument> implements ToJsonp {
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	private final Boolean timedOut;
 
@@ -58,7 +58,7 @@ public final class SearchTemplateResponse<TDocument> implements ToJsonp {
 
 	protected SearchTemplateResponse(Builder<TDocument> builder) {
 
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
 		this.took = Objects.requireNonNull(builder.took, "took");
 		this.hits = Objects.requireNonNull(builder.hits, "hits");
@@ -69,8 +69,8 @@ public final class SearchTemplateResponse<TDocument> implements ToJsonp {
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -106,7 +106,7 @@ public final class SearchTemplateResponse<TDocument> implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 		generator.writeKey("timed_out");
 		generator.write(this.timedOut);
@@ -125,7 +125,7 @@ public final class SearchTemplateResponse<TDocument> implements ToJsonp {
 	 * Builder for {@link SearchTemplateResponse}.
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<SearchTemplateResponse<TDocument>> {
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		private Boolean timedOut;
 
@@ -139,16 +139,16 @@ public final class SearchTemplateResponse<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder<TDocument> _shards(ShardStatistics value) {
-			this._shards = value;
+		public Builder<TDocument> shards(ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder<TDocument> _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -220,7 +220,7 @@ public final class SearchTemplateResponse<TDocument> implements ToJsonp {
 			DelegatingDeserializer<SearchTemplateResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
 		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");

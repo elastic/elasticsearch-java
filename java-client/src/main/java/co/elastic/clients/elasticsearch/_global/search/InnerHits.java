@@ -84,7 +84,7 @@ public final class InnerHits implements ToJsonp {
 	private final List<JsonValue> sort;
 
 	@Nullable
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	@Nullable
 	private final Boolean version;
@@ -105,7 +105,7 @@ public final class InnerHits implements ToJsonp {
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
 		this.fields = builder.fields;
 		this.sort = builder.sort;
-		this._source = builder._source;
+		this.source = builder.source;
 		this.version = builder.version;
 
 	}
@@ -210,8 +210,8 @@ public final class InnerHits implements ToJsonp {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
@@ -326,10 +326,10 @@ public final class InnerHits implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
-			generator.write(this._source);
+			generator.write(this.source);
 
 		}
 		if (this.version != null) {
@@ -384,7 +384,7 @@ public final class InnerHits implements ToJsonp {
 		private List<JsonValue> sort;
 
 		@Nullable
-		private JsonValue _source;
+		private JsonValue source;
 
 		@Nullable
 		private Boolean version;
@@ -584,8 +584,8 @@ public final class InnerHits implements ToJsonp {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(@Nullable JsonValue value) {
-			this._source = value;
+		public Builder source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
@@ -633,7 +633,7 @@ public final class InnerHits implements ToJsonp {
 		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
-		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
 
 	}

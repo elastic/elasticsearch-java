@@ -41,17 +41,17 @@ import javax.annotation.Nullable;
 public final class DeleteWatchResponse implements ToJsonp {
 	private final Boolean found;
 
-	private final String _id;
+	private final String id;
 
-	private final Number _version;
+	private final Number version;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected DeleteWatchResponse(Builder builder) {
 
 		this.found = Objects.requireNonNull(builder.found, "found");
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._version = Objects.requireNonNull(builder._version, "_version");
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.version = Objects.requireNonNull(builder.version, "_version");
 
 	}
 
@@ -65,15 +65,15 @@ public final class DeleteWatchResponse implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _version}
 	 */
-	public Number _version() {
-		return this._version;
+	public Number version() {
+		return this.version;
 	}
 
 	/**
@@ -91,10 +91,10 @@ public final class DeleteWatchResponse implements ToJsonp {
 		generator.write(this.found);
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("_version");
-		generator.write(this._version.doubleValue());
+		generator.write(this.version.doubleValue());
 
 	}
 
@@ -106,9 +106,9 @@ public final class DeleteWatchResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<DeleteWatchResponse> {
 		private Boolean found;
 
-		private String _id;
+		private String id;
 
-		private Number _version;
+		private Number version;
 
 		/**
 		 * API name: {@code found}
@@ -121,16 +121,16 @@ public final class DeleteWatchResponse implements ToJsonp {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(String value) {
-			this._id = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder _version(Number value) {
-			this._version = value;
+		public Builder version(Number value) {
+			this.version = value;
 			return this;
 		}
 
@@ -157,8 +157,8 @@ public final class DeleteWatchResponse implements ToJsonp {
 	protected static void setupDeleteWatchResponseDeserializer(DelegatingDeserializer<DeleteWatchResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
 
 	}
 

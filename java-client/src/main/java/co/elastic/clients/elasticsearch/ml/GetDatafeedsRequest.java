@@ -33,14 +33,18 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeeds.Request
 public final class GetDatafeedsRequest extends RequestBase {
 	@Nullable
-	private final String datafeedId;
+	private final List<String> datafeedId;
 
 	@Nullable
 	private final Boolean allowNoDatafeeds;
@@ -62,7 +66,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
-	public String datafeedId() {
+	public List<String> datafeedId() {
 		return this.datafeedId;
 	}
 
@@ -89,7 +93,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetDatafeedsRequest> {
 		@Nullable
-		private String datafeedId;
+		private List<String> datafeedId;
 
 		@Nullable
 		private Boolean allowNoDatafeeds;
@@ -100,8 +104,27 @@ public final class GetDatafeedsRequest extends RequestBase {
 		/**
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(@Nullable String value) {
+		public Builder datafeedId(@Nullable List<String> value) {
 			this.datafeedId = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code datafeed_id}
+		 */
+		public Builder datafeedId(String... value) {
+			this.datafeedId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #datafeedId(List)}, creating the list if needed.
+		 */
+		public Builder addDatafeedId(String value) {
+			if (this.datafeedId == null) {
+				this.datafeedId = new ArrayList<>();
+			}
+			this.datafeedId.add(value);
 			return this;
 		}
 
@@ -159,7 +182,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					buf.append(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
 				if (propsSet == 0) {

@@ -41,7 +41,7 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 	@Nullable
 	private final MlDataFrameAnalyticsJobsMemory memoryUsage;
 
-	private final MlDataFrameAnalyticsJobsCount _all;
+	private final MlDataFrameAnalyticsJobsCount all;
 
 	@Nullable
 	private final JsonValue analysisCounts;
@@ -51,7 +51,7 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 	protected MlDataFrameAnalyticsJobs(Builder builder) {
 
 		this.memoryUsage = builder.memoryUsage;
-		this._all = Objects.requireNonNull(builder._all, "_all");
+		this.all = Objects.requireNonNull(builder.all, "_all");
 		this.analysisCounts = builder.analysisCounts;
 
 	}
@@ -67,8 +67,8 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 	/**
 	 * API name: {@code _all}
 	 */
-	public MlDataFrameAnalyticsJobsCount _all() {
-		return this._all;
+	public MlDataFrameAnalyticsJobsCount all() {
+		return this.all;
 	}
 
 	/**
@@ -98,7 +98,7 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 		}
 
 		generator.writeKey("_all");
-		this._all.toJsonp(generator, mapper);
+		this.all.toJsonp(generator, mapper);
 
 		if (this.analysisCounts != null) {
 
@@ -118,7 +118,7 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 		@Nullable
 		private MlDataFrameAnalyticsJobsMemory memoryUsage;
 
-		private MlDataFrameAnalyticsJobsCount _all;
+		private MlDataFrameAnalyticsJobsCount all;
 
 		@Nullable
 		private JsonValue analysisCounts;
@@ -142,17 +142,17 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(MlDataFrameAnalyticsJobsCount value) {
-			this._all = value;
+		public Builder all(MlDataFrameAnalyticsJobsCount value) {
+			this.all = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(
+		public Builder all(
 				Function<MlDataFrameAnalyticsJobsCount.Builder, ObjectBuilder<MlDataFrameAnalyticsJobsCount>> fn) {
-			return this._all(fn.apply(new MlDataFrameAnalyticsJobsCount.Builder()).build());
+			return this.all(fn.apply(new MlDataFrameAnalyticsJobsCount.Builder()).build());
 		}
 
 		/**
@@ -187,7 +187,7 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 			DelegatingDeserializer<MlDataFrameAnalyticsJobs.Builder> op) {
 
 		op.add(Builder::memoryUsage, MlDataFrameAnalyticsJobsMemory.DESERIALIZER, "memory_usage");
-		op.add(Builder::_all, MlDataFrameAnalyticsJobsCount.DESERIALIZER, "_all");
+		op.add(Builder::all, MlDataFrameAnalyticsJobsCount.DESERIALIZER, "_all");
 		op.add(Builder::analysisCounts, JsonpDeserializer.jsonValueDeserializer(), "analysis_counts");
 
 	}

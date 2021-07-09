@@ -53,7 +53,7 @@ public final class RollupSearchResponse<TDocument> implements ToJsonp {
 	@Nullable
 	private final Boolean terminatedEarly;
 
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	private final HitsMetadata<TDocument> hits;
 
@@ -70,7 +70,7 @@ public final class RollupSearchResponse<TDocument> implements ToJsonp {
 		this.took = Objects.requireNonNull(builder.took, "took");
 		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
 		this.terminatedEarly = builder.terminatedEarly;
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.hits = Objects.requireNonNull(builder.hits, "hits");
 		this.aggregations = builder.aggregations;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -102,8 +102,8 @@ public final class RollupSearchResponse<TDocument> implements ToJsonp {
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -146,7 +146,7 @@ public final class RollupSearchResponse<TDocument> implements ToJsonp {
 		}
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 		generator.writeKey("hits");
 		this.hits.toJsonp(generator, mapper);
@@ -179,7 +179,7 @@ public final class RollupSearchResponse<TDocument> implements ToJsonp {
 		@Nullable
 		private Boolean terminatedEarly;
 
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		private HitsMetadata<TDocument> hits;
 
@@ -216,16 +216,16 @@ public final class RollupSearchResponse<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder<TDocument> _shards(ShardStatistics value) {
-			this._shards = value;
+		public Builder<TDocument> shards(ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder<TDocument> _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -303,7 +303,7 @@ public final class RollupSearchResponse<TDocument> implements ToJsonp {
 		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(Builder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
 		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
 		op.add(Builder::aggregations,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");

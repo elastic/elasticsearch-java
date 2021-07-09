@@ -45,17 +45,17 @@ public final class StatsResponse implements ToJsonp {
 	@Nullable
 	private final Map<String, IndicesStats> indices;
 
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
-	private final IndicesStats _all;
+	private final IndicesStats all;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected StatsResponse(Builder builder) {
 
 		this.indices = builder.indices;
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
-		this._all = Objects.requireNonNull(builder._all, "_all");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
+		this.all = Objects.requireNonNull(builder.all, "_all");
 
 	}
 
@@ -70,15 +70,15 @@ public final class StatsResponse implements ToJsonp {
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
 	 * API name: {@code _all}
 	 */
-	public IndicesStats _all() {
-		return this._all;
+	public IndicesStats all() {
+		return this.all;
 	}
 
 	/**
@@ -106,10 +106,10 @@ public final class StatsResponse implements ToJsonp {
 		}
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 		generator.writeKey("_all");
-		this._all.toJsonp(generator, mapper);
+		this.all.toJsonp(generator, mapper);
 
 	}
 
@@ -122,9 +122,9 @@ public final class StatsResponse implements ToJsonp {
 		@Nullable
 		private Map<String, IndicesStats> indices;
 
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
-		private IndicesStats _all;
+		private IndicesStats all;
 
 		/**
 		 * API name: {@code indices}
@@ -162,31 +162,31 @@ public final class StatsResponse implements ToJsonp {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(ShardStatistics value) {
-			this._shards = value;
+		public Builder shards(ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(IndicesStats value) {
-			this._all = value;
+		public Builder all(IndicesStats value) {
+			this.all = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
-			return this._all(fn.apply(new IndicesStats.Builder()).build());
+		public Builder all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
+			return this.all(fn.apply(new IndicesStats.Builder()).build());
 		}
 
 		/**
@@ -212,8 +212,8 @@ public final class StatsResponse implements ToJsonp {
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndicesStats.DESERIALIZER), "indices");
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
-		op.add(Builder::_all, IndicesStats.DESERIALIZER, "_all");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::all, IndicesStats.DESERIALIZER, "_all");
 
 	}
 

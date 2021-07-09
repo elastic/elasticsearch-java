@@ -44,7 +44,7 @@ public final class NestedIdentity implements ToJsonp {
 	private final Number offset;
 
 	@Nullable
-	private final co.elastic.clients.elasticsearch._global.search.NestedIdentity _nested;
+	private final co.elastic.clients.elasticsearch._global.search.NestedIdentity nested;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ public final class NestedIdentity implements ToJsonp {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.offset = Objects.requireNonNull(builder.offset, "offset");
-		this._nested = builder._nested;
+		this.nested = builder.nested;
 
 	}
 
@@ -74,8 +74,8 @@ public final class NestedIdentity implements ToJsonp {
 	 * API name: {@code _nested}
 	 */
 	@Nullable
-	public co.elastic.clients.elasticsearch._global.search.NestedIdentity _nested() {
-		return this._nested;
+	public co.elastic.clients.elasticsearch._global.search.NestedIdentity nested() {
+		return this.nested;
 	}
 
 	/**
@@ -95,10 +95,10 @@ public final class NestedIdentity implements ToJsonp {
 		generator.writeKey("offset");
 		generator.write(this.offset.doubleValue());
 
-		if (this._nested != null) {
+		if (this.nested != null) {
 
 			generator.writeKey("_nested");
-			this._nested.toJsonp(generator, mapper);
+			this.nested.toJsonp(generator, mapper);
 
 		}
 
@@ -115,7 +115,7 @@ public final class NestedIdentity implements ToJsonp {
 		private Number offset;
 
 		@Nullable
-		private co.elastic.clients.elasticsearch._global.search.NestedIdentity _nested;
+		private co.elastic.clients.elasticsearch._global.search.NestedIdentity nested;
 
 		/**
 		 * API name: {@code field}
@@ -136,17 +136,17 @@ public final class NestedIdentity implements ToJsonp {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder _nested(@Nullable co.elastic.clients.elasticsearch._global.search.NestedIdentity value) {
-			this._nested = value;
+		public Builder nested(@Nullable co.elastic.clients.elasticsearch._global.search.NestedIdentity value) {
+			this.nested = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder _nested(
+		public Builder nested(
 				Function<co.elastic.clients.elasticsearch._global.search.NestedIdentity.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._global.search.NestedIdentity>> fn) {
-			return this._nested(
+			return this.nested(
 					fn.apply(new co.elastic.clients.elasticsearch._global.search.NestedIdentity.Builder()).build());
 		}
 
@@ -174,8 +174,7 @@ public final class NestedIdentity implements ToJsonp {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::offset, JsonpDeserializer.numberDeserializer(), "offset");
-		op.add(Builder::_nested, co.elastic.clients.elasticsearch._global.search.NestedIdentity.DESERIALIZER,
-				"_nested");
+		op.add(Builder::nested, co.elastic.clients.elasticsearch._global.search.NestedIdentity.DESERIALIZER, "_nested");
 
 	}
 

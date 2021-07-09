@@ -23,8 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch.xpack.usage.CustomSettings;
-import co.elastic.clients.elasticsearch.xpack.usage.MlJobForecasts;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -40,6 +38,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -48,58 +47,29 @@ public final class Job implements ToJsonp {
 	@Nullable
 	private final Boolean allowLazyOpen;
 
-	@Nullable
 	private final AnalysisConfig analysisConfig;
 
 	@Nullable
 	private final AnalysisLimits analysisLimits;
 
-	@Nullable
 	private final JsonValue backgroundPersistInterval;
 
-	@Nullable
-	private final Number count;
-
-	@Nullable
-	private final JsonValue createdBy;
-
-	@Nullable
 	private final Number createTime;
 
-	@Nullable
-	private final JobStatistics detectors;
-
-	@Nullable
 	private final DataDescription dataDescription;
 
-	@Nullable
 	private final String description;
 
-	@Nullable
 	private final Number finishedTime;
 
-	@Nullable
-	private final MlJobForecasts forecasts;
-
-	@Nullable
 	private final String jobId;
 
-	@Nullable
 	private final String jobType;
 
-	@Nullable
-	private final ModelPlotConfig modelPlot;
-
-	@Nullable
-	private final JobStatistics modelSize;
-
-	@Nullable
 	private final String modelSnapshotId;
 
-	@Nullable
 	private final Number modelSnapshotRetentionDays;
 
-	@Nullable
 	private final Number renormalizationWindowDays;
 
 	@Nullable
@@ -131,24 +101,21 @@ public final class Job implements ToJsonp {
 	protected Job(Builder builder) {
 
 		this.allowLazyOpen = builder.allowLazyOpen;
-		this.analysisConfig = builder.analysisConfig;
+		this.analysisConfig = Objects.requireNonNull(builder.analysisConfig, "analysis_config");
 		this.analysisLimits = builder.analysisLimits;
-		this.backgroundPersistInterval = builder.backgroundPersistInterval;
-		this.count = builder.count;
-		this.createdBy = builder.createdBy;
-		this.createTime = builder.createTime;
-		this.detectors = builder.detectors;
-		this.dataDescription = builder.dataDescription;
-		this.description = builder.description;
-		this.finishedTime = builder.finishedTime;
-		this.forecasts = builder.forecasts;
-		this.jobId = builder.jobId;
-		this.jobType = builder.jobType;
-		this.modelPlot = builder.modelPlot;
-		this.modelSize = builder.modelSize;
-		this.modelSnapshotId = builder.modelSnapshotId;
-		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
-		this.renormalizationWindowDays = builder.renormalizationWindowDays;
+		this.backgroundPersistInterval = Objects.requireNonNull(builder.backgroundPersistInterval,
+				"background_persist_interval");
+		this.createTime = Objects.requireNonNull(builder.createTime, "create_time");
+		this.dataDescription = Objects.requireNonNull(builder.dataDescription, "data_description");
+		this.description = Objects.requireNonNull(builder.description, "description");
+		this.finishedTime = Objects.requireNonNull(builder.finishedTime, "finished_time");
+		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobType = Objects.requireNonNull(builder.jobType, "job_type");
+		this.modelSnapshotId = Objects.requireNonNull(builder.modelSnapshotId, "model_snapshot_id");
+		this.modelSnapshotRetentionDays = Objects.requireNonNull(builder.modelSnapshotRetentionDays,
+				"model_snapshot_retention_days");
+		this.renormalizationWindowDays = Objects.requireNonNull(builder.renormalizationWindowDays,
+				"renormalization_window_days");
 		this.resultsIndexName = builder.resultsIndexName;
 		this.resultsRetentionDays = builder.resultsRetentionDays;
 		this.groups = builder.groups;
@@ -171,7 +138,6 @@ public final class Job implements ToJsonp {
 	/**
 	 * API name: {@code analysis_config}
 	 */
-	@Nullable
 	public AnalysisConfig analysisConfig() {
 		return this.analysisConfig;
 	}
@@ -187,47 +153,20 @@ public final class Job implements ToJsonp {
 	/**
 	 * API name: {@code background_persist_interval}
 	 */
-	@Nullable
 	public JsonValue backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
 	/**
-	 * API name: {@code count}
-	 */
-	@Nullable
-	public Number count() {
-		return this.count;
-	}
-
-	/**
-	 * API name: {@code created_by}
-	 */
-	@Nullable
-	public JsonValue createdBy() {
-		return this.createdBy;
-	}
-
-	/**
 	 * API name: {@code create_time}
 	 */
-	@Nullable
 	public Number createTime() {
 		return this.createTime;
 	}
 
 	/**
-	 * API name: {@code detectors}
-	 */
-	@Nullable
-	public JobStatistics detectors() {
-		return this.detectors;
-	}
-
-	/**
 	 * API name: {@code data_description}
 	 */
-	@Nullable
 	public DataDescription dataDescription() {
 		return this.dataDescription;
 	}
@@ -235,7 +174,6 @@ public final class Job implements ToJsonp {
 	/**
 	 * API name: {@code description}
 	 */
-	@Nullable
 	public String description() {
 		return this.description;
 	}
@@ -243,23 +181,13 @@ public final class Job implements ToJsonp {
 	/**
 	 * API name: {@code finished_time}
 	 */
-	@Nullable
 	public Number finishedTime() {
 		return this.finishedTime;
 	}
 
 	/**
-	 * API name: {@code forecasts}
-	 */
-	@Nullable
-	public MlJobForecasts forecasts() {
-		return this.forecasts;
-	}
-
-	/**
 	 * API name: {@code job_id}
 	 */
-	@Nullable
 	public String jobId() {
 		return this.jobId;
 	}
@@ -267,31 +195,13 @@ public final class Job implements ToJsonp {
 	/**
 	 * API name: {@code job_type}
 	 */
-	@Nullable
 	public String jobType() {
 		return this.jobType;
 	}
 
 	/**
-	 * API name: {@code model_plot}
-	 */
-	@Nullable
-	public ModelPlotConfig modelPlot() {
-		return this.modelPlot;
-	}
-
-	/**
-	 * API name: {@code model_size}
-	 */
-	@Nullable
-	public JobStatistics modelSize() {
-		return this.modelSize;
-	}
-
-	/**
 	 * API name: {@code model_snapshot_id}
 	 */
-	@Nullable
 	public String modelSnapshotId() {
 		return this.modelSnapshotId;
 	}
@@ -299,7 +209,6 @@ public final class Job implements ToJsonp {
 	/**
 	 * API name: {@code model_snapshot_retention_days}
 	 */
-	@Nullable
 	public Number modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
@@ -307,7 +216,6 @@ public final class Job implements ToJsonp {
 	/**
 	 * API name: {@code renormalization_window_days}
 	 */
-	@Nullable
 	public Number renormalizationWindowDays() {
 		return this.renormalizationWindowDays;
 	}
@@ -393,114 +301,47 @@ public final class Job implements ToJsonp {
 			generator.write(this.allowLazyOpen);
 
 		}
-		if (this.analysisConfig != null) {
 
-			generator.writeKey("analysis_config");
-			this.analysisConfig.toJsonp(generator, mapper);
+		generator.writeKey("analysis_config");
+		this.analysisConfig.toJsonp(generator, mapper);
 
-		}
 		if (this.analysisLimits != null) {
 
 			generator.writeKey("analysis_limits");
 			this.analysisLimits.toJsonp(generator, mapper);
 
 		}
-		if (this.backgroundPersistInterval != null) {
 
-			generator.writeKey("background_persist_interval");
-			generator.write(this.backgroundPersistInterval);
+		generator.writeKey("background_persist_interval");
+		generator.write(this.backgroundPersistInterval);
 
-		}
-		if (this.count != null) {
+		generator.writeKey("create_time");
+		generator.write(this.createTime.doubleValue());
 
-			generator.writeKey("count");
-			generator.write(this.count.doubleValue());
+		generator.writeKey("data_description");
+		this.dataDescription.toJsonp(generator, mapper);
 
-		}
-		if (this.createdBy != null) {
+		generator.writeKey("description");
+		generator.write(this.description);
 
-			generator.writeKey("created_by");
-			generator.write(this.createdBy);
+		generator.writeKey("finished_time");
+		generator.write(this.finishedTime.doubleValue());
 
-		}
-		if (this.createTime != null) {
+		generator.writeKey("job_id");
+		generator.write(this.jobId);
 
-			generator.writeKey("create_time");
-			generator.write(this.createTime.doubleValue());
+		generator.writeKey("job_type");
+		generator.write(this.jobType);
 
-		}
-		if (this.detectors != null) {
+		generator.writeKey("model_snapshot_id");
+		generator.write(this.modelSnapshotId);
 
-			generator.writeKey("detectors");
-			this.detectors.toJsonp(generator, mapper);
+		generator.writeKey("model_snapshot_retention_days");
+		generator.write(this.modelSnapshotRetentionDays.doubleValue());
 
-		}
-		if (this.dataDescription != null) {
+		generator.writeKey("renormalization_window_days");
+		generator.write(this.renormalizationWindowDays.doubleValue());
 
-			generator.writeKey("data_description");
-			this.dataDescription.toJsonp(generator, mapper);
-
-		}
-		if (this.description != null) {
-
-			generator.writeKey("description");
-			generator.write(this.description);
-
-		}
-		if (this.finishedTime != null) {
-
-			generator.writeKey("finished_time");
-			generator.write(this.finishedTime.doubleValue());
-
-		}
-		if (this.forecasts != null) {
-
-			generator.writeKey("forecasts");
-			this.forecasts.toJsonp(generator, mapper);
-
-		}
-		if (this.jobId != null) {
-
-			generator.writeKey("job_id");
-			generator.write(this.jobId);
-
-		}
-		if (this.jobType != null) {
-
-			generator.writeKey("job_type");
-			generator.write(this.jobType);
-
-		}
-		if (this.modelPlot != null) {
-
-			generator.writeKey("model_plot");
-			this.modelPlot.toJsonp(generator, mapper);
-
-		}
-		if (this.modelSize != null) {
-
-			generator.writeKey("model_size");
-			this.modelSize.toJsonp(generator, mapper);
-
-		}
-		if (this.modelSnapshotId != null) {
-
-			generator.writeKey("model_snapshot_id");
-			generator.write(this.modelSnapshotId);
-
-		}
-		if (this.modelSnapshotRetentionDays != null) {
-
-			generator.writeKey("model_snapshot_retention_days");
-			generator.write(this.modelSnapshotRetentionDays.doubleValue());
-
-		}
-		if (this.renormalizationWindowDays != null) {
-
-			generator.writeKey("renormalization_window_days");
-			generator.write(this.renormalizationWindowDays.doubleValue());
-
-		}
 		if (this.resultsIndexName != null) {
 
 			generator.writeKey("results_index_name");
@@ -566,58 +407,29 @@ public final class Job implements ToJsonp {
 		@Nullable
 		private Boolean allowLazyOpen;
 
-		@Nullable
 		private AnalysisConfig analysisConfig;
 
 		@Nullable
 		private AnalysisLimits analysisLimits;
 
-		@Nullable
 		private JsonValue backgroundPersistInterval;
 
-		@Nullable
-		private Number count;
-
-		@Nullable
-		private JsonValue createdBy;
-
-		@Nullable
 		private Number createTime;
 
-		@Nullable
-		private JobStatistics detectors;
-
-		@Nullable
 		private DataDescription dataDescription;
 
-		@Nullable
 		private String description;
 
-		@Nullable
 		private Number finishedTime;
 
-		@Nullable
-		private MlJobForecasts forecasts;
-
-		@Nullable
 		private String jobId;
 
-		@Nullable
 		private String jobType;
 
-		@Nullable
-		private ModelPlotConfig modelPlot;
-
-		@Nullable
-		private JobStatistics modelSize;
-
-		@Nullable
 		private String modelSnapshotId;
 
-		@Nullable
 		private Number modelSnapshotRetentionDays;
 
-		@Nullable
 		private Number renormalizationWindowDays;
 
 		@Nullable
@@ -655,7 +467,7 @@ public final class Job implements ToJsonp {
 		/**
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(@Nullable AnalysisConfig value) {
+		public Builder analysisConfig(AnalysisConfig value) {
 			this.analysisConfig = value;
 			return this;
 		}
@@ -685,54 +497,23 @@ public final class Job implements ToJsonp {
 		/**
 		 * API name: {@code background_persist_interval}
 		 */
-		public Builder backgroundPersistInterval(@Nullable JsonValue value) {
+		public Builder backgroundPersistInterval(JsonValue value) {
 			this.backgroundPersistInterval = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code count}
-		 */
-		public Builder count(@Nullable Number value) {
-			this.count = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code created_by}
-		 */
-		public Builder createdBy(@Nullable JsonValue value) {
-			this.createdBy = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(@Nullable Number value) {
+		public Builder createTime(Number value) {
 			this.createTime = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code detectors}
-		 */
-		public Builder detectors(@Nullable JobStatistics value) {
-			this.detectors = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code detectors}
-		 */
-		public Builder detectors(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
-			return this.detectors(fn.apply(new JobStatistics.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code data_description}
 		 */
-		public Builder dataDescription(@Nullable DataDescription value) {
+		public Builder dataDescription(DataDescription value) {
 			this.dataDescription = value;
 			return this;
 		}
@@ -747,7 +528,7 @@ public final class Job implements ToJsonp {
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -755,30 +536,15 @@ public final class Job implements ToJsonp {
 		/**
 		 * API name: {@code finished_time}
 		 */
-		public Builder finishedTime(@Nullable Number value) {
+		public Builder finishedTime(Number value) {
 			this.finishedTime = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code forecasts}
-		 */
-		public Builder forecasts(@Nullable MlJobForecasts value) {
-			this.forecasts = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code forecasts}
-		 */
-		public Builder forecasts(Function<MlJobForecasts.Builder, ObjectBuilder<MlJobForecasts>> fn) {
-			return this.forecasts(fn.apply(new MlJobForecasts.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(@Nullable String value) {
+		public Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -786,45 +552,15 @@ public final class Job implements ToJsonp {
 		/**
 		 * API name: {@code job_type}
 		 */
-		public Builder jobType(@Nullable String value) {
+		public Builder jobType(String value) {
 			this.jobType = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code model_plot}
-		 */
-		public Builder modelPlot(@Nullable ModelPlotConfig value) {
-			this.modelPlot = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code model_plot}
-		 */
-		public Builder modelPlot(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
-			return this.modelPlot(fn.apply(new ModelPlotConfig.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code model_size}
-		 */
-		public Builder modelSize(@Nullable JobStatistics value) {
-			this.modelSize = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code model_size}
-		 */
-		public Builder modelSize(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
-			return this.modelSize(fn.apply(new JobStatistics.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code model_snapshot_id}
 		 */
-		public Builder modelSnapshotId(@Nullable String value) {
+		public Builder modelSnapshotId(String value) {
 			this.modelSnapshotId = value;
 			return this;
 		}
@@ -832,7 +568,7 @@ public final class Job implements ToJsonp {
 		/**
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(@Nullable Number value) {
+		public Builder modelSnapshotRetentionDays(Number value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -840,7 +576,7 @@ public final class Job implements ToJsonp {
 		/**
 		 * API name: {@code renormalization_window_days}
 		 */
-		public Builder renormalizationWindowDays(@Nullable Number value) {
+		public Builder renormalizationWindowDays(Number value) {
 			this.renormalizationWindowDays = value;
 			return this;
 		}
@@ -969,18 +705,12 @@ public final class Job implements ToJsonp {
 		op.add(Builder::analysisLimits, AnalysisLimits.DESERIALIZER, "analysis_limits");
 		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.jsonValueDeserializer(),
 				"background_persist_interval");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::createdBy, JsonpDeserializer.jsonValueDeserializer(), "created_by");
 		op.add(Builder::createTime, JsonpDeserializer.numberDeserializer(), "create_time");
-		op.add(Builder::detectors, JobStatistics.DESERIALIZER, "detectors");
 		op.add(Builder::dataDescription, DataDescription.DESERIALIZER, "data_description");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::finishedTime, JsonpDeserializer.numberDeserializer(), "finished_time");
-		op.add(Builder::forecasts, MlJobForecasts.DESERIALIZER, "forecasts");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::jobType, JsonpDeserializer.stringDeserializer(), "job_type");
-		op.add(Builder::modelPlot, ModelPlotConfig.DESERIALIZER, "model_plot");
-		op.add(Builder::modelSize, JobStatistics.DESERIALIZER, "model_size");
 		op.add(Builder::modelSnapshotId, JsonpDeserializer.stringDeserializer(), "model_snapshot_id");
 		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
 				"model_snapshot_retention_days");

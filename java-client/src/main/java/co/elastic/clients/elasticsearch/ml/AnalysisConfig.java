@@ -53,7 +53,6 @@ public final class AnalysisConfig implements ToJsonp {
 
 	private final List<Detector> detectors;
 
-	@Nullable
 	private final List<String> influencers;
 
 	@Nullable
@@ -79,7 +78,7 @@ public final class AnalysisConfig implements ToJsonp {
 		this.categorizationFieldName = builder.categorizationFieldName;
 		this.categorizationFilters = builder.categorizationFilters;
 		this.detectors = Objects.requireNonNull(builder.detectors, "detectors");
-		this.influencers = builder.influencers;
+		this.influencers = Objects.requireNonNull(builder.influencers, "influencers");
 		this.latency = builder.latency;
 		this.multivariateByFields = builder.multivariateByFields;
 		this.perPartitionCategorization = builder.perPartitionCategorization;
@@ -121,7 +120,6 @@ public final class AnalysisConfig implements ToJsonp {
 	/**
 	 * API name: {@code influencers}
 	 */
-	@Nullable
 	public List<String> influencers() {
 		return this.influencers;
 	}
@@ -206,17 +204,14 @@ public final class AnalysisConfig implements ToJsonp {
 		}
 		generator.writeEnd();
 
-		if (this.influencers != null) {
-
-			generator.writeKey("influencers");
-			generator.writeStartArray();
-			for (String item0 : this.influencers) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+		generator.writeKey("influencers");
+		generator.writeStartArray();
+		for (String item0 : this.influencers) {
+			generator.write(item0);
 
 		}
+		generator.writeEnd();
+
 		if (this.latency != null) {
 
 			generator.writeKey("latency");
@@ -266,7 +261,6 @@ public final class AnalysisConfig implements ToJsonp {
 
 		private List<Detector> detectors;
 
-		@Nullable
 		private List<String> influencers;
 
 		@Nullable
@@ -372,7 +366,7 @@ public final class AnalysisConfig implements ToJsonp {
 		/**
 		 * API name: {@code influencers}
 		 */
-		public Builder influencers(@Nullable List<String> value) {
+		public Builder influencers(List<String> value) {
 			this.influencers = value;
 			return this;
 		}

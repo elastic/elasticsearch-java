@@ -40,14 +40,14 @@ public final class WatcherWatchTrigger implements ToJsonp {
 	@Nullable
 	private final WatcherWatchTriggerSchedule schedule;
 
-	private final Counter _all;
+	private final Counter all;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected WatcherWatchTrigger(Builder builder) {
 
 		this.schedule = builder.schedule;
-		this._all = Objects.requireNonNull(builder._all, "_all");
+		this.all = Objects.requireNonNull(builder.all, "_all");
 
 	}
 
@@ -62,8 +62,8 @@ public final class WatcherWatchTrigger implements ToJsonp {
 	/**
 	 * API name: {@code _all}
 	 */
-	public Counter _all() {
-		return this._all;
+	public Counter all() {
+		return this.all;
 	}
 
 	/**
@@ -85,7 +85,7 @@ public final class WatcherWatchTrigger implements ToJsonp {
 		}
 
 		generator.writeKey("_all");
-		this._all.toJsonp(generator, mapper);
+		this.all.toJsonp(generator, mapper);
 
 	}
 
@@ -98,7 +98,7 @@ public final class WatcherWatchTrigger implements ToJsonp {
 		@Nullable
 		private WatcherWatchTriggerSchedule schedule;
 
-		private Counter _all;
+		private Counter all;
 
 		/**
 		 * API name: {@code schedule}
@@ -119,16 +119,16 @@ public final class WatcherWatchTrigger implements ToJsonp {
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(Counter value) {
-			this._all = value;
+		public Builder all(Counter value) {
+			this.all = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this._all(fn.apply(new Counter.Builder()).build());
+		public Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return this.all(fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
@@ -154,7 +154,7 @@ public final class WatcherWatchTrigger implements ToJsonp {
 	protected static void setupWatcherWatchTriggerDeserializer(DelegatingDeserializer<WatcherWatchTrigger.Builder> op) {
 
 		op.add(Builder::schedule, WatcherWatchTriggerSchedule.DESERIALIZER, "schedule");
-		op.add(Builder::_all, Counter.DESERIALIZER, "_all");
+		op.add(Builder::all, Counter.DESERIALIZER, "_all");
 
 	}
 

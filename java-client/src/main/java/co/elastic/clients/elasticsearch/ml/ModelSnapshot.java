@@ -30,7 +30,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -46,15 +45,12 @@ public final class ModelSnapshot implements ToJsonp {
 
 	private final String jobId;
 
-	@Nullable
-	private final JsonValue latestRecordTimeStamp;
+	private final Number latestRecordTimeStamp;
 
-	@Nullable
-	private final JsonValue latestResultTimeStamp;
+	private final Number latestResultTimeStamp;
 
 	private final String minVersion;
 
-	@Nullable
 	private final ModelSizeStats modelSizeStats;
 
 	private final Boolean retain;
@@ -63,7 +59,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	private final String snapshotId;
 
-	private final JsonValue timestamp;
+	private final Number timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,10 +67,10 @@ public final class ModelSnapshot implements ToJsonp {
 
 		this.description = builder.description;
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.latestRecordTimeStamp = builder.latestRecordTimeStamp;
-		this.latestResultTimeStamp = builder.latestResultTimeStamp;
+		this.latestRecordTimeStamp = Objects.requireNonNull(builder.latestRecordTimeStamp, "latest_record_time_stamp");
+		this.latestResultTimeStamp = Objects.requireNonNull(builder.latestResultTimeStamp, "latest_result_time_stamp");
 		this.minVersion = Objects.requireNonNull(builder.minVersion, "min_version");
-		this.modelSizeStats = builder.modelSizeStats;
+		this.modelSizeStats = Objects.requireNonNull(builder.modelSizeStats, "model_size_stats");
 		this.retain = Objects.requireNonNull(builder.retain, "retain");
 		this.snapshotDocCount = Objects.requireNonNull(builder.snapshotDocCount, "snapshot_doc_count");
 		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
@@ -107,8 +103,7 @@ public final class ModelSnapshot implements ToJsonp {
 	 *
 	 * API name: {@code latest_record_time_stamp}
 	 */
-	@Nullable
-	public JsonValue latestRecordTimeStamp() {
+	public Number latestRecordTimeStamp() {
 		return this.latestRecordTimeStamp;
 	}
 
@@ -117,8 +112,7 @@ public final class ModelSnapshot implements ToJsonp {
 	 *
 	 * API name: {@code latest_result_time_stamp}
 	 */
-	@Nullable
-	public JsonValue latestResultTimeStamp() {
+	public Number latestResultTimeStamp() {
 		return this.latestResultTimeStamp;
 	}
 
@@ -136,7 +130,6 @@ public final class ModelSnapshot implements ToJsonp {
 	 *
 	 * API name: {@code model_size_stats}
 	 */
-	@Nullable
 	public ModelSizeStats modelSizeStats() {
 		return this.modelSizeStats;
 	}
@@ -175,7 +168,7 @@ public final class ModelSnapshot implements ToJsonp {
 	 *
 	 * API name: {@code timestamp}
 	 */
-	public JsonValue timestamp() {
+	public Number timestamp() {
 		return this.timestamp;
 	}
 
@@ -200,28 +193,17 @@ public final class ModelSnapshot implements ToJsonp {
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
-		if (this.latestRecordTimeStamp != null) {
+		generator.writeKey("latest_record_time_stamp");
+		generator.write(this.latestRecordTimeStamp.doubleValue());
 
-			generator.writeKey("latest_record_time_stamp");
-			generator.write(this.latestRecordTimeStamp);
-
-		}
-		if (this.latestResultTimeStamp != null) {
-
-			generator.writeKey("latest_result_time_stamp");
-			generator.write(this.latestResultTimeStamp);
-
-		}
+		generator.writeKey("latest_result_time_stamp");
+		generator.write(this.latestResultTimeStamp.doubleValue());
 
 		generator.writeKey("min_version");
 		generator.write(this.minVersion);
 
-		if (this.modelSizeStats != null) {
-
-			generator.writeKey("model_size_stats");
-			this.modelSizeStats.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("model_size_stats");
+		this.modelSizeStats.toJsonp(generator, mapper);
 
 		generator.writeKey("retain");
 		generator.write(this.retain);
@@ -233,7 +215,7 @@ public final class ModelSnapshot implements ToJsonp {
 		generator.write(this.snapshotId);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+		generator.write(this.timestamp.doubleValue());
 
 	}
 
@@ -248,15 +230,12 @@ public final class ModelSnapshot implements ToJsonp {
 
 		private String jobId;
 
-		@Nullable
-		private JsonValue latestRecordTimeStamp;
+		private Number latestRecordTimeStamp;
 
-		@Nullable
-		private JsonValue latestResultTimeStamp;
+		private Number latestResultTimeStamp;
 
 		private String minVersion;
 
-		@Nullable
 		private ModelSizeStats modelSizeStats;
 
 		private Boolean retain;
@@ -265,7 +244,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		private String snapshotId;
 
-		private JsonValue timestamp;
+		private Number timestamp;
 
 		/**
 		 * An optional description of the job.
@@ -293,7 +272,7 @@ public final class ModelSnapshot implements ToJsonp {
 		 *
 		 * API name: {@code latest_record_time_stamp}
 		 */
-		public Builder latestRecordTimeStamp(@Nullable JsonValue value) {
+		public Builder latestRecordTimeStamp(Number value) {
 			this.latestRecordTimeStamp = value;
 			return this;
 		}
@@ -303,7 +282,7 @@ public final class ModelSnapshot implements ToJsonp {
 		 *
 		 * API name: {@code latest_result_time_stamp}
 		 */
-		public Builder latestResultTimeStamp(@Nullable JsonValue value) {
+		public Builder latestResultTimeStamp(Number value) {
 			this.latestResultTimeStamp = value;
 			return this;
 		}
@@ -323,7 +302,7 @@ public final class ModelSnapshot implements ToJsonp {
 		 *
 		 * API name: {@code model_size_stats}
 		 */
-		public Builder modelSizeStats(@Nullable ModelSizeStats value) {
+		public Builder modelSizeStats(ModelSizeStats value) {
 			this.modelSizeStats = value;
 			return this;
 		}
@@ -374,7 +353,7 @@ public final class ModelSnapshot implements ToJsonp {
 		 *
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(JsonValue value) {
+		public Builder timestamp(Number value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -403,14 +382,14 @@ public final class ModelSnapshot implements ToJsonp {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::latestRecordTimeStamp, JsonpDeserializer.jsonValueDeserializer(), "latest_record_time_stamp");
-		op.add(Builder::latestResultTimeStamp, JsonpDeserializer.jsonValueDeserializer(), "latest_result_time_stamp");
+		op.add(Builder::latestRecordTimeStamp, JsonpDeserializer.numberDeserializer(), "latest_record_time_stamp");
+		op.add(Builder::latestResultTimeStamp, JsonpDeserializer.numberDeserializer(), "latest_result_time_stamp");
 		op.add(Builder::minVersion, JsonpDeserializer.stringDeserializer(), "min_version");
 		op.add(Builder::modelSizeStats, ModelSizeStats.DESERIALIZER, "model_size_stats");
 		op.add(Builder::retain, JsonpDeserializer.booleanDeserializer(), "retain");
 		op.add(Builder::snapshotDocCount, JsonpDeserializer.numberDeserializer(), "snapshot_doc_count");
 		op.add(Builder::snapshotId, JsonpDeserializer.stringDeserializer(), "snapshot_id");
-		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
 
 	}
 

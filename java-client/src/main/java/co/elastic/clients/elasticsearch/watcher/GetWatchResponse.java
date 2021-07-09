@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class GetWatchResponse implements ToJsonp {
 	private final Boolean found;
 
-	private final String _id;
+	private final String id;
 
 	@Nullable
 	private final WatchStatus status;
@@ -51,25 +51,25 @@ public final class GetWatchResponse implements ToJsonp {
 	private final Watch watch;
 
 	@Nullable
-	private final Number _primaryTerm;
+	private final Number primaryTerm;
 
 	@Nullable
-	private final Number _seqNo;
+	private final Number seqNo;
 
 	@Nullable
-	private final Number _version;
+	private final Number version;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected GetWatchResponse(Builder builder) {
 
 		this.found = Objects.requireNonNull(builder.found, "found");
-		this._id = Objects.requireNonNull(builder._id, "_id");
+		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.status = builder.status;
 		this.watch = builder.watch;
-		this._primaryTerm = builder._primaryTerm;
-		this._seqNo = builder._seqNo;
-		this._version = builder._version;
+		this.primaryTerm = builder.primaryTerm;
+		this.seqNo = builder.seqNo;
+		this.version = builder.version;
 
 	}
 
@@ -83,8 +83,8 @@ public final class GetWatchResponse implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -107,24 +107,24 @@ public final class GetWatchResponse implements ToJsonp {
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
-	public Number _primaryTerm() {
-		return this._primaryTerm;
+	public Number primaryTerm() {
+		return this.primaryTerm;
 	}
 
 	/**
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Number _seqNo() {
-		return this._seqNo;
+	public Number seqNo() {
+		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _version}
 	 */
 	@Nullable
-	public Number _version() {
-		return this._version;
+	public Number version() {
+		return this.version;
 	}
 
 	/**
@@ -142,7 +142,7 @@ public final class GetWatchResponse implements ToJsonp {
 		generator.write(this.found);
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		if (this.status != null) {
 
@@ -156,22 +156,22 @@ public final class GetWatchResponse implements ToJsonp {
 			this.watch.toJsonp(generator, mapper);
 
 		}
-		if (this._primaryTerm != null) {
+		if (this.primaryTerm != null) {
 
 			generator.writeKey("_primary_term");
-			generator.write(this._primaryTerm.doubleValue());
+			generator.write(this.primaryTerm.doubleValue());
 
 		}
-		if (this._seqNo != null) {
+		if (this.seqNo != null) {
 
 			generator.writeKey("_seq_no");
-			generator.write(this._seqNo.doubleValue());
+			generator.write(this.seqNo.doubleValue());
 
 		}
-		if (this._version != null) {
+		if (this.version != null) {
 
 			generator.writeKey("_version");
-			generator.write(this._version.doubleValue());
+			generator.write(this.version.doubleValue());
 
 		}
 
@@ -185,7 +185,7 @@ public final class GetWatchResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<GetWatchResponse> {
 		private Boolean found;
 
-		private String _id;
+		private String id;
 
 		@Nullable
 		private WatchStatus status;
@@ -194,13 +194,13 @@ public final class GetWatchResponse implements ToJsonp {
 		private Watch watch;
 
 		@Nullable
-		private Number _primaryTerm;
+		private Number primaryTerm;
 
 		@Nullable
-		private Number _seqNo;
+		private Number seqNo;
 
 		@Nullable
-		private Number _version;
+		private Number version;
 
 		/**
 		 * API name: {@code found}
@@ -213,8 +213,8 @@ public final class GetWatchResponse implements ToJsonp {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(String value) {
-			this._id = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -251,24 +251,24 @@ public final class GetWatchResponse implements ToJsonp {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder _primaryTerm(@Nullable Number value) {
-			this._primaryTerm = value;
+		public Builder primaryTerm(@Nullable Number value) {
+			this.primaryTerm = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder _seqNo(@Nullable Number value) {
-			this._seqNo = value;
+		public Builder seqNo(@Nullable Number value) {
+			this.seqNo = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder _version(@Nullable Number value) {
-			this._version = value;
+		public Builder version(@Nullable Number value) {
+			this.version = value;
 			return this;
 		}
 
@@ -295,12 +295,12 @@ public final class GetWatchResponse implements ToJsonp {
 	protected static void setupGetWatchResponseDeserializer(DelegatingDeserializer<GetWatchResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::status, WatchStatus.DESERIALIZER, "status");
 		op.add(Builder::watch, Watch.DESERIALIZER, "watch");
-		op.add(Builder::_primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(Builder::_seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(Builder::_version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
 
 	}
 

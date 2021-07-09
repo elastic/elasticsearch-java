@@ -41,23 +41,23 @@ import javax.annotation.Nullable;
 public final class PutWatchResponse implements ToJsonp {
 	private final Boolean created;
 
-	private final String _id;
+	private final String id;
 
-	private final Number _primaryTerm;
+	private final Number primaryTerm;
 
-	private final Number _seqNo;
+	private final Number seqNo;
 
-	private final Number _version;
+	private final Number version;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected PutWatchResponse(Builder builder) {
 
 		this.created = Objects.requireNonNull(builder.created, "created");
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._primaryTerm = Objects.requireNonNull(builder._primaryTerm, "_primary_term");
-		this._seqNo = Objects.requireNonNull(builder._seqNo, "_seq_no");
-		this._version = Objects.requireNonNull(builder._version, "_version");
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "_primary_term");
+		this.seqNo = Objects.requireNonNull(builder.seqNo, "_seq_no");
+		this.version = Objects.requireNonNull(builder.version, "_version");
 
 	}
 
@@ -71,29 +71,29 @@ public final class PutWatchResponse implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _primary_term}
 	 */
-	public Number _primaryTerm() {
-		return this._primaryTerm;
+	public Number primaryTerm() {
+		return this.primaryTerm;
 	}
 
 	/**
 	 * API name: {@code _seq_no}
 	 */
-	public Number _seqNo() {
-		return this._seqNo;
+	public Number seqNo() {
+		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _version}
 	 */
-	public Number _version() {
-		return this._version;
+	public Number version() {
+		return this.version;
 	}
 
 	/**
@@ -111,16 +111,16 @@ public final class PutWatchResponse implements ToJsonp {
 		generator.write(this.created);
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("_primary_term");
-		generator.write(this._primaryTerm.doubleValue());
+		generator.write(this.primaryTerm.doubleValue());
 
 		generator.writeKey("_seq_no");
-		generator.write(this._seqNo.doubleValue());
+		generator.write(this.seqNo.doubleValue());
 
 		generator.writeKey("_version");
-		generator.write(this._version.doubleValue());
+		generator.write(this.version.doubleValue());
 
 	}
 
@@ -132,13 +132,13 @@ public final class PutWatchResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<PutWatchResponse> {
 		private Boolean created;
 
-		private String _id;
+		private String id;
 
-		private Number _primaryTerm;
+		private Number primaryTerm;
 
-		private Number _seqNo;
+		private Number seqNo;
 
-		private Number _version;
+		private Number version;
 
 		/**
 		 * API name: {@code created}
@@ -151,32 +151,32 @@ public final class PutWatchResponse implements ToJsonp {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(String value) {
-			this._id = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder _primaryTerm(Number value) {
-			this._primaryTerm = value;
+		public Builder primaryTerm(Number value) {
+			this.primaryTerm = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder _seqNo(Number value) {
-			this._seqNo = value;
+		public Builder seqNo(Number value) {
+			this.seqNo = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder _version(Number value) {
-			this._version = value;
+		public Builder version(Number value) {
+			this.version = value;
 			return this;
 		}
 
@@ -203,10 +203,10 @@ public final class PutWatchResponse implements ToJsonp {
 	protected static void setupPutWatchResponseDeserializer(DelegatingDeserializer<PutWatchResponse.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(Builder::_seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(Builder::_version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
 
 	}
 

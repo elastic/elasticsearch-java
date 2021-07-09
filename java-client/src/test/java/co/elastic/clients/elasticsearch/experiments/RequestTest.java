@@ -113,14 +113,14 @@ public class RequestTest extends Assert {
             .id("myId")
             .value(appData)
             .refresh(JsonValue.TRUE) // Make it visible for search
-        )._id();
+        ).id();
 
         // Query by id
         AppData esData = client.get(b -> b
                 .index("test")
                 .id(docId)
             , AppData.class
-        )._source();
+        ).source();
 
         assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
@@ -140,7 +140,7 @@ public class RequestTest extends Assert {
         int hits = search.hits().total().asJsonObject().getInt("value"); // union types not handled yet
         assertEquals(1, hits);
 
-        esData = search.hits().hits().get(0)._source();
+        esData = search.hits().hits().get(0).source();
         assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
     }

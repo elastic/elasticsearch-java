@@ -54,7 +54,7 @@ public final class UpdateDataFrameAnalyticsResponse implements ToJsonp {
 
 	private final DataframeAnalyticsDestination dest;
 
-	private final JsonValue modelMemoryLimit;
+	private final String modelMemoryLimit;
 
 	private final Boolean allowLazyStart;
 
@@ -129,7 +129,7 @@ public final class UpdateDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * API name: {@code model_memory_limit}
 	 */
-	public JsonValue modelMemoryLimit() {
+	public String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -235,7 +235,7 @@ public final class UpdateDataFrameAnalyticsResponse implements ToJsonp {
 
 		private DataframeAnalyticsDestination dest;
 
-		private JsonValue modelMemoryLimit;
+		private String modelMemoryLimit;
 
 		private Boolean allowLazyStart;
 
@@ -312,7 +312,7 @@ public final class UpdateDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(JsonValue value) {
+		public Builder modelMemoryLimit(String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -387,7 +387,7 @@ public final class UpdateDataFrameAnalyticsResponse implements ToJsonp {
 		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, DataframeAnalyticsDestination.DESERIALIZER, "dest");
-		op.add(Builder::modelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(), "model_memory_limit");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
 		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");

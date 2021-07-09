@@ -30,19 +30,19 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Limits
 public final class Limits implements ToJsonp {
 	@Nullable
-	private final JsonValue maxModelMemoryLimit;
+	private final String maxModelMemoryLimit;
 
-	private final JsonValue effectiveMaxModelMemoryLimit;
+	private final String effectiveMaxModelMemoryLimit;
 
-	private final JsonValue totalMlMemory;
+	private final String totalMlMemory;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,21 +59,21 @@ public final class Limits implements ToJsonp {
 	 * API name: {@code max_model_memory_limit}
 	 */
 	@Nullable
-	public JsonValue maxModelMemoryLimit() {
+	public String maxModelMemoryLimit() {
 		return this.maxModelMemoryLimit;
 	}
 
 	/**
 	 * API name: {@code effective_max_model_memory_limit}
 	 */
-	public JsonValue effectiveMaxModelMemoryLimit() {
+	public String effectiveMaxModelMemoryLimit() {
 		return this.effectiveMaxModelMemoryLimit;
 	}
 
 	/**
 	 * API name: {@code total_ml_memory}
 	 */
-	public JsonValue totalMlMemory() {
+	public String totalMlMemory() {
 		return this.totalMlMemory;
 	}
 
@@ -110,16 +110,16 @@ public final class Limits implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Limits> {
 		@Nullable
-		private JsonValue maxModelMemoryLimit;
+		private String maxModelMemoryLimit;
 
-		private JsonValue effectiveMaxModelMemoryLimit;
+		private String effectiveMaxModelMemoryLimit;
 
-		private JsonValue totalMlMemory;
+		private String totalMlMemory;
 
 		/**
 		 * API name: {@code max_model_memory_limit}
 		 */
-		public Builder maxModelMemoryLimit(@Nullable JsonValue value) {
+		public Builder maxModelMemoryLimit(@Nullable String value) {
 			this.maxModelMemoryLimit = value;
 			return this;
 		}
@@ -127,7 +127,7 @@ public final class Limits implements ToJsonp {
 		/**
 		 * API name: {@code effective_max_model_memory_limit}
 		 */
-		public Builder effectiveMaxModelMemoryLimit(JsonValue value) {
+		public Builder effectiveMaxModelMemoryLimit(String value) {
 			this.effectiveMaxModelMemoryLimit = value;
 			return this;
 		}
@@ -135,7 +135,7 @@ public final class Limits implements ToJsonp {
 		/**
 		 * API name: {@code total_ml_memory}
 		 */
-		public Builder totalMlMemory(JsonValue value) {
+		public Builder totalMlMemory(String value) {
 			this.totalMlMemory = value;
 			return this;
 		}
@@ -162,10 +162,10 @@ public final class Limits implements ToJsonp {
 
 	protected static void setupLimitsDeserializer(DelegatingDeserializer<Limits.Builder> op) {
 
-		op.add(Builder::maxModelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(), "max_model_memory_limit");
-		op.add(Builder::effectiveMaxModelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::maxModelMemoryLimit, JsonpDeserializer.stringDeserializer(), "max_model_memory_limit");
+		op.add(Builder::effectiveMaxModelMemoryLimit, JsonpDeserializer.stringDeserializer(),
 				"effective_max_model_memory_limit");
-		op.add(Builder::totalMlMemory, JsonpDeserializer.jsonValueDeserializer(), "total_ml_memory");
+		op.add(Builder::totalMlMemory, JsonpDeserializer.stringDeserializer(), "total_ml_memory");
 
 	}
 

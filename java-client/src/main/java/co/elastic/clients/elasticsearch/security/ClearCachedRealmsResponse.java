@@ -42,20 +42,27 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_realms.Response
 public final class ClearCachedRealmsResponse implements ToJsonp {
+	private final NodeStatistics nodeStats;
+
 	private final String clusterName;
 
 	private final Map<String, ClusterNode> nodes;
-
-	private final NodeStatistics _nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ClearCachedRealmsResponse(Builder builder) {
 
+		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
-		this._nodes = Objects.requireNonNull(builder._nodes, "_nodes");
 
+	}
+
+	/**
+	 * API name: {@code _nodes}
+	 */
+	public NodeStatistics nodeStats() {
+		return this.nodeStats;
 	}
 
 	/**
@@ -73,13 +80,6 @@ public final class ClearCachedRealmsResponse implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code _nodes}
-	 */
-	public NodeStatistics _nodes() {
-		return this._nodes;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
@@ -89,6 +89,9 @@ public final class ClearCachedRealmsResponse implements ToJsonp {
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("_nodes");
+		this.nodeStats.toJsonp(generator, mapper);
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -102,9 +105,6 @@ public final class ClearCachedRealmsResponse implements ToJsonp {
 		}
 		generator.writeEnd();
 
-		generator.writeKey("_nodes");
-		this._nodes.toJsonp(generator, mapper);
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -113,11 +113,26 @@ public final class ClearCachedRealmsResponse implements ToJsonp {
 	 * Builder for {@link ClearCachedRealmsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<ClearCachedRealmsResponse> {
+		private NodeStatistics nodeStats;
+
 		private String clusterName;
 
 		private Map<String, ClusterNode> nodes;
 
-		private NodeStatistics _nodes;
+		/**
+		 * API name: {@code _nodes}
+		 */
+		public Builder nodeStats(NodeStatistics value) {
+			this.nodeStats = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _nodes}
+		 */
+		public Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
+		}
 
 		/**
 		 * API name: {@code cluster_name}
@@ -161,21 +176,6 @@ public final class ClearCachedRealmsResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code _nodes}
-		 */
-		public Builder _nodes(NodeStatistics value) {
-			this._nodes = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _nodes}
-		 */
-		public Builder _nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-			return this._nodes(fn.apply(new NodeStatistics.Builder()).build());
-		}
-
-		/**
 		 * Builds a {@link ClearCachedRealmsResponse}.
 		 *
 		 * @throws NullPointerException
@@ -198,9 +198,9 @@ public final class ClearCachedRealmsResponse implements ToJsonp {
 	protected static void setupClearCachedRealmsResponseDeserializer(
 			DelegatingDeserializer<ClearCachedRealmsResponse.Builder> op) {
 
+		op.add(Builder::nodeStats, NodeStatistics.DESERIALIZER, "_nodes");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ClusterNode.DESERIALIZER), "nodes");
-		op.add(Builder::_nodes, NodeStatistics.DESERIALIZER, "_nodes");
 
 	}
 

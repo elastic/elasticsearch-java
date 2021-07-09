@@ -37,18 +37,14 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_datafeed.Request
 public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
-	private final List<String> datafeedId;
+	private final String datafeedId;
 
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -73,7 +69,7 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	/**
 	 * API name: {@code datafeed_id}
 	 */
-	public List<String> datafeedId() {
+	public String datafeedId() {
 		return this.datafeedId;
 	}
 
@@ -133,7 +129,7 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link StopDatafeedRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<StopDatafeedRequest> {
-		private List<String> datafeedId;
+		private String datafeedId;
 
 		@Nullable
 		private Boolean allowNoMatch;
@@ -147,27 +143,8 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(List<String> value) {
+		public Builder datafeedId(String value) {
 			this.datafeedId = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code datafeed_id}
-		 */
-		public Builder datafeedId(String... value) {
-			this.datafeedId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #datafeedId(List)}, creating the list if needed.
-		 */
-		public Builder addDatafeedId(String value) {
-			if (this.datafeedId == null) {
-				this.datafeedId = new ArrayList<>();
-			}
-			this.datafeedId.add(value);
 			return this;
 		}
 
@@ -248,7 +225,7 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")));
+					buf.append(request.datafeedId);
 					buf.append("/_stop");
 					return buf.toString();
 				}

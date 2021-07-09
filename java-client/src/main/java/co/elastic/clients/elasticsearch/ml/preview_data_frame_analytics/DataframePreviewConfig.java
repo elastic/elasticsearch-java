@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -46,7 +47,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 	private final DataframeAnalysisContainer analysis;
 
 	@Nullable
-	private final JsonValue modelMemoryLimit;
+	private final String modelMemoryLimit;
 
 	@Nullable
 	private final Number maxNumThreads;
@@ -84,7 +85,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
-	public JsonValue modelMemoryLimit() {
+	public String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -153,7 +154,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 		private DataframeAnalysisContainer analysis;
 
 		@Nullable
-		private JsonValue modelMemoryLimit;
+		private String modelMemoryLimit;
 
 		@Nullable
 		private Number maxNumThreads;
@@ -195,7 +196,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 		/**
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(@Nullable JsonValue value) {
+		public Builder modelMemoryLimit(@Nullable String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -241,7 +242,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 
 		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
 		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
-		op.add(Builder::modelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(), "model_memory_limit");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 

@@ -47,7 +47,7 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 	@Nullable
 	private final MlInferenceTrainedModelsCount count;
 
-	private final MlCounter _all;
+	private final MlCounter all;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 		this.estimatedOperations = builder.estimatedOperations;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.count = builder.count;
-		this._all = Objects.requireNonNull(builder._all, "_all");
+		this.all = Objects.requireNonNull(builder.all, "_all");
 
 	}
 
@@ -87,8 +87,8 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 	/**
 	 * API name: {@code _all}
 	 */
-	public MlCounter _all() {
-		return this._all;
+	public MlCounter all() {
+		return this.all;
 	}
 
 	/**
@@ -122,7 +122,7 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 		}
 
 		generator.writeKey("_all");
-		this._all.toJsonp(generator, mapper);
+		this.all.toJsonp(generator, mapper);
 
 	}
 
@@ -141,7 +141,7 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 		@Nullable
 		private MlInferenceTrainedModelsCount count;
 
-		private MlCounter _all;
+		private MlCounter all;
 
 		/**
 		 * API name: {@code estimated_operations}
@@ -192,16 +192,16 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(MlCounter value) {
-			this._all = value;
+		public Builder all(MlCounter value) {
+			this.all = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(Function<MlCounter.Builder, ObjectBuilder<MlCounter>> fn) {
-			return this._all(fn.apply(new MlCounter.Builder()).build());
+		public Builder all(Function<MlCounter.Builder, ObjectBuilder<MlCounter>> fn) {
+			return this.all(fn.apply(new MlCounter.Builder()).build());
 		}
 
 		/**
@@ -230,7 +230,7 @@ public final class MlInferenceTrainedModels implements ToJsonp {
 		op.add(Builder::estimatedOperations, JobStatistics.DESERIALIZER, "estimated_operations");
 		op.add(Builder::estimatedHeapMemoryUsageBytes, JobStatistics.DESERIALIZER, "estimated_heap_memory_usage_bytes");
 		op.add(Builder::count, MlInferenceTrainedModelsCount.DESERIALIZER, "count");
-		op.add(Builder::_all, MlCounter.DESERIALIZER, "_all");
+		op.add(Builder::all, MlCounter.DESERIALIZER, "_all");
 
 	}
 

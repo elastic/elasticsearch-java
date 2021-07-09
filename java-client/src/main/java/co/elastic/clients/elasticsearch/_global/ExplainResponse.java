@@ -43,12 +43,12 @@ import javax.annotation.Nullable;
 
 // typedef: _global.explain.Response
 public final class ExplainResponse<TDocument> implements ToJsonp {
-	private final String _index;
+	private final String index;
 
 	@Nullable
-	private final String _type;
+	private final String type;
 
-	private final String _id;
+	private final String id;
 
 	private final Boolean matched;
 
@@ -65,9 +65,9 @@ public final class ExplainResponse<TDocument> implements ToJsonp {
 
 	protected ExplainResponse(Builder<TDocument> builder) {
 
-		this._index = Objects.requireNonNull(builder._index, "_index");
-		this._type = builder._type;
-		this._id = Objects.requireNonNull(builder._id, "_id");
+		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.type = builder.type;
+		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.matched = Objects.requireNonNull(builder.matched, "matched");
 		this.explanation = builder.explanation;
 		this.get = builder.get;
@@ -78,23 +78,23 @@ public final class ExplainResponse<TDocument> implements ToJsonp {
 	/**
 	 * API name: {@code _index}
 	 */
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String _type() {
-		return this._type;
+	public String type() {
+		return this.type;
 	}
 
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -132,17 +132,17 @@ public final class ExplainResponse<TDocument> implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_index");
-		generator.write(this._index);
+		generator.write(this.index);
 
-		if (this._type != null) {
+		if (this.type != null) {
 
 			generator.writeKey("_type");
-			generator.write(this._type);
+			generator.write(this.type);
 
 		}
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("matched");
 		generator.write(this.matched);
@@ -168,12 +168,12 @@ public final class ExplainResponse<TDocument> implements ToJsonp {
 	 * Builder for {@link ExplainResponse}.
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<ExplainResponse<TDocument>> {
-		private String _index;
+		private String index;
 
 		@Nullable
-		private String _type;
+		private String type;
 
-		private String _id;
+		private String id;
 
 		private Boolean matched;
 
@@ -189,24 +189,24 @@ public final class ExplainResponse<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder<TDocument> _index(String value) {
-			this._index = value;
+		public Builder<TDocument> index(String value) {
+			this.index = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder<TDocument> _type(@Nullable String value) {
-			this._type = value;
+		public Builder<TDocument> type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder<TDocument> _id(String value) {
-			this._id = value;
+		public Builder<TDocument> id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -286,9 +286,9 @@ public final class ExplainResponse<TDocument> implements ToJsonp {
 			DelegatingDeserializer<ExplainResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::matched, JsonpDeserializer.booleanDeserializer(), "matched");
 		op.add(Builder::explanation, ExplanationDetail.DESERIALIZER, "explanation");
 		op.add(Builder::get, InlineGet.createInlineGetDeserializer(tDocumentDeserializer), "get");

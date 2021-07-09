@@ -42,22 +42,22 @@ import javax.annotation.Nullable;
 
 // typedef: _global.mget.Operation
 public final class Operation implements ToJsonp {
-	private final JsonValue _id;
+	private final JsonValue id;
 
 	@Nullable
-	private final String _index;
+	private final String index;
 
 	@Nullable
 	private final JsonValue routing;
 
 	@Nullable
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	@Nullable
 	private final List<String> storedFields;
 
 	@Nullable
-	private final String _type;
+	private final String type;
 
 	@Nullable
 	private final Number version;
@@ -69,12 +69,12 @@ public final class Operation implements ToJsonp {
 
 	protected Operation(Builder builder) {
 
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._index = builder._index;
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.index = builder.index;
 		this.routing = builder.routing;
-		this._source = builder._source;
+		this.source = builder.source;
 		this.storedFields = builder.storedFields;
-		this._type = builder._type;
+		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
@@ -83,16 +83,16 @@ public final class Operation implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public JsonValue _id() {
-		return this._id;
+	public JsonValue id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _index}
 	 */
 	@Nullable
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -107,8 +107,8 @@ public final class Operation implements ToJsonp {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
@@ -123,8 +123,8 @@ public final class Operation implements ToJsonp {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String _type() {
-		return this._type;
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -155,12 +155,12 @@ public final class Operation implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
-		if (this._index != null) {
+		if (this.index != null) {
 
 			generator.writeKey("_index");
-			generator.write(this._index);
+			generator.write(this.index);
 
 		}
 		if (this.routing != null) {
@@ -169,10 +169,10 @@ public final class Operation implements ToJsonp {
 			generator.write(this.routing);
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
-			generator.write(this._source);
+			generator.write(this.source);
 
 		}
 		if (this.storedFields != null) {
@@ -186,10 +186,10 @@ public final class Operation implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this._type != null) {
+		if (this.type != null) {
 
 			generator.writeKey("_type");
-			generator.write(this._type);
+			generator.write(this.type);
 
 		}
 		if (this.version != null) {
@@ -213,22 +213,22 @@ public final class Operation implements ToJsonp {
 	 * Builder for {@link Operation}.
 	 */
 	public static class Builder implements ObjectBuilder<Operation> {
-		private JsonValue _id;
+		private JsonValue id;
 
 		@Nullable
-		private String _index;
+		private String index;
 
 		@Nullable
 		private JsonValue routing;
 
 		@Nullable
-		private JsonValue _source;
+		private JsonValue source;
 
 		@Nullable
 		private List<String> storedFields;
 
 		@Nullable
-		private String _type;
+		private String type;
 
 		@Nullable
 		private Number version;
@@ -239,16 +239,16 @@ public final class Operation implements ToJsonp {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(JsonValue value) {
-			this._id = value;
+		public Builder id(JsonValue value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder _index(@Nullable String value) {
-			this._index = value;
+		public Builder index(@Nullable String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -263,8 +263,8 @@ public final class Operation implements ToJsonp {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(@Nullable JsonValue value) {
-			this._source = value;
+		public Builder source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
@@ -298,8 +298,8 @@ public final class Operation implements ToJsonp {
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder _type(@Nullable String value) {
-			this._type = value;
+		public Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -341,13 +341,13 @@ public final class Operation implements ToJsonp {
 
 	protected static void setupOperationDeserializer(DelegatingDeserializer<Operation.Builder> op) {
 
-		op.add(Builder::_id, JsonpDeserializer.jsonValueDeserializer(), "_id");
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::id, JsonpDeserializer.jsonValueDeserializer(), "_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
-		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
-		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 		op.add(Builder::versionType, JsonpDeserializer.jsonValueDeserializer(), "version_type");
 

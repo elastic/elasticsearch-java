@@ -53,7 +53,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	private final QueryContainer query;
 
 	@Nullable
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -64,7 +64,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.query = builder.query;
-		this._source = builder._source;
+		this.source = builder.source;
 		this.runtimeMappings = builder.runtimeMappings;
 
 	}
@@ -101,8 +101,8 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
@@ -138,10 +138,10 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 			this.query.toJsonp(generator, mapper);
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
-			generator.write(this._source);
+			generator.write(this.source);
 
 		}
 		if (this.runtimeMappings != null) {
@@ -171,7 +171,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		private QueryContainer query;
 
 		@Nullable
-		private JsonValue _source;
+		private JsonValue source;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -243,8 +243,8 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		 *
 		 * API name: {@code _source}
 		 */
-		public Builder _source(@Nullable JsonValue value) {
-			this._source = value;
+		public Builder source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
@@ -306,7 +306,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
 		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
-		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
 				"runtime_mappings");
 

@@ -39,20 +39,20 @@ import javax.annotation.Nullable;
 // typedef: ingest.simulate_pipeline.Document
 public final class Document implements ToJsonp {
 	@Nullable
-	private final String _id;
+	private final String id;
 
 	@Nullable
-	private final String _index;
+	private final String index;
 
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected Document(Builder builder) {
 
-		this._id = builder._id;
-		this._index = builder._index;
-		this._source = Objects.requireNonNull(builder._source, "_source");
+		this.id = builder.id;
+		this.index = builder.index;
+		this.source = Objects.requireNonNull(builder.source, "_source");
 
 	}
 
@@ -60,23 +60,23 @@ public final class Document implements ToJsonp {
 	 * API name: {@code _id}
 	 */
 	@Nullable
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _index}
 	 */
 	@Nullable
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
 	 * API name: {@code _source}
 	 */
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
@@ -90,21 +90,21 @@ public final class Document implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this._id != null) {
+		if (this.id != null) {
 
 			generator.writeKey("_id");
-			generator.write(this._id);
+			generator.write(this.id);
 
 		}
-		if (this._index != null) {
+		if (this.index != null) {
 
 			generator.writeKey("_index");
-			generator.write(this._index);
+			generator.write(this.index);
 
 		}
 
 		generator.writeKey("_source");
-		generator.write(this._source);
+		generator.write(this.source);
 
 	}
 
@@ -115,34 +115,34 @@ public final class Document implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Document> {
 		@Nullable
-		private String _id;
+		private String id;
 
 		@Nullable
-		private String _index;
+		private String index;
 
-		private JsonValue _source;
+		private JsonValue source;
 
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(@Nullable String value) {
-			this._id = value;
+		public Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder _index(@Nullable String value) {
-			this._index = value;
+		public Builder index(@Nullable String value) {
+			this.index = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(JsonValue value) {
-			this._source = value;
+		public Builder source(JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
@@ -168,9 +168,9 @@ public final class Document implements ToJsonp {
 
 	protected static void setupDocumentDeserializer(DelegatingDeserializer<Document.Builder> op) {
 
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 
 	}
 

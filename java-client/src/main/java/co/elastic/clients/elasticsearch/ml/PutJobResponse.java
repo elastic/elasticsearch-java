@@ -35,6 +35,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -45,13 +48,23 @@ public final class PutJobResponse implements ToJsonp {
 
 	private final AnalysisConfig analysisConfig;
 
+	@Nullable
 	private final AnalysisLimits analysisLimits;
 
 	private final JsonValue backgroundPersistInterval;
 
 	private final String createTime;
 
+	@Nullable
+	private final CustomSettings customSettings;
+
 	private final DataDescription dataDescription;
+
+	@Nullable
+	private final Number dailyModelSnapshotRetentionAfterDays;
+
+	@Nullable
+	private final List<String> groups;
 
 	private final String description;
 
@@ -59,7 +72,8 @@ public final class PutJobResponse implements ToJsonp {
 
 	private final String jobType;
 
-	private final ModelPlotConfig modelPlot;
+	@Nullable
+	private final ModelPlotConfig modelPlotConfig;
 
 	private final String modelSnapshotId;
 
@@ -69,6 +83,7 @@ public final class PutJobResponse implements ToJsonp {
 
 	private final String resultsIndexName;
 
+	@Nullable
 	private final Number resultsRetentionDays;
 
 	// ---------------------------------------------------------------------------------------------
@@ -77,22 +92,25 @@ public final class PutJobResponse implements ToJsonp {
 
 		this.allowLazyOpen = Objects.requireNonNull(builder.allowLazyOpen, "allow_lazy_open");
 		this.analysisConfig = Objects.requireNonNull(builder.analysisConfig, "analysis_config");
-		this.analysisLimits = Objects.requireNonNull(builder.analysisLimits, "analysis_limits");
+		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = Objects.requireNonNull(builder.backgroundPersistInterval,
 				"background_persist_interval");
 		this.createTime = Objects.requireNonNull(builder.createTime, "create_time");
+		this.customSettings = builder.customSettings;
 		this.dataDescription = Objects.requireNonNull(builder.dataDescription, "data_description");
+		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
+		this.groups = builder.groups;
 		this.description = Objects.requireNonNull(builder.description, "description");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.jobType = Objects.requireNonNull(builder.jobType, "job_type");
-		this.modelPlot = Objects.requireNonNull(builder.modelPlot, "model_plot");
+		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotId = Objects.requireNonNull(builder.modelSnapshotId, "model_snapshot_id");
 		this.modelSnapshotRetentionDays = Objects.requireNonNull(builder.modelSnapshotRetentionDays,
 				"model_snapshot_retention_days");
 		this.renormalizationWindowDays = Objects.requireNonNull(builder.renormalizationWindowDays,
 				"renormalization_window_days");
 		this.resultsIndexName = Objects.requireNonNull(builder.resultsIndexName, "results_index_name");
-		this.resultsRetentionDays = Objects.requireNonNull(builder.resultsRetentionDays, "results_retention_days");
+		this.resultsRetentionDays = builder.resultsRetentionDays;
 
 	}
 
@@ -113,6 +131,7 @@ public final class PutJobResponse implements ToJsonp {
 	/**
 	 * API name: {@code analysis_limits}
 	 */
+	@Nullable
 	public AnalysisLimits analysisLimits() {
 		return this.analysisLimits;
 	}
@@ -132,10 +151,34 @@ public final class PutJobResponse implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code custom_settings}
+	 */
+	@Nullable
+	public CustomSettings customSettings() {
+		return this.customSettings;
+	}
+
+	/**
 	 * API name: {@code data_description}
 	 */
 	public DataDescription dataDescription() {
 		return this.dataDescription;
+	}
+
+	/**
+	 * API name: {@code daily_model_snapshot_retention_after_days}
+	 */
+	@Nullable
+	public Number dailyModelSnapshotRetentionAfterDays() {
+		return this.dailyModelSnapshotRetentionAfterDays;
+	}
+
+	/**
+	 * API name: {@code groups}
+	 */
+	@Nullable
+	public List<String> groups() {
+		return this.groups;
 	}
 
 	/**
@@ -160,10 +203,11 @@ public final class PutJobResponse implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code model_plot}
+	 * API name: {@code model_plot_config}
 	 */
-	public ModelPlotConfig modelPlot() {
-		return this.modelPlot;
+	@Nullable
+	public ModelPlotConfig modelPlotConfig() {
+		return this.modelPlotConfig;
 	}
 
 	/**
@@ -197,6 +241,7 @@ public final class PutJobResponse implements ToJsonp {
 	/**
 	 * API name: {@code results_retention_days}
 	 */
+	@Nullable
 	public Number resultsRetentionDays() {
 		return this.resultsRetentionDays;
 	}
@@ -218,8 +263,12 @@ public final class PutJobResponse implements ToJsonp {
 		generator.writeKey("analysis_config");
 		this.analysisConfig.toJsonp(generator, mapper);
 
-		generator.writeKey("analysis_limits");
-		this.analysisLimits.toJsonp(generator, mapper);
+		if (this.analysisLimits != null) {
+
+			generator.writeKey("analysis_limits");
+			this.analysisLimits.toJsonp(generator, mapper);
+
+		}
 
 		generator.writeKey("background_persist_interval");
 		generator.write(this.backgroundPersistInterval);
@@ -227,8 +276,33 @@ public final class PutJobResponse implements ToJsonp {
 		generator.writeKey("create_time");
 		generator.write(this.createTime);
 
+		if (this.customSettings != null) {
+
+			generator.writeKey("custom_settings");
+			this.customSettings.toJsonp(generator, mapper);
+
+		}
+
 		generator.writeKey("data_description");
 		this.dataDescription.toJsonp(generator, mapper);
+
+		if (this.dailyModelSnapshotRetentionAfterDays != null) {
+
+			generator.writeKey("daily_model_snapshot_retention_after_days");
+			generator.write(this.dailyModelSnapshotRetentionAfterDays.doubleValue());
+
+		}
+		if (this.groups != null) {
+
+			generator.writeKey("groups");
+			generator.writeStartArray();
+			for (String item0 : this.groups) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 		generator.writeKey("description");
 		generator.write(this.description);
@@ -239,8 +313,12 @@ public final class PutJobResponse implements ToJsonp {
 		generator.writeKey("job_type");
 		generator.write(this.jobType);
 
-		generator.writeKey("model_plot");
-		this.modelPlot.toJsonp(generator, mapper);
+		if (this.modelPlotConfig != null) {
+
+			generator.writeKey("model_plot_config");
+			this.modelPlotConfig.toJsonp(generator, mapper);
+
+		}
 
 		generator.writeKey("model_snapshot_id");
 		generator.write(this.modelSnapshotId);
@@ -254,8 +332,12 @@ public final class PutJobResponse implements ToJsonp {
 		generator.writeKey("results_index_name");
 		generator.write(this.resultsIndexName);
 
-		generator.writeKey("results_retention_days");
-		generator.write(this.resultsRetentionDays.doubleValue());
+		if (this.resultsRetentionDays != null) {
+
+			generator.writeKey("results_retention_days");
+			generator.write(this.resultsRetentionDays.doubleValue());
+
+		}
 
 	}
 
@@ -269,13 +351,23 @@ public final class PutJobResponse implements ToJsonp {
 
 		private AnalysisConfig analysisConfig;
 
+		@Nullable
 		private AnalysisLimits analysisLimits;
 
 		private JsonValue backgroundPersistInterval;
 
 		private String createTime;
 
+		@Nullable
+		private CustomSettings customSettings;
+
 		private DataDescription dataDescription;
+
+		@Nullable
+		private Number dailyModelSnapshotRetentionAfterDays;
+
+		@Nullable
+		private List<String> groups;
 
 		private String description;
 
@@ -283,7 +375,8 @@ public final class PutJobResponse implements ToJsonp {
 
 		private String jobType;
 
-		private ModelPlotConfig modelPlot;
+		@Nullable
+		private ModelPlotConfig modelPlotConfig;
 
 		private String modelSnapshotId;
 
@@ -293,6 +386,7 @@ public final class PutJobResponse implements ToJsonp {
 
 		private String resultsIndexName;
 
+		@Nullable
 		private Number resultsRetentionDays;
 
 		/**
@@ -321,7 +415,7 @@ public final class PutJobResponse implements ToJsonp {
 		/**
 		 * API name: {@code analysis_limits}
 		 */
-		public Builder analysisLimits(AnalysisLimits value) {
+		public Builder analysisLimits(@Nullable AnalysisLimits value) {
 			this.analysisLimits = value;
 			return this;
 		}
@@ -350,6 +444,21 @@ public final class PutJobResponse implements ToJsonp {
 		}
 
 		/**
+		 * API name: {@code custom_settings}
+		 */
+		public Builder customSettings(@Nullable CustomSettings value) {
+			this.customSettings = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code custom_settings}
+		 */
+		public Builder customSettings(Function<CustomSettings.Builder, ObjectBuilder<CustomSettings>> fn) {
+			return this.customSettings(fn.apply(new CustomSettings.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code data_description}
 		 */
 		public Builder dataDescription(DataDescription value) {
@@ -362,6 +471,41 @@ public final class PutJobResponse implements ToJsonp {
 		 */
 		public Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
 			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code daily_model_snapshot_retention_after_days}
+		 */
+		public Builder dailyModelSnapshotRetentionAfterDays(@Nullable Number value) {
+			this.dailyModelSnapshotRetentionAfterDays = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code groups}
+		 */
+		public Builder groups(@Nullable List<String> value) {
+			this.groups = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code groups}
+		 */
+		public Builder groups(String... value) {
+			this.groups = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #groups(List)}, creating the list if needed.
+		 */
+		public Builder addGroups(String value) {
+			if (this.groups == null) {
+				this.groups = new ArrayList<>();
+			}
+			this.groups.add(value);
+			return this;
 		}
 
 		/**
@@ -389,18 +533,18 @@ public final class PutJobResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code model_plot}
+		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlot(ModelPlotConfig value) {
-			this.modelPlot = value;
+		public Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
+			this.modelPlotConfig = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code model_plot}
+		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlot(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
-			return this.modelPlot(fn.apply(new ModelPlotConfig.Builder()).build());
+		public Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**
@@ -438,7 +582,7 @@ public final class PutJobResponse implements ToJsonp {
 		/**
 		 * API name: {@code results_retention_days}
 		 */
-		public Builder resultsRetentionDays(Number value) {
+		public Builder resultsRetentionDays(@Nullable Number value) {
 			this.resultsRetentionDays = value;
 			return this;
 		}
@@ -471,11 +615,15 @@ public final class PutJobResponse implements ToJsonp {
 		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.jsonValueDeserializer(),
 				"background_persist_interval");
 		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
+		op.add(Builder::customSettings, CustomSettings.DESERIALIZER, "custom_settings");
 		op.add(Builder::dataDescription, DataDescription.DESERIALIZER, "data_description");
+		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.numberDeserializer(),
+				"daily_model_snapshot_retention_after_days");
+		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::jobType, JsonpDeserializer.stringDeserializer(), "job_type");
-		op.add(Builder::modelPlot, ModelPlotConfig.DESERIALIZER, "model_plot");
+		op.add(Builder::modelPlotConfig, ModelPlotConfig.DESERIALIZER, "model_plot_config");
 		op.add(Builder::modelSnapshotId, JsonpDeserializer.stringDeserializer(), "model_snapshot_id");
 		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
 				"model_snapshot_retention_days");

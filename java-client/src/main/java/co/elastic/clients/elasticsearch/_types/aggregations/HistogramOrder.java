@@ -37,17 +37,17 @@ import javax.annotation.Nullable;
 // typedef: _types.aggregations.HistogramOrder
 public final class HistogramOrder implements ToJsonp {
 	@Nullable
-	private final JsonValue _count;
+	private final JsonValue count;
 
 	@Nullable
-	private final JsonValue _key;
+	private final JsonValue key;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected HistogramOrder(Builder builder) {
 
-		this._count = builder._count;
-		this._key = builder._key;
+		this.count = builder.count;
+		this.key = builder.key;
 
 	}
 
@@ -55,16 +55,16 @@ public final class HistogramOrder implements ToJsonp {
 	 * API name: {@code _count}
 	 */
 	@Nullable
-	public JsonValue _count() {
-		return this._count;
+	public JsonValue count() {
+		return this.count;
 	}
 
 	/**
 	 * API name: {@code _key}
 	 */
 	@Nullable
-	public JsonValue _key() {
-		return this._key;
+	public JsonValue key() {
+		return this.key;
 	}
 
 	/**
@@ -78,16 +78,16 @@ public final class HistogramOrder implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this._count != null) {
+		if (this.count != null) {
 
 			generator.writeKey("_count");
-			generator.write(this._count);
+			generator.write(this.count);
 
 		}
-		if (this._key != null) {
+		if (this.key != null) {
 
 			generator.writeKey("_key");
-			generator.write(this._key);
+			generator.write(this.key);
 
 		}
 
@@ -100,24 +100,24 @@ public final class HistogramOrder implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<HistogramOrder> {
 		@Nullable
-		private JsonValue _count;
+		private JsonValue count;
 
 		@Nullable
-		private JsonValue _key;
+		private JsonValue key;
 
 		/**
 		 * API name: {@code _count}
 		 */
-		public Builder _count(@Nullable JsonValue value) {
-			this._count = value;
+		public Builder count(@Nullable JsonValue value) {
+			this.count = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _key}
 		 */
-		public Builder _key(@Nullable JsonValue value) {
-			this._key = value;
+		public Builder key(@Nullable JsonValue value) {
+			this.key = value;
 			return this;
 		}
 
@@ -143,8 +143,8 @@ public final class HistogramOrder implements ToJsonp {
 
 	protected static void setupHistogramOrderDeserializer(DelegatingDeserializer<HistogramOrder.Builder> op) {
 
-		op.add(Builder::_count, JsonpDeserializer.jsonValueDeserializer(), "_count");
-		op.add(Builder::_key, JsonpDeserializer.jsonValueDeserializer(), "_key");
+		op.add(Builder::count, JsonpDeserializer.jsonValueDeserializer(), "_count");
+		op.add(Builder::key, JsonpDeserializer.jsonValueDeserializer(), "_key");
 
 	}
 

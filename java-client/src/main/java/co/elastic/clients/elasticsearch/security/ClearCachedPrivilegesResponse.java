@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_privileges.Response
 public final class ClearCachedPrivilegesResponse implements ToJsonp {
-	private final NodeStatistics _nodes;
+	private final NodeStatistics nodeStats;
 
 	private final String clusterName;
 
@@ -52,7 +52,7 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 
 	protected ClearCachedPrivilegesResponse(Builder builder) {
 
-		this._nodes = Objects.requireNonNull(builder._nodes, "_nodes");
+		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
 
@@ -61,8 +61,8 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 	/**
 	 * API name: {@code _nodes}
 	 */
-	public NodeStatistics _nodes() {
-		return this._nodes;
+	public NodeStatistics nodeStats() {
+		return this.nodeStats;
 	}
 
 	/**
@@ -91,7 +91,7 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_nodes");
-		this._nodes.toJsonp(generator, mapper);
+		this.nodeStats.toJsonp(generator, mapper);
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -113,7 +113,7 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 	 * Builder for {@link ClearCachedPrivilegesResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<ClearCachedPrivilegesResponse> {
-		private NodeStatistics _nodes;
+		private NodeStatistics nodeStats;
 
 		private String clusterName;
 
@@ -122,16 +122,16 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 		/**
 		 * API name: {@code _nodes}
 		 */
-		public Builder _nodes(NodeStatistics value) {
-			this._nodes = value;
+		public Builder nodeStats(NodeStatistics value) {
+			this.nodeStats = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _nodes}
 		 */
-		public Builder _nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-			return this._nodes(fn.apply(new NodeStatistics.Builder()).build());
+		public Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
@@ -199,7 +199,7 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 	protected static void setupClearCachedPrivilegesResponseDeserializer(
 			DelegatingDeserializer<ClearCachedPrivilegesResponse.Builder> op) {
 
-		op.add(Builder::_nodes, NodeStatistics.DESERIALIZER, "_nodes");
+		op.add(Builder::nodeStats, NodeStatistics.DESERIALIZER, "_nodes");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ClusterNode.DESERIALIZER), "nodes");
 

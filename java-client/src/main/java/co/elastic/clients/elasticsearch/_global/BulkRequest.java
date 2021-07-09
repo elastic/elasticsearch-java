@@ -66,13 +66,13 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	private final JsonValue routing;
 
 	@Nullable
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	@Nullable
-	private final List<String> _sourceExcludes;
+	private final List<String> sourceExcludes;
 
 	@Nullable
-	private final List<String> _sourceIncludes;
+	private final List<String> sourceIncludes;
 
 	@Nullable
 	private final JsonValue timeout;
@@ -97,9 +97,9 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this._source = builder._source;
-		this._sourceExcludes = builder._sourceExcludes;
-		this._sourceIncludes = builder._sourceIncludes;
+		this.source = builder.source;
+		this.sourceExcludes = builder.sourceExcludes;
+		this.sourceIncludes = builder.sourceIncludes;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.requireAlias = builder.requireAlias;
@@ -158,24 +158,24 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
 	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
-	public List<String> _sourceExcludes() {
-		return this._sourceExcludes;
+	public List<String> sourceExcludes() {
+		return this.sourceExcludes;
 	}
 
 	/**
 	 * API name: {@code _source_includes}
 	 */
 	@Nullable
-	public List<String> _sourceIncludes() {
-		return this._sourceIncludes;
+	public List<String> sourceIncludes() {
+		return this.sourceIncludes;
 	}
 
 	/**
@@ -246,13 +246,13 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		private JsonValue routing;
 
 		@Nullable
-		private JsonValue _source;
+		private JsonValue source;
 
 		@Nullable
-		private List<String> _sourceExcludes;
+		private List<String> sourceExcludes;
 
 		@Nullable
-		private List<String> _sourceIncludes;
+		private List<String> sourceIncludes;
 
 		@Nullable
 		private JsonValue timeout;
@@ -317,62 +317,62 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder<TSource> _source(@Nullable JsonValue value) {
-			this._source = value;
+		public Builder<TSource> source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder<TSource> _sourceExcludes(@Nullable List<String> value) {
-			this._sourceExcludes = value;
+		public Builder<TSource> sourceExcludes(@Nullable List<String> value) {
+			this.sourceExcludes = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_excludes}
 		 */
-		public Builder<TSource> _sourceExcludes(String... value) {
-			this._sourceExcludes = Arrays.asList(value);
+		public Builder<TSource> sourceExcludes(String... value) {
+			this.sourceExcludes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #_sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> add_sourceExcludes(String value) {
-			if (this._sourceExcludes == null) {
-				this._sourceExcludes = new ArrayList<>();
+		public Builder<TSource> addSourceExcludes(String value) {
+			if (this.sourceExcludes == null) {
+				this.sourceExcludes = new ArrayList<>();
 			}
-			this._sourceExcludes.add(value);
+			this.sourceExcludes.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_includes}
 		 */
-		public Builder<TSource> _sourceIncludes(@Nullable List<String> value) {
-			this._sourceIncludes = value;
+		public Builder<TSource> sourceIncludes(@Nullable List<String> value) {
+			this.sourceIncludes = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source_includes}
 		 */
-		public Builder<TSource> _sourceIncludes(String... value) {
-			this._sourceIncludes = Arrays.asList(value);
+		public Builder<TSource> sourceIncludes(String... value) {
+			this.sourceIncludes = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #_sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> add_sourceIncludes(String value) {
-			if (this._sourceIncludes == null) {
-				this._sourceIncludes = new ArrayList<>();
+		public Builder<TSource> addSourceIncludes(String value) {
+			if (this.sourceIncludes == null) {
+				this.sourceIncludes = new ArrayList<>();
 			}
-			this._sourceIncludes.add(value);
+			this.sourceIncludes.add(value);
 			return this;
 		}
 
@@ -532,16 +532,16 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 				if (request.routing != null) {
 					params.put("routing", request.routing.toString());
 				}
-				if (request._source != null) {
-					params.put("_source", request._source.toString());
+				if (request.source != null) {
+					params.put("_source", request.source.toString());
 				}
-				if (request._sourceExcludes != null) {
+				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
-							request._sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request._sourceIncludes != null) {
+				if (request.sourceIncludes != null) {
 					params.put("_source_includes",
-							request._sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout.toString());

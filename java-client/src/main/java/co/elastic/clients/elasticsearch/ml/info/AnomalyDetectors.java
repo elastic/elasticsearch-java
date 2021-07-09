@@ -31,9 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -44,7 +44,7 @@ public final class AnomalyDetectors implements ToJsonp {
 
 	private final Number categorizationExamplesLimit;
 
-	private final JsonValue modelMemoryLimit;
+	private final String modelMemoryLimit;
 
 	private final Number modelSnapshotRetentionDays;
 
@@ -82,7 +82,7 @@ public final class AnomalyDetectors implements ToJsonp {
 	/**
 	 * API name: {@code model_memory_limit}
 	 */
-	public JsonValue modelMemoryLimit() {
+	public String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -138,7 +138,7 @@ public final class AnomalyDetectors implements ToJsonp {
 
 		private Number categorizationExamplesLimit;
 
-		private JsonValue modelMemoryLimit;
+		private String modelMemoryLimit;
 
 		private Number modelSnapshotRetentionDays;
 
@@ -171,7 +171,7 @@ public final class AnomalyDetectors implements ToJsonp {
 		/**
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(JsonValue value) {
+		public Builder modelMemoryLimit(String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -217,7 +217,7 @@ public final class AnomalyDetectors implements ToJsonp {
 		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer.DESERIALIZER, "categorization_analyzer");
 		op.add(Builder::categorizationExamplesLimit, JsonpDeserializer.numberDeserializer(),
 				"categorization_examples_limit");
-		op.add(Builder::modelMemoryLimit, JsonpDeserializer.jsonValueDeserializer(), "model_memory_limit");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
 				"model_snapshot_retention_days");
 		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.numberDeserializer(),

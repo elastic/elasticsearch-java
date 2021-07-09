@@ -881,10 +881,10 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	// ----- Endpoint: security.get_user_privileges
 
 	/**
-	 * Retrieves application privileges.
+	 * Retrieves security privileges for the logged in user.
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -894,10 +894,10 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	}
 
 	/**
-	 * Retrieves application privileges.
+	 * Retrieves security privileges for the logged in user.
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This

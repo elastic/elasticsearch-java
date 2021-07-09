@@ -173,7 +173,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	private final List<JsonValue> sort;
 
 	@Nullable
-	private final JsonValue _source;
+	private final JsonValue source;
 
 	@Nullable
 	private final List<String> stats;
@@ -262,7 +262,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		this.sequenceNumberPrimaryTerm = builder.sequenceNumberPrimaryTerm;
 		this.size = builder.size;
 		this.sort = builder.sort;
-		this._source = builder._source;
+		this.source = builder.source;
 		this.stats = builder.stats;
 		this.storedFields = builder.storedFields;
 		this.suggest = builder.suggest;
@@ -589,8 +589,8 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue _source() {
-		return this._source;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
@@ -989,10 +989,10 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
-			generator.write(this._source);
+			generator.write(this.source);
 
 		}
 		if (this.stats != null) {
@@ -1230,7 +1230,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		private List<JsonValue> sort;
 
 		@Nullable
-		private JsonValue _source;
+		private JsonValue source;
 
 		@Nullable
 		private List<String> stats;
@@ -1799,8 +1799,8 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(@Nullable JsonValue value) {
-			this._source = value;
+		public Builder source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
@@ -2074,7 +2074,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 				"sequence_number_primary_term");
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
-		op.add(Builder::_source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stats");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");

@@ -53,9 +53,9 @@ public final class Operation implements ToJsonp {
 
 	private final Filter filter;
 
-	private final String _id;
+	private final String id;
 
-	private final String _index;
+	private final String index;
 
 	private final Boolean offsets;
 
@@ -79,8 +79,8 @@ public final class Operation implements ToJsonp {
 		this.fields = Objects.requireNonNull(builder.fields, "fields");
 		this.fieldStatistics = Objects.requireNonNull(builder.fieldStatistics, "field_statistics");
 		this.filter = Objects.requireNonNull(builder.filter, "filter");
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._index = Objects.requireNonNull(builder._index, "_index");
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.index = Objects.requireNonNull(builder.index, "_index");
 		this.offsets = Objects.requireNonNull(builder.offsets, "offsets");
 		this.payloads = Objects.requireNonNull(builder.payloads, "payloads");
 		this.positions = Objects.requireNonNull(builder.positions, "positions");
@@ -122,15 +122,15 @@ public final class Operation implements ToJsonp {
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _index}
 	 */
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
@@ -211,10 +211,10 @@ public final class Operation implements ToJsonp {
 		this.filter.toJsonp(generator, mapper);
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("_index");
-		generator.write(this._index);
+		generator.write(this.index);
 
 		generator.writeKey("offsets");
 		generator.write(this.offsets);
@@ -253,9 +253,9 @@ public final class Operation implements ToJsonp {
 
 		private Filter filter;
 
-		private String _id;
+		private String id;
 
-		private String _index;
+		private String index;
 
 		private Boolean offsets;
 
@@ -332,16 +332,16 @@ public final class Operation implements ToJsonp {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(String value) {
-			this._id = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder _index(String value) {
-			this._index = value;
+		public Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -427,8 +427,8 @@ public final class Operation implements ToJsonp {
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::fieldStatistics, JsonpDeserializer.booleanDeserializer(), "field_statistics");
 		op.add(Builder::filter, Filter.DESERIALIZER, "filter");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::offsets, JsonpDeserializer.booleanDeserializer(), "offsets");
 		op.add(Builder::payloads, JsonpDeserializer.booleanDeserializer(), "payloads");
 		op.add(Builder::positions, JsonpDeserializer.booleanDeserializer(), "positions");

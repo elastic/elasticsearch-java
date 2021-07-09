@@ -48,7 +48,7 @@ public final class ValidateQueryResponse implements ToJsonp {
 	private final List<IndicesValidationExplanation> explanations;
 
 	@Nullable
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	private final Boolean valid;
 
@@ -60,7 +60,7 @@ public final class ValidateQueryResponse implements ToJsonp {
 	protected ValidateQueryResponse(Builder builder) {
 
 		this.explanations = builder.explanations;
-		this._shards = builder._shards;
+		this.shards = builder.shards;
 		this.valid = Objects.requireNonNull(builder.valid, "valid");
 		this.error = builder.error;
 
@@ -78,8 +78,8 @@ public final class ValidateQueryResponse implements ToJsonp {
 	 * API name: {@code _shards}
 	 */
 	@Nullable
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -119,10 +119,10 @@ public final class ValidateQueryResponse implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this._shards != null) {
+		if (this.shards != null) {
 
 			generator.writeKey("_shards");
-			this._shards.toJsonp(generator, mapper);
+			this.shards.toJsonp(generator, mapper);
 
 		}
 
@@ -148,7 +148,7 @@ public final class ValidateQueryResponse implements ToJsonp {
 		private List<IndicesValidationExplanation> explanations;
 
 		@Nullable
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		private Boolean valid;
 
@@ -201,16 +201,16 @@ public final class ValidateQueryResponse implements ToJsonp {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(@Nullable ShardStatistics value) {
-			this._shards = value;
+		public Builder shards(@Nullable ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -254,7 +254,7 @@ public final class ValidateQueryResponse implements ToJsonp {
 
 		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(IndicesValidationExplanation.DESERIALIZER),
 				"explanations");
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
 		op.add(Builder::valid, JsonpDeserializer.booleanDeserializer(), "valid");
 		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
 

@@ -37,21 +37,21 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ShardsOperationResponseBase
 public abstract class ShardsOperationResponseBase implements ToJsonp {
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ShardsOperationResponseBase(AbstractBuilder<?> builder) {
 
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 
 	}
 
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -66,26 +66,26 @@ public abstract class ShardsOperationResponseBase implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT _shards(ShardStatistics value) {
-			this._shards = value;
+		public BuilderT shards(ShardStatistics value) {
+			this.shards = value;
 			return self();
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		protected abstract BuilderT self();
@@ -96,7 +96,7 @@ public abstract class ShardsOperationResponseBase implements ToJsonp {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupShardsOperationResponseBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(AbstractBuilder::shards, ShardStatistics.DESERIALIZER, "_shards");
 
 	}
 

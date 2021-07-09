@@ -38,14 +38,14 @@ import javax.annotation.Nullable;
 public final class WatcherWatchTriggerSchedule extends Counter {
 	private final Counter cron;
 
-	private final Counter _all;
+	private final Counter all;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected WatcherWatchTriggerSchedule(Builder builder) {
 		super(builder);
 		this.cron = Objects.requireNonNull(builder.cron, "cron");
-		this._all = Objects.requireNonNull(builder._all, "_all");
+		this.all = Objects.requireNonNull(builder.all, "_all");
 
 	}
 
@@ -59,8 +59,8 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 	/**
 	 * API name: {@code _all}
 	 */
-	public Counter _all() {
-		return this._all;
+	public Counter all() {
+		return this.all;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -70,7 +70,7 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 		this.cron.toJsonp(generator, mapper);
 
 		generator.writeKey("_all");
-		this._all.toJsonp(generator, mapper);
+		this.all.toJsonp(generator, mapper);
 
 	}
 
@@ -84,7 +84,7 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 				ObjectBuilder<WatcherWatchTriggerSchedule> {
 		private Counter cron;
 
-		private Counter _all;
+		private Counter all;
 
 		/**
 		 * API name: {@code cron}
@@ -104,16 +104,16 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(Counter value) {
-			this._all = value;
+		public Builder all(Counter value) {
+			this.all = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _all}
 		 */
-		public Builder _all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this._all(fn.apply(new Counter.Builder()).build());
+		public Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return this.all(fn.apply(new Counter.Builder()).build());
 		}
 
 		@Override
@@ -145,7 +145,7 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 			DelegatingDeserializer<WatcherWatchTriggerSchedule.Builder> op) {
 		Counter.setupCounterDeserializer(op);
 		op.add(Builder::cron, Counter.DESERIALIZER, "cron");
-		op.add(Builder::_all, Counter.DESERIALIZER, "_all");
+		op.add(Builder::all, Counter.DESERIALIZER, "_all");
 
 	}
 

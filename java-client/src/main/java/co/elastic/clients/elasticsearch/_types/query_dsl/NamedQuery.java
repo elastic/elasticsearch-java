@@ -44,7 +44,7 @@ public final class NamedQuery<TQuery> implements ToJsonp {
 	private final Number boost;
 
 	@Nullable
-	private final String _name;
+	private final String name;
 
 	@Nullable
 	private final Boolean ignoreUnmapped;
@@ -57,7 +57,7 @@ public final class NamedQuery<TQuery> implements ToJsonp {
 	protected NamedQuery(Builder<TQuery> builder) {
 
 		this.boost = builder.boost;
-		this._name = builder._name;
+		this.name = builder.name;
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.tQuerySerializer = builder.tQuerySerializer;
 
@@ -75,8 +75,8 @@ public final class NamedQuery<TQuery> implements ToJsonp {
 	 * API name: {@code _name}
 	 */
 	@Nullable
-	public String _name() {
-		return this._name;
+	public String name() {
+		return this.name;
 	}
 
 	/**
@@ -104,10 +104,10 @@ public final class NamedQuery<TQuery> implements ToJsonp {
 			generator.write(this.boost.doubleValue());
 
 		}
-		if (this._name != null) {
+		if (this.name != null) {
 
 			generator.writeKey("_name");
-			generator.write(this._name);
+			generator.write(this.name);
 
 		}
 		if (this.ignoreUnmapped != null) {
@@ -129,7 +129,7 @@ public final class NamedQuery<TQuery> implements ToJsonp {
 		private Number boost;
 
 		@Nullable
-		private String _name;
+		private String name;
 
 		@Nullable
 		private Boolean ignoreUnmapped;
@@ -148,8 +148,8 @@ public final class NamedQuery<TQuery> implements ToJsonp {
 		/**
 		 * API name: {@code _name}
 		 */
-		public Builder<TQuery> _name(@Nullable String value) {
-			this._name = value;
+		public Builder<TQuery> name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -198,7 +198,7 @@ public final class NamedQuery<TQuery> implements ToJsonp {
 			JsonpDeserializer<TQuery> tQueryDeserializer) {
 
 		op.add(Builder::boost, JsonpDeserializer.numberDeserializer(), "boost");
-		op.add(Builder::_name, JsonpDeserializer.stringDeserializer(), "_name");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "_name");
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
 	}

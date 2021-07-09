@@ -40,7 +40,6 @@ import javax.annotation.Nullable;
 public final class DataCounts implements ToJsonp {
 	private final Number bucketCount;
 
-	@Nullable
 	private final Number earliestRecordTimestamp;
 
 	private final Number emptyBucketCount;
@@ -55,19 +54,14 @@ public final class DataCounts implements ToJsonp {
 
 	private final String jobId;
 
-	@Nullable
 	private final Number lastDataTime;
 
-	@Nullable
 	private final Number latestEmptyBucketTimestamp;
 
-	@Nullable
 	private final Number latestRecordTimestamp;
 
-	@Nullable
 	private final Number latestSparseBucketTimestamp;
 
-	@Nullable
 	private final Number latestBucketTimestamp;
 
 	private final Number missingFieldCount;
@@ -85,18 +79,21 @@ public final class DataCounts implements ToJsonp {
 	protected DataCounts(Builder builder) {
 
 		this.bucketCount = Objects.requireNonNull(builder.bucketCount, "bucket_count");
-		this.earliestRecordTimestamp = builder.earliestRecordTimestamp;
+		this.earliestRecordTimestamp = Objects.requireNonNull(builder.earliestRecordTimestamp,
+				"earliest_record_timestamp");
 		this.emptyBucketCount = Objects.requireNonNull(builder.emptyBucketCount, "empty_bucket_count");
 		this.inputBytes = Objects.requireNonNull(builder.inputBytes, "input_bytes");
 		this.inputFieldCount = Objects.requireNonNull(builder.inputFieldCount, "input_field_count");
 		this.inputRecordCount = Objects.requireNonNull(builder.inputRecordCount, "input_record_count");
 		this.invalidDateCount = Objects.requireNonNull(builder.invalidDateCount, "invalid_date_count");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.lastDataTime = builder.lastDataTime;
-		this.latestEmptyBucketTimestamp = builder.latestEmptyBucketTimestamp;
-		this.latestRecordTimestamp = builder.latestRecordTimestamp;
-		this.latestSparseBucketTimestamp = builder.latestSparseBucketTimestamp;
-		this.latestBucketTimestamp = builder.latestBucketTimestamp;
+		this.lastDataTime = Objects.requireNonNull(builder.lastDataTime, "last_data_time");
+		this.latestEmptyBucketTimestamp = Objects.requireNonNull(builder.latestEmptyBucketTimestamp,
+				"latest_empty_bucket_timestamp");
+		this.latestRecordTimestamp = Objects.requireNonNull(builder.latestRecordTimestamp, "latest_record_timestamp");
+		this.latestSparseBucketTimestamp = Objects.requireNonNull(builder.latestSparseBucketTimestamp,
+				"latest_sparse_bucket_timestamp");
+		this.latestBucketTimestamp = Objects.requireNonNull(builder.latestBucketTimestamp, "latest_bucket_timestamp");
 		this.missingFieldCount = Objects.requireNonNull(builder.missingFieldCount, "missing_field_count");
 		this.outOfOrderTimestampCount = Objects.requireNonNull(builder.outOfOrderTimestampCount,
 				"out_of_order_timestamp_count");
@@ -116,7 +113,6 @@ public final class DataCounts implements ToJsonp {
 	/**
 	 * API name: {@code earliest_record_timestamp}
 	 */
-	@Nullable
 	public Number earliestRecordTimestamp() {
 		return this.earliestRecordTimestamp;
 	}
@@ -166,7 +162,6 @@ public final class DataCounts implements ToJsonp {
 	/**
 	 * API name: {@code last_data_time}
 	 */
-	@Nullable
 	public Number lastDataTime() {
 		return this.lastDataTime;
 	}
@@ -174,7 +169,6 @@ public final class DataCounts implements ToJsonp {
 	/**
 	 * API name: {@code latest_empty_bucket_timestamp}
 	 */
-	@Nullable
 	public Number latestEmptyBucketTimestamp() {
 		return this.latestEmptyBucketTimestamp;
 	}
@@ -182,7 +176,6 @@ public final class DataCounts implements ToJsonp {
 	/**
 	 * API name: {@code latest_record_timestamp}
 	 */
-	@Nullable
 	public Number latestRecordTimestamp() {
 		return this.latestRecordTimestamp;
 	}
@@ -190,7 +183,6 @@ public final class DataCounts implements ToJsonp {
 	/**
 	 * API name: {@code latest_sparse_bucket_timestamp}
 	 */
-	@Nullable
 	public Number latestSparseBucketTimestamp() {
 		return this.latestSparseBucketTimestamp;
 	}
@@ -198,7 +190,6 @@ public final class DataCounts implements ToJsonp {
 	/**
 	 * API name: {@code latest_bucket_timestamp}
 	 */
-	@Nullable
 	public Number latestBucketTimestamp() {
 		return this.latestBucketTimestamp;
 	}
@@ -252,12 +243,8 @@ public final class DataCounts implements ToJsonp {
 		generator.writeKey("bucket_count");
 		generator.write(this.bucketCount.doubleValue());
 
-		if (this.earliestRecordTimestamp != null) {
-
-			generator.writeKey("earliest_record_timestamp");
-			generator.write(this.earliestRecordTimestamp.doubleValue());
-
-		}
+		generator.writeKey("earliest_record_timestamp");
+		generator.write(this.earliestRecordTimestamp.doubleValue());
 
 		generator.writeKey("empty_bucket_count");
 		generator.write(this.emptyBucketCount.doubleValue());
@@ -277,36 +264,20 @@ public final class DataCounts implements ToJsonp {
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
-		if (this.lastDataTime != null) {
+		generator.writeKey("last_data_time");
+		generator.write(this.lastDataTime.doubleValue());
 
-			generator.writeKey("last_data_time");
-			generator.write(this.lastDataTime.doubleValue());
+		generator.writeKey("latest_empty_bucket_timestamp");
+		generator.write(this.latestEmptyBucketTimestamp.doubleValue());
 
-		}
-		if (this.latestEmptyBucketTimestamp != null) {
+		generator.writeKey("latest_record_timestamp");
+		generator.write(this.latestRecordTimestamp.doubleValue());
 
-			generator.writeKey("latest_empty_bucket_timestamp");
-			generator.write(this.latestEmptyBucketTimestamp.doubleValue());
+		generator.writeKey("latest_sparse_bucket_timestamp");
+		generator.write(this.latestSparseBucketTimestamp.doubleValue());
 
-		}
-		if (this.latestRecordTimestamp != null) {
-
-			generator.writeKey("latest_record_timestamp");
-			generator.write(this.latestRecordTimestamp.doubleValue());
-
-		}
-		if (this.latestSparseBucketTimestamp != null) {
-
-			generator.writeKey("latest_sparse_bucket_timestamp");
-			generator.write(this.latestSparseBucketTimestamp.doubleValue());
-
-		}
-		if (this.latestBucketTimestamp != null) {
-
-			generator.writeKey("latest_bucket_timestamp");
-			generator.write(this.latestBucketTimestamp.doubleValue());
-
-		}
+		generator.writeKey("latest_bucket_timestamp");
+		generator.write(this.latestBucketTimestamp.doubleValue());
 
 		generator.writeKey("missing_field_count");
 		generator.write(this.missingFieldCount.doubleValue());
@@ -333,7 +304,6 @@ public final class DataCounts implements ToJsonp {
 	public static class Builder implements ObjectBuilder<DataCounts> {
 		private Number bucketCount;
 
-		@Nullable
 		private Number earliestRecordTimestamp;
 
 		private Number emptyBucketCount;
@@ -348,19 +318,14 @@ public final class DataCounts implements ToJsonp {
 
 		private String jobId;
 
-		@Nullable
 		private Number lastDataTime;
 
-		@Nullable
 		private Number latestEmptyBucketTimestamp;
 
-		@Nullable
 		private Number latestRecordTimestamp;
 
-		@Nullable
 		private Number latestSparseBucketTimestamp;
 
-		@Nullable
 		private Number latestBucketTimestamp;
 
 		private Number missingFieldCount;
@@ -384,7 +349,7 @@ public final class DataCounts implements ToJsonp {
 		/**
 		 * API name: {@code earliest_record_timestamp}
 		 */
-		public Builder earliestRecordTimestamp(@Nullable Number value) {
+		public Builder earliestRecordTimestamp(Number value) {
 			this.earliestRecordTimestamp = value;
 			return this;
 		}
@@ -440,7 +405,7 @@ public final class DataCounts implements ToJsonp {
 		/**
 		 * API name: {@code last_data_time}
 		 */
-		public Builder lastDataTime(@Nullable Number value) {
+		public Builder lastDataTime(Number value) {
 			this.lastDataTime = value;
 			return this;
 		}
@@ -448,7 +413,7 @@ public final class DataCounts implements ToJsonp {
 		/**
 		 * API name: {@code latest_empty_bucket_timestamp}
 		 */
-		public Builder latestEmptyBucketTimestamp(@Nullable Number value) {
+		public Builder latestEmptyBucketTimestamp(Number value) {
 			this.latestEmptyBucketTimestamp = value;
 			return this;
 		}
@@ -456,7 +421,7 @@ public final class DataCounts implements ToJsonp {
 		/**
 		 * API name: {@code latest_record_timestamp}
 		 */
-		public Builder latestRecordTimestamp(@Nullable Number value) {
+		public Builder latestRecordTimestamp(Number value) {
 			this.latestRecordTimestamp = value;
 			return this;
 		}
@@ -464,7 +429,7 @@ public final class DataCounts implements ToJsonp {
 		/**
 		 * API name: {@code latest_sparse_bucket_timestamp}
 		 */
-		public Builder latestSparseBucketTimestamp(@Nullable Number value) {
+		public Builder latestSparseBucketTimestamp(Number value) {
 			this.latestSparseBucketTimestamp = value;
 			return this;
 		}
@@ -472,7 +437,7 @@ public final class DataCounts implements ToJsonp {
 		/**
 		 * API name: {@code latest_bucket_timestamp}
 		 */
-		public Builder latestBucketTimestamp(@Nullable Number value) {
+		public Builder latestBucketTimestamp(Number value) {
 			this.latestBucketTimestamp = value;
 			return this;
 		}

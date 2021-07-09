@@ -41,87 +41,87 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.simulate_pipeline.DocumentSimulation
 public final class DocumentSimulation implements ToJsonp {
-	private final String _id;
+	private final String id;
 
-	private final String _index;
+	private final String index;
 
-	private final Ingest _ingest;
-
-	@Nullable
-	private final String _parent;
+	private final Ingest ingest;
 
 	@Nullable
-	private final String _routing;
-
-	private final Map<String, JsonValue> _source;
+	private final String parent;
 
 	@Nullable
-	private final String _type;
+	private final String routing;
+
+	private final Map<String, JsonValue> source;
+
+	@Nullable
+	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected DocumentSimulation(Builder builder) {
 
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._index = Objects.requireNonNull(builder._index, "_index");
-		this._ingest = Objects.requireNonNull(builder._ingest, "_ingest");
-		this._parent = builder._parent;
-		this._routing = builder._routing;
-		this._source = Objects.requireNonNull(builder._source, "_source");
-		this._type = builder._type;
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.ingest = Objects.requireNonNull(builder.ingest, "_ingest");
+		this.parent = builder.parent;
+		this.routing = builder.routing;
+		this.source = Objects.requireNonNull(builder.source, "_source");
+		this.type = builder.type;
 
 	}
 
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _index}
 	 */
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
 	 * API name: {@code _ingest}
 	 */
-	public Ingest _ingest() {
-		return this._ingest;
+	public Ingest ingest() {
+		return this.ingest;
 	}
 
 	/**
 	 * API name: {@code _parent}
 	 */
 	@Nullable
-	public String _parent() {
-		return this._parent;
+	public String parent() {
+		return this.parent;
 	}
 
 	/**
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public String _routing() {
-		return this._routing;
+	public String routing() {
+		return this.routing;
 	}
 
 	/**
 	 * API name: {@code _source}
 	 */
-	public Map<String, JsonValue> _source() {
-		return this._source;
+	public Map<String, JsonValue> source() {
+		return this.source;
 	}
 
 	/**
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String _type() {
-		return this._type;
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -136,40 +136,40 @@ public final class DocumentSimulation implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
 		generator.writeKey("_index");
-		generator.write(this._index);
+		generator.write(this.index);
 
 		generator.writeKey("_ingest");
-		this._ingest.toJsonp(generator, mapper);
+		this.ingest.toJsonp(generator, mapper);
 
-		if (this._parent != null) {
+		if (this.parent != null) {
 
 			generator.writeKey("_parent");
-			generator.write(this._parent);
+			generator.write(this.parent);
 
 		}
-		if (this._routing != null) {
+		if (this.routing != null) {
 
 			generator.writeKey("_routing");
-			generator.write(this._routing);
+			generator.write(this.routing);
 
 		}
 
 		generator.writeKey("_source");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this._source.entrySet()) {
+		for (Map.Entry<String, JsonValue> item0 : this.source.entrySet()) {
 			generator.writeKey(item0.getKey());
 			generator.write(item0.getValue());
 
 		}
 		generator.writeEnd();
 
-		if (this._type != null) {
+		if (this.type != null) {
 
 			generator.writeKey("_type");
-			generator.write(this._type);
+			generator.write(this.type);
 
 		}
 
@@ -181,94 +181,94 @@ public final class DocumentSimulation implements ToJsonp {
 	 * Builder for {@link DocumentSimulation}.
 	 */
 	public static class Builder implements ObjectBuilder<DocumentSimulation> {
-		private String _id;
+		private String id;
 
-		private String _index;
+		private String index;
 
-		private Ingest _ingest;
-
-		@Nullable
-		private String _parent;
+		private Ingest ingest;
 
 		@Nullable
-		private String _routing;
-
-		private Map<String, JsonValue> _source;
+		private String parent;
 
 		@Nullable
-		private String _type;
+		private String routing;
+
+		private Map<String, JsonValue> source;
+
+		@Nullable
+		private String type;
 
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(String value) {
-			this._id = value;
+		public Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder _index(String value) {
-			this._index = value;
+		public Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _ingest}
 		 */
-		public Builder _ingest(Ingest value) {
-			this._ingest = value;
+		public Builder ingest(Ingest value) {
+			this.ingest = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _ingest}
 		 */
-		public Builder _ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
-			return this._ingest(fn.apply(new Ingest.Builder()).build());
+		public Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
+			return this.ingest(fn.apply(new Ingest.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _parent}
 		 */
-		public Builder _parent(@Nullable String value) {
-			this._parent = value;
+		public Builder parent(@Nullable String value) {
+			this.parent = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder _routing(@Nullable String value) {
-			this._routing = value;
+		public Builder routing(@Nullable String value) {
+			this.routing = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder _source(Map<String, JsonValue> value) {
-			this._source = value;
+		public Builder source(Map<String, JsonValue> value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #_source(Map)}, creating the map if needed.
+		 * Add a key/value to {@link #source(Map)}, creating the map if needed.
 		 */
-		public Builder put_source(String key, JsonValue value) {
-			if (this._source == null) {
-				this._source = new HashMap<>();
+		public Builder putSource(String key, JsonValue value) {
+			if (this.source == null) {
+				this.source = new HashMap<>();
 			}
-			this._source.put(key, value);
+			this.source.put(key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder _type(@Nullable String value) {
-			this._type = value;
+		public Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -294,14 +294,14 @@ public final class DocumentSimulation implements ToJsonp {
 
 	protected static void setupDocumentSimulationDeserializer(DelegatingDeserializer<DocumentSimulation.Builder> op) {
 
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::_ingest, Ingest.DESERIALIZER, "_ingest");
-		op.add(Builder::_parent, JsonpDeserializer.stringDeserializer(), "_parent");
-		op.add(Builder::_routing, JsonpDeserializer.stringDeserializer(), "_routing");
-		op.add(Builder::_source, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::ingest, Ingest.DESERIALIZER, "_ingest");
+		op.add(Builder::parent, JsonpDeserializer.stringDeserializer(), "_parent");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
+		op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"_source");
-		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 
 	}
 

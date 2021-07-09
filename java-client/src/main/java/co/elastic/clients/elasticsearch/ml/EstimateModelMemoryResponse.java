@@ -30,14 +30,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.estimate_model_memory.Response
 public final class EstimateModelMemoryResponse implements ToJsonp {
-	private final JsonValue modelMemoryEstimate;
+	private final String modelMemoryEstimate;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ public final class EstimateModelMemoryResponse implements ToJsonp {
 	/**
 	 * API name: {@code model_memory_estimate}
 	 */
-	public JsonValue modelMemoryEstimate() {
+	public String modelMemoryEstimate() {
 		return this.modelMemoryEstimate;
 	}
 
@@ -76,12 +76,12 @@ public final class EstimateModelMemoryResponse implements ToJsonp {
 	 * Builder for {@link EstimateModelMemoryResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<EstimateModelMemoryResponse> {
-		private JsonValue modelMemoryEstimate;
+		private String modelMemoryEstimate;
 
 		/**
 		 * API name: {@code model_memory_estimate}
 		 */
-		public Builder modelMemoryEstimate(JsonValue value) {
+		public Builder modelMemoryEstimate(String value) {
 			this.modelMemoryEstimate = value;
 			return this;
 		}
@@ -109,7 +109,7 @@ public final class EstimateModelMemoryResponse implements ToJsonp {
 	protected static void setupEstimateModelMemoryResponseDeserializer(
 			DelegatingDeserializer<EstimateModelMemoryResponse.Builder> op) {
 
-		op.add(Builder::modelMemoryEstimate, JsonpDeserializer.jsonValueDeserializer(), "model_memory_estimate");
+		op.add(Builder::modelMemoryEstimate, JsonpDeserializer.stringDeserializer(), "model_memory_estimate");
 
 	}
 

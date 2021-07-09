@@ -44,14 +44,14 @@ import javax.annotation.Nullable;
 public final class SegmentsResponse implements ToJsonp {
 	private final Map<String, IndexSegment> indices;
 
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected SegmentsResponse(Builder builder) {
 
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 
 	}
 
@@ -65,8 +65,8 @@ public final class SegmentsResponse implements ToJsonp {
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -90,7 +90,7 @@ public final class SegmentsResponse implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 	}
 
@@ -102,7 +102,7 @@ public final class SegmentsResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<SegmentsResponse> {
 		private Map<String, IndexSegment> indices;
 
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		/**
 		 * API name: {@code indices}
@@ -140,16 +140,16 @@ public final class SegmentsResponse implements ToJsonp {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(ShardStatistics value) {
-			this._shards = value;
+		public Builder shards(ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -175,7 +175,7 @@ public final class SegmentsResponse implements ToJsonp {
 	protected static void setupSegmentsResponseDeserializer(DelegatingDeserializer<SegmentsResponse.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndexSegment.DESERIALIZER), "indices");
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
 
 	}
 

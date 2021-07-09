@@ -67,7 +67,7 @@ public final class IndicesGetDataStreamItem implements ToJsonp {
 	private final String ilmPolicy;
 
 	@Nullable
-	private final Map<String, JsonValue> _meta;
+	private final Map<String, JsonValue> meta;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ public final class IndicesGetDataStreamItem implements ToJsonp {
 		this.system = builder.system;
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.ilmPolicy = builder.ilmPolicy;
-		this._meta = builder._meta;
+		this.meta = builder.meta;
 
 	}
 
@@ -155,8 +155,8 @@ public final class IndicesGetDataStreamItem implements ToJsonp {
 	 * API name: {@code _meta}
 	 */
 	@Nullable
-	public Map<String, JsonValue> _meta() {
-		return this._meta;
+	public Map<String, JsonValue> meta() {
+		return this.meta;
 	}
 
 	/**
@@ -209,11 +209,11 @@ public final class IndicesGetDataStreamItem implements ToJsonp {
 			generator.write(this.ilmPolicy);
 
 		}
-		if (this._meta != null) {
+		if (this.meta != null) {
 
 			generator.writeKey("_meta");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this._meta.entrySet()) {
+			for (Map.Entry<String, JsonValue> item0 : this.meta.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.write(item0.getValue());
 
@@ -251,7 +251,7 @@ public final class IndicesGetDataStreamItem implements ToJsonp {
 		private String ilmPolicy;
 
 		@Nullable
-		private Map<String, JsonValue> _meta;
+		private Map<String, JsonValue> meta;
 
 		/**
 		 * API name: {@code name}
@@ -371,19 +371,19 @@ public final class IndicesGetDataStreamItem implements ToJsonp {
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder _meta(@Nullable Map<String, JsonValue> value) {
-			this._meta = value;
+		public Builder meta(@Nullable Map<String, JsonValue> value) {
+			this.meta = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #_meta(Map)}, creating the map if needed.
+		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonValue value) {
-			if (this._meta == null) {
-				this._meta = new HashMap<>();
+		public Builder putMeta(String key, JsonValue value) {
+			if (this.meta == null) {
+				this.meta = new HashMap<>();
 			}
-			this._meta.put(key, value);
+			this.meta.put(key, value);
 			return this;
 		}
 
@@ -420,7 +420,7 @@ public final class IndicesGetDataStreamItem implements ToJsonp {
 		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
 		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
 		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
-		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"_meta");
 
 	}

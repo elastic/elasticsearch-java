@@ -44,23 +44,30 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Response
 public final class StatsResponse implements ToJsonp {
+	private final NodeStatistics nodeStats;
+
 	private final String clusterName;
 
 	private final Boolean manuallyStopped;
 
 	private final List<WatcherNodeStats> stats;
 
-	private final NodeStatistics _nodes;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected StatsResponse(Builder builder) {
 
+		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.manuallyStopped = Objects.requireNonNull(builder.manuallyStopped, "manually_stopped");
 		this.stats = Objects.requireNonNull(builder.stats, "stats");
-		this._nodes = Objects.requireNonNull(builder._nodes, "_nodes");
 
+	}
+
+	/**
+	 * API name: {@code _nodes}
+	 */
+	public NodeStatistics nodeStats() {
+		return this.nodeStats;
 	}
 
 	/**
@@ -85,13 +92,6 @@ public final class StatsResponse implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code _nodes}
-	 */
-	public NodeStatistics _nodes() {
-		return this._nodes;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
@@ -101,6 +101,9 @@ public final class StatsResponse implements ToJsonp {
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("_nodes");
+		this.nodeStats.toJsonp(generator, mapper);
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -116,9 +119,6 @@ public final class StatsResponse implements ToJsonp {
 		}
 		generator.writeEnd();
 
-		generator.writeKey("_nodes");
-		this._nodes.toJsonp(generator, mapper);
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -127,13 +127,28 @@ public final class StatsResponse implements ToJsonp {
 	 * Builder for {@link StatsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<StatsResponse> {
+		private NodeStatistics nodeStats;
+
 		private String clusterName;
 
 		private Boolean manuallyStopped;
 
 		private List<WatcherNodeStats> stats;
 
-		private NodeStatistics _nodes;
+		/**
+		 * API name: {@code _nodes}
+		 */
+		public Builder nodeStats(NodeStatistics value) {
+			this.nodeStats = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _nodes}
+		 */
+		public Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
+		}
 
 		/**
 		 * API name: {@code cluster_name}
@@ -193,21 +208,6 @@ public final class StatsResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code _nodes}
-		 */
-		public Builder _nodes(NodeStatistics value) {
-			this._nodes = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _nodes}
-		 */
-		public Builder _nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-			return this._nodes(fn.apply(new NodeStatistics.Builder()).build());
-		}
-
-		/**
 		 * Builds a {@link StatsResponse}.
 		 *
 		 * @throws NullPointerException
@@ -229,10 +229,10 @@ public final class StatsResponse implements ToJsonp {
 
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
+		op.add(Builder::nodeStats, NodeStatistics.DESERIALIZER, "_nodes");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::manuallyStopped, JsonpDeserializer.booleanDeserializer(), "manually_stopped");
 		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(WatcherNodeStats.DESERIALIZER), "stats");
-		op.add(Builder::_nodes, NodeStatistics.DESERIALIZER, "_nodes");
 
 	}
 

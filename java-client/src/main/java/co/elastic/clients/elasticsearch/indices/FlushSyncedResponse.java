@@ -39,28 +39,28 @@ import javax.annotation.Nullable;
 
 // typedef: indices.flush_synced.Response
 public final class FlushSyncedResponse extends AdditionalProperties<String, ShardStatistics> {
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected FlushSyncedResponse(Builder builder) {
 		super(builder);
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 
 	}
 
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 	}
 
@@ -72,21 +72,21 @@ public final class FlushSyncedResponse extends AdditionalProperties<String, Shar
 	public static class Builder extends AdditionalProperties.AbstractBuilder<String, ShardStatistics, Builder>
 			implements
 				ObjectBuilder<FlushSyncedResponse> {
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(ShardStatistics value) {
-			this._shards = value;
+		public Builder shards(ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		@Override
@@ -119,7 +119,7 @@ public final class FlushSyncedResponse extends AdditionalProperties<String, Shar
 	protected static void setupFlushSyncedResponseDeserializer(DelegatingDeserializer<FlushSyncedResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				ShardStatistics.DESERIALIZER);
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
 
 	}
 

@@ -50,18 +50,18 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Hit
 public final class Hit<TDocument> implements ToJsonp {
-	private final String _index;
+	private final String index;
 
-	private final String _id;
-
-	@Nullable
-	private final Number _score;
+	private final String id;
 
 	@Nullable
-	private final String _type;
+	private final Number score;
 
 	@Nullable
-	private final Explanation _explanation;
+	private final String type;
+
+	@Nullable
+	private final Explanation explanation;
 
 	@Nullable
 	private final Map<String, JsonValue> fields;
@@ -76,31 +76,31 @@ public final class Hit<TDocument> implements ToJsonp {
 	private final List<String> matchedQueries;
 
 	@Nullable
-	private final NestedIdentity _nested;
+	private final NestedIdentity nested;
 
 	@Nullable
-	private final List<String> _ignored;
+	private final List<String> ignored;
 
 	@Nullable
-	private final String _shard;
+	private final String shard;
 
 	@Nullable
-	private final String _node;
+	private final String node;
 
 	@Nullable
-	private final String _routing;
+	private final String routing;
 
 	@Nullable
-	private final TDocument _source;
+	private final TDocument source;
 
 	@Nullable
-	private final Number _seqNo;
+	private final Number seqNo;
 
 	@Nullable
-	private final Number _primaryTerm;
+	private final Number primaryTerm;
 
 	@Nullable
-	private final Number _version;
+	private final Number version;
 
 	@Nullable
 	private final List<JsonValue> sort;
@@ -112,24 +112,24 @@ public final class Hit<TDocument> implements ToJsonp {
 
 	protected Hit(Builder<TDocument> builder) {
 
-		this._index = Objects.requireNonNull(builder._index, "_index");
-		this._id = Objects.requireNonNull(builder._id, "_id");
-		this._score = builder._score;
-		this._type = builder._type;
-		this._explanation = builder._explanation;
+		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.score = builder.score;
+		this.type = builder.type;
+		this.explanation = builder.explanation;
 		this.fields = builder.fields;
 		this.highlight = builder.highlight;
 		this.innerHits = builder.innerHits;
 		this.matchedQueries = builder.matchedQueries;
-		this._nested = builder._nested;
-		this._ignored = builder._ignored;
-		this._shard = builder._shard;
-		this._node = builder._node;
-		this._routing = builder._routing;
-		this._source = builder._source;
-		this._seqNo = builder._seqNo;
-		this._primaryTerm = builder._primaryTerm;
-		this._version = builder._version;
+		this.nested = builder.nested;
+		this.ignored = builder.ignored;
+		this.shard = builder.shard;
+		this.node = builder.node;
+		this.routing = builder.routing;
+		this.source = builder.source;
+		this.seqNo = builder.seqNo;
+		this.primaryTerm = builder.primaryTerm;
+		this.version = builder.version;
 		this.sort = builder.sort;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -138,39 +138,39 @@ public final class Hit<TDocument> implements ToJsonp {
 	/**
 	 * API name: {@code _index}
 	 */
-	public String _index() {
-		return this._index;
+	public String index() {
+		return this.index;
 	}
 
 	/**
 	 * API name: {@code _id}
 	 */
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code _score}
 	 */
 	@Nullable
-	public Number _score() {
-		return this._score;
+	public Number score() {
+		return this.score;
 	}
 
 	/**
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String _type() {
-		return this._type;
+	public String type() {
+		return this.type;
 	}
 
 	/**
 	 * API name: {@code _explanation}
 	 */
 	@Nullable
-	public Explanation _explanation() {
-		return this._explanation;
+	public Explanation explanation() {
+		return this.explanation;
 	}
 
 	/**
@@ -209,72 +209,72 @@ public final class Hit<TDocument> implements ToJsonp {
 	 * API name: {@code _nested}
 	 */
 	@Nullable
-	public NestedIdentity _nested() {
-		return this._nested;
+	public NestedIdentity nested() {
+		return this.nested;
 	}
 
 	/**
 	 * API name: {@code _ignored}
 	 */
 	@Nullable
-	public List<String> _ignored() {
-		return this._ignored;
+	public List<String> ignored() {
+		return this.ignored;
 	}
 
 	/**
 	 * API name: {@code _shard}
 	 */
 	@Nullable
-	public String _shard() {
-		return this._shard;
+	public String shard() {
+		return this.shard;
 	}
 
 	/**
 	 * API name: {@code _node}
 	 */
 	@Nullable
-	public String _node() {
-		return this._node;
+	public String node() {
+		return this.node;
 	}
 
 	/**
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public String _routing() {
-		return this._routing;
+	public String routing() {
+		return this.routing;
 	}
 
 	/**
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public TDocument _source() {
-		return this._source;
+	public TDocument source() {
+		return this.source;
 	}
 
 	/**
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Number _seqNo() {
-		return this._seqNo;
+	public Number seqNo() {
+		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
-	public Number _primaryTerm() {
-		return this._primaryTerm;
+	public Number primaryTerm() {
+		return this.primaryTerm;
 	}
 
 	/**
 	 * API name: {@code _version}
 	 */
 	@Nullable
-	public Number _version() {
-		return this._version;
+	public Number version() {
+		return this.version;
 	}
 
 	/**
@@ -297,27 +297,27 @@ public final class Hit<TDocument> implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_index");
-		generator.write(this._index);
+		generator.write(this.index);
 
 		generator.writeKey("_id");
-		generator.write(this._id);
+		generator.write(this.id);
 
-		if (this._score != null) {
+		if (this.score != null) {
 
 			generator.writeKey("_score");
-			generator.write(this._score.doubleValue());
+			generator.write(this.score.doubleValue());
 
 		}
-		if (this._type != null) {
+		if (this.type != null) {
 
 			generator.writeKey("_type");
-			generator.write(this._type);
+			generator.write(this.type);
 
 		}
-		if (this._explanation != null) {
+		if (this.explanation != null) {
 
 			generator.writeKey("_explanation");
-			this._explanation.toJsonp(generator, mapper);
+			this.explanation.toJsonp(generator, mapper);
 
 		}
 		if (this.fields != null) {
@@ -372,63 +372,63 @@ public final class Hit<TDocument> implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this._nested != null) {
+		if (this.nested != null) {
 
 			generator.writeKey("_nested");
-			this._nested.toJsonp(generator, mapper);
+			this.nested.toJsonp(generator, mapper);
 
 		}
-		if (this._ignored != null) {
+		if (this.ignored != null) {
 
 			generator.writeKey("_ignored");
 			generator.writeStartArray();
-			for (String item0 : this._ignored) {
+			for (String item0 : this.ignored) {
 				generator.write(item0);
 
 			}
 			generator.writeEnd();
 
 		}
-		if (this._shard != null) {
+		if (this.shard != null) {
 
 			generator.writeKey("_shard");
-			generator.write(this._shard);
+			generator.write(this.shard);
 
 		}
-		if (this._node != null) {
+		if (this.node != null) {
 
 			generator.writeKey("_node");
-			generator.write(this._node);
+			generator.write(this.node);
 
 		}
-		if (this._routing != null) {
+		if (this.routing != null) {
 
 			generator.writeKey("_routing");
-			generator.write(this._routing);
+			generator.write(this.routing);
 
 		}
-		if (this._source != null) {
+		if (this.source != null) {
 
 			generator.writeKey("_source");
-			JsonpUtils.serialize(this._source, generator, tDocumentSerializer, mapper);
+			JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
 
 		}
-		if (this._seqNo != null) {
+		if (this.seqNo != null) {
 
 			generator.writeKey("_seq_no");
-			generator.write(this._seqNo.doubleValue());
+			generator.write(this.seqNo.doubleValue());
 
 		}
-		if (this._primaryTerm != null) {
+		if (this.primaryTerm != null) {
 
 			generator.writeKey("_primary_term");
-			generator.write(this._primaryTerm.doubleValue());
+			generator.write(this.primaryTerm.doubleValue());
 
 		}
-		if (this._version != null) {
+		if (this.version != null) {
 
 			generator.writeKey("_version");
-			generator.write(this._version.doubleValue());
+			generator.write(this.version.doubleValue());
 
 		}
 		if (this.sort != null) {
@@ -451,18 +451,18 @@ public final class Hit<TDocument> implements ToJsonp {
 	 * Builder for {@link Hit}.
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<Hit<TDocument>> {
-		private String _index;
+		private String index;
 
-		private String _id;
-
-		@Nullable
-		private Number _score;
+		private String id;
 
 		@Nullable
-		private String _type;
+		private Number score;
 
 		@Nullable
-		private Explanation _explanation;
+		private String type;
+
+		@Nullable
+		private Explanation explanation;
 
 		@Nullable
 		private Map<String, JsonValue> fields;
@@ -477,31 +477,31 @@ public final class Hit<TDocument> implements ToJsonp {
 		private List<String> matchedQueries;
 
 		@Nullable
-		private NestedIdentity _nested;
+		private NestedIdentity nested;
 
 		@Nullable
-		private List<String> _ignored;
+		private List<String> ignored;
 
 		@Nullable
-		private String _shard;
+		private String shard;
 
 		@Nullable
-		private String _node;
+		private String node;
 
 		@Nullable
-		private String _routing;
+		private String routing;
 
 		@Nullable
-		private TDocument _source;
+		private TDocument source;
 
 		@Nullable
-		private Number _seqNo;
+		private Number seqNo;
 
 		@Nullable
-		private Number _primaryTerm;
+		private Number primaryTerm;
 
 		@Nullable
-		private Number _version;
+		private Number version;
 
 		@Nullable
 		private List<JsonValue> sort;
@@ -512,48 +512,48 @@ public final class Hit<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder<TDocument> _index(String value) {
-			this._index = value;
+		public Builder<TDocument> index(String value) {
+			this.index = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder<TDocument> _id(String value) {
-			this._id = value;
+		public Builder<TDocument> id(String value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _score}
 		 */
-		public Builder<TDocument> _score(@Nullable Number value) {
-			this._score = value;
+		public Builder<TDocument> score(@Nullable Number value) {
+			this.score = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder<TDocument> _type(@Nullable String value) {
-			this._type = value;
+		public Builder<TDocument> type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _explanation}
 		 */
-		public Builder<TDocument> _explanation(@Nullable Explanation value) {
-			this._explanation = value;
+		public Builder<TDocument> explanation(@Nullable Explanation value) {
+			this.explanation = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _explanation}
 		 */
-		public Builder<TDocument> _explanation(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {
-			return this._explanation(fn.apply(new Explanation.Builder()).build());
+		public Builder<TDocument> explanation(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {
+			return this.explanation(fn.apply(new Explanation.Builder()).build());
 		}
 
 		/**
@@ -659,98 +659,98 @@ public final class Hit<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder<TDocument> _nested(@Nullable NestedIdentity value) {
-			this._nested = value;
+		public Builder<TDocument> nested(@Nullable NestedIdentity value) {
+			this.nested = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder<TDocument> _nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
-			return this._nested(fn.apply(new NestedIdentity.Builder()).build());
+		public Builder<TDocument> nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
+			return this.nested(fn.apply(new NestedIdentity.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _ignored}
 		 */
-		public Builder<TDocument> _ignored(@Nullable List<String> value) {
-			this._ignored = value;
+		public Builder<TDocument> ignored(@Nullable List<String> value) {
+			this.ignored = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _ignored}
 		 */
-		public Builder<TDocument> _ignored(String... value) {
-			this._ignored = Arrays.asList(value);
+		public Builder<TDocument> ignored(String... value) {
+			this.ignored = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #_ignored(List)}, creating the list if needed.
+		 * Add a value to {@link #ignored(List)}, creating the list if needed.
 		 */
-		public Builder<TDocument> add_ignored(String value) {
-			if (this._ignored == null) {
-				this._ignored = new ArrayList<>();
+		public Builder<TDocument> addIgnored(String value) {
+			if (this.ignored == null) {
+				this.ignored = new ArrayList<>();
 			}
-			this._ignored.add(value);
+			this.ignored.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shard}
 		 */
-		public Builder<TDocument> _shard(@Nullable String value) {
-			this._shard = value;
+		public Builder<TDocument> shard(@Nullable String value) {
+			this.shard = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _node}
 		 */
-		public Builder<TDocument> _node(@Nullable String value) {
-			this._node = value;
+		public Builder<TDocument> node(@Nullable String value) {
+			this.node = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder<TDocument> _routing(@Nullable String value) {
-			this._routing = value;
+		public Builder<TDocument> routing(@Nullable String value) {
+			this.routing = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder<TDocument> _source(@Nullable TDocument value) {
-			this._source = value;
+		public Builder<TDocument> source(@Nullable TDocument value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> _seqNo(@Nullable Number value) {
-			this._seqNo = value;
+		public Builder<TDocument> seqNo(@Nullable Number value) {
+			this.seqNo = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder<TDocument> _primaryTerm(@Nullable Number value) {
-			this._primaryTerm = value;
+		public Builder<TDocument> primaryTerm(@Nullable Number value) {
+			this.primaryTerm = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder<TDocument> _version(@Nullable Number value) {
-			this._version = value;
+		public Builder<TDocument> version(@Nullable Number value) {
+			this.version = value;
 			return this;
 		}
 
@@ -817,11 +817,11 @@ public final class Hit<TDocument> implements ToJsonp {
 	protected static <TDocument> void setupHitDeserializer(DelegatingDeserializer<Hit.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::_index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::_score, JsonpDeserializer.numberDeserializer(), "_score");
-		op.add(Builder::_type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(Builder::_explanation, Explanation.DESERIALIZER, "_explanation");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::score, JsonpDeserializer.numberDeserializer(), "_score");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
+		op.add(Builder::explanation, Explanation.DESERIALIZER, "_explanation");
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
 		op.add(Builder::highlight, JsonpDeserializer.stringMapDeserializer(
@@ -829,16 +829,16 @@ public final class Hit<TDocument> implements ToJsonp {
 		op.add(Builder::innerHits, JsonpDeserializer.stringMapDeserializer(InnerHitsResult.DESERIALIZER), "inner_hits");
 		op.add(Builder::matchedQueries, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"matched_queries");
-		op.add(Builder::_nested, NestedIdentity.DESERIALIZER, "_nested");
-		op.add(Builder::_ignored, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(Builder::nested, NestedIdentity.DESERIALIZER, "_nested");
+		op.add(Builder::ignored, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"_ignored");
-		op.add(Builder::_shard, JsonpDeserializer.stringDeserializer(), "_shard");
-		op.add(Builder::_node, JsonpDeserializer.stringDeserializer(), "_node");
-		op.add(Builder::_routing, JsonpDeserializer.stringDeserializer(), "_routing");
-		op.add(Builder::_source, tDocumentDeserializer, "_source");
-		op.add(Builder::_seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(Builder::_primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(Builder::_version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "_shard");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
+		op.add(Builder::source, tDocumentDeserializer, "_source");
+		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
+		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 
 	}

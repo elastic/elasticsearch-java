@@ -38,6 +38,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -61,7 +62,6 @@ public final class Detector implements ToJsonp {
 	@Nullable
 	private final String fieldName;
 
-	@Nullable
 	private final String function;
 
 	@Nullable
@@ -73,9 +73,6 @@ public final class Detector implements ToJsonp {
 	@Nullable
 	private final String partitionFieldName;
 
-	@Nullable
-	private final String description;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected Detector(Builder builder) {
@@ -86,11 +83,10 @@ public final class Detector implements ToJsonp {
 		this.detectorIndex = builder.detectorIndex;
 		this.excludeFrequent = builder.excludeFrequent;
 		this.fieldName = builder.fieldName;
-		this.function = builder.function;
+		this.function = Objects.requireNonNull(builder.function, "function");
 		this.useNull = builder.useNull;
 		this.overFieldName = builder.overFieldName;
 		this.partitionFieldName = builder.partitionFieldName;
-		this.description = builder.description;
 
 	}
 
@@ -145,7 +141,6 @@ public final class Detector implements ToJsonp {
 	/**
 	 * API name: {@code function}
 	 */
-	@Nullable
 	public String function() {
 		return this.function;
 	}
@@ -172,14 +167,6 @@ public final class Detector implements ToJsonp {
 	@Nullable
 	public String partitionFieldName() {
 		return this.partitionFieldName;
-	}
-
-	/**
-	 * API name: {@code description}
-	 */
-	@Nullable
-	public String description() {
-		return this.description;
 	}
 
 	/**
@@ -234,12 +221,10 @@ public final class Detector implements ToJsonp {
 			generator.write(this.fieldName);
 
 		}
-		if (this.function != null) {
 
-			generator.writeKey("function");
-			generator.write(this.function);
+		generator.writeKey("function");
+		generator.write(this.function);
 
-		}
 		if (this.useNull != null) {
 
 			generator.writeKey("use_null");
@@ -256,12 +241,6 @@ public final class Detector implements ToJsonp {
 
 			generator.writeKey("partition_field_name");
 			generator.write(this.partitionFieldName);
-
-		}
-		if (this.description != null) {
-
-			generator.writeKey("description");
-			generator.write(this.description);
 
 		}
 
@@ -291,7 +270,6 @@ public final class Detector implements ToJsonp {
 		@Nullable
 		private String fieldName;
 
-		@Nullable
 		private String function;
 
 		@Nullable
@@ -302,9 +280,6 @@ public final class Detector implements ToJsonp {
 
 		@Nullable
 		private String partitionFieldName;
-
-		@Nullable
-		private String description;
 
 		/**
 		 * API name: {@code by_field_name}
@@ -390,7 +365,7 @@ public final class Detector implements ToJsonp {
 		/**
 		 * API name: {@code function}
 		 */
-		public Builder function(@Nullable String value) {
+		public Builder function(String value) {
 			this.function = value;
 			return this;
 		}
@@ -416,14 +391,6 @@ public final class Detector implements ToJsonp {
 		 */
 		public Builder partitionFieldName(@Nullable String value) {
 			this.partitionFieldName = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code description}
-		 */
-		public Builder description(@Nullable String value) {
-			this.description = value;
 			return this;
 		}
 
@@ -459,7 +426,6 @@ public final class Detector implements ToJsonp {
 		op.add(Builder::useNull, JsonpDeserializer.booleanDeserializer(), "use_null");
 		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
 		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 
 	}
 

@@ -233,7 +233,7 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 	 * Rollup an index
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -245,7 +245,7 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 	 * Rollup an index
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
 	 *      on elastic.co</a>
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This

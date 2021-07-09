@@ -48,6 +48,8 @@ public final class DatafeedTimingStats implements ToJsonp {
 
 	private final Number totalSearchTimeMs;
 
+	private final Number averageSearchTimePerBucketMs;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected DatafeedTimingStats(Builder builder) {
@@ -58,6 +60,8 @@ public final class DatafeedTimingStats implements ToJsonp {
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.searchCount = Objects.requireNonNull(builder.searchCount, "search_count");
 		this.totalSearchTimeMs = Objects.requireNonNull(builder.totalSearchTimeMs, "total_search_time_ms");
+		this.averageSearchTimePerBucketMs = Objects.requireNonNull(builder.averageSearchTimePerBucketMs,
+				"average_search_time_per_bucket_ms");
 
 	}
 
@@ -97,6 +101,13 @@ public final class DatafeedTimingStats implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code average_search_time_per_bucket_ms}
+	 */
+	public Number averageSearchTimePerBucketMs() {
+		return this.averageSearchTimePerBucketMs;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
@@ -122,6 +133,9 @@ public final class DatafeedTimingStats implements ToJsonp {
 		generator.writeKey("total_search_time_ms");
 		generator.write(this.totalSearchTimeMs.doubleValue());
 
+		generator.writeKey("average_search_time_per_bucket_ms");
+		generator.write(this.averageSearchTimePerBucketMs.doubleValue());
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -139,6 +153,8 @@ public final class DatafeedTimingStats implements ToJsonp {
 		private Number searchCount;
 
 		private Number totalSearchTimeMs;
+
+		private Number averageSearchTimePerBucketMs;
 
 		/**
 		 * API name: {@code bucket_count}
@@ -181,6 +197,14 @@ public final class DatafeedTimingStats implements ToJsonp {
 		}
 
 		/**
+		 * API name: {@code average_search_time_per_bucket_ms}
+		 */
+		public Builder averageSearchTimePerBucketMs(Number value) {
+			this.averageSearchTimePerBucketMs = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link DatafeedTimingStats}.
 		 *
 		 * @throws NullPointerException
@@ -208,6 +232,8 @@ public final class DatafeedTimingStats implements ToJsonp {
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::searchCount, JsonpDeserializer.numberDeserializer(), "search_count");
 		op.add(Builder::totalSearchTimeMs, JsonpDeserializer.numberDeserializer(), "total_search_time_ms");
+		op.add(Builder::averageSearchTimePerBucketMs, JsonpDeserializer.numberDeserializer(),
+				"average_search_time_per_bucket_ms");
 
 	}
 

@@ -39,12 +39,10 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedStats
 public final class DatafeedStats implements ToJsonp {
-	@Nullable
 	private final String assignmentExplanation;
 
 	private final String datafeedId;
 
-	@Nullable
 	private final DiscoveryNode node;
 
 	private final JsonValue state;
@@ -55,9 +53,9 @@ public final class DatafeedStats implements ToJsonp {
 
 	protected DatafeedStats(Builder builder) {
 
-		this.assignmentExplanation = builder.assignmentExplanation;
+		this.assignmentExplanation = Objects.requireNonNull(builder.assignmentExplanation, "assignment_explanation");
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
-		this.node = builder.node;
+		this.node = Objects.requireNonNull(builder.node, "node");
 		this.state = Objects.requireNonNull(builder.state, "state");
 		this.timingStats = Objects.requireNonNull(builder.timingStats, "timing_stats");
 
@@ -66,7 +64,6 @@ public final class DatafeedStats implements ToJsonp {
 	/**
 	 * API name: {@code assignment_explanation}
 	 */
-	@Nullable
 	public String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
@@ -81,7 +78,6 @@ public final class DatafeedStats implements ToJsonp {
 	/**
 	 * API name: {@code node}
 	 */
-	@Nullable
 	public DiscoveryNode node() {
 		return this.node;
 	}
@@ -111,22 +107,14 @@ public final class DatafeedStats implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.assignmentExplanation != null) {
-
-			generator.writeKey("assignment_explanation");
-			generator.write(this.assignmentExplanation);
-
-		}
+		generator.writeKey("assignment_explanation");
+		generator.write(this.assignmentExplanation);
 
 		generator.writeKey("datafeed_id");
 		generator.write(this.datafeedId);
 
-		if (this.node != null) {
-
-			generator.writeKey("node");
-			this.node.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("node");
+		this.node.toJsonp(generator, mapper);
 
 		generator.writeKey("state");
 		generator.write(this.state);
@@ -142,12 +130,10 @@ public final class DatafeedStats implements ToJsonp {
 	 * Builder for {@link DatafeedStats}.
 	 */
 	public static class Builder implements ObjectBuilder<DatafeedStats> {
-		@Nullable
 		private String assignmentExplanation;
 
 		private String datafeedId;
 
-		@Nullable
 		private DiscoveryNode node;
 
 		private JsonValue state;
@@ -157,7 +143,7 @@ public final class DatafeedStats implements ToJsonp {
 		/**
 		 * API name: {@code assignment_explanation}
 		 */
-		public Builder assignmentExplanation(@Nullable String value) {
+		public Builder assignmentExplanation(String value) {
 			this.assignmentExplanation = value;
 			return this;
 		}
@@ -173,7 +159,7 @@ public final class DatafeedStats implements ToJsonp {
 		/**
 		 * API name: {@code node}
 		 */
-		public Builder node(@Nullable DiscoveryNode value) {
+		public Builder node(DiscoveryNode value) {
 			this.node = value;
 			return this;
 		}

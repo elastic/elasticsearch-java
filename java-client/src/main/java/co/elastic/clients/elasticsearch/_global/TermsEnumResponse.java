@@ -32,31 +32,31 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _global.count.Response
-public final class CountResponse implements ToJsonp {
-	private final Number count;
-
+// typedef: _global.terms_enum.Response
+public final class TermsEnumResponse implements ToJsonp {
 	private final ShardStatistics shards;
+
+	private final List<String> terms;
+
+	private final Boolean complete;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CountResponse(Builder builder) {
+	protected TermsEnumResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
+		this.terms = Objects.requireNonNull(builder.terms, "terms");
+		this.complete = Objects.requireNonNull(builder.complete, "complete");
 
-	}
-
-	/**
-	 * API name: {@code count}
-	 */
-	public Number count() {
-		return this.count;
 	}
 
 	/**
@@ -64,6 +64,20 @@ public final class CountResponse implements ToJsonp {
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
+	}
+
+	/**
+	 * API name: {@code terms}
+	 */
+	public List<String> terms() {
+		return this.terms;
+	}
+
+	/**
+	 * API name: {@code complete}
+	 */
+	public Boolean complete() {
+		return this.complete;
 	}
 
 	/**
@@ -77,31 +91,33 @@ public final class CountResponse implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
-
 		generator.writeKey("_shards");
 		this.shards.toJsonp(generator, mapper);
+
+		generator.writeKey("terms");
+		generator.writeStartArray();
+		for (String item0 : this.terms) {
+			generator.write(item0);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("complete");
+		generator.write(this.complete);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link CountResponse}.
+	 * Builder for {@link TermsEnumResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CountResponse> {
-		private Number count;
-
+	public static class Builder implements ObjectBuilder<TermsEnumResponse> {
 		private ShardStatistics shards;
 
-		/**
-		 * API name: {@code count}
-		 */
-		public Builder count(Number value) {
-			this.count = value;
-			return this;
-		}
+		private List<String> terms;
+
+		private Boolean complete;
 
 		/**
 		 * API name: {@code _shards}
@@ -119,29 +135,65 @@ public final class CountResponse implements ToJsonp {
 		}
 
 		/**
-		 * Builds a {@link CountResponse}.
+		 * API name: {@code terms}
+		 */
+		public Builder terms(List<String> value) {
+			this.terms = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code terms}
+		 */
+		public Builder terms(String... value) {
+			this.terms = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #terms(List)}, creating the list if needed.
+		 */
+		public Builder addTerms(String value) {
+			if (this.terms == null) {
+				this.terms = new ArrayList<>();
+			}
+			this.terms.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code complete}
+		 */
+		public Builder complete(Boolean value) {
+			this.complete = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link TermsEnumResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public CountResponse build() {
+		public TermsEnumResponse build() {
 
-			return new CountResponse(this);
+			return new TermsEnumResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CountResponse
+	 * Json deserializer for TermsEnumResponse
 	 */
-	public static final JsonpDeserializer<CountResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CountResponse::setupCountResponseDeserializer);
+	public static final JsonpDeserializer<TermsEnumResponse> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TermsEnumResponse::setupTermsEnumResponseDeserializer);
 
-	protected static void setupCountResponseDeserializer(DelegatingDeserializer<CountResponse.Builder> op) {
+	protected static void setupTermsEnumResponseDeserializer(DelegatingDeserializer<TermsEnumResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
 		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "terms");
+		op.add(Builder::complete, JsonpDeserializer.booleanDeserializer(), "complete");
 
 	}
 

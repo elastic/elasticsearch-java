@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 // typedef: cluster._types.ComponentTemplateSummary
 public final class ComponentTemplateSummary implements ToJsonp {
 	@Nullable
-	private final Map<String, JsonValue> _meta;
+	private final Map<String, JsonValue> meta;
 
 	@Nullable
 	private final Number version;
@@ -63,7 +63,7 @@ public final class ComponentTemplateSummary implements ToJsonp {
 
 	protected ComponentTemplateSummary(Builder builder) {
 
-		this._meta = builder._meta;
+		this.meta = builder.meta;
 		this.version = builder.version;
 		this.settings = Objects.requireNonNull(builder.settings, "settings");
 		this.mappings = builder.mappings;
@@ -75,8 +75,8 @@ public final class ComponentTemplateSummary implements ToJsonp {
 	 * API name: {@code _meta}
 	 */
 	@Nullable
-	public Map<String, JsonValue> _meta() {
-		return this._meta;
+	public Map<String, JsonValue> meta() {
+		return this.meta;
 	}
 
 	/**
@@ -121,11 +121,11 @@ public final class ComponentTemplateSummary implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this._meta != null) {
+		if (this.meta != null) {
 
 			generator.writeKey("_meta");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this._meta.entrySet()) {
+			for (Map.Entry<String, JsonValue> item0 : this.meta.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.write(item0.getValue());
 
@@ -177,7 +177,7 @@ public final class ComponentTemplateSummary implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<ComponentTemplateSummary> {
 		@Nullable
-		private Map<String, JsonValue> _meta;
+		private Map<String, JsonValue> meta;
 
 		@Nullable
 		private Number version;
@@ -193,19 +193,19 @@ public final class ComponentTemplateSummary implements ToJsonp {
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder _meta(@Nullable Map<String, JsonValue> value) {
-			this._meta = value;
+		public Builder meta(@Nullable Map<String, JsonValue> value) {
+			this.meta = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #_meta(Map)}, creating the map if needed.
+		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonValue value) {
-			if (this._meta == null) {
-				this._meta = new HashMap<>();
+		public Builder putMeta(String key, JsonValue value) {
+			if (this.meta == null) {
+				this.meta = new HashMap<>();
 			}
-			this._meta.put(key, value);
+			this.meta.put(key, value);
 			return this;
 		}
 
@@ -321,7 +321,7 @@ public final class ComponentTemplateSummary implements ToJsonp {
 	protected static void setupComponentTemplateSummaryDeserializer(
 			DelegatingDeserializer<ComponentTemplateSummary.Builder> op) {
 
-		op.add(Builder::_meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"_meta");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings.DESERIALIZER), "settings");

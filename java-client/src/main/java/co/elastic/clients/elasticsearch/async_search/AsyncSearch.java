@@ -55,7 +55,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	private final Map<String, JsonValue> aggregations;
 
 	@Nullable
-	private final ClusterStatistics _clusters;
+	private final ClusterStatistics clusters;
 
 	@Nullable
 	private final Map<String, JsonValue> fields;
@@ -75,9 +75,9 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	private final String pitId;
 
 	@Nullable
-	private final String _scrollId;
+	private final String scrollId;
 
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	@Nullable
 	private final Map<String, List<Suggest<TDocument>>> suggest;
@@ -97,15 +97,15 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	protected AsyncSearch(Builder<TDocument> builder) {
 
 		this.aggregations = builder.aggregations;
-		this._clusters = builder._clusters;
+		this.clusters = builder.clusters;
 		this.fields = builder.fields;
 		this.hits = Objects.requireNonNull(builder.hits, "hits");
 		this.maxScore = builder.maxScore;
 		this.numReducePhases = builder.numReducePhases;
 		this.profile = builder.profile;
 		this.pitId = builder.pitId;
-		this._scrollId = builder._scrollId;
-		this._shards = Objects.requireNonNull(builder._shards, "_shards");
+		this.scrollId = builder.scrollId;
+		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.suggest = builder.suggest;
 		this.terminatedEarly = builder.terminatedEarly;
 		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
@@ -126,8 +126,8 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	 * API name: {@code _clusters}
 	 */
 	@Nullable
-	public ClusterStatistics _clusters() {
-		return this._clusters;
+	public ClusterStatistics clusters() {
+		return this.clusters;
 	}
 
 	/**
@@ -181,15 +181,15 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	 * API name: {@code _scroll_id}
 	 */
 	@Nullable
-	public String _scrollId() {
-		return this._scrollId;
+	public String scrollId() {
+		return this.scrollId;
 	}
 
 	/**
 	 * API name: {@code _shards}
 	 */
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	/**
@@ -245,10 +245,10 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this._clusters != null) {
+		if (this.clusters != null) {
 
 			generator.writeKey("_clusters");
-			this._clusters.toJsonp(generator, mapper);
+			this.clusters.toJsonp(generator, mapper);
 
 		}
 		if (this.fields != null) {
@@ -291,15 +291,15 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 			generator.write(this.pitId);
 
 		}
-		if (this._scrollId != null) {
+		if (this.scrollId != null) {
 
 			generator.writeKey("_scroll_id");
-			generator.write(this._scrollId);
+			generator.write(this.scrollId);
 
 		}
 
 		generator.writeKey("_shards");
-		this._shards.toJsonp(generator, mapper);
+		this.shards.toJsonp(generator, mapper);
 
 		if (this.suggest != null) {
 
@@ -343,7 +343,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		private Map<String, JsonValue> aggregations;
 
 		@Nullable
-		private ClusterStatistics _clusters;
+		private ClusterStatistics clusters;
 
 		@Nullable
 		private Map<String, JsonValue> fields;
@@ -363,9 +363,9 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		private String pitId;
 
 		@Nullable
-		private String _scrollId;
+		private String scrollId;
 
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		@Nullable
 		private Map<String, List<Suggest<TDocument>>> suggest;
@@ -402,16 +402,16 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _clusters}
 		 */
-		public Builder<TDocument> _clusters(@Nullable ClusterStatistics value) {
-			this._clusters = value;
+		public Builder<TDocument> clusters(@Nullable ClusterStatistics value) {
+			this.clusters = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _clusters}
 		 */
-		public Builder<TDocument> _clusters(Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {
-			return this._clusters(fn.apply(new ClusterStatistics.Builder()).build());
+		public Builder<TDocument> clusters(Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {
+			return this.clusters(fn.apply(new ClusterStatistics.Builder()).build());
 		}
 
 		/**
@@ -491,24 +491,24 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _scroll_id}
 		 */
-		public Builder<TDocument> _scrollId(@Nullable String value) {
-			this._scrollId = value;
+		public Builder<TDocument> scrollId(@Nullable String value) {
+			this.scrollId = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder<TDocument> _shards(ShardStatistics value) {
-			this._shards = value;
+		public Builder<TDocument> shards(ShardStatistics value) {
+			this.shards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public Builder<TDocument> _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -593,7 +593,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 
 		op.add(Builder::aggregations,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");
-		op.add(Builder::_clusters, ClusterStatistics.DESERIALIZER, "_clusters");
+		op.add(Builder::clusters, ClusterStatistics.DESERIALIZER, "_clusters");
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
 		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
@@ -601,8 +601,8 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		op.add(Builder::numReducePhases, JsonpDeserializer.numberDeserializer(), "num_reduce_phases");
 		op.add(Builder::profile, Profile.DESERIALIZER, "profile");
 		op.add(Builder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
-		op.add(Builder::_scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
-		op.add(Builder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
+		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
 		op.add(Builder::suggest,
 				JsonpDeserializer.stringMapDeserializer(
 						JsonpDeserializer.arrayDeserializer(Suggest.createSuggestDeserializer(tDocumentDeserializer))),

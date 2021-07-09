@@ -36,13 +36,13 @@ import javax.annotation.Nullable;
 // typedef: _types.IndicesResponseBase
 public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 	@Nullable
-	private final ShardStatistics _shards;
+	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected IndicesResponseBase(AbstractBuilder<?> builder) {
 		super(builder);
-		this._shards = builder._shards;
+		this.shards = builder.shards;
 
 	}
 
@@ -50,16 +50,16 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 	 * API name: {@code _shards}
 	 */
 	@Nullable
-	public ShardStatistics _shards() {
-		return this._shards;
+	public ShardStatistics shards() {
+		return this.shards;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this._shards != null) {
+		if (this.shards != null) {
 
 			generator.writeKey("_shards");
-			this._shards.toJsonp(generator, mapper);
+			this.shards.toJsonp(generator, mapper);
 
 		}
 
@@ -69,21 +69,21 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 			extends
 				AcknowledgedResponseBase.AbstractBuilder<BuilderT> {
 		@Nullable
-		private ShardStatistics _shards;
+		private ShardStatistics shards;
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT _shards(@Nullable ShardStatistics value) {
-			this._shards = value;
+		public BuilderT shards(@Nullable ShardStatistics value) {
+			this.shards = value;
 			return self();
 		}
 
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT _shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this._shards(fn.apply(new ShardStatistics.Builder()).build());
+		public BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 	}
@@ -92,7 +92,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndicesResponseBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(AbstractBuilder::_shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(AbstractBuilder::shards, ShardStatistics.DESERIALIZER, "_shards");
 
 	}
 

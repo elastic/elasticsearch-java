@@ -49,14 +49,14 @@ public final class InlineGet<TDocument> implements ToJsonp {
 
 	private final Boolean found;
 
-	private final Number _seqNo;
+	private final Number seqNo;
 
-	private final Number _primaryTerm;
+	private final Number primaryTerm;
 
 	@Nullable
-	private final JsonValue _routing;
+	private final JsonValue routing;
 
-	private final TDocument _source;
+	private final TDocument source;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -67,10 +67,10 @@ public final class InlineGet<TDocument> implements ToJsonp {
 
 		this.fields = builder.fields;
 		this.found = Objects.requireNonNull(builder.found, "found");
-		this._seqNo = Objects.requireNonNull(builder._seqNo, "_seq_no");
-		this._primaryTerm = Objects.requireNonNull(builder._primaryTerm, "_primary_term");
-		this._routing = builder._routing;
-		this._source = Objects.requireNonNull(builder._source, "_source");
+		this.seqNo = Objects.requireNonNull(builder.seqNo, "_seq_no");
+		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "_primary_term");
+		this.routing = builder.routing;
+		this.source = Objects.requireNonNull(builder.source, "_source");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -93,30 +93,30 @@ public final class InlineGet<TDocument> implements ToJsonp {
 	/**
 	 * API name: {@code _seq_no}
 	 */
-	public Number _seqNo() {
-		return this._seqNo;
+	public Number seqNo() {
+		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _primary_term}
 	 */
-	public Number _primaryTerm() {
-		return this._primaryTerm;
+	public Number primaryTerm() {
+		return this.primaryTerm;
 	}
 
 	/**
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public JsonValue _routing() {
-		return this._routing;
+	public JsonValue routing() {
+		return this.routing;
 	}
 
 	/**
 	 * API name: {@code _source}
 	 */
-	public TDocument _source() {
-		return this._source;
+	public TDocument source() {
+		return this.source;
 	}
 
 	/**
@@ -147,20 +147,20 @@ public final class InlineGet<TDocument> implements ToJsonp {
 		generator.write(this.found);
 
 		generator.writeKey("_seq_no");
-		generator.write(this._seqNo.doubleValue());
+		generator.write(this.seqNo.doubleValue());
 
 		generator.writeKey("_primary_term");
-		generator.write(this._primaryTerm.doubleValue());
+		generator.write(this.primaryTerm.doubleValue());
 
-		if (this._routing != null) {
+		if (this.routing != null) {
 
 			generator.writeKey("_routing");
-			generator.write(this._routing);
+			generator.write(this.routing);
 
 		}
 
 		generator.writeKey("_source");
-		JsonpUtils.serialize(this._source, generator, tDocumentSerializer, mapper);
+		JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
 
 	}
 
@@ -175,14 +175,14 @@ public final class InlineGet<TDocument> implements ToJsonp {
 
 		private Boolean found;
 
-		private Number _seqNo;
+		private Number seqNo;
 
-		private Number _primaryTerm;
+		private Number primaryTerm;
 
 		@Nullable
-		private JsonValue _routing;
+		private JsonValue routing;
 
-		private TDocument _source;
+		private TDocument source;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -217,32 +217,32 @@ public final class InlineGet<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> _seqNo(Number value) {
-			this._seqNo = value;
+		public Builder<TDocument> seqNo(Number value) {
+			this.seqNo = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder<TDocument> _primaryTerm(Number value) {
-			this._primaryTerm = value;
+		public Builder<TDocument> primaryTerm(Number value) {
+			this.primaryTerm = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder<TDocument> _routing(@Nullable JsonValue value) {
-			this._routing = value;
+		public Builder<TDocument> routing(@Nullable JsonValue value) {
+			this.routing = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder<TDocument> _source(TDocument value) {
-			this._source = value;
+		public Builder<TDocument> source(TDocument value) {
+			this.source = value;
 			return this;
 		}
 
@@ -286,10 +286,10 @@ public final class InlineGet<TDocument> implements ToJsonp {
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-		op.add(Builder::_seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(Builder::_primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(Builder::_routing, JsonpDeserializer.jsonValueDeserializer(), "_routing");
-		op.add(Builder::_source, tDocumentDeserializer, "_source");
+		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
+		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "_routing");
+		op.add(Builder::source, tDocumentDeserializer, "_source");
 
 	}
 

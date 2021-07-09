@@ -37,13 +37,13 @@ import javax.annotation.Nullable;
 // typedef: indices._types.IndexRoutingAllocationInitialRecovery
 public final class IndexRoutingAllocationInitialRecovery implements ToJsonp {
 	@Nullable
-	private final String _id;
+	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected IndexRoutingAllocationInitialRecovery(Builder builder) {
 
-		this._id = builder._id;
+		this.id = builder.id;
 
 	}
 
@@ -51,8 +51,8 @@ public final class IndexRoutingAllocationInitialRecovery implements ToJsonp {
 	 * API name: {@code _id}
 	 */
 	@Nullable
-	public String _id() {
-		return this._id;
+	public String id() {
+		return this.id;
 	}
 
 	/**
@@ -66,10 +66,10 @@ public final class IndexRoutingAllocationInitialRecovery implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this._id != null) {
+		if (this.id != null) {
 
 			generator.writeKey("_id");
-			generator.write(this._id);
+			generator.write(this.id);
 
 		}
 
@@ -82,13 +82,13 @@ public final class IndexRoutingAllocationInitialRecovery implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<IndexRoutingAllocationInitialRecovery> {
 		@Nullable
-		private String _id;
+		private String id;
 
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder _id(@Nullable String value) {
-			this._id = value;
+		public Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -116,7 +116,7 @@ public final class IndexRoutingAllocationInitialRecovery implements ToJsonp {
 	protected static void setupIndexRoutingAllocationInitialRecoveryDeserializer(
 			DelegatingDeserializer<IndexRoutingAllocationInitialRecovery.Builder> op) {
 
-		op.add(Builder::_id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 
 	}
 

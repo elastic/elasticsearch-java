@@ -38,7 +38,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -47,6 +46,7 @@ public final class DetectionRule implements ToJsonp {
 	@Nullable
 	private final List<JsonValue> actions;
 
+	@Nullable
 	private final List<RuleCondition> conditions;
 
 	@Nullable
@@ -57,7 +57,7 @@ public final class DetectionRule implements ToJsonp {
 	protected DetectionRule(Builder builder) {
 
 		this.actions = builder.actions;
-		this.conditions = Objects.requireNonNull(builder.conditions, "conditions");
+		this.conditions = builder.conditions;
 		this.scope = builder.scope;
 
 	}
@@ -73,6 +73,7 @@ public final class DetectionRule implements ToJsonp {
 	/**
 	 * API name: {@code conditions}
 	 */
+	@Nullable
 	public List<RuleCondition> conditions() {
 		return this.conditions;
 	}
@@ -107,15 +108,17 @@ public final class DetectionRule implements ToJsonp {
 			generator.writeEnd();
 
 		}
+		if (this.conditions != null) {
 
-		generator.writeKey("conditions");
-		generator.writeStartArray();
-		for (RuleCondition item0 : this.conditions) {
-			item0.toJsonp(generator, mapper);
+			generator.writeKey("conditions");
+			generator.writeStartArray();
+			for (RuleCondition item0 : this.conditions) {
+				item0.toJsonp(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.scope != null) {
 
 			generator.writeKey("scope");
@@ -140,6 +143,7 @@ public final class DetectionRule implements ToJsonp {
 		@Nullable
 		private List<JsonValue> actions;
 
+		@Nullable
 		private List<RuleCondition> conditions;
 
 		@Nullable
@@ -175,7 +179,7 @@ public final class DetectionRule implements ToJsonp {
 		/**
 		 * API name: {@code conditions}
 		 */
-		public Builder conditions(List<RuleCondition> value) {
+		public Builder conditions(@Nullable List<RuleCondition> value) {
 			this.conditions = value;
 			return this;
 		}
