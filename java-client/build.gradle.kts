@@ -17,14 +17,13 @@
  * under the License.
  */
 
+import java.time.ZoneOffset
+
 plugins {
     java
     checkstyle
     `maven-publish`
 }
-
-group = "co.elastic.clients"
-version = "8.0.0-SNAPSHOT"
 
 java {
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -32,13 +31,21 @@ java {
 }
 
 tasks.withType<Jar> {
+    doFirst {
+        if (rootProject.extra.has("gitHashFull")) {
+            val jar = this as Jar
+            jar.manifest.attributes["X-Git-Revision"] = rootProject.extra["gitHashFull"]
+            jar.manifest.attributes["X-Git-Commit-Time"] = rootProject .extra["gitCommitTime"]
+        } else {
+            throw GradleException("No git information available")
+        }
+    }
+
     manifest {
         attributes["Implementation-Title"] = "Elasticsearch Java client"
         attributes["Implementation-Vendor"] = "Elastic"
         attributes["Implementation-URL"] = "https://github.com/elastic/elasticsearch-java/"
-        attributes["Build-Date"] = project.extra["buildTime"]
-        attributes["X-Git-Revision"] = project.extra["gitHashFull"]
-        attributes["X-Git-Commit-Time"] = project.extra["gitCommitTime"]
+        attributes["Build-Date"] = rootProject.extra["buildTime"]
     }
 
     metaInf {
@@ -57,13 +64,13 @@ publishing {
         }
 
         maven {
-            name = "BuildRepo"
-            url = uri("${buildDir}/publishing-repository")
+            name = "Build"
+            url = uri("${rootProject.buildDir}/repository")
         }
     }
 
     publications {
-        create<MavenPublication>("gpr") {
+        create<MavenPublication>("maven") {
             from(components["java"])
             pom {
                 name.set("Elasticsearch Java Client")
@@ -73,7 +80,7 @@ publishing {
                 licenses {
                     license {
                         name.set("The Apache License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
                     }
                 }
                 developers {

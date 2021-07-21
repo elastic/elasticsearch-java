@@ -17,24 +17,31 @@
  * under the License.
  */
 
-group = "co.elastic.clients"
-version = "1.0-SNAPSHOT"
 
-
-subprojects {
+allprojects {
+    group = "co.elastic.clients"
+    version = System.getenv("VERSION") ?: "8.0.0-SNAPSHOT"
     apply(plugin = "checkstyle")
 }
 
-val grgit = org.ajoberstar.grgit.Grgit.open(mapOf("currentDir" to project.rootDir))
-try {
-    allprojects {
-        project.extra["gitHashFull"] = grgit.head().id
-        project.extra["gitCommitTime"] = grgit.head().dateTime.withZoneSameLocal(java.time.ZoneOffset.UTC)
-    }
-} finally {
+// Find git information.
+// The ".git" directory may not exist when resolving dependencies in the Docker image build
+if (File(rootProject.rootDir, ".git").exists()) {
+    val grgit = org.ajoberstar.grgit.Grgit.open(mapOf("currentDir" to rootProject.rootDir))
+    rootProject.extra["gitHashFull"] = grgit.head().id
+    rootProject.extra["gitCommitTime"] = grgit.head().dateTime.withZoneSameLocal(java.time.ZoneOffset.UTC)
     grgit.close()
 }
 
-allprojects {
-    project.extra["buildTime"] = java.time.Instant.now().atZone(java.time.ZoneOffset.UTC)
+rootProject.extra["buildTime"] = java.time.Instant.now().atZone(java.time.ZoneOffset.UTC)
+
+tasks.register<Task>(name = "resolveDependencies") {
+    group = "Build Setup"
+    description = "Resolves and prefetches dependencies"
+    doLast {
+        rootProject.allprojects.forEach {
+            it.buildscript.configurations.filter(Configuration::isCanBeResolved).forEach { it.resolve() }
+            it.configurations.filter(Configuration::isCanBeResolved).forEach { it.resolve() }
+        }
+    }
 }

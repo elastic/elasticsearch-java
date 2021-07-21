@@ -16,3 +16,5 @@ gradle-app.setting
 # IntelliJ Idea
 .idea
 *.iml
+
+.ci/output
