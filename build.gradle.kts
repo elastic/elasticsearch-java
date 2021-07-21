@@ -18,9 +18,14 @@
  */
 
 
-allprojects {
+subprojects {
     group = "co.elastic.clients"
     version = System.getenv("VERSION") ?: "8.0.0-SNAPSHOT"
+
+    repositories {
+        mavenCentral()
+    }
+
     apply(plugin = "checkstyle")
 }
 

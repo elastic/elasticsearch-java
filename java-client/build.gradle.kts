@@ -100,10 +100,6 @@ publishing {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     val elasticsearchVersion = "7.12.0"
     val jacksonVersion = "2.12.0"
