@@ -53,9 +53,7 @@ public class TextStructureAsyncClient extends ApiClient<TextStructureAsyncClient
 	 * Finds the structure of a text file. The text file must contain data that is
 	 * suitable to be ingested into Elasticsearch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html"
 	 */
 
 	public <TJsonDocument> CompletableFuture<FindStructureResponse> findStructure(
@@ -67,9 +65,7 @@ public class TextStructureAsyncClient extends ApiClient<TextStructureAsyncClient
 	 * Finds the structure of a text file. The text file must contain data that is
 	 * suitable to be ingested into Elasticsearch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

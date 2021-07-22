@@ -56,9 +56,7 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException {
@@ -68,9 +66,7 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -87,9 +83,7 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Returns information about a task.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public CompletableFuture<GetResponse> get(GetRequest request) throws IOException {
@@ -99,9 +93,7 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Returns information about a task.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -118,9 +110,7 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Returns a list of tasks.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException {
@@ -130,9 +120,7 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Returns a list of tasks.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

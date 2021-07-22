@@ -53,9 +53,7 @@ public class GraphAsyncClient extends ApiClient<GraphAsyncClient> {
 	 * Explore extracted and summarized information about the documents and terms in
 	 * an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html"
 	 */
 
 	public CompletableFuture<ExploreResponse> explore(ExploreRequest request) throws IOException {
@@ -66,9 +64,7 @@ public class GraphAsyncClient extends ApiClient<GraphAsyncClient> {
 	 * Explore extracted and summarized information about the documents and terms in
 	 * an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

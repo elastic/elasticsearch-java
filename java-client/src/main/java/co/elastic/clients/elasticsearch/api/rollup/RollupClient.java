@@ -67,9 +67,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Deletes an existing rollup job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html"
 	 */
 
 	public DeleteRollupJobResponse deleteJob(DeleteRollupJobRequest request) throws IOException {
@@ -79,9 +77,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Deletes an existing rollup job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -98,9 +94,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Retrieves the configuration, stats, and status of rollup jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html"
 	 */
 
 	public GetRollupJobResponse getJobs(GetRollupJobRequest request) throws IOException {
@@ -110,9 +104,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Retrieves the configuration, stats, and status of rollup jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -130,9 +122,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 * Returns the capabilities of any rollup jobs that have been configured for a
 	 * specific index or index pattern.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html"
 	 */
 
 	public GetRollupCapabilitiesResponse getRollupCaps(GetRollupCapabilitiesRequest request) throws IOException {
@@ -143,9 +133,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 * Returns the capabilities of any rollup jobs that have been configured for a
 	 * specific index or index pattern.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -164,9 +152,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 * Returns the rollup capabilities of all jobs inside of a rollup index (e.g.
 	 * the index where rollup data is stored).
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html"
 	 */
 
 	public GetRollupIndexCapabilitiesResponse getRollupIndexCaps(GetRollupIndexCapabilitiesRequest request)
@@ -178,9 +164,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 * Returns the rollup capabilities of all jobs inside of a rollup index (e.g.
 	 * the index where rollup data is stored).
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -198,9 +182,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Creates a rollup job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html"
 	 */
 
 	public CreateRollupJobResponse putJob(CreateRollupJobRequest request) throws IOException {
@@ -210,9 +192,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Creates a rollup job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -229,9 +209,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Rollup an index
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html"
 	 */
 
 	public RollupResponse rollup(RollupRequest request) throws IOException {
@@ -241,9 +219,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Rollup an index
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -260,9 +236,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Enables searching rolled-up data using the standard query DSL.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html"
 	 */
 
 	public <TDocument> RollupSearchResponse<TDocument> rollupSearch(RollupSearchRequest request,
@@ -274,9 +248,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Enables searching rolled-up data using the standard query DSL.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -294,9 +266,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Starts an existing, stopped rollup job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html"
 	 */
 
 	public StartRollupJobResponse startJob(StartRollupJobRequest request) throws IOException {
@@ -306,9 +276,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Starts an existing, stopped rollup job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -325,9 +293,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Stops an existing, started rollup job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html"
 	 */
 
 	public StopRollupJobResponse stopJob(StopRollupJobRequest request) throws IOException {
@@ -337,9 +303,7 @@ public class RollupClient extends ApiClient<RollupClient> {
 	/**
 	 * Stops an existing, started rollup job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

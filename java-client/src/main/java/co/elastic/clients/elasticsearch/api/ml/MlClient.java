@@ -174,9 +174,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Closes one or more anomaly detection jobs. A job can be opened and closed
 	 * multiple times throughout its lifecycle.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-close-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-close-job.html"
 	 */
 
 	public CloseJobResponse closeJob(CloseJobRequest request) throws IOException {
@@ -187,9 +185,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Closes one or more anomaly detection jobs. A job can be opened and closed
 	 * multiple times throughout its lifecycle.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-close-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-close-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -206,9 +202,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar.html"
 	 */
 
 	public DeleteCalendarResponse deleteCalendar(DeleteCalendarRequest request) throws IOException {
@@ -218,9 +212,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -237,9 +229,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes scheduled events from a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-event.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-event.html"
 	 */
 
 	public DeleteCalendarEventResponse deleteCalendarEvent(DeleteCalendarEventRequest request) throws IOException {
@@ -249,9 +239,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes scheduled events from a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-event.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-event.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -269,9 +257,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes anomaly detection jobs from a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-job.html"
 	 */
 
 	public DeleteCalendarJobResponse deleteCalendarJob(DeleteCalendarJobRequest request) throws IOException {
@@ -281,9 +267,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes anomaly detection jobs from a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -300,9 +284,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes an existing data frame analytics job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-dfanalytics.html"
 	 */
 
 	public DeleteDataFrameAnalyticsResponse deleteDataFrameAnalytics(DeleteDataFrameAnalyticsRequest request)
@@ -313,9 +295,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes an existing data frame analytics job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -333,9 +313,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes an existing datafeed.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-datafeed.html"
 	 */
 
 	public DeleteDatafeedResponse deleteDatafeed(DeleteDatafeedRequest request) throws IOException {
@@ -345,9 +323,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes an existing datafeed.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-datafeed.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -364,9 +340,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes a filter.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-filter.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-filter.html"
 	 */
 
 	public DeleteFilterResponse deleteFilter(DeleteFilterRequest request) throws IOException {
@@ -376,9 +350,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes a filter.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-filter.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-filter.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -395,9 +367,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes forecasts from a machine learning job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html"
 	 */
 
 	public DeleteForecastResponse deleteForecast(DeleteForecastRequest request) throws IOException {
@@ -407,9 +377,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes forecasts from a machine learning job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -426,9 +394,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes an existing anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html"
 	 */
 
 	public DeleteJobResponse deleteJob(DeleteJobRequest request) throws IOException {
@@ -438,9 +404,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes an existing anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -457,9 +421,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes an existing model snapshot.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html"
 	 */
 
 	public DeleteModelSnapshotResponse deleteModelSnapshot(DeleteModelSnapshotRequest request) throws IOException {
@@ -469,9 +431,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes an existing model snapshot.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -490,9 +450,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Deletes an existing trained inference model that is currently not referenced
 	 * by an ingest pipeline.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html"
 	 */
 
 	public DeleteTrainedModelResponse deleteTrainedModel(DeleteTrainedModelRequest request) throws IOException {
@@ -503,9 +461,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Deletes an existing trained inference model that is currently not referenced
 	 * by an ingest pipeline.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -523,9 +479,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes a model alias that refers to the trained model
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models-aliases.html"
 	 */
 
 	public DeleteTrainedModelAliasResponse deleteTrainedModelAlias(DeleteTrainedModelAliasRequest request)
@@ -536,9 +490,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Deletes a model alias that refers to the trained model
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models-aliases.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -556,9 +508,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Estimates the model memory
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html"
 	 */
 
 	public EstimateModelMemoryResponse estimateModelMemory(EstimateModelMemoryRequest request) throws IOException {
@@ -568,9 +518,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Estimates the model memory
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -588,9 +536,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Evaluates the data frame analytics for an annotated index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html"
 	 */
 
 	public EvaluateDataFrameResponse evaluateDataFrame(EvaluateDataFrameRequest request) throws IOException {
@@ -600,9 +546,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Evaluates the data frame analytics for an annotated index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -619,9 +563,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Explains a data frame analytics config.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/explain-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/explain-dfanalytics.html"
 	 */
 
 	public ExplainDataFrameAnalyticsResponse explainDataFrameAnalytics(ExplainDataFrameAnalyticsRequest request)
@@ -632,9 +574,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Explains a data frame analytics config.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/explain-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/explain-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -653,9 +593,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Finds the structure of a text file. The text file must contain data that is
 	 * suitable to be ingested into Elasticsearch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html"
 	 */
 
 	public FindFileStructureResponse findFileStructure(FindFileStructureRequest request) throws IOException {
@@ -666,9 +604,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Finds the structure of a text file. The text file must contain data that is
 	 * suitable to be ingested into Elasticsearch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -685,9 +621,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Forces any buffered data to be processed by the job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-flush-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-flush-job.html"
 	 */
 
 	public FlushJobResponse flushJob(FlushJobRequest request) throws IOException {
@@ -697,9 +631,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Forces any buffered data to be processed by the job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-flush-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-flush-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -717,9 +649,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Predicts the future behavior of a time series by using its historical
 	 * behavior.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-forecast.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-forecast.html"
 	 */
 
 	public ForecastJobResponse forecast(ForecastJobRequest request) throws IOException {
@@ -730,9 +660,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Predicts the future behavior of a time series by using its historical
 	 * behavior.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-forecast.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-forecast.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -749,9 +677,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves anomaly detection job results for one or more buckets.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-bucket.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-bucket.html"
 	 */
 
 	public GetBucketsResponse getBuckets(GetBucketsRequest request) throws IOException {
@@ -761,9 +687,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves anomaly detection job results for one or more buckets.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-bucket.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-bucket.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -780,9 +704,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves information about the scheduled events in calendars.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar-event.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar-event.html"
 	 */
 
 	public GetCalendarEventsResponse getCalendarEvents(GetCalendarEventsRequest request) throws IOException {
@@ -792,9 +714,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves information about the scheduled events in calendars.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar-event.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar-event.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -811,9 +731,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for calendars.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html"
 	 */
 
 	public GetCalendarsResponse getCalendars(GetCalendarsRequest request) throws IOException {
@@ -823,9 +741,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for calendars.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -842,9 +758,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves anomaly detection job results for one or more categories.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-category.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-category.html"
 	 */
 
 	public GetCategoriesResponse getCategories(GetCategoriesRequest request) throws IOException {
@@ -854,9 +768,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves anomaly detection job results for one or more categories.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-category.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-category.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -873,9 +785,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for data frame analytics jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html"
 	 */
 
 	public GetDataFrameAnalyticsResponse getDataFrameAnalytics(GetDataFrameAnalyticsRequest request)
@@ -886,9 +796,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for data frame analytics jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -906,9 +814,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves usage information for data frame analytics jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html"
 	 */
 
 	public GetDataFrameAnalyticsStatsResponse getDataFrameAnalyticsStats(GetDataFrameAnalyticsStatsRequest request)
@@ -919,9 +825,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves usage information for data frame analytics jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -939,9 +843,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves usage information for datafeeds.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html"
 	 */
 
 	public GetDatafeedStatsResponse getDatafeedStats(GetDatafeedStatsRequest request) throws IOException {
@@ -951,9 +853,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves usage information for datafeeds.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -970,9 +870,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for datafeeds.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html"
 	 */
 
 	public GetDatafeedsResponse getDatafeeds(GetDatafeedsRequest request) throws IOException {
@@ -982,9 +880,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for datafeeds.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1001,9 +897,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves filters.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html"
 	 */
 
 	public GetFiltersResponse getFilters(GetFiltersRequest request) throws IOException {
@@ -1013,9 +907,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves filters.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1032,9 +924,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves anomaly detection job results for one or more influencers.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-influencer.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-influencer.html"
 	 */
 
 	public GetInfluencersResponse getInfluencers(GetInfluencersRequest request) throws IOException {
@@ -1044,9 +934,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves anomaly detection job results for one or more influencers.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-influencer.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-influencer.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1063,9 +951,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves usage information for anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html"
 	 */
 
 	public GetJobStatsResponse getJobStats(GetJobStatsRequest request) throws IOException {
@@ -1075,9 +961,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves usage information for anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1094,9 +978,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html"
 	 */
 
 	public GetJobsResponse getJobs(GetJobsRequest request) throws IOException {
@@ -1106,9 +988,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1125,9 +1005,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves information about model snapshots.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-snapshot.html"
 	 */
 
 	public GetModelSnapshotsResponse getModelSnapshots(GetModelSnapshotsRequest request) throws IOException {
@@ -1137,9 +1015,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves information about model snapshots.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-snapshot.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1157,9 +1033,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Retrieves overall bucket results that summarize the bucket results of
 	 * multiple anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-overall-buckets.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-overall-buckets.html"
 	 */
 
 	public GetOverallBucketsResponse getOverallBuckets(GetOverallBucketsRequest request) throws IOException {
@@ -1170,9 +1044,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Retrieves overall bucket results that summarize the bucket results of
 	 * multiple anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-overall-buckets.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-overall-buckets.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1189,9 +1061,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves anomaly records for an anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html"
 	 */
 
 	public GetAnomalyRecordsResponse getRecords(GetAnomalyRecordsRequest request) throws IOException {
@@ -1201,9 +1071,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves anomaly records for an anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1220,9 +1088,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for a trained inference model.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html"
 	 */
 
 	public GetTrainedModelsResponse getTrainedModels(GetTrainedModelsRequest request) throws IOException {
@@ -1232,9 +1098,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves configuration information for a trained inference model.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1251,9 +1115,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves usage information for trained inference models.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html"
 	 */
 
 	public GetTrainedModelsStatsResponse getTrainedModelsStats(GetTrainedModelsStatsRequest request)
@@ -1264,9 +1126,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Retrieves usage information for trained inference models.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1284,9 +1144,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Returns defaults and limits used by machine learning.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-ml-info.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-ml-info.html"
 	 */
 	public InfoResponse info() throws IOException {
 		return this.transport.performRequest(InfoRequest.INSTANCE, InfoRequest.ENDPOINT, this.requestOptions);
@@ -1297,9 +1155,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Opens one or more anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html"
 	 */
 
 	public OpenJobResponse openJob(OpenJobRequest request) throws IOException {
@@ -1309,9 +1165,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Opens one or more anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1328,9 +1182,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Posts scheduled events in a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-calendar-event.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-calendar-event.html"
 	 */
 
 	public PostCalendarEventsResponse postCalendarEvents(PostCalendarEventsRequest request) throws IOException {
@@ -1340,9 +1192,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Posts scheduled events in a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-calendar-event.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-calendar-event.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1360,9 +1210,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Sends data to an anomaly detection job for analysis.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-data.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-data.html"
 	 */
 
 	public PostJobDataResponse postData(PostJobDataRequest request) throws IOException {
@@ -1372,9 +1220,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Sends data to an anomaly detection job for analysis.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-data.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-data.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1391,9 +1237,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Previews that will be analyzed given a data frame analytics config.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html"
 	 */
 
 	public PreviewDataFrameAnalyticsResponse previewDataFrameAnalytics(PreviewDataFrameAnalyticsRequest request)
@@ -1404,9 +1248,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Previews that will be analyzed given a data frame analytics config.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1424,9 +1266,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Previews a datafeed.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html"
 	 */
 
 	public <TDocument> PreviewDatafeedResponse<TDocument> previewDatafeed(PreviewDatafeedRequest request,
@@ -1439,9 +1279,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Previews a datafeed.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1459,9 +1297,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html"
 	 */
 
 	public PutCalendarResponse putCalendar(PutCalendarRequest request) throws IOException {
@@ -1471,9 +1307,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1490,9 +1324,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Adds an anomaly detection job to a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar-job.html"
 	 */
 
 	public PutCalendarJobResponse putCalendarJob(PutCalendarJobRequest request) throws IOException {
@@ -1502,9 +1334,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Adds an anomaly detection job to a calendar.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1521,9 +1351,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates a data frame analytics job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-dfanalytics.html"
 	 */
 
 	public PutDataFrameAnalyticsResponse putDataFrameAnalytics(PutDataFrameAnalyticsRequest request)
@@ -1534,9 +1362,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates a data frame analytics job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1554,9 +1380,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates a datafeed.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html"
 	 */
 
 	public PutDatafeedResponse putDatafeed(PutDatafeedRequest request) throws IOException {
@@ -1566,9 +1390,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates a datafeed.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1585,9 +1407,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates a filter.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-filter.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-filter.html"
 	 */
 
 	public PutFilterResponse putFilter(PutFilterRequest request) throws IOException {
@@ -1597,9 +1417,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates a filter.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-filter.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-filter.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1616,9 +1434,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates an anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html"
 	 */
 
 	public PutJobResponse putJob(PutJobRequest request) throws IOException {
@@ -1628,9 +1444,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Instantiates an anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1647,9 +1461,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Creates an inference trained model.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models.html"
 	 */
 
 	public PutTrainedModelResponse putTrainedModel(PutTrainedModelRequest request) throws IOException {
@@ -1659,9 +1471,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Creates an inference trained model.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1679,9 +1489,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Creates a new model alias (or reassigns an existing one) to refer to the
 	 * trained model
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models-aliases.html"
 	 */
 
 	public PutTrainedModelAliasResponse putTrainedModelAlias(PutTrainedModelAliasRequest request) throws IOException {
@@ -1692,9 +1500,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Creates a new model alias (or reassigns an existing one) to refer to the
 	 * trained model
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models-aliases.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1712,9 +1518,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Reverts to a specific snapshot.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-revert-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-revert-snapshot.html"
 	 */
 
 	public RevertModelSnapshotResponse revertModelSnapshot(RevertModelSnapshotRequest request) throws IOException {
@@ -1724,9 +1528,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Reverts to a specific snapshot.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-revert-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-revert-snapshot.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1745,9 +1547,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Sets a cluster wide upgrade_mode setting that prepares machine learning
 	 * indices for an upgrade.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html"
 	 */
 
 	public SetUpgradeModeResponse setUpgradeMode(SetUpgradeModeRequest request) throws IOException {
@@ -1758,9 +1558,7 @@ public class MlClient extends ApiClient<MlClient> {
 	 * Sets a cluster wide upgrade_mode setting that prepares machine learning
 	 * indices for an upgrade.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1777,9 +1575,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Starts a data frame analytics job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-dfanalytics.html"
 	 */
 
 	public StartDataFrameAnalyticsResponse startDataFrameAnalytics(StartDataFrameAnalyticsRequest request)
@@ -1790,9 +1586,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Starts a data frame analytics job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1810,9 +1604,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Starts one or more datafeeds.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-start-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-start-datafeed.html"
 	 */
 
 	public StartDatafeedResponse startDatafeed(StartDatafeedRequest request) throws IOException {
@@ -1822,9 +1614,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Starts one or more datafeeds.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-start-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-start-datafeed.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1841,9 +1631,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Stops one or more data frame analytics jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-dfanalytics.html"
 	 */
 
 	public StopDataFrameAnalyticsResponse stopDataFrameAnalytics(StopDataFrameAnalyticsRequest request)
@@ -1854,9 +1642,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Stops one or more data frame analytics jobs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1874,9 +1660,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Stops one or more datafeeds.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-stop-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-stop-datafeed.html"
 	 */
 
 	public StopDatafeedResponse stopDatafeed(StopDatafeedRequest request) throws IOException {
@@ -1886,9 +1670,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Stops one or more datafeeds.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-stop-datafeed.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-stop-datafeed.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1905,9 +1687,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Updates certain properties of a data frame analytics job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html"
 	 */
 
 	public UpdateDataFrameAnalyticsResponse updateDataFrameAnalytics(UpdateDataFrameAnalyticsRequest request)
@@ -1918,9 +1698,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Updates certain properties of a data frame analytics job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1938,9 +1716,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Updates the description of a filter, adds items, or removes items.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-filter.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-filter.html"
 	 */
 
 	public UpdateFilterResponse updateFilter(UpdateFilterRequest request) throws IOException {
@@ -1950,9 +1726,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Updates the description of a filter, adds items, or removes items.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-filter.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-filter.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1969,9 +1743,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Updates certain properties of an anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-job.html"
 	 */
 
 	public UpdateJobResponse updateJob(UpdateJobRequest request) throws IOException {
@@ -1981,9 +1753,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Updates certain properties of an anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-job.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-job.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -2000,9 +1770,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Updates certain properties of a snapshot.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-snapshot.html"
 	 */
 
 	public UpdateModelSnapshotResponse updateModelSnapshot(UpdateModelSnapshotRequest request) throws IOException {
@@ -2012,9 +1780,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Updates certain properties of a snapshot.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-snapshot.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -2032,9 +1798,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Upgrades a given job snapshot to the current major version.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-upgrade-job-model-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-upgrade-job-model-snapshot.html"
 	 */
 
 	public UpgradeJobSnapshotResponse upgradeJobSnapshot(UpgradeJobSnapshotRequest request) throws IOException {
@@ -2044,9 +1808,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Upgrades a given job snapshot to the current major version.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-upgrade-job-model-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-upgrade-job-model-snapshot.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -2064,9 +1826,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Validates an anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html"
 	 */
 
 	public ValidateJobResponse validate(ValidateJobRequest request) throws IOException {
@@ -2076,9 +1836,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Validates an anomaly detection job.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -2095,9 +1853,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Validates an anomaly detection detector.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html"
 	 */
 
 	public ValidateDetectorResponse validateDetector(ValidateDetectorRequest request) throws IOException {
@@ -2107,9 +1863,7 @@ public class MlClient extends ApiClient<MlClient> {
 	/**
 	 * Validates an anomaly detection detector.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

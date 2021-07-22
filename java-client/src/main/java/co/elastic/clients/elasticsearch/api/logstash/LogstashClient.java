@@ -55,9 +55,7 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	/**
 	 * Deletes Logstash Pipelines used by Central Management
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html"
 	 */
 
 	public PipelineDeleteResponse deletePipeline(PipelineDeleteRequest request) throws IOException {
@@ -67,9 +65,7 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	/**
 	 * Deletes Logstash Pipelines used by Central Management
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -86,9 +82,7 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	/**
 	 * Retrieves Logstash Pipelines used by Central Management
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html"
 	 */
 
 	public PipelineGetResponse getPipeline(PipelineGetRequest request) throws IOException {
@@ -98,9 +92,7 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	/**
 	 * Retrieves Logstash Pipelines used by Central Management
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -117,9 +109,7 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	/**
 	 * Adds and updates Logstash Pipelines used for Central Management
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html"
 	 */
 
 	public PipelinePutResponse putPipeline(PipelinePutRequest request) throws IOException {
@@ -129,9 +119,7 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	/**
 	 * Adds and updates Logstash Pipelines used for Central Management
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

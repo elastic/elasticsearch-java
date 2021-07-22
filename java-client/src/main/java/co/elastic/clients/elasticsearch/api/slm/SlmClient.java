@@ -67,9 +67,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	/**
 	 * Deletes an existing snapshot lifecycle policy.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-delete-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-delete-policy.html"
 	 */
 
 	public DeleteLifecycleResponse deleteLifecycle(DeleteLifecycleRequest request) throws IOException {
@@ -79,9 +77,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	/**
 	 * Deletes an existing snapshot lifecycle policy.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-delete-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-delete-policy.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -99,9 +95,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	 * Immediately creates a snapshot according to the lifecycle policy, without
 	 * waiting for the scheduled time.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-lifecycle.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-lifecycle.html"
 	 */
 
 	public ExecuteLifecycleResponse executeLifecycle(ExecuteLifecycleRequest request) throws IOException {
@@ -112,9 +106,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	 * Immediately creates a snapshot according to the lifecycle policy, without
 	 * waiting for the scheduled time.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-lifecycle.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-lifecycle.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -132,9 +124,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	 * Deletes any snapshots that are expired according to the policy's retention
 	 * rules.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html"
 	 */
 	public ExecuteRetentionResponse executeRetention() throws IOException {
 		return this.transport.performRequest(ExecuteRetentionRequest.INSTANCE, ExecuteRetentionRequest.ENDPOINT,
@@ -147,9 +137,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	 * Retrieves one or more snapshot lifecycle policy definitions and information
 	 * about the latest snapshot attempts.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html"
 	 */
 
 	public GetLifecycleResponse getLifecycle(GetLifecycleRequest request) throws IOException {
@@ -160,9 +148,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	 * Retrieves one or more snapshot lifecycle policy definitions and information
 	 * about the latest snapshot attempts.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -180,9 +166,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	 * Returns global and policy-level statistics about actions taken by snapshot
 	 * lifecycle management.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html"
 	 */
 	public GetStatsResponse getStats() throws IOException {
 		return this.transport.performRequest(GetStatsRequest.INSTANCE, GetStatsRequest.ENDPOINT, this.requestOptions);
@@ -193,9 +177,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	/**
 	 * Retrieves the status of snapshot lifecycle management (SLM).
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html"
 	 */
 	public GetStatusResponse getStatus() throws IOException {
 		return this.transport.performRequest(GetStatusRequest.INSTANCE, GetStatusRequest.ENDPOINT, this.requestOptions);
@@ -206,9 +188,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	/**
 	 * Creates or updates a snapshot lifecycle policy.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html"
 	 */
 
 	public PutLifecycleResponse putLifecycle(PutLifecycleRequest request) throws IOException {
@@ -218,9 +198,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	/**
 	 * Creates or updates a snapshot lifecycle policy.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -237,9 +215,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	/**
 	 * Turns on snapshot lifecycle management (SLM).
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html"
 	 */
 	public StartResponse start() throws IOException {
 		return this.transport.performRequest(StartRequest.INSTANCE, StartRequest.ENDPOINT, this.requestOptions);
@@ -250,9 +226,7 @@ public class SlmClient extends ApiClient<SlmClient> {
 	/**
 	 * Turns off snapshot lifecycle management (SLM).
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html"
 	 */
 	public StopResponse stop() throws IOException {
 		return this.transport.performRequest(StopRequest.INSTANCE, StopRequest.ENDPOINT, this.requestOptions);

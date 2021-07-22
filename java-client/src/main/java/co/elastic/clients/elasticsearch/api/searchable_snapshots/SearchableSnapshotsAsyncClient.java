@@ -58,9 +58,7 @@ public class SearchableSnapshotsAsyncClient extends ApiClient<SearchableSnapshot
 	/**
 	 * Clear the cache of searchable snapshots.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
 	 */
 
 	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request) throws IOException {
@@ -70,9 +68,7 @@ public class SearchableSnapshotsAsyncClient extends ApiClient<SearchableSnapshot
 	/**
 	 * Clear the cache of searchable snapshots.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -89,9 +85,7 @@ public class SearchableSnapshotsAsyncClient extends ApiClient<SearchableSnapshot
 	/**
 	 * Mount a snapshot as a searchable index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html"
 	 */
 
 	public CompletableFuture<MountResponse> mount(MountRequest request) throws IOException {
@@ -101,9 +95,7 @@ public class SearchableSnapshotsAsyncClient extends ApiClient<SearchableSnapshot
 	/**
 	 * Mount a snapshot as a searchable index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -120,9 +112,7 @@ public class SearchableSnapshotsAsyncClient extends ApiClient<SearchableSnapshot
 	/**
 	 * DEPRECATED: This API is replaced by the Repositories Metering API.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
 	 */
 
 	public CompletableFuture<RepositoryStatsResponse> repositoryStats(RepositoryStatsRequest request)
@@ -133,9 +123,7 @@ public class SearchableSnapshotsAsyncClient extends ApiClient<SearchableSnapshot
 	/**
 	 * DEPRECATED: This API is replaced by the Repositories Metering API.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -152,9 +140,7 @@ public class SearchableSnapshotsAsyncClient extends ApiClient<SearchableSnapshot
 	/**
 	 * Retrieve shard-level statistics about searchable snapshots.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
 	 */
 
 	public CompletableFuture<StatsResponse> stats(StatsRequest request) throws IOException {
@@ -164,9 +150,7 @@ public class SearchableSnapshotsAsyncClient extends ApiClient<SearchableSnapshot
 	/**
 	 * Retrieve shard-level statistics about searchable snapshots.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

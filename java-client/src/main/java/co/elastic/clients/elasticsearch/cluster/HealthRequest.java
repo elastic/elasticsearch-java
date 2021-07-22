@@ -187,8 +187,8 @@ public final class HealthRequest extends RequestBase {
 
 	/**
 	 * The request waits until the specified number N of nodes is available. It also
-	 * accepts >=N, <=N, >N and <N. Alternatively, it is possible to use ge(N),
-	 * le(N), gt(N) and lt(N) notation.
+	 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
+	 * ge(N), le(N), gt(N) and lt(N) notation.
 	 *
 	 * API name: {@code wait_for_nodes}
 	 */
@@ -223,8 +223,8 @@ public final class HealthRequest extends RequestBase {
 
 	/**
 	 * One of green, yellow or red. Will wait (until the timeout provided) until the
-	 * status of the cluster changes to the one provided or better, i.e. green >
-	 * yellow > red. By default, will not wait for any status.
+	 * status of the cluster changes to the one provided or better, i.e. green &gt;
+	 * yellow &gt; red. By default, will not wait for any status.
 	 *
 	 * API name: {@code wait_for_status}
 	 */
@@ -386,8 +386,8 @@ public final class HealthRequest extends RequestBase {
 
 		/**
 		 * The request waits until the specified number N of nodes is available. It also
-		 * accepts >=N, <=N, >N and <N. Alternatively, it is possible to use ge(N),
-		 * le(N), gt(N) and lt(N) notation.
+		 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
+		 * ge(N), le(N), gt(N) and lt(N) notation.
 		 *
 		 * API name: {@code wait_for_nodes}
 		 */
@@ -422,8 +422,8 @@ public final class HealthRequest extends RequestBase {
 
 		/**
 		 * One of green, yellow or red. Will wait (until the timeout provided) until the
-		 * status of the cluster changes to the one provided or better, i.e. green >
-		 * yellow > red. By default, will not wait for any status.
+		 * status of the cluster changes to the one provided or better, i.e. green &gt;
+		 * yellow &gt; red. By default, will not wait for any status.
 		 *
 		 * API name: {@code wait_for_status}
 		 */

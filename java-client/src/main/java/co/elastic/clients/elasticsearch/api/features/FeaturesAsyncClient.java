@@ -55,9 +55,7 @@ public class FeaturesAsyncClient extends ApiClient<FeaturesAsyncClient> {
 	 * Gets a list of features which can be included in snapshots using the
 	 * feature_states field when creating a snapshot
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html"
 	 */
 
 	public CompletableFuture<GetFeaturesResponse> getFeatures(GetFeaturesRequest request) throws IOException {
@@ -68,9 +66,7 @@ public class FeaturesAsyncClient extends ApiClient<FeaturesAsyncClient> {
 	 * Gets a list of features which can be included in snapshots using the
 	 * feature_states field when creating a snapshot
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -87,9 +83,7 @@ public class FeaturesAsyncClient extends ApiClient<FeaturesAsyncClient> {
 	/**
 	 * Resets the internal state of features, usually by deleting system indices
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public CompletableFuture<ResetFeaturesResponse> resetFeatures(ResetFeaturesRequest request) throws IOException {
@@ -99,9 +93,7 @@ public class FeaturesAsyncClient extends ApiClient<FeaturesAsyncClient> {
 	/**
 	 * Resets the internal state of features, usually by deleting system indices
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

@@ -101,9 +101,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Shows information about currently configured aliases to indices including
 	 * filter and routing infos.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html"
 	 */
 
 	public CompletableFuture<AliasesResponse> aliases(AliasesRequest request) throws IOException {
@@ -114,9 +112,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Shows information about currently configured aliases to indices including
 	 * filter and routing infos.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -134,9 +130,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Provides a snapshot of how many shards are allocated to each data node and
 	 * how much disk space they are using.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html"
 	 */
 
 	public CompletableFuture<AllocationResponse> allocation(AllocationRequest request) throws IOException {
@@ -147,9 +141,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Provides a snapshot of how many shards are allocated to each data node and
 	 * how much disk space they are using.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -167,9 +159,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Provides quick access to the document count of the entire cluster, or
 	 * individual indices.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html"
 	 */
 
 	public CompletableFuture<CountResponse> count(CountRequest request) throws IOException {
@@ -180,9 +170,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Provides quick access to the document count of the entire cluster, or
 	 * individual indices.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -200,9 +188,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Shows how much heap memory is currently being used by fielddata on every data
 	 * node in the cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html"
 	 */
 
 	public CompletableFuture<FielddataResponse> fielddata(FielddataRequest request) throws IOException {
@@ -213,9 +199,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Shows how much heap memory is currently being used by fielddata on every data
 	 * node in the cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -232,9 +216,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns a concise representation of the cluster health.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html"
 	 */
 
 	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException {
@@ -244,9 +226,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns a concise representation of the cluster health.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -263,9 +243,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns help for the Cat APIs.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html"
 	 */
 	public CompletableFuture<HelpResponse> help() throws IOException {
 		return this.transport.performRequestAsync(HelpRequest.INSTANCE, HelpRequest.ENDPOINT, this.requestOptions);
@@ -277,9 +255,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Returns information about indices: number of primaries and replicas, document
 	 * counts, disk size, ...
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html"
 	 */
 
 	public CompletableFuture<IndicesResponse> indices(IndicesRequest request) throws IOException {
@@ -290,9 +266,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Returns information about indices: number of primaries and replicas, document
 	 * counts, disk size, ...
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -309,9 +283,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns information about the master node.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html"
 	 */
 	public CompletableFuture<MasterResponse> master() throws IOException {
 		return this.transport.performRequestAsync(MasterRequest.INSTANCE, MasterRequest.ENDPOINT, this.requestOptions);
@@ -322,9 +294,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about data frame analytics jobs.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html"
 	 */
 
 	public CompletableFuture<DataFrameAnalyticsResponse> mlDataFrameAnalytics(DataFrameAnalyticsRequest request)
@@ -335,9 +305,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about data frame analytics jobs.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -355,9 +323,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about datafeeds.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html"
 	 */
 
 	public CompletableFuture<DatafeedsResponse> mlDatafeeds(DatafeedsRequest request) throws IOException {
@@ -367,9 +333,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about datafeeds.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -386,9 +350,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html"
 	 */
 
 	public CompletableFuture<JobsResponse> mlJobs(JobsRequest request) throws IOException {
@@ -398,9 +360,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about anomaly detection jobs.
 	 *
-	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -417,9 +377,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about inference trained models.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html"
 	 */
 
 	public CompletableFuture<TrainedModelsResponse> mlTrainedModels(TrainedModelsRequest request) throws IOException {
@@ -429,9 +387,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about inference trained models.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -448,9 +404,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns information about custom node attributes.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html"
 	 */
 	public CompletableFuture<NodeAttributesResponse> nodeattrs() throws IOException {
 		return this.transport.performRequestAsync(NodeAttributesRequest.INSTANCE, NodeAttributesRequest.ENDPOINT,
@@ -462,9 +416,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns basic statistics about performance of cluster nodes.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html"
 	 */
 
 	public CompletableFuture<NodesResponse> nodes(NodesRequest request) throws IOException {
@@ -474,9 +426,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns basic statistics about performance of cluster nodes.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -493,9 +443,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns a concise representation of the cluster pending tasks.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html"
 	 */
 	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException {
 		return this.transport.performRequestAsync(PendingTasksRequest.INSTANCE, PendingTasksRequest.ENDPOINT,
@@ -507,9 +455,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns information about installed plugins across nodes node.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html"
 	 */
 	public CompletableFuture<PluginsResponse> plugins() throws IOException {
 		return this.transport.performRequestAsync(PluginsRequest.INSTANCE, PluginsRequest.ENDPOINT,
@@ -521,9 +467,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns information about index shard recoveries, both on-going completed.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html"
 	 */
 
 	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request) throws IOException {
@@ -533,9 +477,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns information about index shard recoveries, both on-going completed.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -552,9 +494,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns information about snapshot repositories registered in the cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html"
 	 */
 	public CompletableFuture<RepositoriesResponse> repositories() throws IOException {
 		return this.transport.performRequestAsync(RepositoriesRequest.INSTANCE, RepositoriesRequest.ENDPOINT,
@@ -566,9 +506,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Provides low-level information about the segments in the shards of an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html"
 	 */
 
 	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request) throws IOException {
@@ -578,9 +516,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Provides low-level information about the segments in the shards of an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -597,9 +533,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Provides a detailed view of shard allocation on nodes.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html"
 	 */
 
 	public CompletableFuture<ShardsResponse> shards(ShardsRequest request) throws IOException {
@@ -609,9 +543,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Provides a detailed view of shard allocation on nodes.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -628,9 +560,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns all snapshots in a specific repository.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html"
 	 */
 
 	public CompletableFuture<SnapshotsResponse> snapshots(SnapshotsRequest request) throws IOException {
@@ -640,9 +570,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns all snapshots in a specific repository.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -660,9 +588,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Returns information about the tasks currently executing on one or more nodes
 	 * in the cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public CompletableFuture<TasksResponse> tasks(TasksRequest request) throws IOException {
@@ -673,9 +599,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Returns information about the tasks currently executing on one or more nodes
 	 * in the cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -692,9 +616,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns information about existing templates.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html"
 	 */
 
 	public CompletableFuture<TemplatesResponse> templates(TemplatesRequest request) throws IOException {
@@ -704,9 +626,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Returns information about existing templates.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -724,9 +644,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Returns cluster-wide thread pool statistics per node. By default the active,
 	 * queue and rejected statistics are returned for all thread pools.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html"
 	 */
 
 	public CompletableFuture<ThreadPoolResponse> threadPool(ThreadPoolRequest request) throws IOException {
@@ -737,9 +655,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 * Returns cluster-wide thread pool statistics per node. By default the active,
 	 * queue and rejected statistics are returned for all thread pools.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -756,9 +672,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html"
 	 */
 
 	public CompletableFuture<TransformsResponse> transforms(TransformsRequest request) throws IOException {
@@ -768,9 +682,7 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	/**
 	 * Gets configuration and usage information about transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

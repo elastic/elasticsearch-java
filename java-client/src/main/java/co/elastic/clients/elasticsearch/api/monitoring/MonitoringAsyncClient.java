@@ -52,9 +52,7 @@ public class MonitoringAsyncClient extends ApiClient<MonitoringAsyncClient> {
 	/**
 	 * Used by the monitoring features to send monitoring data.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/monitor-elasticsearch-cluster.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/monitor-elasticsearch-cluster.html"
 	 */
 
 	public CompletableFuture<BulkResponse> bulk(BulkRequest request) throws IOException {
@@ -64,9 +62,7 @@ public class MonitoringAsyncClient extends ApiClient<MonitoringAsyncClient> {
 	/**
 	 * Used by the monitoring features to send monitoring data.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/monitor-elasticsearch-cluster.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/monitor-elasticsearch-cluster.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

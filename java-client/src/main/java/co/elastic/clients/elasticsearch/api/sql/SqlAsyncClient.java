@@ -56,9 +56,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	/**
 	 * Clears the SQL cursor
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html"
 	 */
 
 	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request) throws IOException {
@@ -68,9 +66,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	/**
 	 * Clears the SQL cursor
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -87,9 +83,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	/**
 	 * Executes a SQL request
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html"
 	 */
 
 	public CompletableFuture<QueryResponse> query(QueryRequest request) throws IOException {
@@ -99,9 +93,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	/**
 	 * Executes a SQL request
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -118,9 +110,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	/**
 	 * Translates SQL into Elasticsearch queries
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html"
 	 */
 
 	public CompletableFuture<TranslateResponse> translate(TranslateRequest request) throws IOException {
@@ -130,9 +120,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	/**
 	 * Translates SQL into Elasticsearch queries
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

@@ -708,7 +708,7 @@ public final class IndicesRecord implements ToJsonp {
 	}
 
 	/**
-	 * store size of primaries & replicas
+	 * store size of primaries &amp; replicas
 	 *
 	 * API name: {@code store.size}
 	 */
@@ -3409,7 +3409,7 @@ public final class IndicesRecord implements ToJsonp {
 		}
 
 		/**
-		 * store size of primaries & replicas
+		 * store size of primaries &amp; replicas
 		 *
 		 * API name: {@code store.size}
 		 */

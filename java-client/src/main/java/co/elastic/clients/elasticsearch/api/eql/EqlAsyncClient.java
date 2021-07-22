@@ -59,9 +59,7 @@ public class EqlAsyncClient extends ApiClient<EqlAsyncClient> {
 	 * Deletes an async EQL search by ID. If the search is still running, the search
 	 * request will be cancelled. Otherwise, the saved search results are deleted.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html"
 	 */
 
 	public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException {
@@ -72,9 +70,7 @@ public class EqlAsyncClient extends ApiClient<EqlAsyncClient> {
 	 * Deletes an async EQL search by ID. If the search is still running, the search
 	 * request will be cancelled. Otherwise, the saved search results are deleted.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -92,9 +88,7 @@ public class EqlAsyncClient extends ApiClient<EqlAsyncClient> {
 	 * Returns async results from previously executed Event Query Language (EQL)
 	 * search
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html"
 	 */
 
 	public <TEvent> CompletableFuture<GetResponse<TEvent>> get(GetRequest request, Class<TEvent> tEventClass)
@@ -107,9 +101,7 @@ public class EqlAsyncClient extends ApiClient<EqlAsyncClient> {
 	 * Returns async results from previously executed Event Query Language (EQL)
 	 * search
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -127,9 +119,7 @@ public class EqlAsyncClient extends ApiClient<EqlAsyncClient> {
 	 * Returns the status of a previously submitted async or stored Event Query
 	 * Language (EQL) search
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html"
 	 */
 
 	public CompletableFuture<GetStatusResponse> getStatus(GetStatusRequest request) throws IOException {
@@ -140,9 +130,7 @@ public class EqlAsyncClient extends ApiClient<EqlAsyncClient> {
 	 * Returns the status of a previously submitted async or stored Event Query
 	 * Language (EQL) search
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -159,9 +147,7 @@ public class EqlAsyncClient extends ApiClient<EqlAsyncClient> {
 	/**
 	 * Returns results matching a query expressed in Event Query Language (EQL)
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html"
 	 */
 
 	public <TEvent> CompletableFuture<SearchResponse<TEvent>> search(SearchRequest request, Class<TEvent> tEventClass)
@@ -173,9 +159,7 @@ public class EqlAsyncClient extends ApiClient<EqlAsyncClient> {
 	/**
 	 * Returns results matching a query expressed in Event Query Language (EQL)
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

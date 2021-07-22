@@ -72,9 +72,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	 * Acknowledges a watch, manually throttling the execution of the watch's
 	 * actions.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-ack-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-ack-watch.html"
 	 */
 
 	public AckWatchResponse ackWatch(AckWatchRequest request) throws IOException {
@@ -85,9 +83,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	 * Acknowledges a watch, manually throttling the execution of the watch's
 	 * actions.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-ack-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-ack-watch.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -104,9 +100,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Activates a currently inactive watch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-activate-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-activate-watch.html"
 	 */
 
 	public ActivateWatchResponse activateWatch(ActivateWatchRequest request) throws IOException {
@@ -116,9 +110,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Activates a currently inactive watch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-activate-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-activate-watch.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -135,9 +127,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Deactivates a currently active watch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-deactivate-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-deactivate-watch.html"
 	 */
 
 	public DeactivateWatchResponse deactivateWatch(DeactivateWatchRequest request) throws IOException {
@@ -147,9 +137,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Deactivates a currently active watch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-deactivate-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-deactivate-watch.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -166,9 +154,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Removes a watch from Watcher.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-delete-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-delete-watch.html"
 	 */
 
 	public DeleteWatchResponse deleteWatch(DeleteWatchRequest request) throws IOException {
@@ -178,9 +164,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Removes a watch from Watcher.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-delete-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-delete-watch.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -197,9 +181,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Forces the execution of a stored watch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html"
 	 */
 
 	public ExecuteWatchResponse executeWatch(ExecuteWatchRequest request) throws IOException {
@@ -209,9 +191,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Forces the execution of a stored watch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -228,9 +208,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Retrieves a watch by its ID.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-get-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-get-watch.html"
 	 */
 
 	public GetWatchResponse getWatch(GetWatchRequest request) throws IOException {
@@ -240,9 +218,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Retrieves a watch by its ID.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-get-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-get-watch.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -259,9 +235,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Creates a new watch, or updates an existing one.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-put-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-put-watch.html"
 	 */
 
 	public PutWatchResponse putWatch(PutWatchRequest request) throws IOException {
@@ -271,9 +245,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Creates a new watch, or updates an existing one.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-put-watch.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-put-watch.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -290,9 +262,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Retrieves stored watches.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html"
 	 */
 
 	public QueryWatchesResponse queryWatches(QueryWatchesRequest request) throws IOException {
@@ -302,9 +272,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Retrieves stored watches.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-query-watches.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -321,9 +289,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Starts Watcher if it is not already running.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html"
 	 */
 	public StartResponse start() throws IOException {
 		return this.transport.performRequest(StartRequest.INSTANCE, StartRequest.ENDPOINT, this.requestOptions);
@@ -334,9 +300,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Retrieves the current Watcher metrics.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html"
 	 */
 
 	public StatsResponse stats(StatsRequest request) throws IOException {
@@ -346,9 +310,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Retrieves the current Watcher metrics.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stats.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -365,9 +327,7 @@ public class WatcherClient extends ApiClient<WatcherClient> {
 	/**
 	 * Stops Watcher if it is running.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html"
 	 */
 	public StopResponse stop() throws IOException {
 		return this.transport.performRequest(StopRequest.INSTANCE, StopRequest.ENDPOINT, this.requestOptions);

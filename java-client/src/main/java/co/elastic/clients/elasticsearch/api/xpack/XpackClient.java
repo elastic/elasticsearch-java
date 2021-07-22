@@ -53,9 +53,7 @@ public class XpackClient extends ApiClient<XpackClient> {
 	/**
 	 * Retrieves information about the installed X-Pack features.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html"
 	 */
 
 	public InfoResponse info(InfoRequest request) throws IOException {
@@ -65,9 +63,7 @@ public class XpackClient extends ApiClient<XpackClient> {
 	/**
 	 * Retrieves information about the installed X-Pack features.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -83,9 +79,7 @@ public class XpackClient extends ApiClient<XpackClient> {
 	/**
 	 * Retrieves usage information about the installed X-Pack features.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html"
 	 */
 
 	public UsageResponse usage(UsageRequest request) throws IOException {
@@ -95,9 +89,7 @@ public class XpackClient extends ApiClient<XpackClient> {
 	/**
 	 * Retrieves usage information about the installed X-Pack features.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

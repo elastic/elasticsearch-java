@@ -75,9 +75,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Deletes auto-follow patterns.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-delete-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-delete-auto-follow-pattern.html"
 	 */
 
 	public DeleteAutoFollowPatternResponse deleteAutoFollowPattern(DeleteAutoFollowPatternRequest request)
@@ -88,9 +86,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Deletes auto-follow patterns.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-delete-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-delete-auto-follow-pattern.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -109,9 +105,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Creates a new follower index configured to follow the referenced leader
 	 * index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-follow.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-follow.html"
 	 */
 
 	public CreateFollowIndexResponse follow(CreateFollowIndexRequest request) throws IOException {
@@ -122,9 +116,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Creates a new follower index configured to follow the referenced leader
 	 * index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-follow.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-follow.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -142,9 +134,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Retrieves information about all follower indices, including parameters and
 	 * status for each follower index
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-info.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-info.html"
 	 */
 
 	public FollowInfoResponse followInfo(FollowInfoRequest request) throws IOException {
@@ -155,9 +145,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Retrieves information about all follower indices, including parameters and
 	 * status for each follower index
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-info.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-info.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -175,9 +163,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Retrieves follower stats. return shard-level stats about the following tasks
 	 * associated with each shard for the specified indices.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-stats.html"
 	 */
 
 	public FollowIndexStatsResponse followStats(FollowIndexStatsRequest request) throws IOException {
@@ -188,9 +174,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Retrieves follower stats. return shard-level stats about the following tasks
 	 * associated with each shard for the specified indices.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-stats.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -207,9 +191,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Removes the follower retention leases from the leader.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-forget-follower.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-forget-follower.html"
 	 */
 
 	public ForgetFollowerIndexResponse forgetFollower(ForgetFollowerIndexRequest request) throws IOException {
@@ -219,9 +201,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Removes the follower retention leases from the leader.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-forget-follower.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-forget-follower.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -240,9 +220,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Gets configured auto-follow patterns. Returns the specified auto-follow
 	 * pattern collection.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-auto-follow-pattern.html"
 	 */
 
 	public GetAutoFollowPatternResponse getAutoFollowPattern(GetAutoFollowPatternRequest request) throws IOException {
@@ -253,9 +231,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Gets configured auto-follow patterns. Returns the specified auto-follow
 	 * pattern collection.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-auto-follow-pattern.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -273,9 +249,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Pauses an auto-follow pattern
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-pause-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-pause-auto-follow-pattern.html"
 	 */
 
 	public PauseAutoFollowPatternResponse pauseAutoFollowPattern(PauseAutoFollowPatternRequest request)
@@ -286,9 +260,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Pauses an auto-follow pattern
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-pause-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-pause-auto-follow-pattern.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -307,9 +279,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Pauses a follower index. The follower index will not fetch any additional
 	 * operations from the leader index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-pause-follow.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-pause-follow.html"
 	 */
 
 	public PauseFollowIndexResponse pauseFollow(PauseFollowIndexRequest request) throws IOException {
@@ -320,9 +290,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Pauses a follower index. The follower index will not fetch any additional
 	 * operations from the leader index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-pause-follow.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-pause-follow.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -341,9 +309,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * remote cluster. Newly created indices on the remote cluster matching any of
 	 * the specified patterns will be automatically configured as follower indices.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-auto-follow-pattern.html"
 	 */
 
 	public PutAutoFollowPatternResponse putAutoFollowPattern(PutAutoFollowPatternRequest request) throws IOException {
@@ -355,9 +321,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * remote cluster. Newly created indices on the remote cluster matching any of
 	 * the specified patterns will be automatically configured as follower indices.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-auto-follow-pattern.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -375,9 +339,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Resumes an auto-follow pattern that has been paused
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-resume-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-resume-auto-follow-pattern.html"
 	 */
 
 	public ResumeAutoFollowPatternResponse resumeAutoFollowPattern(ResumeAutoFollowPatternRequest request)
@@ -388,9 +350,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Resumes an auto-follow pattern that has been paused
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-resume-auto-follow-pattern.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-resume-auto-follow-pattern.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -408,9 +368,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Resumes a follower index that has been paused
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-resume-follow.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-resume-follow.html"
 	 */
 
 	public ResumeFollowIndexResponse resumeFollow(ResumeFollowIndexRequest request) throws IOException {
@@ -420,9 +378,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Resumes a follower index that has been paused
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-resume-follow.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-resume-follow.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -439,9 +395,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	/**
 	 * Gets all stats related to cross-cluster replication.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-stats.html"
 	 */
 	public StatsResponse stats() throws IOException {
 		return this.transport.performRequest(StatsRequest.INSTANCE, StatsRequest.ENDPOINT, this.requestOptions);
@@ -453,9 +407,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Stops the following task associated with a follower index and removes index
 	 * metadata and settings associated with cross-cluster replication.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-unfollow.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-unfollow.html"
 	 */
 
 	public UnfollowIndexResponse unfollow(UnfollowIndexRequest request) throws IOException {
@@ -466,9 +418,7 @@ public class CcrClient extends ApiClient<CcrClient> {
 	 * Stops the following task associated with a follower index and removes index
 	 * metadata and settings associated with cross-cluster replication.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-unfollow.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-unfollow.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

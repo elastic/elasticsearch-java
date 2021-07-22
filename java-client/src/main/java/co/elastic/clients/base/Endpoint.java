@@ -80,7 +80,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     private static final Function<?, Map<String, String>> EMPTY_MAP = x -> Collections.emptyMap();
 
     /**
-     * Returns a function that always returns an empty String -> String map. Useful to avoid creating lots of
+     * Returns a function that always returns an empty String to String map. Useful to avoid creating lots of
      * duplicate lambdas in endpoints that don't have headers or parameters.
      */
     @SuppressWarnings("unchecked")

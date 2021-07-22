@@ -55,9 +55,7 @@ public class SqlClient extends ApiClient<SqlClient> {
 	/**
 	 * Clears the SQL cursor
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html"
 	 */
 
 	public ClearCursorResponse clearCursor(ClearCursorRequest request) throws IOException {
@@ -67,9 +65,7 @@ public class SqlClient extends ApiClient<SqlClient> {
 	/**
 	 * Clears the SQL cursor
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -86,9 +82,7 @@ public class SqlClient extends ApiClient<SqlClient> {
 	/**
 	 * Executes a SQL request
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html"
 	 */
 
 	public QueryResponse query(QueryRequest request) throws IOException {
@@ -98,9 +92,7 @@ public class SqlClient extends ApiClient<SqlClient> {
 	/**
 	 * Executes a SQL request
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -117,9 +109,7 @@ public class SqlClient extends ApiClient<SqlClient> {
 	/**
 	 * Translates SQL into Elasticsearch queries
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html"
 	 */
 
 	public TranslateResponse translate(TranslateRequest request) throws IOException {
@@ -129,9 +119,7 @@ public class SqlClient extends ApiClient<SqlClient> {
 	/**
 	 * Translates SQL into Elasticsearch queries
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

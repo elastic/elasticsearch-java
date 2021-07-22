@@ -119,9 +119,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	 * Enables authentication as a user and retrieve information about the
 	 * authenticated user.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-authenticate.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-authenticate.html"
 	 */
 	public CompletableFuture<AuthenticateResponse> authenticate() throws IOException {
 		return this.transport.performRequestAsync(AuthenticateRequest.INSTANCE, AuthenticateRequest.ENDPOINT,
@@ -133,9 +131,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Changes the passwords of users in the native realm and built-in users.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-change-password.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-change-password.html"
 	 */
 
 	public CompletableFuture<ChangePasswordResponse> changePassword(ChangePasswordRequest request) throws IOException {
@@ -145,9 +141,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Changes the passwords of users in the native realm and built-in users.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-change-password.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-change-password.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -164,9 +158,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Clear a subset or all entries from the API key cache.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-api-key-cache.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-api-key-cache.html"
 	 */
 
 	public CompletableFuture<ClearApiKeyCacheResponse> clearApiKeyCache(ClearApiKeyCacheRequest request)
@@ -177,9 +169,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Clear a subset or all entries from the API key cache.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-api-key-cache.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-api-key-cache.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -196,9 +186,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Evicts application privileges from the native application privileges cache.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-privilege-cache.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-privilege-cache.html"
 	 */
 
 	public CompletableFuture<ClearCachedPrivilegesResponse> clearCachedPrivileges(ClearCachedPrivilegesRequest request)
@@ -209,9 +197,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Evicts application privileges from the native application privileges cache.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-privilege-cache.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-privilege-cache.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -230,9 +216,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	 * Evicts users from the user cache. Can completely clear the cache or evict
 	 * specific users.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-cache.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-cache.html"
 	 */
 
 	public CompletableFuture<ClearCachedRealmsResponse> clearCachedRealms(ClearCachedRealmsRequest request)
@@ -244,9 +228,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	 * Evicts users from the user cache. Can completely clear the cache or evict
 	 * specific users.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-cache.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-cache.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -263,9 +245,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Evicts roles from the native role cache.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-role-cache.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-role-cache.html"
 	 */
 
 	public CompletableFuture<ClearCachedRolesResponse> clearCachedRoles(ClearCachedRolesRequest request)
@@ -276,9 +256,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Evicts roles from the native role cache.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-role-cache.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-role-cache.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -295,9 +273,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Evicts tokens from the service account token caches.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-service-token-caches.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-service-token-caches.html"
 	 */
 
 	public CompletableFuture<ClearCachedServiceTokensResponse> clearCachedServiceTokens(
@@ -309,9 +285,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Evicts tokens from the service account token caches.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-service-token-caches.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-service-token-caches.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -329,9 +303,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Creates an API key for access without requiring basic authentication.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html"
 	 */
 
 	public CompletableFuture<CreateApiKeyResponse> createApiKey(CreateApiKeyRequest request) throws IOException {
@@ -341,9 +313,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Creates an API key for access without requiring basic authentication.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -361,9 +331,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	 * Creates a service account token for access without requiring basic
 	 * authentication.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-service-token.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-service-token.html"
 	 */
 
 	public CompletableFuture<CreateServiceTokenResponse> createServiceToken(CreateServiceTokenRequest request)
@@ -375,9 +343,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	 * Creates a service account token for access without requiring basic
 	 * authentication.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-service-token.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-service-token.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -395,9 +361,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Removes application privileges.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-privilege.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-privilege.html"
 	 */
 
 	public CompletableFuture<DeletePrivilegesResponse> deletePrivileges(DeletePrivilegesRequest request)
@@ -408,9 +372,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Removes application privileges.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-privilege.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-privilege.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -427,9 +389,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Removes roles in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role.html"
 	 */
 
 	public CompletableFuture<DeleteRoleResponse> deleteRole(DeleteRoleRequest request) throws IOException {
@@ -439,9 +399,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Removes roles in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -458,9 +416,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Removes role mappings.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role-mapping.html"
 	 */
 
 	public CompletableFuture<DeleteRoleMappingResponse> deleteRoleMapping(DeleteRoleMappingRequest request)
@@ -471,9 +427,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Removes role mappings.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role-mapping.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -490,9 +444,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Deletes a service account token.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-service-token.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-service-token.html"
 	 */
 
 	public CompletableFuture<DeleteServiceTokenResponse> deleteServiceToken(DeleteServiceTokenRequest request)
@@ -503,9 +455,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Deletes a service account token.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-service-token.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-service-token.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -523,9 +473,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Deletes users from the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-user.html"
 	 */
 
 	public CompletableFuture<DeleteUserResponse> deleteUser(DeleteUserRequest request) throws IOException {
@@ -535,9 +483,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Deletes users from the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-user.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -554,9 +500,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Disables users in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-disable-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-disable-user.html"
 	 */
 
 	public CompletableFuture<DisableUserResponse> disableUser(DisableUserRequest request) throws IOException {
@@ -566,9 +510,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Disables users in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-disable-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-disable-user.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -585,9 +527,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Enables users in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-enable-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-enable-user.html"
 	 */
 
 	public CompletableFuture<EnableUserResponse> enableUser(EnableUserRequest request) throws IOException {
@@ -597,9 +537,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Enables users in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-enable-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-enable-user.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -616,9 +554,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves information for one or more API keys.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html"
 	 */
 
 	public CompletableFuture<GetApiKeyResponse> getApiKey(GetApiKeyRequest request) throws IOException {
@@ -628,9 +564,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves information for one or more API keys.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -648,9 +582,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	 * Retrieves the list of cluster privileges and index privileges that are
 	 * available in this version of Elasticsearch.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-builtin-privileges.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-builtin-privileges.html"
 	 */
 	public CompletableFuture<GetBuiltinPrivilegesResponse> getBuiltinPrivileges() throws IOException {
 		return this.transport.performRequestAsync(GetBuiltinPrivilegesRequest.INSTANCE,
@@ -662,9 +594,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves application privileges.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html"
 	 */
 
 	public CompletableFuture<GetPrivilegesResponse> getPrivileges(GetPrivilegesRequest request) throws IOException {
@@ -674,9 +604,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves application privileges.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -693,9 +621,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves roles in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html"
 	 */
 
 	public CompletableFuture<GetRoleResponse> getRole(GetRoleRequest request) throws IOException {
@@ -705,9 +631,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves roles in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -724,9 +648,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves role mappings.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html"
 	 */
 
 	public CompletableFuture<GetRoleMappingResponse> getRoleMapping(GetRoleMappingRequest request) throws IOException {
@@ -736,9 +658,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves role mappings.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -755,9 +675,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves information about service accounts.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-accounts.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-accounts.html"
 	 */
 
 	public CompletableFuture<GetServiceAccountsResponse> getServiceAccounts(GetServiceAccountsRequest request)
@@ -768,9 +686,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves information about service accounts.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-accounts.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-accounts.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -788,9 +704,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves information of all service credentials for a service account.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-credentials.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-credentials.html"
 	 */
 
 	public CompletableFuture<GetServiceCredentialsResponse> getServiceCredentials(GetServiceCredentialsRequest request)
@@ -801,9 +715,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves information of all service credentials for a service account.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-credentials.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-credentials.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -821,9 +733,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Creates a bearer token for access without requiring basic authentication.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-token.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-token.html"
 	 */
 
 	public CompletableFuture<GetTokenResponse> getToken(GetTokenRequest request) throws IOException {
@@ -833,9 +743,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Creates a bearer token for access without requiring basic authentication.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-token.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-token.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -852,9 +760,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves information about users in the native realm and built-in users.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user.html"
 	 */
 
 	public CompletableFuture<GetUserResponse> getUser(GetUserRequest request) throws IOException {
@@ -864,9 +770,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves information about users in the native realm and built-in users.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -883,9 +787,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves security privileges for the logged in user.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html"
 	 */
 
 	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges(GetUserPrivilegesRequest request)
@@ -896,9 +798,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Retrieves security privileges for the logged in user.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -915,9 +815,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Creates an API key on behalf of another user.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-grant-api-key.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-grant-api-key.html"
 	 */
 
 	public CompletableFuture<GrantApiKeyResponse> grantApiKey(GrantApiKeyRequest request) throws IOException {
@@ -927,9 +825,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Creates an API key on behalf of another user.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-grant-api-key.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-grant-api-key.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -946,9 +842,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Determines whether the specified user has a specified list of privileges.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html"
 	 */
 
 	public CompletableFuture<HasPrivilegesResponse> hasPrivileges(HasPrivilegesRequest request) throws IOException {
@@ -958,9 +852,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Determines whether the specified user has a specified list of privileges.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -977,9 +869,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Invalidates one or more API keys.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html"
 	 */
 
 	public CompletableFuture<InvalidateApiKeyResponse> invalidateApiKey(InvalidateApiKeyRequest request)
@@ -990,9 +880,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Invalidates one or more API keys.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1009,9 +897,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Invalidates one or more access tokens or refresh tokens.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html"
 	 */
 
 	public CompletableFuture<InvalidateTokenResponse> invalidateToken(InvalidateTokenRequest request)
@@ -1022,9 +908,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Invalidates one or more access tokens or refresh tokens.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1041,9 +925,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Adds or updates application privileges.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html"
 	 */
 
 	public CompletableFuture<PutPrivilegesResponse> putPrivileges(PutPrivilegesRequest request) throws IOException {
@@ -1053,9 +935,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Adds or updates application privileges.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1072,9 +952,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Adds and updates roles in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role.html"
 	 */
 
 	public CompletableFuture<PutRoleResponse> putRole(PutRoleRequest request) throws IOException {
@@ -1084,9 +962,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Adds and updates roles in the native realm.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1103,9 +979,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Creates and updates role mappings.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role-mapping.html"
 	 */
 
 	public CompletableFuture<PutRoleMappingResponse> putRoleMapping(PutRoleMappingRequest request) throws IOException {
@@ -1115,9 +989,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	/**
 	 * Creates and updates role mappings.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role-mapping.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1135,9 +1007,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	 * Adds and updates users in the native realm. These users are commonly referred
 	 * to as native users.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html"
 	 */
 
 	public CompletableFuture<PutUserResponse> putUser(PutUserRequest request) throws IOException {
@@ -1148,9 +1018,7 @@ public class SecurityAsyncClient extends ApiClient<SecurityAsyncClient> {
 	 * Adds and updates users in the native realm. These users are commonly referred
 	 * to as native users.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

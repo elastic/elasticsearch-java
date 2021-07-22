@@ -58,9 +58,7 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 * Deletes an autoscaling policy. Designed for indirect use by ECE/ESS and ECK.
 	 * Direct use is not supported.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-delete-autoscaling-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-delete-autoscaling-policy.html"
 	 */
 
 	public PolicyDeleteResponse deleteAutoscalingPolicy(PolicyDeleteRequest request) throws IOException {
@@ -71,9 +69,7 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 * Deletes an autoscaling policy. Designed for indirect use by ECE/ESS and ECK.
 	 * Direct use is not supported.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-delete-autoscaling-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-delete-autoscaling-policy.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -92,9 +88,7 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 * policy. Designed for indirect use by ECE/ESS and ECK. Direct use is not
 	 * supported.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html"
 	 */
 
 	public CapacityGetResponse getAutoscalingCapacity(CapacityGetRequest request) throws IOException {
@@ -106,9 +100,7 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 * policy. Designed for indirect use by ECE/ESS and ECK. Direct use is not
 	 * supported.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -126,9 +118,7 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 * Retrieves an autoscaling policy. Designed for indirect use by ECE/ESS and
 	 * ECK. Direct use is not supported.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-policy.html"
 	 */
 
 	public PolicyGetResponse getAutoscalingPolicy(PolicyGetRequest request) throws IOException {
@@ -139,9 +129,7 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 * Retrieves an autoscaling policy. Designed for indirect use by ECE/ESS and
 	 * ECK. Direct use is not supported.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-policy.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -159,9 +147,7 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 * Creates a new autoscaling policy. Designed for indirect use by ECE/ESS and
 	 * ECK. Direct use is not supported.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-put-autoscaling-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-put-autoscaling-policy.html"
 	 */
 
 	public PolicyPutResponse putAutoscalingPolicy(PolicyPutRequest request) throws IOException {
@@ -172,9 +158,7 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 * Creates a new autoscaling policy. Designed for indirect use by ECE/ESS and
 	 * ECK. Direct use is not supported.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-put-autoscaling-policy.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-put-autoscaling-policy.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

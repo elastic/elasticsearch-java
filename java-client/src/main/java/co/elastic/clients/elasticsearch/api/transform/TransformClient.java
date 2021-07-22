@@ -65,9 +65,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Deletes an existing transform.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html"
 	 */
 
 	public DeleteTransformResponse deleteTransform(DeleteTransformRequest request) throws IOException {
@@ -77,9 +75,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Deletes an existing transform.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-transform.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -96,9 +92,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Retrieves configuration information for transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html"
 	 */
 
 	public GetTransformResponse getTransform(GetTransformRequest request) throws IOException {
@@ -108,9 +102,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Retrieves configuration information for transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -127,9 +119,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Retrieves usage information for transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform-stats.html"
 	 */
 
 	public GetTransformStatsResponse getTransformStats(GetTransformStatsRequest request) throws IOException {
@@ -139,9 +129,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Retrieves usage information for transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-transform-stats.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -158,9 +146,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Previews a transform.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html"
 	 */
 
 	public <TTransform> PreviewTransformResponse<TTransform> previewTransform(PreviewTransformRequest request,
@@ -173,9 +159,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Previews a transform.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/preview-transform.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -193,9 +177,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Instantiates a transform.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-transform.html"
 	 */
 
 	public PutTransformResponse putTransform(PutTransformRequest request) throws IOException {
@@ -205,9 +187,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Instantiates a transform.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-transform.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -224,9 +204,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Starts one or more transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-transform.html"
 	 */
 
 	public StartTransformResponse startTransform(StartTransformRequest request) throws IOException {
@@ -236,9 +214,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Starts one or more transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-transform.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -255,9 +231,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Stops one or more transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-transform.html"
 	 */
 
 	public StopTransformResponse stopTransform(StopTransformRequest request) throws IOException {
@@ -267,9 +241,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Stops one or more transforms.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-transform.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -286,9 +258,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Updates certain properties of a transform.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-transform.html"
 	 */
 
 	public UpdateTransformResponse updateTransform(UpdateTransformRequest request) throws IOException {
@@ -298,9 +268,7 @@ public class TransformClient extends ApiClient<TransformClient> {
 	/**
 	 * Updates certain properties of a transform.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-transform.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-transform.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

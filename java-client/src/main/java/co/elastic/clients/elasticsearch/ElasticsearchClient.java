@@ -288,9 +288,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html"
 	 */
 
 	public <TSource> BulkResponse bulk(BulkRequest<TSource> request) throws IOException {
@@ -301,9 +299,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -320,9 +316,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Explicitly clears the search context for a scroll.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html"
 	 */
 
 	public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException {
@@ -332,9 +326,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Explicitly clears the search context for a scroll.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -351,9 +343,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Close a point in time
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
 	 */
 
 	public ClosePointInTimeResponse closePointInTime(ClosePointInTimeRequest request) throws IOException {
@@ -363,9 +353,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Close a point in time
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -382,9 +370,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns number of documents matching a query.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html"
 	 */
 
 	public CountResponse count(CountRequest request) throws IOException {
@@ -394,9 +380,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns number of documents matching a query.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -416,9 +400,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Returns a 409 response when a document with a same ID already exists in the
 	 * index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
 	 */
 
 	public <TDocument> CreateResponse create(CreateRequest<TDocument> request) throws IOException {
@@ -431,9 +413,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Returns a 409 response when a document with a same ID already exists in the
 	 * index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -450,9 +430,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Removes a document from the index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html"
 	 */
 
 	public DeleteResponse delete(DeleteRequest request) throws IOException {
@@ -462,9 +440,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Removes a document from the index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -481,9 +457,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Deletes documents matching the provided query.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html"
 	 */
 
 	public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request) throws IOException {
@@ -493,9 +467,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Deletes documents matching the provided query.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -513,9 +485,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Changes the number of requests per second for a particular Delete By Query
 	 * operation.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html"
 	 */
 
 	public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request)
@@ -527,9 +497,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Changes the number of requests per second for a particular Delete By Query
 	 * operation.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -547,9 +515,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Deletes a script.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
 	 */
 
 	public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException {
@@ -559,9 +525,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Deletes a script.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -578,9 +542,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns information about whether a document exists in an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
 	 */
 
 	public BooleanResponse exists(ExistsRequest request) throws IOException {
@@ -590,9 +552,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns information about whether a document exists in an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -609,9 +569,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns information about whether a document source exists in an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
 	 */
 
 	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException {
@@ -621,9 +579,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns information about whether a document source exists in an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -640,9 +596,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html"
 	 */
 
 	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
@@ -654,9 +608,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -675,9 +627,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html"
 	 */
 
 	public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException {
@@ -688,9 +638,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -707,9 +655,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns a document.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
 	 */
 
 	public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass)
@@ -721,9 +667,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns a document.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -740,9 +684,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns a script.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
 	 */
 
 	public GetScriptResponse getScript(GetScriptRequest request) throws IOException {
@@ -752,9 +694,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns a script.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -771,9 +711,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns all script contexts.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html"
 	 */
 	public GetScriptContextResponse getScriptContext() throws IOException {
 		return this.transport.performRequest(GetScriptContextRequest.INSTANCE, GetScriptContextRequest.ENDPOINT,
@@ -785,9 +723,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns available script types, languages and contexts
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
 	 */
 	public GetScriptLanguagesResponse getScriptLanguages() throws IOException {
 		return this.transport.performRequest(GetScriptLanguagesRequest.INSTANCE, GetScriptLanguagesRequest.ENDPOINT,
@@ -799,9 +735,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns the source of a document.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
 	 */
 
 	public <TDocument> GetSourceResponse<TDocument> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
@@ -813,9 +747,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns the source of a document.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -833,9 +765,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Creates or updates a document in an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
 	 */
 
 	public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException {
@@ -845,9 +775,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Creates or updates a document in an index.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -864,9 +792,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns basic information about the cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
 	 */
 	public InfoResponse info() throws IOException {
 		return this.transport.performRequest(InfoRequest.INSTANCE, InfoRequest.ENDPOINT, this.requestOptions);
@@ -877,9 +803,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to get multiple documents in one request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html"
 	 */
 
 	public <TDocument> MgetResponse<TDocument> mget(MgetRequest request, Class<TDocument> tDocumentClass)
@@ -891,9 +815,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to get multiple documents in one request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -910,9 +832,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to execute several search operations in one request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html"
 	 */
 
 	public <TDocument> MsearchResponse<TDocument> msearch(MsearchRequest request, Class<TDocument> tDocumentClass)
@@ -924,9 +844,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to execute several search operations in one request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -944,9 +862,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to execute several search template operations in one request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html"
 	 */
 
 	public <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(MsearchTemplateRequest request,
@@ -959,9 +875,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to execute several search template operations in one request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -979,9 +893,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns multiple termvectors in one request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html"
 	 */
 
 	public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException {
@@ -991,9 +903,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns multiple termvectors in one request.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1010,9 +920,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Open a point in time that can be used in subsequent searches
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
 	 */
 
 	public OpenPointInTimeResponse openPointInTime(OpenPointInTimeRequest request) throws IOException {
@@ -1022,9 +930,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Open a point in time that can be used in subsequent searches
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1041,9 +947,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns whether the cluster is running.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
 	 */
 	public BooleanResponse ping() throws IOException {
 		return this.transport.performRequest(PingRequest.INSTANCE, PingRequest.ENDPOINT, this.requestOptions);
@@ -1054,9 +958,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Creates or updates a script.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
 	 */
 
 	public PutScriptResponse putScript(PutScriptRequest request) throws IOException {
@@ -1066,9 +968,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Creates or updates a script.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1086,9 +986,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Allows to evaluate the quality of ranked search results over a set of typical
 	 * search queries
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html"
 	 */
 
 	public RankEvalResponse rankEval(RankEvalRequest request) throws IOException {
@@ -1099,9 +997,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Allows to evaluate the quality of ranked search results over a set of typical
 	 * search queries
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1120,9 +1016,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
 	 */
 
 	public ReindexResponse reindex(ReindexRequest request) throws IOException {
@@ -1134,9 +1028,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1153,9 +1045,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
 	 */
 
 	public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request) throws IOException {
@@ -1165,9 +1055,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1184,9 +1072,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html"
 	 */
 
 	public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
@@ -1199,9 +1085,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1219,9 +1103,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns results matching a query.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html"
 	 */
 
 	public <TDocument> SearchResponse<TDocument> search(SearchRequest request, Class<TDocument> tDocumentClass)
@@ -1233,9 +1115,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Returns results matching a query.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1254,9 +1134,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html"
 	 */
 
 	public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException {
@@ -1267,9 +1145,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1286,9 +1162,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html"
 	 */
 
 	public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request,
@@ -1301,9 +1175,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1323,9 +1195,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * the provided string. It is designed for low-latency look-ups used in
 	 * auto-complete scenarios.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html"
 	 */
 
 	public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException {
@@ -1337,9 +1207,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * the provided string. It is designed for low-latency look-ups used in
 	 * auto-complete scenarios.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1357,9 +1225,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Returns information and statistics about terms in the fields of a particular
 	 * document.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html"
 	 */
 
 	public <TDocument> TermvectorsResponse termvectors(TermvectorsRequest<TDocument> request) throws IOException {
@@ -1370,9 +1236,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Returns information and statistics about terms in the fields of a particular
 	 * document.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1390,9 +1254,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Updates a document with a script or partial document.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html"
 	 */
 
 	public <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
@@ -1404,9 +1266,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	/**
 	 * Updates a document with a script or partial document.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1425,9 +1285,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html"
 	 */
 
 	public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request) throws IOException {
@@ -1438,9 +1296,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1458,9 +1314,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Changes the number of requests per second for a particular Update By Query
 	 * operation.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html"
 	 */
 
 	public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request)
@@ -1472,9 +1326,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 * Changes the number of requests per second for a particular Update By Query
 	 * operation.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

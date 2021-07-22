@@ -72,7 +72,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	}
 
 	/**
-	 * The feature name prefix. Defaults to ngram_<start>_<length>.
+	 * The feature name prefix. Defaults to ngram_&lt;start&gt;_&lt;length&gt;.
 	 *
 	 * API name: {@code feature_prefix}
 	 */
@@ -204,7 +204,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		private Boolean custom;
 
 		/**
-		 * The feature name prefix. Defaults to ngram_<start>_<length>.
+		 * The feature name prefix. Defaults to ngram_&lt;start&gt;_&lt;length&gt;.
 		 *
 		 * API name: {@code feature_prefix}
 		 */

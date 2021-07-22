@@ -63,9 +63,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * Deletes licensing information for the cluster
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html"
 	 */
 	public DeleteResponse delete() throws IOException {
 		return this.transport.performRequest(DeleteRequest.INSTANCE, DeleteRequest.ENDPOINT, this.requestOptions);
@@ -76,9 +74,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * Retrieves licensing information for the cluster
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html"
 	 */
 
 	public GetResponse get(GetRequest request) throws IOException {
@@ -88,9 +84,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * Retrieves licensing information for the cluster
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -106,9 +100,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * Retrieves information about the status of the basic license.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html"
 	 */
 	public GetBasicStatusResponse getBasicStatus() throws IOException {
 		return this.transport.performRequest(GetBasicStatusRequest.INSTANCE, GetBasicStatusRequest.ENDPOINT,
@@ -120,9 +112,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * Retrieves information about the status of the trial license.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html"
 	 */
 	public GetTrialStatusResponse getTrialStatus() throws IOException {
 		return this.transport.performRequest(GetTrialStatusRequest.INSTANCE, GetTrialStatusRequest.ENDPOINT,
@@ -134,9 +124,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * Updates the license for the cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html"
 	 */
 
 	public PostResponse post(PostRequest request) throws IOException {
@@ -146,9 +134,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * Updates the license for the cluster.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -164,9 +150,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * Starts an indefinite basic license.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html"
 	 */
 
 	public PostStartBasicResponse postStartBasic(PostStartBasicRequest request) throws IOException {
@@ -176,9 +160,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * Starts an indefinite basic license.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -195,9 +177,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * starts a limited time trial license.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html"
 	 */
 
 	public PostStartTrialResponse postStartTrial(PostStartTrialRequest request) throws IOException {
@@ -207,9 +187,7 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 	/**
 	 * starts a limited time trial license.
 	 *
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
-	 *      on elastic.co</a>
+	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
