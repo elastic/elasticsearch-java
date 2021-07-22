@@ -152,9 +152,9 @@ if [[ "$CMD" == "assemble" ]]; then
   docker run --rm --env VERSION=$VERSION \
     $git_mount $src_mount $output_mount \
     $docker_image \
-    java-client:publishAllPublicationsToBuildRepository
+    publishForReleaseManager
 
-	if compgen -G ".ci/output/*" > /dev/null; then
+	if compgen -G ".ci/output/release/*" > /dev/null; then
 		echo -e "\033[32;1mTARGET: successfully assembled client version $VERSION\033[0m"
 	else
 		echo -e "\033[31;1mTARGET: assemble failed, empty workspace!\033[0m"
