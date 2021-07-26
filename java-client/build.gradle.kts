@@ -17,12 +17,15 @@
  * under the License.
  */
 
-import java.time.ZoneOffset
+import com.github.jk1.license.ProjectData
+import com.github.jk1.license.render.ReportRenderer
+import java.io.FileWriter
 
 plugins {
     java
     checkstyle
     `maven-publish`
+    id("com.github.jk1.dependency-license-report") version "1.17"
 }
 
 java {
@@ -143,4 +146,56 @@ dependencies {
     // MIT
     testImplementation("org.testcontainers", "testcontainers", "1.15.3")
     testImplementation("org.testcontainers", "elasticsearch", "1.15.3")
+}
+
+
+licenseReport {
+    renderers = arrayOf(SpdxReporter(File(rootProject.buildDir, "release/dependencies.csv")))
+    excludeGroups = arrayOf("org.elasticsearch.client")
+}
+
+class SpdxReporter(val dest: File) : ReportRenderer {
+    // License names to their SPDX identifier
+    val spdxIds = mapOf(
+        "Apache License, Version 2.0" to "Apache-2.0",
+        "The Apache Software License, Version 2.0" to "Apache-2.0",
+        "BSD Zero Clause License" to "0BSD",
+        "Eclipse Public License 2.0" to "EPL-2.0",
+        "Eclipse Public License v. 2.0" to "EPL-2.0",
+        "GNU General Public License, version 2 with the GNU Classpath Exception" to "GPL-2.0 WITH Classpath-exception-2.0",
+        "COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0" to "CDDL-1.0"
+    )
+
+    private fun quote(str: String) : String {
+        return if (str.contains(',') || str.contains("\"")) {
+            "\"" + str.replace("\"", "\"\"") + "\""
+        } else {
+            str
+        }
+    }
+
+    override fun render(data: ProjectData?) {
+        dest.parentFile.mkdirs()
+        FileWriter(dest).use { out ->
+            out.append("name,url,version,revision,license\n")
+            data?.allDependencies?.forEach { dep ->
+                val info = com.github.jk1.license.render.LicenseDataCollector.multiModuleLicenseInfo(dep)
+
+                val depVersion = dep.version
+                val depName = dep.group + ":" + dep.name
+                val depUrl = info.moduleUrls.first()
+
+                val licenseIds = info.licenses.mapNotNull { license ->
+                    license.name?.let {
+                        checkNotNull(spdxIds[it]) { "No SPDX identifier for $license" }
+                    }
+                }.toSet()
+
+                // Combine multiple licenses.
+                // See https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/#composite-license-expressions
+                val licenseId = licenseIds.joinToString(" OR ")
+                out.append("${quote(depName)},${quote(depUrl)},${quote(depVersion)},,${quote(licenseId)}\n")
+            }
+        }
+    }
 }

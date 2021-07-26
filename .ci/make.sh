@@ -137,7 +137,6 @@ output_mount="-v $repo/.ci/output:/elasticsearch-java/build"
 build_image() {
   echo -e "\033[34;1mINFO: building $product container\033[0m"
 
-
   docker build --file .ci/Dockerfile --tag $docker_image \
     --build-arg USER_ID="$(id -u)" \
     --build-arg GROUP_ID="$(id -g)" .
@@ -155,6 +154,7 @@ if [[ "$CMD" == "assemble" ]]; then
     publishForReleaseManager
 
 	if compgen -G ".ci/output/release/*" > /dev/null; then
+	  cp .ci/output/release/dependencies.csv "$DEPENDENCIES_REPORTS_DIR"/"$DEPENDENCIES_REPORT"
 		echo -e "\033[32;1mTARGET: successfully assembled client version $VERSION\033[0m"
 	else
 		echo -e "\033[31;1mTARGET: assemble failed, empty workspace!\033[0m"
