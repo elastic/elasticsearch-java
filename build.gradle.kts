@@ -19,7 +19,7 @@
 
 allprojects {
     group = "co.elastic.clients"
-    version = System.getenv("VERSION") ?: "8.0.0-SNAPSHOT"
+    version = System.getenv("VERSION") ?: "7.x-SNAPSHOT"
 
     repositories {
         mavenCentral()
