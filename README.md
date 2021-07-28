@@ -22,16 +22,11 @@ The `docs/design` folder contains records of the major decisions in the design o
 
 ### Installing the library
 
-While it's a work in progress, snapshots of this library are published to a Maven repository hosted on [GitHub Packages](https://github.com/elastic/elasticsearch-java/packages/). To access it [you need a personal access token](https://github.com/settings/tokens) on your GitHub account that has the `read:packages` permission. This token should then be added to `~/.gradle/gradle.properties`:
-
-```properties
-ESJavaGithubPackagesUsername=YOUR_GITHUB_USERNAME
-ESJavaGithubPackagesPassword=YOUR_GITHUB_TOKEN
-```
+This library requires at least Java 8.
 
 Along with this library, you also need a JSON/object mapping library. `elasticsearch-java` has built-in support for [Jackson](https://github.com/FasterXML/jackson) and [JSON-B](http://json-b.net/) implementations such as [Eclipse Yasson](https://github.com/eclipse-ee4j/yasson).
 
-This library requires at least Java 8.
+While it's a work in progress, snapshots of this library are published to Elastic's snapshot repository. Snapshots are currently available for the upcoming version 7.15.0, built from the `7.x` branch.
 
 Gradle project (Groovy flavor) setup using Jackson:
 
@@ -39,30 +34,15 @@ Gradle project (Groovy flavor) setup using Jackson:
 repositories {
     mavenCentral()
     maven {
-        name = "ESJavaGithubPackages"
-        url = uri("https://maven.pkg.github.com/elastic/elasticsearch-java")
-        credentials(PasswordCredentials)
+        name = "Elastic-Snapshots"
+        url = uri("https://snapshots.elastic.co/maven")
     }
 }
 
 dependencies {
-    implementation 'co.elastic.clients:elasticsearch-java:8.0.0-SNAPSHOT'
+    implementation 'co.elastic.clients:elasticsearch-java:7.15.0-SNAPSHOT'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 }
-```
-
-If you are using Maven, you need to add the credentials in your `~/.m2/settings.xml`:
-
-```xml
-<settings>
-  <servers>
-    <server>
-      <id>ESJavaGithubPackages</id>
-      <username>YOUR_GITHUB_USERNAME</username>
-      <password>YOUR_GITHUB_TOKEN</password>
-    </server>
-  </servers>
-</settings>
 ```
 
 In the `pom.xml` for your project add the following repository definition and dependencies:
@@ -72,8 +52,8 @@ In the `pom.xml` for your project add the following repository definition and de
     
   <repositories>
     <repository>
-      <id>ESJavaGithubPackages</id>
-      <url>https://maven.pkg.github.com/elastic/elasticsearch-java</url>
+      <id>Elastic-Snapshots</id>
+      <url>https://snapshots.elastic.co/maven</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -84,7 +64,7 @@ In the `pom.xml` for your project add the following repository definition and de
     <dependency>
       <groupId>co.elastic.clients</groupId>
       <artifactId>elasticsearch-java</artifactId>
-      <version>8.0.0-SNAPSHOT</version>
+      <version>7.15.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -125,9 +105,7 @@ if (search.hits().hits().isEmpty()) {
 
 ## Compatibility
 
-The `main` branch targets the upcoming Elasticsearch 8.0. Support is still incomplete as the API code is generated from the [Elasticsearch Specification](https://github.com/elastic/elasticsearch-specification) that is also still a work in progress. 
-
-As the work on the specification comes to completion, an additional `7.x` branch will provide support for the corresponding versions of Elasticsearch.
+The `main` branch targets the next major release (8.0) and the `7.x` branch targets the next minor release. Support is still incomplete as the API code is generated from the [Elasticsearch Specification](https://github.com/elastic/elasticsearch-specification) that is also still a work in progress.
 
 ## Current status
 
