@@ -34,6 +34,7 @@ COPY LICENSE.txt NOTICE.txt ./
 # Prefetch dependencies
 COPY build.gradle.kts settings.gradle.kts ./
 COPY buildSrc ./buildSrc/
+COPY config ./config/
 COPY java-client/build.gradle.kts ./java-client/
 RUN ./gradlew resolveDependencies
 
