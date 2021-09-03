@@ -61,7 +61,7 @@ public final class RankEvalResponse implements ToJsonp {
 
 	/**
 	 * The overall evaluation quality calculated by the defined metric
-	 *
+	 * <p>
 	 * API name: {@code metric_score}
 	 */
 	public Number metricScore() {
@@ -71,7 +71,7 @@ public final class RankEvalResponse implements ToJsonp {
 	/**
 	 * The details section contains one entry for every query in the original
 	 * requests section, keyed by the search request id
-	 *
+	 * <p>
 	 * API name: {@code details}
 	 */
 	public Map<String, RankEvalMetricDetail> details() {
@@ -133,7 +133,7 @@ public final class RankEvalResponse implements ToJsonp {
 
 		/**
 		 * The overall evaluation quality calculated by the defined metric
-		 *
+		 * <p>
 		 * API name: {@code metric_score}
 		 */
 		public Builder metricScore(Number value) {
@@ -144,7 +144,7 @@ public final class RankEvalResponse implements ToJsonp {
 		/**
 		 * The details section contains one entry for every query in the original
 		 * requests section, keyed by the search request id
-		 *
+		 * <p>
 		 * API name: {@code details}
 		 */
 		public Builder details(Map<String, RankEvalMetricDetail> value) {

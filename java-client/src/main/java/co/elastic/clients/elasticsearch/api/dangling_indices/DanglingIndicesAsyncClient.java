@@ -55,8 +55,10 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 
 	/**
 	 * Deletes the specified dangling index
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<IndexDeleteResponse> deleteDanglingIndex(IndexDeleteRequest request) throws IOException {
@@ -65,12 +67,14 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 
 	/**
 	 * Deletes the specified dangling index
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<IndexDeleteResponse> deleteDanglingIndex(
@@ -82,8 +86,10 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 
 	/**
 	 * Imports the specified dangling index
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<IndexImportResponse> importDanglingIndex(IndexImportRequest request) throws IOException {
@@ -92,12 +98,14 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 
 	/**
 	 * Imports the specified dangling index
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<IndexImportResponse> importDanglingIndex(
@@ -109,8 +117,10 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 
 	/**
 	 * Returns all dangling indices.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<IndicesListResponse> listDanglingIndices(IndicesListRequest request) throws IOException {
@@ -119,12 +129,14 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 
 	/**
 	 * Returns all dangling indices.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<IndicesListResponse> listDanglingIndices(

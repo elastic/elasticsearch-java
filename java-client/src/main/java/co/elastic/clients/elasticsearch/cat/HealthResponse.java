@@ -53,7 +53,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<HealthRecord> value() {
@@ -83,7 +83,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<HealthRecord> value) {
@@ -93,7 +93,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(HealthRecord... value) {

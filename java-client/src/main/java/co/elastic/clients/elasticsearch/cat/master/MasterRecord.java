@@ -61,7 +61,7 @@ public final class MasterRecord implements ToJsonp {
 
 	/**
 	 * node id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -71,7 +71,7 @@ public final class MasterRecord implements ToJsonp {
 
 	/**
 	 * host name
-	 *
+	 * <p>
 	 * API name: {@code host}
 	 */
 	@Nullable
@@ -81,7 +81,7 @@ public final class MasterRecord implements ToJsonp {
 
 	/**
 	 * ip address
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -91,7 +91,7 @@ public final class MasterRecord implements ToJsonp {
 
 	/**
 	 * node name
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -157,7 +157,7 @@ public final class MasterRecord implements ToJsonp {
 
 		/**
 		 * node id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -167,7 +167,7 @@ public final class MasterRecord implements ToJsonp {
 
 		/**
 		 * host name
-		 *
+		 * <p>
 		 * API name: {@code host}
 		 */
 		public Builder host(@Nullable String value) {
@@ -177,7 +177,7 @@ public final class MasterRecord implements ToJsonp {
 
 		/**
 		 * ip address
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -187,7 +187,7 @@ public final class MasterRecord implements ToJsonp {
 
 		/**
 		 * node name
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(@Nullable String value) {

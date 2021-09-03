@@ -62,8 +62,10 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * Deletes licensing information for the cluster
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public DeleteResponse delete() throws IOException {
 		return this.transport.performRequest(DeleteRequest.INSTANCE, DeleteRequest.ENDPOINT, this.requestOptions);
@@ -73,8 +75,10 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * Retrieves licensing information for the cluster
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetResponse get(GetRequest request) throws IOException {
@@ -83,12 +87,14 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * Retrieves licensing information for the cluster
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetResponse get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn) throws IOException {
@@ -99,8 +105,10 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * Retrieves information about the status of the basic license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public GetBasicStatusResponse getBasicStatus() throws IOException {
 		return this.transport.performRequest(GetBasicStatusRequest.INSTANCE, GetBasicStatusRequest.ENDPOINT,
@@ -111,8 +119,10 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * Retrieves information about the status of the trial license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public GetTrialStatusResponse getTrialStatus() throws IOException {
 		return this.transport.performRequest(GetTrialStatusRequest.INSTANCE, GetTrialStatusRequest.ENDPOINT,
@@ -123,8 +133,10 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * Updates the license for the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PostResponse post(PostRequest request) throws IOException {
@@ -133,12 +145,14 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * Updates the license for the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PostResponse post(Function<PostRequest.Builder, ObjectBuilder<PostRequest>> fn) throws IOException {
@@ -149,8 +163,10 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * Starts an indefinite basic license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PostStartBasicResponse postStartBasic(PostStartBasicRequest request) throws IOException {
@@ -159,12 +175,14 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * Starts an indefinite basic license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PostStartBasicResponse postStartBasic(
@@ -176,8 +194,10 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * starts a limited time trial license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PostStartTrialResponse postStartTrial(PostStartTrialRequest request) throws IOException {
@@ -186,12 +206,14 @@ public class LicenseClient extends ApiClient<LicenseClient> {
 
 	/**
 	 * starts a limited time trial license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PostStartTrialResponse postStartTrial(

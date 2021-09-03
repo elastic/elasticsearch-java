@@ -70,7 +70,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 
 	/**
 	 * The number of iterations on the analysis.
-	 *
+	 * <p>
 	 * API name: {@code iteration}
 	 */
 	public Number iteration() {
@@ -159,7 +159,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 
 		/**
 		 * The number of iterations on the analysis.
-		 *
+		 * <p>
 		 * API name: {@code iteration}
 		 */
 		public Builder iteration(Number value) {

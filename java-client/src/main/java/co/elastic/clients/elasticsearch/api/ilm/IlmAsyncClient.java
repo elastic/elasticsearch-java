@@ -70,8 +70,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 	/**
 	 * Deletes the specified lifecycle policy definition. A currently used policy
 	 * cannot be deleted.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-delete-lifecycle.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-delete-lifecycle.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(DeleteLifecycleRequest request)
@@ -82,12 +84,14 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 	/**
 	 * Deletes the specified lifecycle policy definition. A currently used policy
 	 * cannot be deleted.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-delete-lifecycle.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-delete-lifecycle.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(
@@ -100,8 +104,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 	/**
 	 * Retrieves information about the index's current lifecycle state, such as the
 	 * currently executing phase, action, and step.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-explain-lifecycle.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-explain-lifecycle.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ExplainLifecycleResponse> explainLifecycle(ExplainLifecycleRequest request)
@@ -112,12 +118,14 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 	/**
 	 * Retrieves information about the index's current lifecycle state, such as the
 	 * currently executing phase, action, and step.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-explain-lifecycle.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-explain-lifecycle.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ExplainLifecycleResponse> explainLifecycle(
@@ -130,8 +138,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 	/**
 	 * Returns the specified policy definition. Includes the policy version and last
 	 * modified date.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-lifecycle.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-lifecycle.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetLifecycleResponse> getLifecycle(GetLifecycleRequest request) throws IOException {
@@ -141,12 +151,14 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 	/**
 	 * Returns the specified policy definition. Includes the policy version and last
 	 * modified date.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-lifecycle.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-lifecycle.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetLifecycleResponse> getLifecycle(
@@ -158,8 +170,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Retrieves the current index lifecycle management (ILM) status.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-status.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-status.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetStatusResponse> getStatus() throws IOException {
 		return this.transport.performRequestAsync(GetStatusRequest.INSTANCE, GetStatusRequest.ENDPOINT,
@@ -170,8 +184,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Manually moves an index into the specified step and executes that step.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-move-to-step.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-move-to-step.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<MoveToStepResponse> moveToStep(MoveToStepRequest request) throws IOException {
@@ -180,12 +196,14 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Manually moves an index into the specified step and executes that step.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-move-to-step.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-move-to-step.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<MoveToStepResponse> moveToStep(
@@ -197,8 +215,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Creates a lifecycle policy
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-put-lifecycle.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-put-lifecycle.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutLifecycleResponse> putLifecycle(PutLifecycleRequest request) throws IOException {
@@ -207,12 +227,14 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Creates a lifecycle policy
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-put-lifecycle.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-put-lifecycle.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutLifecycleResponse> putLifecycle(
@@ -224,8 +246,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Removes the assigned lifecycle policy and stops managing the specified index
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-remove-policy.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-remove-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<RemovePolicyResponse> removePolicy(RemovePolicyRequest request) throws IOException {
@@ -234,12 +258,14 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Removes the assigned lifecycle policy and stops managing the specified index
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-remove-policy.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-remove-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RemovePolicyResponse> removePolicy(
@@ -251,8 +277,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Retries executing the policy for an index that is in the ERROR step.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-retry-policy.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-retry-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<RetryResponse> retry(RetryRequest request) throws IOException {
@@ -261,12 +289,14 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Retries executing the policy for an index that is in the ERROR step.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-retry-policy.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-retry-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RetryResponse> retry(Function<RetryRequest.Builder, ObjectBuilder<RetryRequest>> fn)
@@ -278,8 +308,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Start the index lifecycle management (ILM) plugin.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-start.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-start.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StartResponse> start(StartRequest request) throws IOException {
@@ -288,12 +320,14 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 
 	/**
 	 * Start the index lifecycle management (ILM) plugin.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-start.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-start.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StartResponse> start(Function<StartRequest.Builder, ObjectBuilder<StartRequest>> fn)
@@ -306,8 +340,10 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 	/**
 	 * Halts all lifecycle management operations and stops the index lifecycle
 	 * management (ILM) plugin
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-stop.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-stop.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StopResponse> stop(StopRequest request) throws IOException {
@@ -317,12 +353,14 @@ public class IlmAsyncClient extends ApiClient<IlmAsyncClient> {
 	/**
 	 * Halts all lifecycle management operations and stops the index lifecycle
 	 * management (ILM) plugin
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-stop.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-stop.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StopResponse> stop(Function<StopRequest.Builder, ObjectBuilder<StopRequest>> fn)

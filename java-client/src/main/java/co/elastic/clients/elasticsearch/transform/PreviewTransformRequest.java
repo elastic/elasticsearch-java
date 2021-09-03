@@ -89,7 +89,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * The destination for the transform.
-	 *
+	 * <p>
 	 * API name: {@code dest}
 	 */
 	@Nullable
@@ -99,7 +99,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Free text description of the transform.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -112,7 +112,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	 * transform is running continuously. Also determines the retry interval in the
 	 * event of transient failures while the transform is searching or indexing. The
 	 * minimum value is 1s and the maximum is 1h.
-	 *
+	 * <p>
 	 * API name: {@code frequency}
 	 */
 	@Nullable
@@ -123,7 +123,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	/**
 	 * The pivot method transforms the data by aggregating and grouping it. These
 	 * objects define the group by fields and the aggregation to reduce the data.
-	 *
+	 * <p>
 	 * API name: {@code pivot}
 	 */
 	@Nullable
@@ -133,7 +133,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * The source of the data for the transform.
-	 *
+	 * <p>
 	 * API name: {@code source}
 	 */
 	@Nullable
@@ -143,7 +143,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Defines optional transform settings.
-	 *
+	 * <p>
 	 * API name: {@code settings}
 	 */
 	@Nullable
@@ -153,7 +153,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Defines the properties transforms require to run continuously.
-	 *
+	 * <p>
 	 * API name: {@code sync}
 	 */
 	@Nullable
@@ -164,7 +164,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Defines a retention policy for the transform. Data that meets the defined
 	 * criteria is deleted from the destination index.
-	 *
+	 * <p>
 	 * API name: {@code retention_policy}
 	 */
 	@Nullable
@@ -175,7 +175,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	/**
 	 * The latest method transforms the data by finding the latest document for each
 	 * unique key.
-	 *
+	 * <p>
 	 * API name: {@code latest}
 	 */
 	@Nullable
@@ -306,7 +306,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * The destination for the transform.
-		 *
+		 * <p>
 		 * API name: {@code dest}
 		 */
 		public BuilderT dest(@Nullable Destination value) {
@@ -316,7 +316,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * The destination for the transform.
-		 *
+		 * <p>
 		 * API name: {@code dest}
 		 */
 		public BuilderT dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
@@ -325,7 +325,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Free text description of the transform.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public BuilderT description(@Nullable String value) {
@@ -338,7 +338,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		 * transform is running continuously. Also determines the retry interval in the
 		 * event of transient failures while the transform is searching or indexing. The
 		 * minimum value is 1s and the maximum is 1h.
-		 *
+		 * <p>
 		 * API name: {@code frequency}
 		 */
 		public BuilderT frequency(@Nullable JsonValue value) {
@@ -349,7 +349,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		/**
 		 * The pivot method transforms the data by aggregating and grouping it. These
 		 * objects define the group by fields and the aggregation to reduce the data.
-		 *
+		 * <p>
 		 * API name: {@code pivot}
 		 */
 		public BuilderT pivot(@Nullable Pivot value) {
@@ -360,7 +360,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		/**
 		 * The pivot method transforms the data by aggregating and grouping it. These
 		 * objects define the group by fields and the aggregation to reduce the data.
-		 *
+		 * <p>
 		 * API name: {@code pivot}
 		 */
 		public BuilderT pivot(Function<Pivot.Builder, ObjectBuilder<Pivot>> fn) {
@@ -369,7 +369,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * The source of the data for the transform.
-		 *
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public BuilderT source(@Nullable Source value) {
@@ -379,7 +379,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * The source of the data for the transform.
-		 *
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public BuilderT source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
@@ -388,7 +388,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Defines optional transform settings.
-		 *
+		 * <p>
 		 * API name: {@code settings}
 		 */
 		public BuilderT settings(@Nullable Settings value) {
@@ -398,7 +398,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Defines optional transform settings.
-		 *
+		 * <p>
 		 * API name: {@code settings}
 		 */
 		public BuilderT settings(Function<Settings.Builder, ObjectBuilder<Settings>> fn) {
@@ -407,7 +407,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Defines the properties transforms require to run continuously.
-		 *
+		 * <p>
 		 * API name: {@code sync}
 		 */
 		public BuilderT sync(@Nullable SyncContainer value) {
@@ -417,7 +417,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Defines the properties transforms require to run continuously.
-		 *
+		 * <p>
 		 * API name: {@code sync}
 		 */
 		public BuilderT sync(Function<SyncContainer.Builder, ObjectBuilder<SyncContainer>> fn) {
@@ -427,7 +427,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Defines a retention policy for the transform. Data that meets the defined
 		 * criteria is deleted from the destination index.
-		 *
+		 * <p>
 		 * API name: {@code retention_policy}
 		 */
 		public BuilderT retentionPolicy(@Nullable RetentionPolicyContainer value) {
@@ -438,7 +438,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Defines a retention policy for the transform. Data that meets the defined
 		 * criteria is deleted from the destination index.
-		 *
+		 * <p>
 		 * API name: {@code retention_policy}
 		 */
 		public BuilderT retentionPolicy(
@@ -449,7 +449,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		/**
 		 * The latest method transforms the data by finding the latest document for each
 		 * unique key.
-		 *
+		 * <p>
 		 * API name: {@code latest}
 		 */
 		public BuilderT latest(@Nullable Latest value) {
@@ -460,7 +460,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		/**
 		 * The latest method transforms the data by finding the latest document for each
 		 * unique key.
-		 *
+		 * <p>
 		 * API name: {@code latest}
 		 */
 		public BuilderT latest(Function<Latest.Builder, ObjectBuilder<Latest>> fn) {

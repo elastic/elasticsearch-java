@@ -349,7 +349,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * index name
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -359,7 +359,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * shard name
-	 *
+	 * <p>
 	 * API name: {@code shard}
 	 */
 	@Nullable
@@ -369,7 +369,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * primary or replica
-	 *
+	 * <p>
 	 * API name: {@code prirep}
 	 */
 	@Nullable
@@ -379,7 +379,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * shard state
-	 *
+	 * <p>
 	 * API name: {@code state}
 	 */
 	@Nullable
@@ -389,7 +389,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of docs in shard
-	 *
+	 * <p>
 	 * API name: {@code docs}
 	 */
 	@Nullable
@@ -399,7 +399,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * store size of shard (how much disk it uses)
-	 *
+	 * <p>
 	 * API name: {@code store}
 	 */
 	@Nullable
@@ -409,7 +409,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * ip of node where it lives
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -419,7 +419,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * unique id of node where it lives
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -429,7 +429,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * name of node where it lives
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -439,7 +439,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * sync id
-	 *
+	 * <p>
 	 * API name: {@code sync_id}
 	 */
 	@Nullable
@@ -449,7 +449,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * reason shard is unassigned
-	 *
+	 * <p>
 	 * API name: {@code unassigned.reason}
 	 */
 	@Nullable
@@ -459,7 +459,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time shard became unassigned (UTC)
-	 *
+	 * <p>
 	 * API name: {@code unassigned.at}
 	 */
 	@Nullable
@@ -469,7 +469,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time has been unassigned
-	 *
+	 * <p>
 	 * API name: {@code unassigned.for}
 	 */
 	@Nullable
@@ -479,7 +479,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * additional details as to why the shard became unassigned
-	 *
+	 * <p>
 	 * API name: {@code unassigned.details}
 	 */
 	@Nullable
@@ -489,7 +489,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * recovery source type
-	 *
+	 * <p>
 	 * API name: {@code recoverysource.type}
 	 */
 	@Nullable
@@ -499,7 +499,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * size of completion
-	 *
+	 * <p>
 	 * API name: {@code completion.size}
 	 */
 	@Nullable
@@ -509,7 +509,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * used fielddata cache
-	 *
+	 * <p>
 	 * API name: {@code fielddata.memory_size}
 	 */
 	@Nullable
@@ -519,7 +519,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * fielddata evictions
-	 *
+	 * <p>
 	 * API name: {@code fielddata.evictions}
 	 */
 	@Nullable
@@ -529,7 +529,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * used query cache
-	 *
+	 * <p>
 	 * API name: {@code query_cache.memory_size}
 	 */
 	@Nullable
@@ -539,7 +539,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * query cache evictions
-	 *
+	 * <p>
 	 * API name: {@code query_cache.evictions}
 	 */
 	@Nullable
@@ -549,7 +549,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of flushes
-	 *
+	 * <p>
 	 * API name: {@code flush.total}
 	 */
 	@Nullable
@@ -559,7 +559,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in flush
-	 *
+	 * <p>
 	 * API name: {@code flush.total_time}
 	 */
 	@Nullable
@@ -569,7 +569,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of current get ops
-	 *
+	 * <p>
 	 * API name: {@code get.current}
 	 */
 	@Nullable
@@ -579,7 +579,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in get
-	 *
+	 * <p>
 	 * API name: {@code get.time}
 	 */
 	@Nullable
@@ -589,7 +589,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of get ops
-	 *
+	 * <p>
 	 * API name: {@code get.total}
 	 */
 	@Nullable
@@ -599,7 +599,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in successful gets
-	 *
+	 * <p>
 	 * API name: {@code get.exists_time}
 	 */
 	@Nullable
@@ -609,7 +609,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of successful gets
-	 *
+	 * <p>
 	 * API name: {@code get.exists_total}
 	 */
 	@Nullable
@@ -619,7 +619,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in failed gets
-	 *
+	 * <p>
 	 * API name: {@code get.missing_time}
 	 */
 	@Nullable
@@ -629,7 +629,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of failed gets
-	 *
+	 * <p>
 	 * API name: {@code get.missing_total}
 	 */
 	@Nullable
@@ -639,7 +639,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of current deletions
-	 *
+	 * <p>
 	 * API name: {@code indexing.delete_current}
 	 */
 	@Nullable
@@ -649,7 +649,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in deletions
-	 *
+	 * <p>
 	 * API name: {@code indexing.delete_time}
 	 */
 	@Nullable
@@ -659,7 +659,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of delete ops
-	 *
+	 * <p>
 	 * API name: {@code indexing.delete_total}
 	 */
 	@Nullable
@@ -669,7 +669,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of current indexing ops
-	 *
+	 * <p>
 	 * API name: {@code indexing.index_current}
 	 */
 	@Nullable
@@ -679,7 +679,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in indexing
-	 *
+	 * <p>
 	 * API name: {@code indexing.index_time}
 	 */
 	@Nullable
@@ -689,7 +689,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of indexing ops
-	 *
+	 * <p>
 	 * API name: {@code indexing.index_total}
 	 */
 	@Nullable
@@ -699,7 +699,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of failed indexing ops
-	 *
+	 * <p>
 	 * API name: {@code indexing.index_failed}
 	 */
 	@Nullable
@@ -709,7 +709,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of current merges
-	 *
+	 * <p>
 	 * API name: {@code merges.current}
 	 */
 	@Nullable
@@ -719,7 +719,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of current merging docs
-	 *
+	 * <p>
 	 * API name: {@code merges.current_docs}
 	 */
 	@Nullable
@@ -729,7 +729,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * size of current merges
-	 *
+	 * <p>
 	 * API name: {@code merges.current_size}
 	 */
 	@Nullable
@@ -739,7 +739,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of completed merge ops
-	 *
+	 * <p>
 	 * API name: {@code merges.total}
 	 */
 	@Nullable
@@ -749,7 +749,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * docs merged
-	 *
+	 * <p>
 	 * API name: {@code merges.total_docs}
 	 */
 	@Nullable
@@ -759,7 +759,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * size merged
-	 *
+	 * <p>
 	 * API name: {@code merges.total_size}
 	 */
 	@Nullable
@@ -769,7 +769,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in merges
-	 *
+	 * <p>
 	 * API name: {@code merges.total_time}
 	 */
 	@Nullable
@@ -779,7 +779,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * total refreshes
-	 *
+	 * <p>
 	 * API name: {@code refresh.total}
 	 */
 	@Nullable
@@ -789,7 +789,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in refreshes
-	 *
+	 * <p>
 	 * API name: {@code refresh.time}
 	 */
 	@Nullable
@@ -799,7 +799,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * total external refreshes
-	 *
+	 * <p>
 	 * API name: {@code refresh.external_total}
 	 */
 	@Nullable
@@ -809,7 +809,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in external refreshes
-	 *
+	 * <p>
 	 * API name: {@code refresh.external_time}
 	 */
 	@Nullable
@@ -819,7 +819,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of pending refresh listeners
-	 *
+	 * <p>
 	 * API name: {@code refresh.listeners}
 	 */
 	@Nullable
@@ -829,7 +829,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * current fetch phase ops
-	 *
+	 * <p>
 	 * API name: {@code search.fetch_current}
 	 */
 	@Nullable
@@ -839,7 +839,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in fetch phase
-	 *
+	 * <p>
 	 * API name: {@code search.fetch_time}
 	 */
 	@Nullable
@@ -849,7 +849,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * total fetch ops
-	 *
+	 * <p>
 	 * API name: {@code search.fetch_total}
 	 */
 	@Nullable
@@ -859,7 +859,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * open search contexts
-	 *
+	 * <p>
 	 * API name: {@code search.open_contexts}
 	 */
 	@Nullable
@@ -869,7 +869,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * current query phase ops
-	 *
+	 * <p>
 	 * API name: {@code search.query_current}
 	 */
 	@Nullable
@@ -879,7 +879,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in query phase
-	 *
+	 * <p>
 	 * API name: {@code search.query_time}
 	 */
 	@Nullable
@@ -889,7 +889,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * total query phase ops
-	 *
+	 * <p>
 	 * API name: {@code search.query_total}
 	 */
 	@Nullable
@@ -899,7 +899,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * open scroll contexts
-	 *
+	 * <p>
 	 * API name: {@code search.scroll_current}
 	 */
 	@Nullable
@@ -909,7 +909,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time scroll contexts held open
-	 *
+	 * <p>
 	 * API name: {@code search.scroll_time}
 	 */
 	@Nullable
@@ -919,7 +919,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * completed scroll contexts
-	 *
+	 * <p>
 	 * API name: {@code search.scroll_total}
 	 */
 	@Nullable
@@ -929,7 +929,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of segments
-	 *
+	 * <p>
 	 * API name: {@code segments.count}
 	 */
 	@Nullable
@@ -939,7 +939,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * memory used by segments
-	 *
+	 * <p>
 	 * API name: {@code segments.memory}
 	 */
 	@Nullable
@@ -949,7 +949,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * memory used by index writer
-	 *
+	 * <p>
 	 * API name: {@code segments.index_writer_memory}
 	 */
 	@Nullable
@@ -959,7 +959,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * memory used by version map
-	 *
+	 * <p>
 	 * API name: {@code segments.version_map_memory}
 	 */
 	@Nullable
@@ -970,7 +970,7 @@ public final class ShardsRecord implements ToJsonp {
 	/**
 	 * memory used by fixed bit sets for nested object field types and export type
 	 * filters for types referred in _parent fields
-	 *
+	 * <p>
 	 * API name: {@code segments.fixed_bitset_memory}
 	 */
 	@Nullable
@@ -980,7 +980,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * max sequence number
-	 *
+	 * <p>
 	 * API name: {@code seq_no.max}
 	 */
 	@Nullable
@@ -990,7 +990,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * local checkpoint
-	 *
+	 * <p>
 	 * API name: {@code seq_no.local_checkpoint}
 	 */
 	@Nullable
@@ -1000,7 +1000,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * global checkpoint
-	 *
+	 * <p>
 	 * API name: {@code seq_no.global_checkpoint}
 	 */
 	@Nullable
@@ -1010,7 +1010,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * current warmer ops
-	 *
+	 * <p>
 	 * API name: {@code warmer.current}
 	 */
 	@Nullable
@@ -1020,7 +1020,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * total warmer ops
-	 *
+	 * <p>
 	 * API name: {@code warmer.total}
 	 */
 	@Nullable
@@ -1030,7 +1030,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spent in warmers
-	 *
+	 * <p>
 	 * API name: {@code warmer.total_time}
 	 */
 	@Nullable
@@ -1040,7 +1040,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * shard data path
-	 *
+	 * <p>
 	 * API name: {@code path.data}
 	 */
 	@Nullable
@@ -1050,7 +1050,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * shard state path
-	 *
+	 * <p>
 	 * API name: {@code path.state}
 	 */
 	@Nullable
@@ -1060,7 +1060,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * number of bulk shard ops
-	 *
+	 * <p>
 	 * API name: {@code bulk.total_operations}
 	 */
 	@Nullable
@@ -1070,7 +1070,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * time spend in shard bulk
-	 *
+	 * <p>
 	 * API name: {@code bulk.total_time}
 	 */
 	@Nullable
@@ -1080,7 +1080,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * total size in bytes of shard bulk
-	 *
+	 * <p>
 	 * API name: {@code bulk.total_size_in_bytes}
 	 */
 	@Nullable
@@ -1090,7 +1090,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * average time spend in shard bulk
-	 *
+	 * <p>
 	 * API name: {@code bulk.avg_time}
 	 */
 	@Nullable
@@ -1100,7 +1100,7 @@ public final class ShardsRecord implements ToJsonp {
 
 	/**
 	 * avg size in bytes of shard bulk
-	 *
+	 * <p>
 	 * API name: {@code bulk.avg_size_in_bytes}
 	 */
 	@Nullable
@@ -1814,7 +1814,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * index name
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -1824,7 +1824,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * shard name
-		 *
+		 * <p>
 		 * API name: {@code shard}
 		 */
 		public Builder shard(@Nullable String value) {
@@ -1834,7 +1834,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * primary or replica
-		 *
+		 * <p>
 		 * API name: {@code prirep}
 		 */
 		public Builder prirep(@Nullable String value) {
@@ -1844,7 +1844,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * shard state
-		 *
+		 * <p>
 		 * API name: {@code state}
 		 */
 		public Builder state(@Nullable String value) {
@@ -1854,7 +1854,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of docs in shard
-		 *
+		 * <p>
 		 * API name: {@code docs}
 		 */
 		public Builder docs(@Nullable String value) {
@@ -1864,7 +1864,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * store size of shard (how much disk it uses)
-		 *
+		 * <p>
 		 * API name: {@code store}
 		 */
 		public Builder store(@Nullable String value) {
@@ -1874,7 +1874,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * ip of node where it lives
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -1884,7 +1884,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * unique id of node where it lives
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -1894,7 +1894,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * name of node where it lives
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(@Nullable String value) {
@@ -1904,7 +1904,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * sync id
-		 *
+		 * <p>
 		 * API name: {@code sync_id}
 		 */
 		public Builder syncId(@Nullable String value) {
@@ -1914,7 +1914,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * reason shard is unassigned
-		 *
+		 * <p>
 		 * API name: {@code unassigned.reason}
 		 */
 		public Builder unassigned_reason(@Nullable String value) {
@@ -1924,7 +1924,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time shard became unassigned (UTC)
-		 *
+		 * <p>
 		 * API name: {@code unassigned.at}
 		 */
 		public Builder unassigned_at(@Nullable String value) {
@@ -1934,7 +1934,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time has been unassigned
-		 *
+		 * <p>
 		 * API name: {@code unassigned.for}
 		 */
 		public Builder unassigned_for(@Nullable String value) {
@@ -1944,7 +1944,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * additional details as to why the shard became unassigned
-		 *
+		 * <p>
 		 * API name: {@code unassigned.details}
 		 */
 		public Builder unassigned_details(@Nullable String value) {
@@ -1954,7 +1954,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * recovery source type
-		 *
+		 * <p>
 		 * API name: {@code recoverysource.type}
 		 */
 		public Builder recoverysource_type(@Nullable String value) {
@@ -1964,7 +1964,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * size of completion
-		 *
+		 * <p>
 		 * API name: {@code completion.size}
 		 */
 		public Builder completion_size(@Nullable String value) {
@@ -1974,7 +1974,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * used fielddata cache
-		 *
+		 * <p>
 		 * API name: {@code fielddata.memory_size}
 		 */
 		public Builder fielddata_memorySize(@Nullable String value) {
@@ -1984,7 +1984,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * fielddata evictions
-		 *
+		 * <p>
 		 * API name: {@code fielddata.evictions}
 		 */
 		public Builder fielddata_evictions(@Nullable String value) {
@@ -1994,7 +1994,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * used query cache
-		 *
+		 * <p>
 		 * API name: {@code query_cache.memory_size}
 		 */
 		public Builder queryCache_memorySize(@Nullable String value) {
@@ -2004,7 +2004,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * query cache evictions
-		 *
+		 * <p>
 		 * API name: {@code query_cache.evictions}
 		 */
 		public Builder queryCache_evictions(@Nullable String value) {
@@ -2014,7 +2014,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of flushes
-		 *
+		 * <p>
 		 * API name: {@code flush.total}
 		 */
 		public Builder flush_total(@Nullable String value) {
@@ -2024,7 +2024,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in flush
-		 *
+		 * <p>
 		 * API name: {@code flush.total_time}
 		 */
 		public Builder flush_totalTime(@Nullable String value) {
@@ -2034,7 +2034,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of current get ops
-		 *
+		 * <p>
 		 * API name: {@code get.current}
 		 */
 		public Builder get_current(@Nullable String value) {
@@ -2044,7 +2044,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in get
-		 *
+		 * <p>
 		 * API name: {@code get.time}
 		 */
 		public Builder get_time(@Nullable String value) {
@@ -2054,7 +2054,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of get ops
-		 *
+		 * <p>
 		 * API name: {@code get.total}
 		 */
 		public Builder get_total(@Nullable String value) {
@@ -2064,7 +2064,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in successful gets
-		 *
+		 * <p>
 		 * API name: {@code get.exists_time}
 		 */
 		public Builder get_existsTime(@Nullable String value) {
@@ -2074,7 +2074,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of successful gets
-		 *
+		 * <p>
 		 * API name: {@code get.exists_total}
 		 */
 		public Builder get_existsTotal(@Nullable String value) {
@@ -2084,7 +2084,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in failed gets
-		 *
+		 * <p>
 		 * API name: {@code get.missing_time}
 		 */
 		public Builder get_missingTime(@Nullable String value) {
@@ -2094,7 +2094,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of failed gets
-		 *
+		 * <p>
 		 * API name: {@code get.missing_total}
 		 */
 		public Builder get_missingTotal(@Nullable String value) {
@@ -2104,7 +2104,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of current deletions
-		 *
+		 * <p>
 		 * API name: {@code indexing.delete_current}
 		 */
 		public Builder indexing_deleteCurrent(@Nullable String value) {
@@ -2114,7 +2114,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in deletions
-		 *
+		 * <p>
 		 * API name: {@code indexing.delete_time}
 		 */
 		public Builder indexing_deleteTime(@Nullable String value) {
@@ -2124,7 +2124,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of delete ops
-		 *
+		 * <p>
 		 * API name: {@code indexing.delete_total}
 		 */
 		public Builder indexing_deleteTotal(@Nullable String value) {
@@ -2134,7 +2134,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of current indexing ops
-		 *
+		 * <p>
 		 * API name: {@code indexing.index_current}
 		 */
 		public Builder indexing_indexCurrent(@Nullable String value) {
@@ -2144,7 +2144,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in indexing
-		 *
+		 * <p>
 		 * API name: {@code indexing.index_time}
 		 */
 		public Builder indexing_indexTime(@Nullable String value) {
@@ -2154,7 +2154,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of indexing ops
-		 *
+		 * <p>
 		 * API name: {@code indexing.index_total}
 		 */
 		public Builder indexing_indexTotal(@Nullable String value) {
@@ -2164,7 +2164,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of failed indexing ops
-		 *
+		 * <p>
 		 * API name: {@code indexing.index_failed}
 		 */
 		public Builder indexing_indexFailed(@Nullable String value) {
@@ -2174,7 +2174,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of current merges
-		 *
+		 * <p>
 		 * API name: {@code merges.current}
 		 */
 		public Builder merges_current(@Nullable String value) {
@@ -2184,7 +2184,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of current merging docs
-		 *
+		 * <p>
 		 * API name: {@code merges.current_docs}
 		 */
 		public Builder merges_currentDocs(@Nullable String value) {
@@ -2194,7 +2194,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * size of current merges
-		 *
+		 * <p>
 		 * API name: {@code merges.current_size}
 		 */
 		public Builder merges_currentSize(@Nullable String value) {
@@ -2204,7 +2204,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of completed merge ops
-		 *
+		 * <p>
 		 * API name: {@code merges.total}
 		 */
 		public Builder merges_total(@Nullable String value) {
@@ -2214,7 +2214,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * docs merged
-		 *
+		 * <p>
 		 * API name: {@code merges.total_docs}
 		 */
 		public Builder merges_totalDocs(@Nullable String value) {
@@ -2224,7 +2224,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * size merged
-		 *
+		 * <p>
 		 * API name: {@code merges.total_size}
 		 */
 		public Builder merges_totalSize(@Nullable String value) {
@@ -2234,7 +2234,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in merges
-		 *
+		 * <p>
 		 * API name: {@code merges.total_time}
 		 */
 		public Builder merges_totalTime(@Nullable String value) {
@@ -2244,7 +2244,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * total refreshes
-		 *
+		 * <p>
 		 * API name: {@code refresh.total}
 		 */
 		public Builder refresh_total(@Nullable String value) {
@@ -2254,7 +2254,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in refreshes
-		 *
+		 * <p>
 		 * API name: {@code refresh.time}
 		 */
 		public Builder refresh_time(@Nullable String value) {
@@ -2264,7 +2264,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * total external refreshes
-		 *
+		 * <p>
 		 * API name: {@code refresh.external_total}
 		 */
 		public Builder refresh_externalTotal(@Nullable String value) {
@@ -2274,7 +2274,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in external refreshes
-		 *
+		 * <p>
 		 * API name: {@code refresh.external_time}
 		 */
 		public Builder refresh_externalTime(@Nullable String value) {
@@ -2284,7 +2284,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of pending refresh listeners
-		 *
+		 * <p>
 		 * API name: {@code refresh.listeners}
 		 */
 		public Builder refresh_listeners(@Nullable String value) {
@@ -2294,7 +2294,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * current fetch phase ops
-		 *
+		 * <p>
 		 * API name: {@code search.fetch_current}
 		 */
 		public Builder search_fetchCurrent(@Nullable String value) {
@@ -2304,7 +2304,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in fetch phase
-		 *
+		 * <p>
 		 * API name: {@code search.fetch_time}
 		 */
 		public Builder search_fetchTime(@Nullable String value) {
@@ -2314,7 +2314,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * total fetch ops
-		 *
+		 * <p>
 		 * API name: {@code search.fetch_total}
 		 */
 		public Builder search_fetchTotal(@Nullable String value) {
@@ -2324,7 +2324,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * open search contexts
-		 *
+		 * <p>
 		 * API name: {@code search.open_contexts}
 		 */
 		public Builder search_openContexts(@Nullable String value) {
@@ -2334,7 +2334,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * current query phase ops
-		 *
+		 * <p>
 		 * API name: {@code search.query_current}
 		 */
 		public Builder search_queryCurrent(@Nullable String value) {
@@ -2344,7 +2344,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in query phase
-		 *
+		 * <p>
 		 * API name: {@code search.query_time}
 		 */
 		public Builder search_queryTime(@Nullable String value) {
@@ -2354,7 +2354,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * total query phase ops
-		 *
+		 * <p>
 		 * API name: {@code search.query_total}
 		 */
 		public Builder search_queryTotal(@Nullable String value) {
@@ -2364,7 +2364,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * open scroll contexts
-		 *
+		 * <p>
 		 * API name: {@code search.scroll_current}
 		 */
 		public Builder search_scrollCurrent(@Nullable String value) {
@@ -2374,7 +2374,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time scroll contexts held open
-		 *
+		 * <p>
 		 * API name: {@code search.scroll_time}
 		 */
 		public Builder search_scrollTime(@Nullable String value) {
@@ -2384,7 +2384,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * completed scroll contexts
-		 *
+		 * <p>
 		 * API name: {@code search.scroll_total}
 		 */
 		public Builder search_scrollTotal(@Nullable String value) {
@@ -2394,7 +2394,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of segments
-		 *
+		 * <p>
 		 * API name: {@code segments.count}
 		 */
 		public Builder segments_count(@Nullable String value) {
@@ -2404,7 +2404,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * memory used by segments
-		 *
+		 * <p>
 		 * API name: {@code segments.memory}
 		 */
 		public Builder segments_memory(@Nullable String value) {
@@ -2414,7 +2414,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * memory used by index writer
-		 *
+		 * <p>
 		 * API name: {@code segments.index_writer_memory}
 		 */
 		public Builder segments_indexWriterMemory(@Nullable String value) {
@@ -2424,7 +2424,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * memory used by version map
-		 *
+		 * <p>
 		 * API name: {@code segments.version_map_memory}
 		 */
 		public Builder segments_versionMapMemory(@Nullable String value) {
@@ -2435,7 +2435,7 @@ public final class ShardsRecord implements ToJsonp {
 		/**
 		 * memory used by fixed bit sets for nested object field types and export type
 		 * filters for types referred in _parent fields
-		 *
+		 * <p>
 		 * API name: {@code segments.fixed_bitset_memory}
 		 */
 		public Builder segments_fixedBitsetMemory(@Nullable String value) {
@@ -2445,7 +2445,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * max sequence number
-		 *
+		 * <p>
 		 * API name: {@code seq_no.max}
 		 */
 		public Builder seqNo_max(@Nullable String value) {
@@ -2455,7 +2455,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * local checkpoint
-		 *
+		 * <p>
 		 * API name: {@code seq_no.local_checkpoint}
 		 */
 		public Builder seqNo_localCheckpoint(@Nullable String value) {
@@ -2465,7 +2465,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * global checkpoint
-		 *
+		 * <p>
 		 * API name: {@code seq_no.global_checkpoint}
 		 */
 		public Builder seqNo_globalCheckpoint(@Nullable String value) {
@@ -2475,7 +2475,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * current warmer ops
-		 *
+		 * <p>
 		 * API name: {@code warmer.current}
 		 */
 		public Builder warmer_current(@Nullable String value) {
@@ -2485,7 +2485,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * total warmer ops
-		 *
+		 * <p>
 		 * API name: {@code warmer.total}
 		 */
 		public Builder warmer_total(@Nullable String value) {
@@ -2495,7 +2495,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spent in warmers
-		 *
+		 * <p>
 		 * API name: {@code warmer.total_time}
 		 */
 		public Builder warmer_totalTime(@Nullable String value) {
@@ -2505,7 +2505,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * shard data path
-		 *
+		 * <p>
 		 * API name: {@code path.data}
 		 */
 		public Builder path_data(@Nullable String value) {
@@ -2515,7 +2515,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * shard state path
-		 *
+		 * <p>
 		 * API name: {@code path.state}
 		 */
 		public Builder path_state(@Nullable String value) {
@@ -2525,7 +2525,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * number of bulk shard ops
-		 *
+		 * <p>
 		 * API name: {@code bulk.total_operations}
 		 */
 		public Builder bulk_totalOperations(@Nullable String value) {
@@ -2535,7 +2535,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * time spend in shard bulk
-		 *
+		 * <p>
 		 * API name: {@code bulk.total_time}
 		 */
 		public Builder bulk_totalTime(@Nullable String value) {
@@ -2545,7 +2545,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * total size in bytes of shard bulk
-		 *
+		 * <p>
 		 * API name: {@code bulk.total_size_in_bytes}
 		 */
 		public Builder bulk_totalSizeInBytes(@Nullable String value) {
@@ -2555,7 +2555,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * average time spend in shard bulk
-		 *
+		 * <p>
 		 * API name: {@code bulk.avg_time}
 		 */
 		public Builder bulk_avgTime(@Nullable String value) {
@@ -2565,7 +2565,7 @@ public final class ShardsRecord implements ToJsonp {
 
 		/**
 		 * avg size in bytes of shard bulk
-		 *
+		 * <p>
 		 * API name: {@code bulk.avg_size_in_bytes}
 		 */
 		public Builder bulk_avgSizeInBytes(@Nullable String value) {

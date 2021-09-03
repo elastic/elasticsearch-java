@@ -94,7 +94,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * the datafeed_id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -104,7 +104,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * the datafeed state
-	 *
+	 * <p>
 	 * API name: {@code state}
 	 */
 	@Nullable
@@ -114,7 +114,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * why the datafeed is or is not assigned to a node
-	 *
+	 * <p>
 	 * API name: {@code assignment_explanation}
 	 */
 	@Nullable
@@ -124,7 +124,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * bucket count
-	 *
+	 * <p>
 	 * API name: {@code buckets.count}
 	 */
 	@Nullable
@@ -134,7 +134,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * number of searches ran by the datafeed
-	 *
+	 * <p>
 	 * API name: {@code search.count}
 	 */
 	@Nullable
@@ -144,7 +144,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * the total search time
-	 *
+	 * <p>
 	 * API name: {@code search.time}
 	 */
 	@Nullable
@@ -154,7 +154,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * the average search time per bucket (millisecond)
-	 *
+	 * <p>
 	 * API name: {@code search.bucket_avg}
 	 */
 	@Nullable
@@ -164,7 +164,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * the exponential average search time per hour (millisecond)
-	 *
+	 * <p>
 	 * API name: {@code search.exp_avg_hour}
 	 */
 	@Nullable
@@ -174,7 +174,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * id of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.id}
 	 */
 	@Nullable
@@ -184,7 +184,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * name of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.name}
 	 */
 	@Nullable
@@ -194,7 +194,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * ephemeral id of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.ephemeral_id}
 	 */
 	@Nullable
@@ -204,7 +204,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 	/**
 	 * network address of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.address}
 	 */
 	@Nullable
@@ -342,7 +342,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * the datafeed_id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -352,7 +352,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * the datafeed state
-		 *
+		 * <p>
 		 * API name: {@code state}
 		 */
 		public Builder state(@Nullable JsonValue value) {
@@ -362,7 +362,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * why the datafeed is or is not assigned to a node
-		 *
+		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
 		public Builder assignmentExplanation(@Nullable String value) {
@@ -372,7 +372,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * bucket count
-		 *
+		 * <p>
 		 * API name: {@code buckets.count}
 		 */
 		public Builder buckets_count(@Nullable String value) {
@@ -382,7 +382,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * number of searches ran by the datafeed
-		 *
+		 * <p>
 		 * API name: {@code search.count}
 		 */
 		public Builder search_count(@Nullable String value) {
@@ -392,7 +392,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * the total search time
-		 *
+		 * <p>
 		 * API name: {@code search.time}
 		 */
 		public Builder search_time(@Nullable String value) {
@@ -402,7 +402,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * the average search time per bucket (millisecond)
-		 *
+		 * <p>
 		 * API name: {@code search.bucket_avg}
 		 */
 		public Builder search_bucketAvg(@Nullable String value) {
@@ -412,7 +412,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * the exponential average search time per hour (millisecond)
-		 *
+		 * <p>
 		 * API name: {@code search.exp_avg_hour}
 		 */
 		public Builder search_expAvgHour(@Nullable String value) {
@@ -422,7 +422,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * id of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.id}
 		 */
 		public Builder node_id(@Nullable String value) {
@@ -432,7 +432,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * name of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.name}
 		 */
 		public Builder node_name(@Nullable String value) {
@@ -442,7 +442,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * ephemeral id of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
 		public Builder node_ephemeralId(@Nullable String value) {
@@ -452,7 +452,7 @@ public final class DatafeedsRecord implements ToJsonp {
 
 		/**
 		 * network address of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.address}
 		 */
 		public Builder node_address(@Nullable String value) {

@@ -50,7 +50,7 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 	 * Controls how unlabeled documents in the search results are counted. If set to
 	 * true, unlabeled documents are ignored and neither count as relevant or
 	 * irrelevant. Set to false (the default), they are treated as irrelevant.
-	 *
+	 * <p>
 	 * API name: {@code ignore_unlabeled}
 	 */
 	@Nullable
@@ -84,7 +84,7 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 		 * Controls how unlabeled documents in the search results are counted. If set to
 		 * true, unlabeled documents are ignored and neither count as relevant or
 		 * irrelevant. Set to false (the default), they are treated as irrelevant.
-		 *
+		 * <p>
 		 * API name: {@code ignore_unlabeled}
 		 */
 		public Builder ignoreUnlabeled(@Nullable Boolean value) {

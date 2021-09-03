@@ -67,8 +67,10 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Deletes an existing rollup job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteRollupJobResponse> deleteJob(DeleteRollupJobRequest request) throws IOException {
@@ -77,12 +79,14 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Deletes an existing rollup job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteRollupJobResponse> deleteJob(
@@ -94,8 +98,10 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Retrieves the configuration, stats, and status of rollup jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetRollupJobResponse> getJobs(GetRollupJobRequest request) throws IOException {
@@ -104,12 +110,14 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Retrieves the configuration, stats, and status of rollup jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetRollupJobResponse> getJobs(
@@ -122,8 +130,10 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 	/**
 	 * Returns the capabilities of any rollup jobs that have been configured for a
 	 * specific index or index pattern.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetRollupCapabilitiesResponse> getRollupCaps(GetRollupCapabilitiesRequest request)
@@ -134,12 +144,14 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 	/**
 	 * Returns the capabilities of any rollup jobs that have been configured for a
 	 * specific index or index pattern.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetRollupCapabilitiesResponse> getRollupCaps(
@@ -153,8 +165,10 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 	/**
 	 * Returns the rollup capabilities of all jobs inside of a rollup index (e.g.
 	 * the index where rollup data is stored).
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetRollupIndexCapabilitiesResponse> getRollupIndexCaps(
@@ -166,12 +180,14 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 	/**
 	 * Returns the rollup capabilities of all jobs inside of a rollup index (e.g.
 	 * the index where rollup data is stored).
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetRollupIndexCapabilitiesResponse> getRollupIndexCaps(
@@ -184,8 +200,10 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Creates a rollup job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CreateRollupJobResponse> putJob(CreateRollupJobRequest request) throws IOException {
@@ -194,12 +212,14 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Creates a rollup job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CreateRollupJobResponse> putJob(
@@ -211,8 +231,10 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Rollup an index
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<RollupResponse> rollup(RollupRequest request) throws IOException {
@@ -221,12 +243,14 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Rollup an index
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RollupResponse> rollup(
@@ -238,8 +262,10 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Enables searching rolled-up data using the standard query DSL.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(RollupSearchRequest request,
@@ -250,12 +276,14 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Enables searching rolled-up data using the standard query DSL.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(
@@ -268,8 +296,10 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Starts an existing, stopped rollup job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StartRollupJobResponse> startJob(StartRollupJobRequest request) throws IOException {
@@ -278,12 +308,14 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Starts an existing, stopped rollup job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StartRollupJobResponse> startJob(
@@ -295,8 +327,10 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Stops an existing, started rollup job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StopRollupJobResponse> stopJob(StopRollupJobRequest request) throws IOException {
@@ -305,12 +339,14 @@ public class RollupAsyncClient extends ApiClient<RollupAsyncClient> {
 
 	/**
 	 * Stops an existing, started rollup job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StopRollupJobResponse> stopJob(

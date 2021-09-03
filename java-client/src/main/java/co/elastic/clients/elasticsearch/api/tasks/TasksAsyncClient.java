@@ -55,8 +55,10 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException {
@@ -65,12 +67,14 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CancelResponse> cancel(
@@ -82,8 +86,10 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 
 	/**
 	 * Returns information about a task.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetResponse> get(GetRequest request) throws IOException {
@@ -92,12 +98,14 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 
 	/**
 	 * Returns information about a task.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetResponse> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn)
@@ -109,8 +117,10 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 
 	/**
 	 * Returns a list of tasks.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException {
@@ -119,12 +129,14 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 
 	/**
 	 * Returns a list of tasks.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ListResponse> list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)

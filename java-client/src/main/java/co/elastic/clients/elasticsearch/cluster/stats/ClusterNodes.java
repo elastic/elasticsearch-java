@@ -87,7 +87,7 @@ public final class ClusterNodes implements ToJsonp {
 
 	/**
 	 * Contains counts for nodes selected by the request’s node filters.
-	 *
+	 * <p>
 	 * API name: {@code count}
 	 */
 	public ClusterNodeCount count() {
@@ -96,7 +96,7 @@ public final class ClusterNodes implements ToJsonp {
 
 	/**
 	 * Contains statistics about the discovery types used by selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code discovery_types}
 	 */
 	public Map<String, Number> discoveryTypes() {
@@ -105,7 +105,7 @@ public final class ClusterNodes implements ToJsonp {
 
 	/**
 	 * Contains statistics about file stores by selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code fs}
 	 */
 	public ClusterFileSystem fs() {
@@ -122,7 +122,7 @@ public final class ClusterNodes implements ToJsonp {
 	/**
 	 * Contains statistics about the Java Virtual Machines (JVMs) used by selected
 	 * nodes.
-	 *
+	 * <p>
 	 * API name: {@code jvm}
 	 */
 	public ClusterJvm jvm() {
@@ -132,7 +132,7 @@ public final class ClusterNodes implements ToJsonp {
 	/**
 	 * Contains statistics about the transport and HTTP networks used by selected
 	 * nodes.
-	 *
+	 * <p>
 	 * API name: {@code network_types}
 	 */
 	public ClusterNetworkTypes networkTypes() {
@@ -141,7 +141,7 @@ public final class ClusterNodes implements ToJsonp {
 
 	/**
 	 * Contains statistics about the operating systems used by selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code os}
 	 */
 	public ClusterOperatingSystem os() {
@@ -151,7 +151,7 @@ public final class ClusterNodes implements ToJsonp {
 	/**
 	 * Contains statistics about Elasticsearch distributions installed on selected
 	 * nodes.
-	 *
+	 * <p>
 	 * API name: {@code packaging_types}
 	 */
 	public List<NodePackagingType> packagingTypes() {
@@ -160,7 +160,7 @@ public final class ClusterNodes implements ToJsonp {
 
 	/**
 	 * Contains statistics about installed plugins and modules by selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code plugins}
 	 */
 	public List<PluginStats> plugins() {
@@ -169,7 +169,7 @@ public final class ClusterNodes implements ToJsonp {
 
 	/**
 	 * Contains statistics about processes used by selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code process}
 	 */
 	public ClusterProcess process() {
@@ -178,7 +178,7 @@ public final class ClusterNodes implements ToJsonp {
 
 	/**
 	 * Array of Elasticsearch versions used on selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code versions}
 	 */
 	public List<String> versions() {
@@ -282,7 +282,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains counts for nodes selected by the request’s node filters.
-		 *
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public Builder count(ClusterNodeCount value) {
@@ -292,7 +292,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains counts for nodes selected by the request’s node filters.
-		 *
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public Builder count(Function<ClusterNodeCount.Builder, ObjectBuilder<ClusterNodeCount>> fn) {
@@ -301,7 +301,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains statistics about the discovery types used by selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code discovery_types}
 		 */
 		public Builder discoveryTypes(Map<String, Number> value) {
@@ -322,7 +322,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains statistics about file stores by selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code fs}
 		 */
 		public Builder fs(ClusterFileSystem value) {
@@ -332,7 +332,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains statistics about file stores by selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code fs}
 		 */
 		public Builder fs(Function<ClusterFileSystem.Builder, ObjectBuilder<ClusterFileSystem>> fn) {
@@ -357,7 +357,7 @@ public final class ClusterNodes implements ToJsonp {
 		/**
 		 * Contains statistics about the Java Virtual Machines (JVMs) used by selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code jvm}
 		 */
 		public Builder jvm(ClusterJvm value) {
@@ -368,7 +368,7 @@ public final class ClusterNodes implements ToJsonp {
 		/**
 		 * Contains statistics about the Java Virtual Machines (JVMs) used by selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code jvm}
 		 */
 		public Builder jvm(Function<ClusterJvm.Builder, ObjectBuilder<ClusterJvm>> fn) {
@@ -378,7 +378,7 @@ public final class ClusterNodes implements ToJsonp {
 		/**
 		 * Contains statistics about the transport and HTTP networks used by selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code network_types}
 		 */
 		public Builder networkTypes(ClusterNetworkTypes value) {
@@ -389,7 +389,7 @@ public final class ClusterNodes implements ToJsonp {
 		/**
 		 * Contains statistics about the transport and HTTP networks used by selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code network_types}
 		 */
 		public Builder networkTypes(Function<ClusterNetworkTypes.Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
@@ -398,7 +398,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains statistics about the operating systems used by selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code os}
 		 */
 		public Builder os(ClusterOperatingSystem value) {
@@ -408,7 +408,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains statistics about the operating systems used by selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code os}
 		 */
 		public Builder os(Function<ClusterOperatingSystem.Builder, ObjectBuilder<ClusterOperatingSystem>> fn) {
@@ -418,7 +418,7 @@ public final class ClusterNodes implements ToJsonp {
 		/**
 		 * Contains statistics about Elasticsearch distributions installed on selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code packaging_types}
 		 */
 		public Builder packagingTypes(List<NodePackagingType> value) {
@@ -429,7 +429,7 @@ public final class ClusterNodes implements ToJsonp {
 		/**
 		 * Contains statistics about Elasticsearch distributions installed on selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code packaging_types}
 		 */
 		public Builder packagingTypes(NodePackagingType... value) {
@@ -464,7 +464,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains statistics about installed plugins and modules by selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code plugins}
 		 */
 		public Builder plugins(List<PluginStats> value) {
@@ -474,7 +474,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains statistics about installed plugins and modules by selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code plugins}
 		 */
 		public Builder plugins(PluginStats... value) {
@@ -509,7 +509,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains statistics about processes used by selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code process}
 		 */
 		public Builder process(ClusterProcess value) {
@@ -519,7 +519,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Contains statistics about processes used by selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code process}
 		 */
 		public Builder process(Function<ClusterProcess.Builder, ObjectBuilder<ClusterProcess>> fn) {
@@ -528,7 +528,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Array of Elasticsearch versions used on selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code versions}
 		 */
 		public Builder versions(List<String> value) {
@@ -538,7 +538,7 @@ public final class ClusterNodes implements ToJsonp {
 
 		/**
 		 * Array of Elasticsearch versions used on selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code versions}
 		 */
 		public Builder versions(String... value) {

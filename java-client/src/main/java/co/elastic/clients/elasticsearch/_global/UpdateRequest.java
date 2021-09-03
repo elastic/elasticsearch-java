@@ -678,7 +678,6 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TDocument, TPartialDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
@@ -688,7 +687,6 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		/**
 		 * Serializer for TPartialDocument. If not set, an attempt will be made to find
 		 * a serializer from the JSON context.
-		 *
 		 */
 		public Builder<TDocument, TPartialDocument> tPartialDocumentSerializer(
 				@Nullable JsonpSerializer<TPartialDocument> value) {

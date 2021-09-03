@@ -53,7 +53,7 @@ public final class NodeAttributesResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<NodeAttributesRecord> value() {
@@ -83,7 +83,7 @@ public final class NodeAttributesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<NodeAttributesRecord> value) {
@@ -93,7 +93,7 @@ public final class NodeAttributesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(NodeAttributesRecord... value) {

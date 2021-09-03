@@ -55,7 +55,7 @@ public final class Latest implements ToJsonp {
 
 	/**
 	 * Specifies the date field that is used to identify the latest documents.
-	 *
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	public String sort() {
@@ -64,7 +64,7 @@ public final class Latest implements ToJsonp {
 
 	/**
 	 * Specifies an array of one or more fields that are used to group the data.
-	 *
+	 * <p>
 	 * API name: {@code unique_key}
 	 */
 	public List<String> uniqueKey() {
@@ -107,7 +107,7 @@ public final class Latest implements ToJsonp {
 
 		/**
 		 * Specifies the date field that is used to identify the latest documents.
-		 *
+		 * <p>
 		 * API name: {@code sort}
 		 */
 		public Builder sort(String value) {
@@ -117,7 +117,7 @@ public final class Latest implements ToJsonp {
 
 		/**
 		 * Specifies an array of one or more fields that are used to group the data.
-		 *
+		 * <p>
 		 * API name: {@code unique_key}
 		 */
 		public Builder uniqueKey(List<String> value) {
@@ -127,7 +127,7 @@ public final class Latest implements ToJsonp {
 
 		/**
 		 * Specifies an array of one or more fields that are used to group the data.
-		 *
+		 * <p>
 		 * API name: {@code unique_key}
 		 */
 		public Builder uniqueKey(String... value) {

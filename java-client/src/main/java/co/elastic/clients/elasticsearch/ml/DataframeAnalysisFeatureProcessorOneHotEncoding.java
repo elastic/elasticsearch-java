@@ -52,7 +52,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 
 	/**
 	 * The name of the field to encode.
-	 *
+	 * <p>
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -61,7 +61,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 
 	/**
 	 * The one hot map mapping the field value with the column name.
-	 *
+	 * <p>
 	 * API name: {@code hot_map}
 	 */
 	public String hotMap() {
@@ -99,7 +99,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 
 		/**
 		 * The name of the field to encode.
-		 *
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
@@ -109,7 +109,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 
 		/**
 		 * The one hot map mapping the field value with the column name.
-		 *
+		 * <p>
 		 * API name: {@code hot_map}
 		 */
 		public Builder hotMap(String value) {

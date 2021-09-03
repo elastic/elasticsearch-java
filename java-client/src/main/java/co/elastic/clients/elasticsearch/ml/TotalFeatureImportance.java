@@ -59,7 +59,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 
 	/**
 	 * The feature for which this importance was calculated.
-	 *
+	 * <p>
 	 * API name: {@code feature_name}
 	 */
 	public String featureName() {
@@ -69,7 +69,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 	/**
 	 * A collection of feature importance statistics related to the training data
 	 * set for this particular feature.
-	 *
+	 * <p>
 	 * API name: {@code importance}
 	 */
 	public List<TotalFeatureImportanceStatistics> importance() {
@@ -79,7 +79,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 	/**
 	 * If the trained model is a classification model, feature importance statistics
 	 * are gathered per target class value.
-	 *
+	 * <p>
 	 * API name: {@code classes}
 	 */
 	public List<TotalFeatureImportanceClass> classes() {
@@ -132,7 +132,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 
 		/**
 		 * The feature for which this importance was calculated.
-		 *
+		 * <p>
 		 * API name: {@code feature_name}
 		 */
 		public Builder featureName(String value) {
@@ -143,7 +143,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 		/**
 		 * A collection of feature importance statistics related to the training data
 		 * set for this particular feature.
-		 *
+		 * <p>
 		 * API name: {@code importance}
 		 */
 		public Builder importance(List<TotalFeatureImportanceStatistics> value) {
@@ -154,7 +154,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 		/**
 		 * A collection of feature importance statistics related to the training data
 		 * set for this particular feature.
-		 *
+		 * <p>
 		 * API name: {@code importance}
 		 */
 		public Builder importance(TotalFeatureImportanceStatistics... value) {
@@ -192,7 +192,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 		/**
 		 * If the trained model is a classification model, feature importance statistics
 		 * are gathered per target class value.
-		 *
+		 * <p>
 		 * API name: {@code classes}
 		 */
 		public Builder classes(List<TotalFeatureImportanceClass> value) {
@@ -203,7 +203,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 		/**
 		 * If the trained model is a classification model, feature importance statistics
 		 * are gathered per target class value.
-		 *
+		 * <p>
 		 * API name: {@code classes}
 		 */
 		public Builder classes(TotalFeatureImportanceClass... value) {

@@ -54,8 +54,10 @@ public class ShutdownClient extends ApiClient<ShutdownClient> {
 
 	/**
 	 * Removes a node from the shutdown list
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeleteNodeResponse deleteNode(DeleteNodeRequest request) throws IOException {
@@ -64,12 +66,14 @@ public class ShutdownClient extends ApiClient<ShutdownClient> {
 
 	/**
 	 * Removes a node from the shutdown list
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeleteNodeResponse deleteNode(Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
@@ -81,8 +85,10 @@ public class ShutdownClient extends ApiClient<ShutdownClient> {
 
 	/**
 	 * Retrieve status of a node or nodes that are currently marked as shutting down
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetNodeResponse getNode(GetNodeRequest request) throws IOException {
@@ -91,12 +97,14 @@ public class ShutdownClient extends ApiClient<ShutdownClient> {
 
 	/**
 	 * Retrieve status of a node or nodes that are currently marked as shutting down
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetNodeResponse getNode(Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
@@ -108,8 +116,10 @@ public class ShutdownClient extends ApiClient<ShutdownClient> {
 
 	/**
 	 * Adds a node to be shut down
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PutNodeResponse putNode(PutNodeRequest request) throws IOException {
@@ -118,12 +128,14 @@ public class ShutdownClient extends ApiClient<ShutdownClient> {
 
 	/**
 	 * Adds a node to be shut down
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PutNodeResponse putNode(Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)

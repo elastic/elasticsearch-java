@@ -53,7 +53,7 @@ public final class MasterResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<MasterRecord> value() {
@@ -83,7 +83,7 @@ public final class MasterResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<MasterRecord> value) {
@@ -93,7 +93,7 @@ public final class MasterResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(MasterRecord... value) {

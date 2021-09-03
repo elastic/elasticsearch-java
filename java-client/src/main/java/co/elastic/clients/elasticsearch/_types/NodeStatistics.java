@@ -71,7 +71,7 @@ public final class NodeStatistics implements ToJsonp {
 
 	/**
 	 * Total number of nodes selected by the request.
-	 *
+	 * <p>
 	 * API name: {@code total}
 	 */
 	public Number total() {
@@ -80,7 +80,7 @@ public final class NodeStatistics implements ToJsonp {
 
 	/**
 	 * Number of nodes that responded successfully to the request.
-	 *
+	 * <p>
 	 * API name: {@code successful}
 	 */
 	public Number successful() {
@@ -90,7 +90,7 @@ public final class NodeStatistics implements ToJsonp {
 	/**
 	 * Number of nodes that rejected the request or failed to respond. If this value
 	 * is not 0, a reason for the rejection or failure is included in the response.
-	 *
+	 * <p>
 	 * API name: {@code failed}
 	 */
 	public Number failed() {
@@ -189,7 +189,7 @@ public final class NodeStatistics implements ToJsonp {
 
 		/**
 		 * Total number of nodes selected by the request.
-		 *
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public Builder total(Number value) {
@@ -199,7 +199,7 @@ public final class NodeStatistics implements ToJsonp {
 
 		/**
 		 * Number of nodes that responded successfully to the request.
-		 *
+		 * <p>
 		 * API name: {@code successful}
 		 */
 		public Builder successful(Number value) {
@@ -210,7 +210,7 @@ public final class NodeStatistics implements ToJsonp {
 		/**
 		 * Number of nodes that rejected the request or failed to respond. If this value
 		 * is not 0, a reason for the rejection or failure is included in the response.
-		 *
+		 * <p>
 		 * API name: {@code failed}
 		 */
 		public Builder failed(Number value) {

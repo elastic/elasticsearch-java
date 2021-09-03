@@ -58,7 +58,7 @@ public final class ConfusionMatrixTreshold implements ToJsonp {
 
 	/**
 	 * True Positive
-	 *
+	 * <p>
 	 * API name: {@code tp}
 	 */
 	public Number truePositive() {
@@ -67,7 +67,7 @@ public final class ConfusionMatrixTreshold implements ToJsonp {
 
 	/**
 	 * False Positive
-	 *
+	 * <p>
 	 * API name: {@code fp}
 	 */
 	public Number falsePositive() {
@@ -76,7 +76,7 @@ public final class ConfusionMatrixTreshold implements ToJsonp {
 
 	/**
 	 * True Negative
-	 *
+	 * <p>
 	 * API name: {@code tn}
 	 */
 	public Number trueNegative() {
@@ -85,7 +85,7 @@ public final class ConfusionMatrixTreshold implements ToJsonp {
 
 	/**
 	 * False Negative
-	 *
+	 * <p>
 	 * API name: {@code fn}
 	 */
 	public Number falseNegative() {
@@ -133,7 +133,7 @@ public final class ConfusionMatrixTreshold implements ToJsonp {
 
 		/**
 		 * True Positive
-		 *
+		 * <p>
 		 * API name: {@code tp}
 		 */
 		public Builder truePositive(Number value) {
@@ -143,7 +143,7 @@ public final class ConfusionMatrixTreshold implements ToJsonp {
 
 		/**
 		 * False Positive
-		 *
+		 * <p>
 		 * API name: {@code fp}
 		 */
 		public Builder falsePositive(Number value) {
@@ -153,7 +153,7 @@ public final class ConfusionMatrixTreshold implements ToJsonp {
 
 		/**
 		 * True Negative
-		 *
+		 * <p>
 		 * API name: {@code tn}
 		 */
 		public Builder trueNegative(Number value) {
@@ -163,7 +163,7 @@ public final class ConfusionMatrixTreshold implements ToJsonp {
 
 		/**
 		 * False Negative
-		 *
+		 * <p>
 		 * API name: {@code fn}
 		 */
 		public Builder falseNegative(Number value) {

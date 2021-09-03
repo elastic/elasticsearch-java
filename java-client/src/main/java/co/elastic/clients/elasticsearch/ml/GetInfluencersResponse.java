@@ -63,7 +63,7 @@ public final class GetInfluencersResponse implements ToJsonp {
 
 	/**
 	 * Array of influencer objects
-	 *
+	 * <p>
 	 * API name: {@code influencers}
 	 */
 	public List<BucketInfluencer> influencers() {
@@ -114,7 +114,7 @@ public final class GetInfluencersResponse implements ToJsonp {
 
 		/**
 		 * Array of influencer objects
-		 *
+		 * <p>
 		 * API name: {@code influencers}
 		 */
 		public Builder influencers(List<BucketInfluencer> value) {
@@ -124,7 +124,7 @@ public final class GetInfluencersResponse implements ToJsonp {
 
 		/**
 		 * Array of influencer objects
-		 *
+		 * <p>
 		 * API name: {@code influencers}
 		 */
 		public Builder influencers(BucketInfluencer... value) {

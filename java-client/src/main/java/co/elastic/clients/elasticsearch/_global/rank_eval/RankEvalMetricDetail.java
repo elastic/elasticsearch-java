@@ -66,7 +66,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 	/**
 	 * The metric_score in the details section shows the contribution of this query
 	 * to the global quality metric score
-	 *
+	 * <p>
 	 * API name: {@code metric_score}
 	 */
 	public Number metricScore() {
@@ -77,7 +77,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 	 * The unrated_docs section contains an _index and _id entry for each document
 	 * in the search result for this query that didn’t have a ratings value. This
 	 * can be used to ask the user to supply ratings for these documents
-	 *
+	 * <p>
 	 * API name: {@code unrated_docs}
 	 */
 	public List<UnratedDocument> unratedDocs() {
@@ -87,7 +87,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 	/**
 	 * The hits section shows a grouping of the search results with their supplied
 	 * ratings
-	 *
+	 * <p>
 	 * API name: {@code hits}
 	 */
 	public List<RankEvalHitItem> hits() {
@@ -98,7 +98,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 	 * The metric_details give additional information about the calculated quality
 	 * metric (e.g. how many of the retrieved documents were relevant). The content
 	 * varies for each metric but allows for better interpretation of the results
-	 *
+	 * <p>
 	 * API name: {@code metric_details}
 	 */
 	public Map<String, Map<String, JsonValue>> metricDetails() {
@@ -169,7 +169,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 		/**
 		 * The metric_score in the details section shows the contribution of this query
 		 * to the global quality metric score
-		 *
+		 * <p>
 		 * API name: {@code metric_score}
 		 */
 		public Builder metricScore(Number value) {
@@ -181,7 +181,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 		 * The unrated_docs section contains an _index and _id entry for each document
 		 * in the search result for this query that didn’t have a ratings value. This
 		 * can be used to ask the user to supply ratings for these documents
-		 *
+		 * <p>
 		 * API name: {@code unrated_docs}
 		 */
 		public Builder unratedDocs(List<UnratedDocument> value) {
@@ -193,7 +193,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 		 * The unrated_docs section contains an _index and _id entry for each document
 		 * in the search result for this query that didn’t have a ratings value. This
 		 * can be used to ask the user to supply ratings for these documents
-		 *
+		 * <p>
 		 * API name: {@code unrated_docs}
 		 */
 		public Builder unratedDocs(UnratedDocument... value) {
@@ -229,7 +229,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 		/**
 		 * The hits section shows a grouping of the search results with their supplied
 		 * ratings
-		 *
+		 * <p>
 		 * API name: {@code hits}
 		 */
 		public Builder hits(List<RankEvalHitItem> value) {
@@ -240,7 +240,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 		/**
 		 * The hits section shows a grouping of the search results with their supplied
 		 * ratings
-		 *
+		 * <p>
 		 * API name: {@code hits}
 		 */
 		public Builder hits(RankEvalHitItem... value) {
@@ -277,7 +277,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 		 * The metric_details give additional information about the calculated quality
 		 * metric (e.g. how many of the retrieved documents were relevant). The content
 		 * varies for each metric but allows for better interpretation of the results
-		 *
+		 * <p>
 		 * API name: {@code metric_details}
 		 */
 		public Builder metricDetails(Map<String, Map<String, JsonValue>> value) {

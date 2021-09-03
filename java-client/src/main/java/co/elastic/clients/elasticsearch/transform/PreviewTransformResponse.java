@@ -157,7 +157,6 @@ public final class PreviewTransformResponse<TTransform> implements ToJsonp {
 		/**
 		 * Serializer for TTransform. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TTransform> tTransformSerializer(@Nullable JsonpSerializer<TTransform> value) {
 			this.tTransformSerializer = value;

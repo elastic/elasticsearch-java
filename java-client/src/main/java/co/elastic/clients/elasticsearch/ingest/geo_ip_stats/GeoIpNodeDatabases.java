@@ -56,7 +56,7 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 
 	/**
 	 * Downloaded databases for the node.
-	 *
+	 * <p>
 	 * API name: {@code databases}
 	 */
 	public List<GeoIpNodeDatabaseName> databases() {
@@ -67,7 +67,7 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 	 * Downloaded database files, including related license files. Elasticsearch
 	 * stores these files in the node’s temporary directory:
 	 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
-	 *
+	 * <p>
 	 * API name: {@code files_in_temp}
 	 */
 	public List<String> filesInTemp() {
@@ -115,7 +115,7 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 
 		/**
 		 * Downloaded databases for the node.
-		 *
+		 * <p>
 		 * API name: {@code databases}
 		 */
 		public Builder databases(List<GeoIpNodeDatabaseName> value) {
@@ -125,7 +125,7 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 
 		/**
 		 * Downloaded databases for the node.
-		 *
+		 * <p>
 		 * API name: {@code databases}
 		 */
 		public Builder databases(GeoIpNodeDatabaseName... value) {
@@ -162,7 +162,7 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 		 * Downloaded database files, including related license files. Elasticsearch
 		 * stores these files in the node’s temporary directory:
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
-		 *
+		 * <p>
 		 * API name: {@code files_in_temp}
 		 */
 		public Builder filesInTemp(List<String> value) {
@@ -174,7 +174,7 @@ public final class GeoIpNodeDatabases implements ToJsonp {
 		 * Downloaded database files, including related license files. Elasticsearch
 		 * stores these files in the node’s temporary directory:
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
-		 *
+		 * <p>
 		 * API name: {@code files_in_temp}
 		 */
 		public Builder filesInTemp(String... value) {

@@ -106,7 +106,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * index name
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -116,7 +116,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * shard name
-	 *
+	 * <p>
 	 * API name: {@code shard}
 	 */
 	@Nullable
@@ -126,7 +126,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * primary or replica
-	 *
+	 * <p>
 	 * API name: {@code prirep}
 	 */
 	@Nullable
@@ -136,7 +136,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * ip of node where it lives
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -146,7 +146,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * unique id of node where it lives
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -156,7 +156,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * segment name
-	 *
+	 * <p>
 	 * API name: {@code segment}
 	 */
 	@Nullable
@@ -166,7 +166,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * segment generation
-	 *
+	 * <p>
 	 * API name: {@code generation}
 	 */
 	@Nullable
@@ -176,7 +176,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * number of docs in segment
-	 *
+	 * <p>
 	 * API name: {@code docs.count}
 	 */
 	@Nullable
@@ -186,7 +186,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * number of deleted docs in segment
-	 *
+	 * <p>
 	 * API name: {@code docs.deleted}
 	 */
 	@Nullable
@@ -196,7 +196,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * segment size in bytes
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -206,7 +206,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * segment memory in bytes
-	 *
+	 * <p>
 	 * API name: {@code size.memory}
 	 */
 	@Nullable
@@ -216,7 +216,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * is segment committed
-	 *
+	 * <p>
 	 * API name: {@code committed}
 	 */
 	@Nullable
@@ -226,7 +226,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * is segment searched
-	 *
+	 * <p>
 	 * API name: {@code searchable}
 	 */
 	@Nullable
@@ -236,7 +236,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * version
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -246,7 +246,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 	/**
 	 * is segment compound
-	 *
+	 * <p>
 	 * API name: {@code compound}
 	 */
 	@Nullable
@@ -411,7 +411,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * index name
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -421,7 +421,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * shard name
-		 *
+		 * <p>
 		 * API name: {@code shard}
 		 */
 		public Builder shard(@Nullable String value) {
@@ -431,7 +431,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * primary or replica
-		 *
+		 * <p>
 		 * API name: {@code prirep}
 		 */
 		public Builder prirep(@Nullable String value) {
@@ -441,7 +441,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * ip of node where it lives
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -451,7 +451,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * unique id of node where it lives
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -461,7 +461,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * segment name
-		 *
+		 * <p>
 		 * API name: {@code segment}
 		 */
 		public Builder segment(@Nullable String value) {
@@ -471,7 +471,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * segment generation
-		 *
+		 * <p>
 		 * API name: {@code generation}
 		 */
 		public Builder generation(@Nullable String value) {
@@ -481,7 +481,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * number of docs in segment
-		 *
+		 * <p>
 		 * API name: {@code docs.count}
 		 */
 		public Builder docs_count(@Nullable String value) {
@@ -491,7 +491,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * number of deleted docs in segment
-		 *
+		 * <p>
 		 * API name: {@code docs.deleted}
 		 */
 		public Builder docs_deleted(@Nullable String value) {
@@ -501,7 +501,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * segment size in bytes
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable JsonValue value) {
@@ -511,7 +511,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * segment memory in bytes
-		 *
+		 * <p>
 		 * API name: {@code size.memory}
 		 */
 		public Builder size_memory(@Nullable JsonValue value) {
@@ -521,7 +521,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * is segment committed
-		 *
+		 * <p>
 		 * API name: {@code committed}
 		 */
 		public Builder committed(@Nullable String value) {
@@ -531,7 +531,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * is segment searched
-		 *
+		 * <p>
 		 * API name: {@code searchable}
 		 */
 		public Builder searchable(@Nullable String value) {
@@ -541,7 +541,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * version
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -551,7 +551,7 @@ public final class SegmentsRecord implements ToJsonp {
 
 		/**
 		 * is segment compound
-		 *
+		 * <p>
 		 * API name: {@code compound}
 		 */
 		public Builder compound(@Nullable String value) {

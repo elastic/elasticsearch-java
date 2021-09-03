@@ -86,7 +86,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Comma-separated list of data streams, indices, and index aliases to search.
 	 * Wildcard (*) expressions are supported.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -96,7 +96,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 	/**
 	 * The string to match at the start of indexed terms. If not provided, all terms
 	 * in the field are considered.
-	 *
+	 * <p>
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -105,7 +105,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * How many matching terms to return.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -114,10 +114,10 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * The maximum length of time to spend collecting results. Defaults to "1s" (one
-	 * second). If the timeout is exceeded the complete flag set to false in the
-	 * response and the results may be partial or empty.
-	 *
+	 * The maximum length of time to spend collecting results. Defaults to
+	 * &quot;1s&quot; (one second). If the timeout is exceeded the complete flag set
+	 * to false in the response and the results may be partial or empty.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -128,7 +128,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 	/**
 	 * When true the provided search string is matched against index terms without
 	 * case sensitivity.
-	 *
+	 * <p>
 	 * API name: {@code case_insensitive}
 	 */
 	@Nullable
@@ -138,7 +138,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Allows to filter an index shard if the provided query rewrites to match_none.
-	 *
+	 * <p>
 	 * API name: {@code index_filter}
 	 */
 	@Nullable
@@ -150,7 +150,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 	 * The string after which terms in the index should be returned. Allows for a
 	 * form of pagination if the last result from one request is passed as the
 	 * search_after parameter for a subsequent request.
-	 *
+	 * <p>
 	 * API name: {@code string}
 	 */
 	@Nullable
@@ -250,7 +250,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases to search.
 		 * Wildcard (*) expressions are supported.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -261,7 +261,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 		/**
 		 * The string to match at the start of indexed terms. If not provided, all terms
 		 * in the field are considered.
-		 *
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
@@ -271,7 +271,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * How many matching terms to return.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {
@@ -280,10 +280,10 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * The maximum length of time to spend collecting results. Defaults to "1s" (one
-		 * second). If the timeout is exceeded the complete flag set to false in the
-		 * response and the results may be partial or empty.
-		 *
+		 * The maximum length of time to spend collecting results. Defaults to
+		 * &quot;1s&quot; (one second). If the timeout is exceeded the complete flag set
+		 * to false in the response and the results may be partial or empty.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -294,7 +294,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 		/**
 		 * When true the provided search string is matched against index terms without
 		 * case sensitivity.
-		 *
+		 * <p>
 		 * API name: {@code case_insensitive}
 		 */
 		public Builder caseInsensitive(@Nullable Boolean value) {
@@ -304,7 +304,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Allows to filter an index shard if the provided query rewrites to match_none.
-		 *
+		 * <p>
 		 * API name: {@code index_filter}
 		 */
 		public Builder indexFilter(@Nullable QueryContainer value) {
@@ -314,7 +314,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Allows to filter an index shard if the provided query rewrites to match_none.
-		 *
+		 * <p>
 		 * API name: {@code index_filter}
 		 */
 		public Builder indexFilter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
@@ -325,7 +325,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 		 * The string after which terms in the index should be returned. Allows for a
 		 * form of pagination if the last result from one request is passed as the
 		 * search_after parameter for a subsequent request.
-		 *
+		 * <p>
 		 * API name: {@code string}
 		 */
 		public Builder string(@Nullable String value) {

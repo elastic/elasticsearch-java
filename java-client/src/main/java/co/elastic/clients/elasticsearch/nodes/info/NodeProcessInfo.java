@@ -57,7 +57,7 @@ public final class NodeProcessInfo implements ToJsonp {
 
 	/**
 	 * Process identifier (PID)
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public Number id() {
@@ -66,7 +66,7 @@ public final class NodeProcessInfo implements ToJsonp {
 
 	/**
 	 * Indicates if the process address space has been successfully locked in memory
-	 *
+	 * <p>
 	 * API name: {@code mlockall}
 	 */
 	public Boolean mlockall() {
@@ -75,7 +75,7 @@ public final class NodeProcessInfo implements ToJsonp {
 
 	/**
 	 * Refresh interval for the process statistics
-	 *
+	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
 	public Number refreshIntervalInMillis() {
@@ -118,7 +118,7 @@ public final class NodeProcessInfo implements ToJsonp {
 
 		/**
 		 * Process identifier (PID)
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(Number value) {
@@ -128,7 +128,7 @@ public final class NodeProcessInfo implements ToJsonp {
 
 		/**
 		 * Indicates if the process address space has been successfully locked in memory
-		 *
+		 * <p>
 		 * API name: {@code mlockall}
 		 */
 		public Builder mlockall(Boolean value) {
@@ -138,7 +138,7 @@ public final class NodeProcessInfo implements ToJsonp {
 
 		/**
 		 * Refresh interval for the process statistics
-		 *
+		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
 		public Builder refreshIntervalInMillis(Number value) {

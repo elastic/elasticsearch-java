@@ -87,7 +87,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 	/**
 	 * If true, then the request simulates the operation only and returns the
 	 * resulting state.
-	 *
+	 * <p>
 	 * API name: {@code dry_run}
 	 */
 	@Nullable
@@ -98,7 +98,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 	/**
 	 * If true, then the response contains an explanation of why the commands can or
 	 * cannot be executed.
-	 *
+	 * <p>
 	 * API name: {@code explain}
 	 */
 	@Nullable
@@ -108,7 +108,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Limits the information returned to the specified metrics.
-	 *
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
@@ -119,7 +119,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 	/**
 	 * If true, then retries allocation of shards that are blocked due to too many
 	 * subsequent allocation failures.
-	 *
+	 * <p>
 	 * API name: {@code retry_failed}
 	 */
 	@Nullable
@@ -130,7 +130,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -141,7 +141,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -151,7 +151,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Defines the commands to perform.
-	 *
+	 * <p>
 	 * API name: {@code commands}
 	 */
 	@Nullable
@@ -214,7 +214,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 		/**
 		 * If true, then the request simulates the operation only and returns the
 		 * resulting state.
-		 *
+		 * <p>
 		 * API name: {@code dry_run}
 		 */
 		public Builder dryRun(@Nullable Boolean value) {
@@ -225,7 +225,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 		/**
 		 * If true, then the response contains an explanation of why the commands can or
 		 * cannot be executed.
-		 *
+		 * <p>
 		 * API name: {@code explain}
 		 */
 		public Builder explain(@Nullable Boolean value) {
@@ -235,7 +235,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Limits the information returned to the specified metrics.
-		 *
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(@Nullable List<String> value) {
@@ -245,7 +245,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Limits the information returned to the specified metrics.
-		 *
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(String... value) {
@@ -267,7 +267,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 		/**
 		 * If true, then retries allocation of shards that are blocked due to too many
 		 * subsequent allocation failures.
-		 *
+		 * <p>
 		 * API name: {@code retry_failed}
 		 */
 		public Builder retryFailed(@Nullable Boolean value) {
@@ -278,7 +278,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -289,7 +289,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Period to wait for a response. If no response is received before the timeout
 		 * expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -299,7 +299,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Defines the commands to perform.
-		 *
+		 * <p>
 		 * API name: {@code commands}
 		 */
 		public Builder commands(@Nullable List<Command> value) {
@@ -309,7 +309,7 @@ public final class RerouteRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Defines the commands to perform.
-		 *
+		 * <p>
 		 * API name: {@code commands}
 		 */
 		public Builder commands(Command... value) {

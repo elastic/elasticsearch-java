@@ -57,7 +57,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 	 * The name of the application. Application privileges are always associated
 	 * with exactly one application. If you do not specify this parameter, the API
 	 * returns information about all privileges for all applications.
-	 *
+	 * <p>
 	 * API name: {@code application}
 	 */
 	@Nullable
@@ -68,7 +68,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 	/**
 	 * The name of the privilege. If you do not specify this parameter, the API
 	 * returns information about all privileges for the requested application.
-	 *
+	 * <p>
 	 * API name: {@code priviledge}
 	 */
 	@Nullable
@@ -92,7 +92,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 		 * The name of the application. Application privileges are always associated
 		 * with exactly one application. If you do not specify this parameter, the API
 		 * returns information about all privileges for all applications.
-		 *
+		 * <p>
 		 * API name: {@code application}
 		 */
 		public Builder application(@Nullable String value) {
@@ -103,7 +103,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 		/**
 		 * The name of the privilege. If you do not specify this parameter, the API
 		 * returns information about all privileges for the requested application.
-		 *
+		 * <p>
 		 * API name: {@code priviledge}
 		 */
 		public Builder priviledge(@Nullable String value) {

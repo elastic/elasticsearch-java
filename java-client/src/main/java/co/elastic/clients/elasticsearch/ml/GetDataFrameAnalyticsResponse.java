@@ -64,7 +64,7 @@ public final class GetDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * An array of data frame analytics job resources, which are sorted by the id
 	 * value in ascending order.
-	 *
+	 * <p>
 	 * API name: {@code data_frame_analytics}
 	 */
 	public List<DataframeAnalyticsSummary> dataFrameAnalytics() {
@@ -116,7 +116,7 @@ public final class GetDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of data frame analytics job resources, which are sorted by the id
 		 * value in ascending order.
-		 *
+		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
 		public Builder dataFrameAnalytics(List<DataframeAnalyticsSummary> value) {
@@ -127,7 +127,7 @@ public final class GetDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of data frame analytics job resources, which are sorted by the id
 		 * value in ascending order.
-		 *
+		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
 		public Builder dataFrameAnalytics(DataframeAnalyticsSummary... value) {

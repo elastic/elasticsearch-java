@@ -106,7 +106,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * Idetifier for the trained model.
-	 *
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	public String modelId() {
@@ -116,7 +116,7 @@ public final class TrainedModelConfig implements ToJsonp {
 	/**
 	 * A comma delimited string of tags. A trained model can have many tags, or
 	 * none.
-	 *
+	 * <p>
 	 * API name: {@code tags}
 	 */
 	public List<String> tags() {
@@ -125,7 +125,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The Elasticsearch version number in which the trained model was created.
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -143,7 +143,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * Information on the creator of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code created_by}
 	 */
 	@Nullable
@@ -153,7 +153,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The time when the trained model was created.
-	 *
+	 * <p>
 	 * API name: {@code create_time}
 	 */
 	@Nullable
@@ -163,7 +163,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * Any field map described in the inference configuration takes precedence.
-	 *
+	 * <p>
 	 * API name: {@code default_field_map}
 	 */
 	@Nullable
@@ -173,7 +173,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The free-text description of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	public String description() {
@@ -182,7 +182,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The estimated heap usage in bytes to keep the trained model in memory.
-	 *
+	 * <p>
 	 * API name: {@code estimated_heap_memory_usage_bytes}
 	 */
 	@Nullable
@@ -192,7 +192,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The estimated number of operations to use the trained model.
-	 *
+	 * <p>
 	 * API name: {@code estimated_operations}
 	 */
 	@Nullable
@@ -204,7 +204,7 @@ public final class TrainedModelConfig implements ToJsonp {
 	 * The default configuration for inference. This can be either a regression or
 	 * classification configuration. It must match the underlying
 	 * definition.trained_model's target_type.
-	 *
+	 * <p>
 	 * API name: {@code inference_config}
 	 */
 	public InferenceConfigContainer inferenceConfig() {
@@ -213,7 +213,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The input field names for the model definition.
-	 *
+	 * <p>
 	 * API name: {@code input}
 	 */
 	public TrainedModelConfigInput input() {
@@ -222,7 +222,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	/**
 	 * The license level of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code license_level}
 	 */
 	@Nullable
@@ -233,7 +233,7 @@ public final class TrainedModelConfig implements ToJsonp {
 	/**
 	 * An object containing metadata about the trained model. For example, models
 	 * created by data frame analytics contain analysis_config and input objects.
-	 *
+	 * <p>
 	 * API name: {@code metadata}
 	 */
 	@Nullable
@@ -382,7 +382,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * Idetifier for the trained model.
-		 *
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(String value) {
@@ -393,7 +393,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		/**
 		 * A comma delimited string of tags. A trained model can have many tags, or
 		 * none.
-		 *
+		 * <p>
 		 * API name: {@code tags}
 		 */
 		public Builder tags(List<String> value) {
@@ -404,7 +404,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		/**
 		 * A comma delimited string of tags. A trained model can have many tags, or
 		 * none.
-		 *
+		 * <p>
 		 * API name: {@code tags}
 		 */
 		public Builder tags(String... value) {
@@ -425,7 +425,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The Elasticsearch version number in which the trained model was created.
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -443,7 +443,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * Information on the creator of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code created_by}
 		 */
 		public Builder createdBy(@Nullable String value) {
@@ -453,7 +453,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The time when the trained model was created.
-		 *
+		 * <p>
 		 * API name: {@code create_time}
 		 */
 		public Builder createTime(@Nullable JsonValue value) {
@@ -463,7 +463,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * Any field map described in the inference configuration takes precedence.
-		 *
+		 * <p>
 		 * API name: {@code default_field_map}
 		 */
 		public Builder defaultFieldMap(@Nullable Map<String, String> value) {
@@ -484,7 +484,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The free-text description of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(String value) {
@@ -494,7 +494,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The estimated heap usage in bytes to keep the trained model in memory.
-		 *
+		 * <p>
 		 * API name: {@code estimated_heap_memory_usage_bytes}
 		 */
 		public Builder estimatedHeapMemoryUsageBytes(@Nullable Number value) {
@@ -504,7 +504,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The estimated number of operations to use the trained model.
-		 *
+		 * <p>
 		 * API name: {@code estimated_operations}
 		 */
 		public Builder estimatedOperations(@Nullable Number value) {
@@ -516,7 +516,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		 * The default configuration for inference. This can be either a regression or
 		 * classification configuration. It must match the underlying
 		 * definition.trained_model's target_type.
-		 *
+		 * <p>
 		 * API name: {@code inference_config}
 		 */
 		public Builder inferenceConfig(InferenceConfigContainer value) {
@@ -528,7 +528,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		 * The default configuration for inference. This can be either a regression or
 		 * classification configuration. It must match the underlying
 		 * definition.trained_model's target_type.
-		 *
+		 * <p>
 		 * API name: {@code inference_config}
 		 */
 		public Builder inferenceConfig(
@@ -538,7 +538,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The input field names for the model definition.
-		 *
+		 * <p>
 		 * API name: {@code input}
 		 */
 		public Builder input(TrainedModelConfigInput value) {
@@ -548,7 +548,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The input field names for the model definition.
-		 *
+		 * <p>
 		 * API name: {@code input}
 		 */
 		public Builder input(Function<TrainedModelConfigInput.Builder, ObjectBuilder<TrainedModelConfigInput>> fn) {
@@ -557,7 +557,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 		/**
 		 * The license level of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code license_level}
 		 */
 		public Builder licenseLevel(@Nullable String value) {
@@ -568,7 +568,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		/**
 		 * An object containing metadata about the trained model. For example, models
 		 * created by data frame analytics contain analysis_config and input objects.
-		 *
+		 * <p>
 		 * API name: {@code metadata}
 		 */
 		public Builder metadata(@Nullable TrainedModelConfigMetadata value) {
@@ -579,7 +579,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		/**
 		 * An object containing metadata about the trained model. For example, models
 		 * created by data frame analytics contain analysis_config and input objects.
-		 *
+		 * <p>
 		 * API name: {@code metadata}
 		 */
 		public Builder metadata(

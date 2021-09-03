@@ -53,7 +53,7 @@ public final class AliasesResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<AliasesRecord> value() {
@@ -83,7 +83,7 @@ public final class AliasesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<AliasesRecord> value) {
@@ -93,7 +93,7 @@ public final class AliasesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(AliasesRecord... value) {

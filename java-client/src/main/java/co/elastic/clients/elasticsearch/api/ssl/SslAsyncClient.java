@@ -52,8 +52,10 @@ public class SslAsyncClient extends ApiClient<SslAsyncClient> {
 	/**
 	 * Retrieves information about the X.509 certificates used to encrypt
 	 * communications in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-ssl.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-ssl.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetCertificatesResponse> certificates() throws IOException {
 		return this.transport.performRequestAsync(GetCertificatesRequest.INSTANCE, GetCertificatesRequest.ENDPOINT,

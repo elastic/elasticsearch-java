@@ -72,7 +72,7 @@ public final class RepositoryStatsRequest extends RequestBase implements ToJsonp
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -135,7 +135,7 @@ public final class RepositoryStatsRequest extends RequestBase implements ToJsonp
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable String value) {

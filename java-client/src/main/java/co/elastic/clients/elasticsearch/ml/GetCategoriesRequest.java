@@ -76,7 +76,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Identifier for the anomaly detection job.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -89,7 +89,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 	 * information about all categories. If you specify only the
 	 * partition_field_value, it returns information about all categories for the
 	 * specified partition.
-	 *
+	 * <p>
 	 * API name: {@code category_id}
 	 */
 	@Nullable
@@ -115,7 +115,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Only return categories for the specified partition.
-	 *
+	 * <p>
 	 * API name: {@code partition_field_value}
 	 */
 	@Nullable
@@ -176,7 +176,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Identifier for the anomaly detection job.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -190,7 +190,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 		 * information about all categories. If you specify only the
 		 * partition_field_value, it returns information about all categories for the
 		 * specified partition.
-		 *
+		 * <p>
 		 * API name: {@code category_id}
 		 */
 		public Builder categoryId(@Nullable String value) {
@@ -216,7 +216,7 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Only return categories for the specified partition.
-		 *
+		 * <p>
 		 * API name: {@code partition_field_value}
 		 */
 		public Builder partitionFieldValue(@Nullable String value) {

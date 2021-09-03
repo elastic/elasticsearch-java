@@ -71,8 +71,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Removes stale data from repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CleanupRepositoryResponse> cleanupRepository(CleanupRepositoryRequest request)
@@ -82,12 +84,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Removes stale data from repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CleanupRepositoryResponse> cleanupRepository(
@@ -100,8 +104,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 	/**
 	 * Clones indices from one snapshot into another snapshot in the same
 	 * repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CloneResponse> clone(CloneRequest request) throws IOException {
@@ -111,12 +117,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 	/**
 	 * Clones indices from one snapshot into another snapshot in the same
 	 * repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CloneResponse> clone(Function<CloneRequest.Builder, ObjectBuilder<CloneRequest>> fn)
@@ -128,8 +136,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Creates a snapshot in a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CreateResponse> create(CreateRequest request) throws IOException {
@@ -138,12 +148,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Creates a snapshot in a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CreateResponse> create(
@@ -155,8 +167,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Creates a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CreateRepositoryResponse> createRepository(CreateRepositoryRequest request)
@@ -166,12 +180,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Creates a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CreateRepositoryResponse> createRepository(
@@ -183,8 +199,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Deletes a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException {
@@ -193,12 +211,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Deletes a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteResponse> delete(
@@ -210,8 +230,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Deletes a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteRepositoryResponse> deleteRepository(DeleteRepositoryRequest request)
@@ -221,12 +243,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Deletes a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteRepositoryResponse> deleteRepository(
@@ -238,8 +262,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Returns information about a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetResponse> get(GetRequest request) throws IOException {
@@ -248,12 +274,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Returns information about a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetResponse> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn)
@@ -265,8 +293,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Returns information about a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetRepositoryResponse> getRepository(GetRepositoryRequest request) throws IOException {
@@ -275,12 +305,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Returns information about a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetRepositoryResponse> getRepository(
@@ -292,8 +324,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Restores a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<RestoreResponse> restore(RestoreRequest request) throws IOException {
@@ -302,12 +336,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Restores a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RestoreResponse> restore(
@@ -319,8 +355,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Returns information about the status of a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StatusResponse> status(StatusRequest request) throws IOException {
@@ -329,12 +367,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Returns information about the status of a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StatusResponse> status(
@@ -346,8 +386,10 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Verifies a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<VerifyRepositoryResponse> verifyRepository(VerifyRepositoryRequest request)
@@ -357,12 +399,14 @@ public class SnapshotAsyncClient extends ApiClient<SnapshotAsyncClient> {
 
 	/**
 	 * Verifies a repository.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<VerifyRepositoryResponse> verifyRepository(

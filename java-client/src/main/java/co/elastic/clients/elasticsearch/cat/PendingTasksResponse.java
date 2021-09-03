@@ -53,7 +53,7 @@ public final class PendingTasksResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<PendingTasksRecord> value() {
@@ -83,7 +83,7 @@ public final class PendingTasksResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<PendingTasksRecord> value) {
@@ -93,7 +93,7 @@ public final class PendingTasksResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(PendingTasksRecord... value) {

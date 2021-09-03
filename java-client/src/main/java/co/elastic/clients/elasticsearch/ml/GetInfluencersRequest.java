@@ -93,7 +93,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 	/**
 	 * Identifier for the anomaly detection job.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -102,7 +102,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 	/**
 	 * If true, the results are sorted in descending order.
-	 *
+	 * <p>
 	 * API name: {@code desc}
 	 */
 	@Nullable
@@ -112,7 +112,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 	/**
 	 * Returns influencers with timestamps earlier than this time.
-	 *
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
@@ -123,7 +123,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 	/**
 	 * If true, the output excludes interim results. By default, interim results are
 	 * included.
-	 *
+	 * <p>
 	 * API name: {@code exclude_interim}
 	 */
 	@Nullable
@@ -133,7 +133,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 	/**
 	 * Returns influencers with anomaly scores greater than or equal to this value.
-	 *
+	 * <p>
 	 * API name: {@code influencer_score}
 	 */
 	@Nullable
@@ -143,7 +143,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 	/**
 	 * Skips the specified number of influencers.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -153,7 +153,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 	/**
 	 * Specifies the maximum number of influencers to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -164,7 +164,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 	/**
 	 * Specifies the sort field for the requested influencers. By default, the
 	 * influencers are sorted by the influencer_score value.
-	 *
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	@Nullable
@@ -174,7 +174,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 	/**
 	 * Returns influencers with timestamps after this time.
-	 *
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
@@ -247,7 +247,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 		/**
 		 * Identifier for the anomaly detection job.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -257,7 +257,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 		/**
 		 * If true, the results are sorted in descending order.
-		 *
+		 * <p>
 		 * API name: {@code desc}
 		 */
 		public Builder desc(@Nullable Boolean value) {
@@ -267,7 +267,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 		/**
 		 * Returns influencers with timestamps earlier than this time.
-		 *
+		 * <p>
 		 * API name: {@code end}
 		 */
 		public Builder end(@Nullable String value) {
@@ -278,7 +278,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 		/**
 		 * If true, the output excludes interim results. By default, interim results are
 		 * included.
-		 *
+		 * <p>
 		 * API name: {@code exclude_interim}
 		 */
 		public Builder excludeInterim(@Nullable Boolean value) {
@@ -288,7 +288,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 		/**
 		 * Returns influencers with anomaly scores greater than or equal to this value.
-		 *
+		 * <p>
 		 * API name: {@code influencer_score}
 		 */
 		public Builder influencerScore(@Nullable Number value) {
@@ -298,7 +298,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 		/**
 		 * Skips the specified number of influencers.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -308,7 +308,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 		/**
 		 * Specifies the maximum number of influencers to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {
@@ -319,7 +319,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 		/**
 		 * Specifies the sort field for the requested influencers. By default, the
 		 * influencers are sorted by the influencer_score value.
-		 *
+		 * <p>
 		 * API name: {@code sort}
 		 */
 		public Builder sort(@Nullable String value) {
@@ -329,7 +329,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 		/**
 		 * Returns influencers with timestamps after this time.
-		 *
+		 * <p>
 		 * API name: {@code start}
 		 */
 		public Builder start(@Nullable String value) {

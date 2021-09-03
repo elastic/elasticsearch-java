@@ -105,7 +105,7 @@ public final class StatsRequest extends RequestBase {
 
 	/**
 	 * Comma-separated list of node IDs or names used to limit returned information.
-	 *
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
@@ -124,7 +124,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Limit the information returned for indices metric to the specific index
 	 * metrics. It can be used only if indices (or all) metric is specified.
-	 *
+	 * <p>
 	 * API name: {@code index_metric}
 	 */
 	@Nullable
@@ -135,7 +135,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Comma-separated list or wildcard expressions of fields to include in
 	 * fielddata and suggest statistics.
-	 *
+	 * <p>
 	 * API name: {@code completion_fields}
 	 */
 	@Nullable
@@ -146,7 +146,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Comma-separated list or wildcard expressions of fields to include in
 	 * fielddata statistics.
-	 *
+	 * <p>
 	 * API name: {@code fielddata_fields}
 	 */
 	@Nullable
@@ -157,7 +157,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Comma-separated list or wildcard expressions of fields to include in the
 	 * statistics.
-	 *
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -167,7 +167,7 @@ public final class StatsRequest extends RequestBase {
 
 	/**
 	 * Comma-separated list of search groups to include in the search statistics.
-	 *
+	 * <p>
 	 * API name: {@code groups}
 	 */
 	@Nullable
@@ -178,7 +178,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * If true, the call reports the aggregated disk usage of each one of the Lucene
 	 * index files (only applies if segment stats are requested).
-	 *
+	 * <p>
 	 * API name: {@code include_segment_file_sizes}
 	 */
 	@Nullable
@@ -189,7 +189,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Indicates whether statistics are aggregated at the cluster, index, or shard
 	 * level.
-	 *
+	 * <p>
 	 * API name: {@code level}
 	 */
 	@Nullable
@@ -200,7 +200,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -211,7 +211,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -221,7 +221,7 @@ public final class StatsRequest extends RequestBase {
 
 	/**
 	 * A comma-separated list of document types for the indexing index metric.
-	 *
+	 * <p>
 	 * API name: {@code types}
 	 */
 	@Nullable
@@ -284,7 +284,7 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * Comma-separated list of node IDs or names used to limit returned information.
-		 *
+		 * <p>
 		 * API name: {@code node_id}
 		 */
 		public Builder nodeId(@Nullable String value) {
@@ -322,7 +322,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Limit the information returned for indices metric to the specific index
 		 * metrics. It can be used only if indices (or all) metric is specified.
-		 *
+		 * <p>
 		 * API name: {@code index_metric}
 		 */
 		public Builder indexMetric(@Nullable List<String> value) {
@@ -333,7 +333,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Limit the information returned for indices metric to the specific index
 		 * metrics. It can be used only if indices (or all) metric is specified.
-		 *
+		 * <p>
 		 * API name: {@code index_metric}
 		 */
 		public Builder indexMetric(String... value) {
@@ -355,7 +355,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata and suggest statistics.
-		 *
+		 * <p>
 		 * API name: {@code completion_fields}
 		 */
 		public Builder completionFields(@Nullable List<String> value) {
@@ -366,7 +366,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata and suggest statistics.
-		 *
+		 * <p>
 		 * API name: {@code completion_fields}
 		 */
 		public Builder completionFields(String... value) {
@@ -388,7 +388,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata statistics.
-		 *
+		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
 		public Builder fielddataFields(@Nullable List<String> value) {
@@ -399,7 +399,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata statistics.
-		 *
+		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
 		public Builder fielddataFields(String... value) {
@@ -421,7 +421,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in the
 		 * statistics.
-		 *
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(@Nullable List<String> value) {
@@ -432,7 +432,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in the
 		 * statistics.
-		 *
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
@@ -453,7 +453,7 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * Comma-separated list of search groups to include in the search statistics.
-		 *
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(@Nullable Boolean value) {
@@ -464,7 +464,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * If true, the call reports the aggregated disk usage of each one of the Lucene
 		 * index files (only applies if segment stats are requested).
-		 *
+		 * <p>
 		 * API name: {@code include_segment_file_sizes}
 		 */
 		public Builder includeSegmentFileSizes(@Nullable Boolean value) {
@@ -475,7 +475,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Indicates whether statistics are aggregated at the cluster, index, or shard
 		 * level.
-		 *
+		 * <p>
 		 * API name: {@code level}
 		 */
 		public Builder level(@Nullable JsonValue value) {
@@ -486,7 +486,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -497,7 +497,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Period to wait for a response. If no response is received before the timeout
 		 * expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -507,7 +507,7 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of document types for the indexing index metric.
-		 *
+		 * <p>
 		 * API name: {@code types}
 		 */
 		public Builder types(@Nullable List<String> value) {
@@ -517,7 +517,7 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of document types for the indexing index metric.
-		 *
+		 * <p>
 		 * API name: {@code types}
 		 */
 		public Builder types(String... value) {

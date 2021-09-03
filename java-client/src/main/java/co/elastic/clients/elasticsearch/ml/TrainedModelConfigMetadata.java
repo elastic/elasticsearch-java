@@ -77,7 +77,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	 * An object that contains the baseline for feature importance values. For
 	 * regression analysis, it is a single value. For classification analysis, there
 	 * is a value for each class.
-	 *
+	 * <p>
 	 * API name: {@code feature_importance_baseline}
 	 */
 	@Nullable
@@ -88,7 +88,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	/**
 	 * List of the available hyperparameters optimized during the
 	 * fine_parameter_tuning phase as well as specified by the user.
-	 *
+	 * <p>
 	 * API name: {@code hyperparameters}
 	 */
 	@Nullable
@@ -101,7 +101,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	 * training data set. This array of objects is returned if data frame analytics
 	 * trained the model and the request includes total_feature_importance in the
 	 * include request parameter.
-	 *
+	 * <p>
 	 * API name: {@code total_feature_importance}
 	 */
 	@Nullable
@@ -217,7 +217,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		 * An object that contains the baseline for feature importance values. For
 		 * regression analysis, it is a single value. For classification analysis, there
 		 * is a value for each class.
-		 *
+		 * <p>
 		 * API name: {@code feature_importance_baseline}
 		 */
 		public Builder featureImportanceBaseline(@Nullable Map<String, String> value) {
@@ -240,7 +240,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		/**
 		 * List of the available hyperparameters optimized during the
 		 * fine_parameter_tuning phase as well as specified by the user.
-		 *
+		 * <p>
 		 * API name: {@code hyperparameters}
 		 */
 		public Builder hyperparameters(@Nullable List<Hyperparameter> value) {
@@ -251,7 +251,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		/**
 		 * List of the available hyperparameters optimized during the
 		 * fine_parameter_tuning phase as well as specified by the user.
-		 *
+		 * <p>
 		 * API name: {@code hyperparameters}
 		 */
 		public Builder hyperparameters(Hyperparameter... value) {
@@ -289,7 +289,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		 * training data set. This array of objects is returned if data frame analytics
 		 * trained the model and the request includes total_feature_importance in the
 		 * include request parameter.
-		 *
+		 * <p>
 		 * API name: {@code total_feature_importance}
 		 */
 		public Builder totalFeatureImportance(@Nullable List<TotalFeatureImportance> value) {
@@ -302,7 +302,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		 * training data set. This array of objects is returned if data frame analytics
 		 * trained the model and the request includes total_feature_importance in the
 		 * include request parameter.
-		 *
+		 * <p>
 		 * API name: {@code total_feature_importance}
 		 */
 		public Builder totalFeatureImportance(TotalFeatureImportance... value) {

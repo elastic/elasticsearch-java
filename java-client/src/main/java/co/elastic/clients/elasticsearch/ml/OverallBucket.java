@@ -72,7 +72,7 @@ public final class OverallBucket implements ToJsonp {
 	/**
 	 * The length of the bucket in seconds. Matches the job with the longest
 	 * bucket_span value.
-	 *
+	 * <p>
 	 * API name: {@code bucket_span}
 	 */
 	public Number bucketSpan() {
@@ -82,7 +82,7 @@ public final class OverallBucket implements ToJsonp {
 	/**
 	 * If true, this is an interim result. In other words, the results are
 	 * calculated based on partial input data.
-	 *
+	 * <p>
 	 * API name: {@code is_interim}
 	 */
 	public Boolean isInterim() {
@@ -91,7 +91,7 @@ public final class OverallBucket implements ToJsonp {
 
 	/**
 	 * An array of objects that contain the max_anomaly_score per job_id.
-	 *
+	 * <p>
 	 * API name: {@code jobs}
 	 */
 	public List<OverallBucketJob> jobs() {
@@ -100,7 +100,7 @@ public final class OverallBucket implements ToJsonp {
 
 	/**
 	 * The top_n average of the maximum bucket anomaly_score per job.
-	 *
+	 * <p>
 	 * API name: {@code overall_score}
 	 */
 	public Number overallScore() {
@@ -109,7 +109,7 @@ public final class OverallBucket implements ToJsonp {
 
 	/**
 	 * Internal. This is always set to overall_bucket.
-	 *
+	 * <p>
 	 * API name: {@code result_type}
 	 */
 	public String resultType() {
@@ -118,7 +118,7 @@ public final class OverallBucket implements ToJsonp {
 
 	/**
 	 * The start time of the bucket for which these results were calculated.
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	public JsonValue timestamp() {
@@ -182,7 +182,7 @@ public final class OverallBucket implements ToJsonp {
 		/**
 		 * The length of the bucket in seconds. Matches the job with the longest
 		 * bucket_span value.
-		 *
+		 * <p>
 		 * API name: {@code bucket_span}
 		 */
 		public Builder bucketSpan(Number value) {
@@ -193,7 +193,7 @@ public final class OverallBucket implements ToJsonp {
 		/**
 		 * If true, this is an interim result. In other words, the results are
 		 * calculated based on partial input data.
-		 *
+		 * <p>
 		 * API name: {@code is_interim}
 		 */
 		public Builder isInterim(Boolean value) {
@@ -203,7 +203,7 @@ public final class OverallBucket implements ToJsonp {
 
 		/**
 		 * An array of objects that contain the max_anomaly_score per job_id.
-		 *
+		 * <p>
 		 * API name: {@code jobs}
 		 */
 		public Builder jobs(List<OverallBucketJob> value) {
@@ -213,7 +213,7 @@ public final class OverallBucket implements ToJsonp {
 
 		/**
 		 * An array of objects that contain the max_anomaly_score per job_id.
-		 *
+		 * <p>
 		 * API name: {@code jobs}
 		 */
 		public Builder jobs(OverallBucketJob... value) {
@@ -248,7 +248,7 @@ public final class OverallBucket implements ToJsonp {
 
 		/**
 		 * The top_n average of the maximum bucket anomaly_score per job.
-		 *
+		 * <p>
 		 * API name: {@code overall_score}
 		 */
 		public Builder overallScore(Number value) {
@@ -258,7 +258,7 @@ public final class OverallBucket implements ToJsonp {
 
 		/**
 		 * Internal. This is always set to overall_bucket.
-		 *
+		 * <p>
 		 * API name: {@code result_type}
 		 */
 		public Builder resultType(String value) {
@@ -268,7 +268,7 @@ public final class OverallBucket implements ToJsonp {
 
 		/**
 		 * The start time of the bucket for which these results were calculated.
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(JsonValue value) {

@@ -71,7 +71,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 	/**
 	 * The search request’s ID, used to group result details later.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -80,7 +80,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 	/**
 	 * The query being evaluated.
-	 *
+	 * <p>
 	 * API name: {@code request}
 	 */
 	@Nullable
@@ -90,7 +90,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 	/**
 	 * List of document ratings
-	 *
+	 * <p>
 	 * API name: {@code ratings}
 	 */
 	public List<DocumentRating> ratings() {
@@ -99,7 +99,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 	/**
 	 * The search template Id
-	 *
+	 * <p>
 	 * API name: {@code template_id}
 	 */
 	@Nullable
@@ -109,7 +109,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 	/**
 	 * The search template parameters.
-	 *
+	 * <p>
 	 * API name: {@code params}
 	 */
 	@Nullable
@@ -188,7 +188,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 		/**
 		 * The search request’s ID, used to group result details later.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -198,7 +198,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 		/**
 		 * The query being evaluated.
-		 *
+		 * <p>
 		 * API name: {@code request}
 		 */
 		public Builder request(@Nullable RankEvalQuery value) {
@@ -208,7 +208,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 		/**
 		 * The query being evaluated.
-		 *
+		 * <p>
 		 * API name: {@code request}
 		 */
 		public Builder request(Function<RankEvalQuery.Builder, ObjectBuilder<RankEvalQuery>> fn) {
@@ -217,7 +217,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 		/**
 		 * List of document ratings
-		 *
+		 * <p>
 		 * API name: {@code ratings}
 		 */
 		public Builder ratings(List<DocumentRating> value) {
@@ -227,7 +227,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 		/**
 		 * List of document ratings
-		 *
+		 * <p>
 		 * API name: {@code ratings}
 		 */
 		public Builder ratings(DocumentRating... value) {
@@ -262,7 +262,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 		/**
 		 * The search template Id
-		 *
+		 * <p>
 		 * API name: {@code template_id}
 		 */
 		public Builder templateId(@Nullable String value) {
@@ -272,7 +272,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 
 		/**
 		 * The search template parameters.
-		 *
+		 * <p>
 		 * API name: {@code params}
 		 */
 		public Builder params(@Nullable Map<String, JsonValue> value) {

@@ -66,7 +66,7 @@ public final class Deprecation implements ToJsonp {
 
 	/**
 	 * The level property describes the significance of the issue.
-	 *
+	 * <p>
 	 * API name: {@code level}
 	 */
 	public JsonValue level() {
@@ -136,7 +136,7 @@ public final class Deprecation implements ToJsonp {
 
 		/**
 		 * The level property describes the significance of the issue.
-		 *
+		 * <p>
 		 * API name: {@code level}
 		 */
 		public Builder level(JsonValue value) {

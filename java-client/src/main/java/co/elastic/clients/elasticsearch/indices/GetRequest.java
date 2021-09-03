@@ -90,7 +90,7 @@ public final class GetRequest extends RequestBase {
 	/**
 	 * Comma-separated list of data streams, indices, and index aliases used to
 	 * limit the request. Wildcard expressions (*) are supported.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -109,7 +109,7 @@ public final class GetRequest extends RequestBase {
 	 * Type of index that wildcard expressions can match. If the request can target
 	 * data streams, this argument determines whether wildcard expressions match
 	 * hidden data streams. Supports comma-separated values, such as open,hidden.
-	 *
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -119,7 +119,7 @@ public final class GetRequest extends RequestBase {
 
 	/**
 	 * If true, returns settings in flat format.
-	 *
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -129,7 +129,7 @@ public final class GetRequest extends RequestBase {
 
 	/**
 	 * If false, requests that target a missing index return an error.
-	 *
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -139,7 +139,7 @@ public final class GetRequest extends RequestBase {
 
 	/**
 	 * If true, return all default settings in the response.
-	 *
+	 * <p>
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
@@ -149,7 +149,7 @@ public final class GetRequest extends RequestBase {
 
 	/**
 	 * If true, a mapping type is expected in the body of mappings.
-	 *
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -160,7 +160,7 @@ public final class GetRequest extends RequestBase {
 	/**
 	 * If true, the request retrieves information from the local node only. Defaults
 	 * to false, which means information is retrieved from the master node.
-	 *
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -171,7 +171,7 @@ public final class GetRequest extends RequestBase {
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -214,7 +214,7 @@ public final class GetRequest extends RequestBase {
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard expressions (*) are supported.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -225,7 +225,7 @@ public final class GetRequest extends RequestBase {
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard expressions (*) are supported.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -256,7 +256,7 @@ public final class GetRequest extends RequestBase {
 		 * Type of index that wildcard expressions can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
 		 * hidden data streams. Supports comma-separated values, such as open,hidden.
-		 *
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -266,7 +266,7 @@ public final class GetRequest extends RequestBase {
 
 		/**
 		 * If true, returns settings in flat format.
-		 *
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -276,7 +276,7 @@ public final class GetRequest extends RequestBase {
 
 		/**
 		 * If false, requests that target a missing index return an error.
-		 *
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -286,7 +286,7 @@ public final class GetRequest extends RequestBase {
 
 		/**
 		 * If true, return all default settings in the response.
-		 *
+		 * <p>
 		 * API name: {@code include_defaults}
 		 */
 		public Builder includeDefaults(@Nullable Boolean value) {
@@ -296,7 +296,7 @@ public final class GetRequest extends RequestBase {
 
 		/**
 		 * If true, a mapping type is expected in the body of mappings.
-		 *
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
@@ -307,7 +307,7 @@ public final class GetRequest extends RequestBase {
 		/**
 		 * If true, the request retrieves information from the local node only. Defaults
 		 * to false, which means information is retrieved from the master node.
-		 *
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -318,7 +318,7 @@ public final class GetRequest extends RequestBase {
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

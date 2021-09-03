@@ -52,7 +52,7 @@ public final class TrainedModelConfigInput implements ToJsonp {
 
 	/**
 	 * An array of input field names for the model.
-	 *
+	 * <p>
 	 * API name: {@code field_names}
 	 */
 	public List<String> fieldNames() {
@@ -90,7 +90,7 @@ public final class TrainedModelConfigInput implements ToJsonp {
 
 		/**
 		 * An array of input field names for the model.
-		 *
+		 * <p>
 		 * API name: {@code field_names}
 		 */
 		public Builder fieldNames(List<String> value) {
@@ -100,7 +100,7 @@ public final class TrainedModelConfigInput implements ToJsonp {
 
 		/**
 		 * An array of input field names for the model.
-		 *
+		 * <p>
 		 * API name: {@code field_names}
 		 */
 		public Builder fieldNames(String... value) {

@@ -64,7 +64,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Controls the amount of time to wait until the data frame analytics job
 	 * starts.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -94,7 +94,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		/**
 		 * Controls the amount of time to wait until the data frame analytics job
 		 * starts.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

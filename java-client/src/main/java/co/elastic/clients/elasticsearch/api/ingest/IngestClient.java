@@ -60,8 +60,10 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Deletes a pipeline.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request) throws IOException {
@@ -70,12 +72,14 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Deletes a pipeline.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeletePipelineResponse deletePipeline(
@@ -87,8 +91,10 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Returns statistical information about geoip databases
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public GeoIpStatsResponse geoIpStats() throws IOException {
 		return this.transport.performRequest(GeoIpStatsRequest.INSTANCE, GeoIpStatsRequest.ENDPOINT,
@@ -99,8 +105,10 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Returns a pipeline.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException {
@@ -109,12 +117,14 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Returns a pipeline.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetPipelineResponse getPipeline(
@@ -126,8 +136,10 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Returns a list of the built-in patterns.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get">Documentation
+	 *      on elastic.co</a>
 	 */
 	public ProcessorGrokResponse processorGrok() throws IOException {
 		return this.transport.performRequest(ProcessorGrokRequest.INSTANCE, ProcessorGrokRequest.ENDPOINT,
@@ -138,8 +150,10 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Creates or updates a pipeline.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException {
@@ -148,12 +162,14 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Creates or updates a pipeline.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PutPipelineResponse putPipeline(
@@ -165,8 +181,10 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Allows to simulate a pipeline with example documents.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public SimulatePipelineResponse simulate(SimulatePipelineRequest request) throws IOException {
@@ -175,12 +193,14 @@ public class IngestClient extends ApiClient<IngestClient> {
 
 	/**
 	 * Allows to simulate a pipeline with example documents.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final SimulatePipelineResponse simulate(

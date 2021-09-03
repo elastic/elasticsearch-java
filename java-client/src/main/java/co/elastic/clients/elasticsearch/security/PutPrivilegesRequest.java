@@ -67,7 +67,7 @@ public final class PutPrivilegesRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Request body.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public Map<String, Map<String, Actions>> value() {
@@ -115,7 +115,7 @@ public final class PutPrivilegesRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(Map<String, Map<String, Actions>> value) {

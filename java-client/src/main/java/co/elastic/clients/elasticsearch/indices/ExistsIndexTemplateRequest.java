@@ -58,7 +58,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 	/**
 	 * Comma-separated list of index template names used to limit the request.
 	 * Wildcard (*) expressions are supported.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -68,7 +68,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -90,7 +90,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 		/**
 		 * Comma-separated list of index template names used to limit the request.
 		 * Wildcard (*) expressions are supported.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -101,7 +101,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

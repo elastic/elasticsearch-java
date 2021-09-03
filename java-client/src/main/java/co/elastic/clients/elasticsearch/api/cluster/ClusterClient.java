@@ -78,8 +78,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Provides explanations for shard allocations in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public AllocationExplainResponse allocationExplain(AllocationExplainRequest request) throws IOException {
@@ -88,12 +90,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Provides explanations for shard allocations in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final AllocationExplainResponse allocationExplain(
@@ -105,8 +109,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Deletes a component template
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeleteComponentTemplateResponse deleteComponentTemplate(DeleteComponentTemplateRequest request)
@@ -116,12 +122,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Deletes a component template
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeleteComponentTemplateResponse deleteComponentTemplate(
@@ -134,8 +142,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Clears cluster voting config exclusions.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeleteVotingConfigExclusionsResponse deleteVotingConfigExclusions(
@@ -146,12 +156,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Clears cluster voting config exclusions.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeleteVotingConfigExclusionsResponse deleteVotingConfigExclusions(
@@ -164,8 +176,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns information about whether a particular component template exist
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ExistsComponentTemplateResponse existsComponentTemplate(ExistsComponentTemplateRequest request)
@@ -175,12 +189,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns information about whether a particular component template exist
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ExistsComponentTemplateResponse existsComponentTemplate(
@@ -193,8 +209,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns one or more component templates
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetComponentTemplateResponse getComponentTemplate(GetComponentTemplateRequest request) throws IOException {
@@ -203,12 +221,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns one or more component templates
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetComponentTemplateResponse getComponentTemplate(
@@ -221,8 +241,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns cluster settings.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetSettingsResponse getSettings(GetSettingsRequest request) throws IOException {
@@ -231,12 +253,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns cluster settings.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetSettingsResponse getSettings(
@@ -248,8 +272,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns basic information about the health of the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public HealthResponse health(HealthRequest request) throws IOException {
@@ -258,12 +284,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns basic information about the health of the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
@@ -276,8 +304,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 	/**
 	 * Returns a list of any cluster-level changes (e.g. create index, update
 	 * mapping, allocate or fail shard) which have not yet been executed.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException {
@@ -287,12 +317,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 	/**
 	 * Returns a list of any cluster-level changes (e.g. create index, update
 	 * mapping, allocate or fail shard) which have not yet been executed.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PendingTasksResponse pendingTasks(
@@ -304,8 +336,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Updates the cluster voting config exclusions by node ids or node names.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PutVotingConfigExclusionsResponse postVotingConfigExclusions(PutVotingConfigExclusionsRequest request)
@@ -315,12 +349,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Updates the cluster voting config exclusions by node ids or node names.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PutVotingConfigExclusionsResponse postVotingConfigExclusions(
@@ -333,8 +369,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Creates or updates a component template
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PutComponentTemplateResponse putComponentTemplate(PutComponentTemplateRequest request) throws IOException {
@@ -343,12 +381,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Creates or updates a component template
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PutComponentTemplateResponse putComponentTemplate(
@@ -361,8 +401,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Updates the cluster settings.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PutSettingsResponse putSettings(PutSettingsRequest request) throws IOException {
@@ -371,12 +413,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Updates the cluster settings.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PutSettingsResponse putSettings(
@@ -388,8 +432,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns the information about configured remote clusters.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public RemoteInfoResponse remoteInfo(RemoteInfoRequest request) throws IOException {
@@ -398,12 +444,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns the information about configured remote clusters.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final RemoteInfoResponse remoteInfo(Function<RemoteInfoRequest.Builder, ObjectBuilder<RemoteInfoRequest>> fn)
@@ -415,8 +463,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Allows to manually change the allocation of individual shards in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public RerouteResponse reroute(RerouteRequest request) throws IOException {
@@ -425,12 +475,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Allows to manually change the allocation of individual shards in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final RerouteResponse reroute(Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
@@ -442,8 +494,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns a comprehensive information about the state of the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public StateResponse state(StateRequest request) throws IOException {
@@ -452,12 +506,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns a comprehensive information about the state of the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final StateResponse state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
@@ -469,8 +525,10 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns high-level overview of cluster statistics.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public StatsResponse stats(StatsRequest request) throws IOException {
@@ -479,12 +537,14 @@ public class ClusterClient extends ApiClient<ClusterClient> {
 
 	/**
 	 * Returns high-level overview of cluster statistics.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final StatsResponse stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)

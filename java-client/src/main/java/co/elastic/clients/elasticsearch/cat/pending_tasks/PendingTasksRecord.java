@@ -61,7 +61,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 	/**
 	 * task insertion order
-	 *
+	 * <p>
 	 * API name: {@code insertOrder}
 	 */
 	@Nullable
@@ -71,7 +71,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 	/**
 	 * how long task has been in queue
-	 *
+	 * <p>
 	 * API name: {@code timeInQueue}
 	 */
 	@Nullable
@@ -81,7 +81,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 	/**
 	 * task priority
-	 *
+	 * <p>
 	 * API name: {@code priority}
 	 */
 	@Nullable
@@ -91,7 +91,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 	/**
 	 * task source
-	 *
+	 * <p>
 	 * API name: {@code source}
 	 */
 	@Nullable
@@ -157,7 +157,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 		/**
 		 * task insertion order
-		 *
+		 * <p>
 		 * API name: {@code insertOrder}
 		 */
 		public Builder insertorder(@Nullable String value) {
@@ -167,7 +167,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 		/**
 		 * how long task has been in queue
-		 *
+		 * <p>
 		 * API name: {@code timeInQueue}
 		 */
 		public Builder timeinqueue(@Nullable String value) {
@@ -177,7 +177,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 		/**
 		 * task priority
-		 *
+		 * <p>
 		 * API name: {@code priority}
 		 */
 		public Builder priority(@Nullable String value) {
@@ -187,7 +187,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 		/**
 		 * task source
-		 *
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public Builder source(@Nullable String value) {

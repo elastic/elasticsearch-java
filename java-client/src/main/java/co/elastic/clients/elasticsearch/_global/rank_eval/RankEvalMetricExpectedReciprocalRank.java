@@ -48,7 +48,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 
 	/**
 	 * The highest relevance grade used in the user-supplied relevance judgments.
-	 *
+	 * <p>
 	 * API name: {@code maximum_relevance}
 	 */
 	public Number maximumRelevance() {
@@ -75,7 +75,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 
 		/**
 		 * The highest relevance grade used in the user-supplied relevance judgments.
-		 *
+		 * <p>
 		 * API name: {@code maximum_relevance}
 		 */
 		public Builder maximumRelevance(Number value) {

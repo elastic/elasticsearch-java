@@ -53,7 +53,7 @@ public final class InferenceConfigContainer implements ToJsonp {
 
 	/**
 	 * Regression configuration for inference.
-	 *
+	 * <p>
 	 * API name: {@code regression}
 	 */
 	@Nullable
@@ -63,7 +63,7 @@ public final class InferenceConfigContainer implements ToJsonp {
 
 	/**
 	 * Classification configuration for inference.
-	 *
+	 * <p>
 	 * API name: {@code classification}
 	 */
 	@Nullable
@@ -111,7 +111,7 @@ public final class InferenceConfigContainer implements ToJsonp {
 
 		/**
 		 * Regression configuration for inference.
-		 *
+		 * <p>
 		 * API name: {@code regression}
 		 */
 		public Builder regression(@Nullable RegressionInferenceOptions value) {
@@ -121,7 +121,7 @@ public final class InferenceConfigContainer implements ToJsonp {
 
 		/**
 		 * Regression configuration for inference.
-		 *
+		 * <p>
 		 * API name: {@code regression}
 		 */
 		public Builder regression(
@@ -131,7 +131,7 @@ public final class InferenceConfigContainer implements ToJsonp {
 
 		/**
 		 * Classification configuration for inference.
-		 *
+		 * <p>
 		 * API name: {@code classification}
 		 */
 		public Builder classification(@Nullable ClassificationInferenceOptions value) {
@@ -141,7 +141,7 @@ public final class InferenceConfigContainer implements ToJsonp {
 
 		/**
 		 * Classification configuration for inference.
-		 *
+		 * <p>
 		 * API name: {@code classification}
 		 */
 		public Builder classification(

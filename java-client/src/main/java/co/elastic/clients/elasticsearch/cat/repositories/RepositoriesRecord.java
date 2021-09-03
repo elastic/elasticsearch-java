@@ -53,7 +53,7 @@ public final class RepositoriesRecord implements ToJsonp {
 
 	/**
 	 * unique repository id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -63,7 +63,7 @@ public final class RepositoriesRecord implements ToJsonp {
 
 	/**
 	 * repository type
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -111,7 +111,7 @@ public final class RepositoriesRecord implements ToJsonp {
 
 		/**
 		 * unique repository id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -121,7 +121,7 @@ public final class RepositoriesRecord implements ToJsonp {
 
 		/**
 		 * repository type
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {

@@ -98,7 +98,6 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements ToJsonp {
 		/**
 		 * Serializer for TResult. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TResult> tResultSerializer(@Nullable JsonpSerializer<TResult> value) {
 			this.tResultSerializer = value;

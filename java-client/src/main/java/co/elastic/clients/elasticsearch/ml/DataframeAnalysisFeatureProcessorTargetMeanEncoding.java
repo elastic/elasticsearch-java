@@ -62,7 +62,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding implement
 
 	/**
 	 * The default value if field value is not found in the target_map.
-	 *
+	 * <p>
 	 * API name: {@code default_value}
 	 */
 	public Number defaultValue() {
@@ -71,7 +71,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding implement
 
 	/**
 	 * The resulting feature name.
-	 *
+	 * <p>
 	 * API name: {@code feature_name}
 	 */
 	public String featureName() {
@@ -80,7 +80,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding implement
 
 	/**
 	 * The name of the field to encode.
-	 *
+	 * <p>
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -89,7 +89,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding implement
 
 	/**
 	 * The field value to target mean transition map.
-	 *
+	 * <p>
 	 * API name: {@code target_map}
 	 */
 	public Map<String, JsonValue> targetMap() {
@@ -143,7 +143,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding implement
 
 		/**
 		 * The default value if field value is not found in the target_map.
-		 *
+		 * <p>
 		 * API name: {@code default_value}
 		 */
 		public Builder defaultValue(Number value) {
@@ -153,7 +153,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding implement
 
 		/**
 		 * The resulting feature name.
-		 *
+		 * <p>
 		 * API name: {@code feature_name}
 		 */
 		public Builder featureName(String value) {
@@ -163,7 +163,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding implement
 
 		/**
 		 * The name of the field to encode.
-		 *
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
@@ -173,7 +173,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding implement
 
 		/**
 		 * The field value to target mean transition map.
-		 *
+		 * <p>
 		 * API name: {@code target_map}
 		 */
 		public Builder targetMap(Map<String, JsonValue> value) {

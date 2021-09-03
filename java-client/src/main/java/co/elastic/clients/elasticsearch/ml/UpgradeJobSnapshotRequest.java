@@ -64,7 +64,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 	/**
 	 * Identifier for the anomaly detection job.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -73,7 +73,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 	/**
 	 * A numerical character string that uniquely identifies the model snapshot.
-	 *
+	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	public String snapshotId() {
@@ -83,7 +83,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	/**
 	 * When true, the API won’t respond until the upgrade is complete. Otherwise, it
 	 * responds as soon as the upgrade task is assigned to a node.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -93,7 +93,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 	/**
 	 * Controls the time to wait for the request to complete.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -119,7 +119,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 		/**
 		 * Identifier for the anomaly detection job.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -129,7 +129,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 		/**
 		 * A numerical character string that uniquely identifies the model snapshot.
-		 *
+		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(String value) {
@@ -140,7 +140,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		/**
 		 * When true, the API won’t respond until the upgrade is complete. Otherwise, it
 		 * responds as soon as the upgrade task is assigned to a node.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {
@@ -150,7 +150,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 		/**
 		 * Controls the time to wait for the request to complete.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

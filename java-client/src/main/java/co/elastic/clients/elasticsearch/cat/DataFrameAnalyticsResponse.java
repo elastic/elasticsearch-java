@@ -53,7 +53,7 @@ public final class DataFrameAnalyticsResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<DataFrameAnalyticsRecord> value() {
@@ -83,7 +83,7 @@ public final class DataFrameAnalyticsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<DataFrameAnalyticsRecord> value) {
@@ -93,7 +93,7 @@ public final class DataFrameAnalyticsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(DataFrameAnalyticsRecord... value) {

@@ -53,8 +53,10 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 	/**
 	 * Gets a list of features which can be included in snapshots using the
 	 * feature_states field when creating a snapshot
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetFeaturesResponse getFeatures(GetFeaturesRequest request) throws IOException {
@@ -64,12 +66,14 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 	/**
 	 * Gets a list of features which can be included in snapshots using the
 	 * feature_states field when creating a snapshot
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetFeaturesResponse getFeatures(
@@ -81,8 +85,10 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 
 	/**
 	 * Resets the internal state of features, usually by deleting system indices
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ResetFeaturesResponse resetFeatures(ResetFeaturesRequest request) throws IOException {
@@ -91,12 +97,14 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 
 	/**
 	 * Resets the internal state of features, usually by deleting system indices
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ResetFeaturesResponse resetFeatures(

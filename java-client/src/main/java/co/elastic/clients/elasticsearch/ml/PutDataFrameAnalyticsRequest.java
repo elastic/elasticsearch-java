@@ -89,7 +89,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	 * Identifier for the data frame analytics job. This identifier can contain
 	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 	 * must start and end with alphanumeric characters.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -99,7 +99,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	/**
 	 * The configuration of how to source the analysis data. It requires an index.
 	 * Optionally, query and _source may be specified.
-	 *
+	 * <p>
 	 * API name: {@code source}
 	 */
 	@Nullable
@@ -110,7 +110,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	/**
 	 * The destination configuration, consisting of index and optionally
 	 * results_field (ml by default).
-	 *
+	 * <p>
 	 * API name: {@code dest}
 	 */
 	public DataframeAnalyticsDestination dest() {
@@ -121,7 +121,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	 * The analysis configuration, which contains the information necessary to
 	 * perform one of the following types of analysis: classification, outlier
 	 * detection, or regression.
-	 *
+	 * <p>
 	 * API name: {@code analysis}
 	 */
 	public DataframeAnalysisContainer analysis() {
@@ -130,7 +130,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 
 	/**
 	 * A description of the job.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -145,7 +145,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
 	 * create data frame analytics jobs that have model_memory_limit values greater
 	 * than that setting.
-	 *
+	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
@@ -159,7 +159,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	 * analysis at the cost of using more CPU. Note that the process may use
 	 * additional threads for operational functionality other than the analysis
 	 * itself.
-	 *
+	 * <p>
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
@@ -173,7 +173,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	 * last, therefore excludes takes precedence. In other words, if the same field
 	 * is specified in both includes and excludes, then the field will not be
 	 * included in the analysis.
-	 *
+	 * <p>
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
@@ -184,7 +184,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	/**
 	 * Specifies whether this job can start when there is insufficient machine
 	 * learning node capacity for it to be immediately assigned to a node.
-	 *
+	 * <p>
 	 * API name: {@code allow_lazy_start}
 	 */
 	@Nullable
@@ -283,7 +283,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		 * Identifier for the data frame analytics job. This identifier can contain
 		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 		 * must start and end with alphanumeric characters.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -294,7 +294,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		/**
 		 * The configuration of how to source the analysis data. It requires an index.
 		 * Optionally, query and _source may be specified.
-		 *
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public Builder source(@Nullable DataframeAnalyticsSource value) {
@@ -305,7 +305,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		/**
 		 * The configuration of how to source the analysis data. It requires an index.
 		 * Optionally, query and _source may be specified.
-		 *
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
@@ -315,7 +315,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		/**
 		 * The destination configuration, consisting of index and optionally
 		 * results_field (ml by default).
-		 *
+		 * <p>
 		 * API name: {@code dest}
 		 */
 		public Builder dest(DataframeAnalyticsDestination value) {
@@ -326,7 +326,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		/**
 		 * The destination configuration, consisting of index and optionally
 		 * results_field (ml by default).
-		 *
+		 * <p>
 		 * API name: {@code dest}
 		 */
 		public Builder dest(
@@ -338,7 +338,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		 * The analysis configuration, which contains the information necessary to
 		 * perform one of the following types of analysis: classification, outlier
 		 * detection, or regression.
-		 *
+		 * <p>
 		 * API name: {@code analysis}
 		 */
 		public Builder analysis(DataframeAnalysisContainer value) {
@@ -350,7 +350,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		 * The analysis configuration, which contains the information necessary to
 		 * perform one of the following types of analysis: classification, outlier
 		 * detection, or regression.
-		 *
+		 * <p>
 		 * API name: {@code analysis}
 		 */
 		public Builder analysis(
@@ -360,7 +360,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 
 		/**
 		 * A description of the job.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -375,7 +375,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
 		 * create data frame analytics jobs that have model_memory_limit values greater
 		 * than that setting.
-		 *
+		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
 		public Builder modelMemoryLimit(@Nullable String value) {
@@ -389,7 +389,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		 * analysis at the cost of using more CPU. Note that the process may use
 		 * additional threads for operational functionality other than the analysis
 		 * itself.
-		 *
+		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
 		public Builder maxNumThreads(@Nullable Number value) {
@@ -403,7 +403,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		 * last, therefore excludes takes precedence. In other words, if the same field
 		 * is specified in both includes and excludes, then the field will not be
 		 * included in the analysis.
-		 *
+		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
 		public Builder analyzedFields(@Nullable JsonValue value) {
@@ -414,7 +414,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
 		 * learning node capacity for it to be immediately assigned to a node.
-		 *
+		 * <p>
 		 * API name: {@code allow_lazy_start}
 		 */
 		public Builder allowLazyStart(@Nullable Boolean value) {

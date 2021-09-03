@@ -62,7 +62,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Comma-separated list of node filters used to limit returned information.
 	 * Defaults to all nodes in the cluster.
-	 *
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
@@ -83,7 +83,7 @@ public final class StatsRequest extends RequestBase {
 	 * its timeout expires, the response does not include its stats. However, timed
 	 * out nodes are included in the response’s _nodes.failed property. Defaults to
 	 * no timeout.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -109,7 +109,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list of node filters used to limit returned information.
 		 * Defaults to all nodes in the cluster.
-		 *
+		 * <p>
 		 * API name: {@code node_id}
 		 */
 		public Builder nodeId(@Nullable String value) {
@@ -130,7 +130,7 @@ public final class StatsRequest extends RequestBase {
 		 * its timeout expires, the response does not include its stats. However, timed
 		 * out nodes are included in the response’s _nodes.failed property. Defaults to
 		 * no timeout.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

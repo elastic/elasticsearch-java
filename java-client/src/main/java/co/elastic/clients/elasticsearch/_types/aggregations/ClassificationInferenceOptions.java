@@ -66,7 +66,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 
 	/**
 	 * Specifies the number of top class predictions to return. Defaults to 0.
-	 *
+	 * <p>
 	 * API name: {@code num_top_classes}
 	 */
 	@Nullable
@@ -77,7 +77,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	/**
 	 * Specifies the maximum number of feature importance values per document. By
 	 * default, it is zero and no feature importance calculation occurs.
-	 *
+	 * <p>
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
@@ -89,7 +89,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	 * Specifies the type of the predicted field to write. Acceptable values are:
 	 * string, number, boolean. When boolean is provided 1.0 is transformed to true
 	 * and 0.0 to false.
-	 *
+	 * <p>
 	 * API name: {@code prediction_field_type}
 	 */
 	@Nullable
@@ -100,7 +100,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	/**
 	 * The field that is added to incoming documents to contain the inference
 	 * prediction. Defaults to predicted_value.
-	 *
+	 * <p>
 	 * API name: {@code results_field}
 	 */
 	@Nullable
@@ -111,7 +111,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	/**
 	 * Specifies the field to which the top classes are written. Defaults to
 	 * top_classes.
-	 *
+	 * <p>
 	 * API name: {@code top_classes_results_field}
 	 */
 	@Nullable
@@ -186,7 +186,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 
 		/**
 		 * Specifies the number of top class predictions to return. Defaults to 0.
-		 *
+		 * <p>
 		 * API name: {@code num_top_classes}
 		 */
 		public Builder numTopClasses(@Nullable Number value) {
@@ -197,7 +197,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 		/**
 		 * Specifies the maximum number of feature importance values per document. By
 		 * default, it is zero and no feature importance calculation occurs.
-		 *
+		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
 		public Builder numTopFeatureImportanceValues(@Nullable Number value) {
@@ -209,7 +209,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 		 * Specifies the type of the predicted field to write. Acceptable values are:
 		 * string, number, boolean. When boolean is provided 1.0 is transformed to true
 		 * and 0.0 to false.
-		 *
+		 * <p>
 		 * API name: {@code prediction_field_type}
 		 */
 		public Builder predictionFieldType(@Nullable String value) {
@@ -220,7 +220,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 		/**
 		 * The field that is added to incoming documents to contain the inference
 		 * prediction. Defaults to predicted_value.
-		 *
+		 * <p>
 		 * API name: {@code results_field}
 		 */
 		public Builder resultsField(@Nullable String value) {
@@ -231,7 +231,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 		/**
 		 * Specifies the field to which the top classes are written. Defaults to
 		 * top_classes.
-		 *
+		 * <p>
 		 * API name: {@code top_classes_results_field}
 		 */
 		public Builder topClassesResultsField(@Nullable String value) {

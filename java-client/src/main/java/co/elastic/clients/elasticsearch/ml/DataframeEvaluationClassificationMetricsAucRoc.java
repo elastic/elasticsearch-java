@@ -54,10 +54,10 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 
 	/**
 	 * Name of the only class that is treated as positive during AUC ROC
-	 * calculation. Other classes are treated as negative ("one-vs-all" strategy).
-	 * All the evaluated documents must have class_name in the list of their top
-	 * classes.
-	 *
+	 * calculation. Other classes are treated as negative (&quot;one-vs-all&quot;
+	 * strategy). All the evaluated documents must have class_name in the list of
+	 * their top classes.
+	 * <p>
 	 * API name: {@code class_name}
 	 */
 	@Nullable
@@ -68,7 +68,7 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 	/**
 	 * Whether or not the curve should be returned in addition to the score. Default
 	 * value is false.
-	 *
+	 * <p>
 	 * API name: {@code include_curve}
 	 */
 	@Nullable
@@ -116,10 +116,10 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 
 		/**
 		 * Name of the only class that is treated as positive during AUC ROC
-		 * calculation. Other classes are treated as negative ("one-vs-all" strategy).
-		 * All the evaluated documents must have class_name in the list of their top
-		 * classes.
-		 *
+		 * calculation. Other classes are treated as negative (&quot;one-vs-all&quot;
+		 * strategy). All the evaluated documents must have class_name in the list of
+		 * their top classes.
+		 * <p>
 		 * API name: {@code class_name}
 		 */
 		public Builder className(@Nullable String value) {
@@ -130,7 +130,7 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 		/**
 		 * Whether or not the curve should be returned in addition to the score. Default
 		 * value is false.
-		 *
+		 * <p>
 		 * API name: {@code include_curve}
 		 */
 		public Builder includeCurve(@Nullable Boolean value) {

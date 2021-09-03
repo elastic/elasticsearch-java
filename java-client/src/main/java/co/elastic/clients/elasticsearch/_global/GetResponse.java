@@ -156,7 +156,7 @@ public final class GetResponse<TDocument> implements ToJsonp {
 
 	/**
 	 * deprecated since 7.0.0
-	 *
+	 * <p>
 	 * API name: {@code _type}
 	 */
 	@Nullable
@@ -357,7 +357,7 @@ public final class GetResponse<TDocument> implements ToJsonp {
 
 		/**
 		 * deprecated since 7.0.0
-		 *
+		 * <p>
 		 * API name: {@code _type}
 		 */
 		public Builder<TDocument> type(@Nullable String value) {
@@ -376,7 +376,6 @@ public final class GetResponse<TDocument> implements ToJsonp {
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;

@@ -54,7 +54,7 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 
 	/**
 	 * Accuracy of predictions (per-class and overall).
-	 *
+	 * <p>
 	 * API name: {@code accuracy}
 	 */
 	@Nullable
@@ -64,7 +64,7 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 
 	/**
 	 * Multiclass confusion matrix.
-	 *
+	 * <p>
 	 * API name: {@code multiclass_confusion_matrix}
 	 */
 	@Nullable
@@ -117,7 +117,7 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 
 		/**
 		 * Accuracy of predictions (per-class and overall).
-		 *
+		 * <p>
 		 * API name: {@code accuracy}
 		 */
 		public Builder accuracy(@Nullable Map<String, JsonValue> value) {
@@ -138,7 +138,7 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 
 		/**
 		 * Multiclass confusion matrix.
-		 *
+		 * <p>
 		 * API name: {@code multiclass_confusion_matrix}
 		 */
 		public Builder multiclassConfusionMatrix(@Nullable Map<String, JsonValue> value) {

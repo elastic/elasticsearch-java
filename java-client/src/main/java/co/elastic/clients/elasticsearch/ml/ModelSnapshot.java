@@ -80,7 +80,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	/**
 	 * An optional description of the job.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -91,7 +91,7 @@ public final class ModelSnapshot implements ToJsonp {
 	/**
 	 * A numerical character string that uniquely identifies the job that the
 	 * snapshot was created for.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -100,7 +100,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	/**
 	 * The timestamp of the latest processed record.
-	 *
+	 * <p>
 	 * API name: {@code latest_record_time_stamp}
 	 */
 	public Number latestRecordTimeStamp() {
@@ -109,7 +109,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	/**
 	 * The timestamp of the latest bucket result.
-	 *
+	 * <p>
 	 * API name: {@code latest_result_time_stamp}
 	 */
 	public Number latestResultTimeStamp() {
@@ -118,7 +118,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	/**
 	 * The minimum version required to be able to restore the model snapshot.
-	 *
+	 * <p>
 	 * API name: {@code min_version}
 	 */
 	public String minVersion() {
@@ -127,7 +127,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	/**
 	 * Summary information describing the model.
-	 *
+	 * <p>
 	 * API name: {@code model_size_stats}
 	 */
 	public ModelSizeStats modelSizeStats() {
@@ -138,7 +138,7 @@ public final class ModelSnapshot implements ToJsonp {
 	 * If true, this snapshot will not be deleted during automatic cleanup of
 	 * snapshots older than model_snapshot_retention_days. However, this snapshot
 	 * will be deleted when the job is deleted. The default value is false.
-	 *
+	 * <p>
 	 * API name: {@code retain}
 	 */
 	public Boolean retain() {
@@ -147,7 +147,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	/**
 	 * For internal use only.
-	 *
+	 * <p>
 	 * API name: {@code snapshot_doc_count}
 	 */
 	public Number snapshotDocCount() {
@@ -156,7 +156,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	/**
 	 * A numerical character string that uniquely identifies the model snapshot.
-	 *
+	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	public String snapshotId() {
@@ -165,7 +165,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	/**
 	 * The creation timestamp for the snapshot.
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	public Number timestamp() {
@@ -248,7 +248,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		/**
 		 * An optional description of the job.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -259,7 +259,7 @@ public final class ModelSnapshot implements ToJsonp {
 		/**
 		 * A numerical character string that uniquely identifies the job that the
 		 * snapshot was created for.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -269,7 +269,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		/**
 		 * The timestamp of the latest processed record.
-		 *
+		 * <p>
 		 * API name: {@code latest_record_time_stamp}
 		 */
 		public Builder latestRecordTimeStamp(Number value) {
@@ -279,7 +279,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		/**
 		 * The timestamp of the latest bucket result.
-		 *
+		 * <p>
 		 * API name: {@code latest_result_time_stamp}
 		 */
 		public Builder latestResultTimeStamp(Number value) {
@@ -289,7 +289,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		/**
 		 * The minimum version required to be able to restore the model snapshot.
-		 *
+		 * <p>
 		 * API name: {@code min_version}
 		 */
 		public Builder minVersion(String value) {
@@ -299,7 +299,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		/**
 		 * Summary information describing the model.
-		 *
+		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
 		public Builder modelSizeStats(ModelSizeStats value) {
@@ -309,7 +309,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		/**
 		 * Summary information describing the model.
-		 *
+		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
 		public Builder modelSizeStats(Function<ModelSizeStats.Builder, ObjectBuilder<ModelSizeStats>> fn) {
@@ -320,7 +320,7 @@ public final class ModelSnapshot implements ToJsonp {
 		 * If true, this snapshot will not be deleted during automatic cleanup of
 		 * snapshots older than model_snapshot_retention_days. However, this snapshot
 		 * will be deleted when the job is deleted. The default value is false.
-		 *
+		 * <p>
 		 * API name: {@code retain}
 		 */
 		public Builder retain(Boolean value) {
@@ -330,7 +330,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		/**
 		 * For internal use only.
-		 *
+		 * <p>
 		 * API name: {@code snapshot_doc_count}
 		 */
 		public Builder snapshotDocCount(Number value) {
@@ -340,7 +340,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		/**
 		 * A numerical character string that uniquely identifies the model snapshot.
-		 *
+		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(String value) {
@@ -350,7 +350,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 		/**
 		 * The creation timestamp for the snapshot.
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(Number value) {

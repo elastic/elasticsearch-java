@@ -65,7 +65,7 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	@Nullable
@@ -107,7 +107,7 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(@Nullable String value) {

@@ -72,7 +72,7 @@ public final class Command implements ToJsonp {
 	 * allocations can be cancelled. If it is necessary to cancel the allocation of
 	 * a primary shard then the allow_primary flag must also be included in the
 	 * request.
-	 *
+	 * <p>
 	 * API name: {@code cancel}
 	 */
 	@Nullable
@@ -84,7 +84,7 @@ public final class Command implements ToJsonp {
 	 * Move a started shard from one node to another node. Accepts index and shard
 	 * for index name and shard number, from_node for the node to move the shard
 	 * from, and to_node for the node to move the shard to.
-	 *
+	 * <p>
 	 * API name: {@code move}
 	 */
 	@Nullable
@@ -96,7 +96,7 @@ public final class Command implements ToJsonp {
 	 * Allocate an unassigned replica shard to a node. Accepts index and shard for
 	 * index name and shard number, and node to allocate the shard to. Takes
 	 * allocation deciders into account.
-	 *
+	 * <p>
 	 * API name: {@code allocate_replica}
 	 */
 	@Nullable
@@ -113,7 +113,7 @@ public final class Command implements ToJsonp {
 	 * forcefully allocated with this command. To ensure that these implications are
 	 * well-understood, this command requires the flag accept_data_loss to be
 	 * explicitly set to true.
-	 *
+	 * <p>
 	 * API name: {@code allocate_stale_primary}
 	 */
 	@Nullable
@@ -129,7 +129,7 @@ public final class Command implements ToJsonp {
 	 * rejoins the cluster later on, that data will be deleted. To ensure that these
 	 * implications are well-understood, this command requires the flag
 	 * accept_data_loss to be explicitly set to true.
-	 *
+	 * <p>
 	 * API name: {@code allocate_empty_primary}
 	 */
 	@Nullable
@@ -211,7 +211,7 @@ public final class Command implements ToJsonp {
 		 * allocations can be cancelled. If it is necessary to cancel the allocation of
 		 * a primary shard then the allow_primary flag must also be included in the
 		 * request.
-		 *
+		 * <p>
 		 * API name: {@code cancel}
 		 */
 		public Builder cancel(@Nullable CommandCancelAction value) {
@@ -228,7 +228,7 @@ public final class Command implements ToJsonp {
 		 * allocations can be cancelled. If it is necessary to cancel the allocation of
 		 * a primary shard then the allow_primary flag must also be included in the
 		 * request.
-		 *
+		 * <p>
 		 * API name: {@code cancel}
 		 */
 		public Builder cancel(Function<CommandCancelAction.Builder, ObjectBuilder<CommandCancelAction>> fn) {
@@ -239,7 +239,7 @@ public final class Command implements ToJsonp {
 		 * Move a started shard from one node to another node. Accepts index and shard
 		 * for index name and shard number, from_node for the node to move the shard
 		 * from, and to_node for the node to move the shard to.
-		 *
+		 * <p>
 		 * API name: {@code move}
 		 */
 		public Builder move(@Nullable CommandMoveAction value) {
@@ -251,7 +251,7 @@ public final class Command implements ToJsonp {
 		 * Move a started shard from one node to another node. Accepts index and shard
 		 * for index name and shard number, from_node for the node to move the shard
 		 * from, and to_node for the node to move the shard to.
-		 *
+		 * <p>
 		 * API name: {@code move}
 		 */
 		public Builder move(Function<CommandMoveAction.Builder, ObjectBuilder<CommandMoveAction>> fn) {
@@ -262,7 +262,7 @@ public final class Command implements ToJsonp {
 		 * Allocate an unassigned replica shard to a node. Accepts index and shard for
 		 * index name and shard number, and node to allocate the shard to. Takes
 		 * allocation deciders into account.
-		 *
+		 * <p>
 		 * API name: {@code allocate_replica}
 		 */
 		public Builder allocateReplica(@Nullable CommandAllocateReplicaAction value) {
@@ -274,7 +274,7 @@ public final class Command implements ToJsonp {
 		 * Allocate an unassigned replica shard to a node. Accepts index and shard for
 		 * index name and shard number, and node to allocate the shard to. Takes
 		 * allocation deciders into account.
-		 *
+		 * <p>
 		 * API name: {@code allocate_replica}
 		 */
 		public Builder allocateReplica(
@@ -291,7 +291,7 @@ public final class Command implements ToJsonp {
 		 * forcefully allocated with this command. To ensure that these implications are
 		 * well-understood, this command requires the flag accept_data_loss to be
 		 * explicitly set to true.
-		 *
+		 * <p>
 		 * API name: {@code allocate_stale_primary}
 		 */
 		public Builder allocateStalePrimary(@Nullable CommandAllocatePrimaryAction value) {
@@ -308,7 +308,7 @@ public final class Command implements ToJsonp {
 		 * forcefully allocated with this command. To ensure that these implications are
 		 * well-understood, this command requires the flag accept_data_loss to be
 		 * explicitly set to true.
-		 *
+		 * <p>
 		 * API name: {@code allocate_stale_primary}
 		 */
 		public Builder allocateStalePrimary(
@@ -324,7 +324,7 @@ public final class Command implements ToJsonp {
 		 * rejoins the cluster later on, that data will be deleted. To ensure that these
 		 * implications are well-understood, this command requires the flag
 		 * accept_data_loss to be explicitly set to true.
-		 *
+		 * <p>
 		 * API name: {@code allocate_empty_primary}
 		 */
 		public Builder allocateEmptyPrimary(@Nullable CommandAllocatePrimaryAction value) {
@@ -340,7 +340,7 @@ public final class Command implements ToJsonp {
 		 * rejoins the cluster later on, that data will be deleted. To ensure that these
 		 * implications are well-understood, this command requires the flag
 		 * accept_data_loss to be explicitly set to true.
-		 *
+		 * <p>
 		 * API name: {@code allocate_empty_primary}
 		 */
 		public Builder allocateEmptyPrimary(

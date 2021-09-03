@@ -82,7 +82,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	/**
 	 * number of shards on node
-	 *
+	 * <p>
 	 * API name: {@code shards}
 	 */
 	@Nullable
@@ -92,7 +92,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	/**
 	 * disk used by ES indices
-	 *
+	 * <p>
 	 * API name: {@code disk.indices}
 	 */
 	@Nullable
@@ -102,7 +102,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	/**
 	 * disk used (total, not just ES)
-	 *
+	 * <p>
 	 * API name: {@code disk.used}
 	 */
 	@Nullable
@@ -112,7 +112,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	/**
 	 * disk available
-	 *
+	 * <p>
 	 * API name: {@code disk.avail}
 	 */
 	@Nullable
@@ -122,7 +122,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	/**
 	 * total capacity of all volumes
-	 *
+	 * <p>
 	 * API name: {@code disk.total}
 	 */
 	@Nullable
@@ -132,7 +132,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	/**
 	 * percent disk used
-	 *
+	 * <p>
 	 * API name: {@code disk.percent}
 	 */
 	@Nullable
@@ -142,7 +142,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	/**
 	 * host of node
-	 *
+	 * <p>
 	 * API name: {@code host}
 	 */
 	@Nullable
@@ -152,7 +152,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	/**
 	 * ip of node
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -162,7 +162,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	/**
 	 * name of node
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -273,7 +273,7 @@ public final class AllocationRecord implements ToJsonp {
 
 		/**
 		 * number of shards on node
-		 *
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(@Nullable String value) {
@@ -283,7 +283,7 @@ public final class AllocationRecord implements ToJsonp {
 
 		/**
 		 * disk used by ES indices
-		 *
+		 * <p>
 		 * API name: {@code disk.indices}
 		 */
 		public Builder disk_indices(@Nullable JsonValue value) {
@@ -293,7 +293,7 @@ public final class AllocationRecord implements ToJsonp {
 
 		/**
 		 * disk used (total, not just ES)
-		 *
+		 * <p>
 		 * API name: {@code disk.used}
 		 */
 		public Builder disk_used(@Nullable JsonValue value) {
@@ -303,7 +303,7 @@ public final class AllocationRecord implements ToJsonp {
 
 		/**
 		 * disk available
-		 *
+		 * <p>
 		 * API name: {@code disk.avail}
 		 */
 		public Builder disk_avail(@Nullable JsonValue value) {
@@ -313,7 +313,7 @@ public final class AllocationRecord implements ToJsonp {
 
 		/**
 		 * total capacity of all volumes
-		 *
+		 * <p>
 		 * API name: {@code disk.total}
 		 */
 		public Builder disk_total(@Nullable JsonValue value) {
@@ -323,7 +323,7 @@ public final class AllocationRecord implements ToJsonp {
 
 		/**
 		 * percent disk used
-		 *
+		 * <p>
 		 * API name: {@code disk.percent}
 		 */
 		public Builder disk_percent(@Nullable JsonValue value) {
@@ -333,7 +333,7 @@ public final class AllocationRecord implements ToJsonp {
 
 		/**
 		 * host of node
-		 *
+		 * <p>
 		 * API name: {@code host}
 		 */
 		public Builder host(@Nullable String value) {
@@ -343,7 +343,7 @@ public final class AllocationRecord implements ToJsonp {
 
 		/**
 		 * ip of node
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -353,7 +353,7 @@ public final class AllocationRecord implements ToJsonp {
 
 		/**
 		 * name of node
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(@Nullable String value) {

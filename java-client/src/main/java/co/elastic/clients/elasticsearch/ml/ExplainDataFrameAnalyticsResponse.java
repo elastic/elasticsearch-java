@@ -56,7 +56,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * An array of objects that explain selection for each field, sorted by the
 	 * field names.
-	 *
+	 * <p>
 	 * API name: {@code field_selection}
 	 */
 	public List<DataframeAnalyticsFieldSelection> fieldSelection() {
@@ -66,7 +66,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * An array of objects that explain selection for each field, sorted by the
 	 * field names.
-	 *
+	 * <p>
 	 * API name: {@code memory_estimation}
 	 */
 	public DataframeAnalyticsMemoryEstimation memoryEstimation() {
@@ -110,7 +110,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that explain selection for each field, sorted by the
 		 * field names.
-		 *
+		 * <p>
 		 * API name: {@code field_selection}
 		 */
 		public Builder fieldSelection(List<DataframeAnalyticsFieldSelection> value) {
@@ -121,7 +121,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that explain selection for each field, sorted by the
 		 * field names.
-		 *
+		 * <p>
 		 * API name: {@code field_selection}
 		 */
 		public Builder fieldSelection(DataframeAnalyticsFieldSelection... value) {
@@ -159,7 +159,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that explain selection for each field, sorted by the
 		 * field names.
-		 *
+		 * <p>
 		 * API name: {@code memory_estimation}
 		 */
 		public Builder memoryEstimation(DataframeAnalyticsMemoryEstimation value) {
@@ -170,7 +170,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that explain selection for each field, sorted by the
 		 * field names.
-		 *
+		 * <p>
 		 * API name: {@code memory_estimation}
 		 */
 		public Builder memoryEstimation(

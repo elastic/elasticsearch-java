@@ -71,7 +71,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * Identifier for the data frame analytics job. If you do not specify this
 	 * option, the API returns information for the first hundred data frame
 	 * analytics jobs.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -89,7 +89,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 	/**
 	 * Skips the specified number of data frame analytics jobs.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -99,7 +99,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 	/**
 	 * Specifies the maximum number of data frame analytics jobs to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -109,7 +109,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 	/**
 	 * Defines whether the stats response should be verbose.
-	 *
+	 * <p>
 	 * API name: {@code verbose}
 	 */
 	@Nullable
@@ -142,7 +142,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 * Identifier for the data frame analytics job. If you do not specify this
 		 * option, the API returns information for the first hundred data frame
 		 * analytics jobs.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -160,7 +160,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 		/**
 		 * Skips the specified number of data frame analytics jobs.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -170,7 +170,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 		/**
 		 * Specifies the maximum number of data frame analytics jobs to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {
@@ -180,7 +180,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 		/**
 		 * Defines whether the stats response should be verbose.
-		 *
+		 * <p>
 		 * API name: {@code verbose}
 		 */
 		public Builder verbose(@Nullable Boolean value) {

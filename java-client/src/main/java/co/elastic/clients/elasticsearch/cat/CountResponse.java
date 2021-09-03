@@ -53,7 +53,7 @@ public final class CountResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<CountRecord> value() {
@@ -83,7 +83,7 @@ public final class CountResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<CountRecord> value) {
@@ -93,7 +93,7 @@ public final class CountResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(CountRecord... value) {

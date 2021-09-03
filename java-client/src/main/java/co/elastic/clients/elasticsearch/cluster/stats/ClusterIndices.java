@@ -90,7 +90,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about memory used for completion in selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code completion}
 	 */
 	public CompletionStats completion() {
@@ -99,7 +99,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Total number of indices with shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code count}
 	 */
 	public Number count() {
@@ -108,7 +108,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains counts for documents in selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code docs}
 	 */
 	public DocStats docs() {
@@ -117,7 +117,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about the field data cache of selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code fielddata}
 	 */
 	public FielddataStats fielddata() {
@@ -126,7 +126,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about the query cache of selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code query_cache}
 	 */
 	public QueryCacheStats queryCache() {
@@ -135,7 +135,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about segments in selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code segments}
 	 */
 	public SegmentsStats segments() {
@@ -144,7 +144,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about indices with shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code shards}
 	 */
 	public ClusterIndicesShards shards() {
@@ -153,7 +153,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about the size of shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code store}
 	 */
 	public StoreStats store() {
@@ -162,7 +162,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about field mappings in selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code mappings}
 	 */
 	public FieldTypesMappings mappings() {
@@ -172,7 +172,7 @@ public final class ClusterIndices implements ToJsonp {
 	/**
 	 * Contains statistics about analyzers and analyzer components used in selected
 	 * nodes.
-	 *
+	 * <p>
 	 * API name: {@code analysis}
 	 */
 	public CharFilterTypes analysis() {
@@ -273,7 +273,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about memory used for completion in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code completion}
 		 */
 		public Builder completion(CompletionStats value) {
@@ -283,7 +283,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about memory used for completion in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code completion}
 		 */
 		public Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
@@ -292,7 +292,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Total number of indices with shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public Builder count(Number value) {
@@ -302,7 +302,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains counts for documents in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code docs}
 		 */
 		public Builder docs(DocStats value) {
@@ -312,7 +312,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains counts for documents in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code docs}
 		 */
 		public Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
@@ -321,7 +321,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the field data cache of selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code fielddata}
 		 */
 		public Builder fielddata(FielddataStats value) {
@@ -331,7 +331,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the field data cache of selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code fielddata}
 		 */
 		public Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
@@ -340,7 +340,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the query cache of selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code query_cache}
 		 */
 		public Builder queryCache(QueryCacheStats value) {
@@ -350,7 +350,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the query cache of selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code query_cache}
 		 */
 		public Builder queryCache(Function<QueryCacheStats.Builder, ObjectBuilder<QueryCacheStats>> fn) {
@@ -359,7 +359,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about segments in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code segments}
 		 */
 		public Builder segments(SegmentsStats value) {
@@ -369,7 +369,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about segments in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code segments}
 		 */
 		public Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
@@ -378,7 +378,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about indices with shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(ClusterIndicesShards value) {
@@ -388,7 +388,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about indices with shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(Function<ClusterIndicesShards.Builder, ObjectBuilder<ClusterIndicesShards>> fn) {
@@ -397,7 +397,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the size of shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code store}
 		 */
 		public Builder store(StoreStats value) {
@@ -407,7 +407,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the size of shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code store}
 		 */
 		public Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
@@ -416,7 +416,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about field mappings in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public Builder mappings(FieldTypesMappings value) {
@@ -426,7 +426,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about field mappings in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public Builder mappings(Function<FieldTypesMappings.Builder, ObjectBuilder<FieldTypesMappings>> fn) {
@@ -436,7 +436,7 @@ public final class ClusterIndices implements ToJsonp {
 		/**
 		 * Contains statistics about analyzers and analyzer components used in selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code analysis}
 		 */
 		public Builder analysis(CharFilterTypes value) {
@@ -447,7 +447,7 @@ public final class ClusterIndices implements ToJsonp {
 		/**
 		 * Contains statistics about analyzers and analyzer components used in selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code analysis}
 		 */
 		public Builder analysis(Function<CharFilterTypes.Builder, ObjectBuilder<CharFilterTypes>> fn) {

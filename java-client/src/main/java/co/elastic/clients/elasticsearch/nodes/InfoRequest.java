@@ -73,7 +73,7 @@ public final class InfoRequest extends RequestBase {
 
 	/**
 	 * Comma-separated list of node IDs or names used to limit returned information.
-	 *
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
@@ -84,7 +84,7 @@ public final class InfoRequest extends RequestBase {
 	/**
 	 * Limits the information returned to the specific metrics. Supports a
 	 * comma-separated list, such as http,ingest.
-	 *
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
@@ -94,7 +94,7 @@ public final class InfoRequest extends RequestBase {
 
 	/**
 	 * If true, returns settings in flat format.
-	 *
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -105,7 +105,7 @@ public final class InfoRequest extends RequestBase {
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -116,7 +116,7 @@ public final class InfoRequest extends RequestBase {
 	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -147,7 +147,7 @@ public final class InfoRequest extends RequestBase {
 
 		/**
 		 * Comma-separated list of node IDs or names used to limit returned information.
-		 *
+		 * <p>
 		 * API name: {@code node_id}
 		 */
 		public Builder nodeId(@Nullable String value) {
@@ -158,7 +158,7 @@ public final class InfoRequest extends RequestBase {
 		/**
 		 * Limits the information returned to the specific metrics. Supports a
 		 * comma-separated list, such as http,ingest.
-		 *
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(@Nullable List<String> value) {
@@ -169,7 +169,7 @@ public final class InfoRequest extends RequestBase {
 		/**
 		 * Limits the information returned to the specific metrics. Supports a
 		 * comma-separated list, such as http,ingest.
-		 *
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(String... value) {
@@ -190,7 +190,7 @@ public final class InfoRequest extends RequestBase {
 
 		/**
 		 * If true, returns settings in flat format.
-		 *
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -201,7 +201,7 @@ public final class InfoRequest extends RequestBase {
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -212,7 +212,7 @@ public final class InfoRequest extends RequestBase {
 		/**
 		 * Period to wait for a response. If no response is received before the timeout
 		 * expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

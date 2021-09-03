@@ -63,8 +63,10 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * Deletes licensing information for the cluster
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<DeleteResponse> delete() throws IOException {
 		return this.transport.performRequestAsync(DeleteRequest.INSTANCE, DeleteRequest.ENDPOINT, this.requestOptions);
@@ -74,8 +76,10 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * Retrieves licensing information for the cluster
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetResponse> get(GetRequest request) throws IOException {
@@ -84,12 +88,14 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * Retrieves licensing information for the cluster
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetResponse> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn)
@@ -101,8 +107,10 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * Retrieves information about the status of the basic license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetBasicStatusResponse> getBasicStatus() throws IOException {
 		return this.transport.performRequestAsync(GetBasicStatusRequest.INSTANCE, GetBasicStatusRequest.ENDPOINT,
@@ -113,8 +121,10 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * Retrieves information about the status of the trial license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetTrialStatusResponse> getTrialStatus() throws IOException {
 		return this.transport.performRequestAsync(GetTrialStatusRequest.INSTANCE, GetTrialStatusRequest.ENDPOINT,
@@ -125,8 +135,10 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * Updates the license for the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PostResponse> post(PostRequest request) throws IOException {
@@ -135,12 +147,14 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * Updates the license for the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/update-license.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PostResponse> post(Function<PostRequest.Builder, ObjectBuilder<PostRequest>> fn)
@@ -152,8 +166,10 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * Starts an indefinite basic license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PostStartBasicResponse> postStartBasic(PostStartBasicRequest request) throws IOException {
@@ -162,12 +178,14 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * Starts an indefinite basic license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-basic.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PostStartBasicResponse> postStartBasic(
@@ -179,8 +197,10 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * starts a limited time trial license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PostStartTrialResponse> postStartTrial(PostStartTrialRequest request) throws IOException {
@@ -189,12 +209,14 @@ public class LicenseAsyncClient extends ApiClient<LicenseAsyncClient> {
 
 	/**
 	 * starts a limited time trial license.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trial.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PostStartTrialResponse> postStartTrial(

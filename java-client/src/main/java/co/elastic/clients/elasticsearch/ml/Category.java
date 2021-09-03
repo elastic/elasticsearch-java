@@ -99,7 +99,7 @@ public final class Category implements ToJsonp {
 	/**
 	 * A unique identifier for the category. category_id is unique at the job level,
 	 * even when per-partition categorization is enabled.
-	 *
+	 * <p>
 	 * API name: {@code category_id}
 	 */
 	public Number categoryId() {
@@ -108,7 +108,7 @@ public final class Category implements ToJsonp {
 
 	/**
 	 * A list of examples of actual values that matched the category.
-	 *
+	 * <p>
 	 * API name: {@code examples}
 	 */
 	public List<String> examples() {
@@ -121,7 +121,7 @@ public final class Category implements ToJsonp {
 	 * is experimental and may be changed or removed in a future release. The Grok
 	 * patterns that are found are not optimal, but are often a good starting point
 	 * for manual tweaking.
-	 *
+	 * <p>
 	 * API name: {@code grok_pattern}
 	 */
 	@Nullable
@@ -131,7 +131,7 @@ public final class Category implements ToJsonp {
 
 	/**
 	 * Identifier for the anomaly detection job.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -142,7 +142,7 @@ public final class Category implements ToJsonp {
 	 * The maximum length of the fields that matched the category. The value is
 	 * increased by 10% to enable matching for similar fields that have not been
 	 * analyzed.
-	 *
+	 * <p>
 	 * API name: {@code max_matching_length}
 	 */
 	public Number maxMatchingLength() {
@@ -153,7 +153,7 @@ public final class Category implements ToJsonp {
 	 * If per-partition categorization is enabled, this property identifies the
 	 * field used to segment the categorization. It is not present when
 	 * per-partition categorization is disabled.
-	 *
+	 * <p>
 	 * API name: {@code partition_field_name}
 	 */
 	@Nullable
@@ -165,7 +165,7 @@ public final class Category implements ToJsonp {
 	 * If per-partition categorization is enabled, this property identifies the
 	 * value of the partition_field_name for the category. It is not present when
 	 * per-partition categorization is disabled.
-	 *
+	 * <p>
 	 * API name: {@code partition_field_value}
 	 */
 	@Nullable
@@ -176,7 +176,7 @@ public final class Category implements ToJsonp {
 	/**
 	 * A regular expression that is used to search for values that match the
 	 * category.
-	 *
+	 * <p>
 	 * API name: {@code regex}
 	 */
 	public String regex() {
@@ -186,7 +186,7 @@ public final class Category implements ToJsonp {
 	/**
 	 * A space separated list of the common tokens that are matched in values of the
 	 * category.
-	 *
+	 * <p>
 	 * API name: {@code terms}
 	 */
 	public String terms() {
@@ -196,7 +196,7 @@ public final class Category implements ToJsonp {
 	/**
 	 * The number of messages that have been matched by this category. This is only
 	 * guaranteed to have the latest accurate count after a job _flush or _close
-	 *
+	 * <p>
 	 * API name: {@code num_matches}
 	 */
 	@Nullable
@@ -209,7 +209,7 @@ public final class Category implements ToJsonp {
 	 * message that is processed by the categorizer will match against this category
 	 * and not any of the categories in this list. This is only guaranteed to have
 	 * the latest accurate list of categories after a job _flush or _close
-	 *
+	 * <p>
 	 * API name: {@code preferred_to_categories}
 	 */
 	@Nullable
@@ -368,7 +368,7 @@ public final class Category implements ToJsonp {
 		/**
 		 * A unique identifier for the category. category_id is unique at the job level,
 		 * even when per-partition categorization is enabled.
-		 *
+		 * <p>
 		 * API name: {@code category_id}
 		 */
 		public Builder categoryId(Number value) {
@@ -378,7 +378,7 @@ public final class Category implements ToJsonp {
 
 		/**
 		 * A list of examples of actual values that matched the category.
-		 *
+		 * <p>
 		 * API name: {@code examples}
 		 */
 		public Builder examples(List<String> value) {
@@ -388,7 +388,7 @@ public final class Category implements ToJsonp {
 
 		/**
 		 * A list of examples of actual values that matched the category.
-		 *
+		 * <p>
 		 * API name: {@code examples}
 		 */
 		public Builder examples(String... value) {
@@ -413,7 +413,7 @@ public final class Category implements ToJsonp {
 		 * is experimental and may be changed or removed in a future release. The Grok
 		 * patterns that are found are not optimal, but are often a good starting point
 		 * for manual tweaking.
-		 *
+		 * <p>
 		 * API name: {@code grok_pattern}
 		 */
 		public Builder grokPattern(@Nullable String value) {
@@ -423,7 +423,7 @@ public final class Category implements ToJsonp {
 
 		/**
 		 * Identifier for the anomaly detection job.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -435,7 +435,7 @@ public final class Category implements ToJsonp {
 		 * The maximum length of the fields that matched the category. The value is
 		 * increased by 10% to enable matching for similar fields that have not been
 		 * analyzed.
-		 *
+		 * <p>
 		 * API name: {@code max_matching_length}
 		 */
 		public Builder maxMatchingLength(Number value) {
@@ -447,7 +447,7 @@ public final class Category implements ToJsonp {
 		 * If per-partition categorization is enabled, this property identifies the
 		 * field used to segment the categorization. It is not present when
 		 * per-partition categorization is disabled.
-		 *
+		 * <p>
 		 * API name: {@code partition_field_name}
 		 */
 		public Builder partitionFieldName(@Nullable String value) {
@@ -459,7 +459,7 @@ public final class Category implements ToJsonp {
 		 * If per-partition categorization is enabled, this property identifies the
 		 * value of the partition_field_name for the category. It is not present when
 		 * per-partition categorization is disabled.
-		 *
+		 * <p>
 		 * API name: {@code partition_field_value}
 		 */
 		public Builder partitionFieldValue(@Nullable String value) {
@@ -470,7 +470,7 @@ public final class Category implements ToJsonp {
 		/**
 		 * A regular expression that is used to search for values that match the
 		 * category.
-		 *
+		 * <p>
 		 * API name: {@code regex}
 		 */
 		public Builder regex(String value) {
@@ -481,7 +481,7 @@ public final class Category implements ToJsonp {
 		/**
 		 * A space separated list of the common tokens that are matched in values of the
 		 * category.
-		 *
+		 * <p>
 		 * API name: {@code terms}
 		 */
 		public Builder terms(String value) {
@@ -492,7 +492,7 @@ public final class Category implements ToJsonp {
 		/**
 		 * The number of messages that have been matched by this category. This is only
 		 * guaranteed to have the latest accurate count after a job _flush or _close
-		 *
+		 * <p>
 		 * API name: {@code num_matches}
 		 */
 		public Builder numMatches(@Nullable Number value) {
@@ -505,7 +505,7 @@ public final class Category implements ToJsonp {
 		 * message that is processed by the categorizer will match against this category
 		 * and not any of the categories in this list. This is only guaranteed to have
 		 * the latest accurate list of categories after a job _flush or _close
-		 *
+		 * <p>
 		 * API name: {@code preferred_to_categories}
 		 */
 		public Builder preferredToCategories(@Nullable List<String> value) {
@@ -518,7 +518,7 @@ public final class Category implements ToJsonp {
 		 * message that is processed by the categorizer will match against this category
 		 * and not any of the categories in this list. This is only guaranteed to have
 		 * the latest accurate list of categories after a job _flush or _close
-		 *
+		 * <p>
 		 * API name: {@code preferred_to_categories}
 		 */
 		public Builder preferredToCategories(String... value) {

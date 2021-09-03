@@ -58,8 +58,10 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Returns information about hot threads on each node in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException {
@@ -68,12 +70,14 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Returns information about hot threads on each node in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
@@ -85,8 +89,10 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Returns information about nodes in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public InfoResponse info(InfoRequest request) throws IOException {
@@ -95,12 +101,14 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Returns information about nodes in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final InfoResponse info(Function<InfoRequest.Builder, ObjectBuilder<InfoRequest>> fn) throws IOException {
@@ -111,8 +119,10 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Reloads secure settings.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request) throws IOException {
@@ -121,12 +131,14 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Reloads secure settings.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ReloadSecureSettingsResponse reloadSecureSettings(
@@ -139,8 +151,10 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Returns statistical information about nodes in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public StatsResponse stats(StatsRequest request) throws IOException {
@@ -149,12 +163,14 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Returns statistical information about nodes in the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final StatsResponse stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
@@ -166,8 +182,10 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public UsageResponse usage(UsageRequest request) throws IOException {
@@ -176,12 +194,14 @@ public class NodesClient extends ApiClient<NodesClient> {
 
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)

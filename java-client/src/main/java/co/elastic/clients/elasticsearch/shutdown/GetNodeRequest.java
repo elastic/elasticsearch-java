@@ -57,7 +57,7 @@ public final class GetNodeRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
@@ -101,7 +101,7 @@ public final class GetNodeRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code node_id}
 		 */
 		public Builder nodeId(@Nullable String value) {

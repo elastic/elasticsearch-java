@@ -58,8 +58,10 @@ public class AsyncSearchAsyncClient extends ApiClient<AsyncSearchAsyncClient> {
 	/**
 	 * Deletes an async search by ID. If the search is still running, the search
 	 * request will be cancelled. Otherwise, the saved search results are deleted.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException {
@@ -69,12 +71,14 @@ public class AsyncSearchAsyncClient extends ApiClient<AsyncSearchAsyncClient> {
 	/**
 	 * Deletes an async search by ID. If the search is still running, the search
 	 * request will be cancelled. Otherwise, the saved search results are deleted.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteResponse> delete(
@@ -87,8 +91,10 @@ public class AsyncSearchAsyncClient extends ApiClient<AsyncSearchAsyncClient> {
 	/**
 	 * Retrieves the results of a previously submitted async search request given
 	 * its ID.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<GetResponse<TDocument>> get(GetRequest request,
@@ -100,12 +106,14 @@ public class AsyncSearchAsyncClient extends ApiClient<AsyncSearchAsyncClient> {
 	/**
 	 * Retrieves the results of a previously submitted async search request given
 	 * its ID.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
@@ -119,8 +127,10 @@ public class AsyncSearchAsyncClient extends ApiClient<AsyncSearchAsyncClient> {
 	/**
 	 * Retrieves the status of a previously submitted async search request given its
 	 * ID.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<StatusResponse<TDocument>> status(StatusRequest request,
@@ -132,12 +142,14 @@ public class AsyncSearchAsyncClient extends ApiClient<AsyncSearchAsyncClient> {
 	/**
 	 * Retrieves the status of a previously submitted async search request given its
 	 * ID.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<StatusResponse<TDocument>> status(
@@ -150,8 +162,10 @@ public class AsyncSearchAsyncClient extends ApiClient<AsyncSearchAsyncClient> {
 
 	/**
 	 * Executes a search request asynchronously.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(SubmitRequest request,
@@ -162,12 +176,14 @@ public class AsyncSearchAsyncClient extends ApiClient<AsyncSearchAsyncClient> {
 
 	/**
 	 * Executes a search request asynchronously.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/async-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(

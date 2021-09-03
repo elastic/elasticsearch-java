@@ -48,8 +48,8 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 
 	/**
 	 * Sets the rating threshold above which documents are considered to be
-	 * "relevant".
-	 *
+	 * &quot;relevant&quot;.
+	 * <p>
 	 * API name: {@code relevant_rating_threshold}
 	 */
 	@Nullable
@@ -76,8 +76,8 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 
 		/**
 		 * Sets the rating threshold above which documents are considered to be
-		 * "relevant".
-		 *
+		 * &quot;relevant&quot;.
+		 * <p>
 		 * API name: {@code relevant_rating_threshold}
 		 */
 		public BuilderT relevantRatingThreshold(@Nullable Number value) {

@@ -88,7 +88,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 	 * Comma-separated list of data streams, indices, and index aliases used to
 	 * limit the request. Wildcard (*) expressions are supported. To target all data
 	 * streams and indices in a cluster, omit this parameter or use _all or *.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -101,7 +101,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 	 * applies even if the request targets other open indices. For example, a
 	 * request targeting foo*,bar* returns an error if an index starts with foo but
 	 * no index starts with bar.
-	 *
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -119,7 +119,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * If true, missing or closed indices are not included in the response.
-	 *
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -137,7 +137,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * A set of typical search requests, together with their provided ratings
-	 *
+	 * <p>
 	 * API name: {@code requests}
 	 */
 	public List<RankEvalRequestItem> requests() {
@@ -146,7 +146,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Definition of the evaluation metric to calculate
-	 *
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
@@ -211,7 +211,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 		 * Comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard (*) expressions are supported. To target all data
 		 * streams and indices in a cluster, omit this parameter or use _all or *.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -223,7 +223,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 		 * Comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard (*) expressions are supported. To target all data
 		 * streams and indices in a cluster, omit this parameter or use _all or *.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -248,7 +248,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 		 * applies even if the request targets other open indices. For example, a
 		 * request targeting foo*,bar* returns an error if an index starts with foo but
 		 * no index starts with bar.
-		 *
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -266,7 +266,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * If true, missing or closed indices are not included in the response.
-		 *
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -284,7 +284,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * A set of typical search requests, together with their provided ratings
-		 *
+		 * <p>
 		 * API name: {@code requests}
 		 */
 		public Builder requests(List<RankEvalRequestItem> value) {
@@ -294,7 +294,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * A set of typical search requests, together with their provided ratings
-		 *
+		 * <p>
 		 * API name: {@code requests}
 		 */
 		public Builder requests(RankEvalRequestItem... value) {
@@ -329,7 +329,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Definition of the evaluation metric to calculate
-		 *
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(@Nullable RankEvalMetric value) {
@@ -339,7 +339,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Definition of the evaluation metric to calculate
-		 *
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(Function<RankEvalMetric.Builder, ObjectBuilder<RankEvalMetric>> fn) {

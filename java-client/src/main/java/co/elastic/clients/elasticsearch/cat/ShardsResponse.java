@@ -53,7 +53,7 @@ public final class ShardsResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<ShardsRecord> value() {
@@ -83,7 +83,7 @@ public final class ShardsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<ShardsRecord> value) {
@@ -93,7 +93,7 @@ public final class ShardsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(ShardsRecord... value) {

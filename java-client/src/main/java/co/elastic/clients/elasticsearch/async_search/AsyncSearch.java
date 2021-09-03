@@ -557,7 +557,6 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;

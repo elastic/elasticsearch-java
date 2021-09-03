@@ -54,7 +54,7 @@ public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * An array of objects that contain feature name and value pairs. The features
 	 * have been processed and indicate what will be sent to the model for training.
-	 *
+	 * <p>
 	 * API name: {@code feature_values}
 	 */
 	public List<Map<String, String>> featureValues() {
@@ -99,7 +99,7 @@ public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that contain feature name and value pairs. The features
 		 * have been processed and indicate what will be sent to the model for training.
-		 *
+		 * <p>
 		 * API name: {@code feature_values}
 		 */
 		public Builder featureValues(List<Map<String, String>> value) {
@@ -110,7 +110,7 @@ public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that contain feature name and value pairs. The features
 		 * have been processed and indicate what will be sent to the model for training.
-		 *
+		 * <p>
 		 * API name: {@code feature_values}
 		 */
 		public Builder featureValues(Map<String, String>... value) {

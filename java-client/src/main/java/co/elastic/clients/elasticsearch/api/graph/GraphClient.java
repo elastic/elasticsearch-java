@@ -51,8 +51,10 @@ public class GraphClient extends ApiClient<GraphClient> {
 	/**
 	 * Explore extracted and summarized information about the documents and terms in
 	 * an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ExploreResponse explore(ExploreRequest request) throws IOException {
@@ -62,12 +64,14 @@ public class GraphClient extends ApiClient<GraphClient> {
 	/**
 	 * Explore extracted and summarized information about the documents and terms in
 	 * an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ExploreResponse explore(Function<ExploreRequest.Builder, ObjectBuilder<ExploreRequest>> fn)

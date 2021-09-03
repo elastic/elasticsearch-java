@@ -64,7 +64,7 @@ public final class GetTrainedModelsResponse implements ToJsonp {
 	/**
 	 * An array of trained model resources, which are sorted by the model_id value
 	 * in ascending order.
-	 *
+	 * <p>
 	 * API name: {@code trained_model_configs}
 	 */
 	public List<TrainedModelConfig> trainedModelConfigs() {
@@ -116,7 +116,7 @@ public final class GetTrainedModelsResponse implements ToJsonp {
 		/**
 		 * An array of trained model resources, which are sorted by the model_id value
 		 * in ascending order.
-		 *
+		 * <p>
 		 * API name: {@code trained_model_configs}
 		 */
 		public Builder trainedModelConfigs(List<TrainedModelConfig> value) {
@@ -127,7 +127,7 @@ public final class GetTrainedModelsResponse implements ToJsonp {
 		/**
 		 * An array of trained model resources, which are sorted by the model_id value
 		 * in ascending order.
-		 *
+		 * <p>
 		 * API name: {@code trained_model_configs}
 		 */
 		public Builder trainedModelConfigs(TrainedModelConfig... value) {

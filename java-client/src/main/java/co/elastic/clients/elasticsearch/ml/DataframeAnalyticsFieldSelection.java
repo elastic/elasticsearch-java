@@ -70,7 +70,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 	/**
 	 * Whether the field is selected to be included in the analysis.
-	 *
+	 * <p>
 	 * API name: {@code is_included}
 	 */
 	public Boolean isIncluded() {
@@ -79,7 +79,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 	/**
 	 * Whether the field is required.
-	 *
+	 * <p>
 	 * API name: {@code is_required}
 	 */
 	public Boolean isRequired() {
@@ -89,7 +89,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 	/**
 	 * The feature type of this field for the analysis. May be categorical or
 	 * numerical.
-	 *
+	 * <p>
 	 * API name: {@code feature_type}
 	 */
 	@Nullable
@@ -99,7 +99,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 	/**
 	 * The mapping types of the field.
-	 *
+	 * <p>
 	 * API name: {@code mapping_types}
 	 */
 	public List<String> mappingTypes() {
@@ -108,7 +108,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 	/**
 	 * The field name.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -117,7 +117,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 	/**
 	 * The reason a field is not selected to be included in the analysis.
-	 *
+	 * <p>
 	 * API name: {@code reason}
 	 */
 	@Nullable
@@ -191,7 +191,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 		/**
 		 * Whether the field is selected to be included in the analysis.
-		 *
+		 * <p>
 		 * API name: {@code is_included}
 		 */
 		public Builder isIncluded(Boolean value) {
@@ -201,7 +201,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 		/**
 		 * Whether the field is required.
-		 *
+		 * <p>
 		 * API name: {@code is_required}
 		 */
 		public Builder isRequired(Boolean value) {
@@ -212,7 +212,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 		/**
 		 * The feature type of this field for the analysis. May be categorical or
 		 * numerical.
-		 *
+		 * <p>
 		 * API name: {@code feature_type}
 		 */
 		public Builder featureType(@Nullable String value) {
@@ -222,7 +222,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 		/**
 		 * The mapping types of the field.
-		 *
+		 * <p>
 		 * API name: {@code mapping_types}
 		 */
 		public Builder mappingTypes(List<String> value) {
@@ -232,7 +232,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 		/**
 		 * The mapping types of the field.
-		 *
+		 * <p>
 		 * API name: {@code mapping_types}
 		 */
 		public Builder mappingTypes(String... value) {
@@ -253,7 +253,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 		/**
 		 * The field name.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -263,7 +263,7 @@ public final class DataframeAnalyticsFieldSelection implements ToJsonp {
 
 		/**
 		 * The reason a field is not selected to be included in the analysis.
-		 *
+		 * <p>
 		 * API name: {@code reason}
 		 */
 		public Builder reason(@Nullable String value) {

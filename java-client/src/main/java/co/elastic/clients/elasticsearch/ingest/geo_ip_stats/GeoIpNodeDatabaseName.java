@@ -49,7 +49,7 @@ public final class GeoIpNodeDatabaseName implements ToJsonp {
 
 	/**
 	 * Name of the database.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -82,7 +82,7 @@ public final class GeoIpNodeDatabaseName implements ToJsonp {
 
 		/**
 		 * Name of the database.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {

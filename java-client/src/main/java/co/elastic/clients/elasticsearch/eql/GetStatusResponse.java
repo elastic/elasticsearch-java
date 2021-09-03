@@ -70,7 +70,7 @@ public final class GetStatusResponse implements ToJsonp {
 
 	/**
 	 * Identifier for the search.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -80,7 +80,7 @@ public final class GetStatusResponse implements ToJsonp {
 	/**
 	 * If true, the search request is still executing. If false, the search is
 	 * completed.
-	 *
+	 * <p>
 	 * API name: {@code is_partial}
 	 */
 	public Boolean isPartial() {
@@ -92,7 +92,7 @@ public final class GetStatusResponse implements ToJsonp {
 	 * because either the search is still running (is_running status is false), or
 	 * because it is already completed (is_running status is true) and results are
 	 * partial due to failures or timeouts.
-	 *
+	 * <p>
 	 * API name: {@code is_running}
 	 */
 	public Boolean isRunning() {
@@ -102,7 +102,7 @@ public final class GetStatusResponse implements ToJsonp {
 	/**
 	 * For a running search shows a timestamp when the eql search started, in
 	 * milliseconds since the Unix epoch.
-	 *
+	 * <p>
 	 * API name: {@code start_time_in_millis}
 	 */
 	@Nullable
@@ -114,7 +114,7 @@ public final class GetStatusResponse implements ToJsonp {
 	 * Shows a timestamp when the eql search will be expired, in milliseconds since
 	 * the Unix epoch. When this time is reached, the search and its results are
 	 * deleted, even if the search is still ongoing.
-	 *
+	 * <p>
 	 * API name: {@code expiration_time_in_millis}
 	 */
 	@Nullable
@@ -124,7 +124,7 @@ public final class GetStatusResponse implements ToJsonp {
 
 	/**
 	 * For a completed search shows the http status code of the completed search.
-	 *
+	 * <p>
 	 * API name: {@code completion_status}
 	 */
 	@Nullable
@@ -196,7 +196,7 @@ public final class GetStatusResponse implements ToJsonp {
 
 		/**
 		 * Identifier for the search.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -207,7 +207,7 @@ public final class GetStatusResponse implements ToJsonp {
 		/**
 		 * If true, the search request is still executing. If false, the search is
 		 * completed.
-		 *
+		 * <p>
 		 * API name: {@code is_partial}
 		 */
 		public Builder isPartial(Boolean value) {
@@ -220,7 +220,7 @@ public final class GetStatusResponse implements ToJsonp {
 		 * because either the search is still running (is_running status is false), or
 		 * because it is already completed (is_running status is true) and results are
 		 * partial due to failures or timeouts.
-		 *
+		 * <p>
 		 * API name: {@code is_running}
 		 */
 		public Builder isRunning(Boolean value) {
@@ -231,7 +231,7 @@ public final class GetStatusResponse implements ToJsonp {
 		/**
 		 * For a running search shows a timestamp when the eql search started, in
 		 * milliseconds since the Unix epoch.
-		 *
+		 * <p>
 		 * API name: {@code start_time_in_millis}
 		 */
 		public Builder startTimeInMillis(@Nullable JsonValue value) {
@@ -243,7 +243,7 @@ public final class GetStatusResponse implements ToJsonp {
 		 * Shows a timestamp when the eql search will be expired, in milliseconds since
 		 * the Unix epoch. When this time is reached, the search and its results are
 		 * deleted, even if the search is still ongoing.
-		 *
+		 * <p>
 		 * API name: {@code expiration_time_in_millis}
 		 */
 		public Builder expirationTimeInMillis(@Nullable JsonValue value) {
@@ -253,7 +253,7 @@ public final class GetStatusResponse implements ToJsonp {
 
 		/**
 		 * For a completed search shows the http status code of the completed search.
-		 *
+		 * <p>
 		 * API name: {@code completion_status}
 		 */
 		public Builder completionStatus(@Nullable Number value) {

@@ -59,7 +59,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 
 	/**
 	 * The alias to create or update. This value cannot end in numbers.
-	 *
+	 * <p>
 	 * API name: {@code model_alias}
 	 */
 	public String modelAlias() {
@@ -68,7 +68,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 
 	/**
 	 * The identifier for the trained model that the alias refers to.
-	 *
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	public String modelId() {
@@ -79,7 +79,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	 * Specifies whether the alias gets reassigned to the specified trained model if
 	 * it is already assigned to a different model. If the alias is already assigned
 	 * and this parameter is false, the API returns an error.
-	 *
+	 * <p>
 	 * API name: {@code reassign}
 	 */
 	@Nullable
@@ -102,7 +102,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 
 		/**
 		 * The alias to create or update. This value cannot end in numbers.
-		 *
+		 * <p>
 		 * API name: {@code model_alias}
 		 */
 		public Builder modelAlias(String value) {
@@ -112,7 +112,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 
 		/**
 		 * The identifier for the trained model that the alias refers to.
-		 *
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(String value) {
@@ -124,7 +124,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		 * Specifies whether the alias gets reassigned to the specified trained model if
 		 * it is already assigned to a different model. If the alias is already assigned
 		 * and this parameter is false, the API returns an error.
-		 *
+		 * <p>
 		 * API name: {@code reassign}
 		 */
 		public Builder reassign(@Nullable Boolean value) {

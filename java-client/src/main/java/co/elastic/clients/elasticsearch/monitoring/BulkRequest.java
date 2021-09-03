@@ -71,7 +71,7 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -134,7 +134,7 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {

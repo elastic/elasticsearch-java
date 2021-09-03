@@ -194,7 +194,6 @@ public final class HitsMetadata<T> implements ToJsonp {
 		/**
 		 * Serializer for T. If not set, an attempt will be made to find a serializer
 		 * from the JSON context.
-		 *
 		 */
 		public Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
 			this.tSerializer = value;

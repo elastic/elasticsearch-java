@@ -64,7 +64,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 	 * The field of the index which contains the ground truth. The data type of this
 	 * field can be boolean or integer. If the data type is integer, the value has
 	 * to be either 0 (false) or 1 (true).
-	 *
+	 * <p>
 	 * API name: {@code actual_field}
 	 */
 	public String actualField() {
@@ -74,7 +74,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 	/**
 	 * The field in the index which contains the predicted value, in other words the
 	 * results of the classification analysis.
-	 *
+	 * <p>
 	 * API name: {@code predicted_field}
 	 */
 	@Nullable
@@ -84,9 +84,9 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 	/**
 	 * The field of the index which is an array of documents of the form {
-	 * "class_name": XXX, "class_probability": YYY }. This field must be defined as
-	 * nested in the mappings.
-	 *
+	 * &quot;class_name&quot;: XXX, &quot;class_probability&quot;: YYY }. This field
+	 * must be defined as nested in the mappings.
+	 * <p>
 	 * API name: {@code top_classes_field}
 	 */
 	@Nullable
@@ -96,7 +96,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 	/**
 	 * Specifies the metrics that are used for the evaluation.
-	 *
+	 * <p>
 	 * API name: {@code metrics}
 	 */
 	@Nullable
@@ -160,7 +160,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 		 * The field of the index which contains the ground truth. The data type of this
 		 * field can be boolean or integer. If the data type is integer, the value has
 		 * to be either 0 (false) or 1 (true).
-		 *
+		 * <p>
 		 * API name: {@code actual_field}
 		 */
 		public Builder actualField(String value) {
@@ -171,7 +171,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 		/**
 		 * The field in the index which contains the predicted value, in other words the
 		 * results of the classification analysis.
-		 *
+		 * <p>
 		 * API name: {@code predicted_field}
 		 */
 		public Builder predictedField(@Nullable String value) {
@@ -181,9 +181,9 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 		/**
 		 * The field of the index which is an array of documents of the form {
-		 * "class_name": XXX, "class_probability": YYY }. This field must be defined as
-		 * nested in the mappings.
-		 *
+		 * &quot;class_name&quot;: XXX, &quot;class_probability&quot;: YYY }. This field
+		 * must be defined as nested in the mappings.
+		 * <p>
 		 * API name: {@code top_classes_field}
 		 */
 		public Builder topClassesField(@Nullable String value) {
@@ -193,7 +193,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 		/**
 		 * Specifies the metrics that are used for the evaluation.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(@Nullable DataframeEvaluationClassificationMetrics value) {
@@ -203,7 +203,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 		/**
 		 * Specifies the metrics that are used for the evaluation.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(

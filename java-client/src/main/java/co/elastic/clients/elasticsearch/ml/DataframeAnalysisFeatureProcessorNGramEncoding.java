@@ -72,8 +72,8 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	}
 
 	/**
-	 * The feature name prefix. Defaults to ngram_&lt;start&gt;_&lt;length&gt;.
-	 *
+	 * The feature name prefix. Defaults to ngram_<start>_<length>.
+	 * <p>
 	 * API name: {@code feature_prefix}
 	 */
 	@Nullable
@@ -83,7 +83,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 
 	/**
 	 * The name of the text field to encode.
-	 *
+	 * <p>
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -93,7 +93,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	/**
 	 * Specifies the length of the n-gram substring. Defaults to 50. Must be greater
 	 * than 0.
-	 *
+	 * <p>
 	 * API name: {@code length}
 	 */
 	@Nullable
@@ -104,7 +104,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	/**
 	 * Specifies which n-grams to gather. It’s an array of integer values where the
 	 * minimum value is 1, and a maximum value is 5.
-	 *
+	 * <p>
 	 * API name: {@code n_grams}
 	 */
 	public List<Number> nGrams() {
@@ -114,7 +114,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	/**
 	 * Specifies the zero-indexed start of the n-gram substring. Negative values are
 	 * allowed for encoding n-grams of string suffixes. Defaults to 0.
-	 *
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
@@ -204,8 +204,8 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		private Boolean custom;
 
 		/**
-		 * The feature name prefix. Defaults to ngram_&lt;start&gt;_&lt;length&gt;.
-		 *
+		 * The feature name prefix. Defaults to ngram_<start>_<length>.
+		 * <p>
 		 * API name: {@code feature_prefix}
 		 */
 		public Builder featurePrefix(@Nullable String value) {
@@ -215,7 +215,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 
 		/**
 		 * The name of the text field to encode.
-		 *
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
@@ -226,7 +226,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		/**
 		 * Specifies the length of the n-gram substring. Defaults to 50. Must be greater
 		 * than 0.
-		 *
+		 * <p>
 		 * API name: {@code length}
 		 */
 		public Builder length(@Nullable Number value) {
@@ -237,7 +237,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		/**
 		 * Specifies which n-grams to gather. It’s an array of integer values where the
 		 * minimum value is 1, and a maximum value is 5.
-		 *
+		 * <p>
 		 * API name: {@code n_grams}
 		 */
 		public Builder nGrams(List<Number> value) {
@@ -248,7 +248,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		/**
 		 * Specifies which n-grams to gather. It’s an array of integer values where the
 		 * minimum value is 1, and a maximum value is 5.
-		 *
+		 * <p>
 		 * API name: {@code n_grams}
 		 */
 		public Builder nGrams(Number... value) {
@@ -270,7 +270,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		/**
 		 * Specifies the zero-indexed start of the n-gram substring. Negative values are
 		 * allowed for encoding n-grams of string suffixes. Defaults to 0.
-		 *
+		 * <p>
 		 * API name: {@code start}
 		 */
 		public Builder start(@Nullable Number value) {

@@ -53,7 +53,7 @@ public final class DatafeedsResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<DatafeedsRecord> value() {
@@ -83,7 +83,7 @@ public final class DatafeedsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<DatafeedsRecord> value) {
@@ -93,7 +93,7 @@ public final class DatafeedsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(DatafeedsRecord... value) {

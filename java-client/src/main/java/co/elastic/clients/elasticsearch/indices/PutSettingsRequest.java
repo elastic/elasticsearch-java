@@ -158,7 +158,7 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Request body.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public IndexSettingsBody value() {
@@ -290,7 +290,7 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(IndexSettingsBody value) {
@@ -300,7 +300,7 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(Function<IndexSettingsBody.Builder, ObjectBuilder<IndexSettingsBody>> fn) {

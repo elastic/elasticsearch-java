@@ -56,7 +56,7 @@ public final class DocumentRating implements ToJsonp {
 
 	/**
 	 * The document ID.
-	 *
+	 * <p>
 	 * API name: {@code _id}
 	 */
 	public String id() {
@@ -66,7 +66,7 @@ public final class DocumentRating implements ToJsonp {
 	/**
 	 * The document’s index. For data streams, this should be the document’s backing
 	 * index.
-	 *
+	 * <p>
 	 * API name: {@code _index}
 	 */
 	public String index() {
@@ -75,7 +75,7 @@ public final class DocumentRating implements ToJsonp {
 
 	/**
 	 * The document’s relevance with regard to this search request.
-	 *
+	 * <p>
 	 * API name: {@code rating}
 	 */
 	public Number rating() {
@@ -118,7 +118,7 @@ public final class DocumentRating implements ToJsonp {
 
 		/**
 		 * The document ID.
-		 *
+		 * <p>
 		 * API name: {@code _id}
 		 */
 		public Builder id(String value) {
@@ -129,7 +129,7 @@ public final class DocumentRating implements ToJsonp {
 		/**
 		 * The document’s index. For data streams, this should be the document’s backing
 		 * index.
-		 *
+		 * <p>
 		 * API name: {@code _index}
 		 */
 		public Builder index(String value) {
@@ -139,7 +139,7 @@ public final class DocumentRating implements ToJsonp {
 
 		/**
 		 * The document’s relevance with regard to this search request.
-		 *
+		 * <p>
 		 * API name: {@code rating}
 		 */
 		public Builder rating(Number value) {

@@ -53,7 +53,7 @@ public final class JobsResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<JobsRecord> value() {
@@ -83,7 +83,7 @@ public final class JobsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<JobsRecord> value) {
@@ -93,7 +93,7 @@ public final class JobsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(JobsRecord... value) {

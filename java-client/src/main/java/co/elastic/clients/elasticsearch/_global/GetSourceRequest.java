@@ -57,7 +57,7 @@ public final class GetSourceRequest extends GetRequest {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -67,7 +67,7 @@ public final class GetSourceRequest extends GetRequest {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -77,7 +77,7 @@ public final class GetSourceRequest extends GetRequest {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -102,7 +102,7 @@ public final class GetSourceRequest extends GetRequest {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -112,7 +112,7 @@ public final class GetSourceRequest extends GetRequest {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -122,7 +122,7 @@ public final class GetSourceRequest extends GetRequest {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {

@@ -71,7 +71,7 @@ public final class IndexDeleteRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code index_uuid}
 	 */
 	@Nullable
@@ -134,7 +134,7 @@ public final class IndexDeleteRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code index_uuid}
 		 */
 		public Builder indexUuid(@Nullable String value) {

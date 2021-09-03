@@ -52,7 +52,7 @@ public final class AnalysisMemoryLimit implements ToJsonp {
 	 * models in memory. These limits are approximate and can be set per job. They
 	 * do not control the memory used by other processes, for example the
 	 * Elasticsearch Java processes.
-	 *
+	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
 	public String modelMemoryLimit() {
@@ -88,7 +88,7 @@ public final class AnalysisMemoryLimit implements ToJsonp {
 		 * models in memory. These limits are approximate and can be set per job. They
 		 * do not control the memory used by other processes, for example the
 		 * Elasticsearch Java processes.
-		 *
+		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
 		public Builder modelMemoryLimit(String value) {

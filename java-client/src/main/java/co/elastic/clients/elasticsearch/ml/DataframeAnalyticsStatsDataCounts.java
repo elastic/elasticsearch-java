@@ -59,7 +59,7 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 	 * detection does not support missing fields so it skips documents with missing
 	 * fields. Likewise, all types of analysis skip documents that contain arrays
 	 * with more than one element.
-	 *
+	 * <p>
 	 * API name: {@code skipped_docs_count}
 	 */
 	public Number skippedDocsCount() {
@@ -69,7 +69,7 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 	/**
 	 * The number of documents that are not used for training the model and can be
 	 * used for testing.
-	 *
+	 * <p>
 	 * API name: {@code test_docs_count}
 	 */
 	public Number testDocsCount() {
@@ -78,7 +78,7 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 
 	/**
 	 * The number of documents that are used for training the model.
-	 *
+	 * <p>
 	 * API name: {@code training_docs_count}
 	 */
 	public Number trainingDocsCount() {
@@ -125,7 +125,7 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 		 * detection does not support missing fields so it skips documents with missing
 		 * fields. Likewise, all types of analysis skip documents that contain arrays
 		 * with more than one element.
-		 *
+		 * <p>
 		 * API name: {@code skipped_docs_count}
 		 */
 		public Builder skippedDocsCount(Number value) {
@@ -136,7 +136,7 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 		/**
 		 * The number of documents that are not used for training the model and can be
 		 * used for testing.
-		 *
+		 * <p>
 		 * API name: {@code test_docs_count}
 		 */
 		public Builder testDocsCount(Number value) {
@@ -146,7 +146,7 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 
 		/**
 		 * The number of documents that are used for training the model.
-		 *
+		 * <p>
 		 * API name: {@code training_docs_count}
 		 */
 		public Builder trainingDocsCount(Number value) {

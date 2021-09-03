@@ -130,7 +130,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about completions across all shards assigned to the node.
-	 *
+	 * <p>
 	 * API name: {@code completion}
 	 */
 	@Nullable
@@ -141,7 +141,7 @@ public final class IndexStats implements ToJsonp {
 	/**
 	 * Contains statistics about documents across all primary shards assigned to the
 	 * node.
-	 *
+	 * <p>
 	 * API name: {@code docs}
 	 */
 	@Nullable
@@ -152,7 +152,7 @@ public final class IndexStats implements ToJsonp {
 	/**
 	 * Contains statistics about the field data cache across all shards assigned to
 	 * the node.
-	 *
+	 * <p>
 	 * API name: {@code fielddata}
 	 */
 	@Nullable
@@ -162,7 +162,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about flush operations for the node.
-	 *
+	 * <p>
 	 * API name: {@code flush}
 	 */
 	@Nullable
@@ -172,7 +172,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about get operations for the node.
-	 *
+	 * <p>
 	 * API name: {@code get}
 	 */
 	@Nullable
@@ -182,7 +182,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about indexing operations for the node.
-	 *
+	 * <p>
 	 * API name: {@code indexing}
 	 */
 	@Nullable
@@ -192,7 +192,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about merge operations for the node.
-	 *
+	 * <p>
 	 * API name: {@code merges}
 	 */
 	@Nullable
@@ -203,7 +203,7 @@ public final class IndexStats implements ToJsonp {
 	/**
 	 * Contains statistics about the query cache across all shards assigned to the
 	 * node.
-	 *
+	 * <p>
 	 * API name: {@code query_cache}
 	 */
 	@Nullable
@@ -213,7 +213,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about recovery operations for the node.
-	 *
+	 * <p>
 	 * API name: {@code recovery}
 	 */
 	@Nullable
@@ -223,7 +223,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about refresh operations for the node.
-	 *
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -234,7 +234,7 @@ public final class IndexStats implements ToJsonp {
 	/**
 	 * Contains statistics about the request cache across all shards assigned to the
 	 * node.
-	 *
+	 * <p>
 	 * API name: {@code request_cache}
 	 */
 	@Nullable
@@ -244,7 +244,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about search operations for the node.
-	 *
+	 * <p>
 	 * API name: {@code search}
 	 */
 	@Nullable
@@ -254,7 +254,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about segments across all shards assigned to the node.
-	 *
+	 * <p>
 	 * API name: {@code segments}
 	 */
 	@Nullable
@@ -264,7 +264,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about the size of shards assigned to the node.
-	 *
+	 * <p>
 	 * API name: {@code store}
 	 */
 	@Nullable
@@ -274,7 +274,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about transaction log operations for the node.
-	 *
+	 * <p>
 	 * API name: {@code translog}
 	 */
 	@Nullable
@@ -284,7 +284,7 @@ public final class IndexStats implements ToJsonp {
 
 	/**
 	 * Contains statistics about index warming operations for the node.
-	 *
+	 * <p>
 	 * API name: {@code warmer}
 	 */
 	@Nullable
@@ -475,7 +475,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about completions across all shards assigned to the node.
-		 *
+		 * <p>
 		 * API name: {@code completion}
 		 */
 		public Builder completion(@Nullable CompletionStats value) {
@@ -485,7 +485,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about completions across all shards assigned to the node.
-		 *
+		 * <p>
 		 * API name: {@code completion}
 		 */
 		public Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
@@ -495,7 +495,7 @@ public final class IndexStats implements ToJsonp {
 		/**
 		 * Contains statistics about documents across all primary shards assigned to the
 		 * node.
-		 *
+		 * <p>
 		 * API name: {@code docs}
 		 */
 		public Builder docs(@Nullable DocStats value) {
@@ -506,7 +506,7 @@ public final class IndexStats implements ToJsonp {
 		/**
 		 * Contains statistics about documents across all primary shards assigned to the
 		 * node.
-		 *
+		 * <p>
 		 * API name: {@code docs}
 		 */
 		public Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
@@ -516,7 +516,7 @@ public final class IndexStats implements ToJsonp {
 		/**
 		 * Contains statistics about the field data cache across all shards assigned to
 		 * the node.
-		 *
+		 * <p>
 		 * API name: {@code fielddata}
 		 */
 		public Builder fielddata(@Nullable FielddataStats value) {
@@ -527,7 +527,7 @@ public final class IndexStats implements ToJsonp {
 		/**
 		 * Contains statistics about the field data cache across all shards assigned to
 		 * the node.
-		 *
+		 * <p>
 		 * API name: {@code fielddata}
 		 */
 		public Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
@@ -536,7 +536,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about flush operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code flush}
 		 */
 		public Builder flush(@Nullable FlushStats value) {
@@ -546,7 +546,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about flush operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code flush}
 		 */
 		public Builder flush(Function<FlushStats.Builder, ObjectBuilder<FlushStats>> fn) {
@@ -555,7 +555,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about get operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code get}
 		 */
 		public Builder get(@Nullable GetStats value) {
@@ -565,7 +565,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about get operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code get}
 		 */
 		public Builder get(Function<GetStats.Builder, ObjectBuilder<GetStats>> fn) {
@@ -574,7 +574,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about indexing operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code indexing}
 		 */
 		public Builder indexing(@Nullable IndexingStats value) {
@@ -584,7 +584,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about indexing operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code indexing}
 		 */
 		public Builder indexing(Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
@@ -593,7 +593,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about merge operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code merges}
 		 */
 		public Builder merges(@Nullable MergesStats value) {
@@ -603,7 +603,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about merge operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code merges}
 		 */
 		public Builder merges(Function<MergesStats.Builder, ObjectBuilder<MergesStats>> fn) {
@@ -613,7 +613,7 @@ public final class IndexStats implements ToJsonp {
 		/**
 		 * Contains statistics about the query cache across all shards assigned to the
 		 * node.
-		 *
+		 * <p>
 		 * API name: {@code query_cache}
 		 */
 		public Builder queryCache(@Nullable QueryCacheStats value) {
@@ -624,7 +624,7 @@ public final class IndexStats implements ToJsonp {
 		/**
 		 * Contains statistics about the query cache across all shards assigned to the
 		 * node.
-		 *
+		 * <p>
 		 * API name: {@code query_cache}
 		 */
 		public Builder queryCache(Function<QueryCacheStats.Builder, ObjectBuilder<QueryCacheStats>> fn) {
@@ -633,7 +633,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about recovery operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code recovery}
 		 */
 		public Builder recovery(@Nullable RecoveryStats value) {
@@ -643,7 +643,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about recovery operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code recovery}
 		 */
 		public Builder recovery(Function<RecoveryStats.Builder, ObjectBuilder<RecoveryStats>> fn) {
@@ -652,7 +652,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about refresh operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable RefreshStats value) {
@@ -662,7 +662,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about refresh operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(Function<RefreshStats.Builder, ObjectBuilder<RefreshStats>> fn) {
@@ -672,7 +672,7 @@ public final class IndexStats implements ToJsonp {
 		/**
 		 * Contains statistics about the request cache across all shards assigned to the
 		 * node.
-		 *
+		 * <p>
 		 * API name: {@code request_cache}
 		 */
 		public Builder requestCache(@Nullable RequestCacheStats value) {
@@ -683,7 +683,7 @@ public final class IndexStats implements ToJsonp {
 		/**
 		 * Contains statistics about the request cache across all shards assigned to the
 		 * node.
-		 *
+		 * <p>
 		 * API name: {@code request_cache}
 		 */
 		public Builder requestCache(Function<RequestCacheStats.Builder, ObjectBuilder<RequestCacheStats>> fn) {
@@ -692,7 +692,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about search operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code search}
 		 */
 		public Builder search(@Nullable SearchStats value) {
@@ -702,7 +702,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about search operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code search}
 		 */
 		public Builder search(Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
@@ -711,7 +711,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about segments across all shards assigned to the node.
-		 *
+		 * <p>
 		 * API name: {@code segments}
 		 */
 		public Builder segments(@Nullable SegmentsStats value) {
@@ -721,7 +721,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about segments across all shards assigned to the node.
-		 *
+		 * <p>
 		 * API name: {@code segments}
 		 */
 		public Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
@@ -730,7 +730,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about the size of shards assigned to the node.
-		 *
+		 * <p>
 		 * API name: {@code store}
 		 */
 		public Builder store(@Nullable StoreStats value) {
@@ -740,7 +740,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about the size of shards assigned to the node.
-		 *
+		 * <p>
 		 * API name: {@code store}
 		 */
 		public Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
@@ -749,7 +749,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about transaction log operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code translog}
 		 */
 		public Builder translog(@Nullable TranslogStats value) {
@@ -759,7 +759,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about transaction log operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code translog}
 		 */
 		public Builder translog(Function<TranslogStats.Builder, ObjectBuilder<TranslogStats>> fn) {
@@ -768,7 +768,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about index warming operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code warmer}
 		 */
 		public Builder warmer(@Nullable WarmerStats value) {
@@ -778,7 +778,7 @@ public final class IndexStats implements ToJsonp {
 
 		/**
 		 * Contains statistics about index warming operations for the node.
-		 *
+		 * <p>
 		 * API name: {@code warmer}
 		 */
 		public Builder warmer(Function<WarmerStats.Builder, ObjectBuilder<WarmerStats>> fn) {

@@ -147,7 +147,7 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 
 	/**
 	 * Request body.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<TemplateItem> value() {
@@ -292,7 +292,7 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<TemplateItem> value) {
@@ -302,7 +302,7 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(TemplateItem... value) {

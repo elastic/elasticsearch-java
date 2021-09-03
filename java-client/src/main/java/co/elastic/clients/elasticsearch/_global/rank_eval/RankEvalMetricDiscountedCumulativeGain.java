@@ -48,7 +48,7 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 
 	/**
 	 * If set to true, this metric will calculate the Normalized DCG.
-	 *
+	 * <p>
 	 * API name: {@code normalize}
 	 */
 	@Nullable
@@ -80,7 +80,7 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 
 		/**
 		 * If set to true, this metric will calculate the Normalized DCG.
-		 *
+		 * <p>
 		 * API name: {@code normalize}
 		 */
 		public Builder normalize(@Nullable Boolean value) {

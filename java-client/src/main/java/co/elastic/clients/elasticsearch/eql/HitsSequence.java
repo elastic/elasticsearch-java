@@ -62,7 +62,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 
 	/**
 	 * Contains events matching the query. Each object represents a matching event.
-	 *
+	 * <p>
 	 * API name: {@code events}
 	 */
 	public List<HitsEvent<TEvent>> events() {
@@ -72,7 +72,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 	/**
 	 * Shared field values used to constrain matches in the sequence. These are
 	 * defined using the by keyword in the EQL query syntax.
-	 *
+	 * <p>
 	 * API name: {@code join_keys}
 	 */
 	public List<JsonValue> joinKeys() {
@@ -123,7 +123,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 
 		/**
 		 * Contains events matching the query. Each object represents a matching event.
-		 *
+		 * <p>
 		 * API name: {@code events}
 		 */
 		public Builder<TEvent> events(List<HitsEvent<TEvent>> value) {
@@ -133,7 +133,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 
 		/**
 		 * Contains events matching the query. Each object represents a matching event.
-		 *
+		 * <p>
 		 * API name: {@code events}
 		 */
 		public Builder<TEvent> events(HitsEvent<TEvent>... value) {
@@ -169,7 +169,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 		/**
 		 * Shared field values used to constrain matches in the sequence. These are
 		 * defined using the by keyword in the EQL query syntax.
-		 *
+		 * <p>
 		 * API name: {@code join_keys}
 		 */
 		public Builder<TEvent> joinKeys(List<JsonValue> value) {
@@ -180,7 +180,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 		/**
 		 * Shared field values used to constrain matches in the sequence. These are
 		 * defined using the by keyword in the EQL query syntax.
-		 *
+		 * <p>
 		 * API name: {@code join_keys}
 		 */
 		public Builder<TEvent> joinKeys(JsonValue... value) {
@@ -202,7 +202,6 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 		/**
 		 * Serializer for TEvent. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TEvent> tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
 			this.tEventSerializer = value;

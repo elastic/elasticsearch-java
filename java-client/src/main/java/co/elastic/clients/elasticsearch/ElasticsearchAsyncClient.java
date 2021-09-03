@@ -288,8 +288,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TSource> CompletableFuture<BulkResponse> bulk(BulkRequest<TSource> request) throws IOException {
@@ -299,12 +301,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TSource> CompletableFuture<BulkResponse> bulk(
@@ -316,8 +320,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Explicitly clears the search context for a scroll.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ClearScrollResponse> clearScroll(ClearScrollRequest request) throws IOException {
@@ -326,12 +332,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Explicitly clears the search context for a scroll.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClearScrollResponse> clearScroll(
@@ -343,8 +351,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Close a point in time
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ClosePointInTimeResponse> closePointInTime(ClosePointInTimeRequest request)
@@ -354,12 +364,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Close a point in time
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClosePointInTimeResponse> closePointInTime(
@@ -371,8 +383,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns number of documents matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CountResponse> count(CountRequest request) throws IOException {
@@ -381,12 +395,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns number of documents matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
@@ -398,11 +414,13 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Creates a new document in the index.
-	 *
+	 * <p>
 	 * Returns a 409 response when a document with a same ID already exists in the
 	 * index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<CreateResponse> create(CreateRequest<TDocument> request) throws IOException {
@@ -411,15 +429,17 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Creates a new document in the index.
-	 *
+	 * <p>
 	 * Returns a 409 response when a document with a same ID already exists in the
 	 * index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<CreateResponse> create(
@@ -431,8 +451,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Removes a document from the index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException {
@@ -441,12 +463,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Removes a document from the index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteResponse> delete(
@@ -458,8 +482,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Deletes documents matching the provided query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteByQueryResponse> deleteByQuery(DeleteByQueryRequest request) throws IOException {
@@ -468,12 +494,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Deletes documents matching the provided query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteByQueryResponse> deleteByQuery(
@@ -486,8 +514,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Changes the number of requests per second for a particular Delete By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteByQueryRethrottleResponse> deleteByQueryRethrottle(
@@ -499,12 +529,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Changes the number of requests per second for a particular Delete By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteByQueryRethrottleResponse> deleteByQueryRethrottle(
@@ -517,8 +549,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Deletes a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteScriptResponse> deleteScript(DeleteScriptRequest request) throws IOException {
@@ -527,12 +561,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Deletes a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteScriptResponse> deleteScript(
@@ -544,8 +580,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns information about whether a document exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<BooleanResponse> exists(ExistsRequest request) throws IOException {
@@ -554,12 +592,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns information about whether a document exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<BooleanResponse> exists(
@@ -571,8 +611,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns information about whether a document source exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<BooleanResponse> existsSource(ExistsSourceRequest request) throws IOException {
@@ -581,12 +623,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns information about whether a document source exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsSource(
@@ -598,8 +642,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(ExplainRequest request,
@@ -610,12 +656,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(
@@ -629,8 +677,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<FieldCapsResponse> fieldCaps(FieldCapsRequest request) throws IOException {
@@ -640,12 +690,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<FieldCapsResponse> fieldCaps(
@@ -657,8 +709,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<GetResponse<TDocument>> get(GetRequest request,
@@ -669,12 +723,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
@@ -687,8 +743,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetScriptResponse> getScript(GetScriptRequest request) throws IOException {
@@ -697,12 +755,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetScriptResponse> getScript(
@@ -714,8 +774,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns all script contexts.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetScriptContextResponse> getScriptContext() throws IOException {
 		return this.transport.performRequestAsync(GetScriptContextRequest.INSTANCE, GetScriptContextRequest.ENDPOINT,
@@ -726,8 +788,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns available script types, languages and contexts
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages() throws IOException {
 		return this.transport.performRequestAsync(GetScriptLanguagesRequest.INSTANCE,
@@ -738,8 +802,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns the source of a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(GetSourceRequest request,
@@ -750,12 +816,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns the source of a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(
@@ -768,8 +836,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Creates or updates a document in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<IndexResponse> index(IndexRequest<TDocument> request) throws IOException {
@@ -778,12 +848,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Creates or updates a document in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<IndexResponse> index(
@@ -795,8 +867,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns basic information about the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<InfoResponse> info() throws IOException {
 		return this.transport.performRequestAsync(InfoRequest.INSTANCE, InfoRequest.ENDPOINT, this.requestOptions);
@@ -806,8 +880,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to get multiple documents in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<MgetResponse<TDocument>> mget(MgetRequest request,
@@ -818,12 +894,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to get multiple documents in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<MgetResponse<TDocument>> mget(
@@ -836,8 +914,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to execute several search operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<MsearchResponse<TDocument>> msearch(MsearchRequest request,
@@ -848,12 +928,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to execute several search operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<MsearchResponse<TDocument>> msearch(
@@ -866,8 +948,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to execute several search template operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<MsearchTemplateResponse<TDocument>> msearchTemplate(
@@ -879,12 +963,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to execute several search template operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<MsearchTemplateResponse<TDocument>> msearchTemplate(
@@ -897,8 +983,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns multiple termvectors in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<MtermvectorsResponse> mtermvectors(MtermvectorsRequest request) throws IOException {
@@ -907,12 +995,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns multiple termvectors in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<MtermvectorsResponse> mtermvectors(
@@ -924,8 +1014,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Open a point in time that can be used in subsequent searches
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<OpenPointInTimeResponse> openPointInTime(OpenPointInTimeRequest request)
@@ -935,12 +1027,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Open a point in time that can be used in subsequent searches
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<OpenPointInTimeResponse> openPointInTime(
@@ -952,8 +1046,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns whether the cluster is running.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<BooleanResponse> ping() throws IOException {
 		return this.transport.performRequestAsync(PingRequest.INSTANCE, PingRequest.ENDPOINT, this.requestOptions);
@@ -963,8 +1059,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Creates or updates a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutScriptResponse> putScript(PutScriptRequest request) throws IOException {
@@ -973,12 +1071,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Creates or updates a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutScriptResponse> putScript(
@@ -991,8 +1091,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Allows to evaluate the quality of ranked search results over a set of typical
 	 * search queries
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<RankEvalResponse> rankEval(RankEvalRequest request) throws IOException {
@@ -1002,12 +1104,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Allows to evaluate the quality of ranked search results over a set of typical
 	 * search queries
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RankEvalResponse> rankEval(
@@ -1021,8 +1125,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	 * Allows to copy documents from one index to another, optionally filtering the
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ReindexResponse> reindex(ReindexRequest request) throws IOException {
@@ -1033,12 +1139,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	 * Allows to copy documents from one index to another, optionally filtering the
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ReindexResponse> reindex(
@@ -1050,8 +1158,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ReindexRethrottleResponse> reindexRethrottle(ReindexRethrottleRequest request)
@@ -1061,12 +1171,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ReindexRethrottleResponse> reindexRethrottle(
@@ -1078,8 +1190,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
@@ -1091,12 +1205,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
@@ -1109,8 +1225,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns results matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<SearchResponse<TDocument>> search(SearchRequest request,
@@ -1121,12 +1239,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns results matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<SearchResponse<TDocument>> search(
@@ -1140,8 +1260,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<SearchShardsResponse> searchShards(SearchShardsRequest request) throws IOException {
@@ -1151,12 +1273,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<SearchShardsResponse> searchShards(
@@ -1168,8 +1292,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
@@ -1181,12 +1307,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
@@ -1201,8 +1329,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	 * The terms enum API can be used to discover terms in the index that begin with
 	 * the provided string. It is designed for low-latency look-ups used in
 	 * auto-complete scenarios.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<TermsEnumResponse> termsEnum(TermsEnumRequest request) throws IOException {
@@ -1213,12 +1343,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	 * The terms enum API can be used to discover terms in the index that begin with
 	 * the provided string. It is designed for low-latency look-ups used in
 	 * auto-complete scenarios.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<TermsEnumResponse> termsEnum(
@@ -1231,8 +1363,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Returns information and statistics about terms in the fields of a particular
 	 * document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<TermvectorsResponse> termvectors(TermvectorsRequest<TDocument> request)
@@ -1243,12 +1377,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Returns information and statistics about terms in the fields of a particular
 	 * document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<TermvectorsResponse> termvectors(
@@ -1261,8 +1397,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Updates a document with a script or partial document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument, TPartialDocument> CompletableFuture<UpdateResponse<TDocument>> update(
@@ -1273,12 +1411,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Updates a document with a script or partial document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument, TPartialDocument> CompletableFuture<UpdateResponse<TDocument>> update(
@@ -1292,8 +1432,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UpdateByQueryResponse> updateByQuery(UpdateByQueryRequest request) throws IOException {
@@ -1303,12 +1445,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateByQueryResponse> updateByQuery(
@@ -1321,8 +1465,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Changes the number of requests per second for a particular Update By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UpdateByQueryRethrottleResponse> updateByQueryRethrottle(
@@ -1334,12 +1480,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Changes the number of requests per second for a particular Update By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateByQueryRethrottleResponse> updateByQueryRethrottle(

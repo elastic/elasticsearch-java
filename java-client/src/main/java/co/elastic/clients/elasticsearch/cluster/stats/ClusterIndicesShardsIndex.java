@@ -56,7 +56,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 	/**
 	 * Contains statistics about the number of primary shards assigned to selected
 	 * nodes.
-	 *
+	 * <p>
 	 * API name: {@code primaries}
 	 */
 	public ClusterShardMetrics primaries() {
@@ -66,7 +66,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 	/**
 	 * Contains statistics about the number of replication shards assigned to
 	 * selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code replication}
 	 */
 	public ClusterShardMetrics replication() {
@@ -75,7 +75,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 
 	/**
 	 * Contains statistics about the number of shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code shards}
 	 */
 	public ClusterShardMetrics shards() {
@@ -119,7 +119,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		/**
 		 * Contains statistics about the number of primary shards assigned to selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code primaries}
 		 */
 		public Builder primaries(ClusterShardMetrics value) {
@@ -130,7 +130,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		/**
 		 * Contains statistics about the number of primary shards assigned to selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code primaries}
 		 */
 		public Builder primaries(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
@@ -140,7 +140,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		/**
 		 * Contains statistics about the number of replication shards assigned to
 		 * selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code replication}
 		 */
 		public Builder replication(ClusterShardMetrics value) {
@@ -151,7 +151,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 		/**
 		 * Contains statistics about the number of replication shards assigned to
 		 * selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code replication}
 		 */
 		public Builder replication(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
@@ -160,7 +160,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 
 		/**
 		 * Contains statistics about the number of shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(ClusterShardMetrics value) {
@@ -170,7 +170,7 @@ public final class ClusterIndicesShardsIndex implements ToJsonp {
 
 		/**
 		 * Contains statistics about the number of shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {

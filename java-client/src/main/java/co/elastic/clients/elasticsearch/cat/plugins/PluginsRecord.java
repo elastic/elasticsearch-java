@@ -69,7 +69,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * unique node id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -79,7 +79,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * node name
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -89,7 +89,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * component
-	 *
+	 * <p>
 	 * API name: {@code component}
 	 */
 	@Nullable
@@ -99,7 +99,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * component version
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -109,7 +109,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * plugin details
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -119,7 +119,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * plugin type
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -203,7 +203,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * unique node id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -213,7 +213,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * node name
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -223,7 +223,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * component
-		 *
+		 * <p>
 		 * API name: {@code component}
 		 */
 		public Builder component(@Nullable String value) {
@@ -233,7 +233,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * component version
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -243,7 +243,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * plugin details
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -253,7 +253,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * plugin type
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {

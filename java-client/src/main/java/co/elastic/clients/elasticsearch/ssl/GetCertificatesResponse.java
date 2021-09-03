@@ -53,7 +53,7 @@ public final class GetCertificatesResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<CertificateInformation> value() {
@@ -83,7 +83,7 @@ public final class GetCertificatesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<CertificateInformation> value) {
@@ -93,7 +93,7 @@ public final class GetCertificatesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(CertificateInformation... value) {

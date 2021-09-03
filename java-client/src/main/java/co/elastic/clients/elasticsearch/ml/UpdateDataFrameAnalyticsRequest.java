@@ -73,7 +73,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * Identifier for the data frame analytics job. This identifier can contain
 	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 	 * must start and end with alphanumeric characters.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -82,7 +82,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 
 	/**
 	 * A description of the job.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -97,7 +97,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
 	 * create data frame analytics jobs that have model_memory_limit values greater
 	 * than that setting.
-	 *
+	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
@@ -111,7 +111,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * analysis at the cost of using more CPU. Note that the process may use
 	 * additional threads for operational functionality other than the analysis
 	 * itself.
-	 *
+	 * <p>
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
@@ -122,7 +122,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	/**
 	 * Specifies whether this job can start when there is insufficient machine
 	 * learning node capacity for it to be immediately assigned to a node.
-	 *
+	 * <p>
 	 * API name: {@code allow_lazy_start}
 	 */
 	@Nullable
@@ -192,7 +192,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * Identifier for the data frame analytics job. This identifier can contain
 		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 		 * must start and end with alphanumeric characters.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -202,7 +202,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 
 		/**
 		 * A description of the job.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -217,7 +217,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
 		 * create data frame analytics jobs that have model_memory_limit values greater
 		 * than that setting.
-		 *
+		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
 		public Builder modelMemoryLimit(@Nullable String value) {
@@ -231,7 +231,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * analysis at the cost of using more CPU. Note that the process may use
 		 * additional threads for operational functionality other than the analysis
 		 * itself.
-		 *
+		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
 		public Builder maxNumThreads(@Nullable Number value) {
@@ -242,7 +242,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
 		 * learning node capacity for it to be immediately assigned to a node.
-		 *
+		 * <p>
 		 * API name: {@code allow_lazy_start}
 		 */
 		public Builder allowLazyStart(@Nullable Boolean value) {

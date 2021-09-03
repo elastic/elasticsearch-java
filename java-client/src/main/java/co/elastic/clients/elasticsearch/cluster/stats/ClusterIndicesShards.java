@@ -62,7 +62,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 	/**
 	 * Contains statistics about shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -72,7 +72,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 	/**
 	 * Number of primary shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code primaries}
 	 */
 	@Nullable
@@ -82,7 +82,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 	/**
 	 * Ratio of replica shards to primary shards across all selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code replication}
 	 */
 	@Nullable
@@ -92,7 +92,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 	/**
 	 * Total number of shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code total}
 	 */
 	@Nullable
@@ -158,7 +158,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 		/**
 		 * Contains statistics about shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable ClusterIndicesShardsIndex value) {
@@ -168,7 +168,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 		/**
 		 * Contains statistics about shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(Function<ClusterIndicesShardsIndex.Builder, ObjectBuilder<ClusterIndicesShardsIndex>> fn) {
@@ -177,7 +177,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 		/**
 		 * Number of primary shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code primaries}
 		 */
 		public Builder primaries(@Nullable Number value) {
@@ -187,7 +187,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 		/**
 		 * Ratio of replica shards to primary shards across all selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code replication}
 		 */
 		public Builder replication(@Nullable Number value) {
@@ -197,7 +197,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 		/**
 		 * Total number of shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public Builder total(@Nullable Number value) {

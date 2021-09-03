@@ -58,7 +58,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 	 * The total number of trained model statistics that matched the requested ID
 	 * patterns. Could be higher than the number of items in the trained_model_stats
 	 * array as the size of the array is restricted by the supplied size parameter.
-	 *
+	 * <p>
 	 * API name: {@code count}
 	 */
 	public Number count() {
@@ -68,7 +68,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 	/**
 	 * An array of trained model statistics, which are sorted by the model_id value
 	 * in ascending order.
-	 *
+	 * <p>
 	 * API name: {@code trained_model_stats}
 	 */
 	public List<TrainedModelStats> trainedModelStats() {
@@ -113,7 +113,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 		 * The total number of trained model statistics that matched the requested ID
 		 * patterns. Could be higher than the number of items in the trained_model_stats
 		 * array as the size of the array is restricted by the supplied size parameter.
-		 *
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public Builder count(Number value) {
@@ -124,7 +124,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 		/**
 		 * An array of trained model statistics, which are sorted by the model_id value
 		 * in ascending order.
-		 *
+		 * <p>
 		 * API name: {@code trained_model_stats}
 		 */
 		public Builder trainedModelStats(List<TrainedModelStats> value) {
@@ -135,7 +135,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 		/**
 		 * An array of trained model statistics, which are sorted by the model_id value
 		 * in ascending order.
-		 *
+		 * <p>
 		 * API name: {@code trained_model_stats}
 		 */
 		public Builder trainedModelStats(TrainedModelStats... value) {

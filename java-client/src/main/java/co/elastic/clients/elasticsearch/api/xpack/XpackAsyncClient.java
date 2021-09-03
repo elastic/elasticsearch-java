@@ -53,8 +53,10 @@ public class XpackAsyncClient extends ApiClient<XpackAsyncClient> {
 
 	/**
 	 * Retrieves information about the installed X-Pack features.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<InfoResponse> info(InfoRequest request) throws IOException {
@@ -63,12 +65,14 @@ public class XpackAsyncClient extends ApiClient<XpackAsyncClient> {
 
 	/**
 	 * Retrieves information about the installed X-Pack features.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/info-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<InfoResponse> info(Function<InfoRequest.Builder, ObjectBuilder<InfoRequest>> fn)
@@ -80,8 +84,10 @@ public class XpackAsyncClient extends ApiClient<XpackAsyncClient> {
 
 	/**
 	 * Retrieves usage information about the installed X-Pack features.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UsageResponse> usage(UsageRequest request) throws IOException {
@@ -90,12 +96,14 @@ public class XpackAsyncClient extends ApiClient<XpackAsyncClient> {
 
 	/**
 	 * Retrieves usage information about the installed X-Pack features.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/usage-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UsageResponse> usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)

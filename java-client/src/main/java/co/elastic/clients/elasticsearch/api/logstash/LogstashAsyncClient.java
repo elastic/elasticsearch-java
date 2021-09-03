@@ -55,8 +55,10 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 
 	/**
 	 * Deletes Logstash Pipelines used by Central Management
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PipelineDeleteResponse> deletePipeline(PipelineDeleteRequest request) throws IOException {
@@ -65,12 +67,14 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 
 	/**
 	 * Deletes Logstash Pipelines used by Central Management
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-delete-pipeline.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PipelineDeleteResponse> deletePipeline(
@@ -82,8 +86,10 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 
 	/**
 	 * Retrieves Logstash Pipelines used by Central Management
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PipelineGetResponse> getPipeline(PipelineGetRequest request) throws IOException {
@@ -92,12 +98,14 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 
 	/**
 	 * Retrieves Logstash Pipelines used by Central Management
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-get-pipeline.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PipelineGetResponse> getPipeline(
@@ -109,8 +117,10 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 
 	/**
 	 * Adds and updates Logstash Pipelines used for Central Management
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PipelinePutResponse> putPipeline(PipelinePutRequest request) throws IOException {
@@ -119,12 +129,14 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 
 	/**
 	 * Adds and updates Logstash Pipelines used for Central Management
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-api-put-pipeline.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PipelinePutResponse> putPipeline(

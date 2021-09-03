@@ -56,7 +56,7 @@ public final class GetUserRequest extends RequestBase {
 	 * An identifier for the user. You can specify multiple usernames as a
 	 * comma-separated list. If you omit this parameter, the API retrieves
 	 * information about all users.
-	 *
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -77,7 +77,7 @@ public final class GetUserRequest extends RequestBase {
 		 * An identifier for the user. You can specify multiple usernames as a
 		 * comma-separated list. If you omit this parameter, the API retrieves
 		 * information about all users.
-		 *
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public Builder username(@Nullable List<String> value) {
@@ -89,7 +89,7 @@ public final class GetUserRequest extends RequestBase {
 		 * An identifier for the user. You can specify multiple usernames as a
 		 * comma-separated list. If you omit this parameter, the API retrieves
 		 * information about all users.
-		 *
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public Builder username(String... value) {

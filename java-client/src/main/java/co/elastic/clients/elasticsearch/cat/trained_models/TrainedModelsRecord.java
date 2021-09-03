@@ -114,7 +114,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * the trained model id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -124,7 +124,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * who created the model
-	 *
+	 * <p>
 	 * API name: {@code created_by}
 	 */
 	@Nullable
@@ -134,7 +134,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * the estimated heap size to keep the model in memory
-	 *
+	 * <p>
 	 * API name: {@code heap_size}
 	 */
 	@Nullable
@@ -144,7 +144,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * the estimated number of operations to use the model
-	 *
+	 * <p>
 	 * API name: {@code operations}
 	 */
 	@Nullable
@@ -154,7 +154,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The license level of the model
-	 *
+	 * <p>
 	 * API name: {@code license}
 	 */
 	@Nullable
@@ -164,7 +164,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The time the model was created
-	 *
+	 * <p>
 	 * API name: {@code create_time}
 	 */
 	@Nullable
@@ -174,7 +174,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The version of Elasticsearch when the model was created
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -184,7 +184,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The model description
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -194,7 +194,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The number of pipelines referencing the model
-	 *
+	 * <p>
 	 * API name: {@code ingest.pipelines}
 	 */
 	@Nullable
@@ -204,7 +204,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The total number of docs processed by the model
-	 *
+	 * <p>
 	 * API name: {@code ingest.count}
 	 */
 	@Nullable
@@ -214,7 +214,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The total time spent processing docs with this model
-	 *
+	 * <p>
 	 * API name: {@code ingest.time}
 	 */
 	@Nullable
@@ -224,7 +224,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The total documents currently being handled by the model
-	 *
+	 * <p>
 	 * API name: {@code ingest.current}
 	 */
 	@Nullable
@@ -234,7 +234,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The total count of failed ingest attempts with this model
-	 *
+	 * <p>
 	 * API name: {@code ingest.failed}
 	 */
 	@Nullable
@@ -245,7 +245,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 	/**
 	 * The data frame analytics config id that created the model (if still
 	 * available)
-	 *
+	 * <p>
 	 * API name: {@code data_frame.id}
 	 */
 	@Nullable
@@ -255,7 +255,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The time the data frame analytics config was created
-	 *
+	 * <p>
 	 * API name: {@code data_frame.create_time}
 	 */
 	@Nullable
@@ -265,7 +265,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The source index used to train in the data frame analysis
-	 *
+	 * <p>
 	 * API name: {@code data_frame.source_index}
 	 */
 	@Nullable
@@ -275,7 +275,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 	/**
 	 * The analysis used by the data frame to build the model
-	 *
+	 * <p>
 	 * API name: {@code data_frame.analysis}
 	 */
 	@Nullable
@@ -458,7 +458,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * the trained model id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -468,7 +468,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * who created the model
-		 *
+		 * <p>
 		 * API name: {@code created_by}
 		 */
 		public Builder createdBy(@Nullable String value) {
@@ -478,7 +478,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * the estimated heap size to keep the model in memory
-		 *
+		 * <p>
 		 * API name: {@code heap_size}
 		 */
 		public Builder heapSize(@Nullable JsonValue value) {
@@ -488,7 +488,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * the estimated number of operations to use the model
-		 *
+		 * <p>
 		 * API name: {@code operations}
 		 */
 		public Builder operations(@Nullable String value) {
@@ -498,7 +498,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The license level of the model
-		 *
+		 * <p>
 		 * API name: {@code license}
 		 */
 		public Builder license(@Nullable String value) {
@@ -508,7 +508,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The time the model was created
-		 *
+		 * <p>
 		 * API name: {@code create_time}
 		 */
 		public Builder createTime(@Nullable String value) {
@@ -518,7 +518,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The version of Elasticsearch when the model was created
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -528,7 +528,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The model description
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -538,7 +538,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The number of pipelines referencing the model
-		 *
+		 * <p>
 		 * API name: {@code ingest.pipelines}
 		 */
 		public Builder ingest_pipelines(@Nullable String value) {
@@ -548,7 +548,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The total number of docs processed by the model
-		 *
+		 * <p>
 		 * API name: {@code ingest.count}
 		 */
 		public Builder ingest_count(@Nullable String value) {
@@ -558,7 +558,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The total time spent processing docs with this model
-		 *
+		 * <p>
 		 * API name: {@code ingest.time}
 		 */
 		public Builder ingest_time(@Nullable String value) {
@@ -568,7 +568,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The total documents currently being handled by the model
-		 *
+		 * <p>
 		 * API name: {@code ingest.current}
 		 */
 		public Builder ingest_current(@Nullable String value) {
@@ -578,7 +578,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The total count of failed ingest attempts with this model
-		 *
+		 * <p>
 		 * API name: {@code ingest.failed}
 		 */
 		public Builder ingest_failed(@Nullable String value) {
@@ -589,7 +589,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 		/**
 		 * The data frame analytics config id that created the model (if still
 		 * available)
-		 *
+		 * <p>
 		 * API name: {@code data_frame.id}
 		 */
 		public Builder dataFrame_id(@Nullable String value) {
@@ -599,7 +599,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The time the data frame analytics config was created
-		 *
+		 * <p>
 		 * API name: {@code data_frame.create_time}
 		 */
 		public Builder dataFrame_createTime(@Nullable String value) {
@@ -609,7 +609,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The source index used to train in the data frame analysis
-		 *
+		 * <p>
 		 * API name: {@code data_frame.source_index}
 		 */
 		public Builder dataFrame_sourceIndex(@Nullable String value) {
@@ -619,7 +619,7 @@ public final class TrainedModelsRecord implements ToJsonp {
 
 		/**
 		 * The analysis used by the data frame to build the model
-		 *
+		 * <p>
 		 * API name: {@code data_frame.analysis}
 		 */
 		public Builder dataFrame_analysis(@Nullable String value) {

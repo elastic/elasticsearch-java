@@ -71,7 +71,7 @@ public final class PolicyDeleteRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -134,7 +134,7 @@ public final class PolicyDeleteRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {

@@ -68,7 +68,7 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * A string that uniquely identifies a calendar.
-	 *
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	@Nullable
@@ -78,7 +78,7 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Skips the specified number of calendars.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -88,7 +88,7 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Specifies the maximum number of calendars to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -144,7 +144,7 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * A string that uniquely identifies a calendar.
-		 *
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(@Nullable String value) {
@@ -154,7 +154,7 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Skips the specified number of calendars.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -164,7 +164,7 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Specifies the maximum number of calendars to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {

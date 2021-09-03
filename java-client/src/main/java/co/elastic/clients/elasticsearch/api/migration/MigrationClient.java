@@ -52,8 +52,10 @@ public class MigrationClient extends ApiClient<MigrationClient> {
 	 * Retrieves information about different cluster, node, and index level settings
 	 * that use deprecated features that will be removed or changed in the next
 	 * major version.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeprecationInfoResponse deprecations(DeprecationInfoRequest request) throws IOException {
@@ -64,12 +66,14 @@ public class MigrationClient extends ApiClient<MigrationClient> {
 	 * Retrieves information about different cluster, node, and index level settings
 	 * that use deprecated features that will be removed or changed in the next
 	 * major version.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeprecationInfoResponse deprecations(

@@ -55,7 +55,7 @@ public final class GetSourceResponse<TDocument> implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public TDocument value() {
@@ -83,7 +83,7 @@ public final class GetSourceResponse<TDocument> implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder<TDocument> value(TDocument value) {
@@ -94,7 +94,6 @@ public final class GetSourceResponse<TDocument> implements ToJsonp {
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;

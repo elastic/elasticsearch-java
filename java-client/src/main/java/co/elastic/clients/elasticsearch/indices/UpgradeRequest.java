@@ -72,7 +72,7 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -135,7 +135,7 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {

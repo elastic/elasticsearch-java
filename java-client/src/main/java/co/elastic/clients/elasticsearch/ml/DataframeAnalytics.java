@@ -79,7 +79,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 	/**
 	 * An object containing information about the analysis job.
-	 *
+	 * <p>
 	 * API name: {@code analysis_stats}
 	 */
 	@Nullable
@@ -90,7 +90,7 @@ public final class DataframeAnalytics implements ToJsonp {
 	/**
 	 * For running jobs only, contains messages relating to the selection of a node
 	 * to run the job.
-	 *
+	 * <p>
 	 * API name: {@code assignment_explanation}
 	 */
 	@Nullable
@@ -101,7 +101,7 @@ public final class DataframeAnalytics implements ToJsonp {
 	/**
 	 * An object that provides counts for the quantity of documents skipped, used in
 	 * training, or available for testing.
-	 *
+	 * <p>
 	 * API name: {@code data_counts}
 	 */
 	public DataframeAnalyticsStatsDataCounts dataCounts() {
@@ -110,7 +110,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 	/**
 	 * The unique identifier of the data frame analytics job.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -120,7 +120,7 @@ public final class DataframeAnalytics implements ToJsonp {
 	/**
 	 * An object describing memory usage of the analytics. It is present only after
 	 * the job is started and memory usage is reported.
-	 *
+	 * <p>
 	 * API name: {@code memory_usage}
 	 */
 	public DataframeAnalyticsStatsMemoryUsage memoryUsage() {
@@ -130,7 +130,7 @@ public final class DataframeAnalytics implements ToJsonp {
 	/**
 	 * Contains properties for the node that runs the job. This information is
 	 * available only for running jobs.
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -140,7 +140,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 	/**
 	 * The progress report of the data frame analytics job by phase.
-	 *
+	 * <p>
 	 * API name: {@code progress}
 	 */
 	public List<DataframeAnalyticsStatsProgress> progress() {
@@ -150,7 +150,7 @@ public final class DataframeAnalytics implements ToJsonp {
 	/**
 	 * The status of the data frame analytics job, which can be one of the following
 	 * values: failed, started, starting, stopping, stopped.
-	 *
+	 * <p>
 	 * API name: {@code state}
 	 */
 	public JsonValue state() {
@@ -237,7 +237,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 		/**
 		 * An object containing information about the analysis job.
-		 *
+		 * <p>
 		 * API name: {@code analysis_stats}
 		 */
 		public Builder analysisStats(@Nullable DataframeAnalyticsStatsContainer value) {
@@ -247,7 +247,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 		/**
 		 * An object containing information about the analysis job.
-		 *
+		 * <p>
 		 * API name: {@code analysis_stats}
 		 */
 		public Builder analysisStats(
@@ -258,7 +258,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * For running jobs only, contains messages relating to the selection of a node
 		 * to run the job.
-		 *
+		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
 		public Builder assignmentExplanation(@Nullable String value) {
@@ -269,7 +269,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * An object that provides counts for the quantity of documents skipped, used in
 		 * training, or available for testing.
-		 *
+		 * <p>
 		 * API name: {@code data_counts}
 		 */
 		public Builder dataCounts(DataframeAnalyticsStatsDataCounts value) {
@@ -280,7 +280,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * An object that provides counts for the quantity of documents skipped, used in
 		 * training, or available for testing.
-		 *
+		 * <p>
 		 * API name: {@code data_counts}
 		 */
 		public Builder dataCounts(
@@ -290,7 +290,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 		/**
 		 * The unique identifier of the data frame analytics job.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -301,7 +301,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * An object describing memory usage of the analytics. It is present only after
 		 * the job is started and memory usage is reported.
-		 *
+		 * <p>
 		 * API name: {@code memory_usage}
 		 */
 		public Builder memoryUsage(DataframeAnalyticsStatsMemoryUsage value) {
@@ -312,7 +312,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * An object describing memory usage of the analytics. It is present only after
 		 * the job is started and memory usage is reported.
-		 *
+		 * <p>
 		 * API name: {@code memory_usage}
 		 */
 		public Builder memoryUsage(
@@ -323,7 +323,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * Contains properties for the node that runs the job. This information is
 		 * available only for running jobs.
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(@Nullable NodeAttributes value) {
@@ -334,7 +334,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * Contains properties for the node that runs the job. This information is
 		 * available only for running jobs.
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
@@ -343,7 +343,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 		/**
 		 * The progress report of the data frame analytics job by phase.
-		 *
+		 * <p>
 		 * API name: {@code progress}
 		 */
 		public Builder progress(List<DataframeAnalyticsStatsProgress> value) {
@@ -353,7 +353,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 		/**
 		 * The progress report of the data frame analytics job by phase.
-		 *
+		 * <p>
 		 * API name: {@code progress}
 		 */
 		public Builder progress(DataframeAnalyticsStatsProgress... value) {
@@ -391,7 +391,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * The status of the data frame analytics job, which can be one of the following
 		 * values: failed, started, starting, stopping, stopped.
-		 *
+		 * <p>
 		 * API name: {@code state}
 		 */
 		public Builder state(JsonValue value) {

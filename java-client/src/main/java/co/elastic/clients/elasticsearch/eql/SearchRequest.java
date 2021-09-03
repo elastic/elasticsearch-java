@@ -148,7 +148,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * If true, missing or closed indices are not included in the response.
-	 *
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -158,7 +158,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * EQL query you wish to run.
-	 *
+	 * <p>
 	 * API name: {@code query}
 	 */
 	public String query() {
@@ -175,7 +175,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Field containing the event classification, such as process, file, or network.
-	 *
+	 * <p>
 	 * API name: {@code event_category_field}
 	 */
 	@Nullable
@@ -185,7 +185,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Field used to sort hits with the same timestamp in ascending order
-	 *
+	 * <p>
 	 * API name: {@code tiebreaker_field}
 	 */
 	@Nullable
@@ -194,8 +194,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * Field containing event timestamp. Default "@timestamp"
-	 *
+	 * Field containing event timestamp. Default &quot;@timestamp&quot;
+	 * <p>
 	 * API name: {@code timestamp_field}
 	 */
 	@Nullable
@@ -205,7 +205,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Maximum number of events to search at a time for sequence queries.
-	 *
+	 * <p>
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
@@ -216,7 +216,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Query, written in Query DSL, used to filter the events on which the EQL query
 	 * runs.
-	 *
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -251,7 +251,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * For basic queries, the maximum number of matching events to return. Defaults
 	 * to 10
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -262,7 +262,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Array of wildcard (*) patterns. The response returns values for field names
 	 * matching these patterns in the fields property of each hit.
-	 *
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -458,7 +458,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * If true, missing or closed indices are not included in the response.
-		 *
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -468,7 +468,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * EQL query you wish to run.
-		 *
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(String value) {
@@ -486,7 +486,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Field containing the event classification, such as process, file, or network.
-		 *
+		 * <p>
 		 * API name: {@code event_category_field}
 		 */
 		public Builder eventCategoryField(@Nullable String value) {
@@ -496,7 +496,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Field used to sort hits with the same timestamp in ascending order
-		 *
+		 * <p>
 		 * API name: {@code tiebreaker_field}
 		 */
 		public Builder tiebreakerField(@Nullable String value) {
@@ -505,8 +505,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Field containing event timestamp. Default "@timestamp"
-		 *
+		 * Field containing event timestamp. Default &quot;@timestamp&quot;
+		 * <p>
 		 * API name: {@code timestamp_field}
 		 */
 		public Builder timestampField(@Nullable String value) {
@@ -516,7 +516,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Maximum number of events to search at a time for sequence queries.
-		 *
+		 * <p>
 		 * API name: {@code fetch_size}
 		 */
 		public Builder fetchSize(@Nullable Number value) {
@@ -527,7 +527,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Query, written in Query DSL, used to filter the events on which the EQL query
 		 * runs.
-		 *
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public Builder filter(@Nullable List<QueryContainer> value) {
@@ -538,7 +538,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Query, written in Query DSL, used to filter the events on which the EQL query
 		 * runs.
-		 *
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public Builder filter(QueryContainer... value) {
@@ -598,7 +598,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * For basic queries, the maximum number of matching events to return. Defaults
 		 * to 10
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable JsonValue value) {
@@ -609,7 +609,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Array of wildcard (*) patterns. The response returns values for field names
 		 * matching these patterns in the fields property of each hit.
-		 *
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(@Nullable List<JsonValue> value) {
@@ -620,7 +620,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Array of wildcard (*) patterns. The response returns values for field names
 		 * matching these patterns in the fields property of each hit.
-		 *
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(JsonValue... value) {

@@ -57,7 +57,7 @@ public final class TotalFeatureImportanceStatistics implements ToJsonp {
 	 * The average magnitude of this feature across all the training data. This
 	 * value is the average of the absolute values of the importance for this
 	 * feature.
-	 *
+	 * <p>
 	 * API name: {@code mean_magnitude}
 	 */
 	public Number meanMagnitude() {
@@ -66,7 +66,7 @@ public final class TotalFeatureImportanceStatistics implements ToJsonp {
 
 	/**
 	 * The maximum importance value across all the training data for this feature.
-	 *
+	 * <p>
 	 * API name: {@code max}
 	 */
 	public Number max() {
@@ -75,7 +75,7 @@ public final class TotalFeatureImportanceStatistics implements ToJsonp {
 
 	/**
 	 * The minimum importance value across all the training data for this feature.
-	 *
+	 * <p>
 	 * API name: {@code min}
 	 */
 	public Number min() {
@@ -120,7 +120,7 @@ public final class TotalFeatureImportanceStatistics implements ToJsonp {
 		 * The average magnitude of this feature across all the training data. This
 		 * value is the average of the absolute values of the importance for this
 		 * feature.
-		 *
+		 * <p>
 		 * API name: {@code mean_magnitude}
 		 */
 		public Builder meanMagnitude(Number value) {
@@ -130,7 +130,7 @@ public final class TotalFeatureImportanceStatistics implements ToJsonp {
 
 		/**
 		 * The maximum importance value across all the training data for this feature.
-		 *
+		 * <p>
 		 * API name: {@code max}
 		 */
 		public Builder max(Number value) {
@@ -140,7 +140,7 @@ public final class TotalFeatureImportanceStatistics implements ToJsonp {
 
 		/**
 		 * The minimum importance value across all the training data for this feature.
-		 *
+		 * <p>
 		 * API name: {@code min}
 		 */
 		public Builder min(Number value) {

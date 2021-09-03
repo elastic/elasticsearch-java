@@ -67,7 +67,7 @@ public final class EqlHits<TEvent> implements ToJsonp {
 
 	/**
 	 * Metadata about the number of matching events or sequences.
-	 *
+	 * <p>
 	 * API name: {@code total}
 	 */
 	@Nullable
@@ -77,7 +77,7 @@ public final class EqlHits<TEvent> implements ToJsonp {
 
 	/**
 	 * Contains events matching the query. Each object represents a matching event.
-	 *
+	 * <p>
 	 * API name: {@code events}
 	 */
 	@Nullable
@@ -89,7 +89,7 @@ public final class EqlHits<TEvent> implements ToJsonp {
 	 * Contains event sequences matching the query. Each object represents a
 	 * matching sequence. This parameter is only returned for EQL queries containing
 	 * a sequence.
-	 *
+	 * <p>
 	 * API name: {@code sequences}
 	 */
 	@Nullable
@@ -159,7 +159,7 @@ public final class EqlHits<TEvent> implements ToJsonp {
 
 		/**
 		 * Metadata about the number of matching events or sequences.
-		 *
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public Builder<TEvent> total(@Nullable TotalHits value) {
@@ -169,7 +169,7 @@ public final class EqlHits<TEvent> implements ToJsonp {
 
 		/**
 		 * Metadata about the number of matching events or sequences.
-		 *
+		 * <p>
 		 * API name: {@code total}
 		 */
 		public Builder<TEvent> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
@@ -178,7 +178,7 @@ public final class EqlHits<TEvent> implements ToJsonp {
 
 		/**
 		 * Contains events matching the query. Each object represents a matching event.
-		 *
+		 * <p>
 		 * API name: {@code events}
 		 */
 		public Builder<TEvent> events(@Nullable List<HitsEvent<TEvent>> value) {
@@ -188,7 +188,7 @@ public final class EqlHits<TEvent> implements ToJsonp {
 
 		/**
 		 * Contains events matching the query. Each object represents a matching event.
-		 *
+		 * <p>
 		 * API name: {@code events}
 		 */
 		public Builder<TEvent> events(HitsEvent<TEvent>... value) {
@@ -225,7 +225,7 @@ public final class EqlHits<TEvent> implements ToJsonp {
 		 * Contains event sequences matching the query. Each object represents a
 		 * matching sequence. This parameter is only returned for EQL queries containing
 		 * a sequence.
-		 *
+		 * <p>
 		 * API name: {@code sequences}
 		 */
 		public Builder<TEvent> sequences(@Nullable List<HitsSequence<TEvent>> value) {
@@ -237,7 +237,7 @@ public final class EqlHits<TEvent> implements ToJsonp {
 		 * Contains event sequences matching the query. Each object represents a
 		 * matching sequence. This parameter is only returned for EQL queries containing
 		 * a sequence.
-		 *
+		 * <p>
 		 * API name: {@code sequences}
 		 */
 		public Builder<TEvent> sequences(HitsSequence<TEvent>... value) {
@@ -275,7 +275,6 @@ public final class EqlHits<TEvent> implements ToJsonp {
 		/**
 		 * Serializer for TEvent. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TEvent> tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
 			this.tEventSerializer = value;

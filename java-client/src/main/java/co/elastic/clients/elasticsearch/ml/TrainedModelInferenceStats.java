@@ -62,7 +62,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 
 	/**
 	 * The number of failures when using the model for inference.
-	 *
+	 * <p>
 	 * API name: {@code failure_count}
 	 */
 	public Number failureCount() {
@@ -72,7 +72,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 	/**
 	 * The total number of times the model has been called for inference. This is
 	 * across all inference contexts, including all pipelines.
-	 *
+	 * <p>
 	 * API name: {@code inference_count}
 	 */
 	public Number inferenceCount() {
@@ -85,7 +85,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 	 * cache is not being appropriately used. This can be solved by increasing the
 	 * cache size or its time-to-live (TTL). See General machine learning settings
 	 * for the appropriate settings.
-	 *
+	 * <p>
 	 * API name: {@code cache_miss_count}
 	 */
 	public Number cacheMissCount() {
@@ -95,7 +95,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 	/**
 	 * The number of inference calls where all the training features for the model
 	 * were missing.
-	 *
+	 * <p>
 	 * API name: {@code missing_all_fields_count}
 	 */
 	public Number missingAllFieldsCount() {
@@ -104,7 +104,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 
 	/**
 	 * The time when the statistics were last updated.
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	public JsonValue timestamp() {
@@ -157,7 +157,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 
 		/**
 		 * The number of failures when using the model for inference.
-		 *
+		 * <p>
 		 * API name: {@code failure_count}
 		 */
 		public Builder failureCount(Number value) {
@@ -168,7 +168,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 		/**
 		 * The total number of times the model has been called for inference. This is
 		 * across all inference contexts, including all pipelines.
-		 *
+		 * <p>
 		 * API name: {@code inference_count}
 		 */
 		public Builder inferenceCount(Number value) {
@@ -182,7 +182,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 		 * cache is not being appropriately used. This can be solved by increasing the
 		 * cache size or its time-to-live (TTL). See General machine learning settings
 		 * for the appropriate settings.
-		 *
+		 * <p>
 		 * API name: {@code cache_miss_count}
 		 */
 		public Builder cacheMissCount(Number value) {
@@ -193,7 +193,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 		/**
 		 * The number of inference calls where all the training features for the model
 		 * were missing.
-		 *
+		 * <p>
 		 * API name: {@code missing_all_fields_count}
 		 */
 		public Builder missingAllFieldsCount(Number value) {
@@ -203,7 +203,7 @@ public final class TrainedModelInferenceStats implements ToJsonp {
 
 		/**
 		 * The time when the statistics were last updated.
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(JsonValue value) {

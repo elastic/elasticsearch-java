@@ -50,7 +50,7 @@ public final class GetStatusRequest extends RequestBase {
 
 	/**
 	 * Identifier for the search.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -67,7 +67,7 @@ public final class GetStatusRequest extends RequestBase {
 
 		/**
 		 * Identifier for the search.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {

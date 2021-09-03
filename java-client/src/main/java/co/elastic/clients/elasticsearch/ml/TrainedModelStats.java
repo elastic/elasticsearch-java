@@ -65,7 +65,7 @@ public final class TrainedModelStats implements ToJsonp {
 
 	/**
 	 * The unique identifier of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	public String modelId() {
@@ -74,7 +74,7 @@ public final class TrainedModelStats implements ToJsonp {
 
 	/**
 	 * The number of ingest pipelines that currently refer to the model.
-	 *
+	 * <p>
 	 * API name: {@code pipeline_count}
 	 */
 	public Number pipelineCount() {
@@ -83,7 +83,7 @@ public final class TrainedModelStats implements ToJsonp {
 
 	/**
 	 * A collection of inference stats fields.
-	 *
+	 * <p>
 	 * API name: {@code inference_stats}
 	 */
 	@Nullable
@@ -95,7 +95,7 @@ public final class TrainedModelStats implements ToJsonp {
 	 * A collection of ingest stats for the model across all nodes. The values are
 	 * summations of the individual node statistics. The format matches the ingest
 	 * section in Nodes stats.
-	 *
+	 * <p>
 	 * API name: {@code ingest}
 	 */
 	@Nullable
@@ -159,7 +159,7 @@ public final class TrainedModelStats implements ToJsonp {
 
 		/**
 		 * The unique identifier of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(String value) {
@@ -169,7 +169,7 @@ public final class TrainedModelStats implements ToJsonp {
 
 		/**
 		 * The number of ingest pipelines that currently refer to the model.
-		 *
+		 * <p>
 		 * API name: {@code pipeline_count}
 		 */
 		public Builder pipelineCount(Number value) {
@@ -179,7 +179,7 @@ public final class TrainedModelStats implements ToJsonp {
 
 		/**
 		 * A collection of inference stats fields.
-		 *
+		 * <p>
 		 * API name: {@code inference_stats}
 		 */
 		public Builder inferenceStats(@Nullable TrainedModelInferenceStats value) {
@@ -189,7 +189,7 @@ public final class TrainedModelStats implements ToJsonp {
 
 		/**
 		 * A collection of inference stats fields.
-		 *
+		 * <p>
 		 * API name: {@code inference_stats}
 		 */
 		public Builder inferenceStats(
@@ -201,7 +201,7 @@ public final class TrainedModelStats implements ToJsonp {
 		 * A collection of ingest stats for the model across all nodes. The values are
 		 * summations of the individual node statistics. The format matches the ingest
 		 * section in Nodes stats.
-		 *
+		 * <p>
 		 * API name: {@code ingest}
 		 */
 		public Builder ingest(@Nullable Map<String, JsonValue> value) {

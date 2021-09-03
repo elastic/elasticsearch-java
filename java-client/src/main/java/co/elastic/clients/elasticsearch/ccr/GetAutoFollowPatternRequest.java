@@ -51,7 +51,7 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Specifies the auto-follow pattern collection that you want to retrieve. If
 	 * you do not specify a name, the API returns information for all collections.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -71,7 +71,7 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 		/**
 		 * Specifies the auto-follow pattern collection that you want to retrieve. If
 		 * you do not specify a name, the API returns information for all collections.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {

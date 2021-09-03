@@ -65,7 +65,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 	/**
 	 * The unique identifier of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	@Nullable
@@ -74,11 +74,13 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies what to do when the request: - Contains wildcard expressions and
-	 * there are no models that match. - Contains the _all string or no identifiers
-	 * and there are no matches. - Contains wildcard expressions and there are only
-	 * partial matches.
-	 *
+	 * Specifies what to do when the request:
+	 * <ul>
+	 * <li>Contains wildcard expressions and there are no models that match.</li>
+	 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ul>
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -88,7 +90,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 	/**
 	 * Skips the specified number of models.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -98,7 +100,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 	/**
 	 * Specifies the maximum number of models to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -126,7 +128,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 		/**
 		 * The unique identifier of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(@Nullable String value) {
@@ -135,11 +137,13 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies what to do when the request: - Contains wildcard expressions and
-		 * there are no models that match. - Contains the _all string or no identifiers
-		 * and there are no matches. - Contains wildcard expressions and there are only
-		 * partial matches.
-		 *
+		 * Specifies what to do when the request:
+		 * <ul>
+		 * <li>Contains wildcard expressions and there are no models that match.</li>
+		 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ul>
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -149,7 +153,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 		/**
 		 * Skips the specified number of models.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -159,7 +163,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 		/**
 		 * Specifies the maximum number of models to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {

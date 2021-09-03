@@ -53,7 +53,7 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 
 	/**
 	 * Defines the phase of the data frame analytics job.
-	 *
+	 * <p>
 	 * API name: {@code phase}
 	 */
 	public String phase() {
@@ -63,7 +63,7 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 	/**
 	 * The progress that the data frame analytics job has made expressed in
 	 * percentage.
-	 *
+	 * <p>
 	 * API name: {@code progress_percent}
 	 */
 	public Number progressPercent() {
@@ -101,7 +101,7 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 
 		/**
 		 * Defines the phase of the data frame analytics job.
-		 *
+		 * <p>
 		 * API name: {@code phase}
 		 */
 		public Builder phase(String value) {
@@ -112,7 +112,7 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 		/**
 		 * The progress that the data frame analytics job has made expressed in
 		 * percentage.
-		 *
+		 * <p>
 		 * API name: {@code progress_percent}
 		 */
 		public Builder progressPercent(Number value) {

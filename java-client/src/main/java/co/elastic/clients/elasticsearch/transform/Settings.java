@@ -61,7 +61,7 @@ public final class Settings implements ToJsonp {
 	 * (default) or as millis since epoch. epoch_millis has been the default for
 	 * transforms created before version 7.11. For compatible output set this to
 	 * true.
-	 *
+	 * <p>
 	 * API name: {@code dates_as_epoch_millis}
 	 */
 	@Nullable
@@ -73,7 +73,7 @@ public final class Settings implements ToJsonp {
 	 * Specifies a limit on the number of input documents per second. This setting
 	 * throttles the transform by adding a wait time between search requests. The
 	 * default value is null, which disables throttling.
-	 *
+	 * <p>
 	 * API name: {@code docs_per_second}
 	 */
 	@Nullable
@@ -85,7 +85,7 @@ public final class Settings implements ToJsonp {
 	 * Defines the initial page size to use for the composite aggregation for each
 	 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
 	 * adjusted to a lower value. The minimum value is 10 and the maximum is 10,000.
-	 *
+	 * <p>
 	 * API name: {@code max_page_search_size}
 	 */
 	@Nullable
@@ -145,7 +145,7 @@ public final class Settings implements ToJsonp {
 		 * (default) or as millis since epoch. epoch_millis has been the default for
 		 * transforms created before version 7.11. For compatible output set this to
 		 * true.
-		 *
+		 * <p>
 		 * API name: {@code dates_as_epoch_millis}
 		 */
 		public Builder datesAsEpochMillis(@Nullable Boolean value) {
@@ -157,7 +157,7 @@ public final class Settings implements ToJsonp {
 		 * Specifies a limit on the number of input documents per second. This setting
 		 * throttles the transform by adding a wait time between search requests. The
 		 * default value is null, which disables throttling.
-		 *
+		 * <p>
 		 * API name: {@code docs_per_second}
 		 */
 		public Builder docsPerSecond(@Nullable Number value) {
@@ -169,7 +169,7 @@ public final class Settings implements ToJsonp {
 		 * Defines the initial page size to use for the composite aggregation for each
 		 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
 		 * adjusted to a lower value. The minimum value is 10 and the maximum is 10,000.
-		 *
+		 * <p>
 		 * API name: {@code max_page_search_size}
 		 */
 		public Builder maxPageSearchSize(@Nullable Number value) {

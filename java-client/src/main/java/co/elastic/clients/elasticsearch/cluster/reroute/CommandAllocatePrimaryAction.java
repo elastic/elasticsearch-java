@@ -83,7 +83,7 @@ public final class CommandAllocatePrimaryAction implements ToJsonp {
 	 * If a node which has a copy of the data rejoins the cluster later on, that
 	 * data will be deleted. To ensure that these implications are well-understood,
 	 * this command requires the flag accept_data_loss to be explicitly set to true
-	 *
+	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
 	public Boolean acceptDataLoss() {
@@ -157,7 +157,7 @@ public final class CommandAllocatePrimaryAction implements ToJsonp {
 		 * If a node which has a copy of the data rejoins the cluster later on, that
 		 * data will be deleted. To ensure that these implications are well-understood,
 		 * this command requires the flag accept_data_loss to be explicitly set to true
-		 *
+		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
 		public Builder acceptDataLoss(Boolean value) {

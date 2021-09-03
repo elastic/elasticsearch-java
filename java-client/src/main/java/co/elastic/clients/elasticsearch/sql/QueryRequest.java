@@ -119,7 +119,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * The maximum number of rows (or entries) to return in one response
-	 *
+	 * <p>
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
@@ -129,7 +129,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Optional Elasticsearch query DSL for additional filtering.
-	 *
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
@@ -139,7 +139,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * SQL query to execute
-	 *
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -149,7 +149,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * The timeout before the request fails.
-	 *
+	 * <p>
 	 * API name: {@code request_timeout}
 	 */
 	@Nullable
@@ -159,7 +159,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * The timeout before a pagination request fails.
-	 *
+	 * <p>
 	 * API name: {@code page_timeout}
 	 */
 	@Nullable
@@ -170,7 +170,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Time-zone in ISO 8601 used for executing the query on the server. More
 	 * information available here.
-	 *
+	 * <p>
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
@@ -182,7 +182,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	 * Throw an exception when encountering multiple values for a field (default) or
 	 * be lenient and return the first value from the list (without any guarantees
 	 * of what that will be - typically the first in natural ascending order).
-	 *
+	 * <p>
 	 * API name: {@code field_multi_value_leniency}
 	 */
 	@Nullable
@@ -320,7 +320,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * The maximum number of rows (or entries) to return in one response
-		 *
+		 * <p>
 		 * API name: {@code fetch_size}
 		 */
 		public Builder fetchSize(@Nullable Number value) {
@@ -330,7 +330,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Optional Elasticsearch query DSL for additional filtering.
-		 *
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public Builder filter(@Nullable QueryContainer value) {
@@ -340,7 +340,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Optional Elasticsearch query DSL for additional filtering.
-		 *
+		 * <p>
 		 * API name: {@code filter}
 		 */
 		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
@@ -349,7 +349,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * SQL query to execute
-		 *
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(@Nullable String value) {
@@ -359,7 +359,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * The timeout before the request fails.
-		 *
+		 * <p>
 		 * API name: {@code request_timeout}
 		 */
 		public Builder requestTimeout(@Nullable JsonValue value) {
@@ -369,7 +369,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * The timeout before a pagination request fails.
-		 *
+		 * <p>
 		 * API name: {@code page_timeout}
 		 */
 		public Builder pageTimeout(@Nullable JsonValue value) {
@@ -380,7 +380,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Time-zone in ISO 8601 used for executing the query on the server. More
 		 * information available here.
-		 *
+		 * <p>
 		 * API name: {@code time_zone}
 		 */
 		public Builder timeZone(@Nullable String value) {
@@ -392,7 +392,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		 * Throw an exception when encountering multiple values for a field (default) or
 		 * be lenient and return the first value from the list (without any guarantees
 		 * of what that will be - typically the first in natural ascending order).
-		 *
+		 * <p>
 		 * API name: {@code field_multi_value_leniency}
 		 */
 		public Builder fieldMultiValueLeniency(@Nullable Boolean value) {

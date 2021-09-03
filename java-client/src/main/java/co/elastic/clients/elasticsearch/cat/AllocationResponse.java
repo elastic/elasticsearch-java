@@ -53,7 +53,7 @@ public final class AllocationResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<AllocationRecord> value() {
@@ -83,7 +83,7 @@ public final class AllocationResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<AllocationRecord> value) {
@@ -93,7 +93,7 @@ public final class AllocationResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(AllocationRecord... value) {

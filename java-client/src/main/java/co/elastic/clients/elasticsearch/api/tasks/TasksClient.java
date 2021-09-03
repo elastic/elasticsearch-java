@@ -54,8 +54,10 @@ public class TasksClient extends ApiClient<TasksClient> {
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CancelResponse cancel(CancelRequest request) throws IOException {
@@ -64,12 +66,14 @@ public class TasksClient extends ApiClient<TasksClient> {
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CancelResponse cancel(Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
@@ -81,8 +85,10 @@ public class TasksClient extends ApiClient<TasksClient> {
 
 	/**
 	 * Returns information about a task.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetResponse get(GetRequest request) throws IOException {
@@ -91,12 +97,14 @@ public class TasksClient extends ApiClient<TasksClient> {
 
 	/**
 	 * Returns information about a task.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetResponse get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn) throws IOException {
@@ -107,8 +115,10 @@ public class TasksClient extends ApiClient<TasksClient> {
 
 	/**
 	 * Returns a list of tasks.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ListResponse list(ListRequest request) throws IOException {
@@ -117,12 +127,14 @@ public class TasksClient extends ApiClient<TasksClient> {
 
 	/**
 	 * Returns a list of tasks.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ListResponse list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn) throws IOException {

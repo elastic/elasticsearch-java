@@ -50,7 +50,7 @@ public abstract class RankEvalMetricBase implements ToJsonp {
 	/**
 	 * Sets the maximum number of documents retrieved per query. This value will act
 	 * in place of the usual size parameter in the query.
-	 *
+	 * <p>
 	 * API name: {@code k}
 	 */
 	@Nullable
@@ -85,7 +85,7 @@ public abstract class RankEvalMetricBase implements ToJsonp {
 		/**
 		 * Sets the maximum number of documents retrieved per query. This value will act
 		 * in place of the usual size parameter in the query.
-		 *
+		 * <p>
 		 * API name: {@code k}
 		 */
 		public BuilderT k(@Nullable Number value) {

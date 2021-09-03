@@ -65,7 +65,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 	/**
 	 * Average squared difference between the predicted values and the actual
 	 * (ground truth) value. For more information, read this wiki article.
-	 *
+	 * <p>
 	 * API name: {@code mse}
 	 */
 	@Nullable
@@ -76,7 +76,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 	/**
 	 * Average squared difference between the logarithm of the predicted values and
 	 * the logarithm of the actual (ground truth) value.
-	 *
+	 * <p>
 	 * API name: {@code msle}
 	 */
 	@Nullable
@@ -86,7 +86,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 
 	/**
 	 * Pseudo Huber loss function.
-	 *
+	 * <p>
 	 * API name: {@code huber}
 	 */
 	@Nullable
@@ -97,7 +97,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 	/**
 	 * Proportion of the variance in the dependent variable that is predictable from
 	 * the independent variables.
-	 *
+	 * <p>
 	 * API name: {@code r_squared}
 	 */
 	@Nullable
@@ -176,7 +176,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		/**
 		 * Average squared difference between the predicted values and the actual
 		 * (ground truth) value. For more information, read this wiki article.
-		 *
+		 * <p>
 		 * API name: {@code mse}
 		 */
 		public Builder mse(@Nullable Map<String, JsonValue> value) {
@@ -198,7 +198,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		/**
 		 * Average squared difference between the logarithm of the predicted values and
 		 * the logarithm of the actual (ground truth) value.
-		 *
+		 * <p>
 		 * API name: {@code msle}
 		 */
 		public Builder msle(@Nullable DataframeEvaluationRegressionMetricsMsle value) {
@@ -209,7 +209,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		/**
 		 * Average squared difference between the logarithm of the predicted values and
 		 * the logarithm of the actual (ground truth) value.
-		 *
+		 * <p>
 		 * API name: {@code msle}
 		 */
 		public Builder msle(
@@ -219,7 +219,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 
 		/**
 		 * Pseudo Huber loss function.
-		 *
+		 * <p>
 		 * API name: {@code huber}
 		 */
 		public Builder huber(@Nullable DataframeEvaluationRegressionMetricsHuber value) {
@@ -229,7 +229,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 
 		/**
 		 * Pseudo Huber loss function.
-		 *
+		 * <p>
 		 * API name: {@code huber}
 		 */
 		public Builder huber(
@@ -240,7 +240,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		/**
 		 * Proportion of the variance in the dependent variable that is predictable from
 		 * the independent variables.
-		 *
+		 * <p>
 		 * API name: {@code r_squared}
 		 */
 		public Builder rSquared(@Nullable Map<String, JsonValue> value) {

@@ -62,7 +62,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 
 	/**
 	 * Defines the type of evaluation you want to perform.
-	 *
+	 * <p>
 	 * API name: {@code evaluation}
 	 */
 	public DataframeEvaluationContainer evaluation() {
@@ -71,7 +71,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 
 	/**
 	 * Defines the index in which the evaluation will be performed.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -80,7 +80,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 
 	/**
 	 * A query clause that retrieves a subset of data from the source index.
-	 *
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -129,7 +129,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 
 		/**
 		 * Defines the type of evaluation you want to perform.
-		 *
+		 * <p>
 		 * API name: {@code evaluation}
 		 */
 		public Builder evaluation(DataframeEvaluationContainer value) {
@@ -139,7 +139,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 
 		/**
 		 * Defines the type of evaluation you want to perform.
-		 *
+		 * <p>
 		 * API name: {@code evaluation}
 		 */
 		public Builder evaluation(
@@ -149,7 +149,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 
 		/**
 		 * Defines the index in which the evaluation will be performed.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -159,7 +159,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 
 		/**
 		 * A query clause that retrieves a subset of data from the source index.
-		 *
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(@Nullable QueryContainer value) {
@@ -169,7 +169,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 
 		/**
 		 * A query clause that retrieves a subset of data from the source index.
-		 *
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {

@@ -51,7 +51,7 @@ public abstract class NodesResponseBase implements ToJsonp {
 	/**
 	 * Contains statistics about the number of nodes selected by the request’s node
 	 * filters.
-	 *
+	 * <p>
 	 * API name: {@code _nodes}
 	 */
 	public NodeStatistics nodeStats() {
@@ -80,7 +80,7 @@ public abstract class NodesResponseBase implements ToJsonp {
 		/**
 		 * Contains statistics about the number of nodes selected by the request’s node
 		 * filters.
-		 *
+		 * <p>
 		 * API name: {@code _nodes}
 		 */
 		public BuilderT nodeStats(NodeStatistics value) {
@@ -91,7 +91,7 @@ public abstract class NodesResponseBase implements ToJsonp {
 		/**
 		 * Contains statistics about the number of nodes selected by the request’s node
 		 * filters.
-		 *
+		 * <p>
 		 * API name: {@code _nodes}
 		 */
 		public BuilderT nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {

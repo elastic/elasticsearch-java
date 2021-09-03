@@ -71,7 +71,7 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 	 * Identifier for the data frame analytics job. If you do not specify this
 	 * option, the API returns information for the first hundred data frame
 	 * analytics jobs.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -89,7 +89,7 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 
 	/**
 	 * Skips the specified number of data frame analytics jobs.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -99,7 +99,7 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 
 	/**
 	 * Specifies the maximum number of data frame analytics jobs to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -111,7 +111,7 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 	 * Indicates if certain fields should be removed from the configuration on
 	 * retrieval. This allows the configuration to be in an acceptable format to be
 	 * retrieved and then added to another cluster.
-	 *
+	 * <p>
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
@@ -144,7 +144,7 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 		 * Identifier for the data frame analytics job. If you do not specify this
 		 * option, the API returns information for the first hundred data frame
 		 * analytics jobs.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -162,7 +162,7 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 
 		/**
 		 * Skips the specified number of data frame analytics jobs.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -172,7 +172,7 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 
 		/**
 		 * Specifies the maximum number of data frame analytics jobs to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {
@@ -184,7 +184,7 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 		 * Indicates if certain fields should be removed from the configuration on
 		 * retrieval. This allows the configuration to be in an acceptable format to be
 		 * retrieved and then added to another cluster.
-		 *
+		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
 		public Builder excludeGenerated(@Nullable Boolean value) {

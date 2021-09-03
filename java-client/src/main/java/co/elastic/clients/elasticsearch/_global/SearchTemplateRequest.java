@@ -168,7 +168,7 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 
 	/**
 	 * server_default false
-	 *
+	 * <p>
 	 * API name: {@code explain}
 	 */
 	@Nullable
@@ -234,7 +234,7 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 
 	/**
 	 * If true, hits.total are rendered as an integer in the response.
-	 *
+	 * <p>
 	 * API name: {@code total_hits_as_integer}
 	 */
 	@Nullable
@@ -452,7 +452,7 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 
 		/**
 		 * server_default false
-		 *
+		 * <p>
 		 * API name: {@code explain}
 		 */
 		public Builder explain(@Nullable Boolean value) {
@@ -518,7 +518,7 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 
 		/**
 		 * If true, hits.total are rendered as an integer in the response.
-		 *
+		 * <p>
 		 * API name: {@code total_hits_as_integer}
 		 */
 		public Builder totalHitsAsInteger(@Nullable Boolean value) {

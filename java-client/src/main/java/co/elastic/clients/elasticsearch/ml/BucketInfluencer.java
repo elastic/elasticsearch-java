@@ -85,7 +85,7 @@ public final class BucketInfluencer implements ToJsonp {
 	/**
 	 * The length of the bucket in seconds. This value matches the bucket_span that
 	 * is specified in the job.
-	 *
+	 * <p>
 	 * API name: {@code bucket_span}
 	 */
 	public Number bucketSpan() {
@@ -97,7 +97,7 @@ public final class BucketInfluencer implements ToJsonp {
 	 * influencer in this bucket aggregated across detectors. Unlike
 	 * initial_influencer_score, this value will be updated by a re-normalization
 	 * process as new data is analyzed.
-	 *
+	 * <p>
 	 * API name: {@code influencer_score}
 	 */
 	public Number influencerScore() {
@@ -106,7 +106,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 	/**
 	 * The field name of the influencer.
-	 *
+	 * <p>
 	 * API name: {@code influencer_field_name}
 	 */
 	public String influencerFieldName() {
@@ -115,7 +115,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 	/**
 	 * The entity that influenced, contributed to, or was to blame for the anomaly.
-	 *
+	 * <p>
 	 * API name: {@code influencer_field_value}
 	 */
 	public String influencerFieldValue() {
@@ -126,7 +126,7 @@ public final class BucketInfluencer implements ToJsonp {
 	 * A normalized score between 0-100, which is based on the probability of the
 	 * influencer aggregated across detectors. This is the initial value that was
 	 * calculated at the time the bucket was processed.
-	 *
+	 * <p>
 	 * API name: {@code initial_influencer_score}
 	 */
 	public Number initialInfluencerScore() {
@@ -136,7 +136,7 @@ public final class BucketInfluencer implements ToJsonp {
 	/**
 	 * If true, this is an interim result. In other words, the results are
 	 * calculated based on partial input data.
-	 *
+	 * <p>
 	 * API name: {@code is_interim}
 	 */
 	public Boolean isInterim() {
@@ -145,7 +145,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 	/**
 	 * Identifier for the anomaly detection job.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -157,7 +157,7 @@ public final class BucketInfluencer implements ToJsonp {
 	 * This value can be held to a high precision of over 300 decimal places, so the
 	 * influencer_score is provided as a human-readable and friendly interpretation
 	 * of this.
-	 *
+	 * <p>
 	 * API name: {@code probability}
 	 */
 	public Number probability() {
@@ -166,7 +166,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 	/**
 	 * Internal. This value is always set to influencer.
-	 *
+	 * <p>
 	 * API name: {@code result_type}
 	 */
 	public String resultType() {
@@ -175,7 +175,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 	/**
 	 * The start time of the bucket for which these results were calculated.
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	public JsonValue timestamp() {
@@ -272,7 +272,7 @@ public final class BucketInfluencer implements ToJsonp {
 		/**
 		 * The length of the bucket in seconds. This value matches the bucket_span that
 		 * is specified in the job.
-		 *
+		 * <p>
 		 * API name: {@code bucket_span}
 		 */
 		public Builder bucketSpan(Number value) {
@@ -285,7 +285,7 @@ public final class BucketInfluencer implements ToJsonp {
 		 * influencer in this bucket aggregated across detectors. Unlike
 		 * initial_influencer_score, this value will be updated by a re-normalization
 		 * process as new data is analyzed.
-		 *
+		 * <p>
 		 * API name: {@code influencer_score}
 		 */
 		public Builder influencerScore(Number value) {
@@ -295,7 +295,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 		/**
 		 * The field name of the influencer.
-		 *
+		 * <p>
 		 * API name: {@code influencer_field_name}
 		 */
 		public Builder influencerFieldName(String value) {
@@ -305,7 +305,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 		/**
 		 * The entity that influenced, contributed to, or was to blame for the anomaly.
-		 *
+		 * <p>
 		 * API name: {@code influencer_field_value}
 		 */
 		public Builder influencerFieldValue(String value) {
@@ -317,7 +317,7 @@ public final class BucketInfluencer implements ToJsonp {
 		 * A normalized score between 0-100, which is based on the probability of the
 		 * influencer aggregated across detectors. This is the initial value that was
 		 * calculated at the time the bucket was processed.
-		 *
+		 * <p>
 		 * API name: {@code initial_influencer_score}
 		 */
 		public Builder initialInfluencerScore(Number value) {
@@ -328,7 +328,7 @@ public final class BucketInfluencer implements ToJsonp {
 		/**
 		 * If true, this is an interim result. In other words, the results are
 		 * calculated based on partial input data.
-		 *
+		 * <p>
 		 * API name: {@code is_interim}
 		 */
 		public Builder isInterim(Boolean value) {
@@ -338,7 +338,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 		/**
 		 * Identifier for the anomaly detection job.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -351,7 +351,7 @@ public final class BucketInfluencer implements ToJsonp {
 		 * This value can be held to a high precision of over 300 decimal places, so the
 		 * influencer_score is provided as a human-readable and friendly interpretation
 		 * of this.
-		 *
+		 * <p>
 		 * API name: {@code probability}
 		 */
 		public Builder probability(Number value) {
@@ -361,7 +361,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 		/**
 		 * Internal. This value is always set to influencer.
-		 *
+		 * <p>
 		 * API name: {@code result_type}
 		 */
 		public Builder resultType(String value) {
@@ -371,7 +371,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 		/**
 		 * The start time of the bucket for which these results were calculated.
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(JsonValue value) {

@@ -56,8 +56,10 @@ public class SearchableSnapshotsClient extends ApiClient<SearchableSnapshotsClie
 
 	/**
 	 * Clear the cache of searchable snapshots.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException {
@@ -66,12 +68,14 @@ public class SearchableSnapshotsClient extends ApiClient<SearchableSnapshotsClie
 
 	/**
 	 * Clear the cache of searchable snapshots.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ClearCacheResponse clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
@@ -83,8 +87,10 @@ public class SearchableSnapshotsClient extends ApiClient<SearchableSnapshotsClie
 
 	/**
 	 * Mount a snapshot as a searchable index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public MountResponse mount(MountRequest request) throws IOException {
@@ -93,12 +99,14 @@ public class SearchableSnapshotsClient extends ApiClient<SearchableSnapshotsClie
 
 	/**
 	 * Mount a snapshot as a searchable index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final MountResponse mount(Function<MountRequest.Builder, ObjectBuilder<MountRequest>> fn)
@@ -110,8 +118,10 @@ public class SearchableSnapshotsClient extends ApiClient<SearchableSnapshotsClie
 
 	/**
 	 * DEPRECATED: This API is replaced by the Repositories Metering API.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public RepositoryStatsResponse repositoryStats(RepositoryStatsRequest request) throws IOException {
@@ -120,12 +130,14 @@ public class SearchableSnapshotsClient extends ApiClient<SearchableSnapshotsClie
 
 	/**
 	 * DEPRECATED: This API is replaced by the Repositories Metering API.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final RepositoryStatsResponse repositoryStats(
@@ -137,8 +149,10 @@ public class SearchableSnapshotsClient extends ApiClient<SearchableSnapshotsClie
 
 	/**
 	 * Retrieve shard-level statistics about searchable snapshots.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public StatsResponse stats(StatsRequest request) throws IOException {
@@ -147,12 +161,14 @@ public class SearchableSnapshotsClient extends ApiClient<SearchableSnapshotsClie
 
 	/**
 	 * Retrieve shard-level statistics about searchable snapshots.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final StatsResponse stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)

@@ -53,7 +53,7 @@ public final class TimingStats implements ToJsonp {
 
 	/**
 	 * Runtime of the analysis in milliseconds.
-	 *
+	 * <p>
 	 * API name: {@code elapsed_time}
 	 */
 	public Number elapsedTime() {
@@ -62,7 +62,7 @@ public final class TimingStats implements ToJsonp {
 
 	/**
 	 * Runtime of the latest iteration of the analysis in milliseconds.
-	 *
+	 * <p>
 	 * API name: {@code iteration_time}
 	 */
 	@Nullable
@@ -106,7 +106,7 @@ public final class TimingStats implements ToJsonp {
 
 		/**
 		 * Runtime of the analysis in milliseconds.
-		 *
+		 * <p>
 		 * API name: {@code elapsed_time}
 		 */
 		public Builder elapsedTime(Number value) {
@@ -116,7 +116,7 @@ public final class TimingStats implements ToJsonp {
 
 		/**
 		 * Runtime of the latest iteration of the analysis in milliseconds.
-		 *
+		 * <p>
 		 * API name: {@code iteration_time}
 		 */
 		public Builder iterationTime(@Nullable Number value) {

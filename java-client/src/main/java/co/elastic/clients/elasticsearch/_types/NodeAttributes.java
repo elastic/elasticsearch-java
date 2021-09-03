@@ -72,7 +72,7 @@ public final class NodeAttributes implements ToJsonp {
 
 	/**
 	 * Lists node attributes.
-	 *
+	 * <p>
 	 * API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
@@ -81,7 +81,7 @@ public final class NodeAttributes implements ToJsonp {
 
 	/**
 	 * The ephemeral ID of the node.
-	 *
+	 * <p>
 	 * API name: {@code ephemeral_id}
 	 */
 	public String ephemeralId() {
@@ -90,7 +90,7 @@ public final class NodeAttributes implements ToJsonp {
 
 	/**
 	 * The unique identifier of the node.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -100,7 +100,7 @@ public final class NodeAttributes implements ToJsonp {
 
 	/**
 	 * The unique identifier of the node.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -109,7 +109,7 @@ public final class NodeAttributes implements ToJsonp {
 
 	/**
 	 * The host and port where transport HTTP connections are accepted.
-	 *
+	 * <p>
 	 * API name: {@code transport_address}
 	 */
 	public String transportAddress() {
@@ -196,7 +196,7 @@ public final class NodeAttributes implements ToJsonp {
 
 		/**
 		 * Lists node attributes.
-		 *
+		 * <p>
 		 * API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
@@ -217,7 +217,7 @@ public final class NodeAttributes implements ToJsonp {
 
 		/**
 		 * The ephemeral ID of the node.
-		 *
+		 * <p>
 		 * API name: {@code ephemeral_id}
 		 */
 		public Builder ephemeralId(String value) {
@@ -227,7 +227,7 @@ public final class NodeAttributes implements ToJsonp {
 
 		/**
 		 * The unique identifier of the node.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -237,7 +237,7 @@ public final class NodeAttributes implements ToJsonp {
 
 		/**
 		 * The unique identifier of the node.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -247,7 +247,7 @@ public final class NodeAttributes implements ToJsonp {
 
 		/**
 		 * The host and port where transport HTTP connections are accepted.
-		 *
+		 * <p>
 		 * API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {

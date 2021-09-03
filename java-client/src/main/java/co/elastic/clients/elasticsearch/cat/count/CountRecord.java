@@ -58,7 +58,7 @@ public final class CountRecord implements ToJsonp {
 
 	/**
 	 * seconds since 1969-01-01 00:00:00
-	 *
+	 * <p>
 	 * API name: {@code epoch}
 	 */
 	@Nullable
@@ -68,7 +68,7 @@ public final class CountRecord implements ToJsonp {
 
 	/**
 	 * time in HH:MM:SS
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
@@ -78,7 +78,7 @@ public final class CountRecord implements ToJsonp {
 
 	/**
 	 * the document count
-	 *
+	 * <p>
 	 * API name: {@code count}
 	 */
 	@Nullable
@@ -135,7 +135,7 @@ public final class CountRecord implements ToJsonp {
 
 		/**
 		 * seconds since 1969-01-01 00:00:00
-		 *
+		 * <p>
 		 * API name: {@code epoch}
 		 */
 		public Builder epoch(@Nullable JsonValue value) {
@@ -145,7 +145,7 @@ public final class CountRecord implements ToJsonp {
 
 		/**
 		 * time in HH:MM:SS
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(@Nullable String value) {
@@ -155,7 +155,7 @@ public final class CountRecord implements ToJsonp {
 
 		/**
 		 * the document count
-		 *
+		 * <p>
 		 * API name: {@code count}
 		 */
 		public Builder count(@Nullable String value) {

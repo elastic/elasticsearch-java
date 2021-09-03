@@ -62,7 +62,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements ToJsonp {
 	/**
 	 * This value is present when the status is hard_limit and it is a new estimate
 	 * of how much memory the job needs.
-	 *
+	 * <p>
 	 * API name: {@code memory_reestimate_bytes}
 	 */
 	@Nullable
@@ -72,7 +72,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements ToJsonp {
 
 	/**
 	 * The number of bytes used at the highest peak of memory usage.
-	 *
+	 * <p>
 	 * API name: {@code peak_usage_bytes}
 	 */
 	public Number peakUsageBytes() {
@@ -81,7 +81,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements ToJsonp {
 
 	/**
 	 * The memory usage status.
-	 *
+	 * <p>
 	 * API name: {@code status}
 	 */
 	public String status() {
@@ -90,7 +90,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements ToJsonp {
 
 	/**
 	 * The timestamp when memory usage was calculated.
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
@@ -150,7 +150,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements ToJsonp {
 		/**
 		 * This value is present when the status is hard_limit and it is a new estimate
 		 * of how much memory the job needs.
-		 *
+		 * <p>
 		 * API name: {@code memory_reestimate_bytes}
 		 */
 		public Builder memoryReestimateBytes(@Nullable Number value) {
@@ -160,7 +160,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements ToJsonp {
 
 		/**
 		 * The number of bytes used at the highest peak of memory usage.
-		 *
+		 * <p>
 		 * API name: {@code peak_usage_bytes}
 		 */
 		public Builder peakUsageBytes(Number value) {
@@ -170,7 +170,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements ToJsonp {
 
 		/**
 		 * The memory usage status.
-		 *
+		 * <p>
 		 * API name: {@code status}
 		 */
 		public Builder status(String value) {
@@ -180,7 +180,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements ToJsonp {
 
 		/**
 		 * The timestamp when memory usage was calculated.
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(@Nullable String value) {

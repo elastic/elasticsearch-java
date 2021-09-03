@@ -72,7 +72,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	/**
 	 * Index or indices on which to perform the analysis. It can be a single index
 	 * or index pattern as well as an array of indices or patterns.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -84,8 +84,8 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	 * corresponds to the query object in an Elasticsearch search POST body. All the
 	 * options that are supported by Elasticsearch can be used, as this object is
 	 * passed verbatim to Elasticsearch. By default, this property has the following
-	 * value: {"match_all": {}}.
-	 *
+	 * value: {&quot;match_all&quot;: {}}.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -97,7 +97,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	 * Specify includes and/or excludes patterns to select which fields will be
 	 * present in the destination. Fields that are excluded cannot be included in
 	 * the analysis.
-	 *
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
@@ -179,7 +179,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		/**
 		 * Index or indices on which to perform the analysis. It can be a single index
 		 * or index pattern as well as an array of indices or patterns.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -190,7 +190,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		/**
 		 * Index or indices on which to perform the analysis. It can be a single index
 		 * or index pattern as well as an array of indices or patterns.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -214,8 +214,8 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
 		 * passed verbatim to Elasticsearch. By default, this property has the following
-		 * value: {"match_all": {}}.
-		 *
+		 * value: {&quot;match_all&quot;: {}}.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(@Nullable QueryContainer value) {
@@ -228,8 +228,8 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
 		 * passed verbatim to Elasticsearch. By default, this property has the following
-		 * value: {"match_all": {}}.
-		 *
+		 * value: {&quot;match_all&quot;: {}}.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
@@ -240,7 +240,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		 * Specify includes and/or excludes patterns to select which fields will be
 		 * present in the destination. Fields that are excluded cannot be included in
 		 * the analysis.
-		 *
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public Builder source(@Nullable JsonValue value) {

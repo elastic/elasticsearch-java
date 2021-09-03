@@ -118,7 +118,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Identifier for the job
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -144,7 +144,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Advanced configuration option. The time between each periodic persistence of
 	 * the model. See Job resources.
-	 *
+	 * <p>
 	 * API name: {@code background_persist_interval}
 	 */
 	@Nullable
@@ -156,7 +156,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	 * Advanced configuration option. Contains custom meta data about the job. For
 	 * example, it can contain custom URL information as shown in Adding custom URLs
 	 * to machine learning results.
-	 *
+	 * <p>
 	 * API name: {@code custom_settings}
 	 */
 	@Nullable
@@ -174,7 +174,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * A description of the job. See Job resources.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -203,7 +203,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	 * model snapshots for this job. It specifies the maximum period of time (in
 	 * days) that snapshots are retained. This period is relative to the timestamp
 	 * of the most recent snapshot for this job.
-	 *
+	 * <p>
 	 * API name: {@code model_snapshot_retention_days}
 	 */
 	@Nullable
@@ -214,7 +214,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Advanced configuration option. The period over which adjustments to the score
 	 * are applied, as new data is seen.
-	 *
+	 * <p>
 	 * API name: {@code renormalization_window_days}
 	 */
 	@Nullable
@@ -229,7 +229,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	 * time), results that are the specified number of days older than the latest
 	 * bucket result are deleted from Elasticsearch. The default value is null,
 	 * which means all results are retained.
-	 *
+	 * <p>
 	 * API name: {@code results_retention_days}
 	 */
 	@Nullable
@@ -239,7 +239,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * A list of job groups. A job can belong to no groups or many.
-	 *
+	 * <p>
 	 * API name: {@code groups}
 	 */
 	@Nullable
@@ -249,7 +249,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * An array of detector update objects.
-	 *
+	 * <p>
 	 * API name: {@code detectors}
 	 */
 	@Nullable
@@ -259,7 +259,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Settings related to how categorization interacts with partition fields.
-	 *
+	 * <p>
 	 * API name: {@code per_partition_categorization}
 	 */
 	@Nullable
@@ -438,7 +438,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Identifier for the job
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -472,7 +472,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Advanced configuration option. The time between each periodic persistence of
 		 * the model. See Job resources.
-		 *
+		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
 		public Builder backgroundPersistInterval(@Nullable JsonValue value) {
@@ -484,7 +484,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		 * Advanced configuration option. Contains custom meta data about the job. For
 		 * example, it can contain custom URL information as shown in Adding custom URLs
 		 * to machine learning results.
-		 *
+		 * <p>
 		 * API name: {@code custom_settings}
 		 */
 		public Builder customSettings(@Nullable Map<String, JsonValue> value) {
@@ -533,7 +533,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * A description of the job. See Job resources.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -569,7 +569,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		 * model snapshots for this job. It specifies the maximum period of time (in
 		 * days) that snapshots are retained. This period is relative to the timestamp
 		 * of the most recent snapshot for this job.
-		 *
+		 * <p>
 		 * API name: {@code model_snapshot_retention_days}
 		 */
 		public Builder modelSnapshotRetentionDays(@Nullable Number value) {
@@ -580,7 +580,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Advanced configuration option. The period over which adjustments to the score
 		 * are applied, as new data is seen.
-		 *
+		 * <p>
 		 * API name: {@code renormalization_window_days}
 		 */
 		public Builder renormalizationWindowDays(@Nullable Number value) {
@@ -595,7 +595,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		 * time), results that are the specified number of days older than the latest
 		 * bucket result are deleted from Elasticsearch. The default value is null,
 		 * which means all results are retained.
-		 *
+		 * <p>
 		 * API name: {@code results_retention_days}
 		 */
 		public Builder resultsRetentionDays(@Nullable Number value) {
@@ -605,7 +605,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * A list of job groups. A job can belong to no groups or many.
-		 *
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(@Nullable List<String> value) {
@@ -615,7 +615,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * A list of job groups. A job can belong to no groups or many.
-		 *
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(String... value) {
@@ -636,7 +636,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * An array of detector update objects.
-		 *
+		 * <p>
 		 * API name: {@code detectors}
 		 */
 		public Builder detectors(@Nullable List<Detector> value) {
@@ -646,7 +646,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * An array of detector update objects.
-		 *
+		 * <p>
 		 * API name: {@code detectors}
 		 */
 		public Builder detectors(Detector... value) {
@@ -681,7 +681,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Settings related to how categorization interacts with partition fields.
-		 *
+		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
 		public Builder perPartitionCategorization(@Nullable PerPartitionCategorization value) {
@@ -691,7 +691,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Settings related to how categorization interacts with partition fields.
-		 *
+		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
 		public Builder perPartitionCategorization(

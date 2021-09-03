@@ -53,7 +53,7 @@ public final class TrainedModelsResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<TrainedModelsRecord> value() {
@@ -83,7 +83,7 @@ public final class TrainedModelsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<TrainedModelsRecord> value) {
@@ -93,7 +93,7 @@ public final class TrainedModelsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(TrainedModelsRecord... value) {

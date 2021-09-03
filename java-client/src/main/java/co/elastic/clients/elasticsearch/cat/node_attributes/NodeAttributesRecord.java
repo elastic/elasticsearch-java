@@ -77,7 +77,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 	/**
 	 * node name
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -87,7 +87,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 	/**
 	 * unique node id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -97,7 +97,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 	/**
 	 * process id
-	 *
+	 * <p>
 	 * API name: {@code pid}
 	 */
 	@Nullable
@@ -107,7 +107,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 	/**
 	 * host name
-	 *
+	 * <p>
 	 * API name: {@code host}
 	 */
 	@Nullable
@@ -117,7 +117,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 	/**
 	 * ip address
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -127,7 +127,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 	/**
 	 * bound transport port
-	 *
+	 * <p>
 	 * API name: {@code port}
 	 */
 	@Nullable
@@ -137,7 +137,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 	/**
 	 * attribute description
-	 *
+	 * <p>
 	 * API name: {@code attr}
 	 */
 	@Nullable
@@ -147,7 +147,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 	/**
 	 * attribute value
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	@Nullable
@@ -249,7 +249,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 		/**
 		 * node name
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(@Nullable String value) {
@@ -259,7 +259,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 		/**
 		 * unique node id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -269,7 +269,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 		/**
 		 * process id
-		 *
+		 * <p>
 		 * API name: {@code pid}
 		 */
 		public Builder pid(@Nullable String value) {
@@ -279,7 +279,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 		/**
 		 * host name
-		 *
+		 * <p>
 		 * API name: {@code host}
 		 */
 		public Builder host(@Nullable String value) {
@@ -289,7 +289,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 		/**
 		 * ip address
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -299,7 +299,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 		/**
 		 * bound transport port
-		 *
+		 * <p>
 		 * API name: {@code port}
 		 */
 		public Builder port(@Nullable String value) {
@@ -309,7 +309,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 		/**
 		 * attribute description
-		 *
+		 * <p>
 		 * API name: {@code attr}
 		 */
 		public Builder attr(@Nullable String value) {
@@ -319,7 +319,7 @@ public final class NodeAttributesRecord implements ToJsonp {
 
 		/**
 		 * attribute value
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(@Nullable String value) {

@@ -90,7 +90,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	/**
 	 * Identifier for the anomaly detection job. It can be a job identifier, a group
 	 * name, a comma-separated list of jobs or groups, or a wildcard expression.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -101,7 +101,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	 * The span of the overall buckets. Must be greater or equal to the largest
 	 * bucket span of the specified anomaly detection jobs, which is the default
 	 * value.
-	 *
+	 * <p>
 	 * API name: {@code bucket_span}
 	 */
 	@Nullable
@@ -112,7 +112,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	/**
 	 * Returns overall buckets with overall scores greater than or equal to this
 	 * value.
-	 *
+	 * <p>
 	 * API name: {@code overall_score}
 	 */
 	@Nullable
@@ -123,7 +123,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	/**
 	 * The number of top anomaly detection job bucket scores to be used in the
 	 * overall_score calculation.
-	 *
+	 * <p>
 	 * API name: {@code top_n}
 	 */
 	@Nullable
@@ -133,7 +133,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 
 	/**
 	 * Returns overall buckets with timestamps earlier than this time.
-	 *
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
@@ -143,7 +143,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 
 	/**
 	 * Returns overall buckets with timestamps after this time.
-	 *
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
@@ -154,7 +154,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 	/**
 	 * If true, the output excludes interim results. By default, interim results are
 	 * included.
-	 *
+	 * <p>
 	 * API name: {@code exclude_interim}
 	 */
 	@Nullable
@@ -233,7 +233,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		/**
 		 * Identifier for the anomaly detection job. It can be a job identifier, a group
 		 * name, a comma-separated list of jobs or groups, or a wildcard expression.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -245,7 +245,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		 * The span of the overall buckets. Must be greater or equal to the largest
 		 * bucket span of the specified anomaly detection jobs, which is the default
 		 * value.
-		 *
+		 * <p>
 		 * API name: {@code bucket_span}
 		 */
 		public Builder bucketSpan(@Nullable JsonValue value) {
@@ -256,7 +256,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		/**
 		 * Returns overall buckets with overall scores greater than or equal to this
 		 * value.
-		 *
+		 * <p>
 		 * API name: {@code overall_score}
 		 */
 		public Builder overallScore(@Nullable JsonValue value) {
@@ -267,7 +267,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		/**
 		 * The number of top anomaly detection job bucket scores to be used in the
 		 * overall_score calculation.
-		 *
+		 * <p>
 		 * API name: {@code top_n}
 		 */
 		public Builder topN(@Nullable Number value) {
@@ -277,7 +277,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 
 		/**
 		 * Returns overall buckets with timestamps earlier than this time.
-		 *
+		 * <p>
 		 * API name: {@code end}
 		 */
 		public Builder end(@Nullable JsonValue value) {
@@ -287,7 +287,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 
 		/**
 		 * Returns overall buckets with timestamps after this time.
-		 *
+		 * <p>
 		 * API name: {@code start}
 		 */
 		public Builder start(@Nullable JsonValue value) {
@@ -298,7 +298,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements ToJso
 		/**
 		 * If true, the output excludes interim results. By default, interim results are
 		 * included.
-		 *
+		 * <p>
 		 * API name: {@code exclude_interim}
 		 */
 		public Builder excludeInterim(@Nullable Boolean value) {

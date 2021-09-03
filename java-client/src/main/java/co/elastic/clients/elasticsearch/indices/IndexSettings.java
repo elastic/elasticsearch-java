@@ -217,7 +217,7 @@ public class IndexSettings implements ToJsonp {
 
 	/**
 	 * server_default 1
-	 *
+	 * <p>
 	 * API name: {@code number_of_shards}
 	 */
 	@Nullable
@@ -227,7 +227,7 @@ public class IndexSettings implements ToJsonp {
 
 	/**
 	 * server_default 0
-	 *
+	 * <p>
 	 * API name: {@code number_of_replicas}
 	 */
 	@Nullable
@@ -261,7 +261,7 @@ public class IndexSettings implements ToJsonp {
 
 	/**
 	 * server_default 1
-	 *
+	 * <p>
 	 * API name: {@code routing_partition_size}
 	 */
 	@Nullable
@@ -287,7 +287,7 @@ public class IndexSettings implements ToJsonp {
 
 	/**
 	 * server_default false
-	 *
+	 * <p>
 	 * API name: {@code hidden}
 	 */
 	@Nullable
@@ -977,7 +977,7 @@ public class IndexSettings implements ToJsonp {
 
 		/**
 		 * server_default 1
-		 *
+		 * <p>
 		 * API name: {@code number_of_shards}
 		 */
 		public BuilderT numberOfShards(@Nullable JsonValue value) {
@@ -987,7 +987,7 @@ public class IndexSettings implements ToJsonp {
 
 		/**
 		 * server_default 0
-		 *
+		 * <p>
 		 * API name: {@code number_of_replicas}
 		 */
 		public BuilderT numberOfReplicas(@Nullable JsonValue value) {
@@ -1021,7 +1021,7 @@ public class IndexSettings implements ToJsonp {
 
 		/**
 		 * server_default 1
-		 *
+		 * <p>
 		 * API name: {@code routing_partition_size}
 		 */
 		public BuilderT routingPartitionSize(@Nullable JsonValue value) {
@@ -1047,7 +1047,7 @@ public class IndexSettings implements ToJsonp {
 
 		/**
 		 * server_default false
-		 *
+		 * <p>
 		 * API name: {@code hidden}
 		 */
 		public BuilderT hidden(@Nullable JsonValue value) {

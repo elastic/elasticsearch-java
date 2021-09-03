@@ -90,7 +90,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements ToJson
 
 	/**
 	 * Index or template name
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -256,7 +256,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements ToJson
 
 		/**
 		 * Index or template name
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {

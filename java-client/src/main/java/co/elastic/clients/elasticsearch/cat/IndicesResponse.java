@@ -53,7 +53,7 @@ public final class IndicesResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<IndicesRecord> value() {
@@ -83,7 +83,7 @@ public final class IndicesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<IndicesRecord> value) {
@@ -93,7 +93,7 @@ public final class IndicesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(IndicesRecord... value) {

@@ -61,8 +61,8 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 	/**
 	 * The AUC ROC (area under the curve of the receiver operating characteristic)
 	 * score and optionally the curve. It is calculated for a specific class
-	 * (provided as "class_name") treated as positive.
-	 *
+	 * (provided as &quot;class_name&quot;) treated as positive.
+	 * <p>
 	 * API name: {@code auc_roc}
 	 */
 	@Nullable
@@ -72,7 +72,7 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 
 	/**
 	 * Precision of predictions (per-class and average).
-	 *
+	 * <p>
 	 * API name: {@code precision}
 	 */
 	@Nullable
@@ -82,7 +82,7 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 
 	/**
 	 * Recall of predictions (per-class and average).
-	 *
+	 * <p>
 	 * API name: {@code recall}
 	 */
 	@Nullable
@@ -147,8 +147,8 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 		/**
 		 * The AUC ROC (area under the curve of the receiver operating characteristic)
 		 * score and optionally the curve. It is calculated for a specific class
-		 * (provided as "class_name") treated as positive.
-		 *
+		 * (provided as &quot;class_name&quot;) treated as positive.
+		 * <p>
 		 * API name: {@code auc_roc}
 		 */
 		public BuilderT aucRoc(@Nullable DataframeEvaluationClassificationMetricsAucRoc value) {
@@ -159,8 +159,8 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 		/**
 		 * The AUC ROC (area under the curve of the receiver operating characteristic)
 		 * score and optionally the curve. It is calculated for a specific class
-		 * (provided as "class_name") treated as positive.
-		 *
+		 * (provided as &quot;class_name&quot;) treated as positive.
+		 * <p>
 		 * API name: {@code auc_roc}
 		 */
 		public BuilderT aucRoc(
@@ -170,7 +170,7 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 
 		/**
 		 * Precision of predictions (per-class and average).
-		 *
+		 * <p>
 		 * API name: {@code precision}
 		 */
 		public BuilderT precision(@Nullable Map<String, JsonValue> value) {
@@ -191,7 +191,7 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 
 		/**
 		 * Recall of predictions (per-class and average).
-		 *
+		 * <p>
 		 * API name: {@code recall}
 		 */
 		public BuilderT recall(@Nullable Map<String, JsonValue> value) {

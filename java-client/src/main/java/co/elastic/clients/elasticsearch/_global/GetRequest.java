@@ -109,7 +109,7 @@ public class GetRequest extends RequestBase {
 
 	/**
 	 * Unique identifier of the document.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -118,7 +118,7 @@ public class GetRequest extends RequestBase {
 
 	/**
 	 * Name of the index that contains the document.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -136,7 +136,7 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Specifies the node or shard the operation should be performed on. Random by
 	 * default.
-	 *
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -146,7 +146,7 @@ public class GetRequest extends RequestBase {
 
 	/**
 	 * Boolean) If true, the request is real-time as opposed to near-real-time.
-	 *
+	 * <p>
 	 * API name: {@code realtime}
 	 */
 	@Nullable
@@ -157,7 +157,7 @@ public class GetRequest extends RequestBase {
 	/**
 	 * If true, Elasticsearch refreshes the affected shards to make this operation
 	 * visible to search. If false, do nothing with refreshes.
-	 *
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -167,7 +167,7 @@ public class GetRequest extends RequestBase {
 
 	/**
 	 * Target the specified primary shard.
-	 *
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -185,7 +185,7 @@ public class GetRequest extends RequestBase {
 
 	/**
 	 * A comma-separated list of source fields to exclude in the response.
-	 *
+	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
@@ -195,7 +195,7 @@ public class GetRequest extends RequestBase {
 
 	/**
 	 * A comma-separated list of source fields to include in the response.
-	 *
+	 * <p>
 	 * API name: {@code _source_includes}
 	 */
 	@Nullable
@@ -214,7 +214,7 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Explicit version number for concurrency control. The specified version must
 	 * match the current version of the document for the request to succeed.
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -224,7 +224,7 @@ public class GetRequest extends RequestBase {
 
 	/**
 	 * Specific version type: internal, external, external_gte.
-	 *
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -235,7 +235,7 @@ public class GetRequest extends RequestBase {
 	/**
 	 * True or false to return the _source field or not, or a list of fields to
 	 * return.
-	 *
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
@@ -309,7 +309,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * Unique identifier of the document.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public BuilderT id(String value) {
@@ -319,7 +319,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * Name of the index that contains the document.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public BuilderT index(String value) {
@@ -338,7 +338,7 @@ public class GetRequest extends RequestBase {
 		/**
 		 * Specifies the node or shard the operation should be performed on. Random by
 		 * default.
-		 *
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public BuilderT preference(@Nullable String value) {
@@ -348,7 +348,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * Boolean) If true, the request is real-time as opposed to near-real-time.
-		 *
+		 * <p>
 		 * API name: {@code realtime}
 		 */
 		public BuilderT realtime(@Nullable Boolean value) {
@@ -359,7 +359,7 @@ public class GetRequest extends RequestBase {
 		/**
 		 * If true, Elasticsearch refreshes the affected shards to make this operation
 		 * visible to search. If false, do nothing with refreshes.
-		 *
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public BuilderT refresh(@Nullable Boolean value) {
@@ -369,7 +369,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * Target the specified primary shard.
-		 *
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public BuilderT routing(@Nullable JsonValue value) {
@@ -387,7 +387,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of source fields to exclude in the response.
-		 *
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public BuilderT sourceExcludes(@Nullable List<String> value) {
@@ -397,7 +397,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of source fields to exclude in the response.
-		 *
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public BuilderT sourceExcludes(String... value) {
@@ -418,7 +418,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of source fields to include in the response.
-		 *
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public BuilderT sourceIncludes(@Nullable List<String> value) {
@@ -428,7 +428,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of source fields to include in the response.
-		 *
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public BuilderT sourceIncludes(String... value) {
@@ -477,7 +477,7 @@ public class GetRequest extends RequestBase {
 		/**
 		 * Explicit version number for concurrency control. The specified version must
 		 * match the current version of the document for the request to succeed.
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public BuilderT version(@Nullable Number value) {
@@ -487,7 +487,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * Specific version type: internal, external, external_gte.
-		 *
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public BuilderT versionType(@Nullable JsonValue value) {
@@ -498,7 +498,7 @@ public class GetRequest extends RequestBase {
 		/**
 		 * True or false to return the _source field or not, or a list of fields to
 		 * return.
-		 *
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public BuilderT source(@Nullable JsonValue value) {

@@ -59,7 +59,7 @@ public final class Calendar implements ToJsonp {
 
 	/**
 	 * A string that uniquely identifies a calendar.
-	 *
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	public String calendarId() {
@@ -76,7 +76,7 @@ public final class Calendar implements ToJsonp {
 
 	/**
 	 * An array of anomaly detection job identifiers.
-	 *
+	 * <p>
 	 * API name: {@code job_ids}
 	 */
 	public List<String> jobIds() {
@@ -129,7 +129,7 @@ public final class Calendar implements ToJsonp {
 
 		/**
 		 * A string that uniquely identifies a calendar.
-		 *
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {
@@ -147,7 +147,7 @@ public final class Calendar implements ToJsonp {
 
 		/**
 		 * An array of anomaly detection job identifiers.
-		 *
+		 * <p>
 		 * API name: {@code job_ids}
 		 */
 		public Builder jobIds(List<String> value) {
@@ -157,7 +157,7 @@ public final class Calendar implements ToJsonp {
 
 		/**
 		 * An array of anomaly detection job identifiers.
-		 *
+		 * <p>
 		 * API name: {@code job_ids}
 		 */
 		public Builder jobIds(String... value) {

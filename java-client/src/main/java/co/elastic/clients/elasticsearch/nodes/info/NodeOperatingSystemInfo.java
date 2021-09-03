@@ -83,7 +83,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 	/**
 	 * Name of the JVM architecture (ex: amd64, x86)
-	 *
+	 * <p>
 	 * API name: {@code arch}
 	 */
 	public String arch() {
@@ -92,7 +92,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 	/**
 	 * Number of processors available to the Java virtual machine
-	 *
+	 * <p>
 	 * API name: {@code available_processors}
 	 */
 	public Number availableProcessors() {
@@ -103,7 +103,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 	 * The number of processors actually used to calculate thread pool size. This
 	 * number can be set with the node.processors setting of a node and defaults to
 	 * the number of processors reported by the OS.
-	 *
+	 * <p>
 	 * API name: {@code allocated_processors}
 	 */
 	@Nullable
@@ -113,7 +113,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 	/**
 	 * Name of the operating system (ex: Linux, Windows, Mac OS X)
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -129,7 +129,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 	/**
 	 * Refresh interval for the OS statistics
-	 *
+	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
 	public Number refreshIntervalInMillis() {
@@ -138,7 +138,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 	/**
 	 * Version of the operating system
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	public String version() {
@@ -258,7 +258,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 		/**
 		 * Name of the JVM architecture (ex: amd64, x86)
-		 *
+		 * <p>
 		 * API name: {@code arch}
 		 */
 		public Builder arch(String value) {
@@ -268,7 +268,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 		/**
 		 * Number of processors available to the Java virtual machine
-		 *
+		 * <p>
 		 * API name: {@code available_processors}
 		 */
 		public Builder availableProcessors(Number value) {
@@ -280,7 +280,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 		 * The number of processors actually used to calculate thread pool size. This
 		 * number can be set with the node.processors setting of a node and defaults to
 		 * the number of processors reported by the OS.
-		 *
+		 * <p>
 		 * API name: {@code allocated_processors}
 		 */
 		public Builder allocatedProcessors(@Nullable Number value) {
@@ -290,7 +290,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 		/**
 		 * Name of the operating system (ex: Linux, Windows, Mac OS X)
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -308,7 +308,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 		/**
 		 * Refresh interval for the OS statistics
-		 *
+		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
 		public Builder refreshIntervalInMillis(Number value) {
@@ -318,7 +318,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 		/**
 		 * Version of the operating system
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(String value) {

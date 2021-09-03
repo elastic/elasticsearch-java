@@ -113,7 +113,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Comma-separated list of data streams, indices, and index aliases to search.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -135,7 +135,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 	 * applies even if the request targets other open indices. For example, a
 	 * request targeting foo*,bar* returns an error if an index starts with foo but
 	 * no index starts with bar.
-	 *
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -146,7 +146,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * If true, network roundtrips between the coordinating node and remote clusters
 	 * are minimized for cross-cluster search requests.
-	 *
+	 * <p>
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
 	@Nullable
@@ -158,7 +158,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 	 * Type of index that wildcard expressions can match. If the request can target
 	 * data streams, this argument determines whether wildcard expressions match
 	 * hidden data streams.
-	 *
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -168,7 +168,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * If true, concrete, expanded or aliased indices are ignored when frozen.
-	 *
+	 * <p>
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
@@ -178,7 +178,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * If true, missing or closed indices are not included in the response.
-	 *
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -188,7 +188,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Maximum number of concurrent searches the multi search API can execute.
-	 *
+	 * <p>
 	 * API name: {@code max_concurrent_searches}
 	 */
 	@Nullable
@@ -199,7 +199,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Maximum number of concurrent shard requests that each sub-search request
 	 * executes per node.
-	 *
+	 * <p>
 	 * API name: {@code max_concurrent_shard_requests}
 	 */
 	@Nullable
@@ -214,7 +214,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 	 * of shards significantly if for instance a shard can not match any documents
 	 * based on its rewrite method i.e., if date filters are mandatory to match but
 	 * the shard bounds and the query are disjoint.
-	 *
+	 * <p>
 	 * API name: {@code pre_filter_shard_size}
 	 */
 	@Nullable
@@ -225,7 +225,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Indicates whether global term and document frequencies should be used when
 	 * scoring returned documents.
-	 *
+	 * <p>
 	 * API name: {@code search_type}
 	 */
 	@Nullable
@@ -236,7 +236,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * If true, hits.total are returned as an integer in the response. Defaults to
 	 * false, which returns an object.
-	 *
+	 * <p>
 	 * API name: {@code rest_total_hits_as_int}
 	 */
 	@Nullable
@@ -247,7 +247,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Specifies whether aggregation and suggester names should be prefixed by their
 	 * respective types in the response.
-	 *
+	 * <p>
 	 * API name: {@code typed_keys}
 	 */
 	@Nullable
@@ -257,7 +257,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Request body.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<JsonValue> value() {
@@ -326,7 +326,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases to search.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -336,7 +336,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases to search.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -388,7 +388,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 		 * applies even if the request targets other open indices. For example, a
 		 * request targeting foo*,bar* returns an error if an index starts with foo but
 		 * no index starts with bar.
-		 *
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -399,7 +399,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * If true, network roundtrips between the coordinating node and remote clusters
 		 * are minimized for cross-cluster search requests.
-		 *
+		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
 		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
@@ -411,7 +411,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 		 * Type of index that wildcard expressions can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
 		 * hidden data streams.
-		 *
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -421,7 +421,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * If true, concrete, expanded or aliased indices are ignored when frozen.
-		 *
+		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
 		public Builder ignoreThrottled(@Nullable Boolean value) {
@@ -431,7 +431,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * If true, missing or closed indices are not included in the response.
-		 *
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -441,7 +441,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Maximum number of concurrent searches the multi search API can execute.
-		 *
+		 * <p>
 		 * API name: {@code max_concurrent_searches}
 		 */
 		public Builder maxConcurrentSearches(@Nullable Number value) {
@@ -452,7 +452,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Maximum number of concurrent shard requests that each sub-search request
 		 * executes per node.
-		 *
+		 * <p>
 		 * API name: {@code max_concurrent_shard_requests}
 		 */
 		public Builder maxConcurrentShardRequests(@Nullable Number value) {
@@ -467,7 +467,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 		 * of shards significantly if for instance a shard can not match any documents
 		 * based on its rewrite method i.e., if date filters are mandatory to match but
 		 * the shard bounds and the query are disjoint.
-		 *
+		 * <p>
 		 * API name: {@code pre_filter_shard_size}
 		 */
 		public Builder preFilterShardSize(@Nullable Number value) {
@@ -478,7 +478,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Indicates whether global term and document frequencies should be used when
 		 * scoring returned documents.
-		 *
+		 * <p>
 		 * API name: {@code search_type}
 		 */
 		public Builder searchType(@Nullable JsonValue value) {
@@ -489,7 +489,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * If true, hits.total are returned as an integer in the response. Defaults to
 		 * false, which returns an object.
-		 *
+		 * <p>
 		 * API name: {@code rest_total_hits_as_int}
 		 */
 		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
@@ -500,7 +500,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Specifies whether aggregation and suggester names should be prefixed by their
 		 * respective types in the response.
-		 *
+		 * <p>
 		 * API name: {@code typed_keys}
 		 */
 		public Builder typedKeys(@Nullable Boolean value) {
@@ -510,7 +510,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<JsonValue> value) {
@@ -520,7 +520,7 @@ public final class MsearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(JsonValue... value) {

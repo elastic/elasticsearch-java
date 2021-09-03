@@ -56,7 +56,7 @@ public final class TotalFeatureImportanceClass implements ToJsonp {
 
 	/**
 	 * The target class value. Could be a string, boolean, or number.
-	 *
+	 * <p>
 	 * API name: {@code class_name}
 	 */
 	public String className() {
@@ -66,7 +66,7 @@ public final class TotalFeatureImportanceClass implements ToJsonp {
 	/**
 	 * A collection of feature importance statistics related to the training data
 	 * set for this particular feature.
-	 *
+	 * <p>
 	 * API name: {@code importance}
 	 */
 	public List<TotalFeatureImportanceStatistics> importance() {
@@ -109,7 +109,7 @@ public final class TotalFeatureImportanceClass implements ToJsonp {
 
 		/**
 		 * The target class value. Could be a string, boolean, or number.
-		 *
+		 * <p>
 		 * API name: {@code class_name}
 		 */
 		public Builder className(String value) {
@@ -120,7 +120,7 @@ public final class TotalFeatureImportanceClass implements ToJsonp {
 		/**
 		 * A collection of feature importance statistics related to the training data
 		 * set for this particular feature.
-		 *
+		 * <p>
 		 * API name: {@code importance}
 		 */
 		public Builder importance(List<TotalFeatureImportanceStatistics> value) {
@@ -131,7 +131,7 @@ public final class TotalFeatureImportanceClass implements ToJsonp {
 		/**
 		 * A collection of feature importance statistics related to the training data
 		 * set for this particular feature.
-		 *
+		 * <p>
 		 * API name: {@code importance}
 		 */
 		public Builder importance(TotalFeatureImportanceStatistics... value) {

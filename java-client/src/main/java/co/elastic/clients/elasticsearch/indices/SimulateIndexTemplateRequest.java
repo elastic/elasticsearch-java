@@ -73,7 +73,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 	/**
 	 * Index or template name to simulate
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -99,7 +99,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 	/**
 	 * Any overlapping templates that would have matched, but have lower priority
-	 *
+	 * <p>
 	 * API name: {@code overlapping}
 	 */
 	@Nullable
@@ -191,7 +191,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 		/**
 		 * Index or template name to simulate
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -255,7 +255,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 		/**
 		 * Any overlapping templates that would have matched, but have lower priority
-		 *
+		 * <p>
 		 * API name: {@code overlapping}
 		 */
 		public Builder overlapping(@Nullable List<OverlappingIndexTemplate> value) {
@@ -265,7 +265,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 		/**
 		 * Any overlapping templates that would have matched, but have lower priority
-		 *
+		 * <p>
 		 * API name: {@code overlapping}
 		 */
 		public Builder overlapping(OverlappingIndexTemplate... value) {

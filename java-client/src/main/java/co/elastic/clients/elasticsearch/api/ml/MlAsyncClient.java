@@ -174,8 +174,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Closes one or more anomaly detection jobs. A job can be opened and closed
 	 * multiple times throughout its lifecycle.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-close-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-close-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CloseJobResponse> closeJob(CloseJobRequest request) throws IOException {
@@ -185,12 +187,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Closes one or more anomaly detection jobs. A job can be opened and closed
 	 * multiple times throughout its lifecycle.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-close-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-close-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CloseJobResponse> closeJob(
@@ -202,8 +206,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteCalendarResponse> deleteCalendar(DeleteCalendarRequest request) throws IOException {
@@ -212,12 +218,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteCalendarResponse> deleteCalendar(
@@ -229,8 +237,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes scheduled events from a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-event.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-event.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteCalendarEventResponse> deleteCalendarEvent(DeleteCalendarEventRequest request)
@@ -240,12 +250,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes scheduled events from a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-event.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-event.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteCalendarEventResponse> deleteCalendarEvent(
@@ -258,8 +270,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes anomaly detection jobs from a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteCalendarJobResponse> deleteCalendarJob(DeleteCalendarJobRequest request)
@@ -269,12 +283,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes anomaly detection jobs from a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-calendar-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteCalendarJobResponse> deleteCalendarJob(
@@ -286,8 +302,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes an existing data frame analytics job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-dfanalytics.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteDataFrameAnalyticsResponse> deleteDataFrameAnalytics(
@@ -298,12 +316,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes an existing data frame analytics job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-dfanalytics.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteDataFrameAnalyticsResponse> deleteDataFrameAnalytics(
@@ -316,8 +336,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes an existing datafeed.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-datafeed.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteDatafeedResponse> deleteDatafeed(DeleteDatafeedRequest request) throws IOException {
@@ -326,12 +348,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes an existing datafeed.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-datafeed.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteDatafeedResponse> deleteDatafeed(
@@ -343,8 +367,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes a filter.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-filter.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-filter.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteFilterResponse> deleteFilter(DeleteFilterRequest request) throws IOException {
@@ -353,12 +379,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes a filter.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-filter.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-filter.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteFilterResponse> deleteFilter(
@@ -370,8 +398,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes forecasts from a machine learning job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteForecastResponse> deleteForecast(DeleteForecastRequest request) throws IOException {
@@ -380,12 +410,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes forecasts from a machine learning job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-forecast.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteForecastResponse> deleteForecast(
@@ -397,8 +429,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes an existing anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request) throws IOException {
@@ -407,12 +441,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes an existing anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteJobResponse> deleteJob(
@@ -424,8 +460,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes an existing model snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteModelSnapshotResponse> deleteModelSnapshot(DeleteModelSnapshotRequest request)
@@ -435,12 +473,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes an existing model snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-delete-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteModelSnapshotResponse> deleteModelSnapshot(
@@ -454,8 +494,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Deletes an existing trained inference model that is currently not referenced
 	 * by an ingest pipeline.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteTrainedModelResponse> deleteTrainedModel(DeleteTrainedModelRequest request)
@@ -466,12 +508,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Deletes an existing trained inference model that is currently not referenced
 	 * by an ingest pipeline.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteTrainedModelResponse> deleteTrainedModel(
@@ -484,8 +528,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes a model alias that refers to the trained model
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models-aliases.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models-aliases.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteTrainedModelAliasResponse> deleteTrainedModelAlias(
@@ -496,12 +542,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Deletes a model alias that refers to the trained model
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models-aliases.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models-aliases.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteTrainedModelAliasResponse> deleteTrainedModelAlias(
@@ -514,8 +562,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Estimates the model memory
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<EstimateModelMemoryResponse> estimateModelMemory(EstimateModelMemoryRequest request)
@@ -525,12 +575,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Estimates the model memory
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-apis.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<EstimateModelMemoryResponse> estimateModelMemory(
@@ -543,8 +595,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Evaluates the data frame analytics for an annotated index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<EvaluateDataFrameResponse> evaluateDataFrame(EvaluateDataFrameRequest request)
@@ -554,12 +608,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Evaluates the data frame analytics for an annotated index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/evaluate-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<EvaluateDataFrameResponse> evaluateDataFrame(
@@ -571,8 +627,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Explains a data frame analytics config.
-	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/explain-dfanalytics.html"
+	 * 
+	 * @see <a href=
+	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/explain-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ExplainDataFrameAnalyticsResponse> explainDataFrameAnalytics(
@@ -583,12 +641,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Explains a data frame analytics config.
-	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/explain-dfanalytics.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/explain-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ExplainDataFrameAnalyticsResponse> explainDataFrameAnalytics(
@@ -602,8 +662,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Finds the structure of a text file. The text file must contain data that is
 	 * suitable to be ingested into Elasticsearch.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<FindFileStructureResponse> findFileStructure(FindFileStructureRequest request)
@@ -614,12 +676,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Finds the structure of a text file. The text file must contain data that is
 	 * suitable to be ingested into Elasticsearch.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<FindFileStructureResponse> findFileStructure(
@@ -631,8 +695,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Forces any buffered data to be processed by the job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-flush-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-flush-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<FlushJobResponse> flushJob(FlushJobRequest request) throws IOException {
@@ -641,12 +707,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Forces any buffered data to be processed by the job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-flush-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-flush-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<FlushJobResponse> flushJob(
@@ -659,8 +727,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Predicts the future behavior of a time series by using its historical
 	 * behavior.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-forecast.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-forecast.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ForecastJobResponse> forecast(ForecastJobRequest request) throws IOException {
@@ -670,12 +740,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Predicts the future behavior of a time series by using its historical
 	 * behavior.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-forecast.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-forecast.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ForecastJobResponse> forecast(
@@ -687,8 +759,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves anomaly detection job results for one or more buckets.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-bucket.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-bucket.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetBucketsResponse> getBuckets(GetBucketsRequest request) throws IOException {
@@ -697,12 +771,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves anomaly detection job results for one or more buckets.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-bucket.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-bucket.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetBucketsResponse> getBuckets(
@@ -714,8 +790,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves information about the scheduled events in calendars.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar-event.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar-event.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetCalendarEventsResponse> getCalendarEvents(GetCalendarEventsRequest request)
@@ -725,12 +803,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves information about the scheduled events in calendars.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar-event.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar-event.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetCalendarEventsResponse> getCalendarEvents(
@@ -742,8 +822,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for calendars.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetCalendarsResponse> getCalendars(GetCalendarsRequest request) throws IOException {
@@ -752,12 +834,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for calendars.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-calendar.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetCalendarsResponse> getCalendars(
@@ -769,8 +853,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves anomaly detection job results for one or more categories.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-category.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-category.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetCategoriesResponse> getCategories(GetCategoriesRequest request) throws IOException {
@@ -779,12 +865,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves anomaly detection job results for one or more categories.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-category.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-category.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetCategoriesResponse> getCategories(
@@ -796,8 +884,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for data frame analytics jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetDataFrameAnalyticsResponse> getDataFrameAnalytics(GetDataFrameAnalyticsRequest request)
@@ -807,12 +897,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for data frame analytics jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetDataFrameAnalyticsResponse> getDataFrameAnalytics(
@@ -825,8 +917,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves usage information for data frame analytics jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetDataFrameAnalyticsStatsResponse> getDataFrameAnalyticsStats(
@@ -837,12 +931,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves usage information for data frame analytics jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-dfanalytics-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetDataFrameAnalyticsStatsResponse> getDataFrameAnalyticsStats(
@@ -855,8 +951,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves usage information for datafeeds.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetDatafeedStatsResponse> getDatafeedStats(GetDatafeedStatsRequest request)
@@ -866,12 +964,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves usage information for datafeeds.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetDatafeedStatsResponse> getDatafeedStats(
@@ -883,8 +983,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for datafeeds.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetDatafeedsResponse> getDatafeeds(GetDatafeedsRequest request) throws IOException {
@@ -893,12 +995,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for datafeeds.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetDatafeedsResponse> getDatafeeds(
@@ -910,8 +1014,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves filters.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetFiltersResponse> getFilters(GetFiltersRequest request) throws IOException {
@@ -920,12 +1026,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves filters.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-filter.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetFiltersResponse> getFilters(
@@ -937,8 +1045,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves anomaly detection job results for one or more influencers.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-influencer.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-influencer.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetInfluencersResponse> getInfluencers(GetInfluencersRequest request) throws IOException {
@@ -947,12 +1057,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves anomaly detection job results for one or more influencers.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-influencer.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-influencer.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetInfluencersResponse> getInfluencers(
@@ -964,8 +1076,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves usage information for anomaly detection jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetJobStatsResponse> getJobStats(GetJobStatsRequest request) throws IOException {
@@ -974,12 +1088,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves usage information for anomaly detection jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetJobStatsResponse> getJobStats(
@@ -991,8 +1107,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for anomaly detection jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetJobsResponse> getJobs(GetJobsRequest request) throws IOException {
@@ -1001,12 +1119,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for anomaly detection jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetJobsResponse> getJobs(
@@ -1018,8 +1138,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves information about model snapshots.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-snapshot.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetModelSnapshotsResponse> getModelSnapshots(GetModelSnapshotsRequest request)
@@ -1029,12 +1151,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves information about model snapshots.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-snapshot.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetModelSnapshotsResponse> getModelSnapshots(
@@ -1047,8 +1171,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Retrieves overall bucket results that summarize the bucket results of
 	 * multiple anomaly detection jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-overall-buckets.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-overall-buckets.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetOverallBucketsResponse> getOverallBuckets(GetOverallBucketsRequest request)
@@ -1059,12 +1185,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Retrieves overall bucket results that summarize the bucket results of
 	 * multiple anomaly detection jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-overall-buckets.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-overall-buckets.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetOverallBucketsResponse> getOverallBuckets(
@@ -1076,8 +1204,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves anomaly records for an anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetAnomalyRecordsResponse> getRecords(GetAnomalyRecordsRequest request)
@@ -1087,12 +1217,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves anomaly records for an anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetAnomalyRecordsResponse> getRecords(
@@ -1104,8 +1236,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for a trained inference model.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetTrainedModelsResponse> getTrainedModels(GetTrainedModelsRequest request)
@@ -1115,12 +1249,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves configuration information for a trained inference model.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetTrainedModelsResponse> getTrainedModels(
@@ -1132,8 +1268,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves usage information for trained inference models.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetTrainedModelsStatsResponse> getTrainedModelsStats(GetTrainedModelsStatsRequest request)
@@ -1143,12 +1281,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Retrieves usage information for trained inference models.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-trained-models-stats.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetTrainedModelsStatsResponse> getTrainedModelsStats(
@@ -1161,8 +1301,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Returns defaults and limits used by machine learning.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-ml-info.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-ml-info.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<InfoResponse> info() throws IOException {
 		return this.transport.performRequestAsync(InfoRequest.INSTANCE, InfoRequest.ENDPOINT, this.requestOptions);
@@ -1172,8 +1314,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Opens one or more anomaly detection jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<OpenJobResponse> openJob(OpenJobRequest request) throws IOException {
@@ -1182,12 +1326,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Opens one or more anomaly detection jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-open-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<OpenJobResponse> openJob(
@@ -1199,8 +1345,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Posts scheduled events in a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-calendar-event.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-calendar-event.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PostCalendarEventsResponse> postCalendarEvents(PostCalendarEventsRequest request)
@@ -1210,12 +1358,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Posts scheduled events in a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-calendar-event.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-calendar-event.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PostCalendarEventsResponse> postCalendarEvents(
@@ -1228,8 +1378,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Sends data to an anomaly detection job for analysis.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-data.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-data.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PostJobDataResponse> postData(PostJobDataRequest request) throws IOException {
@@ -1238,12 +1390,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Sends data to an anomaly detection job for analysis.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-data.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-post-data.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PostJobDataResponse> postData(
@@ -1255,8 +1409,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Previews that will be analyzed given a data frame analytics config.
-	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html"
+	 * 
+	 * @see <a href=
+	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PreviewDataFrameAnalyticsResponse> previewDataFrameAnalytics(
@@ -1267,12 +1423,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Previews that will be analyzed given a data frame analytics config.
-	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/preview-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PreviewDataFrameAnalyticsResponse> previewDataFrameAnalytics(
@@ -1285,8 +1443,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Previews a datafeed.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<PreviewDatafeedResponse<TDocument>> previewDatafeed(
@@ -1298,12 +1458,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Previews a datafeed.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<PreviewDatafeedResponse<TDocument>> previewDatafeed(
@@ -1316,8 +1478,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutCalendarResponse> putCalendar(PutCalendarRequest request) throws IOException {
@@ -1326,12 +1490,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutCalendarResponse> putCalendar(
@@ -1343,8 +1509,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Adds an anomaly detection job to a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutCalendarJobResponse> putCalendarJob(PutCalendarJobRequest request) throws IOException {
@@ -1353,12 +1521,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Adds an anomaly detection job to a calendar.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutCalendarJobResponse> putCalendarJob(
@@ -1370,8 +1540,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates a data frame analytics job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-dfanalytics.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutDataFrameAnalyticsResponse> putDataFrameAnalytics(PutDataFrameAnalyticsRequest request)
@@ -1381,12 +1553,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates a data frame analytics job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-dfanalytics.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutDataFrameAnalyticsResponse> putDataFrameAnalytics(
@@ -1399,8 +1573,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates a datafeed.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutDatafeedResponse> putDatafeed(PutDatafeedRequest request) throws IOException {
@@ -1409,12 +1585,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates a datafeed.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutDatafeedResponse> putDatafeed(
@@ -1426,8 +1604,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates a filter.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-filter.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-filter.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutFilterResponse> putFilter(PutFilterRequest request) throws IOException {
@@ -1436,12 +1616,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates a filter.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-filter.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-filter.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutFilterResponse> putFilter(
@@ -1453,8 +1635,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates an anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutJobResponse> putJob(PutJobRequest request) throws IOException {
@@ -1463,12 +1647,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Instantiates an anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutJobResponse> putJob(
@@ -1480,8 +1666,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Creates an inference trained model.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutTrainedModelResponse> putTrainedModel(PutTrainedModelRequest request)
@@ -1491,12 +1679,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Creates an inference trained model.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutTrainedModelResponse> putTrainedModel(
@@ -1509,8 +1699,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Creates a new model alias (or reassigns an existing one) to refer to the
 	 * trained model
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models-aliases.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models-aliases.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutTrainedModelAliasResponse> putTrainedModelAlias(PutTrainedModelAliasRequest request)
@@ -1521,12 +1713,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Creates a new model alias (or reassigns an existing one) to refer to the
 	 * trained model
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models-aliases.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-trained-models-aliases.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutTrainedModelAliasResponse> putTrainedModelAlias(
@@ -1539,8 +1733,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Reverts to a specific snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-revert-snapshot.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-revert-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<RevertModelSnapshotResponse> revertModelSnapshot(RevertModelSnapshotRequest request)
@@ -1550,12 +1746,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Reverts to a specific snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-revert-snapshot.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-revert-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RevertModelSnapshotResponse> revertModelSnapshot(
@@ -1569,8 +1767,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Sets a cluster wide upgrade_mode setting that prepares machine learning
 	 * indices for an upgrade.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<SetUpgradeModeResponse> setUpgradeMode(SetUpgradeModeRequest request) throws IOException {
@@ -1580,12 +1780,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	/**
 	 * Sets a cluster wide upgrade_mode setting that prepares machine learning
 	 * indices for an upgrade.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-set-upgrade-mode.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<SetUpgradeModeResponse> setUpgradeMode(
@@ -1597,8 +1799,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Starts a data frame analytics job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-dfanalytics.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StartDataFrameAnalyticsResponse> startDataFrameAnalytics(
@@ -1609,12 +1813,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Starts a data frame analytics job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-dfanalytics.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/start-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StartDataFrameAnalyticsResponse> startDataFrameAnalytics(
@@ -1627,8 +1833,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Starts one or more datafeeds.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-start-datafeed.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-start-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StartDatafeedResponse> startDatafeed(StartDatafeedRequest request) throws IOException {
@@ -1637,12 +1845,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Starts one or more datafeeds.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-start-datafeed.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-start-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StartDatafeedResponse> startDatafeed(
@@ -1654,8 +1864,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Stops one or more data frame analytics jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-dfanalytics.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StopDataFrameAnalyticsResponse> stopDataFrameAnalytics(
@@ -1665,12 +1877,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Stops one or more data frame analytics jobs.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-dfanalytics.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/stop-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StopDataFrameAnalyticsResponse> stopDataFrameAnalytics(
@@ -1683,8 +1897,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Stops one or more datafeeds.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-stop-datafeed.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-stop-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StopDatafeedResponse> stopDatafeed(StopDatafeedRequest request) throws IOException {
@@ -1693,12 +1909,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Stops one or more datafeeds.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-stop-datafeed.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-stop-datafeed.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StopDatafeedResponse> stopDatafeed(
@@ -1710,8 +1928,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Updates certain properties of a data frame analytics job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UpdateDataFrameAnalyticsResponse> updateDataFrameAnalytics(
@@ -1722,12 +1942,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Updates certain properties of a data frame analytics job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateDataFrameAnalyticsResponse> updateDataFrameAnalytics(
@@ -1740,8 +1962,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Updates the description of a filter, adds items, or removes items.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-filter.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-filter.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UpdateFilterResponse> updateFilter(UpdateFilterRequest request) throws IOException {
@@ -1750,12 +1974,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Updates the description of a filter, adds items, or removes items.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-filter.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-filter.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateFilterResponse> updateFilter(
@@ -1767,8 +1993,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Updates certain properties of an anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-job.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UpdateJobResponse> updateJob(UpdateJobRequest request) throws IOException {
@@ -1777,12 +2005,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Updates certain properties of an anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-job.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-job.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateJobResponse> updateJob(
@@ -1794,8 +2024,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Updates certain properties of a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-snapshot.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UpdateModelSnapshotResponse> updateModelSnapshot(UpdateModelSnapshotRequest request)
@@ -1805,12 +2037,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Updates certain properties of a snapshot.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-snapshot.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-update-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateModelSnapshotResponse> updateModelSnapshot(
@@ -1823,8 +2057,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Upgrades a given job snapshot to the current major version.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-upgrade-job-model-snapshot.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-upgrade-job-model-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UpgradeJobSnapshotResponse> upgradeJobSnapshot(UpgradeJobSnapshotRequest request)
@@ -1834,12 +2070,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Upgrades a given job snapshot to the current major version.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-upgrade-job-model-snapshot.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-upgrade-job-model-snapshot.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpgradeJobSnapshotResponse> upgradeJobSnapshot(
@@ -1852,8 +2090,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Validates an anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ValidateJobResponse> validate(ValidateJobRequest request) throws IOException {
@@ -1862,12 +2102,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Validates an anomaly detection job.
-	 *
-	 * @see "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ValidateJobResponse> validate(
@@ -1879,8 +2121,10 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Validates an anomaly detection detector.
-	 *
-	 * @see "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ValidateDetectorResponse> validateDetector(ValidateDetectorRequest request)
@@ -1890,12 +2134,14 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 
 	/**
 	 * Validates an anomaly detection detector.
-	 *
-	 * @see "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/machine-learning/current/ml-jobs.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ValidateDetectorResponse> validateDetector(

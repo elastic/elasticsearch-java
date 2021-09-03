@@ -51,7 +51,7 @@ public final class DeprecationInfoRequest extends RequestBase {
 	/**
 	 * Comma-separate list of data streams or indices to check. Wildcard (*)
 	 * expressions are supported.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -71,7 +71,7 @@ public final class DeprecationInfoRequest extends RequestBase {
 		/**
 		 * Comma-separate list of data streams or indices to check. Wildcard (*)
 		 * expressions are supported.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {

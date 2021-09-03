@@ -332,7 +332,7 @@ public class ErrorCause implements ToJsonp {
 
 	/**
 	 * resource id
-	 *
+	 * <p>
 	 * API name: {@code resource_id}
 	 */
 	@Nullable
@@ -342,7 +342,7 @@ public class ErrorCause implements ToJsonp {
 
 	/**
 	 * resource type
-	 *
+	 * <p>
 	 * API name: {@code resource_type}
 	 */
 	@Nullable
@@ -950,7 +950,7 @@ public class ErrorCause implements ToJsonp {
 
 		/**
 		 * resource id
-		 *
+		 * <p>
 		 * API name: {@code resource_id}
 		 */
 		public BuilderT resourceId(@Nullable List<String> value) {
@@ -960,7 +960,7 @@ public class ErrorCause implements ToJsonp {
 
 		/**
 		 * resource id
-		 *
+		 * <p>
 		 * API name: {@code resource_id}
 		 */
 		public BuilderT resourceId(String... value) {
@@ -981,7 +981,7 @@ public class ErrorCause implements ToJsonp {
 
 		/**
 		 * resource type
-		 *
+		 * <p>
 		 * API name: {@code resource_type}
 		 */
 		public BuilderT resourceType(@Nullable String value) {

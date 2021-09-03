@@ -61,7 +61,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 
 	/**
 	 * A string that uniquely identifies a calendar.
-	 *
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	@Nullable
@@ -73,7 +73,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	 * A list of one of more scheduled events. The event’s start and end times may
 	 * be specified as integer milliseconds since the epoch or as a string in ISO
 	 * 8601 format.
-	 *
+	 * <p>
 	 * API name: {@code events}
 	 */
 	public List<CalendarEvent> events() {
@@ -114,7 +114,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 
 		/**
 		 * A string that uniquely identifies a calendar.
-		 *
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(@Nullable String value) {
@@ -126,7 +126,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 		 * A list of one of more scheduled events. The event’s start and end times may
 		 * be specified as integer milliseconds since the epoch or as a string in ISO
 		 * 8601 format.
-		 *
+		 * <p>
 		 * API name: {@code events}
 		 */
 		public Builder events(List<CalendarEvent> value) {
@@ -138,7 +138,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 		 * A list of one of more scheduled events. The event’s start and end times may
 		 * be specified as integer milliseconds since the epoch or as a string in ISO
 		 * 8601 format.
-		 *
+		 * <p>
 		 * API name: {@code events}
 		 */
 		public Builder events(CalendarEvent... value) {

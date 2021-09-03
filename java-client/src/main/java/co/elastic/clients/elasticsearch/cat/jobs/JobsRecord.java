@@ -286,7 +286,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * the job_id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -296,7 +296,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * the job state
-	 *
+	 * <p>
 	 * API name: {@code state}
 	 */
 	@Nullable
@@ -306,7 +306,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * the amount of time the job has been opened
-	 *
+	 * <p>
 	 * API name: {@code opened_time}
 	 */
 	@Nullable
@@ -316,7 +316,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * why the job is or is not assigned to a node
-	 *
+	 * <p>
 	 * API name: {@code assignment_explanation}
 	 */
 	@Nullable
@@ -326,7 +326,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * number of processed records
-	 *
+	 * <p>
 	 * API name: {@code data.processed_records}
 	 */
 	@Nullable
@@ -336,7 +336,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * number of processed fields
-	 *
+	 * <p>
 	 * API name: {@code data.processed_fields}
 	 */
 	@Nullable
@@ -346,7 +346,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * total input bytes
-	 *
+	 * <p>
 	 * API name: {@code data.input_bytes}
 	 */
 	@Nullable
@@ -356,7 +356,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * total record count
-	 *
+	 * <p>
 	 * API name: {@code data.input_records}
 	 */
 	@Nullable
@@ -366,7 +366,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * total field count
-	 *
+	 * <p>
 	 * API name: {@code data.input_fields}
 	 */
 	@Nullable
@@ -376,7 +376,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * number of records with invalid dates
-	 *
+	 * <p>
 	 * API name: {@code data.invalid_dates}
 	 */
 	@Nullable
@@ -386,7 +386,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * number of records with missing fields
-	 *
+	 * <p>
 	 * API name: {@code data.missing_fields}
 	 */
 	@Nullable
@@ -396,7 +396,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * number of records handled out of order
-	 *
+	 * <p>
 	 * API name: {@code data.out_of_order_timestamps}
 	 */
 	@Nullable
@@ -406,7 +406,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * number of empty buckets
-	 *
+	 * <p>
 	 * API name: {@code data.empty_buckets}
 	 */
 	@Nullable
@@ -416,7 +416,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * number of sparse buckets
-	 *
+	 * <p>
 	 * API name: {@code data.sparse_buckets}
 	 */
 	@Nullable
@@ -426,7 +426,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * total bucket count
-	 *
+	 * <p>
 	 * API name: {@code data.buckets}
 	 */
 	@Nullable
@@ -436,7 +436,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * earliest record time
-	 *
+	 * <p>
 	 * API name: {@code data.earliest_record}
 	 */
 	@Nullable
@@ -446,7 +446,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * latest record time
-	 *
+	 * <p>
 	 * API name: {@code data.latest_record}
 	 */
 	@Nullable
@@ -456,7 +456,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * last time data was seen
-	 *
+	 * <p>
 	 * API name: {@code data.last}
 	 */
 	@Nullable
@@ -466,7 +466,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * last time an empty bucket occurred
-	 *
+	 * <p>
 	 * API name: {@code data.last_empty_bucket}
 	 */
 	@Nullable
@@ -476,7 +476,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * last time a sparse bucket occurred
-	 *
+	 * <p>
 	 * API name: {@code data.last_sparse_bucket}
 	 */
 	@Nullable
@@ -486,7 +486,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * model size
-	 *
+	 * <p>
 	 * API name: {@code model.bytes}
 	 */
 	@Nullable
@@ -496,7 +496,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * current memory status
-	 *
+	 * <p>
 	 * API name: {@code model.memory_status}
 	 */
 	@Nullable
@@ -506,7 +506,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * how much the model has exceeded the limit
-	 *
+	 * <p>
 	 * API name: {@code model.bytes_exceeded}
 	 */
 	@Nullable
@@ -516,7 +516,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * model memory limit
-	 *
+	 * <p>
 	 * API name: {@code model.memory_limit}
 	 */
 	@Nullable
@@ -526,7 +526,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * count of 'by' fields
-	 *
+	 * <p>
 	 * API name: {@code model.by_fields}
 	 */
 	@Nullable
@@ -536,7 +536,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * count of 'over' fields
-	 *
+	 * <p>
 	 * API name: {@code model.over_fields}
 	 */
 	@Nullable
@@ -546,7 +546,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * count of 'partition' fields
-	 *
+	 * <p>
 	 * API name: {@code model.partition_fields}
 	 */
 	@Nullable
@@ -556,7 +556,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * number of bucket allocation failures
-	 *
+	 * <p>
 	 * API name: {@code model.bucket_allocation_failures}
 	 */
 	@Nullable
@@ -566,7 +566,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * current categorization status
-	 *
+	 * <p>
 	 * API name: {@code model.categorization_status}
 	 */
 	@Nullable
@@ -576,7 +576,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * count of categorized documents
-	 *
+	 * <p>
 	 * API name: {@code model.categorized_doc_count}
 	 */
 	@Nullable
@@ -586,7 +586,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * count of categories
-	 *
+	 * <p>
 	 * API name: {@code model.total_category_count}
 	 */
 	@Nullable
@@ -596,7 +596,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * count of frequent categories
-	 *
+	 * <p>
 	 * API name: {@code model.frequent_category_count}
 	 */
 	@Nullable
@@ -606,7 +606,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * count of rare categories
-	 *
+	 * <p>
 	 * API name: {@code model.rare_category_count}
 	 */
 	@Nullable
@@ -616,7 +616,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * count of dead categories
-	 *
+	 * <p>
 	 * API name: {@code model.dead_category_count}
 	 */
 	@Nullable
@@ -626,7 +626,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * count of failed categories
-	 *
+	 * <p>
 	 * API name: {@code model.failed_category_count}
 	 */
 	@Nullable
@@ -636,7 +636,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * when the model stats were gathered
-	 *
+	 * <p>
 	 * API name: {@code model.log_time}
 	 */
 	@Nullable
@@ -646,7 +646,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * the time of the last record when the model stats were gathered
-	 *
+	 * <p>
 	 * API name: {@code model.timestamp}
 	 */
 	@Nullable
@@ -656,7 +656,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * total number of forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.total}
 	 */
 	@Nullable
@@ -666,7 +666,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * minimum memory used by forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.memory.min}
 	 */
 	@Nullable
@@ -676,7 +676,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * maximum memory used by forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.memory.max}
 	 */
 	@Nullable
@@ -686,7 +686,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * average memory used by forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.memory.avg}
 	 */
 	@Nullable
@@ -696,7 +696,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * total memory used by all forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.memory.total}
 	 */
 	@Nullable
@@ -706,7 +706,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * minimum record count for forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.records.min}
 	 */
 	@Nullable
@@ -716,7 +716,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * maximum record count for forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.records.max}
 	 */
 	@Nullable
@@ -726,7 +726,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * average record count for forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.records.avg}
 	 */
 	@Nullable
@@ -736,7 +736,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * total record count for all forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.records.total}
 	 */
 	@Nullable
@@ -746,7 +746,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * minimum runtime for forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.time.min}
 	 */
 	@Nullable
@@ -756,7 +756,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * maximum run time for forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.time.max}
 	 */
 	@Nullable
@@ -766,7 +766,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * average runtime for all forecasts (milliseconds)
-	 *
+	 * <p>
 	 * API name: {@code forecasts.time.avg}
 	 */
 	@Nullable
@@ -776,7 +776,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * total runtime for all forecasts
-	 *
+	 * <p>
 	 * API name: {@code forecasts.time.total}
 	 */
 	@Nullable
@@ -786,7 +786,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * id of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.id}
 	 */
 	@Nullable
@@ -796,7 +796,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * name of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.name}
 	 */
 	@Nullable
@@ -806,7 +806,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * ephemeral id of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.ephemeral_id}
 	 */
 	@Nullable
@@ -816,7 +816,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * network address of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.address}
 	 */
 	@Nullable
@@ -826,7 +826,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * bucket count
-	 *
+	 * <p>
 	 * API name: {@code buckets.count}
 	 */
 	@Nullable
@@ -836,7 +836,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * total bucket processing time
-	 *
+	 * <p>
 	 * API name: {@code buckets.time.total}
 	 */
 	@Nullable
@@ -846,7 +846,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * minimum bucket processing time
-	 *
+	 * <p>
 	 * API name: {@code buckets.time.min}
 	 */
 	@Nullable
@@ -856,7 +856,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * maximum bucket processing time
-	 *
+	 * <p>
 	 * API name: {@code buckets.time.max}
 	 */
 	@Nullable
@@ -866,7 +866,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * exponential average bucket processing time (milliseconds)
-	 *
+	 * <p>
 	 * API name: {@code buckets.time.exp_avg}
 	 */
 	@Nullable
@@ -876,7 +876,7 @@ public final class JobsRecord implements ToJsonp {
 
 	/**
 	 * exponential average bucket processing time by hour (milliseconds)
-	 *
+	 * <p>
 	 * API name: {@code buckets.time.exp_avg_hour}
 	 */
 	@Nullable
@@ -1446,7 +1446,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * the job_id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -1456,7 +1456,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * the job state
-		 *
+		 * <p>
 		 * API name: {@code state}
 		 */
 		public Builder state(@Nullable JsonValue value) {
@@ -1466,7 +1466,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * the amount of time the job has been opened
-		 *
+		 * <p>
 		 * API name: {@code opened_time}
 		 */
 		public Builder openedTime(@Nullable String value) {
@@ -1476,7 +1476,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * why the job is or is not assigned to a node
-		 *
+		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
 		public Builder assignmentExplanation(@Nullable String value) {
@@ -1486,7 +1486,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * number of processed records
-		 *
+		 * <p>
 		 * API name: {@code data.processed_records}
 		 */
 		public Builder data_processedRecords(@Nullable String value) {
@@ -1496,7 +1496,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * number of processed fields
-		 *
+		 * <p>
 		 * API name: {@code data.processed_fields}
 		 */
 		public Builder data_processedFields(@Nullable String value) {
@@ -1506,7 +1506,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * total input bytes
-		 *
+		 * <p>
 		 * API name: {@code data.input_bytes}
 		 */
 		public Builder data_inputBytes(@Nullable JsonValue value) {
@@ -1516,7 +1516,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * total record count
-		 *
+		 * <p>
 		 * API name: {@code data.input_records}
 		 */
 		public Builder data_inputRecords(@Nullable String value) {
@@ -1526,7 +1526,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * total field count
-		 *
+		 * <p>
 		 * API name: {@code data.input_fields}
 		 */
 		public Builder data_inputFields(@Nullable String value) {
@@ -1536,7 +1536,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * number of records with invalid dates
-		 *
+		 * <p>
 		 * API name: {@code data.invalid_dates}
 		 */
 		public Builder data_invalidDates(@Nullable String value) {
@@ -1546,7 +1546,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * number of records with missing fields
-		 *
+		 * <p>
 		 * API name: {@code data.missing_fields}
 		 */
 		public Builder data_missingFields(@Nullable String value) {
@@ -1556,7 +1556,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * number of records handled out of order
-		 *
+		 * <p>
 		 * API name: {@code data.out_of_order_timestamps}
 		 */
 		public Builder data_outOfOrderTimestamps(@Nullable String value) {
@@ -1566,7 +1566,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * number of empty buckets
-		 *
+		 * <p>
 		 * API name: {@code data.empty_buckets}
 		 */
 		public Builder data_emptyBuckets(@Nullable String value) {
@@ -1576,7 +1576,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * number of sparse buckets
-		 *
+		 * <p>
 		 * API name: {@code data.sparse_buckets}
 		 */
 		public Builder data_sparseBuckets(@Nullable String value) {
@@ -1586,7 +1586,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * total bucket count
-		 *
+		 * <p>
 		 * API name: {@code data.buckets}
 		 */
 		public Builder data_buckets(@Nullable String value) {
@@ -1596,7 +1596,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * earliest record time
-		 *
+		 * <p>
 		 * API name: {@code data.earliest_record}
 		 */
 		public Builder data_earliestRecord(@Nullable String value) {
@@ -1606,7 +1606,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * latest record time
-		 *
+		 * <p>
 		 * API name: {@code data.latest_record}
 		 */
 		public Builder data_latestRecord(@Nullable String value) {
@@ -1616,7 +1616,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * last time data was seen
-		 *
+		 * <p>
 		 * API name: {@code data.last}
 		 */
 		public Builder data_last(@Nullable String value) {
@@ -1626,7 +1626,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * last time an empty bucket occurred
-		 *
+		 * <p>
 		 * API name: {@code data.last_empty_bucket}
 		 */
 		public Builder data_lastEmptyBucket(@Nullable String value) {
@@ -1636,7 +1636,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * last time a sparse bucket occurred
-		 *
+		 * <p>
 		 * API name: {@code data.last_sparse_bucket}
 		 */
 		public Builder data_lastSparseBucket(@Nullable String value) {
@@ -1646,7 +1646,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * model size
-		 *
+		 * <p>
 		 * API name: {@code model.bytes}
 		 */
 		public Builder model_bytes(@Nullable JsonValue value) {
@@ -1656,7 +1656,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * current memory status
-		 *
+		 * <p>
 		 * API name: {@code model.memory_status}
 		 */
 		public Builder model_memoryStatus(@Nullable JsonValue value) {
@@ -1666,7 +1666,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * how much the model has exceeded the limit
-		 *
+		 * <p>
 		 * API name: {@code model.bytes_exceeded}
 		 */
 		public Builder model_bytesExceeded(@Nullable JsonValue value) {
@@ -1676,7 +1676,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * model memory limit
-		 *
+		 * <p>
 		 * API name: {@code model.memory_limit}
 		 */
 		public Builder model_memoryLimit(@Nullable String value) {
@@ -1686,7 +1686,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * count of 'by' fields
-		 *
+		 * <p>
 		 * API name: {@code model.by_fields}
 		 */
 		public Builder model_byFields(@Nullable String value) {
@@ -1696,7 +1696,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * count of 'over' fields
-		 *
+		 * <p>
 		 * API name: {@code model.over_fields}
 		 */
 		public Builder model_overFields(@Nullable String value) {
@@ -1706,7 +1706,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * count of 'partition' fields
-		 *
+		 * <p>
 		 * API name: {@code model.partition_fields}
 		 */
 		public Builder model_partitionFields(@Nullable String value) {
@@ -1716,7 +1716,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * number of bucket allocation failures
-		 *
+		 * <p>
 		 * API name: {@code model.bucket_allocation_failures}
 		 */
 		public Builder model_bucketAllocationFailures(@Nullable String value) {
@@ -1726,7 +1726,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * current categorization status
-		 *
+		 * <p>
 		 * API name: {@code model.categorization_status}
 		 */
 		public Builder model_categorizationStatus(@Nullable JsonValue value) {
@@ -1736,7 +1736,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * count of categorized documents
-		 *
+		 * <p>
 		 * API name: {@code model.categorized_doc_count}
 		 */
 		public Builder model_categorizedDocCount(@Nullable String value) {
@@ -1746,7 +1746,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * count of categories
-		 *
+		 * <p>
 		 * API name: {@code model.total_category_count}
 		 */
 		public Builder model_totalCategoryCount(@Nullable String value) {
@@ -1756,7 +1756,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * count of frequent categories
-		 *
+		 * <p>
 		 * API name: {@code model.frequent_category_count}
 		 */
 		public Builder model_frequentCategoryCount(@Nullable String value) {
@@ -1766,7 +1766,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * count of rare categories
-		 *
+		 * <p>
 		 * API name: {@code model.rare_category_count}
 		 */
 		public Builder model_rareCategoryCount(@Nullable String value) {
@@ -1776,7 +1776,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * count of dead categories
-		 *
+		 * <p>
 		 * API name: {@code model.dead_category_count}
 		 */
 		public Builder model_deadCategoryCount(@Nullable String value) {
@@ -1786,7 +1786,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * count of failed categories
-		 *
+		 * <p>
 		 * API name: {@code model.failed_category_count}
 		 */
 		public Builder model_failedCategoryCount(@Nullable String value) {
@@ -1796,7 +1796,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * when the model stats were gathered
-		 *
+		 * <p>
 		 * API name: {@code model.log_time}
 		 */
 		public Builder model_logTime(@Nullable String value) {
@@ -1806,7 +1806,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * the time of the last record when the model stats were gathered
-		 *
+		 * <p>
 		 * API name: {@code model.timestamp}
 		 */
 		public Builder model_timestamp(@Nullable String value) {
@@ -1816,7 +1816,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * total number of forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.total}
 		 */
 		public Builder forecasts_total(@Nullable String value) {
@@ -1826,7 +1826,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * minimum memory used by forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.memory.min}
 		 */
 		public Builder forecasts_memory_min(@Nullable String value) {
@@ -1836,7 +1836,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * maximum memory used by forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.memory.max}
 		 */
 		public Builder forecasts_memory_max(@Nullable String value) {
@@ -1846,7 +1846,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * average memory used by forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.memory.avg}
 		 */
 		public Builder forecasts_memory_avg(@Nullable String value) {
@@ -1856,7 +1856,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * total memory used by all forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.memory.total}
 		 */
 		public Builder forecasts_memory_total(@Nullable String value) {
@@ -1866,7 +1866,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * minimum record count for forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.records.min}
 		 */
 		public Builder forecasts_records_min(@Nullable String value) {
@@ -1876,7 +1876,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * maximum record count for forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.records.max}
 		 */
 		public Builder forecasts_records_max(@Nullable String value) {
@@ -1886,7 +1886,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * average record count for forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.records.avg}
 		 */
 		public Builder forecasts_records_avg(@Nullable String value) {
@@ -1896,7 +1896,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * total record count for all forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.records.total}
 		 */
 		public Builder forecasts_records_total(@Nullable String value) {
@@ -1906,7 +1906,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * minimum runtime for forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.time.min}
 		 */
 		public Builder forecasts_time_min(@Nullable String value) {
@@ -1916,7 +1916,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * maximum run time for forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.time.max}
 		 */
 		public Builder forecasts_time_max(@Nullable String value) {
@@ -1926,7 +1926,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * average runtime for all forecasts (milliseconds)
-		 *
+		 * <p>
 		 * API name: {@code forecasts.time.avg}
 		 */
 		public Builder forecasts_time_avg(@Nullable String value) {
@@ -1936,7 +1936,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * total runtime for all forecasts
-		 *
+		 * <p>
 		 * API name: {@code forecasts.time.total}
 		 */
 		public Builder forecasts_time_total(@Nullable String value) {
@@ -1946,7 +1946,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * id of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.id}
 		 */
 		public Builder node_id(@Nullable String value) {
@@ -1956,7 +1956,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * name of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.name}
 		 */
 		public Builder node_name(@Nullable String value) {
@@ -1966,7 +1966,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * ephemeral id of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
 		public Builder node_ephemeralId(@Nullable String value) {
@@ -1976,7 +1976,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * network address of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.address}
 		 */
 		public Builder node_address(@Nullable String value) {
@@ -1986,7 +1986,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * bucket count
-		 *
+		 * <p>
 		 * API name: {@code buckets.count}
 		 */
 		public Builder buckets_count(@Nullable String value) {
@@ -1996,7 +1996,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * total bucket processing time
-		 *
+		 * <p>
 		 * API name: {@code buckets.time.total}
 		 */
 		public Builder buckets_time_total(@Nullable String value) {
@@ -2006,7 +2006,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * minimum bucket processing time
-		 *
+		 * <p>
 		 * API name: {@code buckets.time.min}
 		 */
 		public Builder buckets_time_min(@Nullable String value) {
@@ -2016,7 +2016,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * maximum bucket processing time
-		 *
+		 * <p>
 		 * API name: {@code buckets.time.max}
 		 */
 		public Builder buckets_time_max(@Nullable String value) {
@@ -2026,7 +2026,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * exponential average bucket processing time (milliseconds)
-		 *
+		 * <p>
 		 * API name: {@code buckets.time.exp_avg}
 		 */
 		public Builder buckets_time_expAvg(@Nullable String value) {
@@ -2036,7 +2036,7 @@ public final class JobsRecord implements ToJsonp {
 
 		/**
 		 * exponential average bucket processing time by hour (milliseconds)
-		 *
+		 * <p>
 		 * API name: {@code buckets.time.exp_avg_hour}
 		 */
 		public Builder buckets_time_expAvgHour(@Nullable String value) {

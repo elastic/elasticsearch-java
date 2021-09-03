@@ -70,7 +70,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 	/**
 	 * Name of the index containing the event.
-	 *
+	 * <p>
 	 * API name: {@code _index}
 	 */
 	public String index() {
@@ -79,7 +79,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 	/**
 	 * Unique identifier for the event. This ID is only unique within the index.
-	 *
+	 * <p>
 	 * API name: {@code _id}
 	 */
 	public String id() {
@@ -88,7 +88,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 	/**
 	 * Original JSON body passed for the event at index time.
-	 *
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	public TEvent source() {
@@ -163,7 +163,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 		/**
 		 * Name of the index containing the event.
-		 *
+		 * <p>
 		 * API name: {@code _index}
 		 */
 		public Builder<TEvent> index(String value) {
@@ -173,7 +173,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 		/**
 		 * Unique identifier for the event. This ID is only unique within the index.
-		 *
+		 * <p>
 		 * API name: {@code _id}
 		 */
 		public Builder<TEvent> id(String value) {
@@ -183,7 +183,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 		/**
 		 * Original JSON body passed for the event at index time.
-		 *
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public Builder<TEvent> source(TEvent value) {
@@ -213,7 +213,6 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 		/**
 		 * Serializer for TEvent. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TEvent> tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
 			this.tEventSerializer = value;

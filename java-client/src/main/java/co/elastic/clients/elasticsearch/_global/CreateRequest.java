@@ -179,7 +179,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 
 	/**
 	 * Request body.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public TDocument value() {
@@ -315,7 +315,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder<TDocument> value(TDocument value) {
@@ -326,7 +326,6 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;

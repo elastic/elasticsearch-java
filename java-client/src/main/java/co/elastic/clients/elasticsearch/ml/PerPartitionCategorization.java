@@ -55,7 +55,7 @@ public final class PerPartitionCategorization implements ToJsonp {
 	 * To enable this setting, you must also set the partition_field_name property
 	 * to the same value in every detector that uses the keyword mlcategory.
 	 * Otherwise, job creation fails.
-	 *
+	 * <p>
 	 * API name: {@code enabled}
 	 */
 	@Nullable
@@ -70,7 +70,7 @@ public final class PerPartitionCategorization implements ToJsonp {
 	 * makes it viable to have a job where it is expected that categorization works
 	 * well for some partitions but not others; you do not pay the cost of bad
 	 * categorization forever in the partitions where it works badly.
-	 *
+	 * <p>
 	 * API name: {@code stop_on_warn}
 	 */
 	@Nullable
@@ -120,7 +120,7 @@ public final class PerPartitionCategorization implements ToJsonp {
 		 * To enable this setting, you must also set the partition_field_name property
 		 * to the same value in every detector that uses the keyword mlcategory.
 		 * Otherwise, job creation fails.
-		 *
+		 * <p>
 		 * API name: {@code enabled}
 		 */
 		public Builder enabled(@Nullable Boolean value) {
@@ -135,7 +135,7 @@ public final class PerPartitionCategorization implements ToJsonp {
 		 * makes it viable to have a job where it is expected that categorization works
 		 * well for some partitions but not others; you do not pay the cost of bad
 		 * categorization forever in the partitions where it works badly.
-		 *
+		 * <p>
 		 * API name: {@code stop_on_warn}
 		 */
 		public Builder stopOnWarn(@Nullable Boolean value) {

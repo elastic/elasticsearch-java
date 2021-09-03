@@ -53,7 +53,7 @@ public final class UpgradeJobSnapshotResponse implements ToJsonp {
 
 	/**
 	 * The ID of the assigned node for the upgrade task if it is still running.
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	public String node() {
@@ -62,7 +62,7 @@ public final class UpgradeJobSnapshotResponse implements ToJsonp {
 
 	/**
 	 * When true, this means the task is complete. When false, it is still running.
-	 *
+	 * <p>
 	 * API name: {@code completed}
 	 */
 	public Boolean completed() {
@@ -100,7 +100,7 @@ public final class UpgradeJobSnapshotResponse implements ToJsonp {
 
 		/**
 		 * The ID of the assigned node for the upgrade task if it is still running.
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(String value) {
@@ -110,7 +110,7 @@ public final class UpgradeJobSnapshotResponse implements ToJsonp {
 
 		/**
 		 * When true, this means the task is complete. When false, it is still running.
-		 *
+		 * <p>
 		 * API name: {@code completed}
 		 */
 		public Builder completed(Boolean value) {

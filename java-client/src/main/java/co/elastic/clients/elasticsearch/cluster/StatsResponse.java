@@ -69,7 +69,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 	/**
 	 * Name of the cluster, based on the Cluster name setting setting.
-	 *
+	 * <p>
 	 * API name: {@code cluster_name}
 	 */
 	public String clusterName() {
@@ -78,7 +78,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 	/**
 	 * Unique identifier for the cluster.
-	 *
+	 * <p>
 	 * API name: {@code cluster_uuid}
 	 */
 	public String clusterUuid() {
@@ -87,7 +87,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 	/**
 	 * Contains statistics about indices with shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	public ClusterIndices indices() {
@@ -96,7 +96,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 	/**
 	 * Contains statistics about nodes selected by the request’s node filters.
-	 *
+	 * <p>
 	 * API name: {@code nodes}
 	 */
 	public ClusterNodes nodes() {
@@ -106,7 +106,7 @@ public final class StatsResponse extends NodesResponseBase {
 	/**
 	 * Health status of the cluster, based on the state of its primary and replica
 	 * shards.
-	 *
+	 * <p>
 	 * API name: {@code status}
 	 */
 	public JsonValue status() {
@@ -116,7 +116,7 @@ public final class StatsResponse extends NodesResponseBase {
 	/**
 	 * Unix timestamp, in milliseconds, of the last time the cluster statistics were
 	 * refreshed.
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	public Number timestamp() {
@@ -168,7 +168,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 		/**
 		 * Name of the cluster, based on the Cluster name setting setting.
-		 *
+		 * <p>
 		 * API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
@@ -178,7 +178,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 		/**
 		 * Unique identifier for the cluster.
-		 *
+		 * <p>
 		 * API name: {@code cluster_uuid}
 		 */
 		public Builder clusterUuid(String value) {
@@ -188,7 +188,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 		/**
 		 * Contains statistics about indices with shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(ClusterIndices value) {
@@ -198,7 +198,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 		/**
 		 * Contains statistics about indices with shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(Function<ClusterIndices.Builder, ObjectBuilder<ClusterIndices>> fn) {
@@ -207,7 +207,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 		/**
 		 * Contains statistics about nodes selected by the request’s node filters.
-		 *
+		 * <p>
 		 * API name: {@code nodes}
 		 */
 		public Builder nodes(ClusterNodes value) {
@@ -217,7 +217,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 		/**
 		 * Contains statistics about nodes selected by the request’s node filters.
-		 *
+		 * <p>
 		 * API name: {@code nodes}
 		 */
 		public Builder nodes(Function<ClusterNodes.Builder, ObjectBuilder<ClusterNodes>> fn) {
@@ -227,7 +227,7 @@ public final class StatsResponse extends NodesResponseBase {
 		/**
 		 * Health status of the cluster, based on the state of its primary and replica
 		 * shards.
-		 *
+		 * <p>
 		 * API name: {@code status}
 		 */
 		public Builder status(JsonValue value) {
@@ -238,7 +238,7 @@ public final class StatsResponse extends NodesResponseBase {
 		/**
 		 * Unix timestamp, in milliseconds, of the last time the cluster statistics were
 		 * refreshed.
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(Number value) {

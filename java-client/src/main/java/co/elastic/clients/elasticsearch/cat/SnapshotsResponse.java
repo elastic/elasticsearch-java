@@ -53,7 +53,7 @@ public final class SnapshotsResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<SnapshotsRecord> value() {
@@ -83,7 +83,7 @@ public final class SnapshotsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<SnapshotsRecord> value) {
@@ -93,7 +93,7 @@ public final class SnapshotsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(SnapshotsRecord... value) {

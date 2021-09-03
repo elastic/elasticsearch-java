@@ -58,8 +58,10 @@ public class EnrichClient extends ApiClient<EnrichClient> {
 
 	/**
 	 * Deletes an existing enrich policy and its enrich index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) throws IOException {
@@ -68,12 +70,14 @@ public class EnrichClient extends ApiClient<EnrichClient> {
 
 	/**
 	 * Deletes an existing enrich policy and its enrich index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final DeletePolicyResponse deletePolicy(
@@ -85,8 +89,10 @@ public class EnrichClient extends ApiClient<EnrichClient> {
 
 	/**
 	 * Creates the enrich index for an existing enrich policy.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/execute-enrich-policy-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/execute-enrich-policy-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public ExecutePolicyResponse executePolicy(ExecutePolicyRequest request) throws IOException {
@@ -95,12 +101,14 @@ public class EnrichClient extends ApiClient<EnrichClient> {
 
 	/**
 	 * Creates the enrich index for an existing enrich policy.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/execute-enrich-policy-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/execute-enrich-policy-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final ExecutePolicyResponse executePolicy(
@@ -112,8 +120,10 @@ public class EnrichClient extends ApiClient<EnrichClient> {
 
 	/**
 	 * Gets information about an enrich policy.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public GetPolicyResponse getPolicy(GetPolicyRequest request) throws IOException {
@@ -122,12 +132,14 @@ public class EnrichClient extends ApiClient<EnrichClient> {
 
 	/**
 	 * Gets information about an enrich policy.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final GetPolicyResponse getPolicy(Function<GetPolicyRequest.Builder, ObjectBuilder<GetPolicyRequest>> fn)
@@ -139,8 +151,10 @@ public class EnrichClient extends ApiClient<EnrichClient> {
 
 	/**
 	 * Creates a new enrich policy.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-enrich-policy-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-enrich-policy-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public PutPolicyResponse putPolicy(PutPolicyRequest request) throws IOException {
@@ -149,12 +163,14 @@ public class EnrichClient extends ApiClient<EnrichClient> {
 
 	/**
 	 * Creates a new enrich policy.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-enrich-policy-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-enrich-policy-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final PutPolicyResponse putPolicy(Function<PutPolicyRequest.Builder, ObjectBuilder<PutPolicyRequest>> fn)
@@ -167,8 +183,10 @@ public class EnrichClient extends ApiClient<EnrichClient> {
 	/**
 	 * Gets enrich coordinator statistics and information about enrich policies that
 	 * are currently executing.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public StatsResponse stats() throws IOException {
 		return this.transport.performRequest(StatsRequest.INSTANCE, StatsRequest.ENDPOINT, this.requestOptions);

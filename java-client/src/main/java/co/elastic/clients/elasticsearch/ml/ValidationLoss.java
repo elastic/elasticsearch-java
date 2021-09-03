@@ -56,7 +56,7 @@ public final class ValidationLoss implements ToJsonp {
 	/**
 	 * Validation loss values for every added decision tree during the forest
 	 * growing procedure.
-	 *
+	 * <p>
 	 * API name: {@code fold_values}
 	 */
 	public List<String> foldValues() {
@@ -65,7 +65,7 @@ public final class ValidationLoss implements ToJsonp {
 
 	/**
 	 * The type of the loss metric. For example, binomial_logistic.
-	 *
+	 * <p>
 	 * API name: {@code loss_type}
 	 */
 	public String lossType() {
@@ -109,7 +109,7 @@ public final class ValidationLoss implements ToJsonp {
 		/**
 		 * Validation loss values for every added decision tree during the forest
 		 * growing procedure.
-		 *
+		 * <p>
 		 * API name: {@code fold_values}
 		 */
 		public Builder foldValues(List<String> value) {
@@ -120,7 +120,7 @@ public final class ValidationLoss implements ToJsonp {
 		/**
 		 * Validation loss values for every added decision tree during the forest
 		 * growing procedure.
-		 *
+		 * <p>
 		 * API name: {@code fold_values}
 		 */
 		public Builder foldValues(String... value) {
@@ -141,7 +141,7 @@ public final class ValidationLoss implements ToJsonp {
 
 		/**
 		 * The type of the loss metric. For example, binomial_logistic.
-		 *
+		 * <p>
 		 * API name: {@code loss_type}
 		 */
 		public Builder lossType(String value) {

@@ -164,7 +164,6 @@ public final class NamedQuery<TQuery> implements ToJsonp {
 		/**
 		 * Serializer for TQuery. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TQuery> tQuerySerializer(@Nullable JsonpSerializer<TQuery> value) {
 			this.tQuerySerializer = value;

@@ -53,7 +53,7 @@ public final class RetentionPolicy implements ToJsonp {
 
 	/**
 	 * The date field that is used to calculate the age of the document.
-	 *
+	 * <p>
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -64,7 +64,7 @@ public final class RetentionPolicy implements ToJsonp {
 	 * Specifies the maximum age of a document in the destination index. Documents
 	 * that are older than the configured value are removed from the destination
 	 * index.
-	 *
+	 * <p>
 	 * API name: {@code max_age}
 	 */
 	public JsonValue maxAge() {
@@ -102,7 +102,7 @@ public final class RetentionPolicy implements ToJsonp {
 
 		/**
 		 * The date field that is used to calculate the age of the document.
-		 *
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
@@ -114,7 +114,7 @@ public final class RetentionPolicy implements ToJsonp {
 		 * Specifies the maximum age of a document in the destination index. Documents
 		 * that are older than the configured value are removed from the destination
 		 * index.
-		 *
+		 * <p>
 		 * API name: {@code max_age}
 		 */
 		public Builder maxAge(JsonValue value) {

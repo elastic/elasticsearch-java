@@ -53,7 +53,7 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 
 	/**
 	 * Request body.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public Detector value() {
@@ -78,7 +78,7 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(Detector value) {
@@ -88,7 +88,7 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {

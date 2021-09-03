@@ -60,7 +60,6 @@ public final class SearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> 
 		/**
 		 * Serializer for TEvent. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TEvent> tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
 			this.tEventSerializer = value;

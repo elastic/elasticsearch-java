@@ -76,7 +76,7 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -86,7 +86,7 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code rollup_index}
 	 */
 	@Nullable
@@ -152,7 +152,7 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -162,7 +162,7 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code rollup_index}
 		 */
 		public Builder rollupIndex(@Nullable String value) {

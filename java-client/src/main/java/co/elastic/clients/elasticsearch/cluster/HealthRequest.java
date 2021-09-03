@@ -103,7 +103,7 @@ public final class HealthRequest extends RequestBase {
 	 * Comma-separated list of data streams, indices, and index aliases used to
 	 * limit the request. Wildcard expressions (*) are supported. To target all data
 	 * streams and indices in a cluster, omit this parameter or use _all or *.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -122,7 +122,7 @@ public final class HealthRequest extends RequestBase {
 	/**
 	 * Can be one of cluster, indices or shards. Controls the details level of the
 	 * health information returned.
-	 *
+	 * <p>
 	 * API name: {@code level}
 	 */
 	@Nullable
@@ -133,7 +133,7 @@ public final class HealthRequest extends RequestBase {
 	/**
 	 * If true, the request retrieves information from the local node only. Defaults
 	 * to false, which means information is retrieved from the master node.
-	 *
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -144,7 +144,7 @@ public final class HealthRequest extends RequestBase {
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -155,7 +155,7 @@ public final class HealthRequest extends RequestBase {
 	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -166,7 +166,7 @@ public final class HealthRequest extends RequestBase {
 	/**
 	 * A number controlling to how many active shards to wait for, all to wait for
 	 * all shards in the cluster to be active, or 0 to not wait.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -177,7 +177,7 @@ public final class HealthRequest extends RequestBase {
 	/**
 	 * Can be one of immediate, urgent, high, normal, low, languid. Wait until all
 	 * currently queued events with the given priority are processed.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_events}
 	 */
 	@Nullable
@@ -189,7 +189,7 @@ public final class HealthRequest extends RequestBase {
 	 * The request waits until the specified number N of nodes is available. It also
 	 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
 	 * ge(N), le(N), gt(N) and lt(N) notation.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_nodes}
 	 */
 	@Nullable
@@ -201,7 +201,7 @@ public final class HealthRequest extends RequestBase {
 	 * A boolean value which controls whether to wait (until the timeout provided)
 	 * for the cluster to have no shard initializations. Defaults to false, which
 	 * means it will not wait for initializing shards.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_no_initializing_shards}
 	 */
 	@Nullable
@@ -213,7 +213,7 @@ public final class HealthRequest extends RequestBase {
 	 * A boolean value which controls whether to wait (until the timeout provided)
 	 * for the cluster to have no shard relocations. Defaults to false, which means
 	 * it will not wait for relocating shards.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_no_relocating_shards}
 	 */
 	@Nullable
@@ -225,7 +225,7 @@ public final class HealthRequest extends RequestBase {
 	 * One of green, yellow or red. Will wait (until the timeout provided) until the
 	 * status of the cluster changes to the one provided or better, i.e. green &gt;
 	 * yellow &gt; red. By default, will not wait for any status.
-	 *
+	 * <p>
 	 * API name: {@code wait_for_status}
 	 */
 	@Nullable
@@ -279,7 +279,7 @@ public final class HealthRequest extends RequestBase {
 		 * Comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard expressions (*) are supported. To target all data
 		 * streams and indices in a cluster, omit this parameter or use _all or *.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -291,7 +291,7 @@ public final class HealthRequest extends RequestBase {
 		 * Comma-separated list of data streams, indices, and index aliases used to
 		 * limit the request. Wildcard expressions (*) are supported. To target all data
 		 * streams and indices in a cluster, omit this parameter or use _all or *.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -321,7 +321,7 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * Can be one of cluster, indices or shards. Controls the details level of the
 		 * health information returned.
-		 *
+		 * <p>
 		 * API name: {@code level}
 		 */
 		public Builder level(@Nullable JsonValue value) {
@@ -332,7 +332,7 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * If true, the request retrieves information from the local node only. Defaults
 		 * to false, which means information is retrieved from the master node.
-		 *
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -343,7 +343,7 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -354,7 +354,7 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * Period to wait for a response. If no response is received before the timeout
 		 * expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -365,7 +365,7 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * A number controlling to how many active shards to wait for, all to wait for
 		 * all shards in the cluster to be active, or 0 to not wait.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder waitForActiveShards(@Nullable JsonValue value) {
@@ -376,7 +376,7 @@ public final class HealthRequest extends RequestBase {
 		/**
 		 * Can be one of immediate, urgent, high, normal, low, languid. Wait until all
 		 * currently queued events with the given priority are processed.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_events}
 		 */
 		public Builder waitForEvents(@Nullable JsonValue value) {
@@ -388,7 +388,7 @@ public final class HealthRequest extends RequestBase {
 		 * The request waits until the specified number N of nodes is available. It also
 		 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
 		 * ge(N), le(N), gt(N) and lt(N) notation.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_nodes}
 		 */
 		public Builder waitForNodes(@Nullable String value) {
@@ -400,7 +400,7 @@ public final class HealthRequest extends RequestBase {
 		 * A boolean value which controls whether to wait (until the timeout provided)
 		 * for the cluster to have no shard initializations. Defaults to false, which
 		 * means it will not wait for initializing shards.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_no_initializing_shards}
 		 */
 		public Builder waitForNoInitializingShards(@Nullable Boolean value) {
@@ -412,7 +412,7 @@ public final class HealthRequest extends RequestBase {
 		 * A boolean value which controls whether to wait (until the timeout provided)
 		 * for the cluster to have no shard relocations. Defaults to false, which means
 		 * it will not wait for relocating shards.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_no_relocating_shards}
 		 */
 		public Builder waitForNoRelocatingShards(@Nullable Boolean value) {
@@ -424,7 +424,7 @@ public final class HealthRequest extends RequestBase {
 		 * One of green, yellow or red. Will wait (until the timeout provided) until the
 		 * status of the cluster changes to the one provided or better, i.e. green &gt;
 		 * yellow &gt; red. By default, will not wait for any status.
-		 *
+		 * <p>
 		 * API name: {@code wait_for_status}
 		 */
 		public Builder waitForStatus(@Nullable JsonValue value) {

@@ -73,7 +73,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	/**
 	 * Comma-separated list of index template names used to limit the request.
 	 * Wildcard (*) expressions are supported.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -84,7 +84,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	/**
 	 * If true, the request retrieves information from the local node only. Defaults
 	 * to false, which means information is retrieved from the master node.
-	 *
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -94,7 +94,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 	/**
 	 * If true, returns settings in flat format.
-	 *
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -104,7 +104,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 	/**
 	 * If true, a mapping type is expected in the body of mappings.
-	 *
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -115,7 +115,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -179,7 +179,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 		/**
 		 * Comma-separated list of index template names used to limit the request.
 		 * Wildcard (*) expressions are supported.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -190,7 +190,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 		/**
 		 * If true, the request retrieves information from the local node only. Defaults
 		 * to false, which means information is retrieved from the master node.
-		 *
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -200,7 +200,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 		/**
 		 * If true, returns settings in flat format.
-		 *
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -210,7 +210,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 		/**
 		 * If true, a mapping type is expected in the body of mappings.
-		 *
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
@@ -221,7 +221,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

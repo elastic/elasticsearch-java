@@ -58,7 +58,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding implements
 
 	/**
 	 * The resulting feature name.
-	 *
+	 * <p>
 	 * API name: {@code feature_name}
 	 */
 	public String featureName() {
@@ -75,7 +75,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding implements
 	/**
 	 * The resulting frequency map for the field value. If the field value is
 	 * missing from the frequency_map, the resulting value is 0.
-	 *
+	 * <p>
 	 * API name: {@code frequency_map}
 	 */
 	public Map<String, Number> frequencyMap() {
@@ -124,7 +124,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding implements
 
 		/**
 		 * The resulting feature name.
-		 *
+		 * <p>
 		 * API name: {@code feature_name}
 		 */
 		public Builder featureName(String value) {
@@ -143,7 +143,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding implements
 		/**
 		 * The resulting frequency map for the field value. If the field value is
 		 * missing from the frequency_map, the resulting value is 0.
-		 *
+		 * <p>
 		 * API name: {@code frequency_map}
 		 */
 		public Builder frequencyMap(Map<String, Number> value) {

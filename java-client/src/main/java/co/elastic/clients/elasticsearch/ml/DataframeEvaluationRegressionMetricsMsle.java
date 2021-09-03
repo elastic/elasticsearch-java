@@ -50,7 +50,7 @@ public final class DataframeEvaluationRegressionMetricsMsle implements ToJsonp {
 	/**
 	 * Defines the transition point at which you switch from minimizing quadratic
 	 * error to minimizing quadratic log error. Defaults to 1.
-	 *
+	 * <p>
 	 * API name: {@code offset}
 	 */
 	@Nullable
@@ -90,7 +90,7 @@ public final class DataframeEvaluationRegressionMetricsMsle implements ToJsonp {
 		/**
 		 * Defines the transition point at which you switch from minimizing quadratic
 		 * error to minimizing quadratic log error. Defaults to 1.
-		 *
+		 * <p>
 		 * API name: {@code offset}
 		 */
 		public Builder offset(@Nullable Number value) {

@@ -73,7 +73,7 @@ public final class CommandMoveAction implements ToJsonp {
 
 	/**
 	 * The node to move the shard from
-	 *
+	 * <p>
 	 * API name: {@code from_node}
 	 */
 	public String fromNode() {
@@ -82,7 +82,7 @@ public final class CommandMoveAction implements ToJsonp {
 
 	/**
 	 * The node to move the shard to
-	 *
+	 * <p>
 	 * API name: {@code to_node}
 	 */
 	public String toNode() {
@@ -146,7 +146,7 @@ public final class CommandMoveAction implements ToJsonp {
 
 		/**
 		 * The node to move the shard from
-		 *
+		 * <p>
 		 * API name: {@code from_node}
 		 */
 		public Builder fromNode(String value) {
@@ -156,7 +156,7 @@ public final class CommandMoveAction implements ToJsonp {
 
 		/**
 		 * The node to move the shard to
-		 *
+		 * <p>
 		 * API name: {@code to_node}
 		 */
 		public Builder toNode(String value) {

@@ -58,7 +58,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 	/**
 	 * The field of the index which contains the ground truth. The data type of this
 	 * field must be numerical.
-	 *
+	 * <p>
 	 * API name: {@code actual_field}
 	 */
 	public String actualField() {
@@ -68,7 +68,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 	/**
 	 * The field in the index that contains the predicted value, in other words the
 	 * results of the regression analysis.
-	 *
+	 * <p>
 	 * API name: {@code predicted_field}
 	 */
 	public String predictedField() {
@@ -79,7 +79,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 	 * Specifies the metrics that are used for the evaluation. For more information
 	 * on mse, msle, and huber, consult the Jupyter notebook on regression loss
 	 * functions.
-	 *
+	 * <p>
 	 * API name: {@code metrics}
 	 */
 	@Nullable
@@ -129,7 +129,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 		/**
 		 * The field of the index which contains the ground truth. The data type of this
 		 * field must be numerical.
-		 *
+		 * <p>
 		 * API name: {@code actual_field}
 		 */
 		public Builder actualField(String value) {
@@ -140,7 +140,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 		/**
 		 * The field in the index that contains the predicted value, in other words the
 		 * results of the regression analysis.
-		 *
+		 * <p>
 		 * API name: {@code predicted_field}
 		 */
 		public Builder predictedField(String value) {
@@ -152,7 +152,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 		 * Specifies the metrics that are used for the evaluation. For more information
 		 * on mse, msle, and huber, consult the Jupyter notebook on regression loss
 		 * functions.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(@Nullable DataframeEvaluationRegressionMetrics value) {
@@ -164,7 +164,7 @@ public final class DataframeEvaluationRegression implements ToJsonp {
 		 * Specifies the metrics that are used for the evaluation. For more information
 		 * on mse, msle, and huber, consult the Jupyter notebook on regression loss
 		 * functions.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(

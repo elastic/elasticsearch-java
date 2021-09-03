@@ -56,7 +56,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 
 	/**
 	 * Any templates that were superseded by the specified template.
-	 *
+	 * <p>
 	 * API name: {@code overlapping}
 	 */
 	@Nullable
@@ -67,7 +67,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 	/**
 	 * The settings, mappings, and aliases that would be applied to matching
 	 * indices.
-	 *
+	 * <p>
 	 * API name: {@code template}
 	 */
 	@Nullable
@@ -120,7 +120,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 
 		/**
 		 * Any templates that were superseded by the specified template.
-		 *
+		 * <p>
 		 * API name: {@code overlapping}
 		 */
 		public Builder overlapping(@Nullable List<OverlappingIndexTemplate> value) {
@@ -130,7 +130,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 
 		/**
 		 * Any templates that were superseded by the specified template.
-		 *
+		 * <p>
 		 * API name: {@code overlapping}
 		 */
 		public Builder overlapping(OverlappingIndexTemplate... value) {
@@ -168,7 +168,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 		/**
 		 * The settings, mappings, and aliases that would be applied to matching
 		 * indices.
-		 *
+		 * <p>
 		 * API name: {@code template}
 		 */
 		public Builder template(@Nullable TemplateMapping value) {
@@ -179,7 +179,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 		/**
 		 * The settings, mappings, and aliases that would be applied to matching
 		 * indices.
-		 *
+		 * <p>
 		 * API name: {@code template}
 		 */
 		public Builder template(Function<TemplateMapping.Builder, ObjectBuilder<TemplateMapping>> fn) {

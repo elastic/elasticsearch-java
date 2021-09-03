@@ -63,7 +63,7 @@ public final class GetOverallBucketsResponse implements ToJsonp {
 
 	/**
 	 * Array of overall bucket objects
-	 *
+	 * <p>
 	 * API name: {@code overall_buckets}
 	 */
 	public List<OverallBucket> overallBuckets() {
@@ -114,7 +114,7 @@ public final class GetOverallBucketsResponse implements ToJsonp {
 
 		/**
 		 * Array of overall bucket objects
-		 *
+		 * <p>
 		 * API name: {@code overall_buckets}
 		 */
 		public Builder overallBuckets(List<OverallBucket> value) {
@@ -124,7 +124,7 @@ public final class GetOverallBucketsResponse implements ToJsonp {
 
 		/**
 		 * Array of overall bucket objects
-		 *
+		 * <p>
 		 * API name: {@code overall_buckets}
 		 */
 		public Builder overallBuckets(OverallBucket... value) {

@@ -53,7 +53,7 @@ public final class RepositoriesResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<RepositoriesRecord> value() {
@@ -83,7 +83,7 @@ public final class RepositoriesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<RepositoriesRecord> value) {
@@ -93,7 +93,7 @@ public final class RepositoriesResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(RepositoriesRecord... value) {

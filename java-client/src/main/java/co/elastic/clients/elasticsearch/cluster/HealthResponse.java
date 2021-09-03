@@ -106,7 +106,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The number of active primary shards.
-	 *
+	 * <p>
 	 * API name: {@code active_primary_shards}
 	 */
 	public Number activePrimaryShards() {
@@ -115,7 +115,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The total number of active primary and replica shards.
-	 *
+	 * <p>
 	 * API name: {@code active_shards}
 	 */
 	public Number activeShards() {
@@ -124,7 +124,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The ratio of active shards in the cluster expressed as a percentage.
-	 *
+	 * <p>
 	 * API name: {@code active_shards_percent_as_number}
 	 */
 	public JsonValue activeShardsPercentAsNumber() {
@@ -133,7 +133,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The name of the cluster.
-	 *
+	 * <p>
 	 * API name: {@code cluster_name}
 	 */
 	public String clusterName() {
@@ -143,7 +143,7 @@ public final class HealthResponse implements ToJsonp {
 	/**
 	 * The number of shards whose allocation has been delayed by the timeout
 	 * settings.
-	 *
+	 * <p>
 	 * API name: {@code delayed_unassigned_shards}
 	 */
 	public Number delayedUnassignedShards() {
@@ -160,7 +160,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The number of shards that are under initialization.
-	 *
+	 * <p>
 	 * API name: {@code initializing_shards}
 	 */
 	public Number initializingShards() {
@@ -169,7 +169,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The number of nodes that are dedicated data nodes.
-	 *
+	 * <p>
 	 * API name: {@code number_of_data_nodes}
 	 */
 	public Number numberOfDataNodes() {
@@ -185,7 +185,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The number of nodes within the cluster.
-	 *
+	 * <p>
 	 * API name: {@code number_of_nodes}
 	 */
 	public Number numberOfNodes() {
@@ -194,7 +194,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The number of cluster-level changes that have not yet been executed.
-	 *
+	 * <p>
 	 * API name: {@code number_of_pending_tasks}
 	 */
 	public Number numberOfPendingTasks() {
@@ -203,7 +203,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The number of shards that are under relocation.
-	 *
+	 * <p>
 	 * API name: {@code relocating_shards}
 	 */
 	public Number relocatingShards() {
@@ -220,7 +220,7 @@ public final class HealthResponse implements ToJsonp {
 	/**
 	 * The time expressed in milliseconds since the earliest initiated task is
 	 * waiting for being performed.
-	 *
+	 * <p>
 	 * API name: {@code task_max_waiting_in_queue_millis}
 	 */
 	public JsonValue taskMaxWaitingInQueueMillis() {
@@ -230,7 +230,7 @@ public final class HealthResponse implements ToJsonp {
 	/**
 	 * If false the response returned within the period of time that is specified by
 	 * the timeout parameter (30s by default)
-	 *
+	 * <p>
 	 * API name: {@code timed_out}
 	 */
 	public Boolean timedOut() {
@@ -239,7 +239,7 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The number of shards that are not allocated.
-	 *
+	 * <p>
 	 * API name: {@code unassigned_shards}
 	 */
 	public Number unassignedShards() {
@@ -358,7 +358,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The number of active primary shards.
-		 *
+		 * <p>
 		 * API name: {@code active_primary_shards}
 		 */
 		public Builder activePrimaryShards(Number value) {
@@ -368,7 +368,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The total number of active primary and replica shards.
-		 *
+		 * <p>
 		 * API name: {@code active_shards}
 		 */
 		public Builder activeShards(Number value) {
@@ -378,7 +378,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The ratio of active shards in the cluster expressed as a percentage.
-		 *
+		 * <p>
 		 * API name: {@code active_shards_percent_as_number}
 		 */
 		public Builder activeShardsPercentAsNumber(JsonValue value) {
@@ -388,7 +388,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The name of the cluster.
-		 *
+		 * <p>
 		 * API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
@@ -399,7 +399,7 @@ public final class HealthResponse implements ToJsonp {
 		/**
 		 * The number of shards whose allocation has been delayed by the timeout
 		 * settings.
-		 *
+		 * <p>
 		 * API name: {@code delayed_unassigned_shards}
 		 */
 		public Builder delayedUnassignedShards(Number value) {
@@ -442,7 +442,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The number of shards that are under initialization.
-		 *
+		 * <p>
 		 * API name: {@code initializing_shards}
 		 */
 		public Builder initializingShards(Number value) {
@@ -452,7 +452,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The number of nodes that are dedicated data nodes.
-		 *
+		 * <p>
 		 * API name: {@code number_of_data_nodes}
 		 */
 		public Builder numberOfDataNodes(Number value) {
@@ -470,7 +470,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The number of nodes within the cluster.
-		 *
+		 * <p>
 		 * API name: {@code number_of_nodes}
 		 */
 		public Builder numberOfNodes(Number value) {
@@ -480,7 +480,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The number of cluster-level changes that have not yet been executed.
-		 *
+		 * <p>
 		 * API name: {@code number_of_pending_tasks}
 		 */
 		public Builder numberOfPendingTasks(Number value) {
@@ -490,7 +490,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The number of shards that are under relocation.
-		 *
+		 * <p>
 		 * API name: {@code relocating_shards}
 		 */
 		public Builder relocatingShards(Number value) {
@@ -509,7 +509,7 @@ public final class HealthResponse implements ToJsonp {
 		/**
 		 * The time expressed in milliseconds since the earliest initiated task is
 		 * waiting for being performed.
-		 *
+		 * <p>
 		 * API name: {@code task_max_waiting_in_queue_millis}
 		 */
 		public Builder taskMaxWaitingInQueueMillis(JsonValue value) {
@@ -520,7 +520,7 @@ public final class HealthResponse implements ToJsonp {
 		/**
 		 * If false the response returned within the period of time that is specified by
 		 * the timeout parameter (30s by default)
-		 *
+		 * <p>
 		 * API name: {@code timed_out}
 		 */
 		public Builder timedOut(Boolean value) {
@@ -530,7 +530,7 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The number of shards that are not allocated.
-		 *
+		 * <p>
 		 * API name: {@code unassigned_shards}
 		 */
 		public Builder unassignedShards(Number value) {

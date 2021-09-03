@@ -54,7 +54,7 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 	/**
 	 * Defines the destination index to store the results of the data frame
 	 * analytics job.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -64,7 +64,7 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 	/**
 	 * Defines the name of the field in which to store the results of the analysis.
 	 * Defaults to ml.
-	 *
+	 * <p>
 	 * API name: {@code results_field}
 	 */
 	@Nullable
@@ -109,7 +109,7 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 		/**
 		 * Defines the destination index to store the results of the data frame
 		 * analytics job.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -120,7 +120,7 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 		/**
 		 * Defines the name of the field in which to store the results of the analysis.
 		 * Defaults to ml.
-		 *
+		 * <p>
 		 * API name: {@code results_field}
 		 */
 		public Builder resultsField(@Nullable String value) {

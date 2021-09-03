@@ -109,9 +109,9 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * A comma-separated list of index names to search; use `_all` or empty string
-	 * to perform the operation on all indices
-	 *
+	 * A comma-separated list of index names to search; use <code>_all</code> or
+	 * empty string to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -122,7 +122,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	/**
 	 * A comma-separated list of document types to search; leave empty to perform
 	 * the operation on all types
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -204,7 +204,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 
 	/**
 	 * Request body.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<JsonValue> value() {
@@ -269,9 +269,9 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		private JsonpSerializer<TSource> tSourceSerializer;
 
 		/**
-		 * A comma-separated list of index names to search; use `_all` or empty string
-		 * to perform the operation on all indices
-		 *
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder<TSource> index(@Nullable String value) {
@@ -282,7 +282,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		/**
 		 * A comma-separated list of document types to search; leave empty to perform
 		 * the operation on all types
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder<TSource> type(@Nullable String value) {
@@ -402,7 +402,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder<TSource> value(List<JsonValue> value) {
@@ -412,7 +412,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder<TSource> value(JsonValue... value) {
@@ -434,7 +434,6 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		/**
 		 * Serializer for TSource. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TSource> tSourceSerializer(@Nullable JsonpSerializer<TSource> value) {
 			this.tSourceSerializer = value;

@@ -65,7 +65,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	/**
 	 * template name
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -75,7 +75,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	/**
 	 * template index patterns
-	 *
+	 * <p>
 	 * API name: {@code index_patterns}
 	 */
 	@Nullable
@@ -85,7 +85,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	/**
 	 * template application order/priority number
-	 *
+	 * <p>
 	 * API name: {@code order}
 	 */
 	@Nullable
@@ -95,7 +95,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	/**
 	 * version
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -105,7 +105,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 	/**
 	 * component templates comprising index template
-	 *
+	 * <p>
 	 * API name: {@code composed_of}
 	 */
 	@Nullable
@@ -180,7 +180,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * template name
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -190,7 +190,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * template index patterns
-		 *
+		 * <p>
 		 * API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(@Nullable String value) {
@@ -200,7 +200,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * template application order/priority number
-		 *
+		 * <p>
 		 * API name: {@code order}
 		 */
 		public Builder order(@Nullable String value) {
@@ -210,7 +210,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * version
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -220,7 +220,7 @@ public final class TemplatesRecord implements ToJsonp {
 
 		/**
 		 * component templates comprising index template
-		 *
+		 * <p>
 		 * API name: {@code composed_of}
 		 */
 		public Builder composedOf(@Nullable String value) {

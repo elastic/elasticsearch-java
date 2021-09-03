@@ -85,7 +85,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	/**
 	 * Identifier for the anomaly detection job.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -94,7 +94,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	/**
 	 * A numerical character string that uniquely identifies the model snapshot.
-	 *
+	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	@Nullable
@@ -104,7 +104,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	/**
 	 * If true, the results are sorted in descending order.
-	 *
+	 * <p>
 	 * API name: {@code desc}
 	 */
 	@Nullable
@@ -114,7 +114,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	/**
 	 * Skips the specified number of snapshots.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -124,7 +124,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	/**
 	 * Specifies the maximum number of snapshots to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -135,7 +135,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 	/**
 	 * Specifies the sort field for the requested snapshots. By default, the
 	 * snapshots are sorted by their timestamp.
-	 *
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	@Nullable
@@ -216,7 +216,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 		/**
 		 * Identifier for the anomaly detection job.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -226,7 +226,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 		/**
 		 * A numerical character string that uniquely identifies the model snapshot.
-		 *
+		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(@Nullable String value) {
@@ -236,7 +236,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 		/**
 		 * If true, the results are sorted in descending order.
-		 *
+		 * <p>
 		 * API name: {@code desc}
 		 */
 		public Builder desc(@Nullable Boolean value) {
@@ -246,7 +246,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 		/**
 		 * Skips the specified number of snapshots.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -256,7 +256,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 		/**
 		 * Specifies the maximum number of snapshots to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {
@@ -267,7 +267,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 		/**
 		 * Specifies the sort field for the requested snapshots. By default, the
 		 * snapshots are sorted by their timestamp.
-		 *
+		 * <p>
 		 * API name: {@code sort}
 		 */
 		public Builder sort(@Nullable String value) {

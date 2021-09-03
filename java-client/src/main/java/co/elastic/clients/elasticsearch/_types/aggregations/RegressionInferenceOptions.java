@@ -55,7 +55,7 @@ public final class RegressionInferenceOptions implements ToJsonp {
 	/**
 	 * The field that is added to incoming documents to contain the inference
 	 * prediction. Defaults to predicted_value.
-	 *
+	 * <p>
 	 * API name: {@code results_field}
 	 */
 	public String resultsField() {
@@ -65,7 +65,7 @@ public final class RegressionInferenceOptions implements ToJsonp {
 	/**
 	 * Specifies the maximum number of feature importance values per document. By
 	 * default, it is zero and no feature importance calculation occurs.
-	 *
+	 * <p>
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
@@ -110,7 +110,7 @@ public final class RegressionInferenceOptions implements ToJsonp {
 		/**
 		 * The field that is added to incoming documents to contain the inference
 		 * prediction. Defaults to predicted_value.
-		 *
+		 * <p>
 		 * API name: {@code results_field}
 		 */
 		public Builder resultsField(String value) {
@@ -121,7 +121,7 @@ public final class RegressionInferenceOptions implements ToJsonp {
 		/**
 		 * Specifies the maximum number of feature importance values per document. By
 		 * default, it is zero and no feature importance calculation occurs.
-		 *
+		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
 		public Builder numTopFeatureImportanceValues(@Nullable Number value) {

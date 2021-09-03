@@ -156,7 +156,7 @@ public final class NodeInfo implements ToJsonp {
 
 	/**
 	 * Short hash of the last git commit in this release.
-	 *
+	 * <p>
 	 * API name: {@code build_hash}
 	 */
 	public String buildHash() {
@@ -172,7 +172,7 @@ public final class NodeInfo implements ToJsonp {
 
 	/**
 	 * The node’s host name.
-	 *
+	 * <p>
 	 * API name: {@code host}
 	 */
 	public String host() {
@@ -189,7 +189,7 @@ public final class NodeInfo implements ToJsonp {
 
 	/**
 	 * The node’s IP address.
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	public String ip() {
@@ -206,7 +206,7 @@ public final class NodeInfo implements ToJsonp {
 
 	/**
 	 * The node's name
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -272,7 +272,7 @@ public final class NodeInfo implements ToJsonp {
 	 * Total heap allowed to be used to hold recently indexed documents before they
 	 * must be written to disk. This size is a shared pool across all shards on this
 	 * node, and is controlled by Indexing Buffer settings.
-	 *
+	 * <p>
 	 * API name: {@code total_indexing_buffer}
 	 */
 	@Nullable
@@ -282,7 +282,7 @@ public final class NodeInfo implements ToJsonp {
 
 	/**
 	 * Same as total_indexing_buffer, but expressed in bytes.
-	 *
+	 * <p>
 	 * API name: {@code total_indexing_buffer_in_bytes}
 	 */
 	@Nullable
@@ -300,7 +300,7 @@ public final class NodeInfo implements ToJsonp {
 
 	/**
 	 * Host and port where transport HTTP connections are accepted.
-	 *
+	 * <p>
 	 * API name: {@code transport_address}
 	 */
 	public String transportAddress() {
@@ -309,7 +309,7 @@ public final class NodeInfo implements ToJsonp {
 
 	/**
 	 * Elasticsearch version running on this node.
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	public String version() {
@@ -602,7 +602,7 @@ public final class NodeInfo implements ToJsonp {
 
 		/**
 		 * Short hash of the last git commit in this release.
-		 *
+		 * <p>
 		 * API name: {@code build_hash}
 		 */
 		public Builder buildHash(String value) {
@@ -620,7 +620,7 @@ public final class NodeInfo implements ToJsonp {
 
 		/**
 		 * The node’s host name.
-		 *
+		 * <p>
 		 * API name: {@code host}
 		 */
 		public Builder host(String value) {
@@ -645,7 +645,7 @@ public final class NodeInfo implements ToJsonp {
 
 		/**
 		 * The node’s IP address.
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(String value) {
@@ -670,7 +670,7 @@ public final class NodeInfo implements ToJsonp {
 
 		/**
 		 * The node's name
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -845,7 +845,7 @@ public final class NodeInfo implements ToJsonp {
 		 * Total heap allowed to be used to hold recently indexed documents before they
 		 * must be written to disk. This size is a shared pool across all shards on this
 		 * node, and is controlled by Indexing Buffer settings.
-		 *
+		 * <p>
 		 * API name: {@code total_indexing_buffer}
 		 */
 		public Builder totalIndexingBuffer(@Nullable Number value) {
@@ -855,7 +855,7 @@ public final class NodeInfo implements ToJsonp {
 
 		/**
 		 * Same as total_indexing_buffer, but expressed in bytes.
-		 *
+		 * <p>
 		 * API name: {@code total_indexing_buffer_in_bytes}
 		 */
 		public Builder totalIndexingBufferInBytes(@Nullable JsonValue value) {
@@ -880,7 +880,7 @@ public final class NodeInfo implements ToJsonp {
 
 		/**
 		 * Host and port where transport HTTP connections are accepted.
-		 *
+		 * <p>
 		 * API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {
@@ -890,7 +890,7 @@ public final class NodeInfo implements ToJsonp {
 
 		/**
 		 * Elasticsearch version running on this node.
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(String value) {

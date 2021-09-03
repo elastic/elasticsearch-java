@@ -54,7 +54,7 @@ public final class TimeSync implements ToJsonp {
 
 	/**
 	 * The time delay between the current time and the latest input data time.
-	 *
+	 * <p>
 	 * API name: {@code delay}
 	 */
 	@Nullable
@@ -64,7 +64,7 @@ public final class TimeSync implements ToJsonp {
 
 	/**
 	 * The date field that is used to identify new documents in the source.
-	 *
+	 * <p>
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -107,7 +107,7 @@ public final class TimeSync implements ToJsonp {
 
 		/**
 		 * The time delay between the current time and the latest input data time.
-		 *
+		 * <p>
 		 * API name: {@code delay}
 		 */
 		public Builder delay(@Nullable JsonValue value) {
@@ -117,7 +117,7 @@ public final class TimeSync implements ToJsonp {
 
 		/**
 		 * The date field that is used to identify new documents in the source.
-		 *
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(String value) {

@@ -67,7 +67,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 	 * Identifier for the data frame analytics job. This identifier can contain
 	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 	 * must start and end with alphanumeric characters.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -84,7 +84,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 
 	/**
 	 * If true, the data frame analytics job is stopped forcefully.
-	 *
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -95,7 +95,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Controls the amount of time to wait until the data frame analytics job stops.
 	 * Defaults to 20 seconds.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -124,7 +124,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 		 * Identifier for the data frame analytics job. This identifier can contain
 		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 		 * must start and end with alphanumeric characters.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -142,7 +142,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 
 		/**
 		 * If true, the data frame analytics job is stopped forcefully.
-		 *
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -153,7 +153,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 		/**
 		 * Controls the amount of time to wait until the data frame analytics job stops.
 		 * Defaults to 20 seconds.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

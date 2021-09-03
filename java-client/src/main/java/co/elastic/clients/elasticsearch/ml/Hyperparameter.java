@@ -67,7 +67,7 @@ public final class Hyperparameter implements ToJsonp {
 	 * A positive number showing how much the parameter influences the variation of
 	 * the loss function. For hyperparameters with values that are not specified by
 	 * the user but tuned during hyperparameter optimization.
-	 *
+	 * <p>
 	 * API name: {@code absolute_importance}
 	 */
 	@Nullable
@@ -77,7 +77,7 @@ public final class Hyperparameter implements ToJsonp {
 
 	/**
 	 * Name of the hyperparameter.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -89,7 +89,7 @@ public final class Hyperparameter implements ToJsonp {
 	 * of the loss function among all tuned hyperparameters. For hyperparameters
 	 * with values that are not specified by the user but tuned during
 	 * hyperparameter optimization.
-	 *
+	 * <p>
 	 * API name: {@code relative_importance}
 	 */
 	@Nullable
@@ -100,7 +100,7 @@ public final class Hyperparameter implements ToJsonp {
 	/**
 	 * Indicates if the hyperparameter is specified by the user (true) or optimized
 	 * (false).
-	 *
+	 * <p>
 	 * API name: {@code supplied}
 	 */
 	public Boolean supplied() {
@@ -109,7 +109,7 @@ public final class Hyperparameter implements ToJsonp {
 
 	/**
 	 * The value of the hyperparameter, either optimized or specified by the user.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public Number value() {
@@ -174,7 +174,7 @@ public final class Hyperparameter implements ToJsonp {
 		 * A positive number showing how much the parameter influences the variation of
 		 * the loss function. For hyperparameters with values that are not specified by
 		 * the user but tuned during hyperparameter optimization.
-		 *
+		 * <p>
 		 * API name: {@code absolute_importance}
 		 */
 		public Builder absoluteImportance(@Nullable Number value) {
@@ -184,7 +184,7 @@ public final class Hyperparameter implements ToJsonp {
 
 		/**
 		 * Name of the hyperparameter.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -197,7 +197,7 @@ public final class Hyperparameter implements ToJsonp {
 		 * of the loss function among all tuned hyperparameters. For hyperparameters
 		 * with values that are not specified by the user but tuned during
 		 * hyperparameter optimization.
-		 *
+		 * <p>
 		 * API name: {@code relative_importance}
 		 */
 		public Builder relativeImportance(@Nullable Number value) {
@@ -208,7 +208,7 @@ public final class Hyperparameter implements ToJsonp {
 		/**
 		 * Indicates if the hyperparameter is specified by the user (true) or optimized
 		 * (false).
-		 *
+		 * <p>
 		 * API name: {@code supplied}
 		 */
 		public Builder supplied(Boolean value) {
@@ -218,7 +218,7 @@ public final class Hyperparameter implements ToJsonp {
 
 		/**
 		 * The value of the hyperparameter, either optimized or specified by the user.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(Number value) {

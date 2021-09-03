@@ -109,7 +109,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * the id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -119,7 +119,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * analysis type
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -129,7 +129,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * job creation time
-	 *
+	 * <p>
 	 * API name: {@code create_time}
 	 */
 	@Nullable
@@ -139,7 +139,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * the version of Elasticsearch when the analytics was created
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -149,7 +149,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * source index
-	 *
+	 * <p>
 	 * API name: {@code source_index}
 	 */
 	@Nullable
@@ -159,7 +159,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * destination index
-	 *
+	 * <p>
 	 * API name: {@code dest_index}
 	 */
 	@Nullable
@@ -169,7 +169,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * description
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -179,7 +179,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * model memory limit
-	 *
+	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
@@ -189,7 +189,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * job state
-	 *
+	 * <p>
 	 * API name: {@code state}
 	 */
 	@Nullable
@@ -199,7 +199,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * failure reason
-	 *
+	 * <p>
 	 * API name: {@code failure_reason}
 	 */
 	@Nullable
@@ -209,7 +209,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * progress
-	 *
+	 * <p>
 	 * API name: {@code progress}
 	 */
 	@Nullable
@@ -219,7 +219,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * why the job is or is not assigned to a node
-	 *
+	 * <p>
 	 * API name: {@code assignment_explanation}
 	 */
 	@Nullable
@@ -229,7 +229,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * id of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.id}
 	 */
 	@Nullable
@@ -239,7 +239,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * name of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.name}
 	 */
 	@Nullable
@@ -249,7 +249,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * ephemeral id of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.ephemeral_id}
 	 */
 	@Nullable
@@ -259,7 +259,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 	/**
 	 * network address of the assigned node
-	 *
+	 * <p>
 	 * API name: {@code node.address}
 	 */
 	@Nullable
@@ -433,7 +433,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * the id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -443,7 +443,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * analysis type
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -453,7 +453,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * job creation time
-		 *
+		 * <p>
 		 * API name: {@code create_time}
 		 */
 		public Builder createTime(@Nullable String value) {
@@ -463,7 +463,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * the version of Elasticsearch when the analytics was created
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -473,7 +473,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * source index
-		 *
+		 * <p>
 		 * API name: {@code source_index}
 		 */
 		public Builder sourceIndex(@Nullable String value) {
@@ -483,7 +483,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * destination index
-		 *
+		 * <p>
 		 * API name: {@code dest_index}
 		 */
 		public Builder destIndex(@Nullable String value) {
@@ -493,7 +493,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * description
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -503,7 +503,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * model memory limit
-		 *
+		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
 		public Builder modelMemoryLimit(@Nullable String value) {
@@ -513,7 +513,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * job state
-		 *
+		 * <p>
 		 * API name: {@code state}
 		 */
 		public Builder state(@Nullable String value) {
@@ -523,7 +523,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * failure reason
-		 *
+		 * <p>
 		 * API name: {@code failure_reason}
 		 */
 		public Builder failureReason(@Nullable String value) {
@@ -533,7 +533,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * progress
-		 *
+		 * <p>
 		 * API name: {@code progress}
 		 */
 		public Builder progress(@Nullable String value) {
@@ -543,7 +543,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * why the job is or is not assigned to a node
-		 *
+		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
 		public Builder assignmentExplanation(@Nullable String value) {
@@ -553,7 +553,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * id of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.id}
 		 */
 		public Builder node_id(@Nullable String value) {
@@ -563,7 +563,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * name of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.name}
 		 */
 		public Builder node_name(@Nullable String value) {
@@ -573,7 +573,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * ephemeral id of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
 		public Builder node_ephemeralId(@Nullable String value) {
@@ -583,7 +583,7 @@ public final class DataFrameAnalyticsRecord implements ToJsonp {
 
 		/**
 		 * network address of the assigned node
-		 *
+		 * <p>
 		 * API name: {@code node.address}
 		 */
 		public Builder node_address(@Nullable String value) {

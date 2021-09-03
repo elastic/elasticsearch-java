@@ -53,7 +53,7 @@ public final class SegmentsResponse implements ToJsonp {
 
 	/**
 	 * Response value.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public List<SegmentsRecord> value() {
@@ -83,7 +83,7 @@ public final class SegmentsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(List<SegmentsRecord> value) {
@@ -93,7 +93,7 @@ public final class SegmentsResponse implements ToJsonp {
 
 		/**
 		 * Response value.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(SegmentsRecord... value) {

@@ -98,7 +98,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * unique snapshot
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -108,7 +108,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * repository name
-	 *
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -118,7 +118,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * snapshot name
-	 *
+	 * <p>
 	 * API name: {@code status}
 	 */
 	@Nullable
@@ -128,7 +128,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * start time in seconds since 1970-01-01 00:00:00
-	 *
+	 * <p>
 	 * API name: {@code start_epoch}
 	 */
 	@Nullable
@@ -138,7 +138,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * start time in HH:MM:SS
-	 *
+	 * <p>
 	 * API name: {@code start_time}
 	 */
 	@Nullable
@@ -148,7 +148,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * end time in seconds since 1970-01-01 00:00:00
-	 *
+	 * <p>
 	 * API name: {@code end_epoch}
 	 */
 	@Nullable
@@ -158,7 +158,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * end time in HH:MM:SS
-	 *
+	 * <p>
 	 * API name: {@code end_time}
 	 */
 	@Nullable
@@ -168,7 +168,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * duration
-	 *
+	 * <p>
 	 * API name: {@code duration}
 	 */
 	@Nullable
@@ -178,7 +178,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * number of indices
-	 *
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	@Nullable
@@ -188,7 +188,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * number of successful shards
-	 *
+	 * <p>
 	 * API name: {@code successful_shards}
 	 */
 	@Nullable
@@ -198,7 +198,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * number of failed shards
-	 *
+	 * <p>
 	 * API name: {@code failed_shards}
 	 */
 	@Nullable
@@ -208,7 +208,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * number of total shards
-	 *
+	 * <p>
 	 * API name: {@code total_shards}
 	 */
 	@Nullable
@@ -218,7 +218,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * reason for failures
-	 *
+	 * <p>
 	 * API name: {@code reason}
 	 */
 	@Nullable
@@ -365,7 +365,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * unique snapshot
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -375,7 +375,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * repository name
-		 *
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable String value) {
@@ -385,7 +385,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * snapshot name
-		 *
+		 * <p>
 		 * API name: {@code status}
 		 */
 		public Builder status(@Nullable String value) {
@@ -395,7 +395,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * start time in seconds since 1970-01-01 00:00:00
-		 *
+		 * <p>
 		 * API name: {@code start_epoch}
 		 */
 		public Builder startEpoch(@Nullable JsonValue value) {
@@ -405,7 +405,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * start time in HH:MM:SS
-		 *
+		 * <p>
 		 * API name: {@code start_time}
 		 */
 		public Builder startTime(@Nullable String value) {
@@ -415,7 +415,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * end time in seconds since 1970-01-01 00:00:00
-		 *
+		 * <p>
 		 * API name: {@code end_epoch}
 		 */
 		public Builder endEpoch(@Nullable JsonValue value) {
@@ -425,7 +425,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * end time in HH:MM:SS
-		 *
+		 * <p>
 		 * API name: {@code end_time}
 		 */
 		public Builder endTime(@Nullable String value) {
@@ -435,7 +435,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * duration
-		 *
+		 * <p>
 		 * API name: {@code duration}
 		 */
 		public Builder duration(@Nullable JsonValue value) {
@@ -445,7 +445,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * number of indices
-		 *
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(@Nullable String value) {
@@ -455,7 +455,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * number of successful shards
-		 *
+		 * <p>
 		 * API name: {@code successful_shards}
 		 */
 		public Builder successfulShards(@Nullable String value) {
@@ -465,7 +465,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * number of failed shards
-		 *
+		 * <p>
 		 * API name: {@code failed_shards}
 		 */
 		public Builder failedShards(@Nullable String value) {
@@ -475,7 +475,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * number of total shards
-		 *
+		 * <p>
 		 * API name: {@code total_shards}
 		 */
 		public Builder totalShards(@Nullable String value) {
@@ -485,7 +485,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * reason for failures
-		 *
+		 * <p>
 		 * API name: {@code reason}
 		 */
 		public Builder reason(@Nullable String value) {

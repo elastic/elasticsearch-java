@@ -58,8 +58,10 @@ public class AutoscalingAsyncClient extends ApiClient<AutoscalingAsyncClient> {
 	/**
 	 * Deletes an autoscaling policy. Designed for indirect use by ECE/ESS and ECK.
 	 * Direct use is not supported.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-delete-autoscaling-policy.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-delete-autoscaling-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PolicyDeleteResponse> deleteAutoscalingPolicy(PolicyDeleteRequest request)
@@ -70,12 +72,14 @@ public class AutoscalingAsyncClient extends ApiClient<AutoscalingAsyncClient> {
 	/**
 	 * Deletes an autoscaling policy. Designed for indirect use by ECE/ESS and ECK.
 	 * Direct use is not supported.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-delete-autoscaling-policy.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-delete-autoscaling-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PolicyDeleteResponse> deleteAutoscalingPolicy(
@@ -89,8 +93,10 @@ public class AutoscalingAsyncClient extends ApiClient<AutoscalingAsyncClient> {
 	 * Gets the current autoscaling capacity based on the configured autoscaling
 	 * policy. Designed for indirect use by ECE/ESS and ECK. Direct use is not
 	 * supported.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CapacityGetResponse> getAutoscalingCapacity(CapacityGetRequest request)
@@ -102,12 +108,14 @@ public class AutoscalingAsyncClient extends ApiClient<AutoscalingAsyncClient> {
 	 * Gets the current autoscaling capacity based on the configured autoscaling
 	 * policy. Designed for indirect use by ECE/ESS and ECK. Direct use is not
 	 * supported.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CapacityGetResponse> getAutoscalingCapacity(
@@ -120,8 +128,10 @@ public class AutoscalingAsyncClient extends ApiClient<AutoscalingAsyncClient> {
 	/**
 	 * Retrieves an autoscaling policy. Designed for indirect use by ECE/ESS and
 	 * ECK. Direct use is not supported.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-policy.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PolicyGetResponse> getAutoscalingPolicy(PolicyGetRequest request) throws IOException {
@@ -131,12 +141,14 @@ public class AutoscalingAsyncClient extends ApiClient<AutoscalingAsyncClient> {
 	/**
 	 * Retrieves an autoscaling policy. Designed for indirect use by ECE/ESS and
 	 * ECK. Direct use is not supported.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-policy.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PolicyGetResponse> getAutoscalingPolicy(
@@ -149,8 +161,10 @@ public class AutoscalingAsyncClient extends ApiClient<AutoscalingAsyncClient> {
 	/**
 	 * Creates a new autoscaling policy. Designed for indirect use by ECE/ESS and
 	 * ECK. Direct use is not supported.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-put-autoscaling-policy.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-put-autoscaling-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PolicyPutResponse> putAutoscalingPolicy(PolicyPutRequest request) throws IOException {
@@ -160,12 +174,14 @@ public class AutoscalingAsyncClient extends ApiClient<AutoscalingAsyncClient> {
 	/**
 	 * Creates a new autoscaling policy. Designed for indirect use by ECE/ESS and
 	 * ECK. Direct use is not supported.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-put-autoscaling-policy.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-put-autoscaling-policy.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PolicyPutResponse> putAutoscalingPolicy(

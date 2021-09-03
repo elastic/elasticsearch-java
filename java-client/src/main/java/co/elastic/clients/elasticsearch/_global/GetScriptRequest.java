@@ -63,7 +63,7 @@ public final class GetScriptRequest extends RequestBase {
 
 	/**
 	 * Specify timeout for connection to master
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -92,7 +92,7 @@ public final class GetScriptRequest extends RequestBase {
 
 		/**
 		 * Specify timeout for connection to master
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

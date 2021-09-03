@@ -102,7 +102,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * seconds since 1969-01-01 00:00:00
-	 *
+	 * <p>
 	 * API name: {@code epoch}
 	 */
 	@Nullable
@@ -112,7 +112,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * time in HH:MM:SS
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
@@ -122,7 +122,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * cluster name
-	 *
+	 * <p>
 	 * API name: {@code cluster}
 	 */
 	@Nullable
@@ -132,7 +132,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * health status
-	 *
+	 * <p>
 	 * API name: {@code status}
 	 */
 	@Nullable
@@ -142,7 +142,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * total number of nodes
-	 *
+	 * <p>
 	 * API name: {@code node.total}
 	 */
 	@Nullable
@@ -152,7 +152,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * number of nodes that can store data
-	 *
+	 * <p>
 	 * API name: {@code node.data}
 	 */
 	@Nullable
@@ -162,7 +162,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * total number of shards
-	 *
+	 * <p>
 	 * API name: {@code shards}
 	 */
 	@Nullable
@@ -172,7 +172,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * number of primary shards
-	 *
+	 * <p>
 	 * API name: {@code pri}
 	 */
 	@Nullable
@@ -182,7 +182,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * number of relocating nodes
-	 *
+	 * <p>
 	 * API name: {@code relo}
 	 */
 	@Nullable
@@ -192,7 +192,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * number of initializing nodes
-	 *
+	 * <p>
 	 * API name: {@code init}
 	 */
 	@Nullable
@@ -202,7 +202,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * number of unassigned shards
-	 *
+	 * <p>
 	 * API name: {@code unassign}
 	 */
 	@Nullable
@@ -212,7 +212,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * number of pending tasks
-	 *
+	 * <p>
 	 * API name: {@code pending_tasks}
 	 */
 	@Nullable
@@ -222,7 +222,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * wait time of longest task pending
-	 *
+	 * <p>
 	 * API name: {@code max_task_wait_time}
 	 */
 	@Nullable
@@ -232,7 +232,7 @@ public final class HealthRecord implements ToJsonp {
 
 	/**
 	 * active number of shards in percent
-	 *
+	 * <p>
 	 * API name: {@code active_shards_percent}
 	 */
 	@Nullable
@@ -388,7 +388,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * seconds since 1969-01-01 00:00:00
-		 *
+		 * <p>
 		 * API name: {@code epoch}
 		 */
 		public Builder epoch(@Nullable JsonValue value) {
@@ -398,7 +398,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * time in HH:MM:SS
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(@Nullable String value) {
@@ -408,7 +408,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * cluster name
-		 *
+		 * <p>
 		 * API name: {@code cluster}
 		 */
 		public Builder cluster(@Nullable String value) {
@@ -418,7 +418,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * health status
-		 *
+		 * <p>
 		 * API name: {@code status}
 		 */
 		public Builder status(@Nullable String value) {
@@ -428,7 +428,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * total number of nodes
-		 *
+		 * <p>
 		 * API name: {@code node.total}
 		 */
 		public Builder node_total(@Nullable String value) {
@@ -438,7 +438,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * number of nodes that can store data
-		 *
+		 * <p>
 		 * API name: {@code node.data}
 		 */
 		public Builder node_data(@Nullable String value) {
@@ -448,7 +448,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * total number of shards
-		 *
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(@Nullable String value) {
@@ -458,7 +458,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * number of primary shards
-		 *
+		 * <p>
 		 * API name: {@code pri}
 		 */
 		public Builder pri(@Nullable String value) {
@@ -468,7 +468,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * number of relocating nodes
-		 *
+		 * <p>
 		 * API name: {@code relo}
 		 */
 		public Builder relo(@Nullable String value) {
@@ -478,7 +478,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * number of initializing nodes
-		 *
+		 * <p>
 		 * API name: {@code init}
 		 */
 		public Builder init(@Nullable String value) {
@@ -488,7 +488,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * number of unassigned shards
-		 *
+		 * <p>
 		 * API name: {@code unassign}
 		 */
 		public Builder unassign(@Nullable String value) {
@@ -498,7 +498,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * number of pending tasks
-		 *
+		 * <p>
 		 * API name: {@code pending_tasks}
 		 */
 		public Builder pendingTasks(@Nullable String value) {
@@ -508,7 +508,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * wait time of longest task pending
-		 *
+		 * <p>
 		 * API name: {@code max_task_wait_time}
 		 */
 		public Builder maxTaskWaitTime(@Nullable String value) {
@@ -518,7 +518,7 @@ public final class HealthRecord implements ToJsonp {
 
 		/**
 		 * active number of shards in percent
-		 *
+		 * <p>
 		 * API name: {@code active_shards_percent}
 		 */
 		public Builder activeShardsPercent(@Nullable String value) {

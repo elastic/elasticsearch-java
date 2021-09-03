@@ -57,7 +57,7 @@ public final class GeoIpStatsResponse implements ToJsonp {
 
 	/**
 	 * Download statistics for all GeoIP2 databases.
-	 *
+	 * <p>
 	 * API name: {@code stats}
 	 */
 	public GeoIpDownloadStatistics stats() {
@@ -66,7 +66,7 @@ public final class GeoIpStatsResponse implements ToJsonp {
 
 	/**
 	 * Downloaded GeoIP2 databases for each node.
-	 *
+	 * <p>
 	 * API name: {@code nodes}
 	 */
 	public Map<String, GeoIpNodeDatabases> nodes() {
@@ -110,7 +110,7 @@ public final class GeoIpStatsResponse implements ToJsonp {
 
 		/**
 		 * Download statistics for all GeoIP2 databases.
-		 *
+		 * <p>
 		 * API name: {@code stats}
 		 */
 		public Builder stats(GeoIpDownloadStatistics value) {
@@ -120,7 +120,7 @@ public final class GeoIpStatsResponse implements ToJsonp {
 
 		/**
 		 * Download statistics for all GeoIP2 databases.
-		 *
+		 * <p>
 		 * API name: {@code stats}
 		 */
 		public Builder stats(Function<GeoIpDownloadStatistics.Builder, ObjectBuilder<GeoIpDownloadStatistics>> fn) {
@@ -129,7 +129,7 @@ public final class GeoIpStatsResponse implements ToJsonp {
 
 		/**
 		 * Downloaded GeoIP2 databases for each node.
-		 *
+		 * <p>
 		 * API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, GeoIpNodeDatabases> value) {

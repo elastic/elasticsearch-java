@@ -76,7 +76,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	/**
 	 * If true, returns information about disk usage and shard sizes.
-	 *
+	 * <p>
 	 * API name: {@code include_disk_info}
 	 */
 	@Nullable
@@ -86,7 +86,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	/**
 	 * If true, returns YES decisions in explanation.
-	 *
+	 * <p>
 	 * API name: {@code include_yes_decisions}
 	 */
 	@Nullable
@@ -97,7 +97,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 	/**
 	 * Specifies the node ID or the name of the node to only explain a shard that is
 	 * currently located on the specified node.
-	 *
+	 * <p>
 	 * API name: {@code current_node}
 	 */
 	@Nullable
@@ -107,7 +107,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	/**
 	 * Specifies the name of the index that you would like an explanation for.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -117,7 +117,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	/**
 	 * If true, returns explanation for the primary shard for the given shard ID.
-	 *
+	 * <p>
 	 * API name: {@code primary}
 	 */
 	@Nullable
@@ -127,7 +127,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 	/**
 	 * Specifies the ID of the shard that you would like an explanation for.
-	 *
+	 * <p>
 	 * API name: {@code shard}
 	 */
 	@Nullable
@@ -199,7 +199,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 		/**
 		 * If true, returns information about disk usage and shard sizes.
-		 *
+		 * <p>
 		 * API name: {@code include_disk_info}
 		 */
 		public Builder includeDiskInfo(@Nullable Boolean value) {
@@ -209,7 +209,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 		/**
 		 * If true, returns YES decisions in explanation.
-		 *
+		 * <p>
 		 * API name: {@code include_yes_decisions}
 		 */
 		public Builder includeYesDecisions(@Nullable Boolean value) {
@@ -220,7 +220,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 		/**
 		 * Specifies the node ID or the name of the node to only explain a shard that is
 		 * currently located on the specified node.
-		 *
+		 * <p>
 		 * API name: {@code current_node}
 		 */
 		public Builder currentNode(@Nullable String value) {
@@ -230,7 +230,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 		/**
 		 * Specifies the name of the index that you would like an explanation for.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -240,7 +240,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 		/**
 		 * If true, returns explanation for the primary shard for the given shard ID.
-		 *
+		 * <p>
 		 * API name: {@code primary}
 		 */
 		public Builder primary(@Nullable Boolean value) {
@@ -250,7 +250,7 @@ public final class AllocationExplainRequest extends RequestBase implements ToJso
 
 		/**
 		 * Specifies the ID of the shard that you would like an explanation for.
-		 *
+		 * <p>
 		 * API name: {@code shard}
 		 */
 		public Builder shard(@Nullable Number value) {

@@ -50,7 +50,7 @@ public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeE
 
 	/**
 	 * Accuracy of predictions (per-class and overall).
-	 *
+	 * <p>
 	 * API name: {@code confusion_matrix}
 	 */
 	@Nullable
@@ -88,7 +88,7 @@ public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeE
 
 		/**
 		 * Accuracy of predictions (per-class and overall).
-		 *
+		 * <p>
 		 * API name: {@code confusion_matrix}
 		 */
 		public Builder confusionMatrix(@Nullable Map<String, JsonValue> value) {

@@ -72,7 +72,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 	 * Name of the index template to simulate. To test a template configuration
 	 * before you add it to the cluster, omit this parameter and specify the
 	 * template configuration in the request body.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -85,7 +85,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 	 * templates match the same index patterns. If false, the simulation uses the
 	 * template with the highest priority. Note that the template is not permanently
 	 * added or updated in either case; it is only used for the simulation.
-	 *
+	 * <p>
 	 * API name: {@code create}
 	 */
 	@Nullable
@@ -96,7 +96,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -106,7 +106,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 
 	/**
 	 * Request body.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public IndexTemplate value() {
@@ -142,7 +142,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 		 * Name of the index template to simulate. To test a template configuration
 		 * before you add it to the cluster, omit this parameter and specify the
 		 * template configuration in the request body.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -155,7 +155,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 		 * templates match the same index patterns. If false, the simulation uses the
 		 * template with the highest priority. Note that the template is not permanently
 		 * added or updated in either case; it is only used for the simulation.
-		 *
+		 * <p>
 		 * API name: {@code create}
 		 */
 		public Builder create(@Nullable Boolean value) {
@@ -166,7 +166,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -176,7 +176,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(IndexTemplate value) {
@@ -186,7 +186,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 
 		/**
 		 * Request body.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {

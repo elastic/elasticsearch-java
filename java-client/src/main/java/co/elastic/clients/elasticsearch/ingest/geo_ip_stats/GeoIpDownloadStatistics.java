@@ -61,7 +61,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 	/**
 	 * Total number of successful database downloads.
-	 *
+	 * <p>
 	 * API name: {@code successful_downloads}
 	 */
 	public Number successfulDownloads() {
@@ -70,7 +70,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 	/**
 	 * Total number of failed database downloads.
-	 *
+	 * <p>
 	 * API name: {@code failed_downloads}
 	 */
 	public Number failedDownloads() {
@@ -79,7 +79,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 	/**
 	 * Total milliseconds spent downloading databases.
-	 *
+	 * <p>
 	 * API name: {@code total_download_time}
 	 */
 	public Number totalDownloadTime() {
@@ -88,7 +88,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 	/**
 	 * Current number of databases available for use.
-	 *
+	 * <p>
 	 * API name: {@code database_count}
 	 */
 	public Number databaseCount() {
@@ -97,7 +97,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 	/**
 	 * Total number of database updates skipped.
-	 *
+	 * <p>
 	 * API name: {@code skipped_updates}
 	 */
 	public Number skippedUpdates() {
@@ -150,7 +150,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 		/**
 		 * Total number of successful database downloads.
-		 *
+		 * <p>
 		 * API name: {@code successful_downloads}
 		 */
 		public Builder successfulDownloads(Number value) {
@@ -160,7 +160,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 		/**
 		 * Total number of failed database downloads.
-		 *
+		 * <p>
 		 * API name: {@code failed_downloads}
 		 */
 		public Builder failedDownloads(Number value) {
@@ -170,7 +170,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 		/**
 		 * Total milliseconds spent downloading databases.
-		 *
+		 * <p>
 		 * API name: {@code total_download_time}
 		 */
 		public Builder totalDownloadTime(Number value) {
@@ -180,7 +180,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 		/**
 		 * Current number of databases available for use.
-		 *
+		 * <p>
 		 * API name: {@code database_count}
 		 */
 		public Builder databaseCount(Number value) {
@@ -190,7 +190,7 @@ public final class GeoIpDownloadStatistics implements ToJsonp {
 
 		/**
 		 * Total number of database updates skipped.
-		 *
+		 * <p>
 		 * API name: {@code skipped_updates}
 		 */
 		public Builder skippedUpdates(Number value) {
