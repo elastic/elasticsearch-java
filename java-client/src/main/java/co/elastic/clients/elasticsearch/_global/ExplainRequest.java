@@ -55,9 +55,6 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	private final String index;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final String analyzer;
 
 	@Nullable
@@ -79,7 +76,7 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	private final String queryOnQueryString;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue source;
@@ -105,7 +102,6 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.type = builder.type;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.defaultOperator = builder.defaultOperator;
@@ -124,6 +120,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The document ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -131,6 +129,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the index
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -138,14 +138,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
+	 * The analyzer for the query string query
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -154,6 +148,9 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether wildcards and prefix queries in the query string query should
+	 * be analyzed (default: false)
+	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
@@ -162,6 +159,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The default operator for query string query (AND or OR)
+	 * <p>
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
@@ -170,6 +169,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The default field for query string query (default: _all)
+	 * <p>
 	 * API name: {@code df}
 	 */
 	@Nullable
@@ -178,6 +179,9 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether format-based query failures (such as providing text to a
+	 * numeric field) should be ignored
+	 * <p>
 	 * API name: {@code lenient}
 	 */
 	@Nullable
@@ -186,6 +190,9 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -202,14 +209,19 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specific routing value
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * True or false to return the _source field or not, or a list of fields to
+	 * return
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
@@ -218,6 +230,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of fields to exclude from the returned _source field
+	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
@@ -226,6 +240,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of fields to extract and return from the _source field
+	 * <p>
 	 * API name: {@code _source_includes}
 	 */
 	@Nullable
@@ -234,6 +250,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of stored fields to return in the response
+	 * <p>
 	 * API name: {@code stored_fields}
 	 */
 	@Nullable
@@ -242,6 +260,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Query in the Lucene query string syntax
+	 * <p>
 	 * API name: {@code q}
 	 */
 	@Nullable
@@ -288,9 +308,6 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		private String index;
 
 		@Nullable
-		private String type;
-
-		@Nullable
 		private String analyzer;
 
 		@Nullable
@@ -312,7 +329,7 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		private String queryOnQueryString;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue source;
@@ -333,6 +350,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		private QueryContainer query;
 
 		/**
+		 * The document ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -341,6 +360,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The name of the index
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -349,14 +370,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
+		 * The analyzer for the query string query
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public Builder analyzer(@Nullable String value) {
@@ -365,6 +380,9 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether wildcards and prefix queries in the query string query should
+		 * be analyzed (default: false)
+		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
 		public Builder analyzeWildcard(@Nullable Boolean value) {
@@ -373,6 +391,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The default operator for query string query (AND or OR)
+		 * <p>
 		 * API name: {@code default_operator}
 		 */
 		public Builder defaultOperator(@Nullable JsonValue value) {
@@ -381,6 +401,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The default field for query string query (default: _all)
+		 * <p>
 		 * API name: {@code df}
 		 */
 		public Builder df(@Nullable String value) {
@@ -389,6 +411,9 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether format-based query failures (such as providing text to a
+		 * numeric field) should be ignored
+		 * <p>
 		 * API name: {@code lenient}
 		 */
 		public Builder lenient(@Nullable Boolean value) {
@@ -397,6 +422,9 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -413,14 +441,19 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specific routing value
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public Builder source(@Nullable JsonValue value) {
@@ -429,6 +462,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(@Nullable List<String> value) {
@@ -437,6 +472,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(String... value) {
@@ -456,6 +493,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to extract and return from the _source field
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(@Nullable List<String> value) {
@@ -464,6 +503,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to extract and return from the _source field
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(String... value) {
@@ -483,6 +524,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of stored fields to return in the response
+		 * <p>
 		 * API name: {@code stored_fields}
 		 */
 		public Builder storedFields(@Nullable List<String> value) {
@@ -491,6 +534,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of stored fields to return in the response
+		 * <p>
 		 * API name: {@code stored_fields}
 		 */
 		public Builder storedFields(String... value) {
@@ -510,6 +555,8 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Query in the Lucene query string syntax
+		 * <p>
 		 * API name: {@code q}
 		 */
 		public Builder q(@Nullable String value) {
@@ -574,7 +621,6 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 			request -> {
 				final int _id = 1 << 0;
 				final int _index = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
@@ -582,8 +628,6 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 					propsSet |= _id;
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -592,17 +636,6 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 					buf.append("/_explain");
 					buf.append("/");
 					buf.append(request.id);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index);
-					buf.append("/");
-					buf.append(request.type);
-					buf.append("/");
-					buf.append(request.id);
-					buf.append("/_explain");
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");
@@ -634,7 +667,7 @@ public final class ExplainRequest extends RequestBase implements ToJsonp {
 					params.put("query_on_query_string", request.queryOnQueryString);
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.source != null) {
 					params.put("_source", request.source.toString());

@@ -49,6 +49,9 @@ public final class DeleteDataStreamRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of data streams to delete; use <code>*</code> to
+	 * delete all data streams
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -64,6 +67,9 @@ public final class DeleteDataStreamRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * A comma-separated list of data streams to delete; use <code>*</code> to
+		 * delete all data streams
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {

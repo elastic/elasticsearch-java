@@ -36,26 +36,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_api_key_cache.Request
 public final class ClearApiKeyCacheRequest extends RequestBase {
-	@Nullable
 	private final List<String> ids;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ClearApiKeyCacheRequest(Builder builder) {
 
-		this.ids = builder.ids;
+		this.ids = Objects.requireNonNull(builder.ids, "ids");
 
 	}
 
 	/**
+	 * A comma-separated list of IDs of API keys to clear from the cache
+	 * <p>
 	 * API name: {@code ids}
 	 */
-	@Nullable
 	public List<String> ids() {
 		return this.ids;
 	}
@@ -66,18 +67,21 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 	 * Builder for {@link ClearApiKeyCacheRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ClearApiKeyCacheRequest> {
-		@Nullable
 		private List<String> ids;
 
 		/**
+		 * A comma-separated list of IDs of API keys to clear from the cache
+		 * <p>
 		 * API name: {@code ids}
 		 */
-		public Builder ids(@Nullable List<String> value) {
+		public Builder ids(List<String> value) {
 			this.ids = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of IDs of API keys to clear from the cache
+		 * <p>
 		 * API name: {@code ids}
 		 */
 		public Builder ids(String... value) {

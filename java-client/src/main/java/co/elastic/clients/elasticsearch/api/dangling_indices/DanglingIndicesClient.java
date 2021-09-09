@@ -25,12 +25,12 @@ package co.elastic.clients.elasticsearch.api.dangling_indices;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.dangling_indices.IndexDeleteRequest;
-import co.elastic.clients.elasticsearch.dangling_indices.IndexDeleteResponse;
-import co.elastic.clients.elasticsearch.dangling_indices.IndexImportRequest;
-import co.elastic.clients.elasticsearch.dangling_indices.IndexImportResponse;
-import co.elastic.clients.elasticsearch.dangling_indices.IndicesListRequest;
-import co.elastic.clients.elasticsearch.dangling_indices.IndicesListResponse;
+import co.elastic.clients.elasticsearch.dangling_indices.DeleteDanglingIndexRequest;
+import co.elastic.clients.elasticsearch.dangling_indices.DeleteDanglingIndexResponse;
+import co.elastic.clients.elasticsearch.dangling_indices.ImportDanglingIndexRequest;
+import co.elastic.clients.elasticsearch.dangling_indices.ImportDanglingIndexResponse;
+import co.elastic.clients.elasticsearch.dangling_indices.ListDanglingIndicesRequest;
+import co.elastic.clients.elasticsearch.dangling_indices.ListDanglingIndicesResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -60,8 +60,8 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public IndexDeleteResponse deleteDanglingIndex(IndexDeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, IndexDeleteRequest.ENDPOINT, this.requestOptions);
+	public DeleteDanglingIndexResponse deleteDanglingIndex(DeleteDanglingIndexRequest request) throws IOException {
+		return this.transport.performRequest(request, DeleteDanglingIndexRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -76,9 +76,10 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final IndexDeleteResponse deleteDanglingIndex(
-			Function<IndexDeleteRequest.Builder, ObjectBuilder<IndexDeleteRequest>> fn) throws IOException {
-		return deleteDanglingIndex(fn.apply(new IndexDeleteRequest.Builder()).build());
+	public final DeleteDanglingIndexResponse deleteDanglingIndex(
+			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn)
+			throws IOException {
+		return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: dangling_indices.import_dangling_index
@@ -91,8 +92,8 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public IndexImportResponse importDanglingIndex(IndexImportRequest request) throws IOException {
-		return this.transport.performRequest(request, IndexImportRequest.ENDPOINT, this.requestOptions);
+	public ImportDanglingIndexResponse importDanglingIndex(ImportDanglingIndexRequest request) throws IOException {
+		return this.transport.performRequest(request, ImportDanglingIndexRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -107,9 +108,10 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final IndexImportResponse importDanglingIndex(
-			Function<IndexImportRequest.Builder, ObjectBuilder<IndexImportRequest>> fn) throws IOException {
-		return importDanglingIndex(fn.apply(new IndexImportRequest.Builder()).build());
+	public final ImportDanglingIndexResponse importDanglingIndex(
+			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn)
+			throws IOException {
+		return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: dangling_indices.list_dangling_indices
@@ -121,26 +123,9 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public IndicesListResponse listDanglingIndices(IndicesListRequest request) throws IOException {
-		return this.transport.performRequest(request, IndicesListRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Returns all dangling indices.
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final IndicesListResponse listDanglingIndices(
-			Function<IndicesListRequest.Builder, ObjectBuilder<IndicesListRequest>> fn) throws IOException {
-		return listDanglingIndices(fn.apply(new IndicesListRequest.Builder()).build());
+	public ListDanglingIndicesResponse listDanglingIndices() throws IOException {
+		return this.transport.performRequest(ListDanglingIndicesRequest.INSTANCE, ListDanglingIndicesRequest.ENDPOINT,
+				this.requestOptions);
 	}
 
 	// ----- Misc

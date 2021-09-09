@@ -30,6 +30,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -42,12 +43,16 @@ public final class Index implements ToJsonp {
 	@Nullable
 	private final String docId;
 
+	@Nullable
+	private final JsonValue refresh;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected Index(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.docId = builder.docId;
+		this.refresh = builder.refresh;
 
 	}
 
@@ -64,6 +69,14 @@ public final class Index implements ToJsonp {
 	@Nullable
 	public String docId() {
 		return this.docId;
+	}
+
+	/**
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public JsonValue refresh() {
+		return this.refresh;
 	}
 
 	/**
@@ -86,6 +99,12 @@ public final class Index implements ToJsonp {
 			generator.write(this.docId);
 
 		}
+		if (this.refresh != null) {
+
+			generator.writeKey("refresh");
+			generator.write(this.refresh);
+
+		}
 
 	}
 
@@ -100,6 +119,9 @@ public final class Index implements ToJsonp {
 		@Nullable
 		private String docId;
 
+		@Nullable
+		private JsonValue refresh;
+
 		/**
 		 * API name: {@code index}
 		 */
@@ -113,6 +135,14 @@ public final class Index implements ToJsonp {
 		 */
 		public Builder docId(@Nullable String value) {
 			this.docId = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code refresh}
+		 */
+		public Builder refresh(@Nullable JsonValue value) {
+			this.refresh = value;
 			return this;
 		}
 
@@ -140,6 +170,7 @@ public final class Index implements ToJsonp {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::docId, JsonpDeserializer.stringDeserializer(), "doc_id");
+		op.add(Builder::refresh, JsonpDeserializer.jsonValueDeserializer(), "refresh");
 
 	}
 

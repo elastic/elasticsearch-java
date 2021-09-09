@@ -45,7 +45,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 
 	private final List<String> cluster;
 
-	private final List<GlobalPrivileges> global;
+	private final List<GlobalPrivilege> global;
 
 	private final List<IndicesPrivileges> indices;
 
@@ -80,7 +80,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 	/**
 	 * API name: {@code global}
 	 */
-	public List<GlobalPrivileges> global() {
+	public List<GlobalPrivilege> global() {
 		return this.global;
 	}
 
@@ -127,7 +127,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 
 		generator.writeKey("global");
 		generator.writeStartArray();
-		for (GlobalPrivileges item0 : this.global) {
+		for (GlobalPrivilege item0 : this.global) {
 			item0.toJsonp(generator, mapper);
 
 		}
@@ -161,7 +161,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 
 		private List<String> cluster;
 
-		private List<GlobalPrivileges> global;
+		private List<GlobalPrivilege> global;
 
 		private List<IndicesPrivileges> indices;
 
@@ -239,7 +239,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		/**
 		 * API name: {@code global}
 		 */
-		public Builder global(List<GlobalPrivileges> value) {
+		public Builder global(List<GlobalPrivilege> value) {
 			this.global = value;
 			return this;
 		}
@@ -247,7 +247,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		/**
 		 * API name: {@code global}
 		 */
-		public Builder global(GlobalPrivileges... value) {
+		public Builder global(GlobalPrivilege... value) {
 			this.global = Arrays.asList(value);
 			return this;
 		}
@@ -255,7 +255,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		/**
 		 * Add a value to {@link #global(List)}, creating the list if needed.
 		 */
-		public Builder addGlobal(GlobalPrivileges value) {
+		public Builder addGlobal(GlobalPrivilege value) {
 			if (this.global == null) {
 				this.global = new ArrayList<>();
 			}
@@ -266,15 +266,15 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		/**
 		 * Set {@link #global(List)} to a singleton list.
 		 */
-		public Builder global(Function<GlobalPrivileges.Builder, ObjectBuilder<GlobalPrivileges>> fn) {
-			return this.global(fn.apply(new GlobalPrivileges.Builder()).build());
+		public Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+			return this.global(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #global(List)}, creating the list if needed.
 		 */
-		public Builder addGlobal(Function<GlobalPrivileges.Builder, ObjectBuilder<GlobalPrivileges>> fn) {
-			return this.addGlobal(fn.apply(new GlobalPrivileges.Builder()).build());
+		public Builder addGlobal(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+			return this.addGlobal(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
@@ -372,7 +372,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 				"applications");
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
-		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivileges.DESERIALIZER), "global");
+		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege.DESERIALIZER), "global");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges.DESERIALIZER), "indices");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 

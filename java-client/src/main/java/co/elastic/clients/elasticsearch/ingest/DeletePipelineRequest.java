@@ -59,6 +59,8 @@ public final class DeletePipelineRequest extends RequestBase {
 	}
 
 	/**
+	 * Pipeline ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -66,6 +68,8 @@ public final class DeletePipelineRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -74,6 +78,8 @@ public final class DeletePipelineRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -96,6 +102,8 @@ public final class DeletePipelineRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * Pipeline ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -104,6 +112,8 @@ public final class DeletePipelineRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -112,6 +122,8 @@ public final class DeletePipelineRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

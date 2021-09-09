@@ -35,8 +35,8 @@ import co.elastic.clients.elasticsearch.ingest.ProcessorGrokRequest;
 import co.elastic.clients.elasticsearch.ingest.ProcessorGrokResponse;
 import co.elastic.clients.elasticsearch.ingest.PutPipelineRequest;
 import co.elastic.clients.elasticsearch.ingest.PutPipelineResponse;
-import co.elastic.clients.elasticsearch.ingest.SimulatePipelineRequest;
-import co.elastic.clients.elasticsearch.ingest.SimulatePipelineResponse;
+import co.elastic.clients.elasticsearch.ingest.SimulateRequest;
+import co.elastic.clients.elasticsearch.ingest.SimulateResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -187,8 +187,8 @@ public class IngestClient extends ApiClient<IngestClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public SimulatePipelineResponse simulate(SimulatePipelineRequest request) throws IOException {
-		return this.transport.performRequest(request, SimulatePipelineRequest.ENDPOINT, this.requestOptions);
+	public SimulateResponse simulate(SimulateRequest request) throws IOException {
+		return this.transport.performRequest(request, SimulateRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -203,9 +203,9 @@ public class IngestClient extends ApiClient<IngestClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final SimulatePipelineResponse simulate(
-			Function<SimulatePipelineRequest.Builder, ObjectBuilder<SimulatePipelineRequest>> fn) throws IOException {
-		return simulate(fn.apply(new SimulatePipelineRequest.Builder()).build());
+	public final SimulateResponse simulate(Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
+			throws IOException {
+		return simulate(fn.apply(new SimulateRequest.Builder()).build());
 	}
 
 	// ----- Misc

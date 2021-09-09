@@ -36,6 +36,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PercolateQuery
@@ -46,7 +47,6 @@ public final class PercolateQuery extends QueryBase {
 	@Nullable
 	private final List<JsonValue> documents;
 
-	@Nullable
 	private final String field;
 
 	@Nullable
@@ -56,10 +56,13 @@ public final class PercolateQuery extends QueryBase {
 	private final String index;
 
 	@Nullable
+	private final String name;
+
+	@Nullable
 	private final String preference;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final Number version;
@@ -70,9 +73,10 @@ public final class PercolateQuery extends QueryBase {
 		super(builder);
 		this.document = builder.document;
 		this.documents = builder.documents;
-		this.field = builder.field;
+		this.field = Objects.requireNonNull(builder.field, "field");
 		this.id = builder.id;
 		this.index = builder.index;
+		this.name = builder.name;
 		this.preference = builder.preference;
 		this.routing = builder.routing;
 		this.version = builder.version;
@@ -98,7 +102,6 @@ public final class PercolateQuery extends QueryBase {
 	/**
 	 * API name: {@code field}
 	 */
-	@Nullable
 	public String field() {
 		return this.field;
 	}
@@ -120,6 +123,14 @@ public final class PercolateQuery extends QueryBase {
 	}
 
 	/**
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public String name() {
+		return this.name;
+	}
+
+	/**
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -131,7 +142,7 @@ public final class PercolateQuery extends QueryBase {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -162,12 +173,10 @@ public final class PercolateQuery extends QueryBase {
 			generator.writeEnd();
 
 		}
-		if (this.field != null) {
 
-			generator.writeKey("field");
-			generator.write(this.field);
+		generator.writeKey("field");
+		generator.write(this.field);
 
-		}
 		if (this.id != null) {
 
 			generator.writeKey("id");
@@ -178,6 +187,12 @@ public final class PercolateQuery extends QueryBase {
 
 			generator.writeKey("index");
 			generator.write(this.index);
+
+		}
+		if (this.name != null) {
+
+			generator.writeKey("name");
+			generator.write(this.name);
 
 		}
 		if (this.preference != null) {
@@ -213,7 +228,6 @@ public final class PercolateQuery extends QueryBase {
 		@Nullable
 		private List<JsonValue> documents;
 
-		@Nullable
 		private String field;
 
 		@Nullable
@@ -223,10 +237,13 @@ public final class PercolateQuery extends QueryBase {
 		private String index;
 
 		@Nullable
+		private String name;
+
+		@Nullable
 		private String preference;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private Number version;
@@ -269,7 +286,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -291,6 +308,14 @@ public final class PercolateQuery extends QueryBase {
 		}
 
 		/**
+		 * API name: {@code name}
+		 */
+		public Builder name(@Nullable String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -301,7 +326,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -347,8 +372,9 @@ public final class PercolateQuery extends QueryBase {
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 
 	}

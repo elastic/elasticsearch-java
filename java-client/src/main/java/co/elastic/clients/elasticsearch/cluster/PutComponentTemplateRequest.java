@@ -93,6 +93,8 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The name of the template
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -100,6 +102,9 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 	}
 
 	/**
+	 * Whether the index template should only be added if new or can also replace an
+	 * existing one
+	 * <p>
 	 * API name: {@code create}
 	 */
 	@Nullable
@@ -108,6 +113,8 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -253,6 +260,8 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 		private Map<String, JsonValue> meta;
 
 		/**
+		 * The name of the template
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -261,6 +270,9 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 		}
 
 		/**
+		 * Whether the index template should only be added if new or can also replace an
+		 * existing one
+		 * <p>
 		 * API name: {@code create}
 		 */
 		public Builder create(@Nullable Boolean value) {
@@ -269,6 +281,8 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

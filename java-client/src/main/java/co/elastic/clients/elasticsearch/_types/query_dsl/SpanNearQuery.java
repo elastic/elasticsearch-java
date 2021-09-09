@@ -35,12 +35,12 @@ import java.lang.Number;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNearQuery
 public final class SpanNearQuery extends QueryBase {
-	@Nullable
 	private final List<SpanQuery> clauses;
 
 	@Nullable
@@ -53,7 +53,7 @@ public final class SpanNearQuery extends QueryBase {
 
 	protected SpanNearQuery(Builder builder) {
 		super(builder);
-		this.clauses = builder.clauses;
+		this.clauses = Objects.requireNonNull(builder.clauses, "clauses");
 		this.inOrder = builder.inOrder;
 		this.slop = builder.slop;
 
@@ -62,7 +62,6 @@ public final class SpanNearQuery extends QueryBase {
 	/**
 	 * API name: {@code clauses}
 	 */
-	@Nullable
 	public List<SpanQuery> clauses() {
 		return this.clauses;
 	}
@@ -85,17 +84,15 @@ public final class SpanNearQuery extends QueryBase {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this.clauses != null) {
 
-			generator.writeKey("clauses");
-			generator.writeStartArray();
-			for (SpanQuery item0 : this.clauses) {
-				item0.toJsonp(generator, mapper);
-
-			}
-			generator.writeEnd();
+		generator.writeKey("clauses");
+		generator.writeStartArray();
+		for (SpanQuery item0 : this.clauses) {
+			item0.toJsonp(generator, mapper);
 
 		}
+		generator.writeEnd();
+
 		if (this.inOrder != null) {
 
 			generator.writeKey("in_order");
@@ -117,7 +114,6 @@ public final class SpanNearQuery extends QueryBase {
 	 * Builder for {@link SpanNearQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanNearQuery> {
-		@Nullable
 		private List<SpanQuery> clauses;
 
 		@Nullable
@@ -129,7 +125,7 @@ public final class SpanNearQuery extends QueryBase {
 		/**
 		 * API name: {@code clauses}
 		 */
-		public Builder clauses(@Nullable List<SpanQuery> value) {
+		public Builder clauses(List<SpanQuery> value) {
 			this.clauses = value;
 			return this;
 		}

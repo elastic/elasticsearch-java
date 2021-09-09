@@ -58,6 +58,8 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	}
 
 	/**
+	 * Application name
+	 * <p>
 	 * API name: {@code application}
 	 */
 	public String application() {
@@ -65,6 +67,8 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	}
 
 	/**
+	 * Privilege name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -72,6 +76,11 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -93,6 +102,8 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		private JsonValue refresh;
 
 		/**
+		 * Application name
+		 * <p>
 		 * API name: {@code application}
 		 */
 		public Builder application(String value) {
@@ -101,6 +112,8 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		}
 
 		/**
+		 * Privilege name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -109,6 +122,11 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable JsonValue value) {

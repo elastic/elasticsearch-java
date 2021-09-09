@@ -98,6 +98,8 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the alias to rollover
+	 * <p>
 	 * API name: {@code alias}
 	 */
 	public String alias() {
@@ -105,6 +107,8 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the rollover index
+	 * <p>
 	 * API name: {@code new_index}
 	 */
 	@Nullable
@@ -113,6 +117,9 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If set to true the rollover action will only be validated but not actually
+	 * performed even if a condition matches. The default is false
+	 * <p>
 	 * API name: {@code dry_run}
 	 */
 	@Nullable
@@ -129,6 +136,8 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -137,6 +146,8 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -145,6 +156,9 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Set the number of active shards to wait for on the newly created rollover
+	 * index before the operation returns.
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -273,6 +287,8 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		private Map<String, JsonValue> settings;
 
 		/**
+		 * The name of the alias to rollover
+		 * <p>
 		 * API name: {@code alias}
 		 */
 		public Builder alias(String value) {
@@ -281,6 +297,8 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The name of the rollover index
+		 * <p>
 		 * API name: {@code new_index}
 		 */
 		public Builder newIndex(@Nullable String value) {
@@ -289,6 +307,9 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If set to true the rollover action will only be validated but not actually
+		 * performed even if a condition matches. The default is false
+		 * <p>
 		 * API name: {@code dry_run}
 		 */
 		public Builder dryRun(@Nullable Boolean value) {
@@ -305,6 +326,8 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -313,6 +336,8 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -321,6 +346,9 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Set the number of active shards to wait for on the newly created rollover
+		 * index before the operation returns.
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder waitForActiveShards(@Nullable JsonValue value) {

@@ -63,6 +63,9 @@ public final class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The id of the transform for which to get stats. '_all' or '*' implies all
+	 * transforms
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	@Nullable
@@ -71,6 +74,9 @@ public final class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no transforms. (This
+	 * includes <code>_all</code> string or when no transforms have been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -79,6 +85,8 @@ public final class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * skips a number of transform configs, defaults to 0
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -87,6 +95,8 @@ public final class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * specifies a max number of transforms to get, defaults to 100
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -113,6 +123,9 @@ public final class TransformsRequest extends CatRequestBase {
 		private Number size;
 
 		/**
+		 * The id of the transform for which to get stats. '_all' or '*' implies all
+		 * transforms
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(@Nullable String value) {
@@ -121,6 +134,9 @@ public final class TransformsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no transforms. (This
+		 * includes <code>_all</code> string or when no transforms have been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -129,6 +145,8 @@ public final class TransformsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * skips a number of transform configs, defaults to 0
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -137,6 +155,8 @@ public final class TransformsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * specifies a max number of transforms to get, defaults to 100
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {

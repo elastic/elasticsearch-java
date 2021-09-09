@@ -31,10 +31,6 @@ import co.elastic.clients.elasticsearch.cat.AllocationRequest;
 import co.elastic.clients.elasticsearch.cat.AllocationResponse;
 import co.elastic.clients.elasticsearch.cat.CountRequest;
 import co.elastic.clients.elasticsearch.cat.CountResponse;
-import co.elastic.clients.elasticsearch.cat.DataFrameAnalyticsRequest;
-import co.elastic.clients.elasticsearch.cat.DataFrameAnalyticsResponse;
-import co.elastic.clients.elasticsearch.cat.DatafeedsRequest;
-import co.elastic.clients.elasticsearch.cat.DatafeedsResponse;
 import co.elastic.clients.elasticsearch.cat.FielddataRequest;
 import co.elastic.clients.elasticsearch.cat.FielddataResponse;
 import co.elastic.clients.elasticsearch.cat.HealthRequest;
@@ -43,12 +39,18 @@ import co.elastic.clients.elasticsearch.cat.HelpRequest;
 import co.elastic.clients.elasticsearch.cat.HelpResponse;
 import co.elastic.clients.elasticsearch.cat.IndicesRequest;
 import co.elastic.clients.elasticsearch.cat.IndicesResponse;
-import co.elastic.clients.elasticsearch.cat.JobsRequest;
-import co.elastic.clients.elasticsearch.cat.JobsResponse;
 import co.elastic.clients.elasticsearch.cat.MasterRequest;
 import co.elastic.clients.elasticsearch.cat.MasterResponse;
-import co.elastic.clients.elasticsearch.cat.NodeAttributesRequest;
-import co.elastic.clients.elasticsearch.cat.NodeAttributesResponse;
+import co.elastic.clients.elasticsearch.cat.MlDataFrameAnalyticsRequest;
+import co.elastic.clients.elasticsearch.cat.MlDataFrameAnalyticsResponse;
+import co.elastic.clients.elasticsearch.cat.MlDatafeedsRequest;
+import co.elastic.clients.elasticsearch.cat.MlDatafeedsResponse;
+import co.elastic.clients.elasticsearch.cat.MlJobsRequest;
+import co.elastic.clients.elasticsearch.cat.MlJobsResponse;
+import co.elastic.clients.elasticsearch.cat.MlTrainedModelsRequest;
+import co.elastic.clients.elasticsearch.cat.MlTrainedModelsResponse;
+import co.elastic.clients.elasticsearch.cat.NodeattrsRequest;
+import co.elastic.clients.elasticsearch.cat.NodeattrsResponse;
 import co.elastic.clients.elasticsearch.cat.NodesRequest;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.cat.PendingTasksRequest;
@@ -71,8 +73,6 @@ import co.elastic.clients.elasticsearch.cat.TemplatesRequest;
 import co.elastic.clients.elasticsearch.cat.TemplatesResponse;
 import co.elastic.clients.elasticsearch.cat.ThreadPoolRequest;
 import co.elastic.clients.elasticsearch.cat.ThreadPoolResponse;
-import co.elastic.clients.elasticsearch.cat.TrainedModelsRequest;
-import co.elastic.clients.elasticsearch.cat.TrainedModelsResponse;
 import co.elastic.clients.elasticsearch.cat.TransformsRequest;
 import co.elastic.clients.elasticsearch.cat.TransformsResponse;
 import co.elastic.clients.util.ObjectBuilder;
@@ -326,8 +326,8 @@ public class CatClient extends ApiClient<CatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public DataFrameAnalyticsResponse mlDataFrameAnalytics(DataFrameAnalyticsRequest request) throws IOException {
-		return this.transport.performRequest(request, DataFrameAnalyticsRequest.ENDPOINT, this.requestOptions);
+	public MlDataFrameAnalyticsResponse mlDataFrameAnalytics(MlDataFrameAnalyticsRequest request) throws IOException {
+		return this.transport.performRequest(request, MlDataFrameAnalyticsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -342,10 +342,10 @@ public class CatClient extends ApiClient<CatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final DataFrameAnalyticsResponse mlDataFrameAnalytics(
-			Function<DataFrameAnalyticsRequest.Builder, ObjectBuilder<DataFrameAnalyticsRequest>> fn)
+	public final MlDataFrameAnalyticsResponse mlDataFrameAnalytics(
+			Function<MlDataFrameAnalyticsRequest.Builder, ObjectBuilder<MlDataFrameAnalyticsRequest>> fn)
 			throws IOException {
-		return mlDataFrameAnalytics(fn.apply(new DataFrameAnalyticsRequest.Builder()).build());
+		return mlDataFrameAnalytics(fn.apply(new MlDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cat.ml_datafeeds
@@ -358,8 +358,8 @@ public class CatClient extends ApiClient<CatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public DatafeedsResponse mlDatafeeds(DatafeedsRequest request) throws IOException {
-		return this.transport.performRequest(request, DatafeedsRequest.ENDPOINT, this.requestOptions);
+	public MlDatafeedsResponse mlDatafeeds(MlDatafeedsRequest request) throws IOException {
+		return this.transport.performRequest(request, MlDatafeedsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -374,9 +374,9 @@ public class CatClient extends ApiClient<CatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final DatafeedsResponse mlDatafeeds(Function<DatafeedsRequest.Builder, ObjectBuilder<DatafeedsRequest>> fn)
-			throws IOException {
-		return mlDatafeeds(fn.apply(new DatafeedsRequest.Builder()).build());
+	public final MlDatafeedsResponse mlDatafeeds(
+			Function<MlDatafeedsRequest.Builder, ObjectBuilder<MlDatafeedsRequest>> fn) throws IOException {
+		return mlDatafeeds(fn.apply(new MlDatafeedsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cat.ml_jobs
@@ -389,8 +389,8 @@ public class CatClient extends ApiClient<CatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public JobsResponse mlJobs(JobsRequest request) throws IOException {
-		return this.transport.performRequest(request, JobsRequest.ENDPOINT, this.requestOptions);
+	public MlJobsResponse mlJobs(MlJobsRequest request) throws IOException {
+		return this.transport.performRequest(request, MlJobsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -405,8 +405,9 @@ public class CatClient extends ApiClient<CatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final JobsResponse mlJobs(Function<JobsRequest.Builder, ObjectBuilder<JobsRequest>> fn) throws IOException {
-		return mlJobs(fn.apply(new JobsRequest.Builder()).build());
+	public final MlJobsResponse mlJobs(Function<MlJobsRequest.Builder, ObjectBuilder<MlJobsRequest>> fn)
+			throws IOException {
+		return mlJobs(fn.apply(new MlJobsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cat.ml_trained_models
@@ -419,8 +420,8 @@ public class CatClient extends ApiClient<CatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public TrainedModelsResponse mlTrainedModels(TrainedModelsRequest request) throws IOException {
-		return this.transport.performRequest(request, TrainedModelsRequest.ENDPOINT, this.requestOptions);
+	public MlTrainedModelsResponse mlTrainedModels(MlTrainedModelsRequest request) throws IOException {
+		return this.transport.performRequest(request, MlTrainedModelsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -435,9 +436,9 @@ public class CatClient extends ApiClient<CatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final TrainedModelsResponse mlTrainedModels(
-			Function<TrainedModelsRequest.Builder, ObjectBuilder<TrainedModelsRequest>> fn) throws IOException {
-		return mlTrainedModels(fn.apply(new TrainedModelsRequest.Builder()).build());
+	public final MlTrainedModelsResponse mlTrainedModels(
+			Function<MlTrainedModelsRequest.Builder, ObjectBuilder<MlTrainedModelsRequest>> fn) throws IOException {
+		return mlTrainedModels(fn.apply(new MlTrainedModelsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cat.nodeattrs
@@ -449,9 +450,8 @@ public class CatClient extends ApiClient<CatClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public NodeAttributesResponse nodeattrs() throws IOException {
-		return this.transport.performRequest(NodeAttributesRequest.INSTANCE, NodeAttributesRequest.ENDPOINT,
-				this.requestOptions);
+	public NodeattrsResponse nodeattrs() throws IOException {
+		return this.transport.performRequest(NodeattrsRequest.INSTANCE, NodeattrsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	// ----- Endpoint: cat.nodes

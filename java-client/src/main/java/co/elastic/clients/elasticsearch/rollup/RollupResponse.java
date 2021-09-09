@@ -30,43 +30,37 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Response
 public final class RollupResponse implements ToJsonp {
-	private final Number stub;
+	private final JsonValue value;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected RollupResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.value = Objects.requireNonNull(builder.value, "value");
 
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Response value.
+	 * <p>
+	 * API name: {@code value}
 	 */
-	public Number stub() {
-		return this.stub;
+	public JsonValue value() {
+		return this.value;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -76,13 +70,15 @@ public final class RollupResponse implements ToJsonp {
 	 * Builder for {@link RollupResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<RollupResponse> {
-		private Number stub;
+		private JsonValue value;
 
 		/**
-		 * API name: {@code stub}
+		 * Response value.
+		 * <p>
+		 * API name: {@code value}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder value(JsonValue value) {
+			this.value = value;
 			return this;
 		}
 
@@ -108,7 +104,7 @@ public final class RollupResponse implements ToJsonp {
 
 	protected static void setupRollupResponseDeserializer(DelegatingDeserializer<RollupResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
 
 	}
 

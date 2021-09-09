@@ -36,6 +36,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
+import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -54,7 +55,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 	private final Number primaryTerm;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	private final TDocument source;
 
@@ -108,7 +109,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -180,7 +181,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 		private Number primaryTerm;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		private TDocument source;
 
@@ -233,7 +234,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder<TDocument> routing(@Nullable JsonValue value) {
+		public Builder<TDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -287,7 +288,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
 		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "_routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 
 	}

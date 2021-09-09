@@ -23,95 +23,23 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
-import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: cluster.exists_component_template.Response
-public final class ExistsComponentTemplateResponse implements ToJsonp {
-	private final Number stub;
-
-	// ---------------------------------------------------------------------------------------------
-
-	protected ExistsComponentTemplateResponse(Builder builder) {
-
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
-
+public final class ExistsComponentTemplateResponse {
+	protected ExistsComponentTemplateResponse() {
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Singleton instance for {@link ExistsComponentTemplateResponse}.
 	 */
-	public Number stub() {
-		return this.stub;
-	}
+	public static final ExistsComponentTemplateResponse INSTANCE = new ExistsComponentTemplateResponse();
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link ExistsComponentTemplateResponse}.
-	 */
-	public static class Builder implements ObjectBuilder<ExistsComponentTemplateResponse> {
-		private Number stub;
-
-		/**
-		 * API name: {@code stub}
-		 */
-		public Builder stub(Number value) {
-			this.stub = value;
-			return this;
-		}
-
-		/**
-		 * Builds a {@link ExistsComponentTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ExistsComponentTemplateResponse build() {
-
-			return new ExistsComponentTemplateResponse(this);
-		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for ExistsComponentTemplateResponse
-	 */
-	public static final JsonpDeserializer<ExistsComponentTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ExistsComponentTemplateResponse::setupExistsComponentTemplateResponseDeserializer);
-
-	protected static void setupExistsComponentTemplateResponseDeserializer(
-			DelegatingDeserializer<ExistsComponentTemplateResponse.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
-
-	}
+	public static final JsonpDeserializer<ExistsComponentTemplateResponse> DESERIALIZER = JsonpDeserializer
+			.fixedValue(ExistsComponentTemplateResponse.INSTANCE);
 
 }

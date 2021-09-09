@@ -32,9 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -46,12 +48,18 @@ public final class GetResponse implements ToJsonp {
 	@Nullable
 	private final List<SnapshotInfo> snapshots;
 
+	private final Number total;
+
+	private final Number remaining;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected GetResponse(Builder builder) {
 
 		this.responses = builder.responses;
 		this.snapshots = builder.snapshots;
+		this.total = Objects.requireNonNull(builder.total, "total");
+		this.remaining = Objects.requireNonNull(builder.remaining, "remaining");
 
 	}
 
@@ -69,6 +77,26 @@ public final class GetResponse implements ToJsonp {
 	@Nullable
 	public List<SnapshotInfo> snapshots() {
 		return this.snapshots;
+	}
+
+	/**
+	 * The total number of snapshots that match the request when ignoring size limit
+	 * or after query parameter.
+	 * <p>
+	 * API name: {@code total}
+	 */
+	public Number total() {
+		return this.total;
+	}
+
+	/**
+	 * The number of remaining snapshots that were not returned due to size limits
+	 * and that can be fetched by additional requests using the next field value.
+	 * <p>
+	 * API name: {@code remaining}
+	 */
+	public Number remaining() {
+		return this.remaining;
 	}
 
 	/**
@@ -105,6 +133,12 @@ public final class GetResponse implements ToJsonp {
 
 		}
 
+		generator.writeKey("total");
+		generator.write(this.total.doubleValue());
+
+		generator.writeKey("remaining");
+		generator.write(this.remaining.doubleValue());
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -118,6 +152,10 @@ public final class GetResponse implements ToJsonp {
 
 		@Nullable
 		private List<SnapshotInfo> snapshots;
+
+		private Number total;
+
+		private Number remaining;
 
 		/**
 		 * API name: {@code responses}
@@ -202,6 +240,28 @@ public final class GetResponse implements ToJsonp {
 		}
 
 		/**
+		 * The total number of snapshots that match the request when ignoring size limit
+		 * or after query parameter.
+		 * <p>
+		 * API name: {@code total}
+		 */
+		public Builder total(Number value) {
+			this.total = value;
+			return this;
+		}
+
+		/**
+		 * The number of remaining snapshots that were not returned due to size limits
+		 * and that can be fetched by additional requests using the next field value.
+		 * <p>
+		 * API name: {@code remaining}
+		 */
+		public Builder remaining(Number value) {
+			this.remaining = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link GetResponse}.
 		 *
 		 * @throws NullPointerException
@@ -225,6 +285,8 @@ public final class GetResponse implements ToJsonp {
 
 		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(SnapshotResponseItem.DESERIALIZER), "responses");
 		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo.DESERIALIZER), "snapshots");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::remaining, JsonpDeserializer.numberDeserializer(), "remaining");
 
 	}
 

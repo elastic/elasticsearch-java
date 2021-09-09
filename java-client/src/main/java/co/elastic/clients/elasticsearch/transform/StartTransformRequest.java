@@ -55,6 +55,8 @@ public final class StartTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * The id of the transform to start
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	public String transformId() {
@@ -62,6 +64,8 @@ public final class StartTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait for the transform to start
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -81,6 +85,8 @@ public final class StartTransformRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * The id of the transform to start
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(String value) {
@@ -89,6 +95,8 @@ public final class StartTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait for the transform to start
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

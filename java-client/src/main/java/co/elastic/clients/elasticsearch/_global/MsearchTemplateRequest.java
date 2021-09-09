@@ -55,9 +55,6 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	private final List<String> index;
 
 	@Nullable
-	private final List<String> type;
-
-	@Nullable
 	private final Boolean ccsMinimizeRoundtrips;
 
 	@Nullable
@@ -79,7 +76,6 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	protected MsearchTemplateRequest(Builder builder) {
 
 		this.index = builder.index;
-		this.type = builder.type;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.searchType = builder.searchType;
@@ -90,6 +86,8 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	}
 
 	/**
+	 * A comma-separated list of index names to use as default
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -98,14 +96,9 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
-	}
-
-	/**
+	 * Indicates whether network round-trips should be minimized as part of
+	 * cross-cluster search requests execution
+	 * <p>
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
 	@Nullable
@@ -114,6 +107,9 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	}
 
 	/**
+	 * Controls the maximum number of concurrent searches the multi search api will
+	 * execute
+	 * <p>
 	 * API name: {@code max_concurrent_searches}
 	 */
 	@Nullable
@@ -122,6 +118,8 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	}
 
 	/**
+	 * Search operation type
+	 * <p>
 	 * API name: {@code search_type}
 	 */
 	@Nullable
@@ -130,6 +128,9 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	}
 
 	/**
+	 * Indicates whether hits.total should be rendered as an integer or an object in
+	 * the rest search response
+	 * <p>
 	 * API name: {@code rest_total_hits_as_int}
 	 */
 	@Nullable
@@ -138,6 +139,9 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	}
 
 	/**
+	 * Specify whether aggregation and suggester names should be prefixed by their
+	 * respective types in the response
+	 * <p>
 	 * API name: {@code typed_keys}
 	 */
 	@Nullable
@@ -177,9 +181,6 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 		private List<String> index;
 
 		@Nullable
-		private List<String> type;
-
-		@Nullable
 		private Boolean ccsMinimizeRoundtrips;
 
 		@Nullable
@@ -197,6 +198,8 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 		private List<TemplateItem> value;
 
 		/**
+		 * A comma-separated list of index names to use as default
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -205,6 +208,8 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 		}
 
 		/**
+		 * A comma-separated list of index names to use as default
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -224,33 +229,9 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
-			return this;
-		}
-
-		/**
+		 * Indicates whether network round-trips should be minimized as part of
+		 * cross-cluster search requests execution
+		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
 		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
@@ -259,6 +240,9 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 		}
 
 		/**
+		 * Controls the maximum number of concurrent searches the multi search api will
+		 * execute
+		 * <p>
 		 * API name: {@code max_concurrent_searches}
 		 */
 		public Builder maxConcurrentSearches(@Nullable Number value) {
@@ -267,6 +251,8 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 		}
 
 		/**
+		 * Search operation type
+		 * <p>
 		 * API name: {@code search_type}
 		 */
 		public Builder searchType(@Nullable JsonValue value) {
@@ -275,6 +261,9 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 		}
 
 		/**
+		 * Indicates whether hits.total should be rendered as an integer or an object in
+		 * the rest search response
+		 * <p>
 		 * API name: {@code rest_total_hits_as_int}
 		 */
 		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
@@ -283,6 +272,9 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 		}
 
 		/**
+		 * Specify whether aggregation and suggester names should be prefixed by their
+		 * respective types in the response
+		 * <p>
 		 * API name: {@code typed_keys}
 		 */
 		public Builder typedKeys(@Nullable Boolean value) {
@@ -377,14 +369,11 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -396,16 +385,6 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_msearch");
-					buf.append("/template");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_msearch");
 					buf.append("/template");
 					return buf.toString();

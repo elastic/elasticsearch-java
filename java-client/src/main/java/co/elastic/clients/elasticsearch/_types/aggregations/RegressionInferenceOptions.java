@@ -33,11 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
-import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RegressionInferenceOptions
 public final class RegressionInferenceOptions implements ToJsonp {
+	@Nullable
 	private final String resultsField;
 
 	@Nullable
@@ -47,7 +47,7 @@ public final class RegressionInferenceOptions implements ToJsonp {
 
 	protected RegressionInferenceOptions(Builder builder) {
 
-		this.resultsField = Objects.requireNonNull(builder.resultsField, "results_field");
+		this.resultsField = builder.resultsField;
 		this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
 
 	}
@@ -58,6 +58,7 @@ public final class RegressionInferenceOptions implements ToJsonp {
 	 * <p>
 	 * API name: {@code results_field}
 	 */
+	@Nullable
 	public String resultsField() {
 		return this.resultsField;
 	}
@@ -84,9 +85,12 @@ public final class RegressionInferenceOptions implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("results_field");
-		generator.write(this.resultsField);
+		if (this.resultsField != null) {
 
+			generator.writeKey("results_field");
+			generator.write(this.resultsField);
+
+		}
 		if (this.numTopFeatureImportanceValues != null) {
 
 			generator.writeKey("num_top_feature_importance_values");
@@ -102,6 +106,7 @@ public final class RegressionInferenceOptions implements ToJsonp {
 	 * Builder for {@link RegressionInferenceOptions}.
 	 */
 	public static class Builder implements ObjectBuilder<RegressionInferenceOptions> {
+		@Nullable
 		private String resultsField;
 
 		@Nullable
@@ -113,7 +118,7 @@ public final class RegressionInferenceOptions implements ToJsonp {
 		 * <p>
 		 * API name: {@code results_field}
 		 */
-		public Builder resultsField(String value) {
+		public Builder resultsField(@Nullable String value) {
 			this.resultsField = value;
 			return this;
 		}

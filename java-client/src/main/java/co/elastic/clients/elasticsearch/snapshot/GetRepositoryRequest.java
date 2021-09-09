@@ -64,6 +64,8 @@ public final class GetRepositoryRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of repository names
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -72,6 +74,9 @@ public final class GetRepositoryRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -80,6 +85,8 @@ public final class GetRepositoryRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -103,6 +110,8 @@ public final class GetRepositoryRequest extends RequestBase {
 		private JsonValue masterTimeout;
 
 		/**
+		 * A comma-separated list of repository names
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable List<String> value) {
@@ -111,6 +120,8 @@ public final class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of repository names
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String... value) {
@@ -130,6 +141,9 @@ public final class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -138,6 +152,8 @@ public final class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

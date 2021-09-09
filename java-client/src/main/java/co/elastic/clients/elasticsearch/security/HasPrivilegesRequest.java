@@ -70,6 +70,8 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Username
+	 * <p>
 	 * API name: {@code user}
 	 */
 	@Nullable
@@ -167,6 +169,8 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 		private List<IndexPrivilegesCheck> index;
 
 		/**
+		 * Username
+		 * <p>
 		 * API name: {@code user}
 		 */
 		public Builder user(@Nullable String value) {

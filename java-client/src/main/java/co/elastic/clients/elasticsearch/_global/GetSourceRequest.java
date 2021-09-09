@@ -42,16 +42,12 @@ public final class GetSourceRequest extends GetRequest {
 	@Nullable
 	private final String id;
 
-	@Nullable
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected GetSourceRequest(Builder builder) {
 		super(builder);
 		this.index = builder.index;
 		this.id = builder.id;
-		this.type = builder.type;
 
 	}
 
@@ -75,16 +71,6 @@ public final class GetSourceRequest extends GetRequest {
 		return this.id;
 	}
 
-	/**
-	 * Auto generated - missing in the input spec
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -96,9 +82,6 @@ public final class GetSourceRequest extends GetRequest {
 
 		@Nullable
 		private String id;
-
-		@Nullable
-		private String type;
 
 		/**
 		 * Auto generated - missing in the input spec
@@ -117,16 +100,6 @@ public final class GetSourceRequest extends GetRequest {
 		 */
 		public Builder id(@Nullable String value) {
 			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Auto generated - missing in the input spec
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -163,7 +136,6 @@ public final class GetSourceRequest extends GetRequest {
 			request -> {
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
@@ -171,8 +143,6 @@ public final class GetSourceRequest extends GetRequest {
 					propsSet |= _index;
 				if (request.id() != null)
 					propsSet |= _id;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -181,17 +151,6 @@ public final class GetSourceRequest extends GetRequest {
 					buf.append("/_source");
 					buf.append("/");
 					buf.append(request.id);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index);
-					buf.append("/");
-					buf.append(request.type);
-					buf.append("/");
-					buf.append(request.id);
-					buf.append("/_source");
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");

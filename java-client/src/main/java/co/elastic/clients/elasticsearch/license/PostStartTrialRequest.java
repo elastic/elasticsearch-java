@@ -55,6 +55,8 @@ public final class PostStartTrialRequest extends RequestBase {
 	}
 
 	/**
+	 * whether the user has acknowledged acknowledge messages (default: false)
+	 * <p>
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
@@ -83,6 +85,8 @@ public final class PostStartTrialRequest extends RequestBase {
 		private String typeQueryString;
 
 		/**
+		 * whether the user has acknowledged acknowledge messages (default: false)
+		 * <p>
 		 * API name: {@code acknowledge}
 		 */
 		public Builder acknowledge(@Nullable Boolean value) {

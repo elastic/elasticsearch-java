@@ -137,6 +137,8 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The ID of the datafeed to create
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
@@ -144,6 +146,9 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Ignore if the source indices expressions resolves to no concrete indices
+	 * (default: true)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -152,6 +157,9 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether source index expressions should get expanded to open or closed
+	 * indices (default: open)
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -160,6 +168,8 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Ignore indices that are marked as throttled (default: true)
+	 * <p>
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
@@ -168,6 +178,8 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Ignore unavailable indexes (default: false)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -476,6 +488,8 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		private Number scrollSize;
 
 		/**
+		 * The ID of the datafeed to create
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
@@ -484,6 +498,9 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Ignore if the source indices expressions resolves to no concrete indices
+		 * (default: true)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -492,6 +509,9 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether source index expressions should get expanded to open or closed
+		 * indices (default: open)
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -500,6 +520,8 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Ignore indices that are marked as throttled (default: true)
+		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
 		public Builder ignoreThrottled(@Nullable Boolean value) {
@@ -508,6 +530,8 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Ignore unavailable indexes (default: false)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {

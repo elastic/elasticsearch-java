@@ -94,6 +94,8 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * a short version of the Accept header, e.g. json, yaml
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -295,6 +297,8 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		private Boolean fieldMultiValueLeniency;
 
 		/**
+		 * a short version of the Accept header, e.g. json, yaml
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public Builder format(@Nullable String value) {

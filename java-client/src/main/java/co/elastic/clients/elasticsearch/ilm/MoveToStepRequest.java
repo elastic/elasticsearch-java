@@ -62,6 +62,8 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the index whose lifecycle step is to change
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -125,6 +127,8 @@ public final class MoveToStepRequest extends RequestBase implements ToJsonp {
 		private StepKey nextStep;
 
 		/**
+		 * The name of the index whose lifecycle step is to change
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {

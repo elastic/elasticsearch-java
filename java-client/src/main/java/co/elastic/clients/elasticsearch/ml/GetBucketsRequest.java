@@ -100,6 +100,8 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * ID of the job to get bucket results from
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -107,6 +109,8 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The timestamp of the desired single bucket result
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
@@ -115,6 +119,8 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * skips a number of buckets
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -123,6 +129,8 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * specifies a max number of buckets to get
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -298,6 +306,8 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 		private String end;
 
 		/**
+		 * ID of the job to get bucket results from
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -306,6 +316,8 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The timestamp of the desired single bucket result
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(@Nullable String value) {
@@ -314,6 +326,8 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * skips a number of buckets
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -322,6 +336,8 @@ public final class GetBucketsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * specifies a max number of buckets to get
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {

@@ -55,9 +55,6 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	private final List<String> index;
 
 	@Nullable
-	private final List<String> type;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -103,7 +100,7 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	private final Number requestsPerSecond;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue scroll;
@@ -127,7 +124,7 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	private final List<String> sort;
 
 	@Nullable
-	private final Boolean sourceEnabled;
+	private final JsonValue source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -176,7 +173,6 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	protected UpdateByQueryRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.type = builder.type;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
@@ -200,7 +196,7 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		this.size = builder.size;
 		this.slices = builder.slices;
 		this.sort = builder.sort;
-		this.sourceEnabled = builder.sourceEnabled;
+		this.source = builder.source;
 		this.sourceExcludes = builder.sourceExcludes;
 		this.sourceIncludes = builder.sourceIncludes;
 		this.stats = builder.stats;
@@ -219,6 +215,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of index names to search; use <code>_all</code> or
+	 * empty string to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -226,14 +225,10 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
-	}
-
-	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -242,6 +237,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The analyzer to use for the query string
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -250,6 +247,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether wildcard and prefix queries should be analyzed (default:
+	 * false)
+	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
@@ -258,6 +258,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The default operator for query string query (AND or OR)
+	 * <p>
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
@@ -266,6 +268,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The field to use as default where no field prefix is given in the query
+	 * string
+	 * <p>
 	 * API name: {@code df}
 	 */
 	@Nullable
@@ -274,6 +279,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -282,6 +290,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Starting offset (default: 0)
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -290,6 +300,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -298,6 +311,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether format-based query failures (such as providing text to a
+	 * numeric field) should be ignored
+	 * <p>
 	 * API name: {@code lenient}
 	 */
 	@Nullable
@@ -306,6 +322,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Ingest pipeline to set on index requests made by this action. (default: none)
+	 * <p>
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
@@ -314,6 +332,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -330,6 +351,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Should the affected indexes be refreshed?
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -338,6 +361,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify if request cache should be used for this request or not, defaults to
+	 * index level setting
+	 * <p>
 	 * API name: {@code request_cache}
 	 */
 	@Nullable
@@ -346,6 +372,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The throttle to set on this request in sub-requests per second. -1 means no
+	 * throttle.
+	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
@@ -354,14 +383,19 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of specific routing values
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * Specify how long a consistent view of the index should be maintained for
+	 * scrolled search
+	 * <p>
 	 * API name: {@code scroll}
 	 */
 	@Nullable
@@ -370,6 +404,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Size on the scroll request powering the update by query
+	 * <p>
 	 * API name: {@code scroll_size}
 	 */
 	@Nullable
@@ -378,6 +414,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit timeout for each search request. Defaults to no timeout.
+	 * <p>
 	 * API name: {@code search_timeout}
 	 */
 	@Nullable
@@ -386,6 +424,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Search operation type
+	 * <p>
 	 * API name: {@code search_type}
 	 */
 	@Nullable
@@ -402,6 +442,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The number of slices this task should be divided into. Defaults to 1, meaning
+	 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+	 * <p>
 	 * API name: {@code slices}
 	 */
 	@Nullable
@@ -410,6 +453,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of <field>:<direction> pairs
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	@Nullable
@@ -418,15 +463,20 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code source_enabled}
+	 * True or false to return the _source field or not, or a list of fields to
+	 * return
+	 * <p>
+	 * API name: {@code _source}
 	 */
 	@Nullable
-	public Boolean sourceEnabled() {
-		return this.sourceEnabled;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
-	 * API name: {@code source_excludes}
+	 * A list of fields to exclude from the returned _source field
+	 * <p>
+	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
 	public List<String> sourceExcludes() {
@@ -434,7 +484,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code source_includes}
+	 * A list of fields to extract and return from the _source field
+	 * <p>
+	 * API name: {@code _source_includes}
 	 */
 	@Nullable
 	public List<String> sourceIncludes() {
@@ -442,6 +494,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specific 'tag' of the request for logging and statistical purposes
+	 * <p>
 	 * API name: {@code stats}
 	 */
 	@Nullable
@@ -450,6 +504,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The maximum number of documents to collect for each shard, upon reaching
+	 * which the query execution will terminate early.
+	 * <p>
 	 * API name: {@code terminate_after}
 	 */
 	@Nullable
@@ -458,6 +515,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Time each individual bulk request should wait for shards that are
+	 * unavailable.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -466,6 +526,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether to return document version as part of a hit
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -474,6 +536,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Should the document increment the version number (internal) on hit or not
+	 * (reindex)
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -482,6 +547,12 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Sets the number of shard copies that must be active before proceeding with
+	 * the update by query operation. Defaults to 1, meaning the primary shard only.
+	 * Set to <code>all</code> for all shard copies, otherwise set to any
+	 * non-negative value less than or equal to the total number of copies for the
+	 * shard (number of replicas + 1)
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -490,6 +561,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Should the request should block until the update by query operation is
+	 * complete.
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -590,9 +664,6 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		private List<String> index;
 
 		@Nullable
-		private List<String> type;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -638,7 +709,7 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		private Number requestsPerSecond;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue scroll;
@@ -662,7 +733,7 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		private List<String> sort;
 
 		@Nullable
-		private Boolean sourceEnabled;
+		private JsonValue source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -707,6 +778,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		private JsonValue conflicts;
 
 		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -715,6 +789,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -734,33 +811,10 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
-			return this;
-		}
-
-		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -769,6 +823,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The analyzer to use for the query string
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public Builder analyzer(@Nullable String value) {
@@ -777,6 +833,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether wildcard and prefix queries should be analyzed (default:
+		 * false)
+		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
 		public Builder analyzeWildcard(@Nullable Boolean value) {
@@ -785,6 +844,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The default operator for query string query (AND or OR)
+		 * <p>
 		 * API name: {@code default_operator}
 		 */
 		public Builder defaultOperator(@Nullable JsonValue value) {
@@ -793,6 +854,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The field to use as default where no field prefix is given in the query
+		 * string
+		 * <p>
 		 * API name: {@code df}
 		 */
 		public Builder df(@Nullable String value) {
@@ -801,6 +865,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -809,6 +876,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Starting offset (default: 0)
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -817,6 +886,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -825,6 +897,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether format-based query failures (such as providing text to a
+		 * numeric field) should be ignored
+		 * <p>
 		 * API name: {@code lenient}
 		 */
 		public Builder lenient(@Nullable Boolean value) {
@@ -833,6 +908,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Ingest pipeline to set on index requests made by this action. (default: none)
+		 * <p>
 		 * API name: {@code pipeline}
 		 */
 		public Builder pipeline(@Nullable String value) {
@@ -841,6 +918,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -857,6 +937,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Should the affected indexes be refreshed?
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable Boolean value) {
@@ -865,6 +947,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify if request cache should be used for this request or not, defaults to
+		 * index level setting
+		 * <p>
 		 * API name: {@code request_cache}
 		 */
 		public Builder requestCache(@Nullable Boolean value) {
@@ -873,6 +958,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The throttle to set on this request in sub-requests per second. -1 means no
+		 * throttle.
+		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
 		public Builder requestsPerSecond(@Nullable Number value) {
@@ -881,14 +969,19 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of specific routing values
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * Specify how long a consistent view of the index should be maintained for
+		 * scrolled search
+		 * <p>
 		 * API name: {@code scroll}
 		 */
 		public Builder scroll(@Nullable JsonValue value) {
@@ -897,6 +990,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Size on the scroll request powering the update by query
+		 * <p>
 		 * API name: {@code scroll_size}
 		 */
 		public Builder scrollSize(@Nullable Number value) {
@@ -905,6 +1000,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit timeout for each search request. Defaults to no timeout.
+		 * <p>
 		 * API name: {@code search_timeout}
 		 */
 		public Builder searchTimeout(@Nullable JsonValue value) {
@@ -913,6 +1010,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Search operation type
+		 * <p>
 		 * API name: {@code search_type}
 		 */
 		public Builder searchType(@Nullable JsonValue value) {
@@ -929,6 +1028,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The number of slices this task should be divided into. Defaults to 1, meaning
+		 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+		 * <p>
 		 * API name: {@code slices}
 		 */
 		public Builder slices(@Nullable Number value) {
@@ -937,6 +1039,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of <field>:<direction> pairs
+		 * <p>
 		 * API name: {@code sort}
 		 */
 		public Builder sort(@Nullable List<String> value) {
@@ -945,6 +1049,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of <field>:<direction> pairs
+		 * <p>
 		 * API name: {@code sort}
 		 */
 		public Builder sort(String... value) {
@@ -964,15 +1070,20 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code source_enabled}
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
+		 * <p>
+		 * API name: {@code _source}
 		 */
-		public Builder sourceEnabled(@Nullable Boolean value) {
-			this.sourceEnabled = value;
+		public Builder source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code source_excludes}
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
+		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(@Nullable List<String> value) {
 			this.sourceExcludes = value;
@@ -980,7 +1091,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code source_excludes}
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
+		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(String... value) {
 			this.sourceExcludes = Arrays.asList(value);
@@ -999,7 +1112,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code source_includes}
+		 * A list of fields to extract and return from the _source field
+		 * <p>
+		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(@Nullable List<String> value) {
 			this.sourceIncludes = value;
@@ -1007,7 +1122,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code source_includes}
+		 * A list of fields to extract and return from the _source field
+		 * <p>
+		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(String... value) {
 			this.sourceIncludes = Arrays.asList(value);
@@ -1026,6 +1143,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specific 'tag' of the request for logging and statistical purposes
+		 * <p>
 		 * API name: {@code stats}
 		 */
 		public Builder stats(@Nullable List<String> value) {
@@ -1034,6 +1153,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specific 'tag' of the request for logging and statistical purposes
+		 * <p>
 		 * API name: {@code stats}
 		 */
 		public Builder stats(String... value) {
@@ -1053,6 +1174,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The maximum number of documents to collect for each shard, upon reaching
+		 * which the query execution will terminate early.
+		 * <p>
 		 * API name: {@code terminate_after}
 		 */
 		public Builder terminateAfter(@Nullable Number value) {
@@ -1061,6 +1185,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Time each individual bulk request should wait for shards that are
+		 * unavailable.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -1069,6 +1196,8 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether to return document version as part of a hit
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Boolean value) {
@@ -1077,6 +1206,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Should the document increment the version number (internal) on hit or not
+		 * (reindex)
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public Builder versionType(@Nullable Boolean value) {
@@ -1085,6 +1217,12 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the update by query operation. Defaults to 1, meaning the primary shard only.
+		 * Set to <code>all</code> for all shard copies, otherwise set to any
+		 * non-negative value less than or equal to the total number of copies for the
+		 * shard (number of replicas + 1)
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder waitForActiveShards(@Nullable JsonValue value) {
@@ -1093,6 +1231,9 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Should the request should block until the update by query operation is
+		 * complete.
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {
@@ -1200,28 +1341,16 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_update_by_query");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_update_by_query");
 					return buf.toString();
 				}
@@ -1278,7 +1407,7 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 					params.put("requests_per_second", request.requestsPerSecond.toString());
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.scroll != null) {
 					params.put("scroll", request.scroll.toString());
@@ -1301,15 +1430,15 @@ public final class UpdateByQueryRequest extends RequestBase implements ToJsonp {
 				if (request.sort != null) {
 					params.put("sort", request.sort.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.sourceEnabled != null) {
-					params.put("source_enabled", String.valueOf(request.sourceEnabled));
+				if (request.source != null) {
+					params.put("_source", request.source.toString());
 				}
 				if (request.sourceExcludes != null) {
-					params.put("source_excludes",
+					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.sourceIncludes != null) {
-					params.put("source_includes",
+					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.stats != null) {

@@ -63,6 +63,8 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -71,6 +73,8 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to return all default clusters setting.
+	 * <p>
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
@@ -79,6 +83,8 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -87,6 +93,8 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -113,6 +121,8 @@ public final class GetSettingsRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -121,6 +131,8 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to return all default clusters setting.
+		 * <p>
 		 * API name: {@code include_defaults}
 		 */
 		public Builder includeDefaults(@Nullable Boolean value) {
@@ -129,6 +141,8 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -137,6 +151,8 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

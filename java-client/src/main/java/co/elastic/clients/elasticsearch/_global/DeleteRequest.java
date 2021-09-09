@@ -58,7 +58,7 @@ public final class DeleteRequest extends RequestBase {
 	private final JsonValue refresh;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue timeout;
@@ -91,6 +91,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * The document ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -98,6 +100,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * The name of the index
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -105,6 +109,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * The type of the document
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -113,6 +119,9 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * only perform the delete operation if the last operation that has changed the
+	 * document has the specified primary term
+	 * <p>
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
@@ -121,6 +130,9 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * only perform the delete operation if the last operation that has changed the
+	 * document has the specified sequence number
+	 * <p>
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
@@ -129,6 +141,11 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * If <code>true</code> then refresh the affected shards to make this operation
+	 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+	 * this operation visible to search, if <code>false</code> (the default) then do
+	 * nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -137,14 +154,18 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Specific routing value
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -153,6 +174,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit version number for concurrency control
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -161,6 +184,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Specific version type
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -169,6 +194,12 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Sets the number of shard copies that must be active before proceeding with
+	 * the delete operation. Defaults to 1, meaning the primary shard only. Set to
+	 * <code>all</code> for all shard copies, otherwise set to any non-negative
+	 * value less than or equal to the total number of copies for the shard (number
+	 * of replicas + 1)
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -199,7 +230,7 @@ public final class DeleteRequest extends RequestBase {
 		private JsonValue refresh;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue timeout;
@@ -214,6 +245,8 @@ public final class DeleteRequest extends RequestBase {
 		private JsonValue waitForActiveShards;
 
 		/**
+		 * The document ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -222,6 +255,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * The name of the index
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -230,6 +265,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * The type of the document
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -238,6 +275,9 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * only perform the delete operation if the last operation that has changed the
+		 * document has the specified primary term
+		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
 		public Builder ifPrimaryTerm(@Nullable Number value) {
@@ -246,6 +286,9 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * only perform the delete operation if the last operation that has changed the
+		 * document has the specified sequence number
+		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
 		public Builder ifSeqNo(@Nullable Number value) {
@@ -254,6 +297,11 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * If <code>true</code> then refresh the affected shards to make this operation
+		 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+		 * this operation visible to search, if <code>false</code> (the default) then do
+		 * nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable JsonValue value) {
@@ -262,14 +310,18 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Specific routing value
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -278,6 +330,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit version number for concurrency control
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Number value) {
@@ -286,6 +340,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Specific version type
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public Builder versionType(@Nullable JsonValue value) {
@@ -294,6 +350,12 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the delete operation. Defaults to 1, meaning the primary shard only. Set to
+		 * <code>all</code> for all shard copies, otherwise set to any non-negative
+		 * value less than or equal to the total number of copies for the shard (number
+		 * of replicas + 1)
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder waitForActiveShards(@Nullable JsonValue value) {
@@ -376,7 +438,7 @@ public final class DeleteRequest extends RequestBase {
 					params.put("refresh", request.refresh.toString());
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout.toString());

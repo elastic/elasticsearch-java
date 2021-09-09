@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.security.get_service_accounts;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
-import co.elastic.clients.elasticsearch.security.GlobalPrivileges;
+import co.elastic.clients.elasticsearch.security.GlobalPrivilege;
 import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -52,7 +52,7 @@ public final class RoleDescriptor implements ToJsonp {
 	private final List<IndicesPrivileges> indices;
 
 	@Nullable
-	private final List<GlobalPrivileges> global;
+	private final List<GlobalPrivilege> global;
 
 	@Nullable
 	private final List<ApplicationPrivileges> applications;
@@ -98,7 +98,7 @@ public final class RoleDescriptor implements ToJsonp {
 	 * API name: {@code global}
 	 */
 	@Nullable
-	public List<GlobalPrivileges> global() {
+	public List<GlobalPrivilege> global() {
 		return this.global;
 	}
 
@@ -165,7 +165,7 @@ public final class RoleDescriptor implements ToJsonp {
 
 			generator.writeKey("global");
 			generator.writeStartArray();
-			for (GlobalPrivileges item0 : this.global) {
+			for (GlobalPrivilege item0 : this.global) {
 				item0.toJsonp(generator, mapper);
 
 			}
@@ -232,7 +232,7 @@ public final class RoleDescriptor implements ToJsonp {
 		private List<IndicesPrivileges> indices;
 
 		@Nullable
-		private List<GlobalPrivileges> global;
+		private List<GlobalPrivilege> global;
 
 		@Nullable
 		private List<ApplicationPrivileges> applications;
@@ -317,7 +317,7 @@ public final class RoleDescriptor implements ToJsonp {
 		/**
 		 * API name: {@code global}
 		 */
-		public Builder global(@Nullable List<GlobalPrivileges> value) {
+		public Builder global(@Nullable List<GlobalPrivilege> value) {
 			this.global = value;
 			return this;
 		}
@@ -325,7 +325,7 @@ public final class RoleDescriptor implements ToJsonp {
 		/**
 		 * API name: {@code global}
 		 */
-		public Builder global(GlobalPrivileges... value) {
+		public Builder global(GlobalPrivilege... value) {
 			this.global = Arrays.asList(value);
 			return this;
 		}
@@ -333,7 +333,7 @@ public final class RoleDescriptor implements ToJsonp {
 		/**
 		 * Add a value to {@link #global(List)}, creating the list if needed.
 		 */
-		public Builder addGlobal(GlobalPrivileges value) {
+		public Builder addGlobal(GlobalPrivilege value) {
 			if (this.global == null) {
 				this.global = new ArrayList<>();
 			}
@@ -344,15 +344,15 @@ public final class RoleDescriptor implements ToJsonp {
 		/**
 		 * Set {@link #global(List)} to a singleton list.
 		 */
-		public Builder global(Function<GlobalPrivileges.Builder, ObjectBuilder<GlobalPrivileges>> fn) {
-			return this.global(fn.apply(new GlobalPrivileges.Builder()).build());
+		public Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+			return this.global(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #global(List)}, creating the list if needed.
 		 */
-		public Builder addGlobal(Function<GlobalPrivileges.Builder, ObjectBuilder<GlobalPrivileges>> fn) {
-			return this.addGlobal(fn.apply(new GlobalPrivileges.Builder()).build());
+		public Builder addGlobal(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+			return this.addGlobal(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
@@ -488,7 +488,7 @@ public final class RoleDescriptor implements ToJsonp {
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges.DESERIALIZER), "indices");
-		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivileges.DESERIALIZER), "global");
+		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege.DESERIALIZER), "global");
 		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
 				"applications");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),

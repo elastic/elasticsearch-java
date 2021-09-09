@@ -60,9 +60,6 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	private final String id;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
@@ -84,7 +81,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	private final Boolean realtime;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final Boolean termStatistics;
@@ -113,7 +110,6 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.id = builder.id;
-		this.type = builder.type;
 		this.fields = builder.fields;
 		this.fieldStatistics = builder.fieldStatistics;
 		this.offsets = builder.offsets;
@@ -133,6 +129,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * The index in which the document resides.
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -140,6 +138,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * The id of the document, when not specified a doc param should be supplied.
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -148,14 +148,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
+	 * A comma-separated list of fields to return.
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -164,6 +158,9 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * Specifies if document count, sum of document frequencies and sum of total
+	 * term frequencies should be returned.
+	 * <p>
 	 * API name: {@code field_statistics}
 	 */
 	@Nullable
@@ -172,6 +169,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * Specifies if term offsets should be returned.
+	 * <p>
 	 * API name: {@code offsets}
 	 */
 	@Nullable
@@ -180,6 +179,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * Specifies if term payloads should be returned.
+	 * <p>
 	 * API name: {@code payloads}
 	 */
 	@Nullable
@@ -188,6 +189,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * Specifies if term positions should be returned.
+	 * <p>
 	 * API name: {@code positions}
 	 */
 	@Nullable
@@ -196,6 +199,9 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random).
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -204,6 +210,9 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * Specifies if request is real-time as opposed to near-real-time (default:
+	 * true).
+	 * <p>
 	 * API name: {@code realtime}
 	 */
 	@Nullable
@@ -212,14 +221,18 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * Specific routing value.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * Specifies if total term frequency and document frequency should be returned.
+	 * <p>
 	 * API name: {@code term_statistics}
 	 */
 	@Nullable
@@ -228,6 +241,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * Explicit version number for concurrency control
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -236,6 +251,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	}
 
 	/**
+	 * Specific version type
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -317,9 +334,6 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		private String id;
 
 		@Nullable
-		private String type;
-
-		@Nullable
 		private List<String> fields;
 
 		@Nullable
@@ -341,7 +355,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		private Boolean realtime;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private Boolean termStatistics;
@@ -365,6 +379,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
+		 * The index in which the document resides.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder<TDocument> index(String value) {
@@ -373,6 +389,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * The id of the document, when not specified a doc param should be supplied.
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder<TDocument> id(@Nullable String value) {
@@ -381,14 +399,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder<TDocument> type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
+		 * A comma-separated list of fields to return.
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder<TDocument> fields(@Nullable List<String> value) {
@@ -397,6 +409,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * A comma-separated list of fields to return.
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder<TDocument> fields(String... value) {
@@ -416,6 +430,9 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * Specifies if document count, sum of document frequencies and sum of total
+		 * term frequencies should be returned.
+		 * <p>
 		 * API name: {@code field_statistics}
 		 */
 		public Builder<TDocument> fieldStatistics(@Nullable Boolean value) {
@@ -424,6 +441,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * Specifies if term offsets should be returned.
+		 * <p>
 		 * API name: {@code offsets}
 		 */
 		public Builder<TDocument> offsets(@Nullable Boolean value) {
@@ -432,6 +451,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * Specifies if term payloads should be returned.
+		 * <p>
 		 * API name: {@code payloads}
 		 */
 		public Builder<TDocument> payloads(@Nullable Boolean value) {
@@ -440,6 +461,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * Specifies if term positions should be returned.
+		 * <p>
 		 * API name: {@code positions}
 		 */
 		public Builder<TDocument> positions(@Nullable Boolean value) {
@@ -448,6 +471,9 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random).
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public Builder<TDocument> preference(@Nullable String value) {
@@ -456,6 +482,9 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * Specifies if request is real-time as opposed to near-real-time (default:
+		 * true).
+		 * <p>
 		 * API name: {@code realtime}
 		 */
 		public Builder<TDocument> realtime(@Nullable Boolean value) {
@@ -464,14 +493,18 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * Specific routing value.
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder<TDocument> routing(@Nullable JsonValue value) {
+		public Builder<TDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * Specifies if total term frequency and document frequency should be returned.
+		 * <p>
 		 * API name: {@code term_statistics}
 		 */
 		public Builder<TDocument> termStatistics(@Nullable Boolean value) {
@@ -480,6 +513,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * Explicit version number for concurrency control
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder<TDocument> version(@Nullable Number value) {
@@ -488,6 +523,8 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
+		 * Specific version type
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public Builder<TDocument> versionType(@Nullable JsonValue value) {
@@ -597,7 +634,6 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 			request -> {
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
@@ -605,8 +641,6 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 					propsSet |= _index;
 				if (request.id() != null)
 					propsSet |= _id;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -621,26 +655,6 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
-					buf.append("/_termvectors");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index);
-					buf.append("/");
-					buf.append(request.type);
-					buf.append("/");
-					buf.append(request.id);
-					buf.append("/_termvectors");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index);
-					buf.append("/");
-					buf.append(request.type);
 					buf.append("/_termvectors");
 					return buf.toString();
 				}
@@ -673,7 +687,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 					params.put("realtime", String.valueOf(request.realtime));
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.termStatistics != null) {
 					params.put("term_statistics", String.valueOf(request.termStatistics));

@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.api.ssl;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ssl.GetCertificatesRequest;
-import co.elastic.clients.elasticsearch.ssl.GetCertificatesResponse;
+import co.elastic.clients.elasticsearch.ssl.CertificatesRequest;
+import co.elastic.clients.elasticsearch.ssl.CertificatesResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -56,8 +56,8 @@ public class SslClient extends ApiClient<SslClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-ssl.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetCertificatesResponse certificates() throws IOException {
-		return this.transport.performRequest(GetCertificatesRequest.INSTANCE, GetCertificatesRequest.ENDPOINT,
+	public CertificatesResponse certificates() throws IOException {
+		return this.transport.performRequest(CertificatesRequest.INSTANCE, CertificatesRequest.ENDPOINT,
 				this.requestOptions);
 	}
 

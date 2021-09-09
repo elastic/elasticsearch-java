@@ -51,9 +51,6 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	private final List<String> index;
 
 	@Nullable
-	private final List<String> type;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -78,7 +75,7 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	private final Boolean profile;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue scroll;
@@ -106,7 +103,6 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	protected SearchTemplateRequest(Builder builder) {
 
 		this.index = builder.index;
-		this.type = builder.type;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.expandWildcards = builder.expandWildcards;
@@ -127,6 +123,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * A comma-separated list of index names to search; use <code>_all</code> or
+	 * empty string to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -135,14 +134,10 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
-	}
-
-	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -151,6 +146,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * Indicates whether network round-trips should be minimized as part of
+	 * cross-cluster search requests execution
+	 * <p>
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
 	@Nullable
@@ -159,6 +157,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -177,6 +178,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * Whether specified concrete, expanded or aliased indices should be ignored
+	 * when throttled
+	 * <p>
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
@@ -185,6 +189,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -193,6 +200,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -201,6 +211,8 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * Specify whether to profile the query execution
+	 * <p>
 	 * API name: {@code profile}
 	 */
 	@Nullable
@@ -209,14 +221,19 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * A comma-separated list of specific routing values
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * Specify how long a consistent view of the index should be maintained for
+	 * scrolled search
+	 * <p>
 	 * API name: {@code scroll}
 	 */
 	@Nullable
@@ -225,6 +242,8 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * Search operation type
+	 * <p>
 	 * API name: {@code search_type}
 	 */
 	@Nullable
@@ -243,6 +262,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * Specify whether aggregation and suggester names should be prefixed by their
+	 * respective types in the response
+	 * <p>
 	 * API name: {@code typed_keys}
 	 */
 	@Nullable
@@ -322,9 +344,6 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		private List<String> index;
 
 		@Nullable
-		private List<String> type;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -349,7 +368,7 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		private Boolean profile;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue scroll;
@@ -373,6 +392,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		private String source;
 
 		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -381,6 +403,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -400,33 +425,10 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
-			return this;
-		}
-
-		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -435,6 +437,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * Indicates whether network round-trips should be minimized as part of
+		 * cross-cluster search requests execution
+		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
 		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
@@ -443,6 +448,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -461,6 +469,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * Whether specified concrete, expanded or aliased indices should be ignored
+		 * when throttled
+		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
 		public Builder ignoreThrottled(@Nullable Boolean value) {
@@ -469,6 +480,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -477,6 +491,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -485,6 +502,8 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * Specify whether to profile the query execution
+		 * <p>
 		 * API name: {@code profile}
 		 */
 		public Builder profile(@Nullable Boolean value) {
@@ -493,14 +512,19 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * A comma-separated list of specific routing values
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * Specify how long a consistent view of the index should be maintained for
+		 * scrolled search
+		 * <p>
 		 * API name: {@code scroll}
 		 */
 		public Builder scroll(@Nullable JsonValue value) {
@@ -509,6 +533,8 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * Search operation type
+		 * <p>
 		 * API name: {@code search_type}
 		 */
 		public Builder searchType(@Nullable JsonValue value) {
@@ -527,6 +553,9 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * Specify whether aggregation and suggester names should be prefixed by their
+		 * respective types in the response
+		 * <p>
 		 * API name: {@code typed_keys}
 		 */
 		public Builder typedKeys(@Nullable Boolean value) {
@@ -614,14 +643,11 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -633,16 +659,6 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_search");
-					buf.append("/template");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_search");
 					buf.append("/template");
 					return buf.toString();
@@ -679,7 +695,7 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 					params.put("profile", String.valueOf(request.profile));
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.scroll != null) {
 					params.put("scroll", request.scroll.toString());

@@ -53,6 +53,8 @@ public final class GetLifecycleRequest extends RequestBase {
 	}
 
 	/**
+	 * Comma-separated list of snapshot lifecycle policies to retrieve
+	 * <p>
 	 * API name: {@code policy_id}
 	 */
 	@Nullable
@@ -70,6 +72,8 @@ public final class GetLifecycleRequest extends RequestBase {
 		private List<String> policyId;
 
 		/**
+		 * Comma-separated list of snapshot lifecycle policies to retrieve
+		 * <p>
 		 * API name: {@code policy_id}
 		 */
 		public Builder policyId(@Nullable List<String> value) {
@@ -78,6 +82,8 @@ public final class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of snapshot lifecycle policies to retrieve
+		 * <p>
 		 * API name: {@code policy_id}
 		 */
 		public Builder policyId(String... value) {

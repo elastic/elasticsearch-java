@@ -50,6 +50,8 @@ public final class UsageRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for watch write operation
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -67,6 +69,8 @@ public final class UsageRequest extends RequestBase {
 		private JsonValue masterTimeout;
 
 		/**
+		 * Specify timeout for watch write operation
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

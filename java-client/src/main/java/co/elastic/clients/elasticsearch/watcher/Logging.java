@@ -37,22 +37,28 @@ import javax.annotation.Nullable;
 
 // typedef: watcher._types.Logging
 public final class Logging implements ToJsonp {
+	@Nullable
 	private final String level;
 
 	private final String text;
+
+	@Nullable
+	private final String category;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected Logging(Builder builder) {
 
-		this.level = Objects.requireNonNull(builder.level, "level");
+		this.level = builder.level;
 		this.text = Objects.requireNonNull(builder.text, "text");
+		this.category = builder.category;
 
 	}
 
 	/**
 	 * API name: {@code level}
 	 */
+	@Nullable
 	public String level() {
 		return this.level;
 	}
@@ -62,6 +68,14 @@ public final class Logging implements ToJsonp {
 	 */
 	public String text() {
 		return this.text;
+	}
+
+	/**
+	 * API name: {@code category}
+	 */
+	@Nullable
+	public String category() {
+		return this.category;
 	}
 
 	/**
@@ -75,11 +89,22 @@ public final class Logging implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("level");
-		generator.write(this.level);
+		if (this.level != null) {
+
+			generator.writeKey("level");
+			generator.write(this.level);
+
+		}
 
 		generator.writeKey("text");
 		generator.write(this.text);
+
+		if (this.category != null) {
+
+			generator.writeKey("category");
+			generator.write(this.category);
+
+		}
 
 	}
 
@@ -89,14 +114,18 @@ public final class Logging implements ToJsonp {
 	 * Builder for {@link Logging}.
 	 */
 	public static class Builder implements ObjectBuilder<Logging> {
+		@Nullable
 		private String level;
 
 		private String text;
 
+		@Nullable
+		private String category;
+
 		/**
 		 * API name: {@code level}
 		 */
-		public Builder level(String value) {
+		public Builder level(@Nullable String value) {
 			this.level = value;
 			return this;
 		}
@@ -106,6 +135,14 @@ public final class Logging implements ToJsonp {
 		 */
 		public Builder text(String value) {
 			this.text = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code category}
+		 */
+		public Builder category(@Nullable String value) {
+			this.category = value;
 			return this;
 		}
 
@@ -133,6 +170,7 @@ public final class Logging implements ToJsonp {
 
 		op.add(Builder::level, JsonpDeserializer.stringDeserializer(), "level");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
+		op.add(Builder::category, JsonpDeserializer.stringDeserializer(), "category");
 
 	}
 

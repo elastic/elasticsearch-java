@@ -91,6 +91,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Role name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -98,6 +100,11 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -106,6 +113,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of application privilege entries.
+	 * <p>
 	 * API name: {@code applications}
 	 */
 	@Nullable
@@ -114,6 +123,9 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of cluster privileges. These privileges define the cluster-level
+	 * actions for users with this role.
+	 * <p>
 	 * API name: {@code cluster}
 	 */
 	@Nullable
@@ -122,6 +134,10 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * An object defining global privileges. A global privilege is a form of cluster
+	 * privilege that is request-aware. Support for global privileges is currently
+	 * limited to the management of application privileges.
+	 * <p>
 	 * API name: {@code global}
 	 */
 	@Nullable
@@ -130,6 +146,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of indices permissions entries.
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	@Nullable
@@ -138,6 +156,9 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Optional metadata. Within the metadata object, keys that begin with an
+	 * underscore (<code>_</code>) are reserved for system use.
+	 * <p>
 	 * API name: {@code metadata}
 	 */
 	@Nullable
@@ -146,6 +167,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of users that the owners of this role can impersonate.
+	 * <p>
 	 * API name: {@code run_as}
 	 */
 	@Nullable
@@ -154,6 +177,13 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Indicates roles that might be incompatible with the current cluster license,
+	 * specifically roles with document and field level security. When the cluster
+	 * license doesn’t allow certain features for a given role, this parameter is
+	 * updated dynamically to list the incompatible features. If
+	 * <code>enabled</code> is <code>false</code>, the role is ignored, but is still
+	 * listed in the response from the authenticate API.
+	 * <p>
 	 * API name: {@code transient_metadata}
 	 */
 	@Nullable
@@ -282,6 +312,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		private TransientMetadata transientMetadata;
 
 		/**
+		 * Role name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -290,6 +322,11 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable JsonValue value) {
@@ -298,6 +335,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of application privilege entries.
+		 * <p>
 		 * API name: {@code applications}
 		 */
 		public Builder applications(@Nullable List<ApplicationPrivileges> value) {
@@ -306,6 +345,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of application privilege entries.
+		 * <p>
 		 * API name: {@code applications}
 		 */
 		public Builder applications(ApplicationPrivileges... value) {
@@ -340,6 +381,9 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of cluster privileges. These privileges define the cluster-level
+		 * actions for users with this role.
+		 * <p>
 		 * API name: {@code cluster}
 		 */
 		public Builder cluster(@Nullable List<String> value) {
@@ -348,6 +392,9 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of cluster privileges. These privileges define the cluster-level
+		 * actions for users with this role.
+		 * <p>
 		 * API name: {@code cluster}
 		 */
 		public Builder cluster(String... value) {
@@ -367,6 +414,10 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * An object defining global privileges. A global privilege is a form of cluster
+		 * privilege that is request-aware. Support for global privileges is currently
+		 * limited to the management of application privileges.
+		 * <p>
 		 * API name: {@code global}
 		 */
 		public Builder global(@Nullable Map<String, JsonValue> value) {
@@ -386,6 +437,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of indices permissions entries.
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(@Nullable List<IndicesPrivileges> value) {
@@ -394,6 +447,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of indices permissions entries.
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(IndicesPrivileges... value) {
@@ -427,6 +482,9 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Optional metadata. Within the metadata object, keys that begin with an
+		 * underscore (<code>_</code>) are reserved for system use.
+		 * <p>
 		 * API name: {@code metadata}
 		 */
 		public Builder metadata(@Nullable Map<String, JsonValue> value) {
@@ -446,6 +504,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of users that the owners of this role can impersonate.
+		 * <p>
 		 * API name: {@code run_as}
 		 */
 		public Builder runAs(@Nullable List<String> value) {
@@ -454,6 +514,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of users that the owners of this role can impersonate.
+		 * <p>
 		 * API name: {@code run_as}
 		 */
 		public Builder runAs(String... value) {
@@ -473,6 +535,13 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Indicates roles that might be incompatible with the current cluster license,
+		 * specifically roles with document and field level security. When the cluster
+		 * license doesn’t allow certain features for a given role, this parameter is
+		 * updated dynamically to list the incompatible features. If
+		 * <code>enabled</code> is <code>false</code>, the role is ignored, but is still
+		 * listed in the response from the authenticate API.
+		 * <p>
 		 * API name: {@code transient_metadata}
 		 */
 		public Builder transientMetadata(@Nullable TransientMetadata value) {
@@ -481,6 +550,13 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Indicates roles that might be incompatible with the current cluster license,
+		 * specifically roles with document and field level security. When the cluster
+		 * license doesn’t allow certain features for a given role, this parameter is
+		 * updated dynamically to list the incompatible features. If
+		 * <code>enabled</code> is <code>false</code>, the role is ignored, but is still
+		 * listed in the response from the authenticate API.
+		 * <p>
 		 * API name: {@code transient_metadata}
 		 */
 		public Builder transientMetadata(Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {

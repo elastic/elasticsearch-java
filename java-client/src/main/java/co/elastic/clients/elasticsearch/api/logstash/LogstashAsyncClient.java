@@ -24,13 +24,12 @@
 package co.elastic.clients.elasticsearch.api.logstash;
 
 import co.elastic.clients.base.ApiClient;
+import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.logstash.PipelineDeleteRequest;
-import co.elastic.clients.elasticsearch.logstash.PipelineDeleteResponse;
-import co.elastic.clients.elasticsearch.logstash.PipelineGetRequest;
-import co.elastic.clients.elasticsearch.logstash.PipelineGetResponse;
-import co.elastic.clients.elasticsearch.logstash.PipelinePutRequest;
-import co.elastic.clients.elasticsearch.logstash.PipelinePutResponse;
+import co.elastic.clients.elasticsearch.logstash.DeletePipelineRequest;
+import co.elastic.clients.elasticsearch.logstash.GetPipelineRequest;
+import co.elastic.clients.elasticsearch.logstash.GetPipelineResponse;
+import co.elastic.clients.elasticsearch.logstash.PutPipelineRequest;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -61,8 +60,8 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PipelineDeleteResponse> deletePipeline(PipelineDeleteRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PipelineDeleteRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<BooleanResponse> deletePipeline(DeletePipelineRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, DeletePipelineRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -77,9 +76,9 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PipelineDeleteResponse> deletePipeline(
-			Function<PipelineDeleteRequest.Builder, ObjectBuilder<PipelineDeleteRequest>> fn) throws IOException {
-		return deletePipeline(fn.apply(new PipelineDeleteRequest.Builder()).build());
+	public final CompletableFuture<BooleanResponse> deletePipeline(
+			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn) throws IOException {
+		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: logstash.get_pipeline
@@ -92,8 +91,8 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PipelineGetResponse> getPipeline(PipelineGetRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PipelineGetRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, GetPipelineRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -108,9 +107,9 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PipelineGetResponse> getPipeline(
-			Function<PipelineGetRequest.Builder, ObjectBuilder<PipelineGetRequest>> fn) throws IOException {
-		return getPipeline(fn.apply(new PipelineGetRequest.Builder()).build());
+	public final CompletableFuture<GetPipelineResponse> getPipeline(
+			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn) throws IOException {
+		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: logstash.put_pipeline
@@ -123,8 +122,8 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PipelinePutResponse> putPipeline(PipelinePutRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PipelinePutRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<BooleanResponse> putPipeline(PutPipelineRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, PutPipelineRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -139,9 +138,9 @@ public class LogstashAsyncClient extends ApiClient<LogstashAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PipelinePutResponse> putPipeline(
-			Function<PipelinePutRequest.Builder, ObjectBuilder<PipelinePutRequest>> fn) throws IOException {
-		return putPipeline(fn.apply(new PipelinePutRequest.Builder()).build());
+	public final CompletableFuture<BooleanResponse> putPipeline(
+			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn) throws IOException {
+		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 
 	// ----- Misc

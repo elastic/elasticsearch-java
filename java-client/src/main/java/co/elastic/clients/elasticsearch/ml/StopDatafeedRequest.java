@@ -67,6 +67,8 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The ID of the datafeed to stop
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
@@ -74,6 +76,9 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+	 * includes <code>_all</code> string or when no datafeeds have been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -141,6 +146,8 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 		private JsonValue timeout;
 
 		/**
+		 * The ID of the datafeed to stop
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
@@ -149,6 +156,9 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {

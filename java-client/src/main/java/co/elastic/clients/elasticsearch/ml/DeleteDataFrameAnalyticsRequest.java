@@ -60,6 +60,8 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	}
 
 	/**
+	 * Identifier for the data frame analytics job.
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -67,6 +69,9 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	}
 
 	/**
+	 * If <code>true</code>, it deletes a job that is not stopped; this method is
+	 * quicker than stopping and deleting the job.
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -75,6 +80,8 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	}
 
 	/**
+	 * The time to wait for the job to be deleted.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -97,6 +104,8 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * Identifier for the data frame analytics job.
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -105,6 +114,9 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		}
 
 		/**
+		 * If <code>true</code>, it deletes a job that is not stopped; this method is
+		 * quicker than stopping and deleting the job.
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -113,6 +125,8 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		}
 
 		/**
+		 * The time to wait for the job to be deleted.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

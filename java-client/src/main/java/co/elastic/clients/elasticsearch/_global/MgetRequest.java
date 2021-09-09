@@ -53,9 +53,6 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	private final String index;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final String preference;
 
 	@Nullable
@@ -65,7 +62,7 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	private final Boolean refresh;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue source;
@@ -90,7 +87,6 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	protected MgetRequest(Builder builder) {
 
 		this.index = builder.index;
-		this.type = builder.type;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
@@ -105,6 +101,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the index
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -113,14 +111,9 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -129,6 +122,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether to perform the operation in realtime or search mode
+	 * <p>
 	 * API name: {@code realtime}
 	 */
 	@Nullable
@@ -137,6 +132,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Refresh the shard containing the document before performing the operation
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -145,14 +142,19 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specific routing value
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * True or false to return the _source field or not, or a list of fields to
+	 * return
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
@@ -161,6 +163,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of fields to exclude from the returned _source field
+	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
@@ -169,6 +173,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of fields to extract and return from the _source field
+	 * <p>
 	 * API name: {@code _source_includes}
 	 */
 	@Nullable
@@ -177,6 +183,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of stored fields to return in the response
+	 * <p>
 	 * API name: {@code stored_fields}
 	 */
 	@Nullable
@@ -246,9 +254,6 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		private String index;
 
 		@Nullable
-		private String type;
-
-		@Nullable
 		private String preference;
 
 		@Nullable
@@ -258,7 +263,7 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		private Boolean refresh;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue source;
@@ -279,6 +284,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		private List<JsonValue> ids;
 
 		/**
+		 * The name of the index
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -287,14 +294,9 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -303,6 +305,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether to perform the operation in realtime or search mode
+		 * <p>
 		 * API name: {@code realtime}
 		 */
 		public Builder realtime(@Nullable Boolean value) {
@@ -311,6 +315,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Refresh the shard containing the document before performing the operation
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable Boolean value) {
@@ -319,14 +325,19 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specific routing value
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public Builder source(@Nullable JsonValue value) {
@@ -335,6 +346,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(@Nullable List<String> value) {
@@ -343,6 +356,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(String... value) {
@@ -362,6 +377,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to extract and return from the _source field
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(@Nullable List<String> value) {
@@ -370,6 +387,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to extract and return from the _source field
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(String... value) {
@@ -389,6 +408,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of stored fields to return in the response
+		 * <p>
 		 * API name: {@code stored_fields}
 		 */
 		public Builder storedFields(@Nullable List<String> value) {
@@ -397,6 +418,8 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of stored fields to return in the response
+		 * <p>
 		 * API name: {@code stored_fields}
 		 */
 		public Builder storedFields(String... value) {
@@ -525,14 +548,11 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -543,15 +563,6 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
-					buf.append("/_mget");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index);
-					buf.append("/");
-					buf.append(request.type);
 					buf.append("/_mget");
 					return buf.toString();
 				}
@@ -572,7 +583,7 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.source != null) {
 					params.put("_source", request.source.toString());

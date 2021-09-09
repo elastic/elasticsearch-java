@@ -54,9 +54,6 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	private final List<String> index;
 
 	@Nullable
-	private final List<String> type;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -93,7 +90,7 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	private final String queryOnQueryString;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final Number terminateAfter;
@@ -109,7 +106,6 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	protected CountRequest(Builder builder) {
 
 		this.index = builder.index;
-		this.type = builder.type;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
@@ -130,6 +126,8 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of indices to restrict the results
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -138,14 +136,10 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
-	}
-
-	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -154,6 +148,8 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The analyzer to use for the query string
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -162,6 +158,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether wildcard and prefix queries should be analyzed (default:
+	 * false)
+	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
@@ -170,6 +169,8 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The default operator for query string query (AND or OR)
+	 * <p>
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
@@ -178,6 +179,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The field to use as default where no field prefix is given in the query
+	 * string
+	 * <p>
 	 * API name: {@code df}
 	 */
 	@Nullable
@@ -186,6 +190,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -194,6 +201,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether specified concrete, expanded or aliased indices should be ignored
+	 * when throttled
+	 * <p>
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
@@ -202,6 +212,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -210,6 +223,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether format-based query failures (such as providing text to a
+	 * numeric field) should be ignored
+	 * <p>
 	 * API name: {@code lenient}
 	 */
 	@Nullable
@@ -218,6 +234,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Include only documents with a specific <code>_score</code> value in the
+	 * result
+	 * <p>
 	 * API name: {@code min_score}
 	 */
 	@Nullable
@@ -226,6 +245,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -242,14 +264,19 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of specific routing values
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * The maximum count for each shard, upon reaching which the query execution
+	 * will terminate early
+	 * <p>
 	 * API name: {@code terminate_after}
 	 */
 	@Nullable
@@ -258,6 +285,8 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Query in the Lucene query string syntax
+	 * <p>
 	 * API name: {@code q}
 	 */
 	@Nullable
@@ -303,9 +332,6 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		private List<String> index;
 
 		@Nullable
-		private List<String> type;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -342,7 +368,7 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		private String queryOnQueryString;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private Number terminateAfter;
@@ -354,6 +380,8 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		private QueryContainer query;
 
 		/**
+		 * A comma-separated list of indices to restrict the results
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -362,6 +390,8 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of indices to restrict the results
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -381,33 +411,10 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
-			return this;
-		}
-
-		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -416,6 +423,8 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The analyzer to use for the query string
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public Builder analyzer(@Nullable String value) {
@@ -424,6 +433,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether wildcard and prefix queries should be analyzed (default:
+		 * false)
+		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
 		public Builder analyzeWildcard(@Nullable Boolean value) {
@@ -432,6 +444,8 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The default operator for query string query (AND or OR)
+		 * <p>
 		 * API name: {@code default_operator}
 		 */
 		public Builder defaultOperator(@Nullable JsonValue value) {
@@ -440,6 +454,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The field to use as default where no field prefix is given in the query
+		 * string
+		 * <p>
 		 * API name: {@code df}
 		 */
 		public Builder df(@Nullable String value) {
@@ -448,6 +465,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -456,6 +476,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether specified concrete, expanded or aliased indices should be ignored
+		 * when throttled
+		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
 		public Builder ignoreThrottled(@Nullable Boolean value) {
@@ -464,6 +487,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -472,6 +498,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether format-based query failures (such as providing text to a
+		 * numeric field) should be ignored
+		 * <p>
 		 * API name: {@code lenient}
 		 */
 		public Builder lenient(@Nullable Boolean value) {
@@ -480,6 +509,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Include only documents with a specific <code>_score</code> value in the
+		 * result
+		 * <p>
 		 * API name: {@code min_score}
 		 */
 		public Builder minScore(@Nullable Number value) {
@@ -488,6 +520,9 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -504,14 +539,19 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of specific routing values
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * The maximum count for each shard, upon reaching which the query execution
+		 * will terminate early
+		 * <p>
 		 * API name: {@code terminate_after}
 		 */
 		public Builder terminateAfter(@Nullable Number value) {
@@ -520,6 +560,8 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Query in the Lucene query string syntax
+		 * <p>
 		 * API name: {@code q}
 		 */
 		public Builder q(@Nullable String value) {
@@ -583,14 +625,11 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -601,15 +640,6 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_count");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_count");
 					return buf.toString();
 				}
@@ -657,7 +687,7 @@ public final class CountRequest extends RequestBase implements ToJsonp {
 					params.put("query_on_query_string", request.queryOnQueryString);
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.terminateAfter != null) {
 					params.put("terminate_after", request.terminateAfter.toString());

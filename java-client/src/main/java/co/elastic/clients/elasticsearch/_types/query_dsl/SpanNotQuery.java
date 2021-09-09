@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -39,10 +40,8 @@ public final class SpanNotQuery extends QueryBase {
 	@Nullable
 	private final Number dist;
 
-	@Nullable
 	private final SpanQuery exclude;
 
-	@Nullable
 	private final SpanQuery include;
 
 	@Nullable
@@ -56,8 +55,8 @@ public final class SpanNotQuery extends QueryBase {
 	protected SpanNotQuery(Builder builder) {
 		super(builder);
 		this.dist = builder.dist;
-		this.exclude = builder.exclude;
-		this.include = builder.include;
+		this.exclude = Objects.requireNonNull(builder.exclude, "exclude");
+		this.include = Objects.requireNonNull(builder.include, "include");
 		this.post = builder.post;
 		this.pre = builder.pre;
 
@@ -74,7 +73,6 @@ public final class SpanNotQuery extends QueryBase {
 	/**
 	 * API name: {@code exclude}
 	 */
-	@Nullable
 	public SpanQuery exclude() {
 		return this.exclude;
 	}
@@ -82,7 +80,6 @@ public final class SpanNotQuery extends QueryBase {
 	/**
 	 * API name: {@code include}
 	 */
-	@Nullable
 	public SpanQuery include() {
 		return this.include;
 	}
@@ -111,18 +108,13 @@ public final class SpanNotQuery extends QueryBase {
 			generator.write(this.dist.doubleValue());
 
 		}
-		if (this.exclude != null) {
 
-			generator.writeKey("exclude");
-			this.exclude.toJsonp(generator, mapper);
+		generator.writeKey("exclude");
+		this.exclude.toJsonp(generator, mapper);
 
-		}
-		if (this.include != null) {
+		generator.writeKey("include");
+		this.include.toJsonp(generator, mapper);
 
-			generator.writeKey("include");
-			this.include.toJsonp(generator, mapper);
-
-		}
 		if (this.post != null) {
 
 			generator.writeKey("post");
@@ -147,10 +139,8 @@ public final class SpanNotQuery extends QueryBase {
 		@Nullable
 		private Number dist;
 
-		@Nullable
 		private SpanQuery exclude;
 
-		@Nullable
 		private SpanQuery include;
 
 		@Nullable
@@ -170,7 +160,7 @@ public final class SpanNotQuery extends QueryBase {
 		/**
 		 * API name: {@code exclude}
 		 */
-		public Builder exclude(@Nullable SpanQuery value) {
+		public Builder exclude(SpanQuery value) {
 			this.exclude = value;
 			return this;
 		}
@@ -185,7 +175,7 @@ public final class SpanNotQuery extends QueryBase {
 		/**
 		 * API name: {@code include}
 		 */
-		public Builder include(@Nullable SpanQuery value) {
+		public Builder include(SpanQuery value) {
 			this.include = value;
 			return this;
 		}

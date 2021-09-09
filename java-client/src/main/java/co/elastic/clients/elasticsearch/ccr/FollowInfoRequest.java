@@ -53,6 +53,9 @@ public final class FollowInfoRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index patterns; use <code>_all</code> to perform
+	 * the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -68,6 +71,9 @@ public final class FollowInfoRequest extends RequestBase {
 		private List<String> index;
 
 		/**
+		 * A comma-separated list of index patterns; use <code>_all</code> to perform
+		 * the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -76,6 +82,9 @@ public final class FollowInfoRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index patterns; use <code>_all</code> to perform
+		 * the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {

@@ -37,6 +37,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringQuery
@@ -74,7 +75,6 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	@Nullable
 	private final JsonValue minimumShouldMatch;
 
-	@Nullable
 	private final String query;
 
 	@Nullable
@@ -95,7 +95,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		this.fuzzyTranspositions = builder.fuzzyTranspositions;
 		this.lenient = builder.lenient;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.query = builder.query;
+		this.query = Objects.requireNonNull(builder.query, "query");
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 
 	}
@@ -191,7 +191,6 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	@Nullable
 	public String query() {
 		return this.query;
 	}
@@ -277,12 +276,10 @@ public final class SimpleQueryStringQuery extends QueryBase {
 			generator.write(this.minimumShouldMatch);
 
 		}
-		if (this.query != null) {
 
-			generator.writeKey("query");
-			generator.write(this.query);
+		generator.writeKey("query");
+		generator.write(this.query);
 
-		}
 		if (this.quoteFieldSuffix != null) {
 
 			generator.writeKey("quote_field_suffix");
@@ -333,7 +330,6 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		@Nullable
 		private JsonValue minimumShouldMatch;
 
-		@Nullable
 		private String query;
 
 		@Nullable
@@ -449,7 +445,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable String value) {
+		public Builder query(String value) {
 			this.query = value;
 			return this;
 		}

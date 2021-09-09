@@ -39,12 +39,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_index_template.Request
 public final class SimulateIndexTemplateRequest extends RequestBase implements ToJsonp {
-	@Nullable
 	private final String name;
 
 	@Nullable
@@ -63,7 +63,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 	protected SimulateIndexTemplateRequest(Builder builder) {
 
-		this.name = builder.name;
+		this.name = Objects.requireNonNull(builder.name, "name");
 		this.indexPatterns = builder.indexPatterns;
 		this.composedOf = builder.composedOf;
 		this.overlapping = builder.overlapping;
@@ -76,7 +76,6 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
 	public String name() {
 		return this.name;
 	}
@@ -174,7 +173,6 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	 * Builder for {@link SimulateIndexTemplateRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<SimulateIndexTemplateRequest> {
-		@Nullable
 		private String name;
 
 		@Nullable
@@ -194,7 +192,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public Builder name(String value) {
 			this.name = value;
 			return this;
 		}

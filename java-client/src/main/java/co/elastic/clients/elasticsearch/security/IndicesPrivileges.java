@@ -69,6 +69,8 @@ public final class IndicesPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * The document fields that the owners of the role have read access to.
+	 * <p>
 	 * API name: {@code field_security}
 	 */
 	@Nullable
@@ -77,6 +79,9 @@ public final class IndicesPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * A list of indices (or index name patterns) to which the permissions in this
+	 * entry apply.
+	 * <p>
 	 * API name: {@code names}
 	 */
 	public List<String> names() {
@@ -84,6 +89,9 @@ public final class IndicesPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * The index level privileges that owners of the role have on the specified
+	 * indices.
+	 * <p>
 	 * API name: {@code privileges}
 	 */
 	public List<String> privileges() {
@@ -91,6 +99,10 @@ public final class IndicesPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * A search query that defines the documents the owners of the role have read
+	 * access to. A document within the specified indices must match this query for
+	 * it to be accessible by the owners of the role.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -99,6 +111,13 @@ public final class IndicesPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * Set to <code>true</code> if using wildcard or regular expressions for
+	 * patterns that cover restricted indices. Implicitly, restricted indices have
+	 * limited privileges that can cause pattern tests to fail. If restricted
+	 * indices are explicitly included in the <code>names</code> list, Elasticsearch
+	 * checks privileges against these indices regardless of the value set for
+	 * <code>allow_restricted_indices</code>.
+	 * <p>
 	 * API name: {@code allow_restricted_indices}
 	 */
 	@Nullable
@@ -175,6 +194,8 @@ public final class IndicesPrivileges implements ToJsonp {
 		private Boolean allowRestrictedIndices;
 
 		/**
+		 * The document fields that the owners of the role have read access to.
+		 * <p>
 		 * API name: {@code field_security}
 		 */
 		public Builder fieldSecurity(@Nullable FieldSecurity value) {
@@ -183,6 +204,8 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * The document fields that the owners of the role have read access to.
+		 * <p>
 		 * API name: {@code field_security}
 		 */
 		public Builder fieldSecurity(Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>> fn) {
@@ -190,6 +213,9 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * A list of indices (or index name patterns) to which the permissions in this
+		 * entry apply.
+		 * <p>
 		 * API name: {@code names}
 		 */
 		public Builder names(List<String> value) {
@@ -198,6 +224,9 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * A list of indices (or index name patterns) to which the permissions in this
+		 * entry apply.
+		 * <p>
 		 * API name: {@code names}
 		 */
 		public Builder names(String... value) {
@@ -217,6 +246,9 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * The index level privileges that owners of the role have on the specified
+		 * indices.
+		 * <p>
 		 * API name: {@code privileges}
 		 */
 		public Builder privileges(List<String> value) {
@@ -225,6 +257,9 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * The index level privileges that owners of the role have on the specified
+		 * indices.
+		 * <p>
 		 * API name: {@code privileges}
 		 */
 		public Builder privileges(String... value) {
@@ -244,6 +279,10 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * A search query that defines the documents the owners of the role have read
+		 * access to. A document within the specified indices must match this query for
+		 * it to be accessible by the owners of the role.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(@Nullable JsonValue value) {
@@ -252,6 +291,13 @@ public final class IndicesPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * Set to <code>true</code> if using wildcard or regular expressions for
+		 * patterns that cover restricted indices. Implicitly, restricted indices have
+		 * limited privileges that can cause pattern tests to fail. If restricted
+		 * indices are explicitly included in the <code>names</code> list, Elasticsearch
+		 * checks privileges against these indices regardless of the value set for
+		 * <code>allow_restricted_indices</code>.
+		 * <p>
 		 * API name: {@code allow_restricted_indices}
 		 */
 		public Builder allowRestrictedIndices(@Nullable Boolean value) {

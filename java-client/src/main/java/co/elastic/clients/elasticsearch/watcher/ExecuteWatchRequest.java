@@ -88,6 +88,8 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Watch ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -96,6 +98,8 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * indicates whether the watch should execute in debug mode
+	 * <p>
 	 * API name: {@code debug}
 	 */
 	@Nullable
@@ -261,6 +265,8 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 		private Watch watch;
 
 		/**
+		 * Watch ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -269,6 +275,8 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * indicates whether the watch should execute in debug mode
+		 * <p>
 		 * API name: {@code debug}
 		 */
 		public Builder debug(@Nullable Boolean value) {

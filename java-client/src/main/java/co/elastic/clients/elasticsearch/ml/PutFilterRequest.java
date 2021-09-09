@@ -63,6 +63,8 @@ public final class PutFilterRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The ID of the filter to create
+	 * <p>
 	 * API name: {@code filter_id}
 	 */
 	public String filterId() {
@@ -131,6 +133,8 @@ public final class PutFilterRequest extends RequestBase implements ToJsonp {
 		private List<String> items;
 
 		/**
+		 * The ID of the filter to create
+		 * <p>
 		 * API name: {@code filter_id}
 		 */
 		public Builder filterId(String value) {

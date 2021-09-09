@@ -32,7 +32,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,20 +45,19 @@ public final class DataStreamsStatsRequest extends RequestBase {
 	@Nullable
 	private final JsonValue expandWildcards;
 
-	@Nullable
-	private final Boolean human;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected DataStreamsStatsRequest(Builder builder) {
 
 		this.name = builder.name;
 		this.expandWildcards = builder.expandWildcards;
-		this.human = builder.human;
 
 	}
 
 	/**
+	 * A comma-separated list of data stream names; use <code>_all</code> or empty
+	 * string to perform the operation on all data streams
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -75,14 +73,6 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		return this.expandWildcards;
 	}
 
-	/**
-	 * API name: {@code human}
-	 */
-	@Nullable
-	public Boolean human() {
-		return this.human;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -95,10 +85,10 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		@Nullable
 		private JsonValue expandWildcards;
 
-		@Nullable
-		private Boolean human;
-
 		/**
+		 * A comma-separated list of data stream names; use <code>_all</code> or empty
+		 * string to perform the operation on all data streams
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -111,14 +101,6 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
 			this.expandWildcards = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code human}
-		 */
-		public Builder human(@Nullable Boolean value) {
-			this.human = value;
 			return this;
 		}
 
@@ -178,9 +160,6 @@ public final class DataStreamsStatsRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.expandWildcards != null) {
 					params.put("expand_wildcards", request.expandWildcards.toString());
-				}
-				if (request.human != null) {
-					params.put("human", String.valueOf(request.human));
 				}
 				return params;
 

@@ -74,6 +74,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements ToJso
 	}
 
 	/**
+	 * The ID of the calendar containing the events
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	public String calendarId() {
@@ -81,6 +83,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements ToJso
 	}
 
 	/**
+	 * Get events for the job. When this option is used calendar_id must be '_all'
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	@Nullable
@@ -182,6 +186,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements ToJso
 		private Number size;
 
 		/**
+		 * The ID of the calendar containing the events
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {
@@ -190,6 +196,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements ToJso
 		}
 
 		/**
+		 * Get events for the job. When this option is used calendar_id must be '_all'
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(@Nullable String value) {

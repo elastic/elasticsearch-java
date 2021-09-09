@@ -82,6 +82,8 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * Role-mapping name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -89,6 +91,11 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -223,6 +230,8 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		private List<String> runAs;
 
 		/**
+		 * Role-mapping name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -231,6 +240,11 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable JsonValue value) {

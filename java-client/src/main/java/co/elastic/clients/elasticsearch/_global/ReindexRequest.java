@@ -110,6 +110,8 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Should the affected indexes be refreshed?
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -118,6 +120,9 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The throttle to set on this request in sub-requests per second. -1 means no
+	 * throttle.
+	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
@@ -126,6 +131,8 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Control how long to keep the search context alive
+	 * <p>
 	 * API name: {@code scroll}
 	 */
 	@Nullable
@@ -134,6 +141,9 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The number of slices this task should be divided into. Defaults to 1, meaning
+	 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+	 * <p>
 	 * API name: {@code slices}
 	 */
 	@Nullable
@@ -142,6 +152,9 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Time each individual bulk request should wait for shards that are
+	 * unavailable.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -150,6 +163,12 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Sets the number of shard copies that must be active before proceeding with
+	 * the reindex operation. Defaults to 1, meaning the primary shard only. Set to
+	 * <code>all</code> for all shard copies, otherwise set to any non-negative
+	 * value less than or equal to the total number of copies for the shard (number
+	 * of replicas + 1)
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -158,6 +177,8 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Should the request should block until the reindex is complete.
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -320,6 +341,8 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 		private Source source;
 
 		/**
+		 * Should the affected indexes be refreshed?
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable Boolean value) {
@@ -328,6 +351,9 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The throttle to set on this request in sub-requests per second. -1 means no
+		 * throttle.
+		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
 		public Builder requestsPerSecond(@Nullable Number value) {
@@ -336,6 +362,8 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Control how long to keep the search context alive
+		 * <p>
 		 * API name: {@code scroll}
 		 */
 		public Builder scroll(@Nullable JsonValue value) {
@@ -344,6 +372,9 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The number of slices this task should be divided into. Defaults to 1, meaning
+		 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+		 * <p>
 		 * API name: {@code slices}
 		 */
 		public Builder slices(@Nullable Number value) {
@@ -352,6 +383,9 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Time each individual bulk request should wait for shards that are
+		 * unavailable.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -360,6 +394,12 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the reindex operation. Defaults to 1, meaning the primary shard only. Set to
+		 * <code>all</code> for all shard copies, otherwise set to any non-negative
+		 * value less than or equal to the total number of copies for the shard (number
+		 * of replicas + 1)
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder waitForActiveShards(@Nullable JsonValue value) {
@@ -368,6 +408,8 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Should the request should block until the reindex is complete.
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {

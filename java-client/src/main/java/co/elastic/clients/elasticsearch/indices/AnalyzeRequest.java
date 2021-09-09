@@ -93,6 +93,8 @@ public final class AnalyzeRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the index to scope the operation
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -297,6 +299,8 @@ public final class AnalyzeRequest extends RequestBase implements ToJsonp {
 		private JsonValue tokenizer;
 
 		/**
+		 * The name of the index to scope the operation
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {

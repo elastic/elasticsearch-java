@@ -67,6 +67,8 @@ public final class GetJobsRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the jobs to fetch
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	@Nullable
@@ -75,6 +77,9 @@ public final class GetJobsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+	 * <code>_all</code> string or when no jobs have been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -83,6 +88,9 @@ public final class GetJobsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+	 * <code>_all</code> string or when no jobs have been specified)
+	 * <p>
 	 * API name: {@code allow_no_jobs}
 	 */
 	@Nullable
@@ -91,6 +99,8 @@ public final class GetJobsRequest extends RequestBase {
 	}
 
 	/**
+	 * Omits fields that are illegal to set on job PUT
+	 * <p>
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
@@ -117,6 +127,8 @@ public final class GetJobsRequest extends RequestBase {
 		private Boolean excludeGenerated;
 
 		/**
+		 * The ID of the jobs to fetch
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(@Nullable List<String> value) {
@@ -125,6 +137,8 @@ public final class GetJobsRequest extends RequestBase {
 		}
 
 		/**
+		 * The ID of the jobs to fetch
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String... value) {
@@ -144,6 +158,9 @@ public final class GetJobsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -152,6 +169,9 @@ public final class GetJobsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
+		 * <p>
 		 * API name: {@code allow_no_jobs}
 		 */
 		public Builder allowNoJobs(@Nullable Boolean value) {
@@ -160,6 +180,8 @@ public final class GetJobsRequest extends RequestBase {
 		}
 
 		/**
+		 * Omits fields that are illegal to set on job PUT
+		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
 		public Builder excludeGenerated(@Nullable Boolean value) {

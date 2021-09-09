@@ -53,6 +53,8 @@ public final class GetPolicyRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of enrich policy names
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -70,6 +72,8 @@ public final class GetPolicyRequest extends RequestBase {
 		private List<String> name;
 
 		/**
+		 * A comma-separated list of enrich policy names
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable List<String> value) {
@@ -78,6 +82,8 @@ public final class GetPolicyRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of enrich policy names
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {

@@ -67,6 +67,9 @@ public final class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Comma-separated list or wildcard expression of index names to limit the
+	 * returned information
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -75,6 +78,8 @@ public final class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
+	 * If <code>true</code>, the response only includes ongoing shard recoveries
+	 * <p>
 	 * API name: {@code active_only}
 	 */
 	@Nullable
@@ -83,6 +88,8 @@ public final class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
@@ -91,6 +98,9 @@ public final class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
+	 * If <code>true</code>, the response includes detailed information about shard
+	 * recoveries
+	 * <p>
 	 * API name: {@code detailed}
 	 */
 	@Nullable
@@ -117,6 +127,9 @@ public final class RecoveryRequest extends CatRequestBase {
 		private Boolean detailed;
 
 		/**
+		 * Comma-separated list or wildcard expression of index names to limit the
+		 * returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -125,6 +138,9 @@ public final class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Comma-separated list or wildcard expression of index names to limit the
+		 * returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -144,6 +160,8 @@ public final class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
+		 * If <code>true</code>, the response only includes ongoing shard recoveries
+		 * <p>
 		 * API name: {@code active_only}
 		 */
 		public Builder activeOnly(@Nullable Boolean value) {
@@ -152,6 +170,8 @@ public final class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
 		public Builder bytes(@Nullable JsonValue value) {
@@ -160,6 +180,9 @@ public final class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
+		 * If <code>true</code>, the response includes detailed information about shard
+		 * recoveries
+		 * <p>
 		 * API name: {@code detailed}
 		 */
 		public Builder detailed(@Nullable Boolean value) {

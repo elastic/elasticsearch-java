@@ -49,6 +49,8 @@ public final class GetRoleMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of role-mapping names
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -66,6 +68,8 @@ public final class GetRoleMappingRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * A comma-separated list of role-mapping names
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {

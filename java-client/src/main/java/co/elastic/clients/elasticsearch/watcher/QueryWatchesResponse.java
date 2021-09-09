@@ -32,26 +32,40 @@ import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Response
 public final class QueryWatchesResponse implements ToJsonp {
-	private final Number stub;
+	private final Number count;
+
+	private final List<QueryWatch> watches;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected QueryWatchesResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.count = Objects.requireNonNull(builder.count, "count");
+		this.watches = Objects.requireNonNull(builder.watches, "watches");
 
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * API name: {@code count}
 	 */
-	public Number stub() {
-		return this.stub;
+	public Number count() {
+		return this.count;
+	}
+
+	/**
+	 * API name: {@code watches}
+	 */
+	public List<QueryWatch> watches() {
+		return this.watches;
 	}
 
 	/**
@@ -65,8 +79,16 @@ public final class QueryWatchesResponse implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+		generator.writeKey("count");
+		generator.write(this.count.doubleValue());
+
+		generator.writeKey("watches");
+		generator.writeStartArray();
+		for (QueryWatch item0 : this.watches) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
 
 	}
 
@@ -76,14 +98,57 @@ public final class QueryWatchesResponse implements ToJsonp {
 	 * Builder for {@link QueryWatchesResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<QueryWatchesResponse> {
-		private Number stub;
+		private Number count;
+
+		private List<QueryWatch> watches;
 
 		/**
-		 * API name: {@code stub}
+		 * API name: {@code count}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder count(Number value) {
+			this.count = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code watches}
+		 */
+		public Builder watches(List<QueryWatch> value) {
+			this.watches = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code watches}
+		 */
+		public Builder watches(QueryWatch... value) {
+			this.watches = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #watches(List)}, creating the list if needed.
+		 */
+		public Builder addWatches(QueryWatch value) {
+			if (this.watches == null) {
+				this.watches = new ArrayList<>();
+			}
+			this.watches.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #watches(List)} to a singleton list.
+		 */
+		public Builder watches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
+			return this.watches(fn.apply(new QueryWatch.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #watches(List)}, creating the list if needed.
+		 */
+		public Builder addWatches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
+			return this.addWatches(fn.apply(new QueryWatch.Builder()).build());
 		}
 
 		/**
@@ -109,7 +174,8 @@ public final class QueryWatchesResponse implements ToJsonp {
 	protected static void setupQueryWatchesResponseDeserializer(
 			DelegatingDeserializer<QueryWatchesResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::watches, JsonpDeserializer.arrayDeserializer(QueryWatch.DESERIALIZER), "watches");
 
 	}
 

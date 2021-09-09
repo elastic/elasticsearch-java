@@ -76,6 +76,9 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * for all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -84,6 +87,10 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -92,6 +99,9 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -100,6 +110,11 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether a flush should be forced even if it is not necessarily needed ie. if
+	 * no changes will be committed to the index. This is useful if transaction log
+	 * IDs should be incremented even if no uncommitted changes are present. (This
+	 * setting can be considered as internal)
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -108,6 +123,9 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -116,6 +134,11 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * If set to true the flush operation will block until the flush can be executed
+	 * if another flush operation is already executing. The default is true. If set
+	 * to false the flush will be skipped iff if another flush operation is already
+	 * running.
+	 * <p>
 	 * API name: {@code wait_if_ongoing}
 	 */
 	@Nullable
@@ -148,6 +171,9 @@ public final class FlushRequest extends RequestBase {
 		private Boolean waitIfOngoing;
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * for all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -156,6 +182,9 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * for all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -175,6 +204,10 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -183,6 +216,9 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -191,6 +227,11 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether a flush should be forced even if it is not necessarily needed ie. if
+		 * no changes will be committed to the index. This is useful if transaction log
+		 * IDs should be incremented even if no uncommitted changes are present. (This
+		 * setting can be considered as internal)
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -199,6 +240,9 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -207,6 +251,11 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * If set to true the flush operation will block until the flush can be executed
+		 * if another flush operation is already executing. The default is true. If set
+		 * to false the flush will be skipped iff if another flush operation is already
+		 * running.
+		 * <p>
 		 * API name: {@code wait_if_ongoing}
 		 */
 		public Builder waitIfOngoing(@Nullable Boolean value) {

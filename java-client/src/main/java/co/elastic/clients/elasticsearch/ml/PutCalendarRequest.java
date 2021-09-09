@@ -56,6 +56,8 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The ID of the calendar to create
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	public String calendarId() {
@@ -102,6 +104,8 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 		private String description;
 
 		/**
+		 * The ID of the calendar to create
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {

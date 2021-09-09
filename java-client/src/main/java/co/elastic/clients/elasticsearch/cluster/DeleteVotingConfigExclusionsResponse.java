@@ -23,95 +23,23 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
-import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: cluster.delete_voting_config_exclusions.Response
-public final class DeleteVotingConfigExclusionsResponse implements ToJsonp {
-	private final Number stub;
-
-	// ---------------------------------------------------------------------------------------------
-
-	protected DeleteVotingConfigExclusionsResponse(Builder builder) {
-
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
-
+public final class DeleteVotingConfigExclusionsResponse {
+	protected DeleteVotingConfigExclusionsResponse() {
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Singleton instance for {@link DeleteVotingConfigExclusionsResponse}.
 	 */
-	public Number stub() {
-		return this.stub;
-	}
+	public static final DeleteVotingConfigExclusionsResponse INSTANCE = new DeleteVotingConfigExclusionsResponse();
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link DeleteVotingConfigExclusionsResponse}.
-	 */
-	public static class Builder implements ObjectBuilder<DeleteVotingConfigExclusionsResponse> {
-		private Number stub;
-
-		/**
-		 * API name: {@code stub}
-		 */
-		public Builder stub(Number value) {
-			this.stub = value;
-			return this;
-		}
-
-		/**
-		 * Builds a {@link DeleteVotingConfigExclusionsResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteVotingConfigExclusionsResponse build() {
-
-			return new DeleteVotingConfigExclusionsResponse(this);
-		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for DeleteVotingConfigExclusionsResponse
-	 */
-	public static final JsonpDeserializer<DeleteVotingConfigExclusionsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DeleteVotingConfigExclusionsResponse::setupDeleteVotingConfigExclusionsResponseDeserializer);
-
-	protected static void setupDeleteVotingConfigExclusionsResponseDeserializer(
-			DelegatingDeserializer<DeleteVotingConfigExclusionsResponse.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
-
-	}
+	public static final JsonpDeserializer<DeleteVotingConfigExclusionsResponse> DESERIALIZER = JsonpDeserializer
+			.fixedValue(DeleteVotingConfigExclusionsResponse.INSTANCE);
 
 }

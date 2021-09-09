@@ -63,6 +63,9 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	}
 
 	/**
+	 * Name of the snapshot repository to unregister. Wildcard (<code>*</code>)
+	 * patterns are supported.
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public List<String> repository() {
@@ -70,6 +73,8 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -78,6 +83,8 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -100,6 +107,9 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * Name of the snapshot repository to unregister. Wildcard (<code>*</code>)
+		 * patterns are supported.
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(List<String> value) {
@@ -108,6 +118,9 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		}
 
 		/**
+		 * Name of the snapshot repository to unregister. Wildcard (<code>*</code>)
+		 * patterns are supported.
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String... value) {
@@ -127,6 +140,8 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -135,6 +150,8 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

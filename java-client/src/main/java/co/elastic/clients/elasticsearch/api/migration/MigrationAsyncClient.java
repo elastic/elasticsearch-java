@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.api.migration;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.migration.DeprecationInfoRequest;
-import co.elastic.clients.elasticsearch.migration.DeprecationInfoResponse;
+import co.elastic.clients.elasticsearch.migration.DeprecationsRequest;
+import co.elastic.clients.elasticsearch.migration.DeprecationsResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -59,8 +59,8 @@ public class MigrationAsyncClient extends ApiClient<MigrationAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeprecationInfoResponse> deprecations(DeprecationInfoRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeprecationInfoRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<DeprecationsResponse> deprecations(DeprecationsRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, DeprecationsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -77,9 +77,9 @@ public class MigrationAsyncClient extends ApiClient<MigrationAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeprecationInfoResponse> deprecations(
-			Function<DeprecationInfoRequest.Builder, ObjectBuilder<DeprecationInfoRequest>> fn) throws IOException {
-		return deprecations(fn.apply(new DeprecationInfoRequest.Builder()).build());
+	public final CompletableFuture<DeprecationsResponse> deprecations(
+			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn) throws IOException {
+		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
 	}
 
 	// ----- Misc

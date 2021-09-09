@@ -61,6 +61,8 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the namespace
+	 * <p>
 	 * API name: {@code namespace}
 	 */
 	public String namespace() {
@@ -68,6 +70,8 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the service name
+	 * <p>
 	 * API name: {@code service}
 	 */
 	public String service() {
@@ -75,6 +79,8 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the token name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -82,6 +88,11 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	}
 
 	/**
+	 * If <code>true</code> then refresh the affected shards to make this operation
+	 * visible to search, if <code>wait_for</code> (the default) then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -105,6 +116,8 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		private JsonValue refresh;
 
 		/**
+		 * An identifier for the namespace
+		 * <p>
 		 * API name: {@code namespace}
 		 */
 		public Builder namespace(String value) {
@@ -113,6 +126,8 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		}
 
 		/**
+		 * An identifier for the service name
+		 * <p>
 		 * API name: {@code service}
 		 */
 		public Builder service(String value) {
@@ -121,6 +136,8 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		}
 
 		/**
+		 * An identifier for the token name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -129,6 +146,11 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		}
 
 		/**
+		 * If <code>true</code> then refresh the affected shards to make this operation
+		 * visible to search, if <code>wait_for</code> (the default) then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable JsonValue value) {

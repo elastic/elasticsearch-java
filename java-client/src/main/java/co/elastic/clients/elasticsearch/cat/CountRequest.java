@@ -52,6 +52,8 @@ public final class CountRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names to limit the returned information
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -69,6 +71,8 @@ public final class CountRequest extends CatRequestBase {
 		private List<String> index;
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -77,6 +81,8 @@ public final class CountRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {

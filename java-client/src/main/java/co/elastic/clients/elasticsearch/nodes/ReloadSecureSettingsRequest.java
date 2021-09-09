@@ -36,14 +36,18 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.Request
 public final class ReloadSecureSettingsRequest extends RequestBase implements ToJsonp {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final JsonValue timeout;
@@ -62,14 +66,19 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 	}
 
 	/**
+	 * A comma-separated list of node IDs to span the reload/reinit call. Should
+	 * stay empty because reloading usually involves all cluster nodes.
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -112,7 +121,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 	 */
 	public static class Builder implements ObjectBuilder<ReloadSecureSettingsRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
 		private JsonValue timeout;
@@ -121,14 +130,41 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 		private String secureSettingsPassword;
 
 		/**
+		 * A comma-separated list of node IDs to span the reload/reinit call. Should
+		 * stay empty because reloading usually involves all cluster nodes.
+		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of node IDs to span the reload/reinit call. Should
+		 * stay empty because reloading usually involves all cluster nodes.
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -202,7 +238,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/reload_secure_settings");
 					return buf.toString();
 				}

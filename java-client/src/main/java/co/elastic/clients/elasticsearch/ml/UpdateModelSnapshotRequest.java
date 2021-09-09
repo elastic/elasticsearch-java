@@ -64,6 +64,8 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 	}
 
 	/**
+	 * The ID of the job to fetch
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -71,6 +73,8 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 	}
 
 	/**
+	 * The ID of the snapshot to update
+	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	public String snapshotId() {
@@ -136,6 +140,8 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 		private Boolean retain;
 
 		/**
+		 * The ID of the job to fetch
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -144,6 +150,8 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 		}
 
 		/**
+		 * The ID of the snapshot to update
+		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(String value) {

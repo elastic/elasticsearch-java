@@ -56,6 +56,8 @@ public final class ClearScrollRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of scroll IDs to clear
+	 * <p>
 	 * API name: {@code scroll_id}
 	 */
 	@Nullable
@@ -86,6 +88,8 @@ public final class ClearScrollRequest extends RequestBase implements ToJsonp {
 		private List<String> scrollId;
 
 		/**
+		 * A comma-separated list of scroll IDs to clear
+		 * <p>
 		 * API name: {@code scroll_id}
 		 */
 		public Builder scrollId(@Nullable List<String> value) {
@@ -94,6 +98,8 @@ public final class ClearScrollRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of scroll IDs to clear
+		 * <p>
 		 * API name: {@code scroll_id}
 		 */
 		public Builder scrollId(String... value) {

@@ -58,6 +58,8 @@ public final class SegmentsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names to limit the returned information
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -66,6 +68,8 @@ public final class SegmentsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
@@ -86,6 +90,8 @@ public final class SegmentsRequest extends CatRequestBase {
 		private JsonValue bytes;
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -94,6 +100,8 @@ public final class SegmentsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -113,6 +121,8 @@ public final class SegmentsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
 		public Builder bytes(@Nullable JsonValue value) {

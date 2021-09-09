@@ -30,38 +30,37 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanMultiTermQuery
 public final class SpanMultiTermQuery extends QueryBase {
-	@Nullable
 	private final QueryContainer match;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected SpanMultiTermQuery(Builder builder) {
 		super(builder);
-		this.match = builder.match;
+		this.match = Objects.requireNonNull(builder.match, "match");
 
 	}
 
 	/**
+	 * Should be a multi term query (one of wildcard, fuzzy, prefix, range or regexp
+	 * query)
+	 * <p>
 	 * API name: {@code match}
 	 */
-	@Nullable
 	public QueryContainer match() {
 		return this.match;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this.match != null) {
 
-			generator.writeKey("match");
-			this.match.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("match");
+		this.match.toJsonp(generator, mapper);
 
 	}
 
@@ -73,18 +72,23 @@ public final class SpanMultiTermQuery extends QueryBase {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanMultiTermQuery> {
-		@Nullable
 		private QueryContainer match;
 
 		/**
+		 * Should be a multi term query (one of wildcard, fuzzy, prefix, range or regexp
+		 * query)
+		 * <p>
 		 * API name: {@code match}
 		 */
-		public Builder match(@Nullable QueryContainer value) {
+		public Builder match(QueryContainer value) {
 			this.match = value;
 			return this;
 		}
 
 		/**
+		 * Should be a multi term query (one of wildcard, fuzzy, prefix, range or regexp
+		 * query)
+		 * <p>
 		 * API name: {@code match}
 		 */
 		public Builder match(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {

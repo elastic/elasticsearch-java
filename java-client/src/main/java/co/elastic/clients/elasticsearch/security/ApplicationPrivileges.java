@@ -57,6 +57,8 @@ public final class ApplicationPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * The name of the application to which this entry applies.
+	 * <p>
 	 * API name: {@code application}
 	 */
 	public String application() {
@@ -64,6 +66,9 @@ public final class ApplicationPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * A list of strings, where each element is the name of an application privilege
+	 * or action.
+	 * <p>
 	 * API name: {@code privileges}
 	 */
 	public List<String> privileges() {
@@ -71,6 +76,8 @@ public final class ApplicationPrivileges implements ToJsonp {
 	}
 
 	/**
+	 * A list resources to which the privileges are applied.
+	 * <p>
 	 * API name: {@code resources}
 	 */
 	public List<String> resources() {
@@ -122,6 +129,8 @@ public final class ApplicationPrivileges implements ToJsonp {
 		private List<String> resources;
 
 		/**
+		 * The name of the application to which this entry applies.
+		 * <p>
 		 * API name: {@code application}
 		 */
 		public Builder application(String value) {
@@ -130,6 +139,9 @@ public final class ApplicationPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * A list of strings, where each element is the name of an application privilege
+		 * or action.
+		 * <p>
 		 * API name: {@code privileges}
 		 */
 		public Builder privileges(List<String> value) {
@@ -138,6 +150,9 @@ public final class ApplicationPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * A list of strings, where each element is the name of an application privilege
+		 * or action.
+		 * <p>
 		 * API name: {@code privileges}
 		 */
 		public Builder privileges(String... value) {
@@ -157,6 +172,8 @@ public final class ApplicationPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * A list resources to which the privileges are applied.
+		 * <p>
 		 * API name: {@code resources}
 		 */
 		public Builder resources(List<String> value) {
@@ -165,6 +182,8 @@ public final class ApplicationPrivileges implements ToJsonp {
 		}
 
 		/**
+		 * A list resources to which the privileges are applied.
+		 * <p>
 		 * API name: {@code resources}
 		 */
 		public Builder resources(String... value) {

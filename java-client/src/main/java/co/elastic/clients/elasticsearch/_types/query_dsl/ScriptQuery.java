@@ -31,37 +31,33 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptQuery
 public final class ScriptQuery extends QueryBase {
-	@Nullable
 	private final JsonValue script;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ScriptQuery(Builder builder) {
 		super(builder);
-		this.script = builder.script;
+		this.script = Objects.requireNonNull(builder.script, "script");
 
 	}
 
 	/**
 	 * API name: {@code script}
 	 */
-	@Nullable
 	public JsonValue script() {
 		return this.script;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this.script != null) {
 
-			generator.writeKey("script");
-			generator.write(this.script);
-
-		}
+		generator.writeKey("script");
+		generator.write(this.script);
 
 	}
 
@@ -71,13 +67,12 @@ public final class ScriptQuery extends QueryBase {
 	 * Builder for {@link ScriptQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptQuery> {
-		@Nullable
 		private JsonValue script;
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(JsonValue value) {
 			this.script = value;
 			return this;
 		}

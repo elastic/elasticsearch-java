@@ -23,55 +23,46 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import java.util.Collections;
-import java.util.Objects;
+import java.lang.Boolean;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Nullable;
 
 // typedef: cluster.delete_voting_config_exclusions.Request
-public final class DeleteVotingConfigExclusionsRequest extends RequestBase implements ToJsonp {
-	private final String stub;
+public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
+	@Nullable
+	private final Boolean waitForRemoval;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected DeleteVotingConfigExclusionsRequest(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.waitForRemoval = builder.waitForRemoval;
 
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Specifies whether to wait for all excluded nodes to be removed from the
+	 * cluster before clearing the voting configuration exclusions list. Defaults to
+	 * true, meaning that all excluded nodes must be removed from the cluster before
+	 * this API takes any action. If set to false then the voting configuration
+	 * exclusions list is cleared even if some excluded nodes are still in the
+	 * cluster.
+	 * <p>
+	 * API name: {@code wait_for_removal}
 	 */
-	public String stub() {
-		return this.stub;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub);
-
+	@Nullable
+	public Boolean waitForRemoval() {
+		return this.waitForRemoval;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -80,13 +71,21 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase imple
 	 * Builder for {@link DeleteVotingConfigExclusionsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteVotingConfigExclusionsRequest> {
-		private String stub;
+		@Nullable
+		private Boolean waitForRemoval;
 
 		/**
-		 * API name: {@code stub}
+		 * Specifies whether to wait for all excluded nodes to be removed from the
+		 * cluster before clearing the voting configuration exclusions list. Defaults to
+		 * true, meaning that all excluded nodes must be removed from the cluster before
+		 * this API takes any action. If set to false then the voting configuration
+		 * exclusions list is cleared even if some excluded nodes are still in the
+		 * cluster.
+		 * <p>
+		 * API name: {@code wait_for_removal}
 		 */
-		public Builder stub(String value) {
-			this.stub = value;
+		public Builder waitForRemoval(@Nullable Boolean value) {
+			this.waitForRemoval = value;
 			return this;
 		}
 
@@ -105,25 +104,9 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase imple
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteVotingConfigExclusionsRequest
-	 */
-	public static final JsonpDeserializer<DeleteVotingConfigExclusionsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DeleteVotingConfigExclusionsRequest::setupDeleteVotingConfigExclusionsRequestDeserializer);
-
-	protected static void setupDeleteVotingConfigExclusionsRequestDeserializer(
-			DelegatingDeserializer<DeleteVotingConfigExclusionsRequest.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
 	 * Endpoint "{@code cluster.delete_voting_config_exclusions}".
 	 */
-	public static final Endpoint<DeleteVotingConfigExclusionsRequest, DeleteVotingConfigExclusionsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -138,7 +121,11 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase imple
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.waitForRemoval != null) {
+					params.put("wait_for_removal", String.valueOf(request.waitForRemoval));
+				}
+				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, DeleteVotingConfigExclusionsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, null);
 }

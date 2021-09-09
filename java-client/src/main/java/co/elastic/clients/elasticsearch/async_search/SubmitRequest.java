@@ -152,7 +152,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	private final List<Rescore> rescore;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final Map<String, ScriptField> scriptFields;
@@ -282,6 +282,9 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of index names to search; use <code>_all</code> or
+	 * empty string to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -533,7 +536,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -1209,7 +1212,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		private List<Rescore> rescore;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private Map<String, ScriptField> scriptFields;
@@ -1278,6 +1281,9 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		private List<JsonValue> fields;
 
 		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -1286,6 +1292,9 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -1680,7 +1689,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -2064,7 +2073,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::queryOnQueryString, JsonpDeserializer.stringDeserializer(), "query_on_query_string");
 		op.add(Builder::requestCache, JsonpDeserializer.booleanDeserializer(), "request_cache");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore.DESERIALIZER), "rescore");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
 				"script_fields");
 		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),

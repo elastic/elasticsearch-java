@@ -26,12 +26,9 @@ package co.elastic.clients.elasticsearch.shutdown;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,52 +37,24 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.put_node.Request
-public final class PutNodeRequest extends RequestBase implements ToJsonp {
-	@Nullable
+public final class PutNodeRequest extends RequestBase {
 	private final String nodeId;
-
-	private final String stub;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected PutNodeRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
 
 	}
 
 	/**
-	 * Auto generated - missing in the input spec
+	 * The node id of node to be shut down
 	 * <p>
 	 * API name: {@code node_id}
 	 */
-	@Nullable
 	public String nodeId() {
 		return this.nodeId;
-	}
-
-	/**
-	 * API name: {@code stub}
-	 */
-	public String stub() {
-		return this.stub;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub);
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -94,26 +63,15 @@ public final class PutNodeRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link PutNodeRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutNodeRequest> {
-		@Nullable
 		private String nodeId;
 
-		private String stub;
-
 		/**
-		 * Auto generated - missing in the input spec
+		 * The node id of node to be shut down
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(String value) {
 			this.nodeId = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code stub}
-		 */
-		public Builder stub(String value) {
-			this.stub = value;
 			return this;
 		}
 
@@ -127,20 +85,6 @@ public final class PutNodeRequest extends RequestBase implements ToJsonp {
 
 			return new PutNodeRequest(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for PutNodeRequest
-	 */
-	public static final JsonpDeserializer<PutNodeRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutNodeRequest::setupPutNodeRequestDeserializer);
-
-	protected static void setupPutNodeRequestDeserializer(DelegatingDeserializer<PutNodeRequest.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -180,5 +124,5 @@ public final class PutNodeRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutNodeResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, PutNodeResponse.DESERIALIZER);
 }

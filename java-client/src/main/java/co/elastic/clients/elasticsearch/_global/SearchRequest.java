@@ -63,9 +63,6 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	private final List<String> index;
 
 	@Nullable
-	private final List<String> type;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -117,7 +114,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	private final Boolean requestCache;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue scroll;
@@ -250,7 +247,6 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	protected SearchRequest(Builder builder) {
 
 		this.index = builder.index;
-		this.type = builder.type;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
 		this.analyzer = builder.analyzer;
@@ -315,6 +311,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of index names to search; use <code>_all</code> or
+	 * empty string to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -323,14 +322,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
-	}
-
-	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -339,6 +334,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Indicate if an error should be returned if there is a partial search failure
+	 * or timeout
+	 * <p>
 	 * API name: {@code allow_partial_search_results}
 	 */
 	@Nullable
@@ -347,6 +345,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The analyzer to use for the query string
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -355,6 +355,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether wildcard and prefix queries should be analyzed (default:
+	 * false)
+	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
@@ -363,6 +366,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The number of shard results that should be reduced at once on the
+	 * coordinating node. This value should be used as a protection mechanism to
+	 * reduce the memory overhead per search request if the potential number of
+	 * shards in the request can be large.
+	 * <p>
 	 * API name: {@code batched_reduce_size}
 	 */
 	@Nullable
@@ -371,6 +379,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Indicates whether network round-trips should be minimized as part of
+	 * cross-cluster search requests execution
+	 * <p>
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
 	@Nullable
@@ -379,6 +390,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The default operator for query string query (AND or OR)
+	 * <p>
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
@@ -387,6 +400,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The field to use as default where no field prefix is given in the query
+	 * string
+	 * <p>
 	 * API name: {@code df}
 	 */
 	@Nullable
@@ -395,6 +411,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -403,6 +422,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether specified concrete, expanded or aliased indices should be ignored
+	 * when throttled
+	 * <p>
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
@@ -411,6 +433,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -419,6 +444,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether format-based query failures (such as providing text to a
+	 * numeric field) should be ignored
+	 * <p>
 	 * API name: {@code lenient}
 	 */
 	@Nullable
@@ -427,6 +455,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The number of concurrent shard requests per node this search executes
+	 * concurrently. This value should be used to limit the impact of the search on
+	 * the cluster in order to limit the number of concurrent shard requests
+	 * <p>
 	 * API name: {@code max_concurrent_shard_requests}
 	 */
 	@Nullable
@@ -435,6 +467,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The minimum compatible version that all shards involved in search should have
+	 * for this request to be successful
+	 * <p>
 	 * API name: {@code min_compatible_shard_node}
 	 */
 	@Nullable
@@ -443,6 +478,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -451,6 +489,13 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A threshold that enforces a pre-filter roundtrip to prefilter search shards
+	 * based on query rewriting if the number of shards the search request expands
+	 * to exceeds the threshold. This filter roundtrip can limit the number of
+	 * shards significantly if for instance a shard can not match any documents
+	 * based on its rewrite method ie. if date filters are mandatory to match but
+	 * the shard bounds and the query are disjoint.
+	 * <p>
 	 * API name: {@code pre_filter_shard_size}
 	 */
 	@Nullable
@@ -459,6 +504,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify if request cache should be used for this request or not, defaults to
+	 * index level setting
+	 * <p>
 	 * API name: {@code request_cache}
 	 */
 	@Nullable
@@ -467,14 +515,19 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of specific routing values
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * Specify how long a consistent view of the index should be maintained for
+	 * scrolled search
+	 * <p>
 	 * API name: {@code scroll}
 	 */
 	@Nullable
@@ -483,6 +536,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Search operation type
+	 * <p>
 	 * API name: {@code search_type}
 	 */
 	@Nullable
@@ -491,6 +546,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specifies which field to use for suggestions.
+	 * <p>
 	 * API name: {@code suggest_field}
 	 */
 	@Nullable
@@ -499,6 +556,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify suggest mode
+	 * <p>
 	 * API name: {@code suggest_mode}
 	 */
 	@Nullable
@@ -507,6 +566,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * How many suggestions to return in response
+	 * <p>
 	 * API name: {@code suggest_size}
 	 */
 	@Nullable
@@ -515,6 +576,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The source text for which the suggestions should be returned.
+	 * <p>
 	 * API name: {@code suggest_text}
 	 */
 	@Nullable
@@ -523,6 +586,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether aggregation and suggester names should be prefixed by their
+	 * respective types in the response
+	 * <p>
 	 * API name: {@code typed_keys}
 	 */
 	@Nullable
@@ -531,6 +597,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Indicates whether hits.total should be rendered as an integer or an object in
+	 * the rest search response
+	 * <p>
 	 * API name: {@code rest_total_hits_as_int}
 	 */
 	@Nullable
@@ -539,6 +608,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of fields to exclude from the returned _source field
+	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
@@ -547,6 +618,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of fields to extract and return from the _source field
+	 * <p>
 	 * API name: {@code _source_includes}
 	 */
 	@Nullable
@@ -555,6 +628,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Query in the Lucene query string syntax
+	 * <p>
 	 * API name: {@code q}
 	 */
 	@Nullable
@@ -587,6 +662,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If true, returns detailed information about score computation as part of a
+	 * hit.
+	 * <p>
 	 * API name: {@code explain}
 	 */
 	@Nullable
@@ -595,6 +673,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Starting document offset. By default, you cannot page through more than
+	 * 10,000 hits using the from and size parameters. To page through more hits,
+	 * use the search_after parameter.
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -611,6 +693,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Number of hits matching the query to count accurately. If true, the exact
+	 * number of hits is returned at the cost of some performance. If false, the
+	 * response does not include the total number of hits matching the query.
+	 * Defaults to 10,000 hits.
+	 * <p>
 	 * API name: {@code track_total_hits}
 	 */
 	@Nullable
@@ -619,6 +706,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Boosts the _score of documents from specified indices.
+	 * <p>
 	 * API name: {@code indices_boost}
 	 */
 	@Nullable
@@ -627,6 +716,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Array of wildcard (*) patterns. The request returns doc values for field
+	 * names matching these patterns in the hits.fields property of the response.
+	 * <p>
 	 * API name: {@code docvalue_fields}
 	 */
 	@Nullable
@@ -635,6 +727,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Minimum _score for matching documents. Documents with a lower _score are not
+	 * included in the search results.
+	 * <p>
 	 * API name: {@code min_score}
 	 */
 	@Nullable
@@ -659,6 +754,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Defines the search definition using the Query DSL.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -675,6 +772,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Retrieve a script evaluation (based on different fields) for each hit.
+	 * <p>
 	 * API name: {@code script_fields}
 	 */
 	@Nullable
@@ -691,6 +790,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The number of hits to return. By default, you cannot page through more than
+	 * 10,000 hits using the from and size parameters. To page through more hits,
+	 * use the search_after parameter.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -715,6 +818,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Indicates which source fields are returned for matching documents. These
+	 * fields are returned in the hits._source property of the search response.
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
@@ -723,6 +829,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Array of wildcard (*) patterns. The request returns values for field names
+	 * matching these patterns in the hits.fields property of the response.
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -739,6 +848,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Maximum number of documents to collect for each shard. If a query reaches
+	 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
+	 * documents before sorting. Defaults to 0, which does not terminate query
+	 * execution early.
+	 * <p>
 	 * API name: {@code terminate_after}
 	 */
 	@Nullable
@@ -747,6 +861,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specifies the period of time to wait for a response from each shard. If no
+	 * response is received before the timeout expires, the request fails and
+	 * returns an error. Defaults to no timeout.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -755,6 +873,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If true, calculate and return document scores, even if the scores are not
+	 * used for sorting.
+	 * <p>
 	 * API name: {@code track_scores}
 	 */
 	@Nullable
@@ -763,6 +884,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If true, returns document version as part of a hit.
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -771,6 +894,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If true, returns sequence number and primary term of the last modification of
+	 * each hit. See Optimistic concurrency control.
+	 * <p>
 	 * API name: {@code seq_no_primary_term}
 	 */
 	@Nullable
@@ -779,6 +905,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * List of stored fields to return as part of a hit. If no fields are specified,
+	 * no stored fields are included in the response. If this field is specified,
+	 * the _source parameter defaults to false. You can pass _source: true to return
+	 * both source fields and stored fields in the search response.
+	 * <p>
 	 * API name: {@code stored_fields}
 	 */
 	@Nullable
@@ -787,6 +918,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
+	 * specify an <index> in the request path.
+	 * <p>
 	 * API name: {@code pit}
 	 */
 	@Nullable
@@ -795,6 +929,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Defines one or more runtime fields in the search request. These fields take
+	 * precedence over mapped fields with the same name.
+	 * <p>
 	 * API name: {@code runtime_mappings}
 	 */
 	@Nullable
@@ -803,6 +940,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Stats groups to associate with the search. Each group maintains a statistics
+	 * aggregation for its associated searches. You can retrieve these stats using
+	 * the indices stats API.
+	 * <p>
 	 * API name: {@code stats}
 	 */
 	@Nullable
@@ -1085,9 +1226,6 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		private List<String> index;
 
 		@Nullable
-		private List<String> type;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -1139,7 +1277,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		private Boolean requestCache;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue scroll;
@@ -1268,6 +1406,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		private List<String> stats;
 
 		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -1276,6 +1417,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -1295,33 +1439,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
-			return this;
-		}
-
-		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -1330,6 +1451,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Indicate if an error should be returned if there is a partial search failure
+		 * or timeout
+		 * <p>
 		 * API name: {@code allow_partial_search_results}
 		 */
 		public Builder allowPartialSearchResults(@Nullable Boolean value) {
@@ -1338,6 +1462,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The analyzer to use for the query string
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public Builder analyzer(@Nullable String value) {
@@ -1346,6 +1472,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether wildcard and prefix queries should be analyzed (default:
+		 * false)
+		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
 		public Builder analyzeWildcard(@Nullable Boolean value) {
@@ -1354,6 +1483,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The number of shard results that should be reduced at once on the
+		 * coordinating node. This value should be used as a protection mechanism to
+		 * reduce the memory overhead per search request if the potential number of
+		 * shards in the request can be large.
+		 * <p>
 		 * API name: {@code batched_reduce_size}
 		 */
 		public Builder batchedReduceSize(@Nullable Number value) {
@@ -1362,6 +1496,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Indicates whether network round-trips should be minimized as part of
+		 * cross-cluster search requests execution
+		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
 		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
@@ -1370,6 +1507,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The default operator for query string query (AND or OR)
+		 * <p>
 		 * API name: {@code default_operator}
 		 */
 		public Builder defaultOperator(@Nullable JsonValue value) {
@@ -1378,6 +1517,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The field to use as default where no field prefix is given in the query
+		 * string
+		 * <p>
 		 * API name: {@code df}
 		 */
 		public Builder df(@Nullable String value) {
@@ -1386,6 +1528,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -1394,6 +1539,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether specified concrete, expanded or aliased indices should be ignored
+		 * when throttled
+		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
 		public Builder ignoreThrottled(@Nullable Boolean value) {
@@ -1402,6 +1550,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -1410,6 +1561,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether format-based query failures (such as providing text to a
+		 * numeric field) should be ignored
+		 * <p>
 		 * API name: {@code lenient}
 		 */
 		public Builder lenient(@Nullable Boolean value) {
@@ -1418,6 +1572,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The number of concurrent shard requests per node this search executes
+		 * concurrently. This value should be used to limit the impact of the search on
+		 * the cluster in order to limit the number of concurrent shard requests
+		 * <p>
 		 * API name: {@code max_concurrent_shard_requests}
 		 */
 		public Builder maxConcurrentShardRequests(@Nullable Number value) {
@@ -1426,6 +1584,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The minimum compatible version that all shards involved in search should have
+		 * for this request to be successful
+		 * <p>
 		 * API name: {@code min_compatible_shard_node}
 		 */
 		public Builder minCompatibleShardNode(@Nullable String value) {
@@ -1434,6 +1595,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -1442,6 +1606,13 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A threshold that enforces a pre-filter roundtrip to prefilter search shards
+		 * based on query rewriting if the number of shards the search request expands
+		 * to exceeds the threshold. This filter roundtrip can limit the number of
+		 * shards significantly if for instance a shard can not match any documents
+		 * based on its rewrite method ie. if date filters are mandatory to match but
+		 * the shard bounds and the query are disjoint.
+		 * <p>
 		 * API name: {@code pre_filter_shard_size}
 		 */
 		public Builder preFilterShardSize(@Nullable Number value) {
@@ -1450,6 +1621,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify if request cache should be used for this request or not, defaults to
+		 * index level setting
+		 * <p>
 		 * API name: {@code request_cache}
 		 */
 		public Builder requestCache(@Nullable Boolean value) {
@@ -1458,14 +1632,19 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of specific routing values
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * Specify how long a consistent view of the index should be maintained for
+		 * scrolled search
+		 * <p>
 		 * API name: {@code scroll}
 		 */
 		public Builder scroll(@Nullable JsonValue value) {
@@ -1474,6 +1653,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Search operation type
+		 * <p>
 		 * API name: {@code search_type}
 		 */
 		public Builder searchType(@Nullable JsonValue value) {
@@ -1482,6 +1663,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specifies which field to use for suggestions.
+		 * <p>
 		 * API name: {@code suggest_field}
 		 */
 		public Builder suggestField(@Nullable String value) {
@@ -1490,6 +1673,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify suggest mode
+		 * <p>
 		 * API name: {@code suggest_mode}
 		 */
 		public Builder suggestMode(@Nullable JsonValue value) {
@@ -1498,6 +1683,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * How many suggestions to return in response
+		 * <p>
 		 * API name: {@code suggest_size}
 		 */
 		public Builder suggestSize(@Nullable Number value) {
@@ -1506,6 +1693,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The source text for which the suggestions should be returned.
+		 * <p>
 		 * API name: {@code suggest_text}
 		 */
 		public Builder suggestText(@Nullable String value) {
@@ -1514,6 +1703,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether aggregation and suggester names should be prefixed by their
+		 * respective types in the response
+		 * <p>
 		 * API name: {@code typed_keys}
 		 */
 		public Builder typedKeys(@Nullable Boolean value) {
@@ -1522,6 +1714,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Indicates whether hits.total should be rendered as an integer or an object in
+		 * the rest search response
+		 * <p>
 		 * API name: {@code rest_total_hits_as_int}
 		 */
 		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
@@ -1530,6 +1725,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(@Nullable List<String> value) {
@@ -1538,6 +1735,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(String... value) {
@@ -1557,6 +1756,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to extract and return from the _source field
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(@Nullable List<String> value) {
@@ -1565,6 +1766,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of fields to extract and return from the _source field
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(String... value) {
@@ -1584,6 +1787,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Query in the Lucene query string syntax
+		 * <p>
 		 * API name: {@code q}
 		 */
 		public Builder q(@Nullable String value) {
@@ -1678,6 +1883,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If true, returns detailed information about score computation as part of a
+		 * hit.
+		 * <p>
 		 * API name: {@code explain}
 		 */
 		public Builder explain(@Nullable Boolean value) {
@@ -1686,6 +1894,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Starting document offset. By default, you cannot page through more than
+		 * 10,000 hits using the from and size parameters. To page through more hits,
+		 * use the search_after parameter.
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -1709,6 +1921,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Number of hits matching the query to count accurately. If true, the exact
+		 * number of hits is returned at the cost of some performance. If false, the
+		 * response does not include the total number of hits matching the query.
+		 * Defaults to 10,000 hits.
+		 * <p>
 		 * API name: {@code track_total_hits}
 		 */
 		public Builder trackTotalHits(@Nullable JsonValue value) {
@@ -1717,6 +1934,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Boosts the _score of documents from specified indices.
+		 * <p>
 		 * API name: {@code indices_boost}
 		 */
 		public Builder indicesBoost(@Nullable List<Map<String, Number>> value) {
@@ -1725,6 +1944,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Boosts the _score of documents from specified indices.
+		 * <p>
 		 * API name: {@code indices_boost}
 		 */
 		public Builder indicesBoost(Map<String, Number>... value) {
@@ -1744,6 +1965,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Array of wildcard (*) patterns. The request returns doc values for field
+		 * names matching these patterns in the hits.fields property of the response.
+		 * <p>
 		 * API name: {@code docvalue_fields}
 		 */
 		public Builder docvalueFields(@Nullable JsonValue value) {
@@ -1752,6 +1976,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Minimum _score for matching documents. Documents with a lower _score are not
+		 * included in the search results.
+		 * <p>
 		 * API name: {@code min_score}
 		 */
 		public Builder minScore(@Nullable Number value) {
@@ -1783,6 +2010,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Defines the search definition using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(@Nullable QueryContainer value) {
@@ -1791,6 +2020,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Defines the search definition using the Query DSL.
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
@@ -1839,6 +2070,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Retrieve a script evaluation (based on different fields) for each hit.
+		 * <p>
 		 * API name: {@code script_fields}
 		 */
 		public Builder scriptFields(@Nullable Map<String, ScriptField> value) {
@@ -1899,6 +2132,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The number of hits to return. By default, you cannot page through more than
+		 * 10,000 hits using the from and size parameters. To page through more hits,
+		 * use the search_after parameter.
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {
@@ -1949,6 +2186,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Indicates which source fields are returned for matching documents. These
+		 * fields are returned in the hits._source property of the search response.
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public Builder source(@Nullable JsonValue value) {
@@ -1957,6 +2197,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Array of wildcard (*) patterns. The request returns values for field names
+		 * matching these patterns in the hits.fields property of the response.
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(@Nullable List<JsonValue> value) {
@@ -1965,6 +2208,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Array of wildcard (*) patterns. The request returns values for field names
+		 * matching these patterns in the hits.fields property of the response.
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(JsonValue... value) {
@@ -1992,6 +2238,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Maximum number of documents to collect for each shard. If a query reaches
+		 * this limit, Elasticsearch terminates the query early. Elasticsearch collects
+		 * documents before sorting. Defaults to 0, which does not terminate query
+		 * execution early.
+		 * <p>
 		 * API name: {@code terminate_after}
 		 */
 		public Builder terminateAfter(@Nullable Number value) {
@@ -2000,6 +2251,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specifies the period of time to wait for a response from each shard. If no
+		 * response is received before the timeout expires, the request fails and
+		 * returns an error. Defaults to no timeout.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable String value) {
@@ -2008,6 +2263,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If true, calculate and return document scores, even if the scores are not
+		 * used for sorting.
+		 * <p>
 		 * API name: {@code track_scores}
 		 */
 		public Builder trackScores(@Nullable Boolean value) {
@@ -2016,6 +2274,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If true, returns document version as part of a hit.
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Boolean value) {
@@ -2024,6 +2284,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If true, returns sequence number and primary term of the last modification of
+		 * each hit. See Optimistic concurrency control.
+		 * <p>
 		 * API name: {@code seq_no_primary_term}
 		 */
 		public Builder seqNoPrimaryTerm(@Nullable Boolean value) {
@@ -2032,6 +2295,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * List of stored fields to return as part of a hit. If no fields are specified,
+		 * no stored fields are included in the response. If this field is specified,
+		 * the _source parameter defaults to false. You can pass _source: true to return
+		 * both source fields and stored fields in the search response.
+		 * <p>
 		 * API name: {@code stored_fields}
 		 */
 		public Builder storedFields(@Nullable List<String> value) {
@@ -2040,6 +2308,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * List of stored fields to return as part of a hit. If no fields are specified,
+		 * no stored fields are included in the response. If this field is specified,
+		 * the _source parameter defaults to false. You can pass _source: true to return
+		 * both source fields and stored fields in the search response.
+		 * <p>
 		 * API name: {@code stored_fields}
 		 */
 		public Builder storedFields(String... value) {
@@ -2059,6 +2332,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
+		 * specify an <index> in the request path.
+		 * <p>
 		 * API name: {@code pit}
 		 */
 		public Builder pit(@Nullable PointInTimeReference value) {
@@ -2067,6 +2343,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
+		 * specify an <index> in the request path.
+		 * <p>
 		 * API name: {@code pit}
 		 */
 		public Builder pit(Function<PointInTimeReference.Builder, ObjectBuilder<PointInTimeReference>> fn) {
@@ -2074,6 +2353,9 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
 		 * API name: {@code runtime_mappings}
 		 */
 		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
@@ -2107,6 +2389,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Stats groups to associate with the search. Each group maintains a statistics
+		 * aggregation for its associated searches. You can retrieve these stats using
+		 * the indices stats API.
+		 * <p>
 		 * API name: {@code stats}
 		 */
 		public Builder stats(@Nullable List<String> value) {
@@ -2115,6 +2401,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Stats groups to associate with the search. Each group maintains a statistics
+		 * aggregation for its associated searches. You can retrieve these stats using
+		 * the indices stats API.
+		 * <p>
 		 * API name: {@code stats}
 		 */
 		public Builder stats(String... value) {
@@ -2213,14 +2503,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -2231,15 +2518,6 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_search");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_search");
 					return buf.toString();
 				}
@@ -2302,7 +2580,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 					params.put("request_cache", String.valueOf(request.requestCache));
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.scroll != null) {
 					params.put("scroll", request.scroll.toString());

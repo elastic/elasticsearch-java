@@ -31,37 +31,33 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ExistsQuery
 public final class ExistsQuery extends QueryBase {
-	@Nullable
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ExistsQuery(Builder builder) {
 		super(builder);
-		this.field = builder.field;
+		this.field = Objects.requireNonNull(builder.field, "field");
 
 	}
 
 	/**
 	 * API name: {@code field}
 	 */
-	@Nullable
 	public String field() {
 		return this.field;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this.field != null) {
 
-			generator.writeKey("field");
-			generator.write(this.field);
-
-		}
+		generator.writeKey("field");
+		generator.write(this.field);
 
 	}
 
@@ -71,13 +67,12 @@ public final class ExistsQuery extends QueryBase {
 	 * Builder for {@link ExistsQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ExistsQuery> {
-		@Nullable
 		private String field;
 
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public Builder field(String value) {
 			this.field = value;
 			return this;
 		}

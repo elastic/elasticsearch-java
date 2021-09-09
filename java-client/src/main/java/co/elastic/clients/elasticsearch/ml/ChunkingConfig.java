@@ -52,6 +52,12 @@ public final class ChunkingConfig implements ToJsonp {
 	}
 
 	/**
+	 * If the mode is <code>auto</code>, the chunk size is dynamically calculated;
+	 * this is the recommended value when the datafeed does not use aggregations. If
+	 * the mode is <code>manual</code>, chunking is applied according to the
+	 * specified <code>time_span</code>; use this mode when the datafeed uses
+	 * aggregations. If the mode is <code>off</code>, no chunking is applied.
+	 * <p>
 	 * API name: {@code mode}
 	 */
 	public JsonValue mode() {
@@ -59,6 +65,9 @@ public final class ChunkingConfig implements ToJsonp {
 	}
 
 	/**
+	 * The time span that each search will be querying. This setting is only
+	 * applicable when the <code>mode</code> is set to <code>manual</code>.
+	 * <p>
 	 * API name: {@code time_span}
 	 */
 	@Nullable
@@ -101,6 +110,12 @@ public final class ChunkingConfig implements ToJsonp {
 		private JsonValue timeSpan;
 
 		/**
+		 * If the mode is <code>auto</code>, the chunk size is dynamically calculated;
+		 * this is the recommended value when the datafeed does not use aggregations. If
+		 * the mode is <code>manual</code>, chunking is applied according to the
+		 * specified <code>time_span</code>; use this mode when the datafeed uses
+		 * aggregations. If the mode is <code>off</code>, no chunking is applied.
+		 * <p>
 		 * API name: {@code mode}
 		 */
 		public Builder mode(JsonValue value) {
@@ -109,6 +124,9 @@ public final class ChunkingConfig implements ToJsonp {
 		}
 
 		/**
+		 * The time span that each search will be querying. This setting is only
+		 * applicable when the <code>mode</code> is set to <code>manual</code>.
+		 * <p>
 		 * API name: {@code time_span}
 		 */
 		public Builder timeSpan(@Nullable JsonValue value) {

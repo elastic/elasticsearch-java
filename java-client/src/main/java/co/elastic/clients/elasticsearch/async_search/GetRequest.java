@@ -64,6 +64,8 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * The async search ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -71,6 +73,9 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify the time interval in which the results (partial or final) for this
+	 * search will be available
+	 * <p>
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
@@ -79,6 +84,9 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify whether aggregation and suggester names should be prefixed by their
+	 * respective types in the response
+	 * <p>
 	 * API name: {@code typed_keys}
 	 */
 	@Nullable
@@ -87,6 +95,8 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify the time that the request should block waiting for the final response
+	 * <p>
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
@@ -112,6 +122,8 @@ public final class GetRequest extends RequestBase {
 		private JsonValue waitForCompletionTimeout;
 
 		/**
+		 * The async search ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -120,6 +132,9 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify the time interval in which the results (partial or final) for this
+		 * search will be available
+		 * <p>
 		 * API name: {@code keep_alive}
 		 */
 		public Builder keepAlive(@Nullable JsonValue value) {
@@ -128,6 +143,9 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify whether aggregation and suggester names should be prefixed by their
+		 * respective types in the response
+		 * <p>
 		 * API name: {@code typed_keys}
 		 */
 		public Builder typedKeys(@Nullable Boolean value) {
@@ -136,6 +154,8 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify the time that the request should block waiting for the final response
+		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
 		public Builder waitForCompletionTimeout(@Nullable JsonValue value) {

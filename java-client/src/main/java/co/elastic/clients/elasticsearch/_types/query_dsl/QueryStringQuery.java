@@ -37,6 +37,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryStringQuery
@@ -95,7 +96,6 @@ public final class QueryStringQuery extends QueryBase {
 	@Nullable
 	private final Number phraseSlop;
 
-	@Nullable
 	private final String query;
 
 	@Nullable
@@ -138,7 +138,7 @@ public final class QueryStringQuery extends QueryBase {
 		this.maxDeterminizedStates = builder.maxDeterminizedStates;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.phraseSlop = builder.phraseSlop;
-		this.query = builder.query;
+		this.query = Objects.requireNonNull(builder.query, "query");
 		this.quoteAnalyzer = builder.quoteAnalyzer;
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 		this.rewrite = builder.rewrite;
@@ -295,7 +295,6 @@ public final class QueryStringQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	@Nullable
 	public String query() {
 		return this.query;
 	}
@@ -463,12 +462,10 @@ public final class QueryStringQuery extends QueryBase {
 			generator.write(this.phraseSlop.doubleValue());
 
 		}
-		if (this.query != null) {
 
-			generator.writeKey("query");
-			generator.write(this.query);
+		generator.writeKey("query");
+		generator.write(this.query);
 
-		}
 		if (this.quoteAnalyzer != null) {
 
 			generator.writeKey("quote_analyzer");
@@ -568,7 +565,6 @@ public final class QueryStringQuery extends QueryBase {
 		@Nullable
 		private Number phraseSlop;
 
-		@Nullable
 		private String query;
 
 		@Nullable
@@ -755,7 +751,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable String value) {
+		public Builder query(String value) {
 			this.query = value;
 			return this;
 		}

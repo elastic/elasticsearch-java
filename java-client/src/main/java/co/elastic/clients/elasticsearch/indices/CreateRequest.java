@@ -85,6 +85,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the index
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -100,6 +102,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -108,6 +112,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -116,6 +122,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Set the number of active shards to wait for before the operation returns.
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -221,6 +229,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		private Map<String, JsonValue> settings;
 
 		/**
+		 * The name of the index
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -237,6 +247,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -245,6 +257,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -253,6 +267,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Set the number of active shards to wait for before the operation returns.
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder waitForActiveShards(@Nullable JsonValue value) {

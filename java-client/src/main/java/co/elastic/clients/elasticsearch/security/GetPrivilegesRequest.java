@@ -53,6 +53,8 @@ public final class GetPrivilegesRequest extends RequestBase {
 	}
 
 	/**
+	 * Application name
+	 * <p>
 	 * API name: {@code application}
 	 */
 	@Nullable
@@ -61,6 +63,8 @@ public final class GetPrivilegesRequest extends RequestBase {
 	}
 
 	/**
+	 * Privilege name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -81,6 +85,8 @@ public final class GetPrivilegesRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * Application name
+		 * <p>
 		 * API name: {@code application}
 		 */
 		public Builder application(@Nullable String value) {
@@ -89,6 +95,8 @@ public final class GetPrivilegesRequest extends RequestBase {
 		}
 
 		/**
+		 * Privilege name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {

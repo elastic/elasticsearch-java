@@ -59,6 +59,8 @@ public final class GetFiltersRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the filter to fetch
+	 * <p>
 	 * API name: {@code filter_id}
 	 */
 	@Nullable
@@ -67,6 +69,8 @@ public final class GetFiltersRequest extends RequestBase {
 	}
 
 	/**
+	 * skips a number of filters
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -75,6 +79,8 @@ public final class GetFiltersRequest extends RequestBase {
 	}
 
 	/**
+	 * specifies a max number of filters to get
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -98,6 +104,8 @@ public final class GetFiltersRequest extends RequestBase {
 		private Number size;
 
 		/**
+		 * The ID of the filter to fetch
+		 * <p>
 		 * API name: {@code filter_id}
 		 */
 		public Builder filterId(@Nullable String value) {
@@ -106,6 +114,8 @@ public final class GetFiltersRequest extends RequestBase {
 		}
 
 		/**
+		 * skips a number of filters
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -114,6 +124,8 @@ public final class GetFiltersRequest extends RequestBase {
 		}
 
 		/**
+		 * specifies a max number of filters to get
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {

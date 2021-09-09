@@ -58,6 +58,8 @@ public final class AliasesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A comma-separated list of alias names to return
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -66,6 +68,9 @@ public final class AliasesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -86,6 +91,8 @@ public final class AliasesRequest extends CatRequestBase {
 		private JsonValue expandWildcards;
 
 		/**
+		 * A comma-separated list of alias names to return
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable List<String> value) {
@@ -94,6 +101,8 @@ public final class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of alias names to return
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -113,6 +122,9 @@ public final class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {

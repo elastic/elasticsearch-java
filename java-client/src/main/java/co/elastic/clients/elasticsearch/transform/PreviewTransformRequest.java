@@ -45,6 +45,9 @@ import javax.annotation.Nullable;
 // typedef: transform.preview_transform.Request
 public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	@Nullable
+	private final String transformId;
+
+	@Nullable
 	private final Destination dest;
 
 	@Nullable
@@ -75,6 +78,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 	protected PreviewTransformRequest(AbstractBuilder<?> builder) {
 
+		this.transformId = builder.transformId;
 		this.dest = builder.dest;
 		this.description = builder.description;
 		this.frequency = builder.frequency;
@@ -85,6 +89,16 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		this.retentionPolicy = builder.retentionPolicy;
 		this.latest = builder.latest;
 
+	}
+
+	/**
+	 * Auto generated - missing in the input spec
+	 * <p>
+	 * API name: {@code transform_id}
+	 */
+	@Nullable
+	public String transformId() {
+		return this.transformId;
 	}
 
 	/**
@@ -278,6 +292,9 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
 		@Nullable
+		private String transformId;
+
+		@Nullable
 		private Destination dest;
 
 		@Nullable
@@ -303,6 +320,16 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 		@Nullable
 		private Latest latest;
+
+		/**
+		 * Auto generated - missing in the input spec
+		 * <p>
+		 * API name: {@code transform_id}
+		 */
+		public BuilderT transformId(@Nullable String value) {
+			this.transformId = value;
+			return self();
+		}
 
 		/**
 		 * The destination for the transform.
@@ -508,7 +535,28 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 
 			// Request path
 			request -> {
-				return "/_transform/_preview";
+				final int _transformId = 1 << 0;
+
+				int propsSet = 0;
+
+				if (request.transformId() != null)
+					propsSet |= _transformId;
+
+				if (propsSet == (_transformId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_transform");
+					buf.append("/");
+					buf.append(request.transformId);
+					buf.append("/_preview");
+					return buf.toString();
+				}
+				if (propsSet == 0) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_transform");
+					buf.append("/_preview");
+					return buf.toString();
+				}
+				throw Endpoint.Simple.noPathTemplateFound("path");
 
 			},
 

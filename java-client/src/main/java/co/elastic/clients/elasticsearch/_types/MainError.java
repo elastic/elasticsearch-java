@@ -31,13 +31,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.MainError
@@ -45,14 +40,11 @@ public final class MainError extends ErrorCause {
 	@Nullable
 	private final Map<String, String> headers;
 
-	private final List<ErrorCause> rootCause;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected MainError(Builder builder) {
 		super(builder);
 		this.headers = builder.headers;
-		this.rootCause = Objects.requireNonNull(builder.rootCause, "root_cause");
 
 	}
 
@@ -62,13 +54,6 @@ public final class MainError extends ErrorCause {
 	@Nullable
 	public Map<String, String> headers() {
 		return this.headers;
-	}
-
-	/**
-	 * API name: {@code root_cause}
-	 */
-	public List<ErrorCause> rootCause() {
-		return this.rootCause;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -86,14 +71,6 @@ public final class MainError extends ErrorCause {
 
 		}
 
-		generator.writeKey("root_cause");
-		generator.writeStartArray();
-		for (ErrorCause item0 : this.rootCause) {
-			item0.toJsonp(generator, mapper);
-
-		}
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -104,8 +81,6 @@ public final class MainError extends ErrorCause {
 	public static class Builder extends ErrorCause.AbstractBuilder<Builder> implements ObjectBuilder<MainError> {
 		@Nullable
 		private Map<String, String> headers;
-
-		private List<ErrorCause> rootCause;
 
 		/**
 		 * API name: {@code headers}
@@ -124,47 +99,6 @@ public final class MainError extends ErrorCause {
 			}
 			this.headers.put(key, value);
 			return this;
-		}
-
-		/**
-		 * API name: {@code root_cause}
-		 */
-		public Builder rootCause(List<ErrorCause> value) {
-			this.rootCause = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code root_cause}
-		 */
-		public Builder rootCause(ErrorCause... value) {
-			this.rootCause = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
-		 */
-		public Builder addRootCause(ErrorCause value) {
-			if (this.rootCause == null) {
-				this.rootCause = new ArrayList<>();
-			}
-			this.rootCause.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #rootCause(List)} to a singleton list.
-		 */
-		public Builder rootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.rootCause(fn.apply(new ErrorCause.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
-		 */
-		public Builder addRootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.addRootCause(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		@Override
@@ -196,7 +130,6 @@ public final class MainError extends ErrorCause {
 		ErrorCause.setupErrorCauseDeserializer(op);
 		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"headers");
-		op.add(Builder::rootCause, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "root_cause");
 
 	}
 

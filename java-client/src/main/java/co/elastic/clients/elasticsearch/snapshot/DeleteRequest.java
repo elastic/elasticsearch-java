@@ -58,6 +58,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * A repository name
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public String repository() {
@@ -65,6 +67,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of snapshot names
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	public String snapshot() {
@@ -72,6 +76,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -93,6 +99,8 @@ public final class DeleteRequest extends RequestBase {
 		private JsonValue masterTimeout;
 
 		/**
+		 * A repository name
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String value) {
@@ -101,6 +109,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of snapshot names
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
@@ -109,6 +119,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

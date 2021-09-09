@@ -59,6 +59,8 @@ public final class ResolveIndexRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of names or wildcard expressions
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public List<String> name() {
@@ -66,6 +68,9 @@ public final class ResolveIndexRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether wildcard expressions should get expanded to open or closed indices
+	 * (default: open)
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -85,6 +90,8 @@ public final class ResolveIndexRequest extends RequestBase {
 		private JsonValue expandWildcards;
 
 		/**
+		 * A comma-separated list of names or wildcard expressions
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(List<String> value) {
@@ -93,6 +100,8 @@ public final class ResolveIndexRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of names or wildcard expressions
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -112,6 +121,9 @@ public final class ResolveIndexRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * (default: open)
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {

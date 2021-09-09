@@ -40,6 +40,7 @@ import javax.annotation.Nullable;
 public final class FilterRef implements ToJsonp {
 	private final String filterId;
 
+	@Nullable
 	private final JsonValue filterType;
 
 	// ---------------------------------------------------------------------------------------------
@@ -47,11 +48,13 @@ public final class FilterRef implements ToJsonp {
 	protected FilterRef(Builder builder) {
 
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
-		this.filterType = Objects.requireNonNull(builder.filterType, "filter_type");
+		this.filterType = builder.filterType;
 
 	}
 
 	/**
+	 * The identifier for the filter.
+	 * <p>
 	 * API name: {@code filter_id}
 	 */
 	public String filterId() {
@@ -59,8 +62,12 @@ public final class FilterRef implements ToJsonp {
 	}
 
 	/**
+	 * If set to <code>include</code>, the rule applies for values in the filter. If
+	 * set to <code>exclude</code>, the rule applies for values not in the filter.
+	 * <p>
 	 * API name: {@code filter_type}
 	 */
+	@Nullable
 	public JsonValue filterType() {
 		return this.filterType;
 	}
@@ -79,8 +86,12 @@ public final class FilterRef implements ToJsonp {
 		generator.writeKey("filter_id");
 		generator.write(this.filterId);
 
-		generator.writeKey("filter_type");
-		generator.write(this.filterType);
+		if (this.filterType != null) {
+
+			generator.writeKey("filter_type");
+			generator.write(this.filterType);
+
+		}
 
 	}
 
@@ -92,9 +103,12 @@ public final class FilterRef implements ToJsonp {
 	public static class Builder implements ObjectBuilder<FilterRef> {
 		private String filterId;
 
+		@Nullable
 		private JsonValue filterType;
 
 		/**
+		 * The identifier for the filter.
+		 * <p>
 		 * API name: {@code filter_id}
 		 */
 		public Builder filterId(String value) {
@@ -103,9 +117,12 @@ public final class FilterRef implements ToJsonp {
 		}
 
 		/**
+		 * If set to <code>include</code>, the rule applies for values in the filter. If
+		 * set to <code>exclude</code>, the rule applies for values not in the filter.
+		 * <p>
 		 * API name: {@code filter_type}
 		 */
-		public Builder filterType(JsonValue value) {
+		public Builder filterType(@Nullable JsonValue value) {
 			this.filterType = value;
 			return this;
 		}

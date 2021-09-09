@@ -45,6 +45,12 @@ public final class RecoveryBytes implements ToJsonp {
 	private final JsonValue recoveredInBytes;
 
 	@Nullable
+	private final JsonValue recoveredFromSnapshot;
+
+	@Nullable
+	private final JsonValue recoveredFromSnapshotInBytes;
+
+	@Nullable
 	private final JsonValue reused;
 
 	private final JsonValue reusedInBytes;
@@ -61,6 +67,8 @@ public final class RecoveryBytes implements ToJsonp {
 		this.percent = Objects.requireNonNull(builder.percent, "percent");
 		this.recovered = builder.recovered;
 		this.recoveredInBytes = Objects.requireNonNull(builder.recoveredInBytes, "recovered_in_bytes");
+		this.recoveredFromSnapshot = builder.recoveredFromSnapshot;
+		this.recoveredFromSnapshotInBytes = builder.recoveredFromSnapshotInBytes;
 		this.reused = builder.reused;
 		this.reusedInBytes = Objects.requireNonNull(builder.reusedInBytes, "reused_in_bytes");
 		this.total = builder.total;
@@ -88,6 +96,22 @@ public final class RecoveryBytes implements ToJsonp {
 	 */
 	public JsonValue recoveredInBytes() {
 		return this.recoveredInBytes;
+	}
+
+	/**
+	 * API name: {@code recovered_from_snapshot}
+	 */
+	@Nullable
+	public JsonValue recoveredFromSnapshot() {
+		return this.recoveredFromSnapshot;
+	}
+
+	/**
+	 * API name: {@code recovered_from_snapshot_in_bytes}
+	 */
+	@Nullable
+	public JsonValue recoveredFromSnapshotInBytes() {
+		return this.recoveredFromSnapshotInBytes;
 	}
 
 	/**
@@ -144,6 +168,18 @@ public final class RecoveryBytes implements ToJsonp {
 		generator.writeKey("recovered_in_bytes");
 		generator.write(this.recoveredInBytes);
 
+		if (this.recoveredFromSnapshot != null) {
+
+			generator.writeKey("recovered_from_snapshot");
+			generator.write(this.recoveredFromSnapshot);
+
+		}
+		if (this.recoveredFromSnapshotInBytes != null) {
+
+			generator.writeKey("recovered_from_snapshot_in_bytes");
+			generator.write(this.recoveredFromSnapshotInBytes);
+
+		}
 		if (this.reused != null) {
 
 			generator.writeKey("reused");
@@ -180,6 +216,12 @@ public final class RecoveryBytes implements ToJsonp {
 		private JsonValue recoveredInBytes;
 
 		@Nullable
+		private JsonValue recoveredFromSnapshot;
+
+		@Nullable
+		private JsonValue recoveredFromSnapshotInBytes;
+
+		@Nullable
 		private JsonValue reused;
 
 		private JsonValue reusedInBytes;
@@ -210,6 +252,22 @@ public final class RecoveryBytes implements ToJsonp {
 		 */
 		public Builder recoveredInBytes(JsonValue value) {
 			this.recoveredInBytes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code recovered_from_snapshot}
+		 */
+		public Builder recoveredFromSnapshot(@Nullable JsonValue value) {
+			this.recoveredFromSnapshot = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code recovered_from_snapshot_in_bytes}
+		 */
+		public Builder recoveredFromSnapshotInBytes(@Nullable JsonValue value) {
+			this.recoveredFromSnapshotInBytes = value;
 			return this;
 		}
 
@@ -270,6 +328,9 @@ public final class RecoveryBytes implements ToJsonp {
 		op.add(Builder::percent, JsonpDeserializer.jsonValueDeserializer(), "percent");
 		op.add(Builder::recovered, JsonpDeserializer.jsonValueDeserializer(), "recovered");
 		op.add(Builder::recoveredInBytes, JsonpDeserializer.jsonValueDeserializer(), "recovered_in_bytes");
+		op.add(Builder::recoveredFromSnapshot, JsonpDeserializer.jsonValueDeserializer(), "recovered_from_snapshot");
+		op.add(Builder::recoveredFromSnapshotInBytes, JsonpDeserializer.jsonValueDeserializer(),
+				"recovered_from_snapshot_in_bytes");
 		op.add(Builder::reused, JsonpDeserializer.jsonValueDeserializer(), "reused");
 		op.add(Builder::reusedInBytes, JsonpDeserializer.jsonValueDeserializer(), "reused_in_bytes");
 		op.add(Builder::total, JsonpDeserializer.jsonValueDeserializer(), "total");

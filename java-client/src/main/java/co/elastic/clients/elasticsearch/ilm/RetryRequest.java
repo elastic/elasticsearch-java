@@ -49,6 +49,9 @@ public final class RetryRequest extends RequestBase {
 	}
 
 	/**
+	 * The name of the indices (comma-separated) whose failed lifecycle step is to
+	 * be retry
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -64,6 +67,9 @@ public final class RetryRequest extends RequestBase {
 		private String index;
 
 		/**
+		 * The name of the indices (comma-separated) whose failed lifecycle step is to
+		 * be retry
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {

@@ -110,6 +110,9 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -128,6 +131,8 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Search operation type
+	 * <p>
 	 * API name: {@code search_type}
 	 */
 	@Nullable
@@ -257,6 +262,9 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -275,6 +283,8 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Search operation type
+		 * <p>
 		 * API name: {@code search_type}
 		 */
 		public Builder searchType(@Nullable String value) {

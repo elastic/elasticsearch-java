@@ -48,9 +48,6 @@ public final class GetMappingRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
-	private final List<String> type;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -73,7 +70,6 @@ public final class GetMappingRequest extends RequestBase {
 	protected GetMappingRequest(Builder builder) {
 
 		this.index = builder.index;
-		this.type = builder.type;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = builder.expandWildcards;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -84,6 +80,8 @@ public final class GetMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -92,14 +90,10 @@ public final class GetMappingRequest extends RequestBase {
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
-	}
-
-	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -108,6 +102,9 @@ public final class GetMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -116,6 +113,9 @@ public final class GetMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -132,6 +132,9 @@ public final class GetMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -140,6 +143,8 @@ public final class GetMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -155,9 +160,6 @@ public final class GetMappingRequest extends RequestBase {
 	public static class Builder implements ObjectBuilder<GetMappingRequest> {
 		@Nullable
 		private List<String> index;
-
-		@Nullable
-		private List<String> type;
 
 		@Nullable
 		private Boolean allowNoIndices;
@@ -178,6 +180,8 @@ public final class GetMappingRequest extends RequestBase {
 		private JsonValue masterTimeout;
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -186,6 +190,8 @@ public final class GetMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -205,33 +211,10 @@ public final class GetMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
-			return this;
-		}
-
-		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -240,6 +223,9 @@ public final class GetMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -248,6 +234,9 @@ public final class GetMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -264,6 +253,9 @@ public final class GetMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -272,6 +264,8 @@ public final class GetMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -306,14 +300,11 @@ public final class GetMappingRequest extends RequestBase {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -325,22 +316,6 @@ public final class GetMappingRequest extends RequestBase {
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_mapping");
-					return buf.toString();
-				}
-				if (propsSet == (_type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
-					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_mapping");
-					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");

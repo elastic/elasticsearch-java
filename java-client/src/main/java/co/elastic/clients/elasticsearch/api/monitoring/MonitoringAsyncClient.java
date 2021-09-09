@@ -57,7 +57,7 @@ public class MonitoringAsyncClient extends ApiClient<MonitoringAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BulkResponse> bulk(BulkRequest request) throws IOException {
+	public <TSource> CompletableFuture<BulkResponse> bulk(BulkRequest<TSource> request) throws IOException {
 		return this.transport.performRequestAsync(request, BulkRequest.ENDPOINT, this.requestOptions);
 	}
 
@@ -73,9 +73,9 @@ public class MonitoringAsyncClient extends ApiClient<MonitoringAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BulkResponse> bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
-			throws IOException {
-		return bulk(fn.apply(new BulkRequest.Builder()).build());
+	public final <TSource> CompletableFuture<BulkResponse> bulk(
+			Function<BulkRequest.Builder<TSource>, ObjectBuilder<BulkRequest<TSource>>> fn) throws IOException {
+		return bulk(fn.apply(new BulkRequest.Builder<TSource>()).build());
 	}
 
 	// ----- Misc

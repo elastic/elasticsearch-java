@@ -66,6 +66,8 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The ID of the datafeed to start
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
@@ -146,6 +148,8 @@ public final class StartDatafeedRequest extends RequestBase implements ToJsonp {
 		private JsonValue timeout;
 
 		/**
+		 * The ID of the datafeed to start
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {

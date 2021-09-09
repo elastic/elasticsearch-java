@@ -59,8 +59,6 @@ import co.elastic.clients.elasticsearch.indices.ExistsTemplateRequest;
 import co.elastic.clients.elasticsearch.indices.ExistsTypeRequest;
 import co.elastic.clients.elasticsearch.indices.FlushRequest;
 import co.elastic.clients.elasticsearch.indices.FlushResponse;
-import co.elastic.clients.elasticsearch.indices.FlushSyncedRequest;
-import co.elastic.clients.elasticsearch.indices.FlushSyncedResponse;
 import co.elastic.clients.elasticsearch.indices.ForcemergeRequest;
 import co.elastic.clients.elasticsearch.indices.ForcemergeResponse;
 import co.elastic.clients.elasticsearch.indices.FreezeRequest;
@@ -81,8 +79,6 @@ import co.elastic.clients.elasticsearch.indices.GetSettingsRequest;
 import co.elastic.clients.elasticsearch.indices.GetSettingsResponse;
 import co.elastic.clients.elasticsearch.indices.GetTemplateRequest;
 import co.elastic.clients.elasticsearch.indices.GetTemplateResponse;
-import co.elastic.clients.elasticsearch.indices.GetUpgradeRequest;
-import co.elastic.clients.elasticsearch.indices.GetUpgradeResponse;
 import co.elastic.clients.elasticsearch.indices.MigrateToDataStreamRequest;
 import co.elastic.clients.elasticsearch.indices.MigrateToDataStreamResponse;
 import co.elastic.clients.elasticsearch.indices.OpenRequest;
@@ -127,8 +123,6 @@ import co.elastic.clients.elasticsearch.indices.UnfreezeRequest;
 import co.elastic.clients.elasticsearch.indices.UnfreezeResponse;
 import co.elastic.clients.elasticsearch.indices.UpdateAliasesRequest;
 import co.elastic.clients.elasticsearch.indices.UpdateAliasesResponse;
-import co.elastic.clients.elasticsearch.indices.UpgradeRequest;
-import co.elastic.clients.elasticsearch.indices.UpgradeResponse;
 import co.elastic.clients.elasticsearch.indices.ValidateQueryRequest;
 import co.elastic.clients.elasticsearch.indices.ValidateQueryResponse;
 import co.elastic.clients.util.ObjectBuilder;
@@ -745,39 +739,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 		return flush(fn.apply(new FlushRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.flush_synced
-
-	/**
-	 * Performs a synced flush operation on one or more indices. Synced flush is
-	 * deprecated and will be removed in 8.0. Use flush instead
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-synced-flush-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public FlushSyncedResponse flushSynced(FlushSyncedRequest request) throws IOException {
-		return this.transport.performRequest(request, FlushSyncedRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Performs a synced flush operation on one or more indices. Synced flush is
-	 * deprecated and will be removed in 8.0. Use flush instead
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-synced-flush-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final FlushSyncedResponse flushSynced(
-			Function<FlushSyncedRequest.Builder, ObjectBuilder<FlushSyncedRequest>> fn) throws IOException {
-		return flushSynced(fn.apply(new FlushSyncedRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.forcemerge
 
 	/**
@@ -1087,37 +1048,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	public final GetTemplateResponse getTemplate(
 			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn) throws IOException {
 		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.get_upgrade
-
-	/**
-	 * DEPRECATED Returns a progress status of current upgrade.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetUpgradeResponse getUpgrade(GetUpgradeRequest request) throws IOException {
-		return this.transport.performRequest(request, GetUpgradeRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * DEPRECATED Returns a progress status of current upgrade.
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final GetUpgradeResponse getUpgrade(Function<GetUpgradeRequest.Builder, ObjectBuilder<GetUpgradeRequest>> fn)
-			throws IOException {
-		return getUpgrade(fn.apply(new GetUpgradeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.migrate_to_data_stream
@@ -1814,37 +1744,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	public final UpdateAliasesResponse updateAliases(
 			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn) throws IOException {
 		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.upgrade
-
-	/**
-	 * DEPRECATED Upgrades to the current version of Lucene.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public UpgradeResponse upgrade(UpgradeRequest request) throws IOException {
-		return this.transport.performRequest(request, UpgradeRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * DEPRECATED Upgrades to the current version of Lucene.
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final UpgradeResponse upgrade(Function<UpgradeRequest.Builder, ObjectBuilder<UpgradeRequest>> fn)
-			throws IOException {
-		return upgrade(fn.apply(new UpgradeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.validate_query

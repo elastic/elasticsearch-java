@@ -49,6 +49,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * The async search ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -64,6 +66,8 @@ public final class DeleteRequest extends RequestBase {
 		private String id;
 
 		/**
+		 * The async search ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {

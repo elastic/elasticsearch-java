@@ -65,13 +65,13 @@ public final class Detector implements ToJsonp {
 	private final String function;
 
 	@Nullable
-	private final Boolean useNull;
-
-	@Nullable
 	private final String overFieldName;
 
 	@Nullable
 	private final String partitionFieldName;
+
+	@Nullable
+	private final Boolean useNull;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -84,13 +84,17 @@ public final class Detector implements ToJsonp {
 		this.excludeFrequent = builder.excludeFrequent;
 		this.fieldName = builder.fieldName;
 		this.function = Objects.requireNonNull(builder.function, "function");
-		this.useNull = builder.useNull;
 		this.overFieldName = builder.overFieldName;
 		this.partitionFieldName = builder.partitionFieldName;
+		this.useNull = builder.useNull;
 
 	}
 
 	/**
+	 * The field used to split the data. In particular, this property is used for
+	 * analyzing the splits with respect to their own history. It is used for
+	 * finding unusual values in the context of the split.
+	 * <p>
 	 * API name: {@code by_field_name}
 	 */
 	@Nullable
@@ -99,6 +103,10 @@ public final class Detector implements ToJsonp {
 	}
 
 	/**
+	 * Custom rules enable you to customize the way detectors operate. For example,
+	 * a rule may dictate conditions under which results should be skipped. Kibana
+	 * refers to custom rules as job rules.
+	 * <p>
 	 * API name: {@code custom_rules}
 	 */
 	@Nullable
@@ -107,6 +115,8 @@ public final class Detector implements ToJsonp {
 	}
 
 	/**
+	 * A description of the detector.
+	 * <p>
 	 * API name: {@code detector_description}
 	 */
 	@Nullable
@@ -115,6 +125,10 @@ public final class Detector implements ToJsonp {
 	}
 
 	/**
+	 * A unique identifier for the detector. This identifier is based on the order
+	 * of the detectors in the <code>analysis_config</code>, starting at zero. If
+	 * you specify a value for this property, it is ignored.
+	 * <p>
 	 * API name: {@code detector_index}
 	 */
 	@Nullable
@@ -123,6 +137,12 @@ public final class Detector implements ToJsonp {
 	}
 
 	/**
+	 * If set, frequent entities are excluded from influencing the anomaly results.
+	 * Entities can be considered frequent over time or frequent in a population. If
+	 * you are working with both over and by fields, you can set
+	 * <code>exclude_frequent</code> to <code>all</code> for both fields, or to
+	 * <code>by</code> or <code>over</code> for those specific fields.
+	 * <p>
 	 * API name: {@code exclude_frequent}
 	 */
 	@Nullable
@@ -131,6 +151,10 @@ public final class Detector implements ToJsonp {
 	}
 
 	/**
+	 * The field that the detector uses in the function. If you use an event rate
+	 * function such as count or rare, do not specify this field. The
+	 * <code>field_name</code> cannot contain double quotes or backslashes.
+	 * <p>
 	 * API name: {@code field_name}
 	 */
 	@Nullable
@@ -139,6 +163,10 @@ public final class Detector implements ToJsonp {
 	}
 
 	/**
+	 * The analysis function that is used. For example, <code>count</code>,
+	 * <code>rare</code>, <code>mean</code>, <code>min</code>, <code>max</code>, or
+	 * <code>sum</code>.
+	 * <p>
 	 * API name: {@code function}
 	 */
 	public String function() {
@@ -146,14 +174,10 @@ public final class Detector implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code use_null}
-	 */
-	@Nullable
-	public Boolean useNull() {
-		return this.useNull;
-	}
-
-	/**
+	 * The field used to split the data. In particular, this property is used for
+	 * analyzing the splits with respect to the history of all splits. It is used
+	 * for finding unusual values in the population of all splits.
+	 * <p>
 	 * API name: {@code over_field_name}
 	 */
 	@Nullable
@@ -162,11 +186,25 @@ public final class Detector implements ToJsonp {
 	}
 
 	/**
+	 * The field used to segment the analysis. When you use this property, you have
+	 * completely independent baselines for each value of this field.
+	 * <p>
 	 * API name: {@code partition_field_name}
 	 */
 	@Nullable
 	public String partitionFieldName() {
 		return this.partitionFieldName;
+	}
+
+	/**
+	 * Defines whether a new series is used as the null series when there is no
+	 * value for the by or partition fields.
+	 * <p>
+	 * API name: {@code use_null}
+	 */
+	@Nullable
+	public Boolean useNull() {
+		return this.useNull;
 	}
 
 	/**
@@ -225,12 +263,6 @@ public final class Detector implements ToJsonp {
 		generator.writeKey("function");
 		generator.write(this.function);
 
-		if (this.useNull != null) {
-
-			generator.writeKey("use_null");
-			generator.write(this.useNull);
-
-		}
 		if (this.overFieldName != null) {
 
 			generator.writeKey("over_field_name");
@@ -241,6 +273,12 @@ public final class Detector implements ToJsonp {
 
 			generator.writeKey("partition_field_name");
 			generator.write(this.partitionFieldName);
+
+		}
+		if (this.useNull != null) {
+
+			generator.writeKey("use_null");
+			generator.write(this.useNull);
 
 		}
 
@@ -273,15 +311,19 @@ public final class Detector implements ToJsonp {
 		private String function;
 
 		@Nullable
-		private Boolean useNull;
-
-		@Nullable
 		private String overFieldName;
 
 		@Nullable
 		private String partitionFieldName;
 
+		@Nullable
+		private Boolean useNull;
+
 		/**
+		 * The field used to split the data. In particular, this property is used for
+		 * analyzing the splits with respect to their own history. It is used for
+		 * finding unusual values in the context of the split.
+		 * <p>
 		 * API name: {@code by_field_name}
 		 */
 		public Builder byFieldName(@Nullable String value) {
@@ -290,6 +332,10 @@ public final class Detector implements ToJsonp {
 		}
 
 		/**
+		 * Custom rules enable you to customize the way detectors operate. For example,
+		 * a rule may dictate conditions under which results should be skipped. Kibana
+		 * refers to custom rules as job rules.
+		 * <p>
 		 * API name: {@code custom_rules}
 		 */
 		public Builder customRules(@Nullable List<DetectionRule> value) {
@@ -298,6 +344,10 @@ public final class Detector implements ToJsonp {
 		}
 
 		/**
+		 * Custom rules enable you to customize the way detectors operate. For example,
+		 * a rule may dictate conditions under which results should be skipped. Kibana
+		 * refers to custom rules as job rules.
+		 * <p>
 		 * API name: {@code custom_rules}
 		 */
 		public Builder customRules(DetectionRule... value) {
@@ -331,6 +381,8 @@ public final class Detector implements ToJsonp {
 		}
 
 		/**
+		 * A description of the detector.
+		 * <p>
 		 * API name: {@code detector_description}
 		 */
 		public Builder detectorDescription(@Nullable String value) {
@@ -339,6 +391,10 @@ public final class Detector implements ToJsonp {
 		}
 
 		/**
+		 * A unique identifier for the detector. This identifier is based on the order
+		 * of the detectors in the <code>analysis_config</code>, starting at zero. If
+		 * you specify a value for this property, it is ignored.
+		 * <p>
 		 * API name: {@code detector_index}
 		 */
 		public Builder detectorIndex(@Nullable Number value) {
@@ -347,6 +403,12 @@ public final class Detector implements ToJsonp {
 		}
 
 		/**
+		 * If set, frequent entities are excluded from influencing the anomaly results.
+		 * Entities can be considered frequent over time or frequent in a population. If
+		 * you are working with both over and by fields, you can set
+		 * <code>exclude_frequent</code> to <code>all</code> for both fields, or to
+		 * <code>by</code> or <code>over</code> for those specific fields.
+		 * <p>
 		 * API name: {@code exclude_frequent}
 		 */
 		public Builder excludeFrequent(@Nullable JsonValue value) {
@@ -355,6 +417,10 @@ public final class Detector implements ToJsonp {
 		}
 
 		/**
+		 * The field that the detector uses in the function. If you use an event rate
+		 * function such as count or rare, do not specify this field. The
+		 * <code>field_name</code> cannot contain double quotes or backslashes.
+		 * <p>
 		 * API name: {@code field_name}
 		 */
 		public Builder fieldName(@Nullable String value) {
@@ -363,6 +429,10 @@ public final class Detector implements ToJsonp {
 		}
 
 		/**
+		 * The analysis function that is used. For example, <code>count</code>,
+		 * <code>rare</code>, <code>mean</code>, <code>min</code>, <code>max</code>, or
+		 * <code>sum</code>.
+		 * <p>
 		 * API name: {@code function}
 		 */
 		public Builder function(String value) {
@@ -371,14 +441,10 @@ public final class Detector implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code use_null}
-		 */
-		public Builder useNull(@Nullable Boolean value) {
-			this.useNull = value;
-			return this;
-		}
-
-		/**
+		 * The field used to split the data. In particular, this property is used for
+		 * analyzing the splits with respect to the history of all splits. It is used
+		 * for finding unusual values in the population of all splits.
+		 * <p>
 		 * API name: {@code over_field_name}
 		 */
 		public Builder overFieldName(@Nullable String value) {
@@ -387,10 +453,24 @@ public final class Detector implements ToJsonp {
 		}
 
 		/**
+		 * The field used to segment the analysis. When you use this property, you have
+		 * completely independent baselines for each value of this field.
+		 * <p>
 		 * API name: {@code partition_field_name}
 		 */
 		public Builder partitionFieldName(@Nullable String value) {
 			this.partitionFieldName = value;
+			return this;
+		}
+
+		/**
+		 * Defines whether a new series is used as the null series when there is no
+		 * value for the by or partition fields.
+		 * <p>
+		 * API name: {@code use_null}
+		 */
+		public Builder useNull(@Nullable Boolean value) {
+			this.useNull = value;
 			return this;
 		}
 
@@ -423,9 +503,9 @@ public final class Detector implements ToJsonp {
 		op.add(Builder::excludeFrequent, JsonpDeserializer.jsonValueDeserializer(), "exclude_frequent");
 		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
 		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
-		op.add(Builder::useNull, JsonpDeserializer.booleanDeserializer(), "use_null");
 		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
 		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
+		op.add(Builder::useNull, JsonpDeserializer.booleanDeserializer(), "use_null");
 
 	}
 

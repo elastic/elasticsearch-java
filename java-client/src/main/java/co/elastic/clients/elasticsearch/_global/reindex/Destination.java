@@ -47,7 +47,7 @@ public final class Destination implements ToJsonp {
 	private final String pipeline;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue versionType;
@@ -91,7 +91,7 @@ public final class Destination implements ToJsonp {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -159,7 +159,7 @@ public final class Destination implements ToJsonp {
 		private String pipeline;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue versionType;
@@ -191,7 +191,7 @@ public final class Destination implements ToJsonp {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -229,7 +229,7 @@ public final class Destination implements ToJsonp {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::opType, JsonpDeserializer.jsonValueDeserializer(), "op_type");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::versionType, JsonpDeserializer.jsonValueDeserializer(), "version_type");
 
 	}

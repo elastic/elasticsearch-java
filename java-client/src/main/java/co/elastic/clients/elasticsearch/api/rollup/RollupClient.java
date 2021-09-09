@@ -25,24 +25,24 @@ package co.elastic.clients.elasticsearch.api.rollup;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.rollup.CreateRollupJobRequest;
-import co.elastic.clients.elasticsearch.rollup.CreateRollupJobResponse;
-import co.elastic.clients.elasticsearch.rollup.DeleteRollupJobRequest;
-import co.elastic.clients.elasticsearch.rollup.DeleteRollupJobResponse;
-import co.elastic.clients.elasticsearch.rollup.GetRollupCapabilitiesRequest;
-import co.elastic.clients.elasticsearch.rollup.GetRollupCapabilitiesResponse;
-import co.elastic.clients.elasticsearch.rollup.GetRollupIndexCapabilitiesRequest;
-import co.elastic.clients.elasticsearch.rollup.GetRollupIndexCapabilitiesResponse;
-import co.elastic.clients.elasticsearch.rollup.GetRollupJobRequest;
-import co.elastic.clients.elasticsearch.rollup.GetRollupJobResponse;
+import co.elastic.clients.elasticsearch.rollup.DeleteJobRequest;
+import co.elastic.clients.elasticsearch.rollup.DeleteJobResponse;
+import co.elastic.clients.elasticsearch.rollup.GetJobsRequest;
+import co.elastic.clients.elasticsearch.rollup.GetJobsResponse;
+import co.elastic.clients.elasticsearch.rollup.GetRollupCapsRequest;
+import co.elastic.clients.elasticsearch.rollup.GetRollupCapsResponse;
+import co.elastic.clients.elasticsearch.rollup.GetRollupIndexCapsRequest;
+import co.elastic.clients.elasticsearch.rollup.GetRollupIndexCapsResponse;
+import co.elastic.clients.elasticsearch.rollup.PutJobRequest;
+import co.elastic.clients.elasticsearch.rollup.PutJobResponse;
 import co.elastic.clients.elasticsearch.rollup.RollupRequest;
 import co.elastic.clients.elasticsearch.rollup.RollupResponse;
 import co.elastic.clients.elasticsearch.rollup.RollupSearchRequest;
 import co.elastic.clients.elasticsearch.rollup.RollupSearchResponse;
-import co.elastic.clients.elasticsearch.rollup.StartRollupJobRequest;
-import co.elastic.clients.elasticsearch.rollup.StartRollupJobResponse;
-import co.elastic.clients.elasticsearch.rollup.StopRollupJobRequest;
-import co.elastic.clients.elasticsearch.rollup.StopRollupJobResponse;
+import co.elastic.clients.elasticsearch.rollup.StartJobRequest;
+import co.elastic.clients.elasticsearch.rollup.StartJobResponse;
+import co.elastic.clients.elasticsearch.rollup.StopJobRequest;
+import co.elastic.clients.elasticsearch.rollup.StopJobResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -72,8 +72,8 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteRollupJobResponse deleteJob(DeleteRollupJobRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteRollupJobRequest.ENDPOINT, this.requestOptions);
+	public DeleteJobResponse deleteJob(DeleteJobRequest request) throws IOException {
+		return this.transport.performRequest(request, DeleteJobRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -88,9 +88,9 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteRollupJobResponse deleteJob(
-			Function<DeleteRollupJobRequest.Builder, ObjectBuilder<DeleteRollupJobRequest>> fn) throws IOException {
-		return deleteJob(fn.apply(new DeleteRollupJobRequest.Builder()).build());
+	public final DeleteJobResponse deleteJob(Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn)
+			throws IOException {
+		return deleteJob(fn.apply(new DeleteJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.get_jobs
@@ -103,8 +103,8 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public GetRollupJobResponse getJobs(GetRollupJobRequest request) throws IOException {
-		return this.transport.performRequest(request, GetRollupJobRequest.ENDPOINT, this.requestOptions);
+	public GetJobsResponse getJobs(GetJobsRequest request) throws IOException {
+		return this.transport.performRequest(request, GetJobsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -119,9 +119,9 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final GetRollupJobResponse getJobs(
-			Function<GetRollupJobRequest.Builder, ObjectBuilder<GetRollupJobRequest>> fn) throws IOException {
-		return getJobs(fn.apply(new GetRollupJobRequest.Builder()).build());
+	public final GetJobsResponse getJobs(Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn)
+			throws IOException {
+		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.get_rollup_caps
@@ -135,8 +135,8 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public GetRollupCapabilitiesResponse getRollupCaps(GetRollupCapabilitiesRequest request) throws IOException {
-		return this.transport.performRequest(request, GetRollupCapabilitiesRequest.ENDPOINT, this.requestOptions);
+	public GetRollupCapsResponse getRollupCaps(GetRollupCapsRequest request) throws IOException {
+		return this.transport.performRequest(request, GetRollupCapsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -152,10 +152,9 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final GetRollupCapabilitiesResponse getRollupCaps(
-			Function<GetRollupCapabilitiesRequest.Builder, ObjectBuilder<GetRollupCapabilitiesRequest>> fn)
-			throws IOException {
-		return getRollupCaps(fn.apply(new GetRollupCapabilitiesRequest.Builder()).build());
+	public final GetRollupCapsResponse getRollupCaps(
+			Function<GetRollupCapsRequest.Builder, ObjectBuilder<GetRollupCapsRequest>> fn) throws IOException {
+		return getRollupCaps(fn.apply(new GetRollupCapsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.get_rollup_index_caps
@@ -169,9 +168,8 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public GetRollupIndexCapabilitiesResponse getRollupIndexCaps(GetRollupIndexCapabilitiesRequest request)
-			throws IOException {
-		return this.transport.performRequest(request, GetRollupIndexCapabilitiesRequest.ENDPOINT, this.requestOptions);
+	public GetRollupIndexCapsResponse getRollupIndexCaps(GetRollupIndexCapsRequest request) throws IOException {
+		return this.transport.performRequest(request, GetRollupIndexCapsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -187,10 +185,10 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final GetRollupIndexCapabilitiesResponse getRollupIndexCaps(
-			Function<GetRollupIndexCapabilitiesRequest.Builder, ObjectBuilder<GetRollupIndexCapabilitiesRequest>> fn)
+	public final GetRollupIndexCapsResponse getRollupIndexCaps(
+			Function<GetRollupIndexCapsRequest.Builder, ObjectBuilder<GetRollupIndexCapsRequest>> fn)
 			throws IOException {
-		return getRollupIndexCaps(fn.apply(new GetRollupIndexCapabilitiesRequest.Builder()).build());
+		return getRollupIndexCaps(fn.apply(new GetRollupIndexCapsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.put_job
@@ -203,8 +201,8 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CreateRollupJobResponse putJob(CreateRollupJobRequest request) throws IOException {
-		return this.transport.performRequest(request, CreateRollupJobRequest.ENDPOINT, this.requestOptions);
+	public PutJobResponse putJob(PutJobRequest request) throws IOException {
+		return this.transport.performRequest(request, PutJobRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -219,9 +217,9 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CreateRollupJobResponse putJob(
-			Function<CreateRollupJobRequest.Builder, ObjectBuilder<CreateRollupJobRequest>> fn) throws IOException {
-		return putJob(fn.apply(new CreateRollupJobRequest.Builder()).build());
+	public final PutJobResponse putJob(Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn)
+			throws IOException {
+		return putJob(fn.apply(new PutJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.rollup
@@ -299,8 +297,8 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public StartRollupJobResponse startJob(StartRollupJobRequest request) throws IOException {
-		return this.transport.performRequest(request, StartRollupJobRequest.ENDPOINT, this.requestOptions);
+	public StartJobResponse startJob(StartJobRequest request) throws IOException {
+		return this.transport.performRequest(request, StartJobRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -315,9 +313,9 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final StartRollupJobResponse startJob(
-			Function<StartRollupJobRequest.Builder, ObjectBuilder<StartRollupJobRequest>> fn) throws IOException {
-		return startJob(fn.apply(new StartRollupJobRequest.Builder()).build());
+	public final StartJobResponse startJob(Function<StartJobRequest.Builder, ObjectBuilder<StartJobRequest>> fn)
+			throws IOException {
+		return startJob(fn.apply(new StartJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: rollup.stop_job
@@ -330,8 +328,8 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public StopRollupJobResponse stopJob(StopRollupJobRequest request) throws IOException {
-		return this.transport.performRequest(request, StopRollupJobRequest.ENDPOINT, this.requestOptions);
+	public StopJobResponse stopJob(StopJobRequest request) throws IOException {
+		return this.transport.performRequest(request, StopJobRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -346,9 +344,9 @@ public class RollupClient extends ApiClient<RollupClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final StopRollupJobResponse stopJob(
-			Function<StopRollupJobRequest.Builder, ObjectBuilder<StopRollupJobRequest>> fn) throws IOException {
-		return stopJob(fn.apply(new StopRollupJobRequest.Builder()).build());
+	public final StopJobResponse stopJob(Function<StopJobRequest.Builder, ObjectBuilder<StopJobRequest>> fn)
+			throws IOException {
+		return stopJob(fn.apply(new StopJobRequest.Builder()).build());
 	}
 
 	// ----- Misc

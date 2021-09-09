@@ -63,6 +63,9 @@ public final class DetectionRule implements ToJsonp {
 	}
 
 	/**
+	 * The set of actions to be triggered when the rule applies. If more than one
+	 * action is specified the effects of all actions are combined.
+	 * <p>
 	 * API name: {@code actions}
 	 */
 	@Nullable
@@ -71,6 +74,10 @@ public final class DetectionRule implements ToJsonp {
 	}
 
 	/**
+	 * An array of numeric conditions when the rule applies. A rule must either have
+	 * a non-empty scope or at least one condition. Multiple conditions are combined
+	 * together with a logical AND.
+	 * <p>
 	 * API name: {@code conditions}
 	 */
 	@Nullable
@@ -79,6 +86,12 @@ public final class DetectionRule implements ToJsonp {
 	}
 
 	/**
+	 * A scope of series where the rule applies. A rule must either have a non-empty
+	 * scope or at least one condition. By default, the scope includes all series.
+	 * Scoping is allowed for any of the fields that are also specified in
+	 * <code>by_field_name</code>, <code>over_field_name</code>, or
+	 * <code>partition_field_name</code>.
+	 * <p>
 	 * API name: {@code scope}
 	 */
 	@Nullable
@@ -150,6 +163,9 @@ public final class DetectionRule implements ToJsonp {
 		private Map<String, FilterRef> scope;
 
 		/**
+		 * The set of actions to be triggered when the rule applies. If more than one
+		 * action is specified the effects of all actions are combined.
+		 * <p>
 		 * API name: {@code actions}
 		 */
 		public Builder actions(@Nullable List<JsonValue> value) {
@@ -158,6 +174,9 @@ public final class DetectionRule implements ToJsonp {
 		}
 
 		/**
+		 * The set of actions to be triggered when the rule applies. If more than one
+		 * action is specified the effects of all actions are combined.
+		 * <p>
 		 * API name: {@code actions}
 		 */
 		public Builder actions(JsonValue... value) {
@@ -177,6 +196,10 @@ public final class DetectionRule implements ToJsonp {
 		}
 
 		/**
+		 * An array of numeric conditions when the rule applies. A rule must either have
+		 * a non-empty scope or at least one condition. Multiple conditions are combined
+		 * together with a logical AND.
+		 * <p>
 		 * API name: {@code conditions}
 		 */
 		public Builder conditions(@Nullable List<RuleCondition> value) {
@@ -185,6 +208,10 @@ public final class DetectionRule implements ToJsonp {
 		}
 
 		/**
+		 * An array of numeric conditions when the rule applies. A rule must either have
+		 * a non-empty scope or at least one condition. Multiple conditions are combined
+		 * together with a logical AND.
+		 * <p>
 		 * API name: {@code conditions}
 		 */
 		public Builder conditions(RuleCondition... value) {
@@ -218,6 +245,12 @@ public final class DetectionRule implements ToJsonp {
 		}
 
 		/**
+		 * A scope of series where the rule applies. A rule must either have a non-empty
+		 * scope or at least one condition. By default, the scope includes all series.
+		 * Scoping is allowed for any of the fields that are also specified in
+		 * <code>by_field_name</code>, <code>over_field_name</code>, or
+		 * <code>partition_field_name</code>.
+		 * <p>
 		 * API name: {@code scope}
 		 */
 		public Builder scope(@Nullable Map<String, FilterRef> value) {

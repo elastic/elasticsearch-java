@@ -55,6 +55,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the namespace
+	 * <p>
 	 * API name: {@code namespace}
 	 */
 	public String namespace() {
@@ -62,6 +64,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the service name
+	 * <p>
 	 * API name: {@code service}
 	 */
 	public String service() {
@@ -69,6 +73,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the token name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -88,6 +94,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * An identifier for the namespace
+		 * <p>
 		 * API name: {@code namespace}
 		 */
 		public Builder namespace(String value) {
@@ -96,6 +104,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		}
 
 		/**
+		 * An identifier for the service name
+		 * <p>
 		 * API name: {@code service}
 		 */
 		public Builder service(String value) {
@@ -104,6 +114,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		}
 
 		/**
+		 * An identifier for the token name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {

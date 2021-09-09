@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._global;
 
-import co.elastic.clients.elasticsearch.task.ListResponse;
+import co.elastic.clients.elasticsearch.tasks.ListResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;

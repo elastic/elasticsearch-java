@@ -49,6 +49,8 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of application names
+	 * <p>
 	 * API name: {@code application}
 	 */
 	public String application() {
@@ -64,6 +66,8 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 		private String application;
 
 		/**
+		 * A comma-separated list of application names
+		 * <p>
 		 * API name: {@code application}
 		 */
 		public Builder application(String value) {

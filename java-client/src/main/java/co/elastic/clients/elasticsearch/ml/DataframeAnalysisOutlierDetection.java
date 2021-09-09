@@ -39,16 +39,16 @@ import javax.annotation.Nullable;
 // typedef: ml._types.DataframeAnalysisOutlierDetection
 public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 	@Nullable
-	private final Number nNeighbors;
-
-	@Nullable
-	private final String method;
+	private final Boolean computeFeatureInfluence;
 
 	@Nullable
 	private final Number featureInfluenceThreshold;
 
 	@Nullable
-	private final Boolean computeFeatureInfluence;
+	private final String method;
+
+	@Nullable
+	private final Number nNeighbors;
 
 	@Nullable
 	private final Number outlierFraction;
@@ -60,40 +60,18 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 
 	protected DataframeAnalysisOutlierDetection(Builder builder) {
 
-		this.nNeighbors = builder.nNeighbors;
-		this.method = builder.method;
-		this.featureInfluenceThreshold = builder.featureInfluenceThreshold;
 		this.computeFeatureInfluence = builder.computeFeatureInfluence;
+		this.featureInfluenceThreshold = builder.featureInfluenceThreshold;
+		this.method = builder.method;
+		this.nNeighbors = builder.nNeighbors;
 		this.outlierFraction = builder.outlierFraction;
 		this.standardizationEnabled = builder.standardizationEnabled;
 
 	}
 
 	/**
-	 * API name: {@code n_neighbors}
-	 */
-	@Nullable
-	public Number nNeighbors() {
-		return this.nNeighbors;
-	}
-
-	/**
-	 * API name: {@code method}
-	 */
-	@Nullable
-	public String method() {
-		return this.method;
-	}
-
-	/**
-	 * API name: {@code feature_influence_threshold}
-	 */
-	@Nullable
-	public Number featureInfluenceThreshold() {
-		return this.featureInfluenceThreshold;
-	}
-
-	/**
+	 * Specifies whether the feature influence calculation is enabled.
+	 * <p>
 	 * API name: {@code compute_feature_influence}
 	 */
 	@Nullable
@@ -102,6 +80,50 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 	}
 
 	/**
+	 * The minimum outlier score that a document needs to have in order to calculate
+	 * its feature influence score. Value range: 0-1.
+	 * <p>
+	 * API name: {@code feature_influence_threshold}
+	 */
+	@Nullable
+	public Number featureInfluenceThreshold() {
+		return this.featureInfluenceThreshold;
+	}
+
+	/**
+	 * The method that outlier detection uses. Available methods are
+	 * <code>lof</code>, <code>ldof</code>, <code>distance_kth_nn</code>,
+	 * <code>distance_knn</code>, and <code>ensemble</code>. The default value is
+	 * ensemble, which means that outlier detection uses an ensemble of different
+	 * methods and normalises and combines their individual outlier scores to obtain
+	 * the overall outlier score.
+	 * <p>
+	 * API name: {@code method}
+	 */
+	@Nullable
+	public String method() {
+		return this.method;
+	}
+
+	/**
+	 * Defines the value for how many nearest neighbors each method of outlier
+	 * detection uses to calculate its outlier score. When the value is not set,
+	 * different values are used for different ensemble members. This default
+	 * behavior helps improve the diversity in the ensemble; only override it if you
+	 * are confident that the value you choose is appropriate for the data set.
+	 * <p>
+	 * API name: {@code n_neighbors}
+	 */
+	@Nullable
+	public Number nNeighbors() {
+		return this.nNeighbors;
+	}
+
+	/**
+	 * The proportion of the data set that is assumed to be outlying prior to
+	 * outlier detection. For example, 0.05 means it is assumed that 5% of values
+	 * are real outliers and 95% are inliers.
+	 * <p>
 	 * API name: {@code outlier_fraction}
 	 */
 	@Nullable
@@ -110,6 +132,9 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 	}
 
 	/**
+	 * If true, the following operation is performed on the columns before computing
+	 * outlier scores: <code>(x_i - mean(x_i)) / sd(x_i)</code>.
+	 * <p>
 	 * API name: {@code standardization_enabled}
 	 */
 	@Nullable
@@ -128,16 +153,10 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.nNeighbors != null) {
+		if (this.computeFeatureInfluence != null) {
 
-			generator.writeKey("n_neighbors");
-			generator.write(this.nNeighbors.doubleValue());
-
-		}
-		if (this.method != null) {
-
-			generator.writeKey("method");
-			generator.write(this.method);
+			generator.writeKey("compute_feature_influence");
+			generator.write(this.computeFeatureInfluence);
 
 		}
 		if (this.featureInfluenceThreshold != null) {
@@ -146,10 +165,16 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 			generator.write(this.featureInfluenceThreshold.doubleValue());
 
 		}
-		if (this.computeFeatureInfluence != null) {
+		if (this.method != null) {
 
-			generator.writeKey("compute_feature_influence");
-			generator.write(this.computeFeatureInfluence);
+			generator.writeKey("method");
+			generator.write(this.method);
+
+		}
+		if (this.nNeighbors != null) {
+
+			generator.writeKey("n_neighbors");
+			generator.write(this.nNeighbors.doubleValue());
 
 		}
 		if (this.outlierFraction != null) {
@@ -174,16 +199,16 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<DataframeAnalysisOutlierDetection> {
 		@Nullable
-		private Number nNeighbors;
-
-		@Nullable
-		private String method;
+		private Boolean computeFeatureInfluence;
 
 		@Nullable
 		private Number featureInfluenceThreshold;
 
 		@Nullable
-		private Boolean computeFeatureInfluence;
+		private String method;
+
+		@Nullable
+		private Number nNeighbors;
 
 		@Nullable
 		private Number outlierFraction;
@@ -192,30 +217,8 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 		private Boolean standardizationEnabled;
 
 		/**
-		 * API name: {@code n_neighbors}
-		 */
-		public Builder nNeighbors(@Nullable Number value) {
-			this.nNeighbors = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code method}
-		 */
-		public Builder method(@Nullable String value) {
-			this.method = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code feature_influence_threshold}
-		 */
-		public Builder featureInfluenceThreshold(@Nullable Number value) {
-			this.featureInfluenceThreshold = value;
-			return this;
-		}
-
-		/**
+		 * Specifies whether the feature influence calculation is enabled.
+		 * <p>
 		 * API name: {@code compute_feature_influence}
 		 */
 		public Builder computeFeatureInfluence(@Nullable Boolean value) {
@@ -224,6 +227,50 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 		}
 
 		/**
+		 * The minimum outlier score that a document needs to have in order to calculate
+		 * its feature influence score. Value range: 0-1.
+		 * <p>
+		 * API name: {@code feature_influence_threshold}
+		 */
+		public Builder featureInfluenceThreshold(@Nullable Number value) {
+			this.featureInfluenceThreshold = value;
+			return this;
+		}
+
+		/**
+		 * The method that outlier detection uses. Available methods are
+		 * <code>lof</code>, <code>ldof</code>, <code>distance_kth_nn</code>,
+		 * <code>distance_knn</code>, and <code>ensemble</code>. The default value is
+		 * ensemble, which means that outlier detection uses an ensemble of different
+		 * methods and normalises and combines their individual outlier scores to obtain
+		 * the overall outlier score.
+		 * <p>
+		 * API name: {@code method}
+		 */
+		public Builder method(@Nullable String value) {
+			this.method = value;
+			return this;
+		}
+
+		/**
+		 * Defines the value for how many nearest neighbors each method of outlier
+		 * detection uses to calculate its outlier score. When the value is not set,
+		 * different values are used for different ensemble members. This default
+		 * behavior helps improve the diversity in the ensemble; only override it if you
+		 * are confident that the value you choose is appropriate for the data set.
+		 * <p>
+		 * API name: {@code n_neighbors}
+		 */
+		public Builder nNeighbors(@Nullable Number value) {
+			this.nNeighbors = value;
+			return this;
+		}
+
+		/**
+		 * The proportion of the data set that is assumed to be outlying prior to
+		 * outlier detection. For example, 0.05 means it is assumed that 5% of values
+		 * are real outliers and 95% are inliers.
+		 * <p>
 		 * API name: {@code outlier_fraction}
 		 */
 		public Builder outlierFraction(@Nullable Number value) {
@@ -232,6 +279,9 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 		}
 
 		/**
+		 * If true, the following operation is performed on the columns before computing
+		 * outlier scores: <code>(x_i - mean(x_i)) / sd(x_i)</code>.
+		 * <p>
 		 * API name: {@code standardization_enabled}
 		 */
 		public Builder standardizationEnabled(@Nullable Boolean value) {
@@ -263,11 +313,11 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 	protected static void setupDataframeAnalysisOutlierDetectionDeserializer(
 			DelegatingDeserializer<DataframeAnalysisOutlierDetection.Builder> op) {
 
-		op.add(Builder::nNeighbors, JsonpDeserializer.numberDeserializer(), "n_neighbors");
-		op.add(Builder::method, JsonpDeserializer.stringDeserializer(), "method");
+		op.add(Builder::computeFeatureInfluence, JsonpDeserializer.booleanDeserializer(), "compute_feature_influence");
 		op.add(Builder::featureInfluenceThreshold, JsonpDeserializer.numberDeserializer(),
 				"feature_influence_threshold");
-		op.add(Builder::computeFeatureInfluence, JsonpDeserializer.booleanDeserializer(), "compute_feature_influence");
+		op.add(Builder::method, JsonpDeserializer.stringDeserializer(), "method");
+		op.add(Builder::nNeighbors, JsonpDeserializer.numberDeserializer(), "n_neighbors");
 		op.add(Builder::outlierFraction, JsonpDeserializer.numberDeserializer(), "outlier_fraction");
 		op.add(Builder::standardizationEnabled, JsonpDeserializer.booleanDeserializer(), "standardization_enabled");
 

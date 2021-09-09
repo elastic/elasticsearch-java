@@ -64,16 +64,16 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	private final QueryContainer filter;
 
 	@Nullable
-	private final JsonValue indexRouting;
+	private final String indexRouting;
 
 	@Nullable
 	private final Boolean isWriteIndex;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
-	private final JsonValue searchRouting;
+	private final String searchRouting;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -92,6 +92,9 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of index names the alias should point to (supports
+	 * wildcards); use <code>_all</code> to perform the operation on all indices.
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -99,6 +102,8 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the alias to be created or updated
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -106,6 +111,8 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -114,6 +121,8 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit timestamp for the document
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -133,7 +142,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code index_routing}
 	 */
 	@Nullable
-	public JsonValue indexRouting() {
+	public String indexRouting() {
 		return this.indexRouting;
 	}
 
@@ -149,7 +158,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -157,7 +166,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code search_routing}
 	 */
 	@Nullable
-	public JsonValue searchRouting() {
+	public String searchRouting() {
 		return this.searchRouting;
 	}
 
@@ -225,18 +234,21 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		private QueryContainer filter;
 
 		@Nullable
-		private JsonValue indexRouting;
+		private String indexRouting;
 
 		@Nullable
 		private Boolean isWriteIndex;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
-		private JsonValue searchRouting;
+		private String searchRouting;
 
 		/**
+		 * A comma-separated list of index names the alias should point to (supports
+		 * wildcards); use <code>_all</code> to perform the operation on all indices.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -245,6 +257,9 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of index names the alias should point to (supports
+		 * wildcards); use <code>_all</code> to perform the operation on all indices.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -264,6 +279,8 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The name of the alias to be created or updated
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -272,6 +289,8 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -280,6 +299,8 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit timestamp for the document
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -305,7 +326,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code index_routing}
 		 */
-		public Builder indexRouting(@Nullable JsonValue value) {
+		public Builder indexRouting(@Nullable String value) {
 			this.indexRouting = value;
 			return this;
 		}
@@ -321,7 +342,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -329,7 +350,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code search_routing}
 		 */
-		public Builder searchRouting(@Nullable JsonValue value) {
+		public Builder searchRouting(@Nullable String value) {
 			this.searchRouting = value;
 			return this;
 		}
@@ -357,10 +378,10 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	protected static void setupPutAliasRequestDeserializer(DelegatingDeserializer<PutAliasRequest.Builder> op) {
 
 		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
-		op.add(Builder::indexRouting, JsonpDeserializer.jsonValueDeserializer(), "index_routing");
+		op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
 		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
-		op.add(Builder::searchRouting, JsonpDeserializer.jsonValueDeserializer(), "search_routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
 
 	}
 

@@ -59,6 +59,8 @@ public final class DeleteTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * The name of the template
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -66,6 +68,8 @@ public final class DeleteTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -74,6 +78,8 @@ public final class DeleteTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -96,6 +102,8 @@ public final class DeleteTemplateRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * The name of the template
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -104,6 +112,8 @@ public final class DeleteTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -112,6 +122,8 @@ public final class DeleteTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

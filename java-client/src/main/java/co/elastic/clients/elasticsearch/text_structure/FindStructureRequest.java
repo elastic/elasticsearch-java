@@ -286,6 +286,8 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	}
 
 	/**
+	 * Optional parameter to specify the timestamp field in the file
+	 * <p>
 	 * API name: {@code timestamp_field}
 	 */
 	@Nullable
@@ -544,6 +546,8 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		}
 
 		/**
+		 * Optional parameter to specify the timestamp field in the file
+		 * <p>
 		 * API name: {@code timestamp_field}
 		 */
 		public Builder<TJsonDocument> timestampField(@Nullable String value) {

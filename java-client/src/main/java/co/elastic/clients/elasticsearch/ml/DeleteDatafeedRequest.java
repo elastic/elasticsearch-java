@@ -55,6 +55,8 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the datafeed to delete
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
@@ -62,6 +64,8 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	}
 
 	/**
+	 * True if the datafeed should be forcefully deleted
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -81,6 +85,8 @@ public final class DeleteDatafeedRequest extends RequestBase {
 		private Boolean force;
 
 		/**
+		 * The ID of the datafeed to delete
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
@@ -89,6 +95,8 @@ public final class DeleteDatafeedRequest extends RequestBase {
 		}
 
 		/**
+		 * True if the datafeed should be forcefully deleted
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {

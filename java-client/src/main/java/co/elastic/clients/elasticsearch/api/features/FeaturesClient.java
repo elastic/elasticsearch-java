@@ -58,27 +58,9 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public GetFeaturesResponse getFeatures(GetFeaturesRequest request) throws IOException {
-		return this.transport.performRequest(request, GetFeaturesRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Gets a list of features which can be included in snapshots using the
-	 * feature_states field when creating a snapshot
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final GetFeaturesResponse getFeatures(
-			Function<GetFeaturesRequest.Builder, ObjectBuilder<GetFeaturesRequest>> fn) throws IOException {
-		return getFeatures(fn.apply(new GetFeaturesRequest.Builder()).build());
+	public GetFeaturesResponse getFeatures() throws IOException {
+		return this.transport.performRequest(GetFeaturesRequest.INSTANCE, GetFeaturesRequest.ENDPOINT,
+				this.requestOptions);
 	}
 
 	// ----- Endpoint: features.reset_features
@@ -90,26 +72,9 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public ResetFeaturesResponse resetFeatures(ResetFeaturesRequest request) throws IOException {
-		return this.transport.performRequest(request, ResetFeaturesRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Resets the internal state of features, usually by deleting system indices
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final ResetFeaturesResponse resetFeatures(
-			Function<ResetFeaturesRequest.Builder, ObjectBuilder<ResetFeaturesRequest>> fn) throws IOException {
-		return resetFeatures(fn.apply(new ResetFeaturesRequest.Builder()).build());
+	public ResetFeaturesResponse resetFeatures() throws IOException {
+		return this.transport.performRequest(ResetFeaturesRequest.INSTANCE, ResetFeaturesRequest.ENDPOINT,
+				this.requestOptions);
 	}
 
 	// ----- Misc

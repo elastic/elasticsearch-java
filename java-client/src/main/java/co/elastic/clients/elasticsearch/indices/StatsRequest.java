@@ -100,6 +100,8 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Limit the information returned the specific metrics.
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
@@ -108,6 +110,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -116,6 +121,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of fields for the <code>completion</code> index metric
+	 * (supports wildcards)
+	 * <p>
 	 * API name: {@code completion_fields}
 	 */
 	@Nullable
@@ -124,6 +132,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -132,6 +143,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of fields for the <code>fielddata</code> index metric
+	 * (supports wildcards)
+	 * <p>
 	 * API name: {@code fielddata_fields}
 	 */
 	@Nullable
@@ -140,6 +154,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of fields for <code>fielddata</code> and
+	 * <code>completion</code> index metric (supports wildcards)
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -148,6 +165,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * If set to false stats will also collected from closed indices if explicitly
+	 * specified or if expand_wildcards expands to closed indices
+	 * <p>
 	 * API name: {@code forbid_closed_indices}
 	 */
 	@Nullable
@@ -156,6 +176,8 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of search groups for <code>search</code> index metric
+	 * <p>
 	 * API name: {@code groups}
 	 */
 	@Nullable
@@ -164,6 +186,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to report the aggregated disk usage of each one of the Lucene index
+	 * files (only applies if segment stats are requested)
+	 * <p>
 	 * API name: {@code include_segment_file_sizes}
 	 */
 	@Nullable
@@ -172,6 +197,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * If set to true segment stats will include stats for segments that are not
+	 * currently loaded into memory
+	 * <p>
 	 * API name: {@code include_unloaded_segments}
 	 */
 	@Nullable
@@ -180,6 +208,8 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Return stats aggregated at cluster, index or shard level
+	 * <p>
 	 * API name: {@code level}
 	 */
 	@Nullable
@@ -188,6 +218,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of document types for the <code>indexing</code> index
+	 * metric
+	 * <p>
 	 * API name: {@code types}
 	 */
 	@Nullable
@@ -238,6 +271,8 @@ public final class StatsRequest extends RequestBase {
 		private List<String> types;
 
 		/**
+		 * Limit the information returned the specific metrics.
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(@Nullable List<String> value) {
@@ -246,6 +281,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Limit the information returned the specific metrics.
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(String... value) {
@@ -265,6 +302,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -273,6 +313,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -292,6 +335,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for the <code>completion</code> index metric
+		 * (supports wildcards)
+		 * <p>
 		 * API name: {@code completion_fields}
 		 */
 		public Builder completionFields(@Nullable List<String> value) {
@@ -300,6 +346,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for the <code>completion</code> index metric
+		 * (supports wildcards)
+		 * <p>
 		 * API name: {@code completion_fields}
 		 */
 		public Builder completionFields(String... value) {
@@ -319,6 +368,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -327,6 +379,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for the <code>fielddata</code> index metric
+		 * (supports wildcards)
+		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
 		public Builder fielddataFields(@Nullable List<String> value) {
@@ -335,6 +390,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for the <code>fielddata</code> index metric
+		 * (supports wildcards)
+		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
 		public Builder fielddataFields(String... value) {
@@ -354,6 +412,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for <code>fielddata</code> and
+		 * <code>completion</code> index metric (supports wildcards)
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(@Nullable List<String> value) {
@@ -362,6 +423,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for <code>fielddata</code> and
+		 * <code>completion</code> index metric (supports wildcards)
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
@@ -381,6 +445,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * If set to false stats will also collected from closed indices if explicitly
+		 * specified or if expand_wildcards expands to closed indices
+		 * <p>
 		 * API name: {@code forbid_closed_indices}
 		 */
 		public Builder forbidClosedIndices(@Nullable Boolean value) {
@@ -389,6 +456,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of search groups for <code>search</code> index metric
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(@Nullable List<String> value) {
@@ -397,6 +466,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of search groups for <code>search</code> index metric
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(String... value) {
@@ -416,6 +487,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to report the aggregated disk usage of each one of the Lucene index
+		 * files (only applies if segment stats are requested)
+		 * <p>
 		 * API name: {@code include_segment_file_sizes}
 		 */
 		public Builder includeSegmentFileSizes(@Nullable Boolean value) {
@@ -424,6 +498,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * If set to true segment stats will include stats for segments that are not
+		 * currently loaded into memory
+		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */
 		public Builder includeUnloadedSegments(@Nullable Boolean value) {
@@ -432,6 +509,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Return stats aggregated at cluster, index or shard level
+		 * <p>
 		 * API name: {@code level}
 		 */
 		public Builder level(@Nullable JsonValue value) {
@@ -440,6 +519,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of document types for the <code>indexing</code> index
+		 * metric
+		 * <p>
 		 * API name: {@code types}
 		 */
 		public Builder types(@Nullable List<String> value) {
@@ -448,6 +530,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of document types for the <code>indexing</code> index
+		 * metric
+		 * <p>
 		 * API name: {@code types}
 		 */
 		public Builder types(String... value) {

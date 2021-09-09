@@ -75,6 +75,8 @@ public final class AddBlockRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma separated list of indices to add a block to
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -82,6 +84,8 @@ public final class AddBlockRequest extends RequestBase {
 	}
 
 	/**
+	 * The block to add (one of read, write, read_only or metadata)
+	 * <p>
 	 * API name: {@code block}
 	 */
 	public JsonValue block() {
@@ -89,6 +93,10 @@ public final class AddBlockRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -97,6 +105,9 @@ public final class AddBlockRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -105,6 +116,9 @@ public final class AddBlockRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -113,6 +127,8 @@ public final class AddBlockRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -121,6 +137,8 @@ public final class AddBlockRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -154,6 +172,8 @@ public final class AddBlockRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * A comma separated list of indices to add a block to
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -162,6 +182,8 @@ public final class AddBlockRequest extends RequestBase {
 		}
 
 		/**
+		 * The block to add (one of read, write, read_only or metadata)
+		 * <p>
 		 * API name: {@code block}
 		 */
 		public Builder block(JsonValue value) {
@@ -170,6 +192,10 @@ public final class AddBlockRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -178,6 +204,9 @@ public final class AddBlockRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -186,6 +215,9 @@ public final class AddBlockRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -194,6 +226,8 @@ public final class AddBlockRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -202,6 +236,8 @@ public final class AddBlockRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

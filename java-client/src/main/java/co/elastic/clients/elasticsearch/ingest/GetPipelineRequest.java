@@ -60,6 +60,8 @@ public final class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
+	 * Comma separated list of pipeline ids. Wildcards supported
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -68,6 +70,8 @@ public final class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -76,6 +80,8 @@ public final class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
+	 * Return pipelines without their definitions (default: false)
+	 * <p>
 	 * API name: {@code summary}
 	 */
 	@Nullable
@@ -99,6 +105,8 @@ public final class GetPipelineRequest extends RequestBase {
 		private Boolean summary;
 
 		/**
+		 * Comma separated list of pipeline ids. Wildcards supported
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -107,6 +115,8 @@ public final class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -115,6 +125,8 @@ public final class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
+		 * Return pipelines without their definitions (default: false)
+		 * <p>
 		 * API name: {@code summary}
 		 */
 		public Builder summary(@Nullable Boolean value) {

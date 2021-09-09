@@ -124,6 +124,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the index to scope the operation
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -433,6 +435,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		private JsonValue resultPosition;
 
 		/**
+		 * The name of the index to scope the operation
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {

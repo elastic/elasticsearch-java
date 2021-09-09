@@ -45,10 +45,10 @@ public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp
 	private final String datafeedId;
 
 	@Nullable
-	private final Job jobConfig;
+	private final JobConfig jobConfig;
 
 	@Nullable
-	private final Datafeed datafeedConfig;
+	private final DatafeedConfig datafeedConfig;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,6 +61,8 @@ public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp
 	}
 
 	/**
+	 * The ID of the datafeed to preview
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
@@ -72,7 +74,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp
 	 * API name: {@code job_config}
 	 */
 	@Nullable
-	public Job jobConfig() {
+	public JobConfig jobConfig() {
 		return this.jobConfig;
 	}
 
@@ -80,7 +82,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp
 	 * API name: {@code datafeed_config}
 	 */
 	@Nullable
-	public Datafeed datafeedConfig() {
+	public DatafeedConfig datafeedConfig() {
 		return this.datafeedConfig;
 	}
 
@@ -120,12 +122,14 @@ public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp
 		private String datafeedId;
 
 		@Nullable
-		private Job jobConfig;
+		private JobConfig jobConfig;
 
 		@Nullable
-		private Datafeed datafeedConfig;
+		private DatafeedConfig datafeedConfig;
 
 		/**
+		 * The ID of the datafeed to preview
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(@Nullable String value) {
@@ -136,7 +140,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp
 		/**
 		 * API name: {@code job_config}
 		 */
-		public Builder jobConfig(@Nullable Job value) {
+		public Builder jobConfig(@Nullable JobConfig value) {
 			this.jobConfig = value;
 			return this;
 		}
@@ -144,14 +148,14 @@ public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp
 		/**
 		 * API name: {@code job_config}
 		 */
-		public Builder jobConfig(Function<Job.Builder, ObjectBuilder<Job>> fn) {
-			return this.jobConfig(fn.apply(new Job.Builder()).build());
+		public Builder jobConfig(Function<JobConfig.Builder, ObjectBuilder<JobConfig>> fn) {
+			return this.jobConfig(fn.apply(new JobConfig.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(@Nullable Datafeed value) {
+		public Builder datafeedConfig(@Nullable DatafeedConfig value) {
 			this.datafeedConfig = value;
 			return this;
 		}
@@ -159,8 +163,8 @@ public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp
 		/**
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(Function<Datafeed.Builder, ObjectBuilder<Datafeed>> fn) {
-			return this.datafeedConfig(fn.apply(new Datafeed.Builder()).build());
+		public Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
 		}
 
 		/**
@@ -186,8 +190,8 @@ public final class PreviewDatafeedRequest extends RequestBase implements ToJsonp
 	protected static void setupPreviewDatafeedRequestDeserializer(
 			DelegatingDeserializer<PreviewDatafeedRequest.Builder> op) {
 
-		op.add(Builder::jobConfig, Job.DESERIALIZER, "job_config");
-		op.add(Builder::datafeedConfig, Datafeed.DESERIALIZER, "datafeed_config");
+		op.add(Builder::jobConfig, JobConfig.DESERIALIZER, "job_config");
+		op.add(Builder::datafeedConfig, DatafeedConfig.DESERIALIZER, "datafeed_config");
 
 	}
 

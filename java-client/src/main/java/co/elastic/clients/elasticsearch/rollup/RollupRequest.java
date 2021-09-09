@@ -33,94 +33,63 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Request
 public final class RollupRequest extends RequestBase implements ToJsonp {
-	private final Number stubb;
-
-	@Nullable
 	private final String index;
 
-	@Nullable
 	private final String rollupIndex;
 
-	private final Number stuba;
-
-	private final Number stub;
+	private final JsonValue value;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected RollupRequest(Builder builder) {
 
-		this.stubb = Objects.requireNonNull(builder.stubb, "stubb");
-		this.index = builder.index;
-		this.rollupIndex = builder.rollupIndex;
-		this.stuba = Objects.requireNonNull(builder.stuba, "stuba");
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.index = Objects.requireNonNull(builder.index, "index");
+		this.rollupIndex = Objects.requireNonNull(builder.rollupIndex, "rollup_index");
+		this.value = Objects.requireNonNull(builder.value, "value");
 
 	}
 
 	/**
-	 * API name: {@code stubb}
-	 */
-	public Number stubb() {
-		return this.stubb;
-	}
-
-	/**
-	 * Auto generated - missing in the input spec
+	 * The index to roll up
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * Auto generated - missing in the input spec
+	 * The name of the rollup index to create
 	 * <p>
 	 * API name: {@code rollup_index}
 	 */
-	@Nullable
 	public String rollupIndex() {
 		return this.rollupIndex;
 	}
 
 	/**
-	 * API name: {@code stuba}
+	 * Request body.
+	 * <p>
+	 * API name: {@code value}
 	 */
-	public Number stuba() {
-		return this.stuba;
+	public JsonValue value() {
+		return this.value;
 	}
 
 	/**
-	 * API name: {@code stub}
-	 */
-	public Number stub() {
-		return this.stub;
-	}
-
-	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -130,59 +99,39 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link RollupRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<RollupRequest> {
-		private Number stubb;
-
-		@Nullable
 		private String index;
 
-		@Nullable
 		private String rollupIndex;
 
-		private Number stuba;
-
-		private Number stub;
+		private JsonValue value;
 
 		/**
-		 * API name: {@code stubb}
-		 */
-		public Builder stubb(Number value) {
-			this.stubb = value;
-			return this;
-		}
-
-		/**
-		 * Auto generated - missing in the input spec
+		 * The index to roll up
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public Builder index(String value) {
 			this.index = value;
 			return this;
 		}
 
 		/**
-		 * Auto generated - missing in the input spec
+		 * The name of the rollup index to create
 		 * <p>
 		 * API name: {@code rollup_index}
 		 */
-		public Builder rollupIndex(@Nullable String value) {
+		public Builder rollupIndex(String value) {
 			this.rollupIndex = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stuba}
+		 * Request body.
+		 * <p>
+		 * API name: {@code value}
 		 */
-		public Builder stuba(Number value) {
-			this.stuba = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code stub}
-		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder value(JsonValue value) {
+			this.value = value;
 			return this;
 		}
 
@@ -208,7 +157,7 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 
 	protected static void setupRollupRequestDeserializer(DelegatingDeserializer<RollupRequest.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
 
 	}
 
@@ -226,14 +175,11 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 
 			// Request path
 			request -> {
-				final int _stubb = 1 << 0;
-				final int _index = 1 << 1;
-				final int _rollupIndex = 1 << 2;
+				final int _index = 1 << 0;
+				final int _rollupIndex = 1 << 1;
 
 				int propsSet = 0;
 
-				if (request.stubb() != null)
-					propsSet |= _stubb;
 				if (request.index() != null)
 					propsSet |= _index;
 				if (request.rollupIndex() != null)
@@ -254,9 +200,7 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("stuba", request.stuba.toString());
-				return params;
+				return Collections.emptyMap();
 
 			}, Endpoint.Simple.emptyMap(), true, RollupResponse.DESERIALIZER);
 }

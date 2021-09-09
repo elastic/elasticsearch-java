@@ -52,6 +52,8 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the calendar to modify
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	public String calendarId() {
@@ -59,6 +61,8 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the job to remove from the calendar
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -76,6 +80,8 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 		private String jobId;
 
 		/**
+		 * The ID of the calendar to modify
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {
@@ -84,6 +90,8 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 		}
 
 		/**
+		 * The ID of the job to remove from the calendar
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {

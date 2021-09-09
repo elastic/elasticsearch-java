@@ -80,6 +80,10 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no data frame analytics.
+	 * (This includes <code>_all</code> string or when no data frame analytics have
+	 * been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -151,6 +155,10 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no data frame analytics.
+		 * (This includes <code>_all</code> string or when no data frame analytics have
+		 * been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {

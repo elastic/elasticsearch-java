@@ -114,6 +114,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The name of the auto follow pattern.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -387,6 +389,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		private JsonValue maxWriteRequestSize;
 
 		/**
+		 * The name of the auto follow pattern.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {

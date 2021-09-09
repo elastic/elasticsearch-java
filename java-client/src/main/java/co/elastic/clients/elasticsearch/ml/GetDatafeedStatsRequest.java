@@ -59,6 +59,8 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the datafeeds stats to fetch
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
@@ -67,6 +69,9 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+	 * includes <code>_all</code> string or when no datafeeds have been specified)
+	 * <p>
 	 * API name: {@code allow_no_datafeeds}
 	 */
 	@Nullable
@@ -87,6 +92,8 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 		private Boolean allowNoDatafeeds;
 
 		/**
+		 * The ID of the datafeeds stats to fetch
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(@Nullable List<String> value) {
@@ -95,6 +102,8 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * The ID of the datafeeds stats to fetch
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String... value) {
@@ -114,6 +123,9 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * <p>
 		 * API name: {@code allow_no_datafeeds}
 		 */
 		public Builder allowNoDatafeeds(@Nullable Boolean value) {

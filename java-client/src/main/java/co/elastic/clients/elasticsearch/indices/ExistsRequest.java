@@ -81,6 +81,8 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -88,6 +90,9 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Ignore if a wildcard expression resolves to no concrete indices (default:
+	 * false)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -96,6 +101,9 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether wildcard expressions should get expanded to open or closed indices
+	 * (default: open)
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -104,6 +112,8 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -112,6 +122,8 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Ignore unavailable indexes (default: false)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -120,6 +132,8 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to return all default setting for each of the indices.
+	 * <p>
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
@@ -128,6 +142,9 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -162,6 +179,8 @@ public final class ExistsRequest extends RequestBase {
 		private Boolean local;
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -170,6 +189,8 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -189,6 +210,9 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Ignore if a wildcard expression resolves to no concrete indices (default:
+		 * false)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -197,6 +221,9 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * (default: open)
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -205,6 +232,8 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -213,6 +242,8 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Ignore unavailable indexes (default: false)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -221,6 +252,8 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to return all default setting for each of the indices.
+		 * <p>
 		 * API name: {@code include_defaults}
 		 */
 		public Builder includeDefaults(@Nullable Boolean value) {
@@ -229,6 +262,9 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {

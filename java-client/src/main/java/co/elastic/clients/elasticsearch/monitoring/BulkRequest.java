@@ -29,48 +29,54 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Request
-public final class BulkRequest extends RequestBase implements ToJsonp {
-	private final String stubA;
-
+public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	@Nullable
 	private final String type;
 
-	private final String stubB;
+	private final String systemId;
 
-	private final String stubC;
+	private final String systemApiVersion;
+
+	private final String interval;
+
+	private final List<JsonValue> value;
+
+	@Nullable
+	private final JsonpSerializer<TSource> tSourceSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BulkRequest(Builder builder) {
+	protected BulkRequest(Builder<TSource> builder) {
 
-		this.stubA = Objects.requireNonNull(builder.stubA, "stub_a");
 		this.type = builder.type;
-		this.stubB = Objects.requireNonNull(builder.stubB, "stub_b");
-		this.stubC = Objects.requireNonNull(builder.stubC, "stub_c");
+		this.systemId = Objects.requireNonNull(builder.systemId, "system_id");
+		this.systemApiVersion = Objects.requireNonNull(builder.systemApiVersion, "system_api_version");
+		this.interval = Objects.requireNonNull(builder.interval, "interval");
+		this.value = Objects.requireNonNull(builder.value, "value");
+		this.tSourceSerializer = builder.tSourceSerializer;
 
 	}
 
 	/**
-	 * API name: {@code stub_a}
-	 */
-	public String stubA() {
-		return this.stubA;
-	}
-
-	/**
-	 * Auto generated - missing in the input spec
+	 * Default document type for items which don't provide one
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -80,32 +86,49 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code stub_b}
+	 * Identifier of the monitored system
+	 * <p>
+	 * API name: {@code system_id}
 	 */
-	public String stubB() {
-		return this.stubB;
+	public String systemId() {
+		return this.systemId;
 	}
 
 	/**
-	 * API name: {@code stub_c}
+	 * API name: {@code system_api_version}
 	 */
-	public String stubC() {
-		return this.stubC;
+	public String systemApiVersion() {
+		return this.systemApiVersion;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Collection interval (e.g., '10s' or '10000ms') of the payload
+	 * <p>
+	 * API name: {@code interval}
+	 */
+	public String interval() {
+		return this.interval;
+	}
+
+	/**
+	 * Request body.
+	 * <p>
+	 * API name: {@code value}
+	 */
+	public List<JsonValue> value() {
+		return this.value;
+	}
+
+	/**
+	 * Serialize this value to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		generator.writeStartArray();
+		for (JsonValue item0 : this.value) {
+			generator.write(item0);
+
+		}
 		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub_c");
-		generator.write(this.stubC);
 
 	}
 
@@ -114,47 +137,96 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Builder for {@link BulkRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<BulkRequest> {
-		private String stubA;
-
+	public static class Builder<TSource> implements ObjectBuilder<BulkRequest<TSource>> {
 		@Nullable
 		private String type;
 
-		private String stubB;
+		private String systemId;
 
-		private String stubC;
+		private String systemApiVersion;
+
+		private String interval;
+
+		private List<JsonValue> value;
+
+		@Nullable
+		private JsonpSerializer<TSource> tSourceSerializer;
 
 		/**
-		 * API name: {@code stub_a}
-		 */
-		public Builder stubA(String value) {
-			this.stubA = value;
-			return this;
-		}
-
-		/**
-		 * Auto generated - missing in the input spec
+		 * Default document type for items which don't provide one
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public Builder<TSource> type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub_b}
+		 * Identifier of the monitored system
+		 * <p>
+		 * API name: {@code system_id}
 		 */
-		public Builder stubB(String value) {
-			this.stubB = value;
+		public Builder<TSource> systemId(String value) {
+			this.systemId = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub_c}
+		 * API name: {@code system_api_version}
 		 */
-		public Builder stubC(String value) {
-			this.stubC = value;
+		public Builder<TSource> systemApiVersion(String value) {
+			this.systemApiVersion = value;
+			return this;
+		}
+
+		/**
+		 * Collection interval (e.g., '10s' or '10000ms') of the payload
+		 * <p>
+		 * API name: {@code interval}
+		 */
+		public Builder<TSource> interval(String value) {
+			this.interval = value;
+			return this;
+		}
+
+		/**
+		 * Request body.
+		 * <p>
+		 * API name: {@code value}
+		 */
+		public Builder<TSource> value(List<JsonValue> value) {
+			this.value = value;
+			return this;
+		}
+
+		/**
+		 * Request body.
+		 * <p>
+		 * API name: {@code value}
+		 */
+		public Builder<TSource> value(JsonValue... value) {
+			this.value = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 */
+		public Builder<TSource> addValue(JsonValue value) {
+			if (this.value == null) {
+				this.value = new ArrayList<>();
+			}
+			this.value.add(value);
+			return this;
+		}
+
+		/**
+		 * Serializer for TSource. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 */
+		public Builder<TSource> tSourceSerializer(@Nullable JsonpSerializer<TSource> value) {
+			this.tSourceSerializer = value;
 			return this;
 		}
 
@@ -164,23 +236,27 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public BulkRequest build() {
+		public BulkRequest<TSource> build() {
 
-			return new BulkRequest(this);
+			return new BulkRequest<TSource>(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BulkRequest
+	 * Create a json deserializer for BulkRequest
 	 */
-	public static final JsonpDeserializer<BulkRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BulkRequest::setupBulkRequestDeserializer);
+	public static <TSource> JsonpDeserializer<BulkRequest<TSource>> createBulkRequestDeserializer(
+			JsonpDeserializer<TSource> tSourceDeserializer) {
+		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TSource>>) Builder::new,
+				op -> BulkRequest.setupBulkRequestDeserializer(op, tSourceDeserializer));
+	};
 
-	protected static void setupBulkRequestDeserializer(DelegatingDeserializer<BulkRequest.Builder> op) {
+	protected static <TSource> void setupBulkRequestDeserializer(
+			DelegatingDeserializer<BulkRequest.Builder<TSource>> op, JsonpDeserializer<TSource> tSourceDeserializer) {
 
-		op.add(Builder::stubC, JsonpDeserializer.stringDeserializer(), "stub_c");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "value");
 
 	}
 
@@ -189,7 +265,7 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code monitoring.bulk}".
 	 */
-	public static final Endpoint<BulkRequest, BulkResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<BulkRequest<?>, BulkResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -198,13 +274,10 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 
 			// Request path
 			request -> {
-				final int _stubA = 1 << 0;
-				final int _type = 1 << 1;
+				final int _type = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.stubA() != null)
-					propsSet |= _stubA;
 				if (request.type() != null)
 					propsSet |= _type;
 
@@ -229,7 +302,9 @@ public final class BulkRequest extends RequestBase implements ToJsonp {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				params.put("stub_b", request.stubB);
+				params.put("system_id", request.systemId);
+				params.put("system_api_version", request.systemApiVersion);
+				params.put("interval", request.interval);
 				return params;
 
 			}, Endpoint.Simple.emptyMap(), true, BulkResponse.DESERIALIZER);

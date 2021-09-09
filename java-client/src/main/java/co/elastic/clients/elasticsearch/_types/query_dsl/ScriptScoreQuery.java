@@ -31,30 +31,41 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptScoreQuery
 public final class ScriptScoreQuery extends QueryBase {
 	@Nullable
+	private final Number minScore;
+
 	private final QueryContainer query;
 
-	@Nullable
 	private final JsonValue script;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ScriptScoreQuery(Builder builder) {
 		super(builder);
-		this.query = builder.query;
-		this.script = builder.script;
+		this.minScore = builder.minScore;
+		this.query = Objects.requireNonNull(builder.query, "query");
+		this.script = Objects.requireNonNull(builder.script, "script");
 
+	}
+
+	/**
+	 * API name: {@code min_score}
+	 */
+	@Nullable
+	public Number minScore() {
+		return this.minScore;
 	}
 
 	/**
 	 * API name: {@code query}
 	 */
-	@Nullable
 	public QueryContainer query() {
 		return this.query;
 	}
@@ -62,25 +73,24 @@ public final class ScriptScoreQuery extends QueryBase {
 	/**
 	 * API name: {@code script}
 	 */
-	@Nullable
 	public JsonValue script() {
 		return this.script;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this.query != null) {
+		if (this.minScore != null) {
 
-			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
-
-		}
-		if (this.script != null) {
-
-			generator.writeKey("script");
-			generator.write(this.script);
+			generator.writeKey("min_score");
+			generator.write(this.minScore.doubleValue());
 
 		}
+
+		generator.writeKey("query");
+		this.query.toJsonp(generator, mapper);
+
+		generator.writeKey("script");
+		generator.write(this.script);
 
 	}
 
@@ -91,15 +101,24 @@ public final class ScriptScoreQuery extends QueryBase {
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptScoreQuery> {
 		@Nullable
+		private Number minScore;
+
 		private QueryContainer query;
 
-		@Nullable
 		private JsonValue script;
+
+		/**
+		 * API name: {@code min_score}
+		 */
+		public Builder minScore(@Nullable Number value) {
+			this.minScore = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(QueryContainer value) {
 			this.query = value;
 			return this;
 		}
@@ -114,7 +133,7 @@ public final class ScriptScoreQuery extends QueryBase {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(JsonValue value) {
 			this.script = value;
 			return this;
 		}
@@ -146,6 +165,7 @@ public final class ScriptScoreQuery extends QueryBase {
 
 	protected static void setupScriptScoreQueryDeserializer(DelegatingDeserializer<ScriptScoreQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::minScore, JsonpDeserializer.numberDeserializer(), "min_score");
 		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 

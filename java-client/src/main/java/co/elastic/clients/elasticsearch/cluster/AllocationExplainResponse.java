@@ -117,6 +117,9 @@ public final class AllocationExplainResponse implements ToJsonp {
 	@Nullable
 	private final UnassignedInformation unassignedInfo;
 
+	@Nullable
+	private final String note;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected AllocationExplainResponse(Builder builder) {
@@ -145,6 +148,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 		this.remainingDelayInMillis = builder.remainingDelayInMillis;
 		this.shard = Objects.requireNonNull(builder.shard, "shard");
 		this.unassignedInfo = builder.unassignedInfo;
+		this.note = builder.note;
 
 	}
 
@@ -337,6 +341,14 @@ public final class AllocationExplainResponse implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code note}
+	 */
+	@Nullable
+	public String note() {
+		return this.note;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
@@ -497,6 +509,12 @@ public final class AllocationExplainResponse implements ToJsonp {
 			this.unassignedInfo.toJsonp(generator, mapper);
 
 		}
+		if (this.note != null) {
+
+			generator.writeKey("note");
+			generator.write(this.note);
+
+		}
 
 	}
 
@@ -573,6 +591,9 @@ public final class AllocationExplainResponse implements ToJsonp {
 
 		@Nullable
 		private UnassignedInformation unassignedInfo;
+
+		@Nullable
+		private String note;
 
 		/**
 		 * API name: {@code allocate_explanation}
@@ -899,6 +920,14 @@ public final class AllocationExplainResponse implements ToJsonp {
 		}
 
 		/**
+		 * API name: {@code note}
+		 */
+		public Builder note(@Nullable String value) {
+			this.note = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link AllocationExplainResponse}.
 		 *
 		 * @throws NullPointerException
@@ -952,6 +981,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 		op.add(Builder::remainingDelayInMillis, JsonpDeserializer.numberDeserializer(), "remaining_delay_in_millis");
 		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
 		op.add(Builder::unassignedInfo, UnassignedInformation.DESERIALIZER, "unassigned_info");
+		op.add(Builder::note, JsonpDeserializer.stringDeserializer(), "note");
 
 	}
 

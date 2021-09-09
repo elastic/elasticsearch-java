@@ -40,11 +40,11 @@ public class DataframeAnalysisContainer extends TaggedUnion<DataframeAnalysisCon
 
 	public enum Tag implements StringEnum {
 
+		classification("classification"),
+
 		outlierDetection("outlier_detection"),
 
 		regression("regression"),
-
-		classification("classification"),
 
 		;
 
@@ -64,6 +64,23 @@ public class DataframeAnalysisContainer extends TaggedUnion<DataframeAnalysisCon
 	private DataframeAnalysisContainer(Builder builder) {
 		super(builder.$tag, builder.$variant);
 
+	}
+
+	/**
+	 * Is this {@link DataframeAnalysisContainer} of a {@code classification} kind?
+	 */
+	public boolean isClassification() {
+		return is(Tag.classification);
+	}
+
+	/**
+	 * Get the {@code classification} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code classification} kind.
+	 */
+	public DataframeAnalysisClassification classification() {
+		return get(Tag.classification);
 	}
 
 	/**
@@ -102,23 +119,6 @@ public class DataframeAnalysisContainer extends TaggedUnion<DataframeAnalysisCon
 		return get(Tag.regression);
 	}
 
-	/**
-	 * Is this {@link DataframeAnalysisContainer} of a {@code classification} kind?
-	 */
-	public boolean isClassification() {
-		return is(Tag.classification);
-	}
-
-	/**
-	 * Get the {@code classification} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code classification} kind.
-	 */
-	public DataframeAnalysisClassification classification() {
-		return get(Tag.classification);
-	}
-
 	@Override
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
@@ -132,6 +132,17 @@ public class DataframeAnalysisContainer extends TaggedUnion<DataframeAnalysisCon
 	public static class Builder {
 		private Tag $tag;
 		private Object $variant;
+
+		public ObjectBuilder<DataframeAnalysisContainer> classification(DataframeAnalysisClassification v) {
+			this.$variant = v;
+			this.$tag = Tag.classification;
+			return new ObjectBuilder.Constant<>(this.build());
+		}
+
+		public ObjectBuilder<DataframeAnalysisContainer> classification(
+				Function<DataframeAnalysisClassification.Builder, ObjectBuilder<DataframeAnalysisClassification>> f) {
+			return this.classification(f.apply(new DataframeAnalysisClassification.Builder()).build());
+		}
 
 		public ObjectBuilder<DataframeAnalysisContainer> outlierDetection(DataframeAnalysisOutlierDetection v) {
 			this.$variant = v;
@@ -155,17 +166,6 @@ public class DataframeAnalysisContainer extends TaggedUnion<DataframeAnalysisCon
 			return this.regression(f.apply(new DataframeAnalysisRegression.Builder()).build());
 		}
 
-		public ObjectBuilder<DataframeAnalysisContainer> classification(DataframeAnalysisClassification v) {
-			this.$variant = v;
-			this.$tag = Tag.classification;
-			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<DataframeAnalysisContainer> classification(
-				Function<DataframeAnalysisClassification.Builder, ObjectBuilder<DataframeAnalysisClassification>> f) {
-			return this.classification(f.apply(new DataframeAnalysisClassification.Builder()).build());
-		}
-
 		protected DataframeAnalysisContainer build() {
 			return new DataframeAnalysisContainer(this);
 		}
@@ -183,9 +183,9 @@ public class DataframeAnalysisContainer extends TaggedUnion<DataframeAnalysisCon
 	private static JsonpDeserializer<DataframeAnalysisContainer> buildDeserializer() {
 		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
+		op.add(Builder::classification, DataframeAnalysisClassification.DESERIALIZER, "classification");
 		op.add(Builder::outlierDetection, DataframeAnalysisOutlierDetection.DESERIALIZER, "outlier_detection");
 		op.add(Builder::regression, DataframeAnalysisRegression.DESERIALIZER, "regression");
-		op.add(Builder::classification, DataframeAnalysisClassification.DESERIALIZER, "classification");
 
 		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}

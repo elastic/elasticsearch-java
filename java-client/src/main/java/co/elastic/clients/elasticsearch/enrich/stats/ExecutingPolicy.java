@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.enrich.stats;
 
-import co.elastic.clients.elasticsearch.task.Info;
+import co.elastic.clients.elasticsearch.tasks.Info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;

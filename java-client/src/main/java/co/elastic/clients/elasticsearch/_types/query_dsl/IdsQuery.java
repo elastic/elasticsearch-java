@@ -29,14 +29,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IdsQuery
 public final class IdsQuery extends QueryBase {
 	@Nullable
-	private final JsonValue values;
+	private final List<String> values;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +53,7 @@ public final class IdsQuery extends QueryBase {
 	 * API name: {@code values}
 	 */
 	@Nullable
-	public JsonValue values() {
+	public List<String> values() {
 		return this.values;
 	}
 
@@ -59,7 +62,12 @@ public final class IdsQuery extends QueryBase {
 		if (this.values != null) {
 
 			generator.writeKey("values");
-			generator.write(this.values);
+			generator.writeStartArray();
+			for (String item0 : this.values) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -72,13 +80,32 @@ public final class IdsQuery extends QueryBase {
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IdsQuery> {
 		@Nullable
-		private JsonValue values;
+		private List<String> values;
 
 		/**
 		 * API name: {@code values}
 		 */
-		public Builder values(@Nullable JsonValue value) {
+		public Builder values(@Nullable List<String> value) {
 			this.values = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code values}
+		 */
+		public Builder values(String... value) {
+			this.values = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #values(List)}, creating the list if needed.
+		 */
+		public Builder addValues(String value) {
+			if (this.values == null) {
+				this.values = new ArrayList<>();
+			}
+			this.values.add(value);
 			return this;
 		}
 
@@ -109,7 +136,7 @@ public final class IdsQuery extends QueryBase {
 
 	protected static void setupIdsQueryDeserializer(DelegatingDeserializer<IdsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::values, JsonpDeserializer.jsonValueDeserializer(), "values");
+		op.add(Builder::values, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "values");
 
 	}
 

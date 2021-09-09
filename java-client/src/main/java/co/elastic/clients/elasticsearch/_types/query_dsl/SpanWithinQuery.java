@@ -30,30 +30,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanWithinQuery
 public final class SpanWithinQuery extends QueryBase {
-	@Nullable
 	private final SpanQuery big;
 
-	@Nullable
 	private final SpanQuery little;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected SpanWithinQuery(Builder builder) {
 		super(builder);
-		this.big = builder.big;
-		this.little = builder.little;
+		this.big = Objects.requireNonNull(builder.big, "big");
+		this.little = Objects.requireNonNull(builder.little, "little");
 
 	}
 
 	/**
 	 * API name: {@code big}
 	 */
-	@Nullable
 	public SpanQuery big() {
 		return this.big;
 	}
@@ -61,25 +59,18 @@ public final class SpanWithinQuery extends QueryBase {
 	/**
 	 * API name: {@code little}
 	 */
-	@Nullable
 	public SpanQuery little() {
 		return this.little;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this.big != null) {
 
-			generator.writeKey("big");
-			this.big.toJsonp(generator, mapper);
+		generator.writeKey("big");
+		this.big.toJsonp(generator, mapper);
 
-		}
-		if (this.little != null) {
-
-			generator.writeKey("little");
-			this.little.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("little");
+		this.little.toJsonp(generator, mapper);
 
 	}
 
@@ -89,16 +80,14 @@ public final class SpanWithinQuery extends QueryBase {
 	 * Builder for {@link SpanWithinQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanWithinQuery> {
-		@Nullable
 		private SpanQuery big;
 
-		@Nullable
 		private SpanQuery little;
 
 		/**
 		 * API name: {@code big}
 		 */
-		public Builder big(@Nullable SpanQuery value) {
+		public Builder big(SpanQuery value) {
 			this.big = value;
 			return this;
 		}
@@ -113,7 +102,7 @@ public final class SpanWithinQuery extends QueryBase {
 		/**
 		 * API name: {@code little}
 		 */
-		public Builder little(@Nullable SpanQuery value) {
+		public Builder little(SpanQuery value) {
 			this.little = value;
 			return this;
 		}

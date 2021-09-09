@@ -61,7 +61,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	private final JsonValue refresh;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue timeout;
@@ -100,6 +100,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	}
 
 	/**
+	 * Document ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -107,6 +109,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	}
 
 	/**
+	 * The name of the index
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -114,6 +118,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	}
 
 	/**
+	 * The type of the document
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -122,6 +128,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	}
 
 	/**
+	 * The pipeline id to preprocess incoming documents with
+	 * <p>
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
@@ -130,6 +138,11 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	}
 
 	/**
+	 * If <code>true</code> then refresh the affected shards to make this operation
+	 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+	 * this operation visible to search, if <code>false</code> (the default) then do
+	 * nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -138,14 +151,18 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	}
 
 	/**
+	 * Specific routing value
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -154,6 +171,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	}
 
 	/**
+	 * Explicit version number for concurrency control
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -162,6 +181,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	}
 
 	/**
+	 * Specific version type
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -170,6 +191,12 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 	}
 
 	/**
+	 * Sets the number of shard copies that must be active before proceeding with
+	 * the index operation. Defaults to 1, meaning the primary shard only. Set to
+	 * <code>all</code> for all shard copies, otherwise set to any non-negative
+	 * value less than or equal to the total number of copies for the shard (number
+	 * of replicas + 1)
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -214,7 +241,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		private JsonValue refresh;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue timeout;
@@ -234,6 +261,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
+		 * Document ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder<TDocument> id(String value) {
@@ -242,6 +271,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		}
 
 		/**
+		 * The name of the index
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder<TDocument> index(String value) {
@@ -250,6 +281,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		}
 
 		/**
+		 * The type of the document
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder<TDocument> type(@Nullable String value) {
@@ -258,6 +291,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		}
 
 		/**
+		 * The pipeline id to preprocess incoming documents with
+		 * <p>
 		 * API name: {@code pipeline}
 		 */
 		public Builder<TDocument> pipeline(@Nullable String value) {
@@ -266,6 +301,11 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		}
 
 		/**
+		 * If <code>true</code> then refresh the affected shards to make this operation
+		 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+		 * this operation visible to search, if <code>false</code> (the default) then do
+		 * nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder<TDocument> refresh(@Nullable JsonValue value) {
@@ -274,14 +314,18 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		}
 
 		/**
+		 * Specific routing value
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder<TDocument> routing(@Nullable JsonValue value) {
+		public Builder<TDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder<TDocument> timeout(@Nullable JsonValue value) {
@@ -290,6 +334,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		}
 
 		/**
+		 * Explicit version number for concurrency control
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder<TDocument> version(@Nullable Number value) {
@@ -298,6 +344,8 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		}
 
 		/**
+		 * Specific version type
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public Builder<TDocument> versionType(@Nullable JsonValue value) {
@@ -306,6 +354,12 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 		}
 
 		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the index operation. Defaults to 1, meaning the primary shard only. Set to
+		 * <code>all</code> for all shard copies, otherwise set to any non-negative
+		 * value less than or equal to the total number of copies for the shard (number
+		 * of replicas + 1)
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder<TDocument> waitForActiveShards(@Nullable JsonValue value) {
@@ -424,7 +478,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements ToJso
 					params.put("refresh", request.refresh.toString());
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout.toString());

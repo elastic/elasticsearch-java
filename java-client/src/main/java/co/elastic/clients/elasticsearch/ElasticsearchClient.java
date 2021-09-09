@@ -85,6 +85,8 @@ import co.elastic.clients.elasticsearch._global.ReindexRethrottleRequest;
 import co.elastic.clients.elasticsearch._global.ReindexRethrottleResponse;
 import co.elastic.clients.elasticsearch._global.ScriptsPainlessExecuteRequest;
 import co.elastic.clients.elasticsearch._global.ScriptsPainlessExecuteResponse;
+import co.elastic.clients.elasticsearch._global.SearchMvtRequest;
+import co.elastic.clients.elasticsearch._global.SearchMvtResponse;
 import co.elastic.clients.elasticsearch._global.SearchRequest;
 import co.elastic.clients.elasticsearch._global.SearchResponse;
 import co.elastic.clients.elasticsearch._global.SearchShardsRequest;
@@ -1246,6 +1248,39 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TDocument> tDocumentClass)
 			throws IOException {
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
+	}
+
+	// ----- Endpoint: search_mvt
+
+	/**
+	 * Searches a vector tile for geospatial values. Returns results as a binary
+	 * Mapbox vector tile.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public SearchMvtResponse searchMvt(SearchMvtRequest request) throws IOException {
+		return this.transport.performRequest(request, SearchMvtRequest.ENDPOINT, this.requestOptions);
+	}
+
+	/**
+	 * Searches a vector tile for geospatial values. Returns results as a binary
+	 * Mapbox vector tile.
+	 * 
+	 * @param fn
+	 *            a function that initializes a freshly created builder. This
+	 *            function can either return its builder argument after having set
+	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final SearchMvtResponse searchMvt(Function<SearchMvtRequest.Builder, ObjectBuilder<SearchMvtRequest>> fn)
+			throws IOException {
+		return searchMvt(fn.apply(new SearchMvtRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: search_shards

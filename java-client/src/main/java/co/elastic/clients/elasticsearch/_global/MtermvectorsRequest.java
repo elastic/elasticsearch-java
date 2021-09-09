@@ -54,9 +54,6 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	private final String index;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
@@ -78,7 +75,7 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	private final Boolean realtime;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final Boolean termStatistics;
@@ -100,7 +97,6 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	protected MtermvectorsRequest(Builder builder) {
 
 		this.index = builder.index;
-		this.type = builder.type;
 		this.fields = builder.fields;
 		this.fieldStatistics = builder.fieldStatistics;
 		this.offsets = builder.offsets;
@@ -118,6 +114,8 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The index in which the document resides.
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -126,14 +124,9 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
+	 * A comma-separated list of fields to return. Applies to all returned documents
+	 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -142,6 +135,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specifies if document count, sum of document frequencies and sum of total
+	 * term frequencies should be returned. Applies to all returned documents unless
+	 * otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+	 * <p>
 	 * API name: {@code field_statistics}
 	 */
 	@Nullable
@@ -150,6 +147,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specifies if term offsets should be returned. Applies to all returned
+	 * documents unless otherwise specified in body &quot;params&quot; or
+	 * &quot;docs&quot;.
+	 * <p>
 	 * API name: {@code offsets}
 	 */
 	@Nullable
@@ -158,6 +159,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specifies if term payloads should be returned. Applies to all returned
+	 * documents unless otherwise specified in body &quot;params&quot; or
+	 * &quot;docs&quot;.
+	 * <p>
 	 * API name: {@code payloads}
 	 */
 	@Nullable
@@ -166,6 +171,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specifies if term positions should be returned. Applies to all returned
+	 * documents unless otherwise specified in body &quot;params&quot; or
+	 * &quot;docs&quot;.
+	 * <p>
 	 * API name: {@code positions}
 	 */
 	@Nullable
@@ -174,6 +183,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random) .Applies to all returned documents unless otherwise specified in body
+	 * &quot;params&quot; or &quot;docs&quot;.
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -182,6 +195,9 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specifies if requests are real-time as opposed to near-real-time (default:
+	 * true).
+	 * <p>
 	 * API name: {@code realtime}
 	 */
 	@Nullable
@@ -190,14 +206,21 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specific routing value. Applies to all returned documents unless otherwise
+	 * specified in body &quot;params&quot; or &quot;docs&quot;.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * Specifies if total term frequency and document frequency should be returned.
+	 * Applies to all returned documents unless otherwise specified in body
+	 * &quot;params&quot; or &quot;docs&quot;.
+	 * <p>
 	 * API name: {@code term_statistics}
 	 */
 	@Nullable
@@ -206,6 +229,8 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit version number for concurrency control
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -214,6 +239,8 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specific version type
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -283,9 +310,6 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		private String index;
 
 		@Nullable
-		private String type;
-
-		@Nullable
 		private List<String> fields;
 
 		@Nullable
@@ -307,7 +331,7 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		private Boolean realtime;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private Boolean termStatistics;
@@ -325,6 +349,8 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		private List<String> ids;
 
 		/**
+		 * The index in which the document resides.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -333,14 +359,9 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
+		 * A comma-separated list of fields to return. Applies to all returned documents
+		 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(@Nullable List<String> value) {
@@ -349,6 +370,9 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of fields to return. Applies to all returned documents
+		 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
@@ -368,6 +392,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specifies if document count, sum of document frequencies and sum of total
+		 * term frequencies should be returned. Applies to all returned documents unless
+		 * otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * <p>
 		 * API name: {@code field_statistics}
 		 */
 		public Builder fieldStatistics(@Nullable Boolean value) {
@@ -376,6 +404,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specifies if term offsets should be returned. Applies to all returned
+		 * documents unless otherwise specified in body &quot;params&quot; or
+		 * &quot;docs&quot;.
+		 * <p>
 		 * API name: {@code offsets}
 		 */
 		public Builder offsets(@Nullable Boolean value) {
@@ -384,6 +416,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specifies if term payloads should be returned. Applies to all returned
+		 * documents unless otherwise specified in body &quot;params&quot; or
+		 * &quot;docs&quot;.
+		 * <p>
 		 * API name: {@code payloads}
 		 */
 		public Builder payloads(@Nullable Boolean value) {
@@ -392,6 +428,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specifies if term positions should be returned. Applies to all returned
+		 * documents unless otherwise specified in body &quot;params&quot; or
+		 * &quot;docs&quot;.
+		 * <p>
 		 * API name: {@code positions}
 		 */
 		public Builder positions(@Nullable Boolean value) {
@@ -400,6 +440,10 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random) .Applies to all returned documents unless otherwise specified in body
+		 * &quot;params&quot; or &quot;docs&quot;.
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -408,6 +452,9 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specifies if requests are real-time as opposed to near-real-time (default:
+		 * true).
+		 * <p>
 		 * API name: {@code realtime}
 		 */
 		public Builder realtime(@Nullable Boolean value) {
@@ -416,14 +463,21 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specific routing value. Applies to all returned documents unless otherwise
+		 * specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * Specifies if total term frequency and document frequency should be returned.
+		 * Applies to all returned documents unless otherwise specified in body
+		 * &quot;params&quot; or &quot;docs&quot;.
+		 * <p>
 		 * API name: {@code term_statistics}
 		 */
 		public Builder termStatistics(@Nullable Boolean value) {
@@ -432,6 +486,8 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit version number for concurrency control
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Number value) {
@@ -440,6 +496,8 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specific version type
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public Builder versionType(@Nullable JsonValue value) {
@@ -557,14 +615,11 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -575,15 +630,6 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
-					buf.append("/_mtermvectors");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index);
-					buf.append("/");
-					buf.append(request.type);
 					buf.append("/_mtermvectors");
 					return buf.toString();
 				}
@@ -616,7 +662,7 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.termStatistics != null) {
 					params.put("term_statistics", String.valueOf(request.termStatistics));

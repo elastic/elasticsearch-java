@@ -63,7 +63,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	private final JsonValue refresh;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue source;
@@ -109,8 +109,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * A comma-separated list of index names to search; use <code>_all</code> or
-	 * empty string to perform the operation on all indices
+	 * Default index for items which don't provide one
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -120,8 +119,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * A comma-separated list of document types to search; leave empty to perform
-	 * the operation on all types
+	 * Default document type for items which don't provide one
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -131,6 +129,8 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The pipeline id to preprocess incoming documents with
+	 * <p>
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
@@ -139,6 +139,11 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If <code>true</code> then refresh the affected shards to make this operation
+	 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+	 * this operation visible to search, if <code>false</code> (the default) then do
+	 * nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -147,14 +152,19 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specific routing value
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * True or false to return the _source field or not, or default list of fields
+	 * to return, can be overridden on each sub-request
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
@@ -163,6 +173,9 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Default list of fields to exclude from the returned _source field, can be
+	 * overridden on each sub-request
+	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
@@ -171,6 +184,9 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Default list of fields to extract and return from the _source field, can be
+	 * overridden on each sub-request
+	 * <p>
 	 * API name: {@code _source_includes}
 	 */
 	@Nullable
@@ -179,6 +195,8 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -187,6 +205,12 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Sets the number of shard copies that must be active before proceeding with
+	 * the bulk operation. Defaults to 1, meaning the primary shard only. Set to
+	 * <code>all</code> for all shard copies, otherwise set to any non-negative
+	 * value less than or equal to the total number of copies for the shard (number
+	 * of replicas + 1)
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -195,6 +219,8 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Sets require_alias for all incoming documents. Defaults to unset (false)
+	 * <p>
 	 * API name: {@code require_alias}
 	 */
 	@Nullable
@@ -243,7 +269,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		private JsonValue refresh;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue source;
@@ -269,8 +295,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		private JsonpSerializer<TSource> tSourceSerializer;
 
 		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
+		 * Default index for items which don't provide one
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -280,8 +305,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * A comma-separated list of document types to search; leave empty to perform
-		 * the operation on all types
+		 * Default document type for items which don't provide one
 		 * <p>
 		 * API name: {@code type}
 		 */
@@ -291,6 +315,8 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The pipeline id to preprocess incoming documents with
+		 * <p>
 		 * API name: {@code pipeline}
 		 */
 		public Builder<TSource> pipeline(@Nullable String value) {
@@ -299,6 +325,11 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If <code>true</code> then refresh the affected shards to make this operation
+		 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+		 * this operation visible to search, if <code>false</code> (the default) then do
+		 * nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder<TSource> refresh(@Nullable JsonValue value) {
@@ -307,14 +338,19 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specific routing value
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder<TSource> routing(@Nullable JsonValue value) {
+		public Builder<TSource> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * True or false to return the _source field or not, or default list of fields
+		 * to return, can be overridden on each sub-request
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public Builder<TSource> source(@Nullable JsonValue value) {
@@ -323,6 +359,9 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Default list of fields to exclude from the returned _source field, can be
+		 * overridden on each sub-request
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder<TSource> sourceExcludes(@Nullable List<String> value) {
@@ -331,6 +370,9 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Default list of fields to exclude from the returned _source field, can be
+		 * overridden on each sub-request
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder<TSource> sourceExcludes(String... value) {
@@ -350,6 +392,9 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Default list of fields to extract and return from the _source field, can be
+		 * overridden on each sub-request
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder<TSource> sourceIncludes(@Nullable List<String> value) {
@@ -358,6 +403,9 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Default list of fields to extract and return from the _source field, can be
+		 * overridden on each sub-request
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder<TSource> sourceIncludes(String... value) {
@@ -377,6 +425,8 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder<TSource> timeout(@Nullable JsonValue value) {
@@ -385,6 +435,12 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the bulk operation. Defaults to 1, meaning the primary shard only. Set to
+		 * <code>all</code> for all shard copies, otherwise set to any non-negative
+		 * value less than or equal to the total number of copies for the shard (number
+		 * of replicas + 1)
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder<TSource> waitForActiveShards(@Nullable JsonValue value) {
@@ -393,6 +449,8 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Sets require_alias for all incoming documents. Defaults to unset (false)
+		 * <p>
 		 * API name: {@code require_alias}
 		 */
 		public Builder<TSource> requireAlias(@Nullable Boolean value) {
@@ -529,7 +587,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 					params.put("refresh", request.refresh.toString());
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.source != null) {
 					params.put("_source", request.source.toString());

@@ -63,7 +63,7 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 
 	/**
 	 * Defines the name of the field in which to store the results of the analysis.
-	 * Defaults to ml.
+	 * Defaults to <code>ml</code>.
 	 * <p>
 	 * API name: {@code results_field}
 	 */
@@ -119,7 +119,7 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 
 		/**
 		 * Defines the name of the field in which to store the results of the analysis.
-		 * Defaults to ml.
+		 * Defaults to <code>ml</code>.
 		 * <p>
 		 * API name: {@code results_field}
 		 */

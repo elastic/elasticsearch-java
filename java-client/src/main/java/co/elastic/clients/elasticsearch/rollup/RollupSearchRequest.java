@@ -87,6 +87,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The indices or index-pattern(s) (containing rollup or regular data) that
+	 * should be searched
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -94,6 +97,8 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The doc type inside the index
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -102,6 +107,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Indicates whether hits.total should be rendered as an integer or an object in
+	 * the rest search response
+	 * <p>
 	 * API name: {@code rest_total_hits_as_int}
 	 */
 	@Nullable
@@ -110,6 +118,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether aggregation and suggester names should be prefixed by their
+	 * respective types in the response
+	 * <p>
 	 * API name: {@code typed_keys}
 	 */
 	@Nullable
@@ -206,6 +217,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		private Number size;
 
 		/**
+		 * The indices or index-pattern(s) (containing rollup or regular data) that
+		 * should be searched
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -214,6 +228,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The indices or index-pattern(s) (containing rollup or regular data) that
+		 * should be searched
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -233,6 +250,8 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The doc type inside the index
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -241,6 +260,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Indicates whether hits.total should be rendered as an integer or an object in
+		 * the rest search response
+		 * <p>
 		 * API name: {@code rest_total_hits_as_int}
 		 */
 		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
@@ -249,6 +271,9 @@ public final class RollupSearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether aggregation and suggester names should be prefixed by their
+		 * respective types in the response
+		 * <p>
 		 * API name: {@code typed_keys}
 		 */
 		public Builder typedKeys(@Nullable Boolean value) {

@@ -79,6 +79,9 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Comma-separated list of snapshot repository names used to limit the request.
+	 * Wildcard (*) expressions are supported.
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public String repository() {
@@ -86,6 +89,11 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Comma-separated list of snapshot names to retrieve. Also accepts wildcards
+	 * (<em>). - To get information about all snapshots in a registered repository,
+	 * use a wildcard (</em>) or _all. - To get information about any snapshots that
+	 * are currently running, use _current.
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	public List<String> snapshot() {
@@ -93,6 +101,9 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * If false, the request returns an error for any snapshots that are
+	 * unavailable.
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -101,6 +112,9 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -109,6 +123,10 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * If true, returns additional information about each snapshot such as the
+	 * version of Elasticsearch which took the snapshot, the start and end times of
+	 * the snapshot, and the number of shards snapshotted.
+	 * <p>
 	 * API name: {@code verbose}
 	 */
 	@Nullable
@@ -117,6 +135,11 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * If true, returns additional information about each index in the snapshot
+	 * comprising the number of shards in the index, the total size of the index in
+	 * bytes, and the maximum number of segments per shard in the index. Defaults to
+	 * false, meaning that this information is omitted.
+	 * <p>
 	 * API name: {@code index_details}
 	 */
 	@Nullable
@@ -158,6 +181,9 @@ public final class GetRequest extends RequestBase {
 		private Boolean human;
 
 		/**
+		 * Comma-separated list of snapshot repository names used to limit the request.
+		 * Wildcard (*) expressions are supported.
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String value) {
@@ -166,6 +192,11 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of snapshot names to retrieve. Also accepts wildcards
+		 * (<em>). - To get information about all snapshots in a registered repository,
+		 * use a wildcard (</em>) or _all. - To get information about any snapshots that
+		 * are currently running, use _current.
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(List<String> value) {
@@ -174,6 +205,11 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of snapshot names to retrieve. Also accepts wildcards
+		 * (<em>). - To get information about all snapshots in a registered repository,
+		 * use a wildcard (</em>) or _all. - To get information about any snapshots that
+		 * are currently running, use _current.
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(String... value) {
@@ -193,6 +229,9 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * If false, the request returns an error for any snapshots that are
+		 * unavailable.
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -201,6 +240,9 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -209,6 +251,10 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * If true, returns additional information about each snapshot such as the
+		 * version of Elasticsearch which took the snapshot, the start and end times of
+		 * the snapshot, and the number of shards snapshotted.
+		 * <p>
 		 * API name: {@code verbose}
 		 */
 		public Builder verbose(@Nullable Boolean value) {
@@ -217,6 +263,11 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * If true, returns additional information about each index in the snapshot
+		 * comprising the number of shards in the index, the total size of the index in
+		 * bytes, and the maximum number of segments per shard in the index. Defaults to
+		 * false, meaning that this information is omitted.
+		 * <p>
 		 * API name: {@code index_details}
 		 */
 		public Builder indexDetails(@Nullable Boolean value) {

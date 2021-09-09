@@ -74,6 +74,8 @@ public final class FlushJobRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the job to flush
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -81,6 +83,9 @@ public final class FlushJobRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Skips time to the given value without generating results or updating the
+	 * model for the skipped interval
+	 * <p>
 	 * API name: {@code skip_time}
 	 */
 	@Nullable
@@ -182,6 +187,8 @@ public final class FlushJobRequest extends RequestBase implements ToJsonp {
 		private String start;
 
 		/**
+		 * The name of the job to flush
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -190,6 +197,9 @@ public final class FlushJobRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Skips time to the given value without generating results or updating the
+		 * model for the skipped interval
+		 * <p>
 		 * API name: {@code skip_time}
 		 */
 		public Builder skipTime(@Nullable String value) {

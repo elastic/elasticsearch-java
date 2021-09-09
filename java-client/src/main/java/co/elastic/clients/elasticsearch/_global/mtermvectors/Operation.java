@@ -63,7 +63,7 @@ public final class Operation implements ToJsonp {
 
 	private final Boolean positions;
 
-	private final JsonValue routing;
+	private final String routing;
 
 	private final Boolean termStatistics;
 
@@ -157,7 +157,7 @@ public final class Operation implements ToJsonp {
 	/**
 	 * API name: {@code routing}
 	 */
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -263,7 +263,7 @@ public final class Operation implements ToJsonp {
 
 		private Boolean positions;
 
-		private JsonValue routing;
+		private String routing;
 
 		private Boolean termStatistics;
 
@@ -372,7 +372,7 @@ public final class Operation implements ToJsonp {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(JsonValue value) {
+		public Builder routing(String value) {
 			this.routing = value;
 			return this;
 		}
@@ -432,7 +432,7 @@ public final class Operation implements ToJsonp {
 		op.add(Builder::offsets, JsonpDeserializer.booleanDeserializer(), "offsets");
 		op.add(Builder::payloads, JsonpDeserializer.booleanDeserializer(), "payloads");
 		op.add(Builder::positions, JsonpDeserializer.booleanDeserializer(), "positions");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::termStatistics, JsonpDeserializer.booleanDeserializer(), "term_statistics");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 		op.add(Builder::versionType, JsonpDeserializer.jsonValueDeserializer(), "version_type");

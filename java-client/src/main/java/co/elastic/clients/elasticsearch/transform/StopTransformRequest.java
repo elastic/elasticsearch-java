@@ -72,6 +72,8 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * The id of the transform to stop
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	public String transformId() {
@@ -79,6 +81,9 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no transforms. (This
+	 * includes <code>_all</code> string or when no transforms have been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -87,6 +92,8 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to force stop a failed transform or not. Default to false
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -95,6 +102,9 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait until the transform has stopped. Default to 30
+	 * seconds
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -103,6 +113,9 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to wait for the transform to reach a checkpoint before stopping.
+	 * Default to false
+	 * <p>
 	 * API name: {@code wait_for_checkpoint}
 	 */
 	@Nullable
@@ -111,6 +124,9 @@ public final class StopTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to wait for the transform to fully stop before returning or not.
+	 * Default to false
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -142,6 +158,8 @@ public final class StopTransformRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
+		 * The id of the transform to stop
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(String value) {
@@ -150,6 +168,9 @@ public final class StopTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no transforms. (This
+		 * includes <code>_all</code> string or when no transforms have been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -158,6 +179,8 @@ public final class StopTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to force stop a failed transform or not. Default to false
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -166,6 +189,9 @@ public final class StopTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait until the transform has stopped. Default to 30
+		 * seconds
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -174,6 +200,9 @@ public final class StopTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to wait for the transform to reach a checkpoint before stopping.
+		 * Default to false
+		 * <p>
 		 * API name: {@code wait_for_checkpoint}
 		 */
 		public Builder waitForCheckpoint(@Nullable Boolean value) {
@@ -182,6 +211,9 @@ public final class StopTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to wait for the transform to fully stop before returning or not.
+		 * Default to false
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {

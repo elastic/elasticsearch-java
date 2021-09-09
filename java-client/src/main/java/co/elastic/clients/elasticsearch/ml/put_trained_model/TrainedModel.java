@@ -1,0 +1,229 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package co.elastic.clients.elasticsearch.ml.put_trained_model;
+
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: ml.put_trained_model.TrainedModel
+public final class TrainedModel implements ToJsonp {
+	@Nullable
+	private final TrainedModelTree tree;
+
+	@Nullable
+	private final TrainedModelTreeNode treeNode;
+
+	@Nullable
+	private final Ensemble ensemble;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected TrainedModel(Builder builder) {
+
+		this.tree = builder.tree;
+		this.treeNode = builder.treeNode;
+		this.ensemble = builder.ensemble;
+
+	}
+
+	/**
+	 * The definition for a binary decision tree.
+	 * <p>
+	 * API name: {@code tree}
+	 */
+	@Nullable
+	public TrainedModelTree tree() {
+		return this.tree;
+	}
+
+	/**
+	 * The definition of a node in a tree. There are two major types of nodes: leaf
+	 * nodes and not-leaf nodes. - Leaf nodes only need node_index and leaf_value
+	 * defined. - All other nodes need split_feature, left_child, right_child,
+	 * threshold, decision_type, and default_left defined.
+	 * <p>
+	 * API name: {@code tree_node}
+	 */
+	@Nullable
+	public TrainedModelTreeNode treeNode() {
+		return this.treeNode;
+	}
+
+	/**
+	 * The definition for an ensemble model
+	 * <p>
+	 * API name: {@code ensemble}
+	 */
+	@Nullable
+	public Ensemble ensemble() {
+		return this.ensemble;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.tree != null) {
+
+			generator.writeKey("tree");
+			this.tree.toJsonp(generator, mapper);
+
+		}
+		if (this.treeNode != null) {
+
+			generator.writeKey("tree_node");
+			this.treeNode.toJsonp(generator, mapper);
+
+		}
+		if (this.ensemble != null) {
+
+			generator.writeKey("ensemble");
+			this.ensemble.toJsonp(generator, mapper);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link TrainedModel}.
+	 */
+	public static class Builder implements ObjectBuilder<TrainedModel> {
+		@Nullable
+		private TrainedModelTree tree;
+
+		@Nullable
+		private TrainedModelTreeNode treeNode;
+
+		@Nullable
+		private Ensemble ensemble;
+
+		/**
+		 * The definition for a binary decision tree.
+		 * <p>
+		 * API name: {@code tree}
+		 */
+		public Builder tree(@Nullable TrainedModelTree value) {
+			this.tree = value;
+			return this;
+		}
+
+		/**
+		 * The definition for a binary decision tree.
+		 * <p>
+		 * API name: {@code tree}
+		 */
+		public Builder tree(Function<TrainedModelTree.Builder, ObjectBuilder<TrainedModelTree>> fn) {
+			return this.tree(fn.apply(new TrainedModelTree.Builder()).build());
+		}
+
+		/**
+		 * The definition of a node in a tree. There are two major types of nodes: leaf
+		 * nodes and not-leaf nodes. - Leaf nodes only need node_index and leaf_value
+		 * defined. - All other nodes need split_feature, left_child, right_child,
+		 * threshold, decision_type, and default_left defined.
+		 * <p>
+		 * API name: {@code tree_node}
+		 */
+		public Builder treeNode(@Nullable TrainedModelTreeNode value) {
+			this.treeNode = value;
+			return this;
+		}
+
+		/**
+		 * The definition of a node in a tree. There are two major types of nodes: leaf
+		 * nodes and not-leaf nodes. - Leaf nodes only need node_index and leaf_value
+		 * defined. - All other nodes need split_feature, left_child, right_child,
+		 * threshold, decision_type, and default_left defined.
+		 * <p>
+		 * API name: {@code tree_node}
+		 */
+		public Builder treeNode(Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {
+			return this.treeNode(fn.apply(new TrainedModelTreeNode.Builder()).build());
+		}
+
+		/**
+		 * The definition for an ensemble model
+		 * <p>
+		 * API name: {@code ensemble}
+		 */
+		public Builder ensemble(@Nullable Ensemble value) {
+			this.ensemble = value;
+			return this;
+		}
+
+		/**
+		 * The definition for an ensemble model
+		 * <p>
+		 * API name: {@code ensemble}
+		 */
+		public Builder ensemble(Function<Ensemble.Builder, ObjectBuilder<Ensemble>> fn) {
+			return this.ensemble(fn.apply(new Ensemble.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link TrainedModel}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public TrainedModel build() {
+
+			return new TrainedModel(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for TrainedModel
+	 */
+	public static final JsonpDeserializer<TrainedModel> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TrainedModel::setupTrainedModelDeserializer);
+
+	protected static void setupTrainedModelDeserializer(DelegatingDeserializer<TrainedModel.Builder> op) {
+
+		op.add(Builder::tree, TrainedModelTree.DESERIALIZER, "tree");
+		op.add(Builder::treeNode, TrainedModelTreeNode.DESERIALIZER, "tree_node");
+		op.add(Builder::ensemble, Ensemble.DESERIALIZER, "ensemble");
+
+	}
+
+}

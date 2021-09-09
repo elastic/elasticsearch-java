@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
 import java.util.function.Function;
@@ -68,6 +69,9 @@ public final class HistogramAggregation extends BucketAggregationBase {
 	@Nullable
 	private final String format;
 
+	@Nullable
+	private final Boolean keyed;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected HistogramAggregation(Builder builder) {
@@ -82,6 +86,7 @@ public final class HistogramAggregation extends BucketAggregationBase {
 		this.order = builder.order;
 		this.script = builder.script;
 		this.format = builder.format;
+		this.keyed = builder.keyed;
 
 	}
 
@@ -165,6 +170,14 @@ public final class HistogramAggregation extends BucketAggregationBase {
 		return this.format;
 	}
 
+	/**
+	 * API name: {@code keyed}
+	 */
+	@Nullable
+	public Boolean keyed() {
+		return this.keyed;
+	}
+
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
 		if (this.extendedBounds != null) {
@@ -227,6 +240,12 @@ public final class HistogramAggregation extends BucketAggregationBase {
 			generator.write(this.format);
 
 		}
+		if (this.keyed != null) {
+
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
+
+		}
 
 	}
 
@@ -267,6 +286,9 @@ public final class HistogramAggregation extends BucketAggregationBase {
 
 		@Nullable
 		private String format;
+
+		@Nullable
+		private Boolean keyed;
 
 		/**
 		 * API name: {@code extended_bounds}
@@ -370,6 +392,14 @@ public final class HistogramAggregation extends BucketAggregationBase {
 			return this;
 		}
 
+		/**
+		 * API name: {@code keyed}
+		 */
+		public Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -411,6 +441,7 @@ public final class HistogramAggregation extends BucketAggregationBase {
 		op.add(Builder::order, HistogramOrder.DESERIALIZER, "order");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

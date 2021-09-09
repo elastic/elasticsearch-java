@@ -67,6 +67,8 @@ public final class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
+	 * API key id of the API key to be retrieved
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -75,6 +77,8 @@ public final class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
+	 * API key name of the API key to be retrieved
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -83,6 +87,8 @@ public final class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
+	 * flag to query API keys owned by the currently authenticated user
+	 * <p>
 	 * API name: {@code owner}
 	 */
 	@Nullable
@@ -91,6 +97,8 @@ public final class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
+	 * realm name of the user who created this API key to be retrieved
+	 * <p>
 	 * API name: {@code realm_name}
 	 */
 	@Nullable
@@ -99,6 +107,8 @@ public final class GetApiKeyRequest extends RequestBase {
 	}
 
 	/**
+	 * user name of the user who created this API key to be retrieved
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -128,6 +138,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		private String username;
 
 		/**
+		 * API key id of the API key to be retrieved
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -136,6 +148,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
+		 * API key name of the API key to be retrieved
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -144,6 +158,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
+		 * flag to query API keys owned by the currently authenticated user
+		 * <p>
 		 * API name: {@code owner}
 		 */
 		public Builder owner(@Nullable Boolean value) {
@@ -152,6 +168,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
+		 * realm name of the user who created this API key to be retrieved
+		 * <p>
 		 * API name: {@code realm_name}
 		 */
 		public Builder realmName(@Nullable String value) {
@@ -160,6 +178,8 @@ public final class GetApiKeyRequest extends RequestBase {
 		}
 
 		/**
+		 * user name of the user who created this API key to be retrieved
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public Builder username(@Nullable String value) {

@@ -40,38 +40,22 @@ import javax.annotation.Nullable;
 // typedef: ml._types.CategorizationAnalyzer
 public final class CategorizationAnalyzer implements ToJsonp {
 	@Nullable
+	private final List<JsonValue> charFilter;
+
+	@Nullable
 	private final List<JsonValue> filter;
 
 	@Nullable
 	private final JsonValue tokenizer;
 
-	@Nullable
-	private final List<JsonValue> charFilter;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected CategorizationAnalyzer(Builder builder) {
 
+		this.charFilter = builder.charFilter;
 		this.filter = builder.filter;
 		this.tokenizer = builder.tokenizer;
-		this.charFilter = builder.charFilter;
 
-	}
-
-	/**
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public List<JsonValue> filter() {
-		return this.filter;
-	}
-
-	/**
-	 * API name: {@code tokenizer}
-	 */
-	@Nullable
-	public JsonValue tokenizer() {
-		return this.tokenizer;
 	}
 
 	/**
@@ -80,6 +64,34 @@ public final class CategorizationAnalyzer implements ToJsonp {
 	@Nullable
 	public List<JsonValue> charFilter() {
 		return this.charFilter;
+	}
+
+	/**
+	 * One or more character filters. In addition to the built-in character filters,
+	 * other plugins can provide more character filters. If this property is not
+	 * specified, no character filters are applied prior to categorization. If you
+	 * are customizing some other aspect of the analyzer and you need to achieve the
+	 * equivalent of <code>categorization_filters</code> (which are not permitted
+	 * when some other aspect of the analyzer is customized), add them here as
+	 * pattern replace character filters.
+	 * <p>
+	 * API name: {@code filter}
+	 */
+	@Nullable
+	public List<JsonValue> filter() {
+		return this.filter;
+	}
+
+	/**
+	 * One or more token filters. In addition to the built-in token filters, other
+	 * plugins can provide more token filters. If this property is not specified, no
+	 * token filters are applied prior to categorization.
+	 * <p>
+	 * API name: {@code tokenizer}
+	 */
+	@Nullable
+	public JsonValue tokenizer() {
+		return this.tokenizer;
 	}
 
 	/**
@@ -93,6 +105,17 @@ public final class CategorizationAnalyzer implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.charFilter != null) {
+
+			generator.writeKey("char_filter");
+			generator.writeStartArray();
+			for (JsonValue item0 : this.charFilter) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
@@ -110,17 +133,6 @@ public final class CategorizationAnalyzer implements ToJsonp {
 			generator.write(this.tokenizer);
 
 		}
-		if (this.charFilter != null) {
-
-			generator.writeKey("char_filter");
-			generator.writeStartArray();
-			for (JsonValue item0 : this.charFilter) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
 
 	}
 
@@ -131,48 +143,13 @@ public final class CategorizationAnalyzer implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<CategorizationAnalyzer> {
 		@Nullable
+		private List<JsonValue> charFilter;
+
+		@Nullable
 		private List<JsonValue> filter;
 
 		@Nullable
 		private JsonValue tokenizer;
-
-		@Nullable
-		private List<JsonValue> charFilter;
-
-		/**
-		 * API name: {@code filter}
-		 */
-		public Builder filter(@Nullable List<JsonValue> value) {
-			this.filter = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code filter}
-		 */
-		public Builder filter(JsonValue... value) {
-			this.filter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(JsonValue value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
-			}
-			this.filter.add(value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code tokenizer}
-		 */
-		public Builder tokenizer(@Nullable JsonValue value) {
-			this.tokenizer = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code char_filter}
@@ -202,6 +179,61 @@ public final class CategorizationAnalyzer implements ToJsonp {
 		}
 
 		/**
+		 * One or more character filters. In addition to the built-in character filters,
+		 * other plugins can provide more character filters. If this property is not
+		 * specified, no character filters are applied prior to categorization. If you
+		 * are customizing some other aspect of the analyzer and you need to achieve the
+		 * equivalent of <code>categorization_filters</code> (which are not permitted
+		 * when some other aspect of the analyzer is customized), add them here as
+		 * pattern replace character filters.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public Builder filter(@Nullable List<JsonValue> value) {
+			this.filter = value;
+			return this;
+		}
+
+		/**
+		 * One or more character filters. In addition to the built-in character filters,
+		 * other plugins can provide more character filters. If this property is not
+		 * specified, no character filters are applied prior to categorization. If you
+		 * are customizing some other aspect of the analyzer and you need to achieve the
+		 * equivalent of <code>categorization_filters</code> (which are not permitted
+		 * when some other aspect of the analyzer is customized), add them here as
+		 * pattern replace character filters.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public Builder filter(JsonValue... value) {
+			this.filter = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 */
+		public Builder addFilter(JsonValue value) {
+			if (this.filter == null) {
+				this.filter = new ArrayList<>();
+			}
+			this.filter.add(value);
+			return this;
+		}
+
+		/**
+		 * One or more token filters. In addition to the built-in token filters, other
+		 * plugins can provide more token filters. If this property is not specified, no
+		 * token filters are applied prior to categorization.
+		 * <p>
+		 * API name: {@code tokenizer}
+		 */
+		public Builder tokenizer(@Nullable JsonValue value) {
+			this.tokenizer = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link CategorizationAnalyzer}.
 		 *
 		 * @throws NullPointerException
@@ -224,11 +256,11 @@ public final class CategorizationAnalyzer implements ToJsonp {
 	protected static void setupCategorizationAnalyzerDeserializer(
 			DelegatingDeserializer<CategorizationAnalyzer.Builder> op) {
 
+		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"char_filter");
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"filter");
 		op.add(Builder::tokenizer, JsonpDeserializer.jsonValueDeserializer(), "tokenizer");
-		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"char_filter");
 
 	}
 

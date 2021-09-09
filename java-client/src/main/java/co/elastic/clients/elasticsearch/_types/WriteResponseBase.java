@@ -61,9 +61,6 @@ public abstract class WriteResponseBase implements ToJsonp {
 	@Nullable
 	private final Boolean forcedRefresh;
 
-	@Nullable
-	private final ErrorCause error;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected WriteResponseBase(AbstractBuilder<?> builder) {
@@ -77,7 +74,6 @@ public abstract class WriteResponseBase implements ToJsonp {
 		this.type = builder.type;
 		this.version = Objects.requireNonNull(builder.version, "_version");
 		this.forcedRefresh = builder.forcedRefresh;
-		this.error = builder.error;
 
 	}
 
@@ -147,14 +143,6 @@ public abstract class WriteResponseBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code error}
-	 */
-	@Nullable
-	public ErrorCause error() {
-		return this.error;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
@@ -199,12 +187,6 @@ public abstract class WriteResponseBase implements ToJsonp {
 			generator.write(this.forcedRefresh);
 
 		}
-		if (this.error != null) {
-
-			generator.writeKey("error");
-			this.error.toJsonp(generator, mapper);
-
-		}
 
 	}
 
@@ -228,9 +210,6 @@ public abstract class WriteResponseBase implements ToJsonp {
 
 		@Nullable
 		private Boolean forcedRefresh;
-
-		@Nullable
-		private ErrorCause error;
 
 		/**
 		 * API name: {@code _id}
@@ -311,21 +290,6 @@ public abstract class WriteResponseBase implements ToJsonp {
 			return self();
 		}
 
-		/**
-		 * API name: {@code error}
-		 */
-		public BuilderT error(@Nullable ErrorCause value) {
-			this.error = value;
-			return self();
-		}
-
-		/**
-		 * API name: {@code error}
-		 */
-		public BuilderT error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.error(fn.apply(new ErrorCause.Builder()).build());
-		}
-
 		protected abstract BuilderT self();
 
 	}
@@ -343,7 +307,6 @@ public abstract class WriteResponseBase implements ToJsonp {
 		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(AbstractBuilder::version, JsonpDeserializer.numberDeserializer(), "_version");
 		op.add(AbstractBuilder::forcedRefresh, JsonpDeserializer.booleanDeserializer(), "forced_refresh");
-		op.add(AbstractBuilder::error, ErrorCause.DESERIALIZER, "error");
 
 	}
 

@@ -59,6 +59,8 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the job to delete
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -66,6 +68,8 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
+	 * True if the job should be forcefully deleted
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -74,6 +78,8 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
+	 * Should this request wait until the operation has completed before returning
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -96,6 +102,8 @@ public final class DeleteJobRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
+		 * The ID of the job to delete
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -104,6 +112,8 @@ public final class DeleteJobRequest extends RequestBase {
 		}
 
 		/**
+		 * True if the job should be forcefully deleted
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -112,6 +122,8 @@ public final class DeleteJobRequest extends RequestBase {
 		}
 
 		/**
+		 * Should this request wait until the operation has completed before returning
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {

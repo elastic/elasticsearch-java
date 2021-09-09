@@ -40,32 +40,22 @@ public final class GetLifecycleRequest extends RequestBase {
 	@Nullable
 	private final String policy;
 
-	@Nullable
-	private final String policyId;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected GetLifecycleRequest(Builder builder) {
 
 		this.policy = builder.policy;
-		this.policyId = builder.policyId;
 
 	}
 
 	/**
+	 * The name of the index lifecycle policy
+	 * <p>
 	 * API name: {@code policy}
 	 */
 	@Nullable
 	public String policy() {
 		return this.policy;
-	}
-
-	/**
-	 * API name: {@code policy_id}
-	 */
-	@Nullable
-	public String policyId() {
-		return this.policyId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -77,22 +67,13 @@ public final class GetLifecycleRequest extends RequestBase {
 		@Nullable
 		private String policy;
 
-		@Nullable
-		private String policyId;
-
 		/**
+		 * The name of the index lifecycle policy
+		 * <p>
 		 * API name: {@code policy}
 		 */
 		public Builder policy(@Nullable String value) {
 			this.policy = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code policy_id}
-		 */
-		public Builder policyId(@Nullable String value) {
-			this.policyId = value;
 			return this;
 		}
 
@@ -123,14 +104,11 @@ public final class GetLifecycleRequest extends RequestBase {
 			// Request path
 			request -> {
 				final int _policy = 1 << 0;
-				final int _policyId = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.policy() != null)
 					propsSet |= _policy;
-				if (request.policyId() != null)
-					propsSet |= _policyId;
 
 				if (propsSet == (_policy)) {
 					StringBuilder buf = new StringBuilder();

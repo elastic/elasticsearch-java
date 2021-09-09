@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch.security.get_service_credentials.NodesCredentials;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,29 +38,27 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Response
 public final class GetServiceCredentialsResponse implements ToJsonp {
 	private final String serviceAccount;
 
-	private final String nodeName;
-
 	private final Number count;
 
-	private final Map<String, JsonValue> tokens;
+	private final Map<String, Map<String, JsonValue>> tokens;
 
-	private final Map<String, JsonValue> fileTokens;
+	private final NodesCredentials nodesCredentials;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected GetServiceCredentialsResponse(Builder builder) {
 
 		this.serviceAccount = Objects.requireNonNull(builder.serviceAccount, "service_account");
-		this.nodeName = Objects.requireNonNull(builder.nodeName, "node_name");
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.tokens = Objects.requireNonNull(builder.tokens, "tokens");
-		this.fileTokens = Objects.requireNonNull(builder.fileTokens, "file_tokens");
+		this.nodesCredentials = Objects.requireNonNull(builder.nodesCredentials, "nodes_credentials");
 
 	}
 
@@ -68,13 +67,6 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 	 */
 	public String serviceAccount() {
 		return this.serviceAccount;
-	}
-
-	/**
-	 * API name: {@code node_name}
-	 */
-	public String nodeName() {
-		return this.nodeName;
 	}
 
 	/**
@@ -87,15 +79,17 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 	/**
 	 * API name: {@code tokens}
 	 */
-	public Map<String, JsonValue> tokens() {
+	public Map<String, Map<String, JsonValue>> tokens() {
 		return this.tokens;
 	}
 
 	/**
-	 * API name: {@code file_tokens}
+	 * Contains service account credentials collected from all nodes of the cluster
+	 * <p>
+	 * API name: {@code nodes_credentials}
 	 */
-	public Map<String, JsonValue> fileTokens() {
-		return this.fileTokens;
+	public NodesCredentials nodesCredentials() {
+		return this.nodesCredentials;
 	}
 
 	/**
@@ -112,29 +106,26 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 		generator.writeKey("service_account");
 		generator.write(this.serviceAccount);
 
-		generator.writeKey("node_name");
-		generator.write(this.nodeName);
-
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
 
 		generator.writeKey("tokens");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.tokens.entrySet()) {
+		for (Map.Entry<String, Map<String, JsonValue>> item0 : this.tokens.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonValue> item1 : item0.getValue().entrySet()) {
+				generator.writeKey(item1.getKey());
+				generator.write(item1.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
 		generator.writeEnd();
 
-		generator.writeKey("file_tokens");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.fileTokens.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
-
-		}
-		generator.writeEnd();
+		generator.writeKey("nodes_credentials");
+		this.nodesCredentials.toJsonp(generator, mapper);
 
 	}
 
@@ -146,27 +137,17 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<GetServiceCredentialsResponse> {
 		private String serviceAccount;
 
-		private String nodeName;
-
 		private Number count;
 
-		private Map<String, JsonValue> tokens;
+		private Map<String, Map<String, JsonValue>> tokens;
 
-		private Map<String, JsonValue> fileTokens;
+		private NodesCredentials nodesCredentials;
 
 		/**
 		 * API name: {@code service_account}
 		 */
 		public Builder serviceAccount(String value) {
 			this.serviceAccount = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code node_name}
-		 */
-		public Builder nodeName(String value) {
-			this.nodeName = value;
 			return this;
 		}
 
@@ -181,7 +162,7 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 		/**
 		 * API name: {@code tokens}
 		 */
-		public Builder tokens(Map<String, JsonValue> value) {
+		public Builder tokens(Map<String, Map<String, JsonValue>> value) {
 			this.tokens = value;
 			return this;
 		}
@@ -189,7 +170,7 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #tokens(Map)}, creating the map if needed.
 		 */
-		public Builder putTokens(String key, JsonValue value) {
+		public Builder putTokens(String key, Map<String, JsonValue> value) {
 			if (this.tokens == null) {
 				this.tokens = new HashMap<>();
 			}
@@ -198,22 +179,22 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code file_tokens}
+		 * Contains service account credentials collected from all nodes of the cluster
+		 * <p>
+		 * API name: {@code nodes_credentials}
 		 */
-		public Builder fileTokens(Map<String, JsonValue> value) {
-			this.fileTokens = value;
+		public Builder nodesCredentials(NodesCredentials value) {
+			this.nodesCredentials = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #fileTokens(Map)}, creating the map if needed.
+		 * Contains service account credentials collected from all nodes of the cluster
+		 * <p>
+		 * API name: {@code nodes_credentials}
 		 */
-		public Builder putFileTokens(String key, JsonValue value) {
-			if (this.fileTokens == null) {
-				this.fileTokens = new HashMap<>();
-			}
-			this.fileTokens.put(key, value);
-			return this;
+		public Builder nodesCredentials(Function<NodesCredentials.Builder, ObjectBuilder<NodesCredentials>> fn) {
+			return this.nodesCredentials(fn.apply(new NodesCredentials.Builder()).build());
 		}
 
 		/**
@@ -241,12 +222,10 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 			DelegatingDeserializer<GetServiceCredentialsResponse.Builder> op) {
 
 		op.add(Builder::serviceAccount, JsonpDeserializer.stringDeserializer(), "service_account");
-		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
 		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::tokens, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"tokens");
-		op.add(Builder::fileTokens, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"file_tokens");
+		op.add(Builder::tokens, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer())), "tokens");
+		op.add(Builder::nodesCredentials, NodesCredentials.DESERIALIZER, "nodes_credentials");
 
 	}
 

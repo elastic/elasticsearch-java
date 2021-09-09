@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -44,10 +45,8 @@ public final class HasParentQuery extends QueryBase {
 	@Nullable
 	private final InnerHits innerHits;
 
-	@Nullable
 	private final String parentType;
 
-	@Nullable
 	private final QueryContainer query;
 
 	@Nullable
@@ -59,8 +58,8 @@ public final class HasParentQuery extends QueryBase {
 		super(builder);
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
-		this.parentType = builder.parentType;
-		this.query = builder.query;
+		this.parentType = Objects.requireNonNull(builder.parentType, "parent_type");
+		this.query = Objects.requireNonNull(builder.query, "query");
 		this.score = builder.score;
 
 	}
@@ -84,7 +83,6 @@ public final class HasParentQuery extends QueryBase {
 	/**
 	 * API name: {@code parent_type}
 	 */
-	@Nullable
 	public String parentType() {
 		return this.parentType;
 	}
@@ -92,7 +90,6 @@ public final class HasParentQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	@Nullable
 	public QueryContainer query() {
 		return this.query;
 	}
@@ -119,18 +116,13 @@ public final class HasParentQuery extends QueryBase {
 			this.innerHits.toJsonp(generator, mapper);
 
 		}
-		if (this.parentType != null) {
 
-			generator.writeKey("parent_type");
-			generator.write(this.parentType);
+		generator.writeKey("parent_type");
+		generator.write(this.parentType);
 
-		}
-		if (this.query != null) {
+		generator.writeKey("query");
+		this.query.toJsonp(generator, mapper);
 
-			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
-
-		}
 		if (this.score != null) {
 
 			generator.writeKey("score");
@@ -152,10 +144,8 @@ public final class HasParentQuery extends QueryBase {
 		@Nullable
 		private InnerHits innerHits;
 
-		@Nullable
 		private String parentType;
 
-		@Nullable
 		private QueryContainer query;
 
 		@Nullable
@@ -187,7 +177,7 @@ public final class HasParentQuery extends QueryBase {
 		/**
 		 * API name: {@code parent_type}
 		 */
-		public Builder parentType(@Nullable String value) {
+		public Builder parentType(String value) {
 			this.parentType = value;
 			return this;
 		}
@@ -195,7 +185,7 @@ public final class HasParentQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(QueryContainer value) {
 			this.query = value;
 			return this;
 		}

@@ -72,6 +72,8 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Script ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -79,6 +81,8 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Script context
+	 * <p>
 	 * API name: {@code context}
 	 */
 	@Nullable
@@ -87,6 +91,8 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -95,6 +101,8 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -151,6 +159,8 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 		private StoredScript script;
 
 		/**
+		 * Script ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -159,6 +169,8 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Script context
+		 * <p>
 		 * API name: {@code context}
 		 */
 		public Builder context(@Nullable String value) {
@@ -167,6 +179,8 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -175,6 +189,8 @@ public final class PutScriptRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

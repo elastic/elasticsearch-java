@@ -59,27 +59,9 @@ public class FeaturesAsyncClient extends ApiClient<FeaturesAsyncClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public CompletableFuture<GetFeaturesResponse> getFeatures(GetFeaturesRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetFeaturesRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Gets a list of features which can be included in snapshots using the
-	 * feature_states field when creating a snapshot
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<GetFeaturesResponse> getFeatures(
-			Function<GetFeaturesRequest.Builder, ObjectBuilder<GetFeaturesRequest>> fn) throws IOException {
-		return getFeatures(fn.apply(new GetFeaturesRequest.Builder()).build());
+	public CompletableFuture<GetFeaturesResponse> getFeatures() throws IOException {
+		return this.transport.performRequestAsync(GetFeaturesRequest.INSTANCE, GetFeaturesRequest.ENDPOINT,
+				this.requestOptions);
 	}
 
 	// ----- Endpoint: features.reset_features
@@ -91,26 +73,9 @@ public class FeaturesAsyncClient extends ApiClient<FeaturesAsyncClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public CompletableFuture<ResetFeaturesResponse> resetFeatures(ResetFeaturesRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ResetFeaturesRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Resets the internal state of features, usually by deleting system indices
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<ResetFeaturesResponse> resetFeatures(
-			Function<ResetFeaturesRequest.Builder, ObjectBuilder<ResetFeaturesRequest>> fn) throws IOException {
-		return resetFeatures(fn.apply(new ResetFeaturesRequest.Builder()).build());
+	public CompletableFuture<ResetFeaturesResponse> resetFeatures() throws IOException {
+		return this.transport.performRequestAsync(ResetFeaturesRequest.INSTANCE, ResetFeaturesRequest.ENDPOINT,
+				this.requestOptions);
 	}
 
 	// ----- Misc

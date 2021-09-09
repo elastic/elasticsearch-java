@@ -64,7 +64,7 @@ public final class Hit<TDocument> implements ToJsonp {
 	private final Number primaryTerm;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final Number seqNo;
@@ -150,7 +150,7 @@ public final class Hit<TDocument> implements ToJsonp {
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -290,7 +290,7 @@ public final class Hit<TDocument> implements ToJsonp {
 		private Number primaryTerm;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private Number seqNo;
@@ -376,7 +376,7 @@ public final class Hit<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder<TDocument> routing(@Nullable JsonValue value) {
+		public Builder<TDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -455,7 +455,7 @@ public final class Hit<TDocument> implements ToJsonp {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "_routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");

@@ -57,7 +57,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	 * Clears the SQL cursor
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-sql-cursor-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -73,7 +73,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-pagination.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-sql-cursor-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -88,7 +88,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	 * Executes a SQL request
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -104,7 +104,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-overview.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -119,7 +119,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	 * Translates SQL into Elasticsearch queries
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -135,7 +135,7 @@ public class SqlAsyncClient extends ApiClient<SqlAsyncClient> {
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

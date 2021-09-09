@@ -52,6 +52,8 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the job to fetch
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -59,6 +61,8 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the snapshot to delete
+	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	public String snapshotId() {
@@ -76,6 +80,8 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 		private String snapshotId;
 
 		/**
+		 * The ID of the job to fetch
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -84,6 +90,8 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 		}
 
 		/**
+		 * The ID of the snapshot to delete
+		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(String value) {

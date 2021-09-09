@@ -33,7 +33,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
-import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisLimits
@@ -41,6 +40,7 @@ public final class AnalysisLimits implements ToJsonp {
 	@Nullable
 	private final Number categorizationExamplesLimit;
 
+	@Nullable
 	private final String modelMemoryLimit;
 
 	// ---------------------------------------------------------------------------------------------
@@ -48,11 +48,18 @@ public final class AnalysisLimits implements ToJsonp {
 	protected AnalysisLimits(Builder builder) {
 
 		this.categorizationExamplesLimit = builder.categorizationExamplesLimit;
-		this.modelMemoryLimit = Objects.requireNonNull(builder.modelMemoryLimit, "model_memory_limit");
+		this.modelMemoryLimit = builder.modelMemoryLimit;
 
 	}
 
 	/**
+	 * The maximum number of examples stored per category in memory and in the
+	 * results data store. If you increase this value, more examples are available,
+	 * however it requires that you have more storage available. If you set this
+	 * value to 0, no examples are stored. NOTE: The
+	 * <code>categorization_examples_limit</code> applies only to analysis that uses
+	 * categorization.
+	 * <p>
 	 * API name: {@code categorization_examples_limit}
 	 */
 	@Nullable
@@ -61,8 +68,27 @@ public final class AnalysisLimits implements ToJsonp {
 	}
 
 	/**
+	 * The approximate maximum amount of memory resources that are required for
+	 * analytical processing. Once this limit is approached, data pruning becomes
+	 * more aggressive. Upon exceeding this limit, new entities are not modeled. If
+	 * the <code>xpack.ml.max_model_memory_limit</code> setting has a value greater
+	 * than 0 and less than 1024mb, that value is used instead of the default. The
+	 * default value is relatively small to ensure that high resource usage is a
+	 * conscious decision. If you have jobs that are expected to analyze high
+	 * cardinality fields, you will likely need to use a higher value. If you
+	 * specify a number instead of a string, the units are assumed to be MiB.
+	 * Specifying a string is recommended for clarity. If you specify a byte size
+	 * unit of <code>b</code> or <code>kb</code> and the number does not equate to a
+	 * discrete number of megabytes, it is rounded down to the closest MiB. The
+	 * minimum valid value is 1 MiB. If you specify a value less than 1 MiB, an
+	 * error occurs. If you specify a value for the
+	 * <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+	 * you try to create jobs that have <code>model_memory_limit</code> values
+	 * greater than that setting value.
+	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
+	@Nullable
 	public String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
@@ -84,9 +110,12 @@ public final class AnalysisLimits implements ToJsonp {
 			generator.write(this.categorizationExamplesLimit.doubleValue());
 
 		}
+		if (this.modelMemoryLimit != null) {
 
-		generator.writeKey("model_memory_limit");
-		generator.write(this.modelMemoryLimit);
+			generator.writeKey("model_memory_limit");
+			generator.write(this.modelMemoryLimit);
+
+		}
 
 	}
 
@@ -99,9 +128,17 @@ public final class AnalysisLimits implements ToJsonp {
 		@Nullable
 		private Number categorizationExamplesLimit;
 
+		@Nullable
 		private String modelMemoryLimit;
 
 		/**
+		 * The maximum number of examples stored per category in memory and in the
+		 * results data store. If you increase this value, more examples are available,
+		 * however it requires that you have more storage available. If you set this
+		 * value to 0, no examples are stored. NOTE: The
+		 * <code>categorization_examples_limit</code> applies only to analysis that uses
+		 * categorization.
+		 * <p>
 		 * API name: {@code categorization_examples_limit}
 		 */
 		public Builder categorizationExamplesLimit(@Nullable Number value) {
@@ -110,9 +147,27 @@ public final class AnalysisLimits implements ToJsonp {
 		}
 
 		/**
+		 * The approximate maximum amount of memory resources that are required for
+		 * analytical processing. Once this limit is approached, data pruning becomes
+		 * more aggressive. Upon exceeding this limit, new entities are not modeled. If
+		 * the <code>xpack.ml.max_model_memory_limit</code> setting has a value greater
+		 * than 0 and less than 1024mb, that value is used instead of the default. The
+		 * default value is relatively small to ensure that high resource usage is a
+		 * conscious decision. If you have jobs that are expected to analyze high
+		 * cardinality fields, you will likely need to use a higher value. If you
+		 * specify a number instead of a string, the units are assumed to be MiB.
+		 * Specifying a string is recommended for clarity. If you specify a byte size
+		 * unit of <code>b</code> or <code>kb</code> and the number does not equate to a
+		 * discrete number of megabytes, it is rounded down to the closest MiB. The
+		 * minimum valid value is 1 MiB. If you specify a value less than 1 MiB, an
+		 * error occurs. If you specify a value for the
+		 * <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+		 * you try to create jobs that have <code>model_memory_limit</code> values
+		 * greater than that setting value.
+		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(String value) {
+		public Builder modelMemoryLimit(@Nullable String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}

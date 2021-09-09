@@ -121,6 +121,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of index names to restrict the operation; use
+	 * <code>_all</code> or empty string to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -129,6 +132,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of document types to restrict the operation; leave
+	 * empty to perform the operation on all types
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -137,6 +143,10 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -145,6 +155,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Execute validation on all shards instead of one random shard per index
+	 * <p>
 	 * API name: {@code all_shards}
 	 */
 	@Nullable
@@ -153,6 +165,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The analyzer to use for the query string
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -161,6 +175,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether wildcard and prefix queries should be analyzed (default:
+	 * false)
+	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
@@ -169,6 +186,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The default operator for query string query (AND or OR)
+	 * <p>
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
@@ -177,6 +196,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The field to use as default where no field prefix is given in the query
+	 * string
+	 * <p>
 	 * API name: {@code df}
 	 */
 	@Nullable
@@ -185,6 +207,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -193,6 +218,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Return detailed information about the error
+	 * <p>
 	 * API name: {@code explain}
 	 */
 	@Nullable
@@ -201,6 +228,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -209,6 +239,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether format-based query failures (such as providing text to a
+	 * numeric field) should be ignored
+	 * <p>
 	 * API name: {@code lenient}
 	 */
 	@Nullable
@@ -225,6 +258,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Provide a more detailed explanation showing the actual Lucene query that will
+	 * be executed.
+	 * <p>
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
@@ -233,6 +269,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Query in the Lucene query string syntax
+	 * <p>
 	 * API name: {@code q}
 	 */
 	@Nullable
@@ -323,6 +361,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		private QueryContainer query;
 
 		/**
+		 * A comma-separated list of index names to restrict the operation; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -331,6 +372,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of index names to restrict the operation; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -350,6 +394,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of document types to restrict the operation; leave
+		 * empty to perform the operation on all types
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable List<String> value) {
@@ -358,6 +405,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of document types to restrict the operation; leave
+		 * empty to perform the operation on all types
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(String... value) {
@@ -377,6 +427,10 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -385,6 +439,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Execute validation on all shards instead of one random shard per index
+		 * <p>
 		 * API name: {@code all_shards}
 		 */
 		public Builder allShards(@Nullable Boolean value) {
@@ -393,6 +449,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The analyzer to use for the query string
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public Builder analyzer(@Nullable String value) {
@@ -401,6 +459,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether wildcard and prefix queries should be analyzed (default:
+		 * false)
+		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
 		public Builder analyzeWildcard(@Nullable Boolean value) {
@@ -409,6 +470,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The default operator for query string query (AND or OR)
+		 * <p>
 		 * API name: {@code default_operator}
 		 */
 		public Builder defaultOperator(@Nullable JsonValue value) {
@@ -417,6 +480,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The field to use as default where no field prefix is given in the query
+		 * string
+		 * <p>
 		 * API name: {@code df}
 		 */
 		public Builder df(@Nullable String value) {
@@ -425,6 +491,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -433,6 +502,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Return detailed information about the error
+		 * <p>
 		 * API name: {@code explain}
 		 */
 		public Builder explain(@Nullable Boolean value) {
@@ -441,6 +512,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -449,6 +523,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether format-based query failures (such as providing text to a
+		 * numeric field) should be ignored
+		 * <p>
 		 * API name: {@code lenient}
 		 */
 		public Builder lenient(@Nullable Boolean value) {
@@ -465,6 +542,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Provide a more detailed explanation showing the actual Lucene query that will
+		 * be executed.
+		 * <p>
 		 * API name: {@code rewrite}
 		 */
 		public Builder rewrite(@Nullable Boolean value) {
@@ -473,6 +553,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Query in the Lucene query string syntax
+		 * <p>
 		 * API name: {@code q}
 		 */
 		public Builder q(@Nullable String value) {

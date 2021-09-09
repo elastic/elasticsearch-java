@@ -98,6 +98,9 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Ignore if a wildcard expression resolves to no concrete indices (default:
+	 * false)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -245,6 +248,9 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * Ignore if a wildcard expression resolves to no concrete indices (default:
+		 * false)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {

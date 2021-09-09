@@ -62,6 +62,8 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * The username of the user to change the password for
+	 * <p>
 	 * API name: {@code username}
 	 */
 	@Nullable
@@ -70,6 +72,11 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -121,6 +128,8 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 		private String password;
 
 		/**
+		 * The username of the user to change the password for
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public Builder username(@Nullable String value) {
@@ -129,6 +138,11 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable JsonValue value) {

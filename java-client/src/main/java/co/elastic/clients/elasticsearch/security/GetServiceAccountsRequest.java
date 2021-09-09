@@ -53,6 +53,8 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the namespace
+	 * <p>
 	 * API name: {@code namespace}
 	 */
 	@Nullable
@@ -61,6 +63,8 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the service name
+	 * <p>
 	 * API name: {@code service}
 	 */
 	@Nullable
@@ -81,6 +85,8 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		private String service;
 
 		/**
+		 * An identifier for the namespace
+		 * <p>
 		 * API name: {@code namespace}
 		 */
 		public Builder namespace(@Nullable String value) {
@@ -89,6 +95,8 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		}
 
 		/**
+		 * An identifier for the service name
+		 * <p>
 		 * API name: {@code service}
 		 */
 		public Builder service(@Nullable String value) {

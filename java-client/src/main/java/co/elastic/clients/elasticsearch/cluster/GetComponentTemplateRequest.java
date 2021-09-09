@@ -64,6 +64,8 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * The comma separated names of the component templates
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -80,6 +82,9 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -88,6 +93,8 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -114,6 +121,8 @@ public final class GetComponentTemplateRequest extends RequestBase {
 		private JsonValue masterTimeout;
 
 		/**
+		 * The comma separated names of the component templates
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -130,6 +139,9 @@ public final class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -138,6 +150,8 @@ public final class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

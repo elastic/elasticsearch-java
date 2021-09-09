@@ -48,40 +48,39 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	private final String id;
 
 	@Nullable
-	private final DataframeAnalyticsSource source;
-
-	private final DataframeAnalyticsDestination dest;
+	private final Boolean allowLazyStart;
 
 	private final DataframeAnalysisContainer analysis;
-
-	@Nullable
-	private final String description;
-
-	@Nullable
-	private final String modelMemoryLimit;
-
-	@Nullable
-	private final Number maxNumThreads;
 
 	@Nullable
 	private final JsonValue analyzedFields;
 
 	@Nullable
-	private final Boolean allowLazyStart;
+	private final String description;
+
+	private final DataframeAnalyticsDestination dest;
+
+	@Nullable
+	private final Number maxNumThreads;
+
+	@Nullable
+	private final String modelMemoryLimit;
+
+	private final DataframeAnalyticsSource source;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected PutDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
-		this.source = builder.source;
-		this.dest = Objects.requireNonNull(builder.dest, "dest");
-		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
-		this.description = builder.description;
-		this.modelMemoryLimit = builder.modelMemoryLimit;
-		this.maxNumThreads = builder.maxNumThreads;
-		this.analyzedFields = builder.analyzedFields;
 		this.allowLazyStart = builder.allowLazyStart;
+		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
+		this.analyzedFields = builder.analyzedFields;
+		this.description = builder.description;
+		this.dest = Objects.requireNonNull(builder.dest, "dest");
+		this.maxNumThreads = builder.maxNumThreads;
+		this.modelMemoryLimit = builder.modelMemoryLimit;
+		this.source = Objects.requireNonNull(builder.source, "source");
 
 	}
 
@@ -97,24 +96,19 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	}
 
 	/**
-	 * The configuration of how to source the analysis data. It requires an index.
-	 * Optionally, query and _source may be specified.
+	 * Specifies whether this job can start when there is insufficient machine
+	 * learning node capacity for it to be immediately assigned to a node. If set to
+	 * false and a machine learning node with capacity to run the job cannot be
+	 * immediately found, the API returns an error. If set to true, the API does not
+	 * return an error; the job waits in the <code>starting</code> state until
+	 * sufficient machine learning node capacity is available. This behavior is also
+	 * affected by the cluster-wide <code>xpack.ml.max_lazy_ml_nodes</code> setting.
 	 * <p>
-	 * API name: {@code source}
+	 * API name: {@code allow_lazy_start}
 	 */
 	@Nullable
-	public DataframeAnalyticsSource source() {
-		return this.source;
-	}
-
-	/**
-	 * The destination configuration, consisting of index and optionally
-	 * results_field (ml by default).
-	 * <p>
-	 * API name: {@code dest}
-	 */
-	public DataframeAnalyticsDestination dest() {
-		return this.dest;
+	public Boolean allowLazyStart() {
+		return this.allowLazyStart;
 	}
 
 	/**
@@ -129,6 +123,45 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	}
 
 	/**
+	 * Specifies <code>includes</code> and/or <code>excludes</code> patterns to
+	 * select which fields will be included in the analysis. The patterns specified
+	 * in <code>excludes</code> are applied last, therefore <code>excludes</code>
+	 * takes precedence. In other words, if the same field is specified in both
+	 * <code>includes</code> and <code>excludes</code>, then the field will not be
+	 * included in the analysis. If <code>analyzed_fields</code> is not set, only
+	 * the relevant fields will be included. For example, all the numeric fields for
+	 * outlier detection. The supported fields vary for each type of analysis.
+	 * Outlier detection requires numeric or <code>boolean</code> data to analyze.
+	 * The algorithms don’t support missing values therefore fields that have data
+	 * types other than numeric or boolean are ignored. Documents where included
+	 * fields contain missing values, null values, or an array are also ignored.
+	 * Therefore the <code>dest</code> index may contain documents that don’t have
+	 * an outlier score. Regression supports fields that are numeric,
+	 * <code>boolean</code>, <code>text</code>, <code>keyword</code>, and
+	 * <code>ip</code> data types. It is also tolerant of missing values. Fields
+	 * that are supported are included in the analysis, other fields are ignored.
+	 * Documents where included fields contain an array with two or more values are
+	 * also ignored. Documents in the <code>dest</code> index that don’t contain a
+	 * results field are not included in the regression analysis. Classification
+	 * supports fields that are numeric, <code>boolean</code>, <code>text</code>,
+	 * <code>keyword</code>, and <code>ip</code> data types. It is also tolerant of
+	 * missing values. Fields that are supported are included in the analysis, other
+	 * fields are ignored. Documents where included fields contain an array with two
+	 * or more values are also ignored. Documents in the <code>dest</code> index
+	 * that don’t contain a results field are not included in the classification
+	 * analysis. Classification analysis can be improved by mapping ordinal variable
+	 * values to a single number. For example, in case of age ranges, you can model
+	 * the values as <code>0-14 = 0</code>, <code>15-24 = 1</code>,
+	 * <code>25-34 = 2</code>, and so on.
+	 * <p>
+	 * API name: {@code analyzed_fields}
+	 */
+	@Nullable
+	public JsonValue analyzedFields() {
+		return this.analyzedFields;
+	}
+
+	/**
 	 * A description of the job.
 	 * <p>
 	 * API name: {@code description}
@@ -139,26 +172,19 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	}
 
 	/**
-	 * The approximate maximum amount of memory resources that are permitted for
-	 * analytical processing. The default value for data frame analytics jobs is
-	 * 1gb. If your elasticsearch.yml file contains an
-	 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
-	 * create data frame analytics jobs that have model_memory_limit values greater
-	 * than that setting.
+	 * The destination configuration.
 	 * <p>
-	 * API name: {@code model_memory_limit}
+	 * API name: {@code dest}
 	 */
-	@Nullable
-	public String modelMemoryLimit() {
-		return this.modelMemoryLimit;
+	public DataframeAnalyticsDestination dest() {
+		return this.dest;
 	}
 
 	/**
-	 * The maximum number of threads to be used by the analysis. The default value
-	 * is 1. Using more threads may decrease the time necessary to complete the
-	 * analysis at the cost of using more CPU. Note that the process may use
-	 * additional threads for operational functionality other than the analysis
-	 * itself.
+	 * The maximum number of threads to be used by the analysis. Using more threads
+	 * may decrease the time necessary to complete the analysis at the cost of using
+	 * more CPU. Note that the process may use additional threads for operational
+	 * functionality other than the analysis itself.
 	 * <p>
 	 * API name: {@code max_num_threads}
 	 */
@@ -168,28 +194,26 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	}
 
 	/**
-	 * Specify includes and/or excludes patterns to select which fields will be
-	 * included in the analysis. The patterns specified in excludes are applied
-	 * last, therefore excludes takes precedence. In other words, if the same field
-	 * is specified in both includes and excludes, then the field will not be
-	 * included in the analysis.
+	 * The approximate maximum amount of memory resources that are permitted for
+	 * analytical processing. If your <code>elasticsearch.yml</code> file contains
+	 * an <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+	 * you try to create data frame analytics jobs that have
+	 * <code>model_memory_limit</code> values greater than that setting.
 	 * <p>
-	 * API name: {@code analyzed_fields}
+	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
-	public JsonValue analyzedFields() {
-		return this.analyzedFields;
+	public String modelMemoryLimit() {
+		return this.modelMemoryLimit;
 	}
 
 	/**
-	 * Specifies whether this job can start when there is insufficient machine
-	 * learning node capacity for it to be immediately assigned to a node.
+	 * The configuration of how to source the analysis data.
 	 * <p>
-	 * API name: {@code allow_lazy_start}
+	 * API name: {@code source}
 	 */
-	@Nullable
-	public Boolean allowLazyStart() {
-		return this.allowLazyStart;
+	public DataframeAnalyticsSource source() {
+		return this.source;
 	}
 
 	/**
@@ -203,23 +227,36 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.source != null) {
+		if (this.allowLazyStart != null) {
 
-			generator.writeKey("source");
-			this.source.toJsonp(generator, mapper);
+			generator.writeKey("allow_lazy_start");
+			generator.write(this.allowLazyStart);
+
+		}
+
+		generator.writeKey("analysis");
+		this.analysis.toJsonp(generator, mapper);
+
+		if (this.analyzedFields != null) {
+
+			generator.writeKey("analyzed_fields");
+			generator.write(this.analyzedFields);
+
+		}
+		if (this.description != null) {
+
+			generator.writeKey("description");
+			generator.write(this.description);
 
 		}
 
 		generator.writeKey("dest");
 		this.dest.toJsonp(generator, mapper);
 
-		generator.writeKey("analysis");
-		this.analysis.toJsonp(generator, mapper);
+		if (this.maxNumThreads != null) {
 
-		if (this.description != null) {
-
-			generator.writeKey("description");
-			generator.write(this.description);
+			generator.writeKey("max_num_threads");
+			generator.write(this.maxNumThreads.doubleValue());
 
 		}
 		if (this.modelMemoryLimit != null) {
@@ -228,24 +265,9 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 			generator.write(this.modelMemoryLimit);
 
 		}
-		if (this.maxNumThreads != null) {
 
-			generator.writeKey("max_num_threads");
-			generator.write(this.maxNumThreads.doubleValue());
-
-		}
-		if (this.analyzedFields != null) {
-
-			generator.writeKey("analyzed_fields");
-			generator.write(this.analyzedFields);
-
-		}
-		if (this.allowLazyStart != null) {
-
-			generator.writeKey("allow_lazy_start");
-			generator.write(this.allowLazyStart);
-
-		}
+		generator.writeKey("source");
+		this.source.toJsonp(generator, mapper);
 
 	}
 
@@ -258,26 +280,25 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		private String id;
 
 		@Nullable
-		private DataframeAnalyticsSource source;
-
-		private DataframeAnalyticsDestination dest;
+		private Boolean allowLazyStart;
 
 		private DataframeAnalysisContainer analysis;
-
-		@Nullable
-		private String description;
-
-		@Nullable
-		private String modelMemoryLimit;
-
-		@Nullable
-		private Number maxNumThreads;
 
 		@Nullable
 		private JsonValue analyzedFields;
 
 		@Nullable
-		private Boolean allowLazyStart;
+		private String description;
+
+		private DataframeAnalyticsDestination dest;
+
+		@Nullable
+		private Number maxNumThreads;
+
+		@Nullable
+		private String modelMemoryLimit;
+
+		private DataframeAnalyticsSource source;
 
 		/**
 		 * Identifier for the data frame analytics job. This identifier can contain
@@ -292,46 +313,19 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		}
 
 		/**
-		 * The configuration of how to source the analysis data. It requires an index.
-		 * Optionally, query and _source may be specified.
+		 * Specifies whether this job can start when there is insufficient machine
+		 * learning node capacity for it to be immediately assigned to a node. If set to
+		 * false and a machine learning node with capacity to run the job cannot be
+		 * immediately found, the API returns an error. If set to true, the API does not
+		 * return an error; the job waits in the <code>starting</code> state until
+		 * sufficient machine learning node capacity is available. This behavior is also
+		 * affected by the cluster-wide <code>xpack.ml.max_lazy_ml_nodes</code> setting.
 		 * <p>
-		 * API name: {@code source}
+		 * API name: {@code allow_lazy_start}
 		 */
-		public Builder source(@Nullable DataframeAnalyticsSource value) {
-			this.source = value;
+		public Builder allowLazyStart(@Nullable Boolean value) {
+			this.allowLazyStart = value;
 			return this;
-		}
-
-		/**
-		 * The configuration of how to source the analysis data. It requires an index.
-		 * Optionally, query and _source may be specified.
-		 * <p>
-		 * API name: {@code source}
-		 */
-		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
-			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
-		}
-
-		/**
-		 * The destination configuration, consisting of index and optionally
-		 * results_field (ml by default).
-		 * <p>
-		 * API name: {@code dest}
-		 */
-		public Builder dest(DataframeAnalyticsDestination value) {
-			this.dest = value;
-			return this;
-		}
-
-		/**
-		 * The destination configuration, consisting of index and optionally
-		 * results_field (ml by default).
-		 * <p>
-		 * API name: {@code dest}
-		 */
-		public Builder dest(
-				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
-			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
 		}
 
 		/**
@@ -359,6 +353,45 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		}
 
 		/**
+		 * Specifies <code>includes</code> and/or <code>excludes</code> patterns to
+		 * select which fields will be included in the analysis. The patterns specified
+		 * in <code>excludes</code> are applied last, therefore <code>excludes</code>
+		 * takes precedence. In other words, if the same field is specified in both
+		 * <code>includes</code> and <code>excludes</code>, then the field will not be
+		 * included in the analysis. If <code>analyzed_fields</code> is not set, only
+		 * the relevant fields will be included. For example, all the numeric fields for
+		 * outlier detection. The supported fields vary for each type of analysis.
+		 * Outlier detection requires numeric or <code>boolean</code> data to analyze.
+		 * The algorithms don’t support missing values therefore fields that have data
+		 * types other than numeric or boolean are ignored. Documents where included
+		 * fields contain missing values, null values, or an array are also ignored.
+		 * Therefore the <code>dest</code> index may contain documents that don’t have
+		 * an outlier score. Regression supports fields that are numeric,
+		 * <code>boolean</code>, <code>text</code>, <code>keyword</code>, and
+		 * <code>ip</code> data types. It is also tolerant of missing values. Fields
+		 * that are supported are included in the analysis, other fields are ignored.
+		 * Documents where included fields contain an array with two or more values are
+		 * also ignored. Documents in the <code>dest</code> index that don’t contain a
+		 * results field are not included in the regression analysis. Classification
+		 * supports fields that are numeric, <code>boolean</code>, <code>text</code>,
+		 * <code>keyword</code>, and <code>ip</code> data types. It is also tolerant of
+		 * missing values. Fields that are supported are included in the analysis, other
+		 * fields are ignored. Documents where included fields contain an array with two
+		 * or more values are also ignored. Documents in the <code>dest</code> index
+		 * that don’t contain a results field are not included in the classification
+		 * analysis. Classification analysis can be improved by mapping ordinal variable
+		 * values to a single number. For example, in case of age ranges, you can model
+		 * the values as <code>0-14 = 0</code>, <code>15-24 = 1</code>,
+		 * <code>25-34 = 2</code>, and so on.
+		 * <p>
+		 * API name: {@code analyzed_fields}
+		 */
+		public Builder analyzedFields(@Nullable JsonValue value) {
+			this.analyzedFields = value;
+			return this;
+		}
+
+		/**
 		 * A description of the job.
 		 * <p>
 		 * API name: {@code description}
@@ -369,26 +402,30 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		}
 
 		/**
-		 * The approximate maximum amount of memory resources that are permitted for
-		 * analytical processing. The default value for data frame analytics jobs is
-		 * 1gb. If your elasticsearch.yml file contains an
-		 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
-		 * create data frame analytics jobs that have model_memory_limit values greater
-		 * than that setting.
+		 * The destination configuration.
 		 * <p>
-		 * API name: {@code model_memory_limit}
+		 * API name: {@code dest}
 		 */
-		public Builder modelMemoryLimit(@Nullable String value) {
-			this.modelMemoryLimit = value;
+		public Builder dest(DataframeAnalyticsDestination value) {
+			this.dest = value;
 			return this;
 		}
 
 		/**
-		 * The maximum number of threads to be used by the analysis. The default value
-		 * is 1. Using more threads may decrease the time necessary to complete the
-		 * analysis at the cost of using more CPU. Note that the process may use
-		 * additional threads for operational functionality other than the analysis
-		 * itself.
+		 * The destination configuration.
+		 * <p>
+		 * API name: {@code dest}
+		 */
+		public Builder dest(
+				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
+			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
+		}
+
+		/**
+		 * The maximum number of threads to be used by the analysis. Using more threads
+		 * may decrease the time necessary to complete the analysis at the cost of using
+		 * more CPU. Note that the process may use additional threads for operational
+		 * functionality other than the analysis itself.
 		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
@@ -398,28 +435,36 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		}
 
 		/**
-		 * Specify includes and/or excludes patterns to select which fields will be
-		 * included in the analysis. The patterns specified in excludes are applied
-		 * last, therefore excludes takes precedence. In other words, if the same field
-		 * is specified in both includes and excludes, then the field will not be
-		 * included in the analysis.
+		 * The approximate maximum amount of memory resources that are permitted for
+		 * analytical processing. If your <code>elasticsearch.yml</code> file contains
+		 * an <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+		 * you try to create data frame analytics jobs that have
+		 * <code>model_memory_limit</code> values greater than that setting.
 		 * <p>
-		 * API name: {@code analyzed_fields}
+		 * API name: {@code model_memory_limit}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue value) {
-			this.analyzedFields = value;
+		public Builder modelMemoryLimit(@Nullable String value) {
+			this.modelMemoryLimit = value;
 			return this;
 		}
 
 		/**
-		 * Specifies whether this job can start when there is insufficient machine
-		 * learning node capacity for it to be immediately assigned to a node.
+		 * The configuration of how to source the analysis data.
 		 * <p>
-		 * API name: {@code allow_lazy_start}
+		 * API name: {@code source}
 		 */
-		public Builder allowLazyStart(@Nullable Boolean value) {
-			this.allowLazyStart = value;
+		public Builder source(DataframeAnalyticsSource value) {
+			this.source = value;
 			return this;
+		}
+
+		/**
+		 * The configuration of how to source the analysis data.
+		 * <p>
+		 * API name: {@code source}
+		 */
+		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**
@@ -445,14 +490,14 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	protected static void setupPutDataFrameAnalyticsRequestDeserializer(
 			DelegatingDeserializer<PutDataFrameAnalyticsRequest.Builder> op) {
 
-		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
-		op.add(Builder::dest, DataframeAnalyticsDestination.DESERIALIZER, "dest");
-		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
-		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
+		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
+		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::dest, DataframeAnalyticsDestination.DESERIALIZER, "dest");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
+		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
 
 	}
 

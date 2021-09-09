@@ -55,6 +55,10 @@ public final class RuleCondition implements ToJsonp {
 	}
 
 	/**
+	 * Specifies the result property to which the condition applies. If your
+	 * detector uses lat_long, metric, rare, or freq_rare functions, you can only
+	 * specify conditions that apply to time.
+	 * <p>
 	 * API name: {@code applies_to}
 	 */
 	public JsonValue appliesTo() {
@@ -62,6 +66,9 @@ public final class RuleCondition implements ToJsonp {
 	}
 
 	/**
+	 * Specifies the condition operator. The available options are greater than,
+	 * greater than or equals, less than, and less than or equals.
+	 * <p>
 	 * API name: {@code operator}
 	 */
 	public JsonValue operator() {
@@ -69,6 +76,9 @@ public final class RuleCondition implements ToJsonp {
 	}
 
 	/**
+	 * The value that is compared against the <code>applies_to</code> field using
+	 * the operator.
+	 * <p>
 	 * API name: {@code value}
 	 */
 	public Number value() {
@@ -110,6 +120,10 @@ public final class RuleCondition implements ToJsonp {
 		private Number value;
 
 		/**
+		 * Specifies the result property to which the condition applies. If your
+		 * detector uses lat_long, metric, rare, or freq_rare functions, you can only
+		 * specify conditions that apply to time.
+		 * <p>
 		 * API name: {@code applies_to}
 		 */
 		public Builder appliesTo(JsonValue value) {
@@ -118,6 +132,9 @@ public final class RuleCondition implements ToJsonp {
 		}
 
 		/**
+		 * Specifies the condition operator. The available options are greater than,
+		 * greater than or equals, less than, and less than or equals.
+		 * <p>
 		 * API name: {@code operator}
 		 */
 		public Builder operator(JsonValue value) {
@@ -126,6 +143,9 @@ public final class RuleCondition implements ToJsonp {
 		}
 
 		/**
+		 * The value that is compared against the <code>applies_to</code> field using
+		 * the operator.
+		 * <p>
 		 * API name: {@code value}
 		 */
 		public Builder value(Number value) {

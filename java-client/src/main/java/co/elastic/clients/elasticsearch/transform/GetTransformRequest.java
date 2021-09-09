@@ -68,6 +68,9 @@ public final class GetTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * The id or comma delimited list of id expressions of the transforms to get,
+	 * '_all' or '*' implies get all transforms
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	@Nullable
@@ -76,6 +79,9 @@ public final class GetTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no transforms. (This
+	 * includes <code>_all</code> string or when no transforms have been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -84,6 +90,8 @@ public final class GetTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * skips a number of transform configs, defaults to 0
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -92,6 +100,8 @@ public final class GetTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * specifies a max number of transforms to get, defaults to 100
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -100,6 +110,8 @@ public final class GetTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Omits fields that are illegal to set on transform PUT
+	 * <p>
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
@@ -129,6 +141,9 @@ public final class GetTransformRequest extends RequestBase {
 		private Boolean excludeGenerated;
 
 		/**
+		 * The id or comma delimited list of id expressions of the transforms to get,
+		 * '_all' or '*' implies get all transforms
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(@Nullable String value) {
@@ -137,6 +152,9 @@ public final class GetTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no transforms. (This
+		 * includes <code>_all</code> string or when no transforms have been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -145,6 +163,8 @@ public final class GetTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * skips a number of transform configs, defaults to 0
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -153,6 +173,8 @@ public final class GetTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * specifies a max number of transforms to get, defaults to 100
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {
@@ -161,6 +183,8 @@ public final class GetTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Omits fields that are illegal to set on transform PUT
+		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
 		public Builder excludeGenerated(@Nullable Boolean value) {

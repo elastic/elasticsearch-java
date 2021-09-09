@@ -88,6 +88,8 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the repository containing the snapshot of the index to mount
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public String repository() {
@@ -95,6 +97,8 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the snapshot of the index to mount
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	public String snapshot() {
@@ -102,6 +106,8 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -110,6 +116,8 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Should this request wait until the operation has completed before returning
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -118,6 +126,9 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Selects the kind of local storage used to accelerate searches. Experimental,
+	 * and defaults to <code>full_copy</code>
+	 * <p>
 	 * API name: {@code storage}
 	 */
 	@Nullable
@@ -233,6 +244,8 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 		private List<String> ignoreIndexSettings;
 
 		/**
+		 * The name of the repository containing the snapshot of the index to mount
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String value) {
@@ -241,6 +254,8 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The name of the snapshot of the index to mount
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
@@ -249,6 +264,8 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -257,6 +274,8 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Should this request wait until the operation has completed before returning
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {
@@ -265,6 +284,9 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Selects the kind of local storage used to accelerate searches. Experimental,
+		 * and defaults to <code>full_copy</code>
+		 * <p>
 		 * API name: {@code storage}
 		 */
 		public Builder storage(@Nullable String value) {

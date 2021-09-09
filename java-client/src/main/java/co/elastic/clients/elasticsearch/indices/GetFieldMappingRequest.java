@@ -51,9 +51,6 @@ public final class GetFieldMappingRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
-	private final List<String> type;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -77,7 +74,6 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 		this.fields = Objects.requireNonNull(builder.fields, "fields");
 		this.index = builder.index;
-		this.type = builder.type;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = builder.expandWildcards;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -88,6 +84,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of fields
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	public List<String> fields() {
@@ -95,6 +93,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -103,14 +103,10 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
-	}
-
-	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -119,6 +115,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -127,6 +126,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -135,6 +137,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether the default mapping values should be returned as well
+	 * <p>
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
@@ -151,6 +155,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -168,9 +175,6 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 		@Nullable
 		private List<String> index;
-
-		@Nullable
-		private List<String> type;
 
 		@Nullable
 		private Boolean allowNoIndices;
@@ -191,6 +195,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		private Boolean local;
 
 		/**
+		 * A comma-separated list of fields
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(List<String> value) {
@@ -199,6 +205,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
@@ -218,6 +226,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -226,6 +236,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -245,33 +257,10 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
-			return this;
-		}
-
-		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -280,6 +269,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -288,6 +280,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -296,6 +291,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether the default mapping values should be returned as well
+		 * <p>
 		 * API name: {@code include_defaults}
 		 */
 		public Builder includeDefaults(@Nullable Boolean value) {
@@ -312,6 +309,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -347,7 +347,6 @@ public final class GetFieldMappingRequest extends RequestBase {
 			request -> {
 				final int _fields = 1 << 0;
 				final int _index = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
@@ -355,8 +354,6 @@ public final class GetFieldMappingRequest extends RequestBase {
 					propsSet |= _fields;
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_fields)) {
 					StringBuilder buf = new StringBuilder();
@@ -371,28 +368,6 @@ public final class GetFieldMappingRequest extends RequestBase {
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_mapping");
-					buf.append("/field");
-					buf.append("/");
-					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
-					return buf.toString();
-				}
-				if (propsSet == (_type | _fields)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
-					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/field");
-					buf.append("/");
-					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _fields)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_mapping");
-					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/field");
 					buf.append("/");
 					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));

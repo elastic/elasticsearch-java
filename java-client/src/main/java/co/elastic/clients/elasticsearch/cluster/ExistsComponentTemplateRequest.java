@@ -23,90 +23,77 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.exists_component_template.Request
-public final class ExistsComponentTemplateRequest extends RequestBase implements ToJsonp {
-	private final String stubA;
+public final class ExistsComponentTemplateRequest extends RequestBase {
+	private final List<String> name;
 
 	@Nullable
-	private final String name;
+	private final JsonValue masterTimeout;
 
-	private final String stubB;
-
-	private final String stubC;
+	@Nullable
+	private final Boolean local;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ExistsComponentTemplateRequest(Builder builder) {
 
-		this.stubA = Objects.requireNonNull(builder.stubA, "stub_a");
-		this.name = builder.name;
-		this.stubB = Objects.requireNonNull(builder.stubB, "stub_b");
-		this.stubC = Objects.requireNonNull(builder.stubC, "stub_c");
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.masterTimeout = builder.masterTimeout;
+		this.local = builder.local;
 
 	}
 
 	/**
-	 * API name: {@code stub_a}
-	 */
-	public String stubA() {
-		return this.stubA;
-	}
-
-	/**
-	 * Auto generated - missing in the input spec
+	 * Comma-separated list of component template names used to limit the request.
+	 * Wildcard (*) expressions are supported.
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
-	public String name() {
+	public List<String> name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code stub_b}
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
 	 */
-	public String stubB() {
-		return this.stubB;
+	@Nullable
+	public JsonValue masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
-	 * API name: {@code stub_c}
+	 * If true, the request retrieves information from the local node only. Defaults
+	 * to false, which means information is retrieved from the master node.
+	 * <p>
+	 * API name: {@code local}
 	 */
-	public String stubC() {
-		return this.stubC;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub_c");
-		generator.write(this.stubC);
-
+	@Nullable
+	public Boolean local() {
+		return this.local;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -115,46 +102,66 @@ public final class ExistsComponentTemplateRequest extends RequestBase implements
 	 * Builder for {@link ExistsComponentTemplateRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ExistsComponentTemplateRequest> {
-		private String stubA;
+		private List<String> name;
 
 		@Nullable
-		private String name;
+		private JsonValue masterTimeout;
 
-		private String stubB;
-
-		private String stubC;
-
-		/**
-		 * API name: {@code stub_a}
-		 */
-		public Builder stubA(String value) {
-			this.stubA = value;
-			return this;
-		}
+		@Nullable
+		private Boolean local;
 
 		/**
-		 * Auto generated - missing in the input spec
+		 * Comma-separated list of component template names used to limit the request.
+		 * Wildcard (*) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public Builder name(List<String> value) {
 			this.name = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub_b}
+		 * Comma-separated list of component template names used to limit the request.
+		 * Wildcard (*) expressions are supported.
+		 * <p>
+		 * API name: {@code name}
 		 */
-		public Builder stubB(String value) {
-			this.stubB = value;
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub_c}
+		 * Add a value to {@link #name(List)}, creating the list if needed.
 		 */
-		public Builder stubC(String value) {
-			this.stubC = value;
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable JsonValue value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * If true, the request retrieves information from the local node only. Defaults
+		 * to false, which means information is retrieved from the master node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public Builder local(@Nullable Boolean value) {
+			this.local = value;
 			return this;
 		}
 
@@ -173,25 +180,9 @@ public final class ExistsComponentTemplateRequest extends RequestBase implements
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExistsComponentTemplateRequest
-	 */
-	public static final JsonpDeserializer<ExistsComponentTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ExistsComponentTemplateRequest::setupExistsComponentTemplateRequestDeserializer);
-
-	protected static void setupExistsComponentTemplateRequestDeserializer(
-			DelegatingDeserializer<ExistsComponentTemplateRequest.Builder> op) {
-
-		op.add(Builder::stubC, JsonpDeserializer.stringDeserializer(), "stub_c");
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
 	 * Endpoint "{@code cluster.exists_component_template}".
 	 */
-	public static final Endpoint<ExistsComponentTemplateRequest, ExistsComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExistsComponentTemplateRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
 			request -> {
 				return "HEAD";
@@ -200,13 +191,10 @@ public final class ExistsComponentTemplateRequest extends RequestBase implements
 
 			// Request path
 			request -> {
-				final int _stubA = 1 << 0;
-				final int _name = 1 << 1;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.stubA() != null)
-					propsSet |= _stubA;
 				if (request.name() != null)
 					propsSet |= _name;
 
@@ -214,7 +202,7 @@ public final class ExistsComponentTemplateRequest extends RequestBase implements
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_component_template");
 					buf.append("/");
-					buf.append(request.name);
+					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");
@@ -224,8 +212,13 @@ public final class ExistsComponentTemplateRequest extends RequestBase implements
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				params.put("stub_b", request.stubB);
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout.toString());
+				}
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
+				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ExistsComponentTemplateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, null);
 }

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
@@ -39,11 +40,15 @@ import javax.annotation.Nullable;
 public final class ScriptField implements ToJsonp {
 	private final JsonValue script;
 
+	@Nullable
+	private final Boolean ignoreFailure;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected ScriptField(Builder builder) {
 
 		this.script = Objects.requireNonNull(builder.script, "script");
+		this.ignoreFailure = builder.ignoreFailure;
 
 	}
 
@@ -52,6 +57,14 @@ public final class ScriptField implements ToJsonp {
 	 */
 	public JsonValue script() {
 		return this.script;
+	}
+
+	/**
+	 * API name: {@code ignore_failure}
+	 */
+	@Nullable
+	public Boolean ignoreFailure() {
+		return this.ignoreFailure;
 	}
 
 	/**
@@ -68,6 +81,13 @@ public final class ScriptField implements ToJsonp {
 		generator.writeKey("script");
 		generator.write(this.script);
 
+		if (this.ignoreFailure != null) {
+
+			generator.writeKey("ignore_failure");
+			generator.write(this.ignoreFailure);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -78,11 +98,22 @@ public final class ScriptField implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ScriptField> {
 		private JsonValue script;
 
+		@Nullable
+		private Boolean ignoreFailure;
+
 		/**
 		 * API name: {@code script}
 		 */
 		public Builder script(JsonValue value) {
 			this.script = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignore_failure}
+		 */
+		public Builder ignoreFailure(@Nullable Boolean value) {
+			this.ignoreFailure = value;
 			return this;
 		}
 
@@ -109,6 +140,7 @@ public final class ScriptField implements ToJsonp {
 	protected static void setupScriptFieldDeserializer(DelegatingDeserializer<ScriptField.Builder> op) {
 
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
 
 	}
 

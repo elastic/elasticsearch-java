@@ -41,14 +41,14 @@ public abstract class QueryBase implements ToJsonp {
 	private final Number boost;
 
 	@Nullable
-	private final String name;
+	private final String queryName;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected QueryBase(AbstractBuilder<?> builder) {
 
 		this.boost = builder.boost;
-		this.name = builder.name;
+		this.queryName = builder.queryName;
 
 	}
 
@@ -64,8 +64,8 @@ public abstract class QueryBase implements ToJsonp {
 	 * API name: {@code _name}
 	 */
 	@Nullable
-	public String name() {
-		return this.name;
+	public String queryName() {
+		return this.queryName;
 	}
 
 	/**
@@ -85,10 +85,10 @@ public abstract class QueryBase implements ToJsonp {
 			generator.write(this.boost.doubleValue());
 
 		}
-		if (this.name != null) {
+		if (this.queryName != null) {
 
 			generator.writeKey("_name");
-			generator.write(this.name);
+			generator.write(this.queryName);
 
 		}
 
@@ -99,7 +99,7 @@ public abstract class QueryBase implements ToJsonp {
 		private Number boost;
 
 		@Nullable
-		private String name;
+		private String queryName;
 
 		/**
 		 * API name: {@code boost}
@@ -112,8 +112,8 @@ public abstract class QueryBase implements ToJsonp {
 		/**
 		 * API name: {@code _name}
 		 */
-		public BuilderT name(@Nullable String value) {
-			this.name = value;
+		public BuilderT queryName(@Nullable String value) {
+			this.queryName = value;
 			return self();
 		}
 
@@ -126,7 +126,7 @@ public abstract class QueryBase implements ToJsonp {
 			DelegatingDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::boost, JsonpDeserializer.numberDeserializer(), "boost");
-		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "_name");
+		op.add(AbstractBuilder::queryName, JsonpDeserializer.stringDeserializer(), "_name");
 
 	}
 

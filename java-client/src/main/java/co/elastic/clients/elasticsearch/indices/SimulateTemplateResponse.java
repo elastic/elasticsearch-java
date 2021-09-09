@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch.indices.simulate_template.Template;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,27 +32,27 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Response
 public final class SimulateTemplateResponse implements ToJsonp {
-	private final String stub;
+	private final Template template;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected SimulateTemplateResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.template = Objects.requireNonNull(builder.template, "template");
 
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * API name: {@code template}
 	 */
-	public String stub() {
-		return this.stub;
+	public Template template() {
+		return this.template;
 	}
 
 	/**
@@ -65,8 +66,8 @@ public final class SimulateTemplateResponse implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub");
-		generator.write(this.stub);
+		generator.writeKey("template");
+		this.template.toJsonp(generator, mapper);
 
 	}
 
@@ -76,14 +77,21 @@ public final class SimulateTemplateResponse implements ToJsonp {
 	 * Builder for {@link SimulateTemplateResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<SimulateTemplateResponse> {
-		private String stub;
+		private Template template;
 
 		/**
-		 * API name: {@code stub}
+		 * API name: {@code template}
 		 */
-		public Builder stub(String value) {
-			this.stub = value;
+		public Builder template(Template value) {
+			this.template = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code template}
+		 */
+		public Builder template(Function<Template.Builder, ObjectBuilder<Template>> fn) {
+			return this.template(fn.apply(new Template.Builder()).build());
 		}
 
 		/**
@@ -109,7 +117,7 @@ public final class SimulateTemplateResponse implements ToJsonp {
 	protected static void setupSimulateTemplateResponseDeserializer(
 			DelegatingDeserializer<SimulateTemplateResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.stringDeserializer(), "stub");
+		op.add(Builder::template, Template.DESERIALIZER, "template");
 
 	}
 

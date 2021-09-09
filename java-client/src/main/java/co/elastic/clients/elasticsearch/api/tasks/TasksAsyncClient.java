@@ -25,12 +25,12 @@ package co.elastic.clients.elasticsearch.api.tasks;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.task.CancelRequest;
-import co.elastic.clients.elasticsearch.task.CancelResponse;
-import co.elastic.clients.elasticsearch.task.GetRequest;
-import co.elastic.clients.elasticsearch.task.GetResponse;
-import co.elastic.clients.elasticsearch.task.ListRequest;
-import co.elastic.clients.elasticsearch.task.ListResponse;
+import co.elastic.clients.elasticsearch.tasks.CancelRequest;
+import co.elastic.clients.elasticsearch.tasks.CancelResponse;
+import co.elastic.clients.elasticsearch.tasks.GetRequest;
+import co.elastic.clients.elasticsearch.tasks.GetResponse;
+import co.elastic.clients.elasticsearch.tasks.ListRequest;
+import co.elastic.clients.elasticsearch.tasks.ListResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;

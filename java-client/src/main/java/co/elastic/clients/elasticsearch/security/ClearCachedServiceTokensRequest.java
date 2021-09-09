@@ -59,6 +59,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the namespace
+	 * <p>
 	 * API name: {@code namespace}
 	 */
 	public String namespace() {
@@ -66,6 +68,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the service name
+	 * <p>
 	 * API name: {@code service}
 	 */
 	public String service() {
@@ -73,6 +77,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of service token names
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public List<String> name() {
@@ -92,6 +98,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		private List<String> name;
 
 		/**
+		 * An identifier for the namespace
+		 * <p>
 		 * API name: {@code namespace}
 		 */
 		public Builder namespace(String value) {
@@ -100,6 +108,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
+		 * An identifier for the service name
+		 * <p>
 		 * API name: {@code service}
 		 */
 		public Builder service(String value) {
@@ -108,6 +118,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of service token names
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(List<String> value) {
@@ -116,6 +128,8 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of service token names
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {

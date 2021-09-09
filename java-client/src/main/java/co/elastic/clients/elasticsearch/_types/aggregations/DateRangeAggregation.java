@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +56,9 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 	@Nullable
 	private final String timeZone;
 
+	@Nullable
+	private final Boolean keyed;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected DateRangeAggregation(Builder builder) {
@@ -64,6 +68,7 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 		this.missing = builder.missing;
 		this.ranges = builder.ranges;
 		this.timeZone = builder.timeZone;
+		this.keyed = builder.keyed;
 
 	}
 
@@ -107,6 +112,14 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 		return this.timeZone;
 	}
 
+	/**
+	 * API name: {@code keyed}
+	 */
+	@Nullable
+	public Boolean keyed() {
+		return this.keyed;
+	}
+
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
 		if (this.field != null) {
@@ -144,6 +157,12 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 			generator.write(this.timeZone);
 
 		}
+		if (this.keyed != null) {
+
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
+
+		}
 
 	}
 
@@ -169,6 +188,9 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 
 		@Nullable
 		private String timeZone;
+
+		@Nullable
+		private Boolean keyed;
 
 		/**
 		 * API name: {@code field}
@@ -243,6 +265,14 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 			return this;
 		}
 
+		/**
+		 * API name: {@code keyed}
+		 */
+		public Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -276,6 +306,7 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 		op.add(Builder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
 		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(DateRangeExpression.DESERIALIZER), "ranges");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

@@ -59,6 +59,8 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Defines which additional metrics are included in the response.
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
@@ -67,6 +69,8 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Defines whether stack traces are generated for each watch that is running.
+	 * <p>
 	 * API name: {@code emit_stacktraces}
 	 */
 	@Nullable
@@ -87,6 +91,8 @@ public final class StatsRequest extends RequestBase {
 		private Boolean emitStacktraces;
 
 		/**
+		 * Defines which additional metrics are included in the response.
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(@Nullable List<JsonValue> value) {
@@ -95,6 +101,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Defines which additional metrics are included in the response.
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(JsonValue... value) {
@@ -114,6 +122,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Defines whether stack traces are generated for each watch that is running.
+		 * <p>
 		 * API name: {@code emit_stacktraces}
 		 */
 		public Builder emitStacktraces(@Nullable Boolean value) {

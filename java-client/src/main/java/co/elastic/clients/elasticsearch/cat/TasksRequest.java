@@ -67,6 +67,9 @@ public final class TasksRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A comma-separated list of actions that should be returned. Leave empty to
+	 * return all.
+	 * <p>
 	 * API name: {@code actions}
 	 */
 	@Nullable
@@ -75,6 +78,8 @@ public final class TasksRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Return detailed task information (default: false)
+	 * <p>
 	 * API name: {@code detailed}
 	 */
 	@Nullable
@@ -117,6 +122,9 @@ public final class TasksRequest extends CatRequestBase {
 		private Number parentTask;
 
 		/**
+		 * A comma-separated list of actions that should be returned. Leave empty to
+		 * return all.
+		 * <p>
 		 * API name: {@code actions}
 		 */
 		public Builder actions(@Nullable List<String> value) {
@@ -125,6 +133,9 @@ public final class TasksRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of actions that should be returned. Leave empty to
+		 * return all.
+		 * <p>
 		 * API name: {@code actions}
 		 */
 		public Builder actions(String... value) {
@@ -144,6 +155,8 @@ public final class TasksRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Return detailed task information (default: false)
+		 * <p>
 		 * API name: {@code detailed}
 		 */
 		public Builder detailed(@Nullable Boolean value) {

@@ -46,6 +46,9 @@ public final class FiltersAggregation extends BucketAggregationBase {
 	@Nullable
 	private final String otherBucketKey;
 
+	@Nullable
+	private final Boolean keyed;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected FiltersAggregation(Builder builder) {
@@ -53,6 +56,7 @@ public final class FiltersAggregation extends BucketAggregationBase {
 		this.filters = builder.filters;
 		this.otherBucket = builder.otherBucket;
 		this.otherBucketKey = builder.otherBucketKey;
+		this.keyed = builder.keyed;
 
 	}
 
@@ -80,6 +84,14 @@ public final class FiltersAggregation extends BucketAggregationBase {
 		return this.otherBucketKey;
 	}
 
+	/**
+	 * API name: {@code keyed}
+	 */
+	@Nullable
+	public Boolean keyed() {
+		return this.keyed;
+	}
+
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
 		if (this.filters != null) {
@@ -98,6 +110,12 @@ public final class FiltersAggregation extends BucketAggregationBase {
 
 			generator.writeKey("other_bucket_key");
 			generator.write(this.otherBucketKey);
+
+		}
+		if (this.keyed != null) {
+
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
 
 		}
 
@@ -120,6 +138,9 @@ public final class FiltersAggregation extends BucketAggregationBase {
 		@Nullable
 		private String otherBucketKey;
 
+		@Nullable
+		private Boolean keyed;
+
 		/**
 		 * API name: {@code filters}
 		 */
@@ -141,6 +162,14 @@ public final class FiltersAggregation extends BucketAggregationBase {
 		 */
 		public Builder otherBucketKey(@Nullable String value) {
 			this.otherBucketKey = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code keyed}
+		 */
+		public Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
 			return this;
 		}
 
@@ -174,6 +203,7 @@ public final class FiltersAggregation extends BucketAggregationBase {
 		op.add(Builder::filters, JsonpDeserializer.jsonValueDeserializer(), "filters");
 		op.add(Builder::otherBucket, JsonpDeserializer.booleanDeserializer(), "other_bucket");
 		op.add(Builder::otherBucketKey, JsonpDeserializer.stringDeserializer(), "other_bucket_key");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

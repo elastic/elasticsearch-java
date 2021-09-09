@@ -31,30 +31,28 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFirstQuery
 public final class SpanFirstQuery extends QueryBase {
-	@Nullable
 	private final Number end;
 
-	@Nullable
 	private final SpanQuery match;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected SpanFirstQuery(Builder builder) {
 		super(builder);
-		this.end = builder.end;
-		this.match = builder.match;
+		this.end = Objects.requireNonNull(builder.end, "end");
+		this.match = Objects.requireNonNull(builder.match, "match");
 
 	}
 
 	/**
 	 * API name: {@code end}
 	 */
-	@Nullable
 	public Number end() {
 		return this.end;
 	}
@@ -62,25 +60,18 @@ public final class SpanFirstQuery extends QueryBase {
 	/**
 	 * API name: {@code match}
 	 */
-	@Nullable
 	public SpanQuery match() {
 		return this.match;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this.end != null) {
 
-			generator.writeKey("end");
-			generator.write(this.end.doubleValue());
+		generator.writeKey("end");
+		generator.write(this.end.doubleValue());
 
-		}
-		if (this.match != null) {
-
-			generator.writeKey("match");
-			this.match.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("match");
+		this.match.toJsonp(generator, mapper);
 
 	}
 
@@ -90,16 +81,14 @@ public final class SpanFirstQuery extends QueryBase {
 	 * Builder for {@link SpanFirstQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanFirstQuery> {
-		@Nullable
 		private Number end;
 
-		@Nullable
 		private SpanQuery match;
 
 		/**
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable Number value) {
+		public Builder end(Number value) {
 			this.end = value;
 			return this;
 		}
@@ -107,7 +96,7 @@ public final class SpanFirstQuery extends QueryBase {
 		/**
 		 * API name: {@code match}
 		 */
-		public Builder match(@Nullable SpanQuery value) {
+		public Builder match(SpanQuery value) {
 			this.match = value;
 			return this;
 		}

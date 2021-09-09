@@ -25,32 +25,32 @@ package co.elastic.clients.elasticsearch.api.ccr;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ccr.CreateFollowIndexRequest;
-import co.elastic.clients.elasticsearch.ccr.CreateFollowIndexResponse;
 import co.elastic.clients.elasticsearch.ccr.DeleteAutoFollowPatternRequest;
 import co.elastic.clients.elasticsearch.ccr.DeleteAutoFollowPatternResponse;
-import co.elastic.clients.elasticsearch.ccr.FollowIndexStatsRequest;
-import co.elastic.clients.elasticsearch.ccr.FollowIndexStatsResponse;
 import co.elastic.clients.elasticsearch.ccr.FollowInfoRequest;
 import co.elastic.clients.elasticsearch.ccr.FollowInfoResponse;
-import co.elastic.clients.elasticsearch.ccr.ForgetFollowerIndexRequest;
-import co.elastic.clients.elasticsearch.ccr.ForgetFollowerIndexResponse;
+import co.elastic.clients.elasticsearch.ccr.FollowRequest;
+import co.elastic.clients.elasticsearch.ccr.FollowResponse;
+import co.elastic.clients.elasticsearch.ccr.FollowStatsRequest;
+import co.elastic.clients.elasticsearch.ccr.FollowStatsResponse;
+import co.elastic.clients.elasticsearch.ccr.ForgetFollowerRequest;
+import co.elastic.clients.elasticsearch.ccr.ForgetFollowerResponse;
 import co.elastic.clients.elasticsearch.ccr.GetAutoFollowPatternRequest;
 import co.elastic.clients.elasticsearch.ccr.GetAutoFollowPatternResponse;
 import co.elastic.clients.elasticsearch.ccr.PauseAutoFollowPatternRequest;
 import co.elastic.clients.elasticsearch.ccr.PauseAutoFollowPatternResponse;
-import co.elastic.clients.elasticsearch.ccr.PauseFollowIndexRequest;
-import co.elastic.clients.elasticsearch.ccr.PauseFollowIndexResponse;
+import co.elastic.clients.elasticsearch.ccr.PauseFollowRequest;
+import co.elastic.clients.elasticsearch.ccr.PauseFollowResponse;
 import co.elastic.clients.elasticsearch.ccr.PutAutoFollowPatternRequest;
 import co.elastic.clients.elasticsearch.ccr.PutAutoFollowPatternResponse;
 import co.elastic.clients.elasticsearch.ccr.ResumeAutoFollowPatternRequest;
 import co.elastic.clients.elasticsearch.ccr.ResumeAutoFollowPatternResponse;
-import co.elastic.clients.elasticsearch.ccr.ResumeFollowIndexRequest;
-import co.elastic.clients.elasticsearch.ccr.ResumeFollowIndexResponse;
+import co.elastic.clients.elasticsearch.ccr.ResumeFollowRequest;
+import co.elastic.clients.elasticsearch.ccr.ResumeFollowResponse;
 import co.elastic.clients.elasticsearch.ccr.StatsRequest;
 import co.elastic.clients.elasticsearch.ccr.StatsResponse;
-import co.elastic.clients.elasticsearch.ccr.UnfollowIndexRequest;
-import co.elastic.clients.elasticsearch.ccr.UnfollowIndexResponse;
+import co.elastic.clients.elasticsearch.ccr.UnfollowRequest;
+import co.elastic.clients.elasticsearch.ccr.UnfollowResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -116,8 +116,8 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CreateFollowIndexResponse> follow(CreateFollowIndexRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, CreateFollowIndexRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<FollowResponse> follow(FollowRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, FollowRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -133,9 +133,9 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CreateFollowIndexResponse> follow(
-			Function<CreateFollowIndexRequest.Builder, ObjectBuilder<CreateFollowIndexRequest>> fn) throws IOException {
-		return follow(fn.apply(new CreateFollowIndexRequest.Builder()).build());
+	public final CompletableFuture<FollowResponse> follow(
+			Function<FollowRequest.Builder, ObjectBuilder<FollowRequest>> fn) throws IOException {
+		return follow(fn.apply(new FollowRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ccr.follow_info
@@ -182,8 +182,8 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FollowIndexStatsResponse> followStats(FollowIndexStatsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, FollowIndexStatsRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<FollowStatsResponse> followStats(FollowStatsRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, FollowStatsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -199,9 +199,9 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<FollowIndexStatsResponse> followStats(
-			Function<FollowIndexStatsRequest.Builder, ObjectBuilder<FollowIndexStatsRequest>> fn) throws IOException {
-		return followStats(fn.apply(new FollowIndexStatsRequest.Builder()).build());
+	public final CompletableFuture<FollowStatsResponse> followStats(
+			Function<FollowStatsRequest.Builder, ObjectBuilder<FollowStatsRequest>> fn) throws IOException {
+		return followStats(fn.apply(new FollowStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ccr.forget_follower
@@ -214,9 +214,8 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ForgetFollowerIndexResponse> forgetFollower(ForgetFollowerIndexRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, ForgetFollowerIndexRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<ForgetFollowerResponse> forgetFollower(ForgetFollowerRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, ForgetFollowerRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -231,10 +230,9 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ForgetFollowerIndexResponse> forgetFollower(
-			Function<ForgetFollowerIndexRequest.Builder, ObjectBuilder<ForgetFollowerIndexRequest>> fn)
-			throws IOException {
-		return forgetFollower(fn.apply(new ForgetFollowerIndexRequest.Builder()).build());
+	public final CompletableFuture<ForgetFollowerResponse> forgetFollower(
+			Function<ForgetFollowerRequest.Builder, ObjectBuilder<ForgetFollowerRequest>> fn) throws IOException {
+		return forgetFollower(fn.apply(new ForgetFollowerRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ccr.get_auto_follow_pattern
@@ -316,8 +314,8 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PauseFollowIndexResponse> pauseFollow(PauseFollowIndexRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PauseFollowIndexRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<PauseFollowResponse> pauseFollow(PauseFollowRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, PauseFollowRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -333,9 +331,9 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PauseFollowIndexResponse> pauseFollow(
-			Function<PauseFollowIndexRequest.Builder, ObjectBuilder<PauseFollowIndexRequest>> fn) throws IOException {
-		return pauseFollow(fn.apply(new PauseFollowIndexRequest.Builder()).build());
+	public final CompletableFuture<PauseFollowResponse> pauseFollow(
+			Function<PauseFollowRequest.Builder, ObjectBuilder<PauseFollowRequest>> fn) throws IOException {
+		return pauseFollow(fn.apply(new PauseFollowRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ccr.put_auto_follow_pattern
@@ -419,9 +417,8 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ResumeFollowIndexResponse> resumeFollow(ResumeFollowIndexRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, ResumeFollowIndexRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<ResumeFollowResponse> resumeFollow(ResumeFollowRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, ResumeFollowRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -436,9 +433,9 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ResumeFollowIndexResponse> resumeFollow(
-			Function<ResumeFollowIndexRequest.Builder, ObjectBuilder<ResumeFollowIndexRequest>> fn) throws IOException {
-		return resumeFollow(fn.apply(new ResumeFollowIndexRequest.Builder()).build());
+	public final CompletableFuture<ResumeFollowResponse> resumeFollow(
+			Function<ResumeFollowRequest.Builder, ObjectBuilder<ResumeFollowRequest>> fn) throws IOException {
+		return resumeFollow(fn.apply(new ResumeFollowRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ccr.stats
@@ -465,8 +462,8 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UnfollowIndexResponse> unfollow(UnfollowIndexRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, UnfollowIndexRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<UnfollowResponse> unfollow(UnfollowRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, UnfollowRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -482,9 +479,9 @@ public class CcrAsyncClient extends ApiClient<CcrAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<UnfollowIndexResponse> unfollow(
-			Function<UnfollowIndexRequest.Builder, ObjectBuilder<UnfollowIndexRequest>> fn) throws IOException {
-		return unfollow(fn.apply(new UnfollowIndexRequest.Builder()).build());
+	public final CompletableFuture<UnfollowResponse> unfollow(
+			Function<UnfollowRequest.Builder, ObjectBuilder<UnfollowRequest>> fn) throws IOException {
+		return unfollow(fn.apply(new UnfollowRequest.Builder()).build());
 	}
 
 	// ----- Misc

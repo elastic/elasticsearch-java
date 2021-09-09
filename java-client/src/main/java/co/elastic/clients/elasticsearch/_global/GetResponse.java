@@ -155,8 +155,6 @@ public final class GetResponse<TDocument> implements ToJsonp {
 	}
 
 	/**
-	 * deprecated since 7.0.0
-	 * <p>
 	 * API name: {@code _type}
 	 */
 	@Nullable
@@ -356,8 +354,6 @@ public final class GetResponse<TDocument> implements ToJsonp {
 		}
 
 		/**
-		 * deprecated since 7.0.0
-		 * <p>
 		 * API name: {@code _type}
 		 */
 		public Builder<TDocument> type(@Nullable String value) {

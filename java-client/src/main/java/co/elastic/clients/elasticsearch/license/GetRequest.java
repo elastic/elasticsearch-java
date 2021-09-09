@@ -54,6 +54,9 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Supported for backwards compatibility with 7.x. If this param is used it must
+	 * be set to true
+	 * <p>
 	 * API name: {@code accept_enterprise}
 	 */
 	@Nullable
@@ -62,6 +65,9 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -82,6 +88,9 @@ public final class GetRequest extends RequestBase {
 		private Boolean local;
 
 		/**
+		 * Supported for backwards compatibility with 7.x. If this param is used it must
+		 * be set to true
+		 * <p>
 		 * API name: {@code accept_enterprise}
 		 */
 		public Builder acceptEnterprise(@Nullable Boolean value) {
@@ -90,6 +99,9 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {

@@ -48,6 +48,8 @@ public final class TemplatesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A pattern that returned template names must match
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -65,6 +67,8 @@ public final class TemplatesRequest extends CatRequestBase {
 		private String name;
 
 		/**
+		 * A pattern that returned template names must match
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {

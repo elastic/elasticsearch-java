@@ -103,6 +103,8 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Watch ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -110,6 +112,8 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether the watch is in/active by default
+	 * <p>
 	 * API name: {@code active}
 	 */
 	@Nullable
@@ -118,6 +122,9 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * only update the watch if the last operation that has changed the watch has
+	 * the specified primary term
+	 * <p>
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
@@ -134,6 +141,8 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit version number for concurrency control
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -307,6 +316,8 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		private TriggerContainer trigger;
 
 		/**
+		 * Watch ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -315,6 +326,8 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether the watch is in/active by default
+		 * <p>
 		 * API name: {@code active}
 		 */
 		public Builder active(@Nullable Boolean value) {
@@ -323,6 +336,9 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * only update the watch if the last operation that has changed the watch has
+		 * the specified primary term
+		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
 		public Builder ifPrimaryTerm(@Nullable Number value) {
@@ -339,6 +355,8 @@ public final class PutWatchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit version number for concurrency control
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Number value) {

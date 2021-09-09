@@ -55,6 +55,8 @@ public final class GetJobStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the jobs stats to fetch
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	@Nullable
@@ -63,6 +65,9 @@ public final class GetJobStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+	 * <code>_all</code> string or when no jobs have been specified)
+	 * <p>
 	 * API name: {@code allow_no_jobs}
 	 */
 	@Nullable
@@ -83,6 +88,8 @@ public final class GetJobStatsRequest extends RequestBase {
 		private Boolean allowNoJobs;
 
 		/**
+		 * The ID of the jobs stats to fetch
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(@Nullable String value) {
@@ -91,6 +98,9 @@ public final class GetJobStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
+		 * <p>
 		 * API name: {@code allow_no_jobs}
 		 */
 		public Builder allowNoJobs(@Nullable Boolean value) {

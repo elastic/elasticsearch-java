@@ -58,6 +58,8 @@ public final class FielddataRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A comma-separated list of fields to return the fielddata size
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -66,6 +68,8 @@ public final class FielddataRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
@@ -86,6 +90,8 @@ public final class FielddataRequest extends CatRequestBase {
 		private JsonValue bytes;
 
 		/**
+		 * A comma-separated list of fields to return the fielddata size
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(@Nullable List<String> value) {
@@ -94,6 +100,8 @@ public final class FielddataRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields to return the fielddata size
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
@@ -113,6 +121,8 @@ public final class FielddataRequest extends CatRequestBase {
 		}
 
 		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
 		public Builder bytes(@Nullable JsonValue value) {

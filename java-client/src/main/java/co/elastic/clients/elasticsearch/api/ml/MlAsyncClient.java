@@ -55,14 +55,10 @@ import co.elastic.clients.elasticsearch.ml.EvaluateDataFrameRequest;
 import co.elastic.clients.elasticsearch.ml.EvaluateDataFrameResponse;
 import co.elastic.clients.elasticsearch.ml.ExplainDataFrameAnalyticsRequest;
 import co.elastic.clients.elasticsearch.ml.ExplainDataFrameAnalyticsResponse;
-import co.elastic.clients.elasticsearch.ml.FindFileStructureRequest;
-import co.elastic.clients.elasticsearch.ml.FindFileStructureResponse;
 import co.elastic.clients.elasticsearch.ml.FlushJobRequest;
 import co.elastic.clients.elasticsearch.ml.FlushJobResponse;
-import co.elastic.clients.elasticsearch.ml.ForecastJobRequest;
-import co.elastic.clients.elasticsearch.ml.ForecastJobResponse;
-import co.elastic.clients.elasticsearch.ml.GetAnomalyRecordsRequest;
-import co.elastic.clients.elasticsearch.ml.GetAnomalyRecordsResponse;
+import co.elastic.clients.elasticsearch.ml.ForecastRequest;
+import co.elastic.clients.elasticsearch.ml.ForecastResponse;
 import co.elastic.clients.elasticsearch.ml.GetBucketsRequest;
 import co.elastic.clients.elasticsearch.ml.GetBucketsResponse;
 import co.elastic.clients.elasticsearch.ml.GetCalendarEventsRequest;
@@ -91,6 +87,8 @@ import co.elastic.clients.elasticsearch.ml.GetModelSnapshotsRequest;
 import co.elastic.clients.elasticsearch.ml.GetModelSnapshotsResponse;
 import co.elastic.clients.elasticsearch.ml.GetOverallBucketsRequest;
 import co.elastic.clients.elasticsearch.ml.GetOverallBucketsResponse;
+import co.elastic.clients.elasticsearch.ml.GetRecordsRequest;
+import co.elastic.clients.elasticsearch.ml.GetRecordsResponse;
 import co.elastic.clients.elasticsearch.ml.GetTrainedModelsRequest;
 import co.elastic.clients.elasticsearch.ml.GetTrainedModelsResponse;
 import co.elastic.clients.elasticsearch.ml.GetTrainedModelsStatsRequest;
@@ -101,8 +99,8 @@ import co.elastic.clients.elasticsearch.ml.OpenJobRequest;
 import co.elastic.clients.elasticsearch.ml.OpenJobResponse;
 import co.elastic.clients.elasticsearch.ml.PostCalendarEventsRequest;
 import co.elastic.clients.elasticsearch.ml.PostCalendarEventsResponse;
-import co.elastic.clients.elasticsearch.ml.PostJobDataRequest;
-import co.elastic.clients.elasticsearch.ml.PostJobDataResponse;
+import co.elastic.clients.elasticsearch.ml.PostDataRequest;
+import co.elastic.clients.elasticsearch.ml.PostDataResponse;
 import co.elastic.clients.elasticsearch.ml.PreviewDataFrameAnalyticsRequest;
 import co.elastic.clients.elasticsearch.ml.PreviewDataFrameAnalyticsResponse;
 import co.elastic.clients.elasticsearch.ml.PreviewDatafeedRequest;
@@ -123,6 +121,8 @@ import co.elastic.clients.elasticsearch.ml.PutTrainedModelAliasRequest;
 import co.elastic.clients.elasticsearch.ml.PutTrainedModelAliasResponse;
 import co.elastic.clients.elasticsearch.ml.PutTrainedModelRequest;
 import co.elastic.clients.elasticsearch.ml.PutTrainedModelResponse;
+import co.elastic.clients.elasticsearch.ml.ResetJobRequest;
+import co.elastic.clients.elasticsearch.ml.ResetJobResponse;
 import co.elastic.clients.elasticsearch.ml.RevertModelSnapshotRequest;
 import co.elastic.clients.elasticsearch.ml.RevertModelSnapshotResponse;
 import co.elastic.clients.elasticsearch.ml.SetUpgradeModeRequest;
@@ -147,8 +147,8 @@ import co.elastic.clients.elasticsearch.ml.UpgradeJobSnapshotRequest;
 import co.elastic.clients.elasticsearch.ml.UpgradeJobSnapshotResponse;
 import co.elastic.clients.elasticsearch.ml.ValidateDetectorRequest;
 import co.elastic.clients.elasticsearch.ml.ValidateDetectorResponse;
-import co.elastic.clients.elasticsearch.ml.ValidateJobRequest;
-import co.elastic.clients.elasticsearch.ml.ValidateJobResponse;
+import co.elastic.clients.elasticsearch.ml.ValidateRequest;
+import co.elastic.clients.elasticsearch.ml.ValidateResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -657,40 +657,6 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 		return explainDataFrameAnalytics(fn.apply(new ExplainDataFrameAnalyticsRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: ml.find_file_structure
-
-	/**
-	 * Finds the structure of a text file. The text file must contain data that is
-	 * suitable to be ingested into Elasticsearch.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<FindFileStructureResponse> findFileStructure(FindFileStructureRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, FindFileStructureRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Finds the structure of a text file. The text file must contain data that is
-	 * suitable to be ingested into Elasticsearch.
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<FindFileStructureResponse> findFileStructure(
-			Function<FindFileStructureRequest.Builder, ObjectBuilder<FindFileStructureRequest>> fn) throws IOException {
-		return findFileStructure(fn.apply(new FindFileStructureRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: ml.flush_job
 
 	/**
@@ -733,8 +699,8 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ForecastJobResponse> forecast(ForecastJobRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ForecastJobRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<ForecastResponse> forecast(ForecastRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, ForecastRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -750,9 +716,9 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ForecastJobResponse> forecast(
-			Function<ForecastJobRequest.Builder, ObjectBuilder<ForecastJobRequest>> fn) throws IOException {
-		return forecast(fn.apply(new ForecastJobRequest.Builder()).build());
+	public final CompletableFuture<ForecastResponse> forecast(
+			Function<ForecastRequest.Builder, ObjectBuilder<ForecastRequest>> fn) throws IOException {
+		return forecast(fn.apply(new ForecastRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_buckets
@@ -1210,9 +1176,8 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetAnomalyRecordsResponse> getRecords(GetAnomalyRecordsRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, GetAnomalyRecordsRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<GetRecordsResponse> getRecords(GetRecordsRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, GetRecordsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -1227,9 +1192,9 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetAnomalyRecordsResponse> getRecords(
-			Function<GetAnomalyRecordsRequest.Builder, ObjectBuilder<GetAnomalyRecordsRequest>> fn) throws IOException {
-		return getRecords(fn.apply(new GetAnomalyRecordsRequest.Builder()).build());
+	public final CompletableFuture<GetRecordsResponse> getRecords(
+			Function<GetRecordsRequest.Builder, ObjectBuilder<GetRecordsRequest>> fn) throws IOException {
+		return getRecords(fn.apply(new GetRecordsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.get_trained_models
@@ -1384,8 +1349,8 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostJobDataResponse> postData(PostJobDataRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PostJobDataRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<PostDataResponse> postData(PostDataRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, PostDataRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -1400,9 +1365,9 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PostJobDataResponse> postData(
-			Function<PostJobDataRequest.Builder, ObjectBuilder<PostJobDataRequest>> fn) throws IOException {
-		return postData(fn.apply(new PostJobDataRequest.Builder()).build());
+	public final CompletableFuture<PostDataResponse> postData(
+			Function<PostDataRequest.Builder, ObjectBuilder<PostDataRequest>> fn) throws IOException {
+		return postData(fn.apply(new PostDataRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.preview_data_frame_analytics
@@ -1727,6 +1692,37 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 			Function<PutTrainedModelAliasRequest.Builder, ObjectBuilder<PutTrainedModelAliasRequest>> fn)
 			throws IOException {
 		return putTrainedModelAlias(fn.apply(new PutTrainedModelAliasRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: ml.reset_job
+
+	/**
+	 * Resets an existing anomaly detection job.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-reset-job.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ResetJobResponse> resetJob(ResetJobRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, ResetJobRequest.ENDPOINT, this.requestOptions);
+	}
+
+	/**
+	 * Resets an existing anomaly detection job.
+	 * 
+	 * @param fn
+	 *            a function that initializes a freshly created builder. This
+	 *            function can either return its builder argument after having set
+	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-reset-job.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<ResetJobResponse> resetJob(
+			Function<ResetJobRequest.Builder, ObjectBuilder<ResetJobRequest>> fn) throws IOException {
+		return resetJob(fn.apply(new ResetJobRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.revert_model_snapshot
@@ -2096,8 +2092,8 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ValidateJobResponse> validate(ValidateJobRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ValidateJobRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<ValidateResponse> validate(ValidateRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, ValidateRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -2112,9 +2108,9 @@ public class MlAsyncClient extends ApiClient<MlAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ValidateJobResponse> validate(
-			Function<ValidateJobRequest.Builder, ObjectBuilder<ValidateJobRequest>> fn) throws IOException {
-		return validate(fn.apply(new ValidateJobRequest.Builder()).build());
+	public final CompletableFuture<ValidateResponse> validate(
+			Function<ValidateRequest.Builder, ObjectBuilder<ValidateRequest>> fn) throws IOException {
+		return validate(fn.apply(new ValidateRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.validate_detector

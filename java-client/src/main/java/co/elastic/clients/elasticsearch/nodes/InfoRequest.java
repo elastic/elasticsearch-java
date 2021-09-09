@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: nodes.info.Request
 public final class InfoRequest extends RequestBase {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final List<String> metric;
@@ -77,7 +77,7 @@ public final class InfoRequest extends RequestBase {
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
@@ -131,7 +131,7 @@ public final class InfoRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<InfoRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
 		private List<String> metric;
@@ -150,8 +150,29 @@ public final class InfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
 			return this;
 		}
 
@@ -265,7 +286,7 @@ public final class InfoRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
 				if (propsSet == (_metric)) {
@@ -279,7 +300,7 @@ public final class InfoRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/");
 					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();

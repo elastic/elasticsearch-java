@@ -64,6 +64,8 @@ public final class CloseJobRequest extends RequestBase {
 	}
 
 	/**
+	 * The name of the job to close
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -71,6 +73,9 @@ public final class CloseJobRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+	 * <code>_all</code> string or when no jobs have been specified)
+	 * <p>
 	 * API name: {@code allow_no_jobs}
 	 */
 	@Nullable
@@ -79,6 +84,8 @@ public final class CloseJobRequest extends RequestBase {
 	}
 
 	/**
+	 * True if the job should be forcefully closed
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -87,6 +94,8 @@ public final class CloseJobRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait until a job has closed. Default to 30 minutes
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -112,6 +121,8 @@ public final class CloseJobRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * The name of the job to close
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -120,6 +131,9 @@ public final class CloseJobRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
+		 * <p>
 		 * API name: {@code allow_no_jobs}
 		 */
 		public Builder allowNoJobs(@Nullable Boolean value) {
@@ -128,6 +142,8 @@ public final class CloseJobRequest extends RequestBase {
 		}
 
 		/**
+		 * True if the job should be forcefully closed
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -136,6 +152,8 @@ public final class CloseJobRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait until a job has closed. Default to 30 minutes
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

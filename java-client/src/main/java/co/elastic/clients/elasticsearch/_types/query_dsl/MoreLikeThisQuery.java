@@ -39,6 +39,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MoreLikeThisQuery
@@ -50,12 +51,14 @@ public final class MoreLikeThisQuery extends QueryBase {
 	private final Number boostTerms;
 
 	@Nullable
+	private final Boolean failOnUnsupportedField;
+
+	@Nullable
 	private final List<String> fields;
 
 	@Nullable
 	private final Boolean include;
 
-	@Nullable
 	private final List<JsonValue> like;
 
 	@Nullable
@@ -83,7 +86,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	private final Map<String, String> perFieldAnalyzer;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final List<String> stopWords;
@@ -103,9 +106,10 @@ public final class MoreLikeThisQuery extends QueryBase {
 		super(builder);
 		this.analyzer = builder.analyzer;
 		this.boostTerms = builder.boostTerms;
+		this.failOnUnsupportedField = builder.failOnUnsupportedField;
 		this.fields = builder.fields;
 		this.include = builder.include;
-		this.like = builder.like;
+		this.like = Objects.requireNonNull(builder.like, "like");
 		this.maxDocFreq = builder.maxDocFreq;
 		this.maxQueryTerms = builder.maxQueryTerms;
 		this.maxWordLength = builder.maxWordLength;
@@ -139,6 +143,14 @@ public final class MoreLikeThisQuery extends QueryBase {
 	}
 
 	/**
+	 * API name: {@code fail_on_unsupported_field}
+	 */
+	@Nullable
+	public Boolean failOnUnsupportedField() {
+		return this.failOnUnsupportedField;
+	}
+
+	/**
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -157,7 +169,6 @@ public final class MoreLikeThisQuery extends QueryBase {
 	/**
 	 * API name: {@code like}
 	 */
-	@Nullable
 	public List<JsonValue> like() {
 		return this.like;
 	}
@@ -230,7 +241,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -280,6 +291,12 @@ public final class MoreLikeThisQuery extends QueryBase {
 			generator.write(this.boostTerms.doubleValue());
 
 		}
+		if (this.failOnUnsupportedField != null) {
+
+			generator.writeKey("fail_on_unsupported_field");
+			generator.write(this.failOnUnsupportedField);
+
+		}
 		if (this.fields != null) {
 
 			generator.writeKey("fields");
@@ -297,17 +314,15 @@ public final class MoreLikeThisQuery extends QueryBase {
 			generator.write(this.include);
 
 		}
-		if (this.like != null) {
 
-			generator.writeKey("like");
-			generator.writeStartArray();
-			for (JsonValue item0 : this.like) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+		generator.writeKey("like");
+		generator.writeStartArray();
+		for (JsonValue item0 : this.like) {
+			generator.write(item0);
 
 		}
+		generator.writeEnd();
+
 		if (this.maxDocFreq != null) {
 
 			generator.writeKey("max_doc_freq");
@@ -418,12 +433,14 @@ public final class MoreLikeThisQuery extends QueryBase {
 		private Number boostTerms;
 
 		@Nullable
+		private Boolean failOnUnsupportedField;
+
+		@Nullable
 		private List<String> fields;
 
 		@Nullable
 		private Boolean include;
 
-		@Nullable
 		private List<JsonValue> like;
 
 		@Nullable
@@ -451,7 +468,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		private Map<String, String> perFieldAnalyzer;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private List<String> stopWords;
@@ -478,6 +495,14 @@ public final class MoreLikeThisQuery extends QueryBase {
 		 */
 		public Builder boostTerms(@Nullable Number value) {
 			this.boostTerms = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fail_on_unsupported_field}
+		 */
+		public Builder failOnUnsupportedField(@Nullable Boolean value) {
+			this.failOnUnsupportedField = value;
 			return this;
 		}
 
@@ -519,7 +544,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code like}
 		 */
-		public Builder like(@Nullable List<JsonValue> value) {
+		public Builder like(List<JsonValue> value) {
 			this.like = value;
 			return this;
 		}
@@ -622,7 +647,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -726,6 +751,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::boostTerms, JsonpDeserializer.numberDeserializer(), "boost_terms");
+		op.add(Builder::failOnUnsupportedField, JsonpDeserializer.booleanDeserializer(), "fail_on_unsupported_field");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::include, JsonpDeserializer.booleanDeserializer(), "include");
 		op.add(Builder::like, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "like");
@@ -738,7 +764,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		op.add(Builder::minWordLength, JsonpDeserializer.numberDeserializer(), "min_word_length");
 		op.add(Builder::perFieldAnalyzer,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "per_field_analyzer");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::stopWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stop_words");
 		op.add(Builder::unlike, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),

@@ -31,10 +31,6 @@ import co.elastic.clients.elasticsearch.cat.AllocationRequest;
 import co.elastic.clients.elasticsearch.cat.AllocationResponse;
 import co.elastic.clients.elasticsearch.cat.CountRequest;
 import co.elastic.clients.elasticsearch.cat.CountResponse;
-import co.elastic.clients.elasticsearch.cat.DataFrameAnalyticsRequest;
-import co.elastic.clients.elasticsearch.cat.DataFrameAnalyticsResponse;
-import co.elastic.clients.elasticsearch.cat.DatafeedsRequest;
-import co.elastic.clients.elasticsearch.cat.DatafeedsResponse;
 import co.elastic.clients.elasticsearch.cat.FielddataRequest;
 import co.elastic.clients.elasticsearch.cat.FielddataResponse;
 import co.elastic.clients.elasticsearch.cat.HealthRequest;
@@ -43,12 +39,18 @@ import co.elastic.clients.elasticsearch.cat.HelpRequest;
 import co.elastic.clients.elasticsearch.cat.HelpResponse;
 import co.elastic.clients.elasticsearch.cat.IndicesRequest;
 import co.elastic.clients.elasticsearch.cat.IndicesResponse;
-import co.elastic.clients.elasticsearch.cat.JobsRequest;
-import co.elastic.clients.elasticsearch.cat.JobsResponse;
 import co.elastic.clients.elasticsearch.cat.MasterRequest;
 import co.elastic.clients.elasticsearch.cat.MasterResponse;
-import co.elastic.clients.elasticsearch.cat.NodeAttributesRequest;
-import co.elastic.clients.elasticsearch.cat.NodeAttributesResponse;
+import co.elastic.clients.elasticsearch.cat.MlDataFrameAnalyticsRequest;
+import co.elastic.clients.elasticsearch.cat.MlDataFrameAnalyticsResponse;
+import co.elastic.clients.elasticsearch.cat.MlDatafeedsRequest;
+import co.elastic.clients.elasticsearch.cat.MlDatafeedsResponse;
+import co.elastic.clients.elasticsearch.cat.MlJobsRequest;
+import co.elastic.clients.elasticsearch.cat.MlJobsResponse;
+import co.elastic.clients.elasticsearch.cat.MlTrainedModelsRequest;
+import co.elastic.clients.elasticsearch.cat.MlTrainedModelsResponse;
+import co.elastic.clients.elasticsearch.cat.NodeattrsRequest;
+import co.elastic.clients.elasticsearch.cat.NodeattrsResponse;
 import co.elastic.clients.elasticsearch.cat.NodesRequest;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.cat.PendingTasksRequest;
@@ -71,8 +73,6 @@ import co.elastic.clients.elasticsearch.cat.TemplatesRequest;
 import co.elastic.clients.elasticsearch.cat.TemplatesResponse;
 import co.elastic.clients.elasticsearch.cat.ThreadPoolRequest;
 import co.elastic.clients.elasticsearch.cat.ThreadPoolResponse;
-import co.elastic.clients.elasticsearch.cat.TrainedModelsRequest;
-import co.elastic.clients.elasticsearch.cat.TrainedModelsResponse;
 import co.elastic.clients.elasticsearch.cat.TransformsRequest;
 import co.elastic.clients.elasticsearch.cat.TransformsResponse;
 import co.elastic.clients.util.ObjectBuilder;
@@ -327,9 +327,9 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DataFrameAnalyticsResponse> mlDataFrameAnalytics(DataFrameAnalyticsRequest request)
+	public CompletableFuture<MlDataFrameAnalyticsResponse> mlDataFrameAnalytics(MlDataFrameAnalyticsRequest request)
 			throws IOException {
-		return this.transport.performRequestAsync(request, DataFrameAnalyticsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, MlDataFrameAnalyticsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -344,10 +344,10 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DataFrameAnalyticsResponse> mlDataFrameAnalytics(
-			Function<DataFrameAnalyticsRequest.Builder, ObjectBuilder<DataFrameAnalyticsRequest>> fn)
+	public final CompletableFuture<MlDataFrameAnalyticsResponse> mlDataFrameAnalytics(
+			Function<MlDataFrameAnalyticsRequest.Builder, ObjectBuilder<MlDataFrameAnalyticsRequest>> fn)
 			throws IOException {
-		return mlDataFrameAnalytics(fn.apply(new DataFrameAnalyticsRequest.Builder()).build());
+		return mlDataFrameAnalytics(fn.apply(new MlDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cat.ml_datafeeds
@@ -360,8 +360,8 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DatafeedsResponse> mlDatafeeds(DatafeedsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DatafeedsRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<MlDatafeedsResponse> mlDatafeeds(MlDatafeedsRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, MlDatafeedsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -376,9 +376,9 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DatafeedsResponse> mlDatafeeds(
-			Function<DatafeedsRequest.Builder, ObjectBuilder<DatafeedsRequest>> fn) throws IOException {
-		return mlDatafeeds(fn.apply(new DatafeedsRequest.Builder()).build());
+	public final CompletableFuture<MlDatafeedsResponse> mlDatafeeds(
+			Function<MlDatafeedsRequest.Builder, ObjectBuilder<MlDatafeedsRequest>> fn) throws IOException {
+		return mlDatafeeds(fn.apply(new MlDatafeedsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cat.ml_jobs
@@ -391,8 +391,8 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<JobsResponse> mlJobs(JobsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, JobsRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<MlJobsResponse> mlJobs(MlJobsRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, MlJobsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -407,9 +407,9 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<JobsResponse> mlJobs(Function<JobsRequest.Builder, ObjectBuilder<JobsRequest>> fn)
-			throws IOException {
-		return mlJobs(fn.apply(new JobsRequest.Builder()).build());
+	public final CompletableFuture<MlJobsResponse> mlJobs(
+			Function<MlJobsRequest.Builder, ObjectBuilder<MlJobsRequest>> fn) throws IOException {
+		return mlJobs(fn.apply(new MlJobsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cat.ml_trained_models
@@ -422,8 +422,9 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TrainedModelsResponse> mlTrainedModels(TrainedModelsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, TrainedModelsRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<MlTrainedModelsResponse> mlTrainedModels(MlTrainedModelsRequest request)
+			throws IOException {
+		return this.transport.performRequestAsync(request, MlTrainedModelsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -438,9 +439,9 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<TrainedModelsResponse> mlTrainedModels(
-			Function<TrainedModelsRequest.Builder, ObjectBuilder<TrainedModelsRequest>> fn) throws IOException {
-		return mlTrainedModels(fn.apply(new TrainedModelsRequest.Builder()).build());
+	public final CompletableFuture<MlTrainedModelsResponse> mlTrainedModels(
+			Function<MlTrainedModelsRequest.Builder, ObjectBuilder<MlTrainedModelsRequest>> fn) throws IOException {
+		return mlTrainedModels(fn.apply(new MlTrainedModelsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cat.nodeattrs
@@ -452,8 +453,8 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<NodeAttributesResponse> nodeattrs() throws IOException {
-		return this.transport.performRequestAsync(NodeAttributesRequest.INSTANCE, NodeAttributesRequest.ENDPOINT,
+	public CompletableFuture<NodeattrsResponse> nodeattrs() throws IOException {
+		return this.transport.performRequestAsync(NodeattrsRequest.INSTANCE, NodeattrsRequest.ENDPOINT,
 				this.requestOptions);
 	}
 

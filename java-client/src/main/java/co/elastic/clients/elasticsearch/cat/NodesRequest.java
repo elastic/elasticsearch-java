@@ -53,6 +53,8 @@ public final class NodesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
@@ -61,6 +63,8 @@ public final class NodesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Return the full node ID instead of the shortened version (default: false)
+	 * <p>
 	 * API name: {@code full_id}
 	 */
 	@Nullable
@@ -81,6 +85,8 @@ public final class NodesRequest extends CatRequestBase {
 		private JsonValue fullId;
 
 		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
 		public Builder bytes(@Nullable JsonValue value) {
@@ -89,6 +95,8 @@ public final class NodesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Return the full node ID instead of the shortened version (default: false)
+		 * <p>
 		 * API name: {@code full_id}
 		 */
 		public Builder fullId(@Nullable JsonValue value) {

@@ -55,6 +55,9 @@ public final class GetDataStreamRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of data streams to get; use <code>*</code> to get all
+	 * data streams
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -63,6 +66,9 @@ public final class GetDataStreamRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether wildcard expressions should get expanded to open or closed indices
+	 * (default: open)
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -83,6 +89,9 @@ public final class GetDataStreamRequest extends RequestBase {
 		private JsonValue expandWildcards;
 
 		/**
+		 * A comma-separated list of data streams to get; use <code>*</code> to get all
+		 * data streams
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -91,6 +100,9 @@ public final class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * (default: open)
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {

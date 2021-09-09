@@ -65,6 +65,7 @@ public final class TrainedModelConfig implements ToJsonp {
 	@Nullable
 	private final Map<String, String> defaultFieldMap;
 
+	@Nullable
 	private final String description;
 
 	@Nullable
@@ -94,7 +95,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		this.createdBy = builder.createdBy;
 		this.createTime = builder.createTime;
 		this.defaultFieldMap = builder.defaultFieldMap;
-		this.description = Objects.requireNonNull(builder.description, "description");
+		this.description = builder.description;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.estimatedOperations = builder.estimatedOperations;
 		this.inferenceConfig = Objects.requireNonNull(builder.inferenceConfig, "inference_config");
@@ -176,6 +177,7 @@ public final class TrainedModelConfig implements ToJsonp {
 	 * <p>
 	 * API name: {@code description}
 	 */
+	@Nullable
 	public String description() {
 		return this.description;
 	}
@@ -299,10 +301,12 @@ public final class TrainedModelConfig implements ToJsonp {
 			generator.writeEnd();
 
 		}
+		if (this.description != null) {
 
-		generator.writeKey("description");
-		generator.write(this.description);
+			generator.writeKey("description");
+			generator.write(this.description);
 
+		}
 		if (this.estimatedHeapMemoryUsageBytes != null) {
 
 			generator.writeKey("estimated_heap_memory_usage_bytes");
@@ -362,6 +366,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		@Nullable
 		private Map<String, String> defaultFieldMap;
 
+		@Nullable
 		private String description;
 
 		@Nullable
@@ -487,7 +492,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}

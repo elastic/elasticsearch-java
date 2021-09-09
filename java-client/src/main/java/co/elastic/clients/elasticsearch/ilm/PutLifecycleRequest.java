@@ -36,39 +36,28 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ilm.put_lifecycle.Request
 public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
-	@Nullable
 	private final String policy;
-
-	@Nullable
-	private final String policyId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected PutLifecycleRequest(Builder builder) {
 
-		this.policy = builder.policy;
-		this.policyId = builder.policyId;
+		this.policy = Objects.requireNonNull(builder.policy, "policy");
 
 	}
 
 	/**
+	 * The name of the index lifecycle policy
+	 * <p>
 	 * API name: {@code policy}
 	 */
-	@Nullable
 	public String policy() {
 		return this.policy;
-	}
-
-	/**
-	 * API name: {@code policy_id}
-	 */
-	@Nullable
-	public String policyId() {
-		return this.policyId;
 	}
 
 	/**
@@ -90,25 +79,15 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutLifecycleRequest> {
-		@Nullable
 		private String policy;
 
-		@Nullable
-		private String policyId;
-
 		/**
+		 * The name of the index lifecycle policy
+		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder policy(@Nullable String value) {
+		public Builder policy(String value) {
 			this.policy = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code policy_id}
-		 */
-		public Builder policyId(@Nullable String value) {
-			this.policyId = value;
 			return this;
 		}
 
@@ -151,14 +130,11 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 			// Request path
 			request -> {
 				final int _policy = 1 << 0;
-				final int _policyId = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.policy() != null)
 					propsSet |= _policy;
-				if (request.policyId() != null)
-					propsSet |= _policyId;
 
 				if (propsSet == (_policy)) {
 					StringBuilder buf = new StringBuilder();

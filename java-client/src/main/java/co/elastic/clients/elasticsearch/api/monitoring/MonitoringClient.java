@@ -56,7 +56,7 @@ public class MonitoringClient extends ApiClient<MonitoringClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public BulkResponse bulk(BulkRequest request) throws IOException {
+	public <TSource> BulkResponse bulk(BulkRequest<TSource> request) throws IOException {
 		return this.transport.performRequest(request, BulkRequest.ENDPOINT, this.requestOptions);
 	}
 
@@ -72,8 +72,9 @@ public class MonitoringClient extends ApiClient<MonitoringClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn) throws IOException {
-		return bulk(fn.apply(new BulkRequest.Builder()).build());
+	public final <TSource> BulkResponse bulk(
+			Function<BulkRequest.Builder<TSource>, ObjectBuilder<BulkRequest<TSource>>> fn) throws IOException {
+		return bulk(fn.apply(new BulkRequest.Builder<TSource>()).build());
 	}
 
 	// ----- Misc

@@ -31,27 +31,30 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: features.reset_features.Response
 public final class ResetFeaturesResponse implements ToJsonp {
-	private final Number stub;
+	private final List<Feature> features;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ResetFeaturesResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.features = Objects.requireNonNull(builder.features, "features");
 
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * API name: {@code features}
 	 */
-	public Number stub() {
-		return this.stub;
+	public List<Feature> features() {
+		return this.features;
 	}
 
 	/**
@@ -65,8 +68,13 @@ public final class ResetFeaturesResponse implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+		generator.writeKey("features");
+		generator.writeStartArray();
+		for (Feature item0 : this.features) {
+			item0.toJsonp(generator, mapper);
+
+		}
+		generator.writeEnd();
 
 	}
 
@@ -76,14 +84,47 @@ public final class ResetFeaturesResponse implements ToJsonp {
 	 * Builder for {@link ResetFeaturesResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<ResetFeaturesResponse> {
-		private Number stub;
+		private List<Feature> features;
 
 		/**
-		 * API name: {@code stub}
+		 * API name: {@code features}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder features(List<Feature> value) {
+			this.features = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code features}
+		 */
+		public Builder features(Feature... value) {
+			this.features = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #features(List)}, creating the list if needed.
+		 */
+		public Builder addFeatures(Feature value) {
+			if (this.features == null) {
+				this.features = new ArrayList<>();
+			}
+			this.features.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #features(List)} to a singleton list.
+		 */
+		public Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.features(fn.apply(new Feature.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #features(List)}, creating the list if needed.
+		 */
+		public Builder addFeatures(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.addFeatures(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -109,7 +150,7 @@ public final class ResetFeaturesResponse implements ToJsonp {
 	protected static void setupResetFeaturesResponseDeserializer(
 			DelegatingDeserializer<ResetFeaturesResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		op.add(Builder::features, JsonpDeserializer.arrayDeserializer(Feature.DESERIALIZER), "features");
 
 	}
 

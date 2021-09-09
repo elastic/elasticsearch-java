@@ -24,13 +24,12 @@
 package co.elastic.clients.elasticsearch.api.logstash;
 
 import co.elastic.clients.base.ApiClient;
+import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.logstash.PipelineDeleteRequest;
-import co.elastic.clients.elasticsearch.logstash.PipelineDeleteResponse;
-import co.elastic.clients.elasticsearch.logstash.PipelineGetRequest;
-import co.elastic.clients.elasticsearch.logstash.PipelineGetResponse;
-import co.elastic.clients.elasticsearch.logstash.PipelinePutRequest;
-import co.elastic.clients.elasticsearch.logstash.PipelinePutResponse;
+import co.elastic.clients.elasticsearch.logstash.DeletePipelineRequest;
+import co.elastic.clients.elasticsearch.logstash.GetPipelineRequest;
+import co.elastic.clients.elasticsearch.logstash.GetPipelineResponse;
+import co.elastic.clients.elasticsearch.logstash.PutPipelineRequest;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -60,8 +59,8 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public PipelineDeleteResponse deletePipeline(PipelineDeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, PipelineDeleteRequest.ENDPOINT, this.requestOptions);
+	public BooleanResponse deletePipeline(DeletePipelineRequest request) throws IOException {
+		return this.transport.performRequest(request, DeletePipelineRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -76,9 +75,9 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final PipelineDeleteResponse deletePipeline(
-			Function<PipelineDeleteRequest.Builder, ObjectBuilder<PipelineDeleteRequest>> fn) throws IOException {
-		return deletePipeline(fn.apply(new PipelineDeleteRequest.Builder()).build());
+	public final BooleanResponse deletePipeline(
+			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn) throws IOException {
+		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: logstash.get_pipeline
@@ -91,8 +90,8 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public PipelineGetResponse getPipeline(PipelineGetRequest request) throws IOException {
-		return this.transport.performRequest(request, PipelineGetRequest.ENDPOINT, this.requestOptions);
+	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException {
+		return this.transport.performRequest(request, GetPipelineRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -107,9 +106,9 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final PipelineGetResponse getPipeline(
-			Function<PipelineGetRequest.Builder, ObjectBuilder<PipelineGetRequest>> fn) throws IOException {
-		return getPipeline(fn.apply(new PipelineGetRequest.Builder()).build());
+	public final GetPipelineResponse getPipeline(
+			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn) throws IOException {
+		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: logstash.put_pipeline
@@ -122,8 +121,8 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public PipelinePutResponse putPipeline(PipelinePutRequest request) throws IOException {
-		return this.transport.performRequest(request, PipelinePutRequest.ENDPOINT, this.requestOptions);
+	public BooleanResponse putPipeline(PutPipelineRequest request) throws IOException {
+		return this.transport.performRequest(request, PutPipelineRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -138,9 +137,9 @@ public class LogstashClient extends ApiClient<LogstashClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final PipelinePutResponse putPipeline(
-			Function<PipelinePutRequest.Builder, ObjectBuilder<PipelinePutRequest>> fn) throws IOException {
-		return putPipeline(fn.apply(new PipelinePutRequest.Builder()).build());
+	public final BooleanResponse putPipeline(Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
+			throws IOException {
+		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 
 	// ----- Misc

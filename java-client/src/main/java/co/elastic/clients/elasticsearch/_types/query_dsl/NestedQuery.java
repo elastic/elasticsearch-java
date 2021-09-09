@@ -34,6 +34,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -45,10 +46,8 @@ public final class NestedQuery extends QueryBase {
 	@Nullable
 	private final InnerHits innerHits;
 
-	@Nullable
 	private final String path;
 
-	@Nullable
 	private final QueryContainer query;
 
 	@Nullable
@@ -60,8 +59,8 @@ public final class NestedQuery extends QueryBase {
 		super(builder);
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
-		this.path = builder.path;
-		this.query = builder.query;
+		this.path = Objects.requireNonNull(builder.path, "path");
+		this.query = Objects.requireNonNull(builder.query, "query");
 		this.scoreMode = builder.scoreMode;
 
 	}
@@ -85,7 +84,6 @@ public final class NestedQuery extends QueryBase {
 	/**
 	 * API name: {@code path}
 	 */
-	@Nullable
 	public String path() {
 		return this.path;
 	}
@@ -93,7 +91,6 @@ public final class NestedQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	@Nullable
 	public QueryContainer query() {
 		return this.query;
 	}
@@ -120,18 +117,13 @@ public final class NestedQuery extends QueryBase {
 			this.innerHits.toJsonp(generator, mapper);
 
 		}
-		if (this.path != null) {
 
-			generator.writeKey("path");
-			generator.write(this.path);
+		generator.writeKey("path");
+		generator.write(this.path);
 
-		}
-		if (this.query != null) {
+		generator.writeKey("query");
+		this.query.toJsonp(generator, mapper);
 
-			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
-
-		}
 		if (this.scoreMode != null) {
 
 			generator.writeKey("score_mode");
@@ -153,10 +145,8 @@ public final class NestedQuery extends QueryBase {
 		@Nullable
 		private InnerHits innerHits;
 
-		@Nullable
 		private String path;
 
-		@Nullable
 		private QueryContainer query;
 
 		@Nullable
@@ -188,7 +178,7 @@ public final class NestedQuery extends QueryBase {
 		/**
 		 * API name: {@code path}
 		 */
-		public Builder path(@Nullable String value) {
+		public Builder path(String value) {
 			this.path = value;
 			return this;
 		}
@@ -196,7 +186,7 @@ public final class NestedQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(QueryContainer value) {
 			this.query = value;
 			return this;
 		}

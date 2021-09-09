@@ -57,6 +57,8 @@ public final class OpenJobRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The ID of the job to open
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -103,6 +105,8 @@ public final class OpenJobRequest extends RequestBase implements ToJsonp {
 		private JsonValue timeout;
 
 		/**
+		 * The ID of the job to open
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {

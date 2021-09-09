@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.api.migration;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.migration.DeprecationInfoRequest;
-import co.elastic.clients.elasticsearch.migration.DeprecationInfoResponse;
+import co.elastic.clients.elasticsearch.migration.DeprecationsRequest;
+import co.elastic.clients.elasticsearch.migration.DeprecationsResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -58,8 +58,8 @@ public class MigrationClient extends ApiClient<MigrationClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public DeprecationInfoResponse deprecations(DeprecationInfoRequest request) throws IOException {
-		return this.transport.performRequest(request, DeprecationInfoRequest.ENDPOINT, this.requestOptions);
+	public DeprecationsResponse deprecations(DeprecationsRequest request) throws IOException {
+		return this.transport.performRequest(request, DeprecationsRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -76,9 +76,9 @@ public class MigrationClient extends ApiClient<MigrationClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final DeprecationInfoResponse deprecations(
-			Function<DeprecationInfoRequest.Builder, ObjectBuilder<DeprecationInfoRequest>> fn) throws IOException {
-		return deprecations(fn.apply(new DeprecationInfoRequest.Builder()).build());
+	public final DeprecationsResponse deprecations(
+			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn) throws IOException {
+		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
 	}
 
 	// ----- Misc

@@ -55,6 +55,8 @@ public final class DeleteTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * The id of the transform to delete
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	public String transformId() {
@@ -62,6 +64,10 @@ public final class DeleteTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * When <code>true</code>, the transform is deleted regardless of its current
+	 * state. The default value is <code>false</code>, meaning that the transform
+	 * must be <code>stopped</code> before it can be deleted.
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -81,6 +87,8 @@ public final class DeleteTransformRequest extends RequestBase {
 		private Boolean force;
 
 		/**
+		 * The id of the transform to delete
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(String value) {
@@ -89,6 +97,10 @@ public final class DeleteTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * When <code>true</code>, the transform is deleted regardless of its current
+		 * state. The default value is <code>false</code>, meaning that the transform
+		 * must be <code>stopped</code> before it can be deleted.
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {

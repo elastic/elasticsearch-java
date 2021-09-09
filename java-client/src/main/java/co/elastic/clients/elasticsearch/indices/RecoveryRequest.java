@@ -63,6 +63,9 @@ public final class RecoveryRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -71,6 +74,8 @@ public final class RecoveryRequest extends RequestBase {
 	}
 
 	/**
+	 * Display only those recoveries that are currently on-going
+	 * <p>
 	 * API name: {@code active_only}
 	 */
 	@Nullable
@@ -79,6 +84,8 @@ public final class RecoveryRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to display detailed information about shard recovery
+	 * <p>
 	 * API name: {@code detailed}
 	 */
 	@Nullable
@@ -102,6 +109,9 @@ public final class RecoveryRequest extends RequestBase {
 		private Boolean detailed;
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -110,6 +120,9 @@ public final class RecoveryRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -129,6 +142,8 @@ public final class RecoveryRequest extends RequestBase {
 		}
 
 		/**
+		 * Display only those recoveries that are currently on-going
+		 * <p>
 		 * API name: {@code active_only}
 		 */
 		public Builder activeOnly(@Nullable Boolean value) {
@@ -137,6 +152,8 @@ public final class RecoveryRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to display detailed information about shard recovery
+		 * <p>
 		 * API name: {@code detailed}
 		 */
 		public Builder detailed(@Nullable Boolean value) {

@@ -51,9 +51,6 @@ public class GetRequest extends RequestBase {
 	private final String index;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final String preference;
 
 	@Nullable
@@ -63,10 +60,10 @@ public class GetRequest extends RequestBase {
 	private final Boolean refresh;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
-	private final Boolean sourceEnabled;
+	private final JsonValue source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -83,27 +80,22 @@ public class GetRequest extends RequestBase {
 	@Nullable
 	private final JsonValue versionType;
 
-	@Nullable
-	private final JsonValue source;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected GetRequest(AbstractBuilder<?> builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.type = builder.type;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.sourceEnabled = builder.sourceEnabled;
+		this.source = builder.source;
 		this.sourceExcludes = builder.sourceExcludes;
 		this.sourceIncludes = builder.sourceIncludes;
 		this.storedFields = builder.storedFields;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
-		this.source = builder.source;
 
 	}
 
@@ -123,14 +115,6 @@ public class GetRequest extends RequestBase {
 	 */
 	public String index() {
 		return this.index;
-	}
-
-	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
 	}
 
 	/**
@@ -171,16 +155,19 @@ public class GetRequest extends RequestBase {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
-	 * API name: {@code source_enabled}
+	 * True or false to return the _source field or not, or a list of fields to
+	 * return.
+	 * <p>
+	 * API name: {@code _source}
 	 */
 	@Nullable
-	public Boolean sourceEnabled() {
-		return this.sourceEnabled;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
@@ -204,6 +191,8 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of stored fields to return in the response
+	 * <p>
 	 * API name: {@code stored_fields}
 	 */
 	@Nullable
@@ -230,17 +219,6 @@ public class GetRequest extends RequestBase {
 	@Nullable
 	public JsonValue versionType() {
 		return this.versionType;
-	}
-
-	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return.
-	 * <p>
-	 * API name: {@code _source}
-	 */
-	@Nullable
-	public JsonValue source() {
-		return this.source;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -272,9 +250,6 @@ public class GetRequest extends RequestBase {
 		private String index;
 
 		@Nullable
-		private String type;
-
-		@Nullable
 		private String preference;
 
 		@Nullable
@@ -284,10 +259,10 @@ public class GetRequest extends RequestBase {
 		private Boolean refresh;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
-		private Boolean sourceEnabled;
+		private JsonValue source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -303,9 +278,6 @@ public class GetRequest extends RequestBase {
 
 		@Nullable
 		private JsonValue versionType;
-
-		@Nullable
-		private JsonValue source;
 
 		/**
 		 * Unique identifier of the document.
@@ -324,14 +296,6 @@ public class GetRequest extends RequestBase {
 		 */
 		public BuilderT index(String value) {
 			this.index = value;
-			return self();
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public BuilderT type(@Nullable String value) {
-			this.type = value;
 			return self();
 		}
 
@@ -372,16 +336,19 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public BuilderT routing(@Nullable JsonValue value) {
+		public BuilderT routing(@Nullable String value) {
 			this.routing = value;
 			return self();
 		}
 
 		/**
-		 * API name: {@code source_enabled}
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return.
+		 * <p>
+		 * API name: {@code _source}
 		 */
-		public BuilderT sourceEnabled(@Nullable Boolean value) {
-			this.sourceEnabled = value;
+		public BuilderT source(@Nullable JsonValue value) {
+			this.source = value;
 			return self();
 		}
 
@@ -448,6 +415,8 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of stored fields to return in the response
+		 * <p>
 		 * API name: {@code stored_fields}
 		 */
 		public BuilderT storedFields(@Nullable List<String> value) {
@@ -456,6 +425,8 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of stored fields to return in the response
+		 * <p>
 		 * API name: {@code stored_fields}
 		 */
 		public BuilderT storedFields(String... value) {
@@ -495,17 +466,6 @@ public class GetRequest extends RequestBase {
 			return self();
 		}
 
-		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return.
-		 * <p>
-		 * API name: {@code _source}
-		 */
-		public BuilderT source(@Nullable JsonValue value) {
-			this.source = value;
-			return self();
-		}
-
 		protected abstract BuilderT self();
 
 	}
@@ -526,7 +486,6 @@ public class GetRequest extends RequestBase {
 			request -> {
 				final int _id = 1 << 0;
 				final int _index = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
@@ -534,24 +493,12 @@ public class GetRequest extends RequestBase {
 					propsSet |= _id;
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index);
 					buf.append("/_doc");
-					buf.append("/");
-					buf.append(request.id);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index);
-					buf.append("/");
-					buf.append(request.type);
 					buf.append("/");
 					buf.append(request.id);
 					return buf.toString();
@@ -573,10 +520,10 @@ public class GetRequest extends RequestBase {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
-				if (request.sourceEnabled != null) {
-					params.put("source_enabled", String.valueOf(request.sourceEnabled));
+				if (request.source != null) {
+					params.put("_source", request.source.toString());
 				}
 				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
@@ -595,9 +542,6 @@ public class GetRequest extends RequestBase {
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.toString());
-				}
-				if (request.source != null) {
-					params.put("_source", request.source.toString());
 				}
 				return params;
 

@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
@@ -82,6 +83,9 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 	@Nullable
 	private final String timeZone;
 
+	@Nullable
+	private final Boolean keyed;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected DateHistogramAggregation(Builder builder) {
@@ -100,6 +104,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		this.params = builder.params;
 		this.script = builder.script;
 		this.timeZone = builder.timeZone;
+		this.keyed = builder.keyed;
 
 	}
 
@@ -215,6 +220,14 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		return this.timeZone;
 	}
 
+	/**
+	 * API name: {@code keyed}
+	 */
+	@Nullable
+	public Boolean keyed() {
+		return this.keyed;
+	}
+
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
 		if (this.calendarInterval != null) {
@@ -307,6 +320,12 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 			generator.write(this.timeZone);
 
 		}
+		if (this.keyed != null) {
+
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
+
+		}
 
 	}
 
@@ -359,6 +378,9 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 
 		@Nullable
 		private String timeZone;
+
+		@Nullable
+		private Boolean keyed;
 
 		/**
 		 * API name: {@code calendar_interval}
@@ -506,6 +528,14 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 			return this;
 		}
 
+		/**
+		 * API name: {@code keyed}
+		 */
+		public Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -553,6 +583,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 				"params");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

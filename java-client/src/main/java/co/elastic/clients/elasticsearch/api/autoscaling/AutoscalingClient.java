@@ -25,14 +25,14 @@ package co.elastic.clients.elasticsearch.api.autoscaling;
 
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.autoscaling.CapacityGetRequest;
-import co.elastic.clients.elasticsearch.autoscaling.CapacityGetResponse;
-import co.elastic.clients.elasticsearch.autoscaling.PolicyDeleteRequest;
-import co.elastic.clients.elasticsearch.autoscaling.PolicyDeleteResponse;
-import co.elastic.clients.elasticsearch.autoscaling.PolicyGetRequest;
-import co.elastic.clients.elasticsearch.autoscaling.PolicyGetResponse;
-import co.elastic.clients.elasticsearch.autoscaling.PolicyPutRequest;
-import co.elastic.clients.elasticsearch.autoscaling.PolicyPutResponse;
+import co.elastic.clients.elasticsearch.autoscaling.DeleteAutoscalingPolicyRequest;
+import co.elastic.clients.elasticsearch.autoscaling.DeleteAutoscalingPolicyResponse;
+import co.elastic.clients.elasticsearch.autoscaling.GetAutoscalingCapacityRequest;
+import co.elastic.clients.elasticsearch.autoscaling.GetAutoscalingCapacityResponse;
+import co.elastic.clients.elasticsearch.autoscaling.GetAutoscalingPolicyRequest;
+import co.elastic.clients.elasticsearch.autoscaling.GetAutoscalingPolicyResponse;
+import co.elastic.clients.elasticsearch.autoscaling.PutAutoscalingPolicyRequest;
+import co.elastic.clients.elasticsearch.autoscaling.PutAutoscalingPolicyResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -63,8 +63,9 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public PolicyDeleteResponse deleteAutoscalingPolicy(PolicyDeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, PolicyDeleteRequest.ENDPOINT, this.requestOptions);
+	public DeleteAutoscalingPolicyResponse deleteAutoscalingPolicy(DeleteAutoscalingPolicyRequest request)
+			throws IOException {
+		return this.transport.performRequest(request, DeleteAutoscalingPolicyRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -80,9 +81,10 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final PolicyDeleteResponse deleteAutoscalingPolicy(
-			Function<PolicyDeleteRequest.Builder, ObjectBuilder<PolicyDeleteRequest>> fn) throws IOException {
-		return deleteAutoscalingPolicy(fn.apply(new PolicyDeleteRequest.Builder()).build());
+	public final DeleteAutoscalingPolicyResponse deleteAutoscalingPolicy(
+			Function<DeleteAutoscalingPolicyRequest.Builder, ObjectBuilder<DeleteAutoscalingPolicyRequest>> fn)
+			throws IOException {
+		return deleteAutoscalingPolicy(fn.apply(new DeleteAutoscalingPolicyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: autoscaling.get_autoscaling_capacity
@@ -96,28 +98,9 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public CapacityGetResponse getAutoscalingCapacity(CapacityGetRequest request) throws IOException {
-		return this.transport.performRequest(request, CapacityGetRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Gets the current autoscaling capacity based on the configured autoscaling
-	 * policy. Designed for indirect use by ECE/ESS and ECK. Direct use is not
-	 * supported.
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CapacityGetResponse getAutoscalingCapacity(
-			Function<CapacityGetRequest.Builder, ObjectBuilder<CapacityGetRequest>> fn) throws IOException {
-		return getAutoscalingCapacity(fn.apply(new CapacityGetRequest.Builder()).build());
+	public GetAutoscalingCapacityResponse getAutoscalingCapacity() throws IOException {
+		return this.transport.performRequest(GetAutoscalingCapacityRequest.INSTANCE,
+				GetAutoscalingCapacityRequest.ENDPOINT, this.requestOptions);
 	}
 
 	// ----- Endpoint: autoscaling.get_autoscaling_policy
@@ -131,8 +114,8 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public PolicyGetResponse getAutoscalingPolicy(PolicyGetRequest request) throws IOException {
-		return this.transport.performRequest(request, PolicyGetRequest.ENDPOINT, this.requestOptions);
+	public GetAutoscalingPolicyResponse getAutoscalingPolicy(GetAutoscalingPolicyRequest request) throws IOException {
+		return this.transport.performRequest(request, GetAutoscalingPolicyRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -148,9 +131,10 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final PolicyGetResponse getAutoscalingPolicy(
-			Function<PolicyGetRequest.Builder, ObjectBuilder<PolicyGetRequest>> fn) throws IOException {
-		return getAutoscalingPolicy(fn.apply(new PolicyGetRequest.Builder()).build());
+	public final GetAutoscalingPolicyResponse getAutoscalingPolicy(
+			Function<GetAutoscalingPolicyRequest.Builder, ObjectBuilder<GetAutoscalingPolicyRequest>> fn)
+			throws IOException {
+		return getAutoscalingPolicy(fn.apply(new GetAutoscalingPolicyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: autoscaling.put_autoscaling_policy
@@ -164,8 +148,8 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public PolicyPutResponse putAutoscalingPolicy(PolicyPutRequest request) throws IOException {
-		return this.transport.performRequest(request, PolicyPutRequest.ENDPOINT, this.requestOptions);
+	public PutAutoscalingPolicyResponse putAutoscalingPolicy(PutAutoscalingPolicyRequest request) throws IOException {
+		return this.transport.performRequest(request, PutAutoscalingPolicyRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -181,9 +165,10 @@ public class AutoscalingClient extends ApiClient<AutoscalingClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final PolicyPutResponse putAutoscalingPolicy(
-			Function<PolicyPutRequest.Builder, ObjectBuilder<PolicyPutRequest>> fn) throws IOException {
-		return putAutoscalingPolicy(fn.apply(new PolicyPutRequest.Builder()).build());
+	public final PutAutoscalingPolicyResponse putAutoscalingPolicy(
+			Function<PutAutoscalingPolicyRequest.Builder, ObjectBuilder<PutAutoscalingPolicyRequest>> fn)
+			throws IOException {
+		return putAutoscalingPolicy(fn.apply(new PutAutoscalingPolicyRequest.Builder()).build());
 	}
 
 	// ----- Misc

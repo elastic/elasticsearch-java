@@ -57,6 +57,8 @@ public final class AckWatchRequest extends RequestBase {
 	}
 
 	/**
+	 * Watch ID
+	 * <p>
 	 * API name: {@code watch_id}
 	 */
 	public String watchId() {
@@ -64,6 +66,8 @@ public final class AckWatchRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of the action ids to be acked
+	 * <p>
 	 * API name: {@code action_id}
 	 */
 	@Nullable
@@ -83,6 +87,8 @@ public final class AckWatchRequest extends RequestBase {
 		private List<String> actionId;
 
 		/**
+		 * Watch ID
+		 * <p>
 		 * API name: {@code watch_id}
 		 */
 		public Builder watchId(String value) {
@@ -91,6 +97,8 @@ public final class AckWatchRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of the action ids to be acked
+		 * <p>
 		 * API name: {@code action_id}
 		 */
 		public Builder actionId(@Nullable List<String> value) {
@@ -99,6 +107,8 @@ public final class AckWatchRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of the action ids to be acked
+		 * <p>
 		 * API name: {@code action_id}
 		 */
 		public Builder actionId(String... value) {

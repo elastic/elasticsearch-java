@@ -24,17 +24,17 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.AdditionalProperties;
-import co.elastic.clients.elasticsearch.cluster.remote_info.ClusterRemoteInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 
 // typedef: cluster.remote_info.Response
-public final class RemoteInfoResponse extends AdditionalProperties<String, ClusterRemoteInfo> {
+public final class RemoteInfoResponse extends AdditionalProperties<String, JsonValue> {
 	// ---------------------------------------------------------------------------------------------
 
 	protected RemoteInfoResponse(Builder builder) {
@@ -47,7 +47,7 @@ public final class RemoteInfoResponse extends AdditionalProperties<String, Clust
 	/**
 	 * Builder for {@link RemoteInfoResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, ClusterRemoteInfo, Builder>
+	public static class Builder extends AdditionalProperties.AbstractBuilder<String, JsonValue, Builder>
 			implements
 				ObjectBuilder<RemoteInfoResponse> {
 		@Override
@@ -79,7 +79,7 @@ public final class RemoteInfoResponse extends AdditionalProperties<String, Clust
 
 	protected static void setupRemoteInfoResponseDeserializer(DelegatingDeserializer<RemoteInfoResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				ClusterRemoteInfo.DESERIALIZER);
+				JsonpDeserializer.jsonValueDeserializer());
 
 	}
 

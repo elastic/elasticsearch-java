@@ -55,6 +55,8 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the data frame analytics to start
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -84,6 +86,8 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * The ID of the data frame analytics to start
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {

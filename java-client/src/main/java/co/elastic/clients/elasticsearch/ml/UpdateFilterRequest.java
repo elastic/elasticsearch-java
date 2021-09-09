@@ -67,6 +67,8 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The ID of the filter to update
+	 * <p>
 	 * API name: {@code filter_id}
 	 */
 	public String filterId() {
@@ -157,6 +159,8 @@ public final class UpdateFilterRequest extends RequestBase implements ToJsonp {
 		private List<String> removeItems;
 
 		/**
+		 * The ID of the filter to update
+		 * <p>
 		 * API name: {@code filter_id}
 		 */
 		public Builder filterId(String value) {

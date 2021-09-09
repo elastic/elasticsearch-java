@@ -52,6 +52,8 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * The trained model alias to delete
+	 * <p>
 	 * API name: {@code model_alias}
 	 */
 	public String modelAlias() {
@@ -59,6 +61,8 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * The trained model where the model alias is assigned
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	public String modelId() {
@@ -76,6 +80,8 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 		private String modelId;
 
 		/**
+		 * The trained model alias to delete
+		 * <p>
 		 * API name: {@code model_alias}
 		 */
 		public Builder modelAlias(String value) {
@@ -84,6 +90,8 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * The trained model where the model alias is assigned
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(String value) {

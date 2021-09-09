@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -52,13 +53,11 @@ public final class HasChildQuery extends QueryBase {
 	@Nullable
 	private final Number minChildren;
 
-	@Nullable
 	private final QueryContainer query;
 
 	@Nullable
 	private final JsonValue scoreMode;
 
-	@Nullable
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,9 +68,9 @@ public final class HasChildQuery extends QueryBase {
 		this.innerHits = builder.innerHits;
 		this.maxChildren = builder.maxChildren;
 		this.minChildren = builder.minChildren;
-		this.query = builder.query;
+		this.query = Objects.requireNonNull(builder.query, "query");
 		this.scoreMode = builder.scoreMode;
-		this.type = builder.type;
+		this.type = Objects.requireNonNull(builder.type, "type");
 
 	}
 
@@ -110,7 +109,6 @@ public final class HasChildQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	@Nullable
 	public QueryContainer query() {
 		return this.query;
 	}
@@ -126,7 +124,6 @@ public final class HasChildQuery extends QueryBase {
 	/**
 	 * API name: {@code type}
 	 */
-	@Nullable
 	public String type() {
 		return this.type;
 	}
@@ -157,24 +154,19 @@ public final class HasChildQuery extends QueryBase {
 			generator.write(this.minChildren.doubleValue());
 
 		}
-		if (this.query != null) {
 
-			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
+		generator.writeKey("query");
+		this.query.toJsonp(generator, mapper);
 
-		}
 		if (this.scoreMode != null) {
 
 			generator.writeKey("score_mode");
 			generator.write(this.scoreMode);
 
 		}
-		if (this.type != null) {
 
-			generator.writeKey("type");
-			generator.write(this.type);
-
-		}
+		generator.writeKey("type");
+		generator.write(this.type);
 
 	}
 
@@ -196,13 +188,11 @@ public final class HasChildQuery extends QueryBase {
 		@Nullable
 		private Number minChildren;
 
-		@Nullable
 		private QueryContainer query;
 
 		@Nullable
 		private JsonValue scoreMode;
 
-		@Nullable
 		private String type;
 
 		/**
@@ -247,7 +237,7 @@ public final class HasChildQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(QueryContainer value) {
 			this.query = value;
 			return this;
 		}
@@ -270,7 +260,7 @@ public final class HasChildQuery extends QueryBase {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public Builder type(String value) {
 			this.type = value;
 			return this;
 		}

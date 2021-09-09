@@ -61,6 +61,8 @@ public final class PutPolicyRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the enrich policy
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -124,6 +126,8 @@ public final class PutPolicyRequest extends RequestBase implements ToJsonp {
 		private Policy match;
 
 		/**
+		 * The name of the enrich policy
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {

@@ -98,6 +98,8 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * skips a number of categories
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -106,6 +108,8 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * specifies a max number of categories to get
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -199,6 +203,8 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * skips a number of categories
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Number value) {
@@ -207,6 +213,8 @@ public final class GetCategoriesRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * specifies a max number of categories to get
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Number value) {

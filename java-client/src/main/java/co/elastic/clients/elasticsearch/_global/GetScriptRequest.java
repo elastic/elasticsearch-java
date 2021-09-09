@@ -55,6 +55,8 @@ public final class GetScriptRequest extends RequestBase {
 	}
 
 	/**
+	 * Script ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -83,6 +85,8 @@ public final class GetScriptRequest extends RequestBase {
 		private JsonValue masterTimeout;
 
 		/**
+		 * Script ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {

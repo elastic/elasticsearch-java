@@ -50,7 +50,7 @@ public final class DataframeOutlierDetectionSummary implements ToJsonp {
 	private final Map<String, Number> recall;
 
 	@Nullable
-	private final Map<String, ConfusionMatrixTreshold> confusionMatrix;
+	private final Map<String, ConfusionMatrixThreshold> confusionMatrix;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -91,7 +91,7 @@ public final class DataframeOutlierDetectionSummary implements ToJsonp {
 	 * API name: {@code confusion_matrix}
 	 */
 	@Nullable
-	public Map<String, ConfusionMatrixTreshold> confusionMatrix() {
+	public Map<String, ConfusionMatrixThreshold> confusionMatrix() {
 		return this.confusionMatrix;
 	}
 
@@ -140,7 +140,7 @@ public final class DataframeOutlierDetectionSummary implements ToJsonp {
 
 			generator.writeKey("confusion_matrix");
 			generator.writeStartObject();
-			for (Map.Entry<String, ConfusionMatrixTreshold> item0 : this.confusionMatrix.entrySet()) {
+			for (Map.Entry<String, ConfusionMatrixThreshold> item0 : this.confusionMatrix.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().toJsonp(generator, mapper);
 
@@ -167,7 +167,7 @@ public final class DataframeOutlierDetectionSummary implements ToJsonp {
 		private Map<String, Number> recall;
 
 		@Nullable
-		private Map<String, ConfusionMatrixTreshold> confusionMatrix;
+		private Map<String, ConfusionMatrixThreshold> confusionMatrix;
 
 		/**
 		 * API name: {@code auc_roc}
@@ -226,7 +226,7 @@ public final class DataframeOutlierDetectionSummary implements ToJsonp {
 		/**
 		 * API name: {@code confusion_matrix}
 		 */
-		public Builder confusionMatrix(@Nullable Map<String, ConfusionMatrixTreshold> value) {
+		public Builder confusionMatrix(@Nullable Map<String, ConfusionMatrixThreshold> value) {
 			this.confusionMatrix = value;
 			return this;
 		}
@@ -234,7 +234,7 @@ public final class DataframeOutlierDetectionSummary implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #confusionMatrix(Map)}, creating the map if needed.
 		 */
-		public Builder putConfusionMatrix(String key, ConfusionMatrixTreshold value) {
+		public Builder putConfusionMatrix(String key, ConfusionMatrixThreshold value) {
 			if (this.confusionMatrix == null) {
 				this.confusionMatrix = new HashMap<>();
 			}
@@ -246,17 +246,17 @@ public final class DataframeOutlierDetectionSummary implements ToJsonp {
 		 * Set {@link #confusionMatrix(Map)} to a singleton map.
 		 */
 		public Builder confusionMatrix(String key,
-				Function<ConfusionMatrixTreshold.Builder, ObjectBuilder<ConfusionMatrixTreshold>> fn) {
+				Function<ConfusionMatrixThreshold.Builder, ObjectBuilder<ConfusionMatrixThreshold>> fn) {
 			return this.confusionMatrix(
-					Collections.singletonMap(key, fn.apply(new ConfusionMatrixTreshold.Builder()).build()));
+					Collections.singletonMap(key, fn.apply(new ConfusionMatrixThreshold.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #confusionMatrix(Map)}, creating the map if needed.
 		 */
 		public Builder putConfusionMatrix(String key,
-				Function<ConfusionMatrixTreshold.Builder, ObjectBuilder<ConfusionMatrixTreshold>> fn) {
-			return this.putConfusionMatrix(key, fn.apply(new ConfusionMatrixTreshold.Builder()).build());
+				Function<ConfusionMatrixThreshold.Builder, ObjectBuilder<ConfusionMatrixThreshold>> fn) {
+			return this.putConfusionMatrix(key, fn.apply(new ConfusionMatrixThreshold.Builder()).build());
 		}
 
 		/**
@@ -288,7 +288,7 @@ public final class DataframeOutlierDetectionSummary implements ToJsonp {
 				"precision");
 		op.add(Builder::recall, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
 				"recall");
-		op.add(Builder::confusionMatrix, JsonpDeserializer.stringMapDeserializer(ConfusionMatrixTreshold.DESERIALIZER),
+		op.add(Builder::confusionMatrix, JsonpDeserializer.stringMapDeserializer(ConfusionMatrixThreshold.DESERIALIZER),
 				"confusion_matrix");
 
 	}

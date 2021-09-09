@@ -58,6 +58,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 	}
 
 	/**
+	 * Comma-separated list of realms to clear
+	 * <p>
 	 * API name: {@code realms}
 	 */
 	public List<String> realms() {
@@ -65,6 +67,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 	}
 
 	/**
+	 * Comma-separated list of usernames to clear from the cache
+	 * <p>
 	 * API name: {@code usernames}
 	 */
 	@Nullable
@@ -84,6 +88,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		private List<String> usernames;
 
 		/**
+		 * Comma-separated list of realms to clear
+		 * <p>
 		 * API name: {@code realms}
 		 */
 		public Builder realms(List<String> value) {
@@ -92,6 +98,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of realms to clear
+		 * <p>
 		 * API name: {@code realms}
 		 */
 		public Builder realms(String... value) {
@@ -111,6 +119,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of usernames to clear from the cache
+		 * <p>
 		 * API name: {@code usernames}
 		 */
 		public Builder usernames(@Nullable List<String> value) {
@@ -119,6 +129,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of usernames to clear from the cache
+		 * <p>
 		 * API name: {@code usernames}
 		 */
 		public Builder usernames(String... value) {

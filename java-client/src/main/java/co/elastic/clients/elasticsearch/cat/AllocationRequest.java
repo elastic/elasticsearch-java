@@ -32,14 +32,18 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.Request
 public final class AllocationRequest extends CatRequestBase {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final JsonValue bytes;
@@ -54,14 +58,18 @@ public final class AllocationRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A comma-separated list of node IDs or names to limit the returned information
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
@@ -76,20 +84,45 @@ public final class AllocationRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<AllocationRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
 		private JsonValue bytes;
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned information
+		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned information
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
+			return this;
+		}
+
+		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
 		public Builder bytes(@Nullable JsonValue value) {
@@ -141,7 +174,7 @@ public final class AllocationRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/allocation");
 					buf.append("/");
-					buf.append(request.nodeId);
+					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");

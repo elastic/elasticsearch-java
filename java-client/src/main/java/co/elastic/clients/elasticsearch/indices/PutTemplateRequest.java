@@ -106,6 +106,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the template
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -113,6 +115,9 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether the index template should only be added if new or can also replace an
+	 * existing one
+	 * <p>
 	 * API name: {@code create}
 	 */
 	@Nullable
@@ -137,6 +142,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -309,6 +316,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		private Number version;
 
 		/**
+		 * The name of the template
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -317,6 +326,9 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether the index template should only be added if new or can also replace an
+		 * existing one
+		 * <p>
 		 * API name: {@code create}
 		 */
 		public Builder create(@Nullable Boolean value) {
@@ -341,6 +353,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

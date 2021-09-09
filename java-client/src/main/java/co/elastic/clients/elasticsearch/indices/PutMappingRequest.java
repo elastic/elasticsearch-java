@@ -51,17 +51,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_mapping.Request
 public final class PutMappingRequest extends RequestBase implements ToJsonp {
-	@Nullable
 	private final List<String> index;
-
-	@Nullable
-	private final String type;
 
 	@Nullable
 	private final Boolean allowNoIndices;
@@ -130,8 +127,7 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 
 	protected PutMappingRequest(Builder builder) {
 
-		this.index = builder.index;
-		this.type = builder.type;
+		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = builder.expandWildcards;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -157,22 +153,21 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of index names the mapping should be added to
+	 * (supports wildcards); use <code>_all</code> or omit to add the mapping on all
+	 * indices.
+	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
 	public List<String> index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -181,6 +176,9 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -189,6 +187,9 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -205,6 +206,8 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -213,6 +216,8 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -221,6 +226,9 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * When true, applies mappings only to the write index of an alias or data
+	 * stream
+	 * <p>
 	 * API name: {@code write_index_only}
 	 */
 	@Nullable
@@ -478,11 +486,7 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link PutMappingRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutMappingRequest> {
-		@Nullable
 		private List<String> index;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private Boolean allowNoIndices;
@@ -548,14 +552,22 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		private Map<String, RuntimeField> runtime;
 
 		/**
+		 * A comma-separated list of index names the mapping should be added to
+		 * (supports wildcards); use <code>_all</code> or omit to add the mapping on all
+		 * indices.
+		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public Builder index(List<String> value) {
 			this.index = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of index names the mapping should be added to
+		 * (supports wildcards); use <code>_all</code> or omit to add the mapping on all
+		 * indices.
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -575,14 +587,10 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -591,6 +599,9 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -599,6 +610,9 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -615,6 +629,8 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -623,6 +639,8 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -631,6 +649,9 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * When true, applies mappings only to the write index of an alias or data
+		 * stream
+		 * <p>
 		 * API name: {@code write_index_only}
 		 */
 		public Builder writeIndexOnly(@Nullable Boolean value) {
@@ -936,77 +957,17 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_mapping");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/");
-					buf.append(request.type);
-					buf.append("/_mapping");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_mapping");
-					buf.append("/");
-					buf.append(request.type);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/");
-					buf.append(request.type);
-					buf.append("/_mappings");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_mappings");
-					buf.append("/");
-					buf.append(request.type);
-					return buf.toString();
-				}
-				if (propsSet == (_type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mappings");
-					buf.append("/");
-					buf.append(request.type);
-					return buf.toString();
-				}
-				if (propsSet == (_index)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					buf.append("/_mappings");
-					return buf.toString();
-				}
-				if (propsSet == (_type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
-					buf.append("/");
-					buf.append(request.type);
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");

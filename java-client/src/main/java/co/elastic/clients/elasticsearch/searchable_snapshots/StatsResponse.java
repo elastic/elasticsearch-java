@@ -30,28 +30,38 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Response
 public final class StatsResponse implements ToJsonp {
-	private final Number stub;
+	private final JsonValue stats;
+
+	private final JsonValue total;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected StatsResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.stats = Objects.requireNonNull(builder.stats, "stats");
+		this.total = Objects.requireNonNull(builder.total, "total");
 
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * API name: {@code stats}
 	 */
-	public Number stub() {
-		return this.stub;
+	public JsonValue stats() {
+		return this.stats;
+	}
+
+	/**
+	 * API name: {@code total}
+	 */
+	public JsonValue total() {
+		return this.total;
 	}
 
 	/**
@@ -65,8 +75,11 @@ public final class StatsResponse implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+		generator.writeKey("stats");
+		generator.write(this.stats);
+
+		generator.writeKey("total");
+		generator.write(this.total);
 
 	}
 
@@ -76,13 +89,23 @@ public final class StatsResponse implements ToJsonp {
 	 * Builder for {@link StatsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<StatsResponse> {
-		private Number stub;
+		private JsonValue stats;
+
+		private JsonValue total;
 
 		/**
-		 * API name: {@code stub}
+		 * API name: {@code stats}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder stats(JsonValue value) {
+			this.stats = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total}
+		 */
+		public Builder total(JsonValue value) {
+			this.total = value;
 			return this;
 		}
 
@@ -108,7 +131,8 @@ public final class StatsResponse implements ToJsonp {
 
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		op.add(Builder::stats, JsonpDeserializer.jsonValueDeserializer(), "stats");
+		op.add(Builder::total, JsonpDeserializer.jsonValueDeserializer(), "total");
 
 	}
 

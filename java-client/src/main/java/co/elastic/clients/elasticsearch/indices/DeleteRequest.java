@@ -76,6 +76,9 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of indices to delete; use <code>_all</code> or
+	 * <code>*</code> string to delete all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -83,6 +86,9 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Ignore if a wildcard expression resolves to no concrete indices (default:
+	 * false)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -91,6 +97,9 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether wildcard expressions should get expanded to open or closed indices
+	 * (default: open)
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -99,6 +108,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Ignore unavailable indexes (default: false)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -107,6 +118,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -115,6 +128,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -146,6 +161,9 @@ public final class DeleteRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * A comma-separated list of indices to delete; use <code>_all</code> or
+		 * <code>*</code> string to delete all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -154,6 +172,9 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of indices to delete; use <code>_all</code> or
+		 * <code>*</code> string to delete all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -173,6 +194,9 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Ignore if a wildcard expression resolves to no concrete indices (default:
+		 * false)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -181,6 +205,9 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * (default: open)
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -189,6 +216,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Ignore unavailable indexes (default: false)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -197,6 +226,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -205,6 +236,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

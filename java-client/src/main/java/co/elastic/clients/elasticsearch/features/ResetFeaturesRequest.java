@@ -26,137 +26,25 @@ package co.elastic.clients.elasticsearch.features;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.Collections;
 
 // typedef: features.reset_features.Request
-public final class ResetFeaturesRequest extends RequestBase implements ToJsonp {
-	private final String stubA;
-
-	private final String stubB;
-
-	private final String stubC;
-
-	// ---------------------------------------------------------------------------------------------
-
-	protected ResetFeaturesRequest(Builder builder) {
-
-		this.stubA = Objects.requireNonNull(builder.stubA, "stub_a");
-		this.stubB = Objects.requireNonNull(builder.stubB, "stub_b");
-		this.stubC = Objects.requireNonNull(builder.stubC, "stub_c");
-
+public final class ResetFeaturesRequest extends RequestBase {
+	protected ResetFeaturesRequest() {
 	}
 
 	/**
-	 * API name: {@code stub_a}
+	 * Singleton instance for {@link ResetFeaturesRequest}.
 	 */
-	public String stubA() {
-		return this.stubA;
-	}
+	public static final ResetFeaturesRequest INSTANCE = new ResetFeaturesRequest();
 
-	/**
-	 * API name: {@code stub_b}
-	 */
-	public String stubB() {
-		return this.stubB;
-	}
-
-	/**
-	 * API name: {@code stub_c}
-	 */
-	public String stubC() {
-		return this.stubC;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub_c");
-		generator.write(this.stubC);
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link ResetFeaturesRequest}.
-	 */
-	public static class Builder implements ObjectBuilder<ResetFeaturesRequest> {
-		private String stubA;
-
-		private String stubB;
-
-		private String stubC;
-
-		/**
-		 * API name: {@code stub_a}
-		 */
-		public Builder stubA(String value) {
-			this.stubA = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code stub_b}
-		 */
-		public Builder stubB(String value) {
-			this.stubB = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code stub_c}
-		 */
-		public Builder stubC(String value) {
-			this.stubC = value;
-			return this;
-		}
-
-		/**
-		 * Builds a {@link ResetFeaturesRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ResetFeaturesRequest build() {
-
-			return new ResetFeaturesRequest(this);
-		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for ResetFeaturesRequest
-	 */
-	public static final JsonpDeserializer<ResetFeaturesRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ResetFeaturesRequest::setupResetFeaturesRequestDeserializer);
-
-	protected static void setupResetFeaturesRequestDeserializer(
-			DelegatingDeserializer<ResetFeaturesRequest.Builder> op) {
-
-		op.add(Builder::stubC, JsonpDeserializer.stringDeserializer(), "stub_c");
-
-	}
+	public static final JsonpDeserializer<ResetFeaturesRequest> DESERIALIZER = JsonpDeserializer
+			.fixedValue(ResetFeaturesRequest.INSTANCE);
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -178,9 +66,7 @@ public final class ResetFeaturesRequest extends RequestBase implements ToJsonp {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("stub_b", request.stubB);
-				return params;
+				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ResetFeaturesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ResetFeaturesResponse.DESERIALIZER);
 }

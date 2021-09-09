@@ -54,6 +54,9 @@ public final class InfoRequest extends RequestBase {
 	}
 
 	/**
+	 * Comma-separated list of info categories. Can be any of: build, license,
+	 * features
+	 * <p>
 	 * API name: {@code categories}
 	 */
 	@Nullable
@@ -71,6 +74,9 @@ public final class InfoRequest extends RequestBase {
 		private List<String> categories;
 
 		/**
+		 * Comma-separated list of info categories. Can be any of: build, license,
+		 * features
+		 * <p>
 		 * API name: {@code categories}
 		 */
 		public Builder categories(@Nullable List<String> value) {
@@ -79,6 +85,9 @@ public final class InfoRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of info categories. Can be any of: build, license,
+		 * features
+		 * <p>
 		 * API name: {@code categories}
 		 */
 		public Builder categories(String... value) {

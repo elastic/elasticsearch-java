@@ -49,6 +49,8 @@ public final class DeactivateWatchRequest extends RequestBase {
 	}
 
 	/**
+	 * Watch ID
+	 * <p>
 	 * API name: {@code watch_id}
 	 */
 	public String watchId() {
@@ -64,6 +66,8 @@ public final class DeactivateWatchRequest extends RequestBase {
 		private String watchId;
 
 		/**
+		 * Watch ID
+		 * <p>
 		 * API name: {@code watch_id}
 		 */
 		public Builder watchId(String value) {

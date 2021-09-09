@@ -30,38 +30,34 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ConstantScoreQuery
 public final class ConstantScoreQuery extends QueryBase {
-	@Nullable
 	private final QueryContainer filter;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected ConstantScoreQuery(Builder builder) {
 		super(builder);
-		this.filter = builder.filter;
+		this.filter = Objects.requireNonNull(builder.filter, "filter");
 
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
-	@Nullable
 	public QueryContainer filter() {
 		return this.filter;
 	}
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this.filter != null) {
 
-			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("filter");
+		this.filter.toJsonp(generator, mapper);
 
 	}
 
@@ -73,13 +69,12 @@ public final class ConstantScoreQuery extends QueryBase {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConstantScoreQuery> {
-		@Nullable
 		private QueryContainer filter;
 
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable QueryContainer value) {
+		public Builder filter(QueryContainer value) {
 			this.filter = value;
 			return this;
 		}

@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,50 +34,93 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.lang.Number;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Request
 public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
-	private final String stubA;
+	@Nullable
+	private final Number from;
 
-	private final String stubB;
+	@Nullable
+	private final Number size;
 
-	private final String stubC;
+	@Nullable
+	private final QueryContainer query;
+
+	@Nullable
+	private final List<JsonValue> sort;
+
+	@Nullable
+	private final List<JsonValue> searchAfter;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected QueryWatchesRequest(Builder builder) {
 
-		this.stubA = Objects.requireNonNull(builder.stubA, "stub_a");
-		this.stubB = Objects.requireNonNull(builder.stubB, "stub_b");
-		this.stubC = Objects.requireNonNull(builder.stubC, "stub_c");
+		this.from = builder.from;
+		this.size = builder.size;
+		this.query = builder.query;
+		this.sort = builder.sort;
+		this.searchAfter = builder.searchAfter;
 
 	}
 
 	/**
-	 * API name: {@code stub_a}
+	 * The offset from the first result to fetch. Needs to be non-negative.
+	 * <p>
+	 * API name: {@code from}
 	 */
-	public String stubA() {
-		return this.stubA;
+	@Nullable
+	public Number from() {
+		return this.from;
 	}
 
 	/**
-	 * API name: {@code stub_b}
+	 * The number of hits to return. Needs to be non-negative.
+	 * <p>
+	 * API name: {@code size}
 	 */
-	public String stubB() {
-		return this.stubB;
+	@Nullable
+	public Number size() {
+		return this.size;
 	}
 
 	/**
-	 * API name: {@code stub_c}
+	 * Optional, query filter watches to be returned.
+	 * <p>
+	 * API name: {@code query}
 	 */
-	public String stubC() {
-		return this.stubC;
+	@Nullable
+	public QueryContainer query() {
+		return this.query;
+	}
+
+	/**
+	 * Optional sort definition.
+	 * <p>
+	 * API name: {@code sort}
+	 */
+	@Nullable
+	public List<JsonValue> sort() {
+		return this.sort;
+	}
+
+	/**
+	 * Optional search After to do pagination using last hit’s sort values.
+	 * <p>
+	 * API name: {@code search_after}
+	 */
+	@Nullable
+	public List<JsonValue> searchAfter() {
+		return this.searchAfter;
 	}
 
 	/**
@@ -90,8 +134,46 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub_c");
-		generator.write(this.stubC);
+		if (this.from != null) {
+
+			generator.writeKey("from");
+			generator.write(this.from.doubleValue());
+
+		}
+		if (this.size != null) {
+
+			generator.writeKey("size");
+			generator.write(this.size.doubleValue());
+
+		}
+		if (this.query != null) {
+
+			generator.writeKey("query");
+			this.query.toJsonp(generator, mapper);
+
+		}
+		if (this.sort != null) {
+
+			generator.writeKey("sort");
+			generator.writeStartArray();
+			for (JsonValue item0 : this.sort) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.searchAfter != null) {
+
+			generator.writeKey("search_after");
+			generator.writeStartArray();
+			for (JsonValue item0 : this.searchAfter) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -101,33 +183,119 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link QueryWatchesRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<QueryWatchesRequest> {
-		private String stubA;
+		@Nullable
+		private Number from;
 
-		private String stubB;
+		@Nullable
+		private Number size;
 
-		private String stubC;
+		@Nullable
+		private QueryContainer query;
+
+		@Nullable
+		private List<JsonValue> sort;
+
+		@Nullable
+		private List<JsonValue> searchAfter;
 
 		/**
-		 * API name: {@code stub_a}
+		 * The offset from the first result to fetch. Needs to be non-negative.
+		 * <p>
+		 * API name: {@code from}
 		 */
-		public Builder stubA(String value) {
-			this.stubA = value;
+		public Builder from(@Nullable Number value) {
+			this.from = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub_b}
+		 * The number of hits to return. Needs to be non-negative.
+		 * <p>
+		 * API name: {@code size}
 		 */
-		public Builder stubB(String value) {
-			this.stubB = value;
+		public Builder size(@Nullable Number value) {
+			this.size = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub_c}
+		 * Optional, query filter watches to be returned.
+		 * <p>
+		 * API name: {@code query}
 		 */
-		public Builder stubC(String value) {
-			this.stubC = value;
+		public Builder query(@Nullable QueryContainer value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * Optional, query filter watches to be returned.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
+			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		}
+
+		/**
+		 * Optional sort definition.
+		 * <p>
+		 * API name: {@code sort}
+		 */
+		public Builder sort(@Nullable List<JsonValue> value) {
+			this.sort = value;
+			return this;
+		}
+
+		/**
+		 * Optional sort definition.
+		 * <p>
+		 * API name: {@code sort}
+		 */
+		public Builder sort(JsonValue... value) {
+			this.sort = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 */
+		public Builder addSort(JsonValue value) {
+			if (this.sort == null) {
+				this.sort = new ArrayList<>();
+			}
+			this.sort.add(value);
+			return this;
+		}
+
+		/**
+		 * Optional search After to do pagination using last hit’s sort values.
+		 * <p>
+		 * API name: {@code search_after}
+		 */
+		public Builder searchAfter(@Nullable List<JsonValue> value) {
+			this.searchAfter = value;
+			return this;
+		}
+
+		/**
+		 * Optional search After to do pagination using last hit’s sort values.
+		 * <p>
+		 * API name: {@code search_after}
+		 */
+		public Builder searchAfter(JsonValue... value) {
+			this.searchAfter = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
+		 */
+		public Builder addSearchAfter(JsonValue value) {
+			if (this.searchAfter == null) {
+				this.searchAfter = new ArrayList<>();
+			}
+			this.searchAfter.add(value);
 			return this;
 		}
 
@@ -153,7 +321,12 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 
 	protected static void setupQueryWatchesRequestDeserializer(DelegatingDeserializer<QueryWatchesRequest.Builder> op) {
 
-		op.add(Builder::stubC, JsonpDeserializer.stringDeserializer(), "stub_c");
+		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
+		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"search_after");
 
 	}
 
@@ -177,9 +350,7 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("stub_b", request.stubB);
-				return params;
+				return Collections.emptyMap();
 
 			}, Endpoint.Simple.emptyMap(), true, QueryWatchesResponse.DESERIALIZER);
 }

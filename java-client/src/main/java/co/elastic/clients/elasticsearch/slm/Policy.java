@@ -30,7 +30,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -47,7 +46,7 @@ public final class Policy implements ToJsonp {
 
 	private final Retention retention;
 
-	private final JsonValue schedule;
+	private final String schedule;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -92,7 +91,7 @@ public final class Policy implements ToJsonp {
 	/**
 	 * API name: {@code schedule}
 	 */
-	public JsonValue schedule() {
+	public String schedule() {
 		return this.schedule;
 	}
 
@@ -138,7 +137,7 @@ public final class Policy implements ToJsonp {
 
 		private Retention retention;
 
-		private JsonValue schedule;
+		private String schedule;
 
 		/**
 		 * API name: {@code config}
@@ -189,7 +188,7 @@ public final class Policy implements ToJsonp {
 		/**
 		 * API name: {@code schedule}
 		 */
-		public Builder schedule(JsonValue value) {
+		public Builder schedule(String value) {
 			this.schedule = value;
 			return this;
 		}
@@ -220,7 +219,7 @@ public final class Policy implements ToJsonp {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
 		op.add(Builder::retention, Retention.DESERIALIZER, "retention");
-		op.add(Builder::schedule, JsonpDeserializer.jsonValueDeserializer(), "schedule");
+		op.add(Builder::schedule, JsonpDeserializer.stringDeserializer(), "schedule");
 
 	}
 

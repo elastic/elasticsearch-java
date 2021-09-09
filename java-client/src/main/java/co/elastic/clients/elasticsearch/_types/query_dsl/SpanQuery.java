@@ -23,447 +23,395 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.StringEnum;
+import co.elastic.clients.util.TaggedUnion;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Number;
+import java.lang.Object;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _types.query_dsl.SpanQuery
-public final class SpanQuery extends QueryBase {
-	@Nullable
-	private final NamedQuery<JsonValue> spanContaining;
+public class SpanQuery extends TaggedUnion<SpanQuery.Tag, Object> implements ToJsonp {
 
-	@Nullable
-	private final NamedQuery<JsonValue> fieldMaskingSpan;
+	public enum Tag implements StringEnum {
 
-	@Nullable
-	private final NamedQuery<JsonValue> spanFirst;
+		spanContaining("span_containing"),
 
-	@Nullable
-	private final NamedQuery<JsonValue> spanGap;
+		fieldMaskingSpan("field_masking_span"),
 
-	@Nullable
-	private final SpanMultiTermQuery spanMulti;
+		spanFirst("span_first"),
 
-	@Nullable
-	private final NamedQuery<JsonValue> spanNear;
+		spanGap("span_gap"),
 
-	@Nullable
-	private final NamedQuery<JsonValue> spanNot;
+		spanMulti("span_multi"),
 
-	@Nullable
-	private final NamedQuery<JsonValue> spanOr;
+		spanNear("span_near"),
 
-	@Nullable
-	private final NamedQuery<JsonValue> spanTerm;
+		spanNot("span_not"),
 
-	@Nullable
-	private final NamedQuery<JsonValue> spanWithin;
+		spanOr("span_or"),
 
-	// ---------------------------------------------------------------------------------------------
+		spanTerm("span_term"),
 
-	protected SpanQuery(Builder builder) {
-		super(builder);
-		this.spanContaining = builder.spanContaining;
-		this.fieldMaskingSpan = builder.fieldMaskingSpan;
-		this.spanFirst = builder.spanFirst;
-		this.spanGap = builder.spanGap;
-		this.spanMulti = builder.spanMulti;
-		this.spanNear = builder.spanNear;
-		this.spanNot = builder.spanNot;
-		this.spanOr = builder.spanOr;
-		this.spanTerm = builder.spanTerm;
-		this.spanWithin = builder.spanWithin;
+		spanWithin("span_within"),
+
+		;
+
+		private final String jsonValue;
+
+		Tag(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
+	}
+
+	private SpanQuery(Builder builder) {
+		super(builder.$tag, builder.$variant);
 
 	}
 
 	/**
-	 * API name: {@code span_containing}
+	 * Is this {@link SpanQuery} of a {@code span_containing} kind?
 	 */
-	@Nullable
-	public NamedQuery<JsonValue> spanContaining() {
-		return this.spanContaining;
+	public boolean isSpanContaining() {
+		return is(Tag.spanContaining);
 	}
 
 	/**
-	 * API name: {@code field_masking_span}
+	 * Get the {@code span_containing} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_containing}
+	 *             kind.
 	 */
-	@Nullable
-	public NamedQuery<JsonValue> fieldMaskingSpan() {
-		return this.fieldMaskingSpan;
+	public SpanContainingQuery spanContaining() {
+		return get(Tag.spanContaining);
 	}
 
 	/**
-	 * API name: {@code span_first}
+	 * Is this {@link SpanQuery} of a {@code field_masking_span} kind?
 	 */
-	@Nullable
-	public NamedQuery<JsonValue> spanFirst() {
-		return this.spanFirst;
+	public boolean isFieldMaskingSpan() {
+		return is(Tag.fieldMaskingSpan);
 	}
 
 	/**
-	 * API name: {@code span_gap}
+	 * Get the {@code field_masking_span} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code field_masking_span}
+	 *             kind.
 	 */
-	@Nullable
-	public NamedQuery<JsonValue> spanGap() {
-		return this.spanGap;
+	public SpanFieldMaskingQuery fieldMaskingSpan() {
+		return get(Tag.fieldMaskingSpan);
 	}
 
 	/**
-	 * API name: {@code span_multi}
+	 * Is this {@link SpanQuery} of a {@code span_first} kind?
 	 */
-	@Nullable
+	public boolean isSpanFirst() {
+		return is(Tag.spanFirst);
+	}
+
+	/**
+	 * Get the {@code span_first} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_first} kind.
+	 */
+	public SpanFirstQuery spanFirst() {
+		return get(Tag.spanFirst);
+	}
+
+	/**
+	 * Is this {@link SpanQuery} of a {@code span_gap} kind?
+	 */
+	public boolean isSpanGap() {
+		return is(Tag.spanGap);
+	}
+
+	/**
+	 * Get the {@code span_gap} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_gap} kind.
+	 */
+	public NamedValue<Number> spanGap() {
+		return get(Tag.spanGap);
+	}
+
+	/**
+	 * Is this {@link SpanQuery} of a {@code span_multi} kind?
+	 */
+	public boolean isSpanMulti() {
+		return is(Tag.spanMulti);
+	}
+
+	/**
+	 * Get the {@code span_multi} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_multi} kind.
+	 */
 	public SpanMultiTermQuery spanMulti() {
-		return this.spanMulti;
+		return get(Tag.spanMulti);
 	}
 
 	/**
-	 * API name: {@code span_near}
+	 * Is this {@link SpanQuery} of a {@code span_near} kind?
 	 */
-	@Nullable
-	public NamedQuery<JsonValue> spanNear() {
-		return this.spanNear;
+	public boolean isSpanNear() {
+		return is(Tag.spanNear);
 	}
 
 	/**
-	 * API name: {@code span_not}
+	 * Get the {@code span_near} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_near} kind.
 	 */
-	@Nullable
-	public NamedQuery<JsonValue> spanNot() {
-		return this.spanNot;
+	public SpanNearQuery spanNear() {
+		return get(Tag.spanNear);
 	}
 
 	/**
-	 * API name: {@code span_or}
+	 * Is this {@link SpanQuery} of a {@code span_not} kind?
 	 */
-	@Nullable
-	public NamedQuery<JsonValue> spanOr() {
-		return this.spanOr;
+	public boolean isSpanNot() {
+		return is(Tag.spanNot);
 	}
 
 	/**
-	 * API name: {@code span_term}
+	 * Get the {@code span_not} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_not} kind.
 	 */
-	@Nullable
-	public NamedQuery<JsonValue> spanTerm() {
-		return this.spanTerm;
+	public SpanNotQuery spanNot() {
+		return get(Tag.spanNot);
 	}
 
 	/**
-	 * API name: {@code span_within}
+	 * Is this {@link SpanQuery} of a {@code span_or} kind?
 	 */
-	@Nullable
-	public NamedQuery<JsonValue> spanWithin() {
-		return this.spanWithin;
+	public boolean isSpanOr() {
+		return is(Tag.spanOr);
 	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.spanContaining != null) {
-
-			generator.writeKey("span_containing");
-			this.spanContaining.toJsonp(generator, mapper);
-
-		}
-		if (this.fieldMaskingSpan != null) {
-
-			generator.writeKey("field_masking_span");
-			this.fieldMaskingSpan.toJsonp(generator, mapper);
-
-		}
-		if (this.spanFirst != null) {
-
-			generator.writeKey("span_first");
-			this.spanFirst.toJsonp(generator, mapper);
-
-		}
-		if (this.spanGap != null) {
-
-			generator.writeKey("span_gap");
-			this.spanGap.toJsonp(generator, mapper);
-
-		}
-		if (this.spanMulti != null) {
-
-			generator.writeKey("span_multi");
-			this.spanMulti.toJsonp(generator, mapper);
-
-		}
-		if (this.spanNear != null) {
-
-			generator.writeKey("span_near");
-			this.spanNear.toJsonp(generator, mapper);
-
-		}
-		if (this.spanNot != null) {
-
-			generator.writeKey("span_not");
-			this.spanNot.toJsonp(generator, mapper);
-
-		}
-		if (this.spanOr != null) {
-
-			generator.writeKey("span_or");
-			this.spanOr.toJsonp(generator, mapper);
-
-		}
-		if (this.spanTerm != null) {
-
-			generator.writeKey("span_term");
-			this.spanTerm.toJsonp(generator, mapper);
-
-		}
-		if (this.spanWithin != null) {
-
-			generator.writeKey("span_within");
-			this.spanWithin.toJsonp(generator, mapper);
-
-		}
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link SpanQuery}.
+	 * Get the {@code span_or} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_or} kind.
 	 */
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanQuery> {
-		@Nullable
-		private NamedQuery<JsonValue> spanContaining;
+	public SpanOrQuery spanOr() {
+		return get(Tag.spanOr);
+	}
 
-		@Nullable
-		private NamedQuery<JsonValue> fieldMaskingSpan;
+	/**
+	 * Is this {@link SpanQuery} of a {@code span_term} kind?
+	 */
+	public boolean isSpanTerm() {
+		return is(Tag.spanTerm);
+	}
 
-		@Nullable
-		private NamedQuery<JsonValue> spanFirst;
+	/**
+	 * Get the {@code span_term} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_term} kind.
+	 */
+	public NamedValue<SpanTermQuery> spanTerm() {
+		return get(Tag.spanTerm);
+	}
 
-		@Nullable
-		private NamedQuery<JsonValue> spanGap;
+	/**
+	 * Is this {@link SpanQuery} of a {@code span_within} kind?
+	 */
+	public boolean isSpanWithin() {
+		return is(Tag.spanWithin);
+	}
 
-		@Nullable
-		private SpanMultiTermQuery spanMulti;
+	/**
+	 * Get the {@code span_within} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_within} kind.
+	 */
+	public SpanWithinQuery spanWithin() {
+		return get(Tag.spanWithin);
+	}
 
-		@Nullable
-		private NamedQuery<JsonValue> spanNear;
+	@Override
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		generator.writeKey(tag.jsonValue);
+		if (value instanceof ToJsonp) {
+			((ToJsonp) value).toJsonp(generator, mapper);
+		} else {
+			switch (this.tag) {
+				case spanGap :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<Number>>get(Tag.spanGap).name());
+					generator.write(this.<NamedValue<Number>>get(Tag.spanGap).value().doubleValue());
 
-		@Nullable
-		private NamedQuery<JsonValue> spanNot;
+					generator.writeEnd();
 
-		@Nullable
-		private NamedQuery<JsonValue> spanOr;
+					break;
+				case spanTerm :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<SpanTermQuery>>get(Tag.spanTerm).name());
+					this.<NamedValue<SpanTermQuery>>get(Tag.spanTerm).value().toJsonp(generator, mapper);
 
-		@Nullable
-		private NamedQuery<JsonValue> spanTerm;
+					generator.writeEnd();
 
-		@Nullable
-		private NamedQuery<JsonValue> spanWithin;
-
-		/**
-		 * API name: {@code span_containing}
-		 */
-		public Builder spanContaining(@Nullable NamedQuery<JsonValue> value) {
-			this.spanContaining = value;
-			return this;
+					break;
+			}
 		}
 
-		/**
-		 * API name: {@code span_containing}
-		 */
-		public Builder spanContaining(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> fn) {
-			return this.spanContaining(fn.apply(new NamedQuery.Builder<JsonValue>()).build());
+		generator.writeEnd();
+	}
+	public static class Builder {
+		private Tag $tag;
+		private Object $variant;
+
+		public ObjectBuilder<SpanQuery> spanContaining(SpanContainingQuery v) {
+			this.$variant = v;
+			this.$tag = Tag.spanContaining;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code field_masking_span}
-		 */
-		public Builder fieldMaskingSpan(@Nullable NamedQuery<JsonValue> value) {
-			this.fieldMaskingSpan = value;
-			return this;
+		public ObjectBuilder<SpanQuery> spanContaining(
+				Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> f) {
+			return this.spanContaining(f.apply(new SpanContainingQuery.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code field_masking_span}
-		 */
-		public Builder fieldMaskingSpan(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> fn) {
-			return this.fieldMaskingSpan(fn.apply(new NamedQuery.Builder<JsonValue>()).build());
+		public ObjectBuilder<SpanQuery> fieldMaskingSpan(SpanFieldMaskingQuery v) {
+			this.$variant = v;
+			this.$tag = Tag.fieldMaskingSpan;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code span_first}
-		 */
-		public Builder spanFirst(@Nullable NamedQuery<JsonValue> value) {
-			this.spanFirst = value;
-			return this;
+		public ObjectBuilder<SpanQuery> fieldMaskingSpan(
+				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> f) {
+			return this.fieldMaskingSpan(f.apply(new SpanFieldMaskingQuery.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code span_first}
-		 */
-		public Builder spanFirst(Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> fn) {
-			return this.spanFirst(fn.apply(new NamedQuery.Builder<JsonValue>()).build());
+		public ObjectBuilder<SpanQuery> spanFirst(SpanFirstQuery v) {
+			this.$variant = v;
+			this.$tag = Tag.spanFirst;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code span_gap}
-		 */
-		public Builder spanGap(@Nullable NamedQuery<JsonValue> value) {
-			this.spanGap = value;
-			return this;
+		public ObjectBuilder<SpanQuery> spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> f) {
+			return this.spanFirst(f.apply(new SpanFirstQuery.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code span_gap}
-		 */
-		public Builder spanGap(Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> fn) {
-			return this.spanGap(fn.apply(new NamedQuery.Builder<JsonValue>()).build());
+		public ObjectBuilder<SpanQuery> spanGap(NamedValue<Number> v) {
+			this.$variant = v;
+			this.$tag = Tag.spanGap;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code span_multi}
-		 */
-		public Builder spanMulti(@Nullable SpanMultiTermQuery value) {
-			this.spanMulti = value;
-			return this;
+		public ObjectBuilder<SpanQuery> spanMulti(SpanMultiTermQuery v) {
+			this.$variant = v;
+			this.$tag = Tag.spanMulti;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code span_multi}
-		 */
-		public Builder spanMulti(Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> fn) {
-			return this.spanMulti(fn.apply(new SpanMultiTermQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanMulti(
+				Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> f) {
+			return this.spanMulti(f.apply(new SpanMultiTermQuery.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code span_near}
-		 */
-		public Builder spanNear(@Nullable NamedQuery<JsonValue> value) {
-			this.spanNear = value;
-			return this;
+		public ObjectBuilder<SpanQuery> spanNear(SpanNearQuery v) {
+			this.$variant = v;
+			this.$tag = Tag.spanNear;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code span_near}
-		 */
-		public Builder spanNear(Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> fn) {
-			return this.spanNear(fn.apply(new NamedQuery.Builder<JsonValue>()).build());
+		public ObjectBuilder<SpanQuery> spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> f) {
+			return this.spanNear(f.apply(new SpanNearQuery.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code span_not}
-		 */
-		public Builder spanNot(@Nullable NamedQuery<JsonValue> value) {
-			this.spanNot = value;
-			return this;
+		public ObjectBuilder<SpanQuery> spanNot(SpanNotQuery v) {
+			this.$variant = v;
+			this.$tag = Tag.spanNot;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code span_not}
-		 */
-		public Builder spanNot(Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> fn) {
-			return this.spanNot(fn.apply(new NamedQuery.Builder<JsonValue>()).build());
+		public ObjectBuilder<SpanQuery> spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> f) {
+			return this.spanNot(f.apply(new SpanNotQuery.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code span_or}
-		 */
-		public Builder spanOr(@Nullable NamedQuery<JsonValue> value) {
-			this.spanOr = value;
-			return this;
+		public ObjectBuilder<SpanQuery> spanOr(SpanOrQuery v) {
+			this.$variant = v;
+			this.$tag = Tag.spanOr;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code span_or}
-		 */
-		public Builder spanOr(Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> fn) {
-			return this.spanOr(fn.apply(new NamedQuery.Builder<JsonValue>()).build());
+		public ObjectBuilder<SpanQuery> spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> f) {
+			return this.spanOr(f.apply(new SpanOrQuery.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code span_term}
-		 */
-		public Builder spanTerm(@Nullable NamedQuery<JsonValue> value) {
-			this.spanTerm = value;
-			return this;
+		public ObjectBuilder<SpanQuery> spanTerm(NamedValue<SpanTermQuery> v) {
+			this.$variant = v;
+			this.$tag = Tag.spanTerm;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code span_term}
-		 */
-		public Builder spanTerm(Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> fn) {
-			return this.spanTerm(fn.apply(new NamedQuery.Builder<JsonValue>()).build());
+		public ObjectBuilder<SpanQuery> spanWithin(SpanWithinQuery v) {
+			this.$variant = v;
+			this.$tag = Tag.spanWithin;
+			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		/**
-		 * API name: {@code span_within}
-		 */
-		public Builder spanWithin(@Nullable NamedQuery<JsonValue> value) {
-			this.spanWithin = value;
-			return this;
+		public ObjectBuilder<SpanQuery> spanWithin(
+				Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> f) {
+			return this.spanWithin(f.apply(new SpanWithinQuery.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code span_within}
-		 */
-		public Builder spanWithin(Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> fn) {
-			return this.spanWithin(fn.apply(new NamedQuery.Builder<JsonValue>()).build());
-		}
-
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link SpanQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SpanQuery build() {
-
+		protected SpanQuery build() {
 			return new SpanQuery(this);
 		}
+
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
+	// avoids cyclic dependencies between static class initialization code, which
+	// can lead to unwanted things like NPEs or stack overflows
 
-	/**
-	 * Json deserializer for SpanQuery
-	 */
-	public static final JsonpDeserializer<SpanQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanQuery::setupSpanQueryDeserializer);
+	public static final JsonpDeserializer<SpanQuery> DESERIALIZER = JsonpDeserializer
+			.lazy(SpanQuery::buildDeserializer);
 
-	protected static void setupSpanQueryDeserializer(DelegatingDeserializer<SpanQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::spanContaining,
-				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()), "span_containing");
-		op.add(Builder::fieldMaskingSpan,
-				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"field_masking_span");
-		op.add(Builder::spanFirst, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"span_first");
-		op.add(Builder::spanGap, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"span_gap");
+	private static JsonpDeserializer<SpanQuery> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
+
+		op.add(Builder::spanContaining, SpanContainingQuery.DESERIALIZER, "span_containing");
+		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery.DESERIALIZER, "field_masking_span");
+		op.add(Builder::spanFirst, SpanFirstQuery.DESERIALIZER, "span_first");
+		op.add(Builder::spanGap, NamedValue.deserializer(() -> JsonpDeserializer.numberDeserializer()), "span_gap");
 		op.add(Builder::spanMulti, SpanMultiTermQuery.DESERIALIZER, "span_multi");
-		op.add(Builder::spanNear, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"span_near");
-		op.add(Builder::spanNot, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"span_not");
-		op.add(Builder::spanOr, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"span_or");
-		op.add(Builder::spanTerm, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"span_term");
-		op.add(Builder::spanWithin, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"span_within");
+		op.add(Builder::spanNear, SpanNearQuery.DESERIALIZER, "span_near");
+		op.add(Builder::spanNot, SpanNotQuery.DESERIALIZER, "span_not");
+		op.add(Builder::spanOr, SpanOrQuery.DESERIALIZER, "span_or");
+		op.add(Builder::spanTerm, NamedValue.deserializer(() -> SpanTermQuery.DESERIALIZER), "span_term");
+		op.add(Builder::spanWithin, SpanWithinQuery.DESERIALIZER, "span_within");
 
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

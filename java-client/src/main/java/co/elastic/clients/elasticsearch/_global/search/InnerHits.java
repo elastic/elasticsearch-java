@@ -60,7 +60,7 @@ public final class InnerHits implements ToJsonp {
 	private final FieldCollapse collapse;
 
 	@Nullable
-	private final List<String> docvalueFields;
+	private final List<FieldAndFormat> docvalueFields;
 
 	@Nullable
 	private final Boolean explain;
@@ -87,6 +87,12 @@ public final class InnerHits implements ToJsonp {
 	private final JsonValue source;
 
 	@Nullable
+	private final List<String> storedField;
+
+	@Nullable
+	private final Boolean trackScores;
+
+	@Nullable
 	private final Boolean version;
 
 	// ---------------------------------------------------------------------------------------------
@@ -106,6 +112,8 @@ public final class InnerHits implements ToJsonp {
 		this.fields = builder.fields;
 		this.sort = builder.sort;
 		this.source = builder.source;
+		this.storedField = builder.storedField;
+		this.trackScores = builder.trackScores;
 		this.version = builder.version;
 
 	}
@@ -146,7 +154,7 @@ public final class InnerHits implements ToJsonp {
 	 * API name: {@code docvalue_fields}
 	 */
 	@Nullable
-	public List<String> docvalueFields() {
+	public List<FieldAndFormat> docvalueFields() {
 		return this.docvalueFields;
 	}
 
@@ -215,6 +223,22 @@ public final class InnerHits implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code stored_field}
+	 */
+	@Nullable
+	public List<String> storedField() {
+		return this.storedField;
+	}
+
+	/**
+	 * API name: {@code track_scores}
+	 */
+	@Nullable
+	public Boolean trackScores() {
+		return this.trackScores;
+	}
+
+	/**
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -261,8 +285,8 @@ public final class InnerHits implements ToJsonp {
 
 			generator.writeKey("docvalue_fields");
 			generator.writeStartArray();
-			for (String item0 : this.docvalueFields) {
-				generator.write(item0);
+			for (FieldAndFormat item0 : this.docvalueFields) {
+				item0.toJsonp(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -332,6 +356,23 @@ public final class InnerHits implements ToJsonp {
 			generator.write(this.source);
 
 		}
+		if (this.storedField != null) {
+
+			generator.writeKey("stored_field");
+			generator.writeStartArray();
+			for (String item0 : this.storedField) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.trackScores != null) {
+
+			generator.writeKey("track_scores");
+			generator.write(this.trackScores);
+
+		}
 		if (this.version != null) {
 
 			generator.writeKey("version");
@@ -360,7 +401,7 @@ public final class InnerHits implements ToJsonp {
 		private FieldCollapse collapse;
 
 		@Nullable
-		private List<String> docvalueFields;
+		private List<FieldAndFormat> docvalueFields;
 
 		@Nullable
 		private Boolean explain;
@@ -385,6 +426,12 @@ public final class InnerHits implements ToJsonp {
 
 		@Nullable
 		private JsonValue source;
+
+		@Nullable
+		private List<String> storedField;
+
+		@Nullable
+		private Boolean trackScores;
 
 		@Nullable
 		private Boolean version;
@@ -431,7 +478,7 @@ public final class InnerHits implements ToJsonp {
 		/**
 		 * API name: {@code docvalue_fields}
 		 */
-		public Builder docvalueFields(@Nullable List<String> value) {
+		public Builder docvalueFields(@Nullable List<FieldAndFormat> value) {
 			this.docvalueFields = value;
 			return this;
 		}
@@ -439,7 +486,7 @@ public final class InnerHits implements ToJsonp {
 		/**
 		 * API name: {@code docvalue_fields}
 		 */
-		public Builder docvalueFields(String... value) {
+		public Builder docvalueFields(FieldAndFormat... value) {
 			this.docvalueFields = Arrays.asList(value);
 			return this;
 		}
@@ -447,12 +494,26 @@ public final class InnerHits implements ToJsonp {
 		/**
 		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
 		 */
-		public Builder addDocvalueFields(String value) {
+		public Builder addDocvalueFields(FieldAndFormat value) {
 			if (this.docvalueFields == null) {
 				this.docvalueFields = new ArrayList<>();
 			}
 			this.docvalueFields.add(value);
 			return this;
+		}
+
+		/**
+		 * Set {@link #docvalueFields(List)} to a singleton list.
+		 */
+		public Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return this.docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
+		 */
+		public Builder addDocvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return this.addDocvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -590,6 +651,41 @@ public final class InnerHits implements ToJsonp {
 		}
 
 		/**
+		 * API name: {@code stored_field}
+		 */
+		public Builder storedField(@Nullable List<String> value) {
+			this.storedField = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code stored_field}
+		 */
+		public Builder storedField(String... value) {
+			this.storedField = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #storedField(List)}, creating the list if needed.
+		 */
+		public Builder addStoredField(String value) {
+			if (this.storedField == null) {
+				this.storedField = new ArrayList<>();
+			}
+			this.storedField.add(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code track_scores}
+		 */
+		public Builder trackScores(@Nullable Boolean value) {
+			this.trackScores = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Boolean value) {
@@ -623,7 +719,7 @@ public final class InnerHits implements ToJsonp {
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
 		op.add(Builder::collapse, FieldCollapse.DESERIALIZER, "collapse");
-		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat.DESERIALIZER),
 				"docvalue_fields");
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
 		op.add(Builder::highlight, Highlight.DESERIALIZER, "highlight");
@@ -634,6 +730,9 @@ public final class InnerHits implements ToJsonp {
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::storedField, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"stored_field");
+		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
 		op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
 
 	}

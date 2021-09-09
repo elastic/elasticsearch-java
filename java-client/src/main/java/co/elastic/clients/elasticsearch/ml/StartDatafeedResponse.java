@@ -33,12 +33,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Response
 public final class StartDatafeedResponse implements ToJsonp {
-	private final String node;
+	private final List<String> node;
 
 	private final Boolean started;
 
@@ -54,7 +57,7 @@ public final class StartDatafeedResponse implements ToJsonp {
 	/**
 	 * API name: {@code node}
 	 */
-	public String node() {
+	public List<String> node() {
 		return this.node;
 	}
 
@@ -77,7 +80,12 @@ public final class StartDatafeedResponse implements ToJsonp {
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("node");
-		generator.write(this.node);
+		generator.writeStartArray();
+		for (String item0 : this.node) {
+			generator.write(item0);
+
+		}
+		generator.writeEnd();
 
 		generator.writeKey("started");
 		generator.write(this.started);
@@ -90,15 +98,34 @@ public final class StartDatafeedResponse implements ToJsonp {
 	 * Builder for {@link StartDatafeedResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<StartDatafeedResponse> {
-		private String node;
+		private List<String> node;
 
 		private Boolean started;
 
 		/**
 		 * API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public Builder node(List<String> value) {
 			this.node = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code node}
+		 */
+		public Builder node(String... value) {
+			this.node = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #node(List)}, creating the list if needed.
+		 */
+		public Builder addNode(String value) {
+			if (this.node == null) {
+				this.node = new ArrayList<>();
+			}
+			this.node.add(value);
 			return this;
 		}
 
@@ -133,7 +160,7 @@ public final class StartDatafeedResponse implements ToJsonp {
 	protected static void setupStartDatafeedResponseDeserializer(
 			DelegatingDeserializer<StartDatafeedResponse.Builder> op) {
 
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::node, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "node");
 		op.add(Builder::started, JsonpDeserializer.booleanDeserializer(), "started");
 
 	}

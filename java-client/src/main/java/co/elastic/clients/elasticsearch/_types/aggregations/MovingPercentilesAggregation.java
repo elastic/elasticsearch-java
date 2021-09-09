@@ -30,6 +30,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Number;
 import javax.annotation.Nullable;
 
@@ -41,12 +42,16 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	@Nullable
 	private final Number shift;
 
+	@Nullable
+	private final Boolean keyed;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected MovingPercentilesAggregation(Builder builder) {
 		super(builder);
 		this.window = builder.window;
 		this.shift = builder.shift;
+		this.keyed = builder.keyed;
 
 	}
 
@@ -66,6 +71,14 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		return this.shift;
 	}
 
+	/**
+	 * API name: {@code keyed}
+	 */
+	@Nullable
+	public Boolean keyed() {
+		return this.keyed;
+	}
+
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
 		if (this.window != null) {
@@ -78,6 +91,12 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 
 			generator.writeKey("shift");
 			generator.write(this.shift.doubleValue());
+
+		}
+		if (this.keyed != null) {
+
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
 
 		}
 
@@ -97,6 +116,9 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		@Nullable
 		private Number shift;
 
+		@Nullable
+		private Boolean keyed;
+
 		/**
 		 * API name: {@code window}
 		 */
@@ -110,6 +132,14 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		 */
 		public Builder shift(@Nullable Number value) {
 			this.shift = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code keyed}
+		 */
+		public Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
 			return this;
 		}
 
@@ -143,6 +173,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::window, JsonpDeserializer.numberDeserializer(), "window");
 		op.add(Builder::shift, JsonpDeserializer.numberDeserializer(), "shift");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

@@ -63,6 +63,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the datafeeds to fetch
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
@@ -71,6 +73,9 @@ public final class GetDatafeedsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+	 * includes <code>_all</code> string or when no datafeeds have been specified)
+	 * <p>
 	 * API name: {@code allow_no_datafeeds}
 	 */
 	@Nullable
@@ -79,6 +84,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 	}
 
 	/**
+	 * Omits fields that are illegal to set on datafeed PUT
+	 * <p>
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
@@ -102,6 +109,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 		private Boolean excludeGenerated;
 
 		/**
+		 * The ID of the datafeeds to fetch
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(@Nullable List<String> value) {
@@ -110,6 +119,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 		}
 
 		/**
+		 * The ID of the datafeeds to fetch
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String... value) {
@@ -129,6 +140,9 @@ public final class GetDatafeedsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * <p>
 		 * API name: {@code allow_no_datafeeds}
 		 */
 		public Builder allowNoDatafeeds(@Nullable Boolean value) {
@@ -137,6 +151,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 		}
 
 		/**
+		 * Omits fields that are illegal to set on datafeed PUT
+		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
 		public Builder excludeGenerated(@Nullable Boolean value) {

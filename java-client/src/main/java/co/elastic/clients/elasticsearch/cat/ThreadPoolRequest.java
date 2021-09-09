@@ -58,6 +58,9 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A comma-separated list of regular-expressions to filter the thread pools in
+	 * the output
+	 * <p>
 	 * API name: {@code thread_pool_patterns}
 	 */
 	@Nullable
@@ -86,6 +89,9 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		private JsonValue size;
 
 		/**
+		 * A comma-separated list of regular-expressions to filter the thread pools in
+		 * the output
+		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 */
 		public Builder threadPoolPatterns(@Nullable List<String> value) {
@@ -94,6 +100,9 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of regular-expressions to filter the thread pools in
+		 * the output
+		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 */
 		public Builder threadPoolPatterns(String... value) {

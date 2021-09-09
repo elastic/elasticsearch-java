@@ -66,6 +66,9 @@ public final class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names (supports wildcards); use
+	 * <code>_all</code> for all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -73,6 +76,9 @@ public final class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of aliases to delete (supports wildcards); use
+	 * <code>_all</code> to delete all aliases for the specified indices.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public List<String> name() {
@@ -80,6 +86,8 @@ public final class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -88,6 +96,8 @@ public final class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit timestamp for the document
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -112,6 +122,9 @@ public final class DeleteAliasRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * A comma-separated list of index names (supports wildcards); use
+		 * <code>_all</code> for all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -120,6 +133,9 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names (supports wildcards); use
+		 * <code>_all</code> for all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -139,6 +155,9 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of aliases to delete (supports wildcards); use
+		 * <code>_all</code> to delete all aliases for the specified indices.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(List<String> value) {
@@ -147,6 +166,9 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of aliases to delete (supports wildcards); use
+		 * <code>_all</code> to delete all aliases for the specified indices.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -166,6 +188,8 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -174,6 +198,8 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit timestamp for the document
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

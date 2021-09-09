@@ -35,8 +35,8 @@ import co.elastic.clients.elasticsearch.ingest.ProcessorGrokRequest;
 import co.elastic.clients.elasticsearch.ingest.ProcessorGrokResponse;
 import co.elastic.clients.elasticsearch.ingest.PutPipelineRequest;
 import co.elastic.clients.elasticsearch.ingest.PutPipelineResponse;
-import co.elastic.clients.elasticsearch.ingest.SimulatePipelineRequest;
-import co.elastic.clients.elasticsearch.ingest.SimulatePipelineResponse;
+import co.elastic.clients.elasticsearch.ingest.SimulateRequest;
+import co.elastic.clients.elasticsearch.ingest.SimulateResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -188,8 +188,8 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SimulatePipelineResponse> simulate(SimulatePipelineRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, SimulatePipelineRequest.ENDPOINT, this.requestOptions);
+	public CompletableFuture<SimulateResponse> simulate(SimulateRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, SimulateRequest.ENDPOINT, this.requestOptions);
 	}
 
 	/**
@@ -204,9 +204,9 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<SimulatePipelineResponse> simulate(
-			Function<SimulatePipelineRequest.Builder, ObjectBuilder<SimulatePipelineRequest>> fn) throws IOException {
-		return simulate(fn.apply(new SimulatePipelineRequest.Builder()).build());
+	public final CompletableFuture<SimulateResponse> simulate(
+			Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn) throws IOException {
+		return simulate(fn.apply(new SimulateRequest.Builder()).build());
 	}
 
 	// ----- Misc

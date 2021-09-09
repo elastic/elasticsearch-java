@@ -35,14 +35,18 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.Request
 public final class HotThreadsRequest extends RequestBase {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final Boolean ignoreIdleThreads;
@@ -77,14 +81,21 @@ public final class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of node IDs or names to limit the returned
+	 * information; use <code>_local</code> to return information from the node
+	 * you're connecting to, leave empty to get information from all nodes
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
 	/**
+	 * Don't show threads that are in known-idle places, such as waiting on a socket
+	 * select or pulling from an empty task queue (default: true)
+	 * <p>
 	 * API name: {@code ignore_idle_threads}
 	 */
 	@Nullable
@@ -93,6 +104,8 @@ public final class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
+	 * The interval for the second sampling of threads
+	 * <p>
 	 * API name: {@code interval}
 	 */
 	@Nullable
@@ -101,6 +114,8 @@ public final class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
+	 * Number of samples of thread stacktrace (default: 10)
+	 * <p>
 	 * API name: {@code snapshots}
 	 */
 	@Nullable
@@ -109,6 +124,8 @@ public final class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify the number of threads to provide information for (default: 3)
+	 * <p>
 	 * API name: {@code threads}
 	 */
 	@Nullable
@@ -125,6 +142,8 @@ public final class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -139,7 +158,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<HotThreadsRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
 		private Boolean ignoreIdleThreads;
@@ -160,14 +179,44 @@ public final class HotThreadsRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned
+		 * information; use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes
+		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned
+		 * information; use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
+			return this;
+		}
+
+		/**
+		 * Don't show threads that are in known-idle places, such as waiting on a socket
+		 * select or pulling from an empty task queue (default: true)
+		 * <p>
 		 * API name: {@code ignore_idle_threads}
 		 */
 		public Builder ignoreIdleThreads(@Nullable Boolean value) {
@@ -176,6 +225,8 @@ public final class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
+		 * The interval for the second sampling of threads
+		 * <p>
 		 * API name: {@code interval}
 		 */
 		public Builder interval(@Nullable JsonValue value) {
@@ -184,6 +235,8 @@ public final class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
+		 * Number of samples of thread stacktrace (default: 10)
+		 * <p>
 		 * API name: {@code snapshots}
 		 */
 		public Builder snapshots(@Nullable Number value) {
@@ -192,6 +245,8 @@ public final class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify the number of threads to provide information for (default: 3)
+		 * <p>
 		 * API name: {@code threads}
 		 */
 		public Builder threads(@Nullable Number value) {
@@ -208,6 +263,8 @@ public final class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -258,53 +315,7 @@ public final class HotThreadsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
-					buf.append("/hot_threads");
-					return buf.toString();
-				}
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cluster");
-					buf.append("/nodes");
-					buf.append("/hotthreads");
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cluster");
-					buf.append("/nodes");
-					buf.append("/");
-					buf.append(request.nodeId);
-					buf.append("/hotthreads");
-					return buf.toString();
-				}
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/hotthreads");
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/");
-					buf.append(request.nodeId);
-					buf.append("/hotthreads");
-					return buf.toString();
-				}
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cluster");
-					buf.append("/nodes");
-					buf.append("/hot_threads");
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cluster");
-					buf.append("/nodes");
-					buf.append("/");
-					buf.append(request.nodeId);
+					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/hot_threads");
 					return buf.toString();
 				}

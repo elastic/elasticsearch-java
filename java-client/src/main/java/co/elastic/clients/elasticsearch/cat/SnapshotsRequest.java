@@ -58,6 +58,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Name of repository from which to fetch the snapshot information
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -66,6 +68,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Set to true to ignore unavailable snapshots
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -86,6 +90,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 		private Boolean ignoreUnavailable;
 
 		/**
+		 * Name of repository from which to fetch the snapshot information
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable List<String> value) {
@@ -94,6 +100,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Name of repository from which to fetch the snapshot information
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String... value) {
@@ -113,6 +121,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Set to true to ignore unavailable snapshots
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {

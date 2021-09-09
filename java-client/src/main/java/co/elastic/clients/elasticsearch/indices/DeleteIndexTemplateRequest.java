@@ -49,6 +49,8 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * The name of the template
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -64,6 +66,8 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 		private String name;
 
 		/**
+		 * The name of the template
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {

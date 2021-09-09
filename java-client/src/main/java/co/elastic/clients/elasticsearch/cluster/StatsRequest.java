@@ -34,14 +34,18 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.Request
 public final class StatsRequest extends RequestBase {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final Boolean flatSettings;
@@ -66,11 +70,13 @@ public final class StatsRequest extends RequestBase {
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -98,7 +104,7 @@ public final class StatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<StatsRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
 		private Boolean flatSettings;
@@ -112,12 +118,36 @@ public final class StatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
+		 * Comma-separated list of node filters used to limit returned information.
+		 * Defaults to all nodes in the cluster.
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
+			return this;
+		}
+
+		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -183,7 +213,7 @@ public final class StatsRequest extends RequestBase {
 					buf.append("/stats");
 					buf.append("/nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");

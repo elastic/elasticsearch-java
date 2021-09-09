@@ -69,6 +69,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * The comma separated names of the index templates
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public List<String> name() {
@@ -76,6 +78,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -84,6 +88,9 @@ public final class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -92,6 +99,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -117,6 +126,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 		private JsonValue masterTimeout;
 
 		/**
+		 * The comma separated names of the index templates
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(List<String> value) {
@@ -125,6 +136,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * The comma separated names of the index templates
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -144,6 +157,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -152,6 +167,9 @@ public final class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -160,6 +178,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

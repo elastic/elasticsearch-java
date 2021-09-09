@@ -34,6 +34,7 @@ import co.elastic.clients.util.TaggedUnion;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
+import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -89,7 +90,7 @@ public class ScheduleContainer extends TaggedUnion<ScheduleContainer.Tag, Object
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code cron} kind.
 	 */
-	public JsonValue cron() {
+	public String cron() {
 		return get(Tag.cron);
 	}
 
@@ -204,7 +205,7 @@ public class ScheduleContainer extends TaggedUnion<ScheduleContainer.Tag, Object
 		} else {
 			switch (this.tag) {
 				case cron :
-					generator.write(this.<JsonValue>get(Tag.cron));
+					generator.write(this.<String>get(Tag.cron));
 
 					break;
 				case interval :
@@ -247,7 +248,7 @@ public class ScheduleContainer extends TaggedUnion<ScheduleContainer.Tag, Object
 		private Tag $tag;
 		private Object $variant;
 
-		public ObjectBuilder<ScheduleContainer> cron(JsonValue v) {
+		public ObjectBuilder<ScheduleContainer> cron(String v) {
 			this.$variant = v;
 			this.$tag = Tag.cron;
 			return new ObjectBuilder.Constant<>(this.build());
@@ -315,7 +316,7 @@ public class ScheduleContainer extends TaggedUnion<ScheduleContainer.Tag, Object
 	private static JsonpDeserializer<ScheduleContainer> buildDeserializer() {
 		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
-		op.add(Builder::cron, JsonpDeserializer.jsonValueDeserializer(), "cron");
+		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
 		op.add(Builder::daily, DailySchedule.DESERIALIZER, "daily");
 		op.add(Builder::hourly, HourlySchedule.DESERIALIZER, "hourly");
 		op.add(Builder::interval, JsonpDeserializer.jsonValueDeserializer(), "interval");

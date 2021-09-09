@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +50,9 @@ public final class RangeAggregation extends BucketAggregationBase {
 	@Nullable
 	private final JsonValue script;
 
+	@Nullable
+	private final Boolean keyed;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected RangeAggregation(Builder builder) {
@@ -56,6 +60,7 @@ public final class RangeAggregation extends BucketAggregationBase {
 		this.field = builder.field;
 		this.ranges = builder.ranges;
 		this.script = builder.script;
+		this.keyed = builder.keyed;
 
 	}
 
@@ -83,6 +88,14 @@ public final class RangeAggregation extends BucketAggregationBase {
 		return this.script;
 	}
 
+	/**
+	 * API name: {@code keyed}
+	 */
+	@Nullable
+	public Boolean keyed() {
+		return this.keyed;
+	}
+
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
 		if (this.field != null) {
@@ -108,6 +121,12 @@ public final class RangeAggregation extends BucketAggregationBase {
 			generator.write(this.script);
 
 		}
+		if (this.keyed != null) {
+
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
+
+		}
 
 	}
 
@@ -127,6 +146,9 @@ public final class RangeAggregation extends BucketAggregationBase {
 
 		@Nullable
 		private JsonValue script;
+
+		@Nullable
+		private Boolean keyed;
 
 		/**
 		 * API name: {@code field}
@@ -185,6 +207,14 @@ public final class RangeAggregation extends BucketAggregationBase {
 			return this;
 		}
 
+		/**
+		 * API name: {@code keyed}
+		 */
+		public Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -215,6 +245,7 @@ public final class RangeAggregation extends BucketAggregationBase {
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange.DESERIALIZER), "ranges");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

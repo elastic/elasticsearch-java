@@ -54,9 +54,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	private final String index;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final Number ifPrimaryTerm;
 
 	@Nullable
@@ -72,7 +69,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	private final JsonValue refresh;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue timeout;
@@ -100,7 +97,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 
 		this.id = builder.id;
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.type = builder.type;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
 		this.opType = builder.opType;
@@ -118,6 +114,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Document ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -126,6 +124,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * The name of the index
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -133,14 +133,9 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
+	 * only perform the index operation if the last operation that has changed the
+	 * document has the specified primary term
+	 * <p>
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
@@ -149,6 +144,9 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * only perform the index operation if the last operation that has changed the
+	 * document has the specified sequence number
+	 * <p>
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
@@ -157,6 +155,10 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Explicit operation type. Defaults to <code>index</code> for requests with an
+	 * explicit document ID, and to <code>create</code>for requests without an
+	 * explicit document ID
+	 * <p>
 	 * API name: {@code op_type}
 	 */
 	@Nullable
@@ -165,6 +167,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * The pipeline id to preprocess incoming documents with
+	 * <p>
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
@@ -173,6 +177,11 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * If <code>true</code> then refresh the affected shards to make this operation
+	 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+	 * this operation visible to search, if <code>false</code> (the default) then do
+	 * nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -181,14 +190,18 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Specific routing value
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -197,6 +210,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Explicit version number for concurrency control
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -205,6 +220,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Specific version type
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -213,6 +230,12 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Sets the number of shard copies that must be active before proceeding with
+	 * the index operation. Defaults to 1, meaning the primary shard only. Set to
+	 * <code>all</code> for all shard copies, otherwise set to any non-negative
+	 * value less than or equal to the total number of copies for the shard (number
+	 * of replicas + 1)
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -221,6 +244,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	}
 
 	/**
+	 * When true, requires destination to be an alias. Default is false
+	 * <p>
 	 * API name: {@code require_alias}
 	 */
 	@Nullable
@@ -257,9 +282,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		private String index;
 
 		@Nullable
-		private String type;
-
-		@Nullable
 		private Number ifPrimaryTerm;
 
 		@Nullable
@@ -275,7 +297,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		private JsonValue refresh;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
 		private JsonValue timeout;
@@ -298,6 +320,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
+		 * Document ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder<TDocument> id(@Nullable String value) {
@@ -306,6 +330,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * The name of the index
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder<TDocument> index(String value) {
@@ -314,14 +340,9 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder<TDocument> type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
+		 * only perform the index operation if the last operation that has changed the
+		 * document has the specified primary term
+		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
 		public Builder<TDocument> ifPrimaryTerm(@Nullable Number value) {
@@ -330,6 +351,9 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * only perform the index operation if the last operation that has changed the
+		 * document has the specified sequence number
+		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
 		public Builder<TDocument> ifSeqNo(@Nullable Number value) {
@@ -338,6 +362,10 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * Explicit operation type. Defaults to <code>index</code> for requests with an
+		 * explicit document ID, and to <code>create</code>for requests without an
+		 * explicit document ID
+		 * <p>
 		 * API name: {@code op_type}
 		 */
 		public Builder<TDocument> opType(@Nullable JsonValue value) {
@@ -346,6 +374,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * The pipeline id to preprocess incoming documents with
+		 * <p>
 		 * API name: {@code pipeline}
 		 */
 		public Builder<TDocument> pipeline(@Nullable String value) {
@@ -354,6 +384,11 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * If <code>true</code> then refresh the affected shards to make this operation
+		 * visible to search, if <code>wait_for</code> then wait for a refresh to make
+		 * this operation visible to search, if <code>false</code> (the default) then do
+		 * nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder<TDocument> refresh(@Nullable JsonValue value) {
@@ -362,14 +397,18 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * Specific routing value
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder<TDocument> routing(@Nullable JsonValue value) {
+		public Builder<TDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder<TDocument> timeout(@Nullable JsonValue value) {
@@ -378,6 +417,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * Explicit version number for concurrency control
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder<TDocument> version(@Nullable Number value) {
@@ -386,6 +427,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * Specific version type
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public Builder<TDocument> versionType(@Nullable JsonValue value) {
@@ -394,6 +437,12 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the index operation. Defaults to 1, meaning the primary shard only. Set to
+		 * <code>all</code> for all shard copies, otherwise set to any non-negative
+		 * value less than or equal to the total number of copies for the shard (number
+		 * of replicas + 1)
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder<TDocument> waitForActiveShards(@Nullable JsonValue value) {
@@ -402,6 +451,8 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 		}
 
 		/**
+		 * When true, requires destination to be an alias. Default is false
+		 * <p>
 		 * API name: {@code require_alias}
 		 */
 		public Builder<TDocument> requireAlias(@Nullable Boolean value) {
@@ -469,7 +520,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 			request -> {
 				final int _id = 1 << 0;
 				final int _index = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
@@ -477,17 +527,11 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 					propsSet |= _id;
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id))
 					return "PUT";
 				if (propsSet == (_index))
 					return "POST";
-				if (propsSet == (_index | _type))
-					return "POST";
-				if (propsSet == (_index | _type | _id))
-					return "PUT";
 				throw Endpoint.Simple.noPathTemplateFound("method");
 
 			},
@@ -496,7 +540,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 			request -> {
 				final int _id = 1 << 0;
 				final int _index = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
@@ -504,8 +547,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 					propsSet |= _id;
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -521,24 +562,6 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 					buf.append("/");
 					buf.append(request.index);
 					buf.append("/_doc");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index);
-					buf.append("/");
-					buf.append(request.type);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					buf.append(request.index);
-					buf.append("/");
-					buf.append(request.type);
-					buf.append("/");
-					buf.append(request.id);
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");
@@ -564,7 +587,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 					params.put("refresh", request.refresh.toString());
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout.toString());

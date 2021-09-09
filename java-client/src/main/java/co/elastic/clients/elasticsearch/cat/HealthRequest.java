@@ -61,6 +61,8 @@ public final class HealthRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Set to false to disable timestamping
+	 * <p>
 	 * API name: {@code ts}
 	 */
 	@Nullable
@@ -89,6 +91,8 @@ public final class HealthRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Set to false to disable timestamping
+		 * <p>
 		 * API name: {@code ts}
 		 */
 		public Builder ts(@Nullable Boolean value) {

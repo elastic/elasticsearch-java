@@ -52,6 +52,8 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	}
 
 	/**
+	 * Name of the namespace.
+	 * <p>
 	 * API name: {@code namespace}
 	 */
 	public String namespace() {
@@ -59,6 +61,8 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	}
 
 	/**
+	 * Name of the service name.
+	 * <p>
 	 * API name: {@code service}
 	 */
 	public String service() {
@@ -76,6 +80,8 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		private String service;
 
 		/**
+		 * Name of the namespace.
+		 * <p>
 		 * API name: {@code namespace}
 		 */
 		public Builder namespace(String value) {
@@ -84,6 +90,8 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		}
 
 		/**
+		 * Name of the service name.
+		 * <p>
 		 * API name: {@code service}
 		 */
 		public Builder service(String value) {

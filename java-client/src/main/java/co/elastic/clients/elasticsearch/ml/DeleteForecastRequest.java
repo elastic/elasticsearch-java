@@ -64,6 +64,8 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the job from which to delete forecasts
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -71,6 +73,9 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the forecast to delete, can be comma delimited list. Leaving blank
+	 * implies <code>_all</code>
+	 * <p>
 	 * API name: {@code forecast_id}
 	 */
 	@Nullable
@@ -79,6 +84,8 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if <code>_all</code> matches no forecasts
+	 * <p>
 	 * API name: {@code allow_no_forecasts}
 	 */
 	@Nullable
@@ -87,6 +94,9 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait until the forecast(s) are deleted. Default to 30
+	 * seconds
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -112,6 +122,8 @@ public final class DeleteForecastRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * The ID of the job from which to delete forecasts
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -120,6 +132,9 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
+		 * The ID of the forecast to delete, can be comma delimited list. Leaving blank
+		 * implies <code>_all</code>
+		 * <p>
 		 * API name: {@code forecast_id}
 		 */
 		public Builder forecastId(@Nullable String value) {
@@ -128,6 +143,8 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if <code>_all</code> matches no forecasts
+		 * <p>
 		 * API name: {@code allow_no_forecasts}
 		 */
 		public Builder allowNoForecasts(@Nullable Boolean value) {
@@ -136,6 +153,9 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait until the forecast(s) are deleted. Default to 30
+		 * seconds
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

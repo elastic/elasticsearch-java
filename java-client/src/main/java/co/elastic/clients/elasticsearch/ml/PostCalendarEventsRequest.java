@@ -45,7 +45,6 @@ import javax.annotation.Nullable;
 
 // typedef: ml.post_calendar_events.Request
 public final class PostCalendarEventsRequest extends RequestBase implements ToJsonp {
-	@Nullable
 	private final String calendarId;
 
 	private final List<CalendarEvent> events;
@@ -54,7 +53,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 
 	protected PostCalendarEventsRequest(Builder builder) {
 
-		this.calendarId = builder.calendarId;
+		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.events = Objects.requireNonNull(builder.events, "events");
 
 	}
@@ -64,7 +63,6 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	@Nullable
 	public String calendarId() {
 		return this.calendarId;
 	}
@@ -107,7 +105,6 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	 * Builder for {@link PostCalendarEventsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PostCalendarEventsRequest> {
-		@Nullable
 		private String calendarId;
 
 		private List<CalendarEvent> events;
@@ -117,7 +114,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(@Nullable String value) {
+		public Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}

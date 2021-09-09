@@ -53,6 +53,8 @@ public final class ClearCachedRolesRequest extends RequestBase {
 	}
 
 	/**
+	 * Role name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public List<String> name() {
@@ -68,6 +70,8 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		private List<String> name;
 
 		/**
+		 * Role name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(List<String> value) {
@@ -76,6 +80,8 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		}
 
 		/**
+		 * Role name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {

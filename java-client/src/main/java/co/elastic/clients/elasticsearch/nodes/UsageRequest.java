@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 // typedef: nodes.usage.Request
 public final class UsageRequest extends RequestBase {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final List<String> metric;
@@ -63,14 +63,20 @@ public final class UsageRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of node IDs or names to limit the returned
+	 * information; use <code>_local</code> to return information from the node
+	 * you're connecting to, leave empty to get information from all nodes
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
 	/**
+	 * Limit the information returned to the specified metrics
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
@@ -79,6 +85,8 @@ public final class UsageRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -93,7 +101,7 @@ public final class UsageRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<UsageRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
 		private List<String> metric;
@@ -102,14 +110,43 @@ public final class UsageRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned
+		 * information; use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes
+		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned
+		 * information; use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
+			return this;
+		}
+
+		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(@Nullable List<String> value) {
@@ -118,6 +155,8 @@ public final class UsageRequest extends RequestBase {
 		}
 
 		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(String... value) {
@@ -137,6 +176,8 @@ public final class UsageRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -190,7 +231,7 @@ public final class UsageRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/usage");
 					return buf.toString();
 				}
@@ -206,7 +247,7 @@ public final class UsageRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/usage");
 					buf.append("/");
 					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));

@@ -78,10 +78,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	private final Number retryOnConflict;
 
 	@Nullable
-	private final JsonValue routing;
-
-	@Nullable
-	private final Boolean sourceEnabled;
+	private final String routing;
 
 	@Nullable
 	private final JsonValue timeout;
@@ -136,7 +133,6 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
 		this.routing = builder.routing;
-		this.sourceEnabled = builder.sourceEnabled;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.sourceExcludes = builder.sourceExcludes;
@@ -154,6 +150,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Document ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -161,6 +159,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * The name of the index
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -168,6 +168,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * The type of the document
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -176,6 +178,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Only perform the operation if the document has this primary term.
+	 * <p>
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
@@ -184,6 +188,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Only perform the operation if the document has this sequence number.
+	 * <p>
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
@@ -192,6 +198,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * The script language.
+	 * <p>
 	 * API name: {@code lang}
 	 */
 	@Nullable
@@ -200,6 +208,10 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * If 'true', Elasticsearch refreshes the affected shards to make this operation
+	 * visible to search, if 'wait_for' then wait for a refresh to make this
+	 * operation visible to search, if 'false' do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -208,6 +220,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * If true, the destination must be an index alias.
+	 * <p>
 	 * API name: {@code require_alias}
 	 */
 	@Nullable
@@ -216,6 +230,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Specify how many times should the operation be retried when a conflict
+	 * occurs.
+	 * <p>
 	 * API name: {@code retry_on_conflict}
 	 */
 	@Nullable
@@ -224,22 +241,20 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Custom value used to route operations to a specific shard.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
-	 * API name: {@code source_enabled}
-	 */
-	@Nullable
-	public Boolean sourceEnabled() {
-		return this.sourceEnabled;
-	}
-
-	/**
+	 * Period to wait for dynamic mapping updates and active shards. This guarantees
+	 * Elasticsearch waits for at least the timeout before failing. The actual wait
+	 * time could be longer, particularly when multiple waits occur.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -248,6 +263,11 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * The number of shard copies that must be active before proceeding with the
+	 * operations. Set to 'all' or any positive integer up to the total number of
+	 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
+	 * shard.
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
@@ -256,6 +276,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Specify the source fields you want to exclude.
+	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
@@ -264,6 +286,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Specify the source fields you want to retrieve.
+	 * <p>
 	 * API name: {@code _source_includes}
 	 */
 	@Nullable
@@ -272,6 +296,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Set to false to disable setting 'result' in the response to 'noop' if no
+	 * change to the document occurred.
+	 * <p>
 	 * API name: {@code detect_noop}
 	 */
 	@Nullable
@@ -280,6 +307,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * A partial update to an existing document.
+	 * <p>
 	 * API name: {@code doc}
 	 */
 	@Nullable
@@ -288,6 +317,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Set to true to use the contents of 'doc' as the value of 'upsert'
+	 * <p>
 	 * API name: {@code doc_as_upsert}
 	 */
 	@Nullable
@@ -296,6 +327,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Script to execute to update the document.
+	 * <p>
 	 * API name: {@code script}
 	 */
 	@Nullable
@@ -304,6 +337,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Set to true to execute the script whether or not the document exists.
+	 * <p>
 	 * API name: {@code scripted_upsert}
 	 */
 	@Nullable
@@ -312,6 +347,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * Set to false to disable source retrieval. You can also specify a
+	 * comma-separated list of the fields you want to retrieve.
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
@@ -320,6 +358,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
+	 * If the document does not already exist, the contents of 'upsert' are inserted
+	 * as a new document. If the document exists, the 'script' is executed.
+	 * <p>
 	 * API name: {@code upsert}
 	 */
 	@Nullable
@@ -417,10 +458,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private Number retryOnConflict;
 
 		@Nullable
-		private JsonValue routing;
-
-		@Nullable
-		private Boolean sourceEnabled;
+		private String routing;
 
 		@Nullable
 		private JsonValue timeout;
@@ -462,6 +500,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
 		/**
+		 * Document ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder<TDocument, TPartialDocument> id(String value) {
@@ -470,6 +510,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * The name of the index
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder<TDocument, TPartialDocument> index(String value) {
@@ -478,6 +520,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * The type of the document
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder<TDocument, TPartialDocument> type(@Nullable String value) {
@@ -486,6 +530,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Only perform the operation if the document has this primary term.
+		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
 		public Builder<TDocument, TPartialDocument> ifPrimaryTerm(@Nullable Number value) {
@@ -494,6 +540,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Only perform the operation if the document has this sequence number.
+		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
 		public Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Number value) {
@@ -502,6 +550,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * The script language.
+		 * <p>
 		 * API name: {@code lang}
 		 */
 		public Builder<TDocument, TPartialDocument> lang(@Nullable String value) {
@@ -510,6 +560,10 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * If 'true', Elasticsearch refreshes the affected shards to make this operation
+		 * visible to search, if 'wait_for' then wait for a refresh to make this
+		 * operation visible to search, if 'false' do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder<TDocument, TPartialDocument> refresh(@Nullable JsonValue value) {
@@ -518,6 +572,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * If true, the destination must be an index alias.
+		 * <p>
 		 * API name: {@code require_alias}
 		 */
 		public Builder<TDocument, TPartialDocument> requireAlias(@Nullable Boolean value) {
@@ -526,6 +582,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Specify how many times should the operation be retried when a conflict
+		 * occurs.
+		 * <p>
 		 * API name: {@code retry_on_conflict}
 		 */
 		public Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Number value) {
@@ -534,22 +593,20 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Custom value used to route operations to a specific shard.
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder<TDocument, TPartialDocument> routing(@Nullable JsonValue value) {
+		public Builder<TDocument, TPartialDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code source_enabled}
-		 */
-		public Builder<TDocument, TPartialDocument> sourceEnabled(@Nullable Boolean value) {
-			this.sourceEnabled = value;
-			return this;
-		}
-
-		/**
+		 * Period to wait for dynamic mapping updates and active shards. This guarantees
+		 * Elasticsearch waits for at least the timeout before failing. The actual wait
+		 * time could be longer, particularly when multiple waits occur.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder<TDocument, TPartialDocument> timeout(@Nullable JsonValue value) {
@@ -558,6 +615,11 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * The number of shard copies that must be active before proceeding with the
+		 * operations. Set to 'all' or any positive integer up to the total number of
+		 * shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary
+		 * shard.
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public Builder<TDocument, TPartialDocument> waitForActiveShards(@Nullable JsonValue value) {
@@ -566,6 +628,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Specify the source fields you want to exclude.
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder<TDocument, TPartialDocument> sourceExcludes(@Nullable List<String> value) {
@@ -574,6 +638,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Specify the source fields you want to exclude.
+		 * <p>
 		 * API name: {@code _source_excludes}
 		 */
 		public Builder<TDocument, TPartialDocument> sourceExcludes(String... value) {
@@ -593,6 +659,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Specify the source fields you want to retrieve.
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder<TDocument, TPartialDocument> sourceIncludes(@Nullable List<String> value) {
@@ -601,6 +669,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Specify the source fields you want to retrieve.
+		 * <p>
 		 * API name: {@code _source_includes}
 		 */
 		public Builder<TDocument, TPartialDocument> sourceIncludes(String... value) {
@@ -620,6 +690,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Set to false to disable setting 'result' in the response to 'noop' if no
+		 * change to the document occurred.
+		 * <p>
 		 * API name: {@code detect_noop}
 		 */
 		public Builder<TDocument, TPartialDocument> detectNoop(@Nullable Boolean value) {
@@ -628,6 +701,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * A partial update to an existing document.
+		 * <p>
 		 * API name: {@code doc}
 		 */
 		public Builder<TDocument, TPartialDocument> doc(@Nullable TPartialDocument value) {
@@ -636,6 +711,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Set to true to use the contents of 'doc' as the value of 'upsert'
+		 * <p>
 		 * API name: {@code doc_as_upsert}
 		 */
 		public Builder<TDocument, TPartialDocument> docAsUpsert(@Nullable Boolean value) {
@@ -644,6 +721,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Script to execute to update the document.
+		 * <p>
 		 * API name: {@code script}
 		 */
 		public Builder<TDocument, TPartialDocument> script(@Nullable JsonValue value) {
@@ -652,6 +731,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Set to true to execute the script whether or not the document exists.
+		 * <p>
 		 * API name: {@code scripted_upsert}
 		 */
 		public Builder<TDocument, TPartialDocument> scriptedUpsert(@Nullable Boolean value) {
@@ -660,6 +741,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * Set to false to disable source retrieval. You can also specify a
+		 * comma-separated list of the fields you want to retrieve.
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public Builder<TDocument, TPartialDocument> source(@Nullable JsonValue value) {
@@ -668,6 +752,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
+		 * If the document does not already exist, the contents of 'upsert' are inserted
+		 * as a new document. If the document exists, the 'script' is executed.
+		 * <p>
 		 * API name: {@code upsert}
 		 */
 		public Builder<TDocument, TPartialDocument> upsert(@Nullable TDocument value) {
@@ -807,10 +894,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 					params.put("retry_on_conflict", request.retryOnConflict.toString());
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
-				}
-				if (request.sourceEnabled != null) {
-					params.put("source_enabled", String.valueOf(request.sourceEnabled));
+					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout.toString());

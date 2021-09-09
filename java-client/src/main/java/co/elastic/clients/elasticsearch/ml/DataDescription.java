@@ -60,6 +60,8 @@ public final class DataDescription implements ToJsonp {
 	}
 
 	/**
+	 * Only JSON format is supported at this time.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -68,6 +70,8 @@ public final class DataDescription implements ToJsonp {
 	}
 
 	/**
+	 * The name of the field that contains the timestamp.
+	 * <p>
 	 * API name: {@code time_field}
 	 */
 	public String timeField() {
@@ -75,6 +79,17 @@ public final class DataDescription implements ToJsonp {
 	}
 
 	/**
+	 * The time format, which can be <code>epoch</code>, <code>epoch_ms</code>, or a
+	 * custom pattern. The value <code>epoch</code> refers to UNIX or Epoch time
+	 * (the number of seconds since 1 Jan 1970). The value <code>epoch_ms</code>
+	 * indicates that time is measured in milliseconds since the epoch. The
+	 * <code>epoch</code> and <code>epoch_ms</code> time formats accept either
+	 * integer or real values. Custom patterns must conform to the Java
+	 * DateTimeFormatter class. When you use date-time formatting patterns, it is
+	 * recommended that you provide the full date, time and time zone. For example:
+	 * yyyy-MM-dd'T'HH:mm:ssX. If the pattern that you specify is not sufficient to
+	 * produce a complete timestamp, job creation fails.
+	 * <p>
 	 * API name: {@code time_format}
 	 */
 	@Nullable
@@ -144,6 +159,8 @@ public final class DataDescription implements ToJsonp {
 		private String fieldDelimiter;
 
 		/**
+		 * Only JSON format is supported at this time.
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public Builder format(@Nullable String value) {
@@ -152,6 +169,8 @@ public final class DataDescription implements ToJsonp {
 		}
 
 		/**
+		 * The name of the field that contains the timestamp.
+		 * <p>
 		 * API name: {@code time_field}
 		 */
 		public Builder timeField(String value) {
@@ -160,6 +179,17 @@ public final class DataDescription implements ToJsonp {
 		}
 
 		/**
+		 * The time format, which can be <code>epoch</code>, <code>epoch_ms</code>, or a
+		 * custom pattern. The value <code>epoch</code> refers to UNIX or Epoch time
+		 * (the number of seconds since 1 Jan 1970). The value <code>epoch_ms</code>
+		 * indicates that time is measured in milliseconds since the epoch. The
+		 * <code>epoch</code> and <code>epoch_ms</code> time formats accept either
+		 * integer or real values. Custom patterns must conform to the Java
+		 * DateTimeFormatter class. When you use date-time formatting patterns, it is
+		 * recommended that you provide the full date, time and time zone. For example:
+		 * yyyy-MM-dd'T'HH:mm:ssX. If the pattern that you specify is not sufficient to
+		 * produce a complete timestamp, job creation fails.
+		 * <p>
 		 * API name: {@code time_format}
 		 */
 		public Builder timeFormat(@Nullable String value) {

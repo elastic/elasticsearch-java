@@ -55,6 +55,8 @@ public final class ExecutePolicyRequest extends RequestBase {
 	}
 
 	/**
+	 * The name of the enrich policy
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -62,6 +64,8 @@ public final class ExecutePolicyRequest extends RequestBase {
 	}
 
 	/**
+	 * Should the request should block until the execution is complete.
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -81,6 +85,8 @@ public final class ExecutePolicyRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
+		 * The name of the enrich policy
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -89,6 +95,8 @@ public final class ExecutePolicyRequest extends RequestBase {
 		}
 
 		/**
+		 * Should the request should block until the execution is complete.
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {

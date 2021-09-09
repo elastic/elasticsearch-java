@@ -55,6 +55,8 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 	}
 
 	/**
+	 * The task id to rethrottle
+	 * <p>
 	 * API name: {@code task_id}
 	 */
 	public String taskId() {
@@ -62,6 +64,9 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 	}
 
 	/**
+	 * The throttle to set on this request in floating sub-requests per second. -1
+	 * means set no throttle.
+	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
@@ -81,6 +86,8 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 		private Number requestsPerSecond;
 
 		/**
+		 * The task id to rethrottle
+		 * <p>
 		 * API name: {@code task_id}
 		 */
 		public Builder taskId(String value) {
@@ -89,6 +96,9 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 		}
 
 		/**
+		 * The throttle to set on this request in floating sub-requests per second. -1
+		 * means set no throttle.
+		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
 		public Builder requestsPerSecond(@Nullable Number value) {

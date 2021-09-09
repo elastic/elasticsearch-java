@@ -55,6 +55,8 @@ public final class SetUpgradeModeRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to enable upgrade_mode ML setting or not. Defaults to false.
+	 * <p>
 	 * API name: {@code enabled}
 	 */
 	@Nullable
@@ -63,6 +65,8 @@ public final class SetUpgradeModeRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait before action times out. Defaults to 30 seconds
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -83,6 +87,8 @@ public final class SetUpgradeModeRequest extends RequestBase {
 		private JsonValue timeout;
 
 		/**
+		 * Whether to enable upgrade_mode ML setting or not. Defaults to false.
+		 * <p>
 		 * API name: {@code enabled}
 		 */
 		public Builder enabled(@Nullable Boolean value) {
@@ -91,6 +97,8 @@ public final class SetUpgradeModeRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait before action times out. Defaults to 30 seconds
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

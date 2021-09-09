@@ -59,6 +59,9 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names to open point in time; use
+	 * <code>_all</code> or empty string to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -66,6 +69,8 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
+	 * Specific the time to live for the point in time
+	 * <p>
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
@@ -85,6 +90,9 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		private JsonValue keepAlive;
 
 		/**
+		 * A comma-separated list of index names to open point in time; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -93,6 +101,9 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names to open point in time; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -112,6 +123,8 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
+		 * Specific the time to live for the point in time
+		 * <p>
 		 * API name: {@code keep_alive}
 		 */
 		public Builder keepAlive(@Nullable JsonValue value) {

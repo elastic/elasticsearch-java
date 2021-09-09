@@ -31,42 +31,36 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Response
 public final class PutTrainedModelResponse implements ToJsonp {
-	private final Boolean stub;
+	private final TrainedModelConfig value;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected PutTrainedModelResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.value = Objects.requireNonNull(builder.value, "value");
 
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Response value.
+	 * <p>
+	 * API name: {@code value}
 	 */
-	public Boolean stub() {
-		return this.stub;
+	public TrainedModelConfig value() {
+		return this.value;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub);
+		this.value.toJsonp(generator, mapper);
 
 	}
 
@@ -76,14 +70,25 @@ public final class PutTrainedModelResponse implements ToJsonp {
 	 * Builder for {@link PutTrainedModelResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<PutTrainedModelResponse> {
-		private Boolean stub;
+		private TrainedModelConfig value;
 
 		/**
-		 * API name: {@code stub}
+		 * Response value.
+		 * <p>
+		 * API name: {@code value}
 		 */
-		public Builder stub(Boolean value) {
-			this.stub = value;
+		public Builder value(TrainedModelConfig value) {
+			this.value = value;
 			return this;
+		}
+
+		/**
+		 * Response value.
+		 * <p>
+		 * API name: {@code value}
+		 */
+		public Builder value(Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
+			return this.value(fn.apply(new TrainedModelConfig.Builder()).build());
 		}
 
 		/**
@@ -109,7 +114,7 @@ public final class PutTrainedModelResponse implements ToJsonp {
 	protected static void setupPutTrainedModelResponseDeserializer(
 			DelegatingDeserializer<PutTrainedModelResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.booleanDeserializer(), "stub");
+		op.add(Builder::value, TrainedModelConfig.DESERIALIZER, "value");
 
 	}
 

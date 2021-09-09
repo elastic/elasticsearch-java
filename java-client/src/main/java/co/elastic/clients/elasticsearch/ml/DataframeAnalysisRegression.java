@@ -52,6 +52,10 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 	}
 
 	/**
+	 * The loss function used during regression. Available options are
+	 * <code>mse</code> (mean squared error), <code>msle</code> (mean squared
+	 * logarithmic error), <code>huber</code> (Pseudo-Huber loss).
+	 * <p>
 	 * API name: {@code loss_function}
 	 */
 	@Nullable
@@ -60,6 +64,9 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 	}
 
 	/**
+	 * A positive number that is used as a parameter to the
+	 * <code>loss_function</code>.
+	 * <p>
 	 * API name: {@code loss_function_parameter}
 	 */
 	@Nullable
@@ -99,6 +106,10 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 		private Number lossFunctionParameter;
 
 		/**
+		 * The loss function used during regression. Available options are
+		 * <code>mse</code> (mean squared error), <code>msle</code> (mean squared
+		 * logarithmic error), <code>huber</code> (Pseudo-Huber loss).
+		 * <p>
 		 * API name: {@code loss_function}
 		 */
 		public Builder lossFunction(@Nullable String value) {
@@ -107,6 +118,9 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 		}
 
 		/**
+		 * A positive number that is used as a parameter to the
+		 * <code>loss_function</code>.
+		 * <p>
 		 * API name: {@code loss_function_parameter}
 		 */
 		public Builder lossFunctionParameter(@Nullable Number value) {

@@ -53,10 +53,10 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	private final QueryContainer query;
 
 	@Nullable
-	private final JsonValue source;
+	private final Map<String, RuntimeField> runtimeMappings;
 
 	@Nullable
-	private final Map<String, RuntimeField> runtimeMappings;
+	private final JsonValue source;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,14 +64,16 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.query = builder.query;
-		this.source = builder.source;
 		this.runtimeMappings = builder.runtimeMappings;
+		this.source = builder.source;
 
 	}
 
 	/**
 	 * Index or indices on which to perform the analysis. It can be a single index
-	 * or index pattern as well as an array of indices or patterns.
+	 * or index pattern as well as an array of indices or patterns. NOTE: If your
+	 * source indices contain documents with the same IDs, only the document that is
+	 * indexed last appears in the destination index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -94,23 +96,26 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	}
 
 	/**
-	 * Specify includes and/or excludes patterns to select which fields will be
-	 * present in the destination. Fields that are excluded cannot be included in
-	 * the analysis.
+	 * Definitions of runtime fields that will become part of the mapping of the
+	 * destination index.
+	 * <p>
+	 * API name: {@code runtime_mappings}
+	 */
+	@Nullable
+	public Map<String, RuntimeField> runtimeMappings() {
+		return this.runtimeMappings;
+	}
+
+	/**
+	 * Specify <code>includes</code> and/or `excludes patterns to select which
+	 * fields will be present in the destination. Fields that are excluded cannot be
+	 * included in the analysis.
 	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
 	public JsonValue source() {
 		return this.source;
-	}
-
-	/**
-	 * API name: {@code runtime_mappings}
-	 */
-	@Nullable
-	public Map<String, RuntimeField> runtimeMappings() {
-		return this.runtimeMappings;
 	}
 
 	/**
@@ -138,12 +143,6 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 			this.query.toJsonp(generator, mapper);
 
 		}
-		if (this.source != null) {
-
-			generator.writeKey("_source");
-			generator.write(this.source);
-
-		}
 		if (this.runtimeMappings != null) {
 
 			generator.writeKey("runtime_mappings");
@@ -154,6 +153,12 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.source != null) {
+
+			generator.writeKey("_source");
+			generator.write(this.source);
 
 		}
 
@@ -171,14 +176,16 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		private QueryContainer query;
 
 		@Nullable
-		private JsonValue source;
+		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
-		private Map<String, RuntimeField> runtimeMappings;
+		private JsonValue source;
 
 		/**
 		 * Index or indices on which to perform the analysis. It can be a single index
-		 * or index pattern as well as an array of indices or patterns.
+		 * or index pattern as well as an array of indices or patterns. NOTE: If your
+		 * source indices contain documents with the same IDs, only the document that is
+		 * indexed last appears in the destination index.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -189,7 +196,9 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 
 		/**
 		 * Index or indices on which to perform the analysis. It can be a single index
-		 * or index pattern as well as an array of indices or patterns.
+		 * or index pattern as well as an array of indices or patterns. NOTE: If your
+		 * source indices contain documents with the same IDs, only the document that is
+		 * indexed last appears in the destination index.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -237,18 +246,9 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		}
 
 		/**
-		 * Specify includes and/or excludes patterns to select which fields will be
-		 * present in the destination. Fields that are excluded cannot be included in
-		 * the analysis.
+		 * Definitions of runtime fields that will become part of the mapping of the
+		 * destination index.
 		 * <p>
-		 * API name: {@code _source}
-		 */
-		public Builder source(@Nullable JsonValue value) {
-			this.source = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code runtime_mappings}
 		 */
 		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
@@ -282,6 +282,18 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		}
 
 		/**
+		 * Specify <code>includes</code> and/or `excludes patterns to select which
+		 * fields will be present in the destination. Fields that are excluded cannot be
+		 * included in the analysis.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public Builder source(@Nullable JsonValue value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link DataframeAnalyticsSource}.
 		 *
 		 * @throws NullPointerException
@@ -306,9 +318,9 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
 		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
 				"runtime_mappings");
+		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 
 	}
 

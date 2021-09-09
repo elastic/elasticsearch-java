@@ -53,6 +53,12 @@ public final class DelayedDataCheckConfig implements ToJsonp {
 	}
 
 	/**
+	 * The window of time that is searched for late data. This window of time ends
+	 * with the latest finalized bucket. It defaults to null, which causes an
+	 * appropriate check_window to be calculated when the real-time datafeed runs.
+	 * In particular, the default <code>check_window</code> span calculation is
+	 * based on the maximum of <code>2h</code> or <code>8 * bucket_span</code>.
+	 * <p>
 	 * API name: {@code check_window}
 	 */
 	@Nullable
@@ -61,6 +67,8 @@ public final class DelayedDataCheckConfig implements ToJsonp {
 	}
 
 	/**
+	 * Specifies whether the datafeed periodically checks for delayed data.
+	 * <p>
 	 * API name: {@code enabled}
 	 */
 	public Boolean enabled() {
@@ -102,6 +110,12 @@ public final class DelayedDataCheckConfig implements ToJsonp {
 		private Boolean enabled;
 
 		/**
+		 * The window of time that is searched for late data. This window of time ends
+		 * with the latest finalized bucket. It defaults to null, which causes an
+		 * appropriate check_window to be calculated when the real-time datafeed runs.
+		 * In particular, the default <code>check_window</code> span calculation is
+		 * based on the maximum of <code>2h</code> or <code>8 * bucket_span</code>.
+		 * <p>
 		 * API name: {@code check_window}
 		 */
 		public Builder checkWindow(@Nullable JsonValue value) {
@@ -110,6 +124,8 @@ public final class DelayedDataCheckConfig implements ToJsonp {
 		}
 
 		/**
+		 * Specifies whether the datafeed periodically checks for delayed data.
+		 * <p>
 		 * API name: {@code enabled}
 		 */
 		public Builder enabled(Boolean value) {

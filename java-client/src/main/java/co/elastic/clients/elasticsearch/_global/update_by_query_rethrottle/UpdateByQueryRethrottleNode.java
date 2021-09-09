@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._global.update_by_query_rethrottle;
 
 import co.elastic.clients.elasticsearch._spec_utils.BaseNode;
-import co.elastic.clients.elasticsearch.task.Info;
+import co.elastic.clients.elasticsearch.tasks.Info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;

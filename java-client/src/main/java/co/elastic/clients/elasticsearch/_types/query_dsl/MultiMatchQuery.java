@@ -37,6 +37,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MultiMatchQuery
@@ -77,7 +78,6 @@ public final class MultiMatchQuery extends QueryBase {
 	@Nullable
 	private final Number prefixLength;
 
-	@Nullable
 	private final String query;
 
 	@Nullable
@@ -88,9 +88,6 @@ public final class MultiMatchQuery extends QueryBase {
 
 	@Nullable
 	private final JsonValue type;
-
-	@Nullable
-	private final Boolean useDisMax;
 
 	@Nullable
 	private final JsonValue zeroTermsQuery;
@@ -111,11 +108,10 @@ public final class MultiMatchQuery extends QueryBase {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.operator = builder.operator;
 		this.prefixLength = builder.prefixLength;
-		this.query = builder.query;
+		this.query = Objects.requireNonNull(builder.query, "query");
 		this.slop = builder.slop;
 		this.tieBreaker = builder.tieBreaker;
 		this.type = builder.type;
-		this.useDisMax = builder.useDisMax;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
 	}
@@ -219,7 +215,6 @@ public final class MultiMatchQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	@Nullable
 	public String query() {
 		return this.query;
 	}
@@ -246,14 +241,6 @@ public final class MultiMatchQuery extends QueryBase {
 	@Nullable
 	public JsonValue type() {
 		return this.type;
-	}
-
-	/**
-	 * API name: {@code use_dis_max}
-	 */
-	@Nullable
-	public Boolean useDisMax() {
-		return this.useDisMax;
 	}
 
 	/**
@@ -343,12 +330,10 @@ public final class MultiMatchQuery extends QueryBase {
 			generator.write(this.prefixLength.doubleValue());
 
 		}
-		if (this.query != null) {
 
-			generator.writeKey("query");
-			generator.write(this.query);
+		generator.writeKey("query");
+		generator.write(this.query);
 
-		}
 		if (this.slop != null) {
 
 			generator.writeKey("slop");
@@ -365,12 +350,6 @@ public final class MultiMatchQuery extends QueryBase {
 
 			generator.writeKey("type");
 			generator.write(this.type);
-
-		}
-		if (this.useDisMax != null) {
-
-			generator.writeKey("use_dis_max");
-			generator.write(this.useDisMax);
 
 		}
 		if (this.zeroTermsQuery != null) {
@@ -424,7 +403,6 @@ public final class MultiMatchQuery extends QueryBase {
 		@Nullable
 		private Number prefixLength;
 
-		@Nullable
 		private String query;
 
 		@Nullable
@@ -435,9 +413,6 @@ public final class MultiMatchQuery extends QueryBase {
 
 		@Nullable
 		private JsonValue type;
-
-		@Nullable
-		private Boolean useDisMax;
 
 		@Nullable
 		private JsonValue zeroTermsQuery;
@@ -560,7 +535,7 @@ public final class MultiMatchQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable String value) {
+		public Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -586,14 +561,6 @@ public final class MultiMatchQuery extends QueryBase {
 		 */
 		public Builder type(@Nullable JsonValue value) {
 			this.type = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code use_dis_max}
-		 */
-		public Builder useDisMax(@Nullable Boolean value) {
-			this.useDisMax = value;
 			return this;
 		}
 
@@ -649,7 +616,6 @@ public final class MultiMatchQuery extends QueryBase {
 		op.add(Builder::slop, JsonpDeserializer.numberDeserializer(), "slop");
 		op.add(Builder::tieBreaker, JsonpDeserializer.numberDeserializer(), "tie_breaker");
 		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
-		op.add(Builder::useDisMax, JsonpDeserializer.booleanDeserializer(), "use_dis_max");
 		op.add(Builder::zeroTermsQuery, JsonpDeserializer.jsonValueDeserializer(), "zero_terms_query");
 
 	}

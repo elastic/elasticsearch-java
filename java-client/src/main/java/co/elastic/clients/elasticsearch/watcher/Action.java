@@ -70,6 +70,9 @@ public final class Action implements ToJsonp {
 	@Nullable
 	private final Logging logging;
 
+	@Nullable
+	private final ActionWebhook webhook;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected Action(Builder builder) {
@@ -84,6 +87,7 @@ public final class Action implements ToJsonp {
 		this.transform = builder.transform;
 		this.index = builder.index;
 		this.logging = builder.logging;
+		this.webhook = builder.webhook;
 
 	}
 
@@ -168,6 +172,14 @@ public final class Action implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code webhook}
+	 */
+	@Nullable
+	public ActionWebhook webhook() {
+		return this.webhook;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
@@ -238,6 +250,12 @@ public final class Action implements ToJsonp {
 			this.logging.toJsonp(generator, mapper);
 
 		}
+		if (this.webhook != null) {
+
+			generator.writeKey("webhook");
+			this.webhook.toJsonp(generator, mapper);
+
+		}
 
 	}
 
@@ -276,6 +294,9 @@ public final class Action implements ToJsonp {
 
 		@Nullable
 		private Logging logging;
+
+		@Nullable
+		private ActionWebhook webhook;
 
 		/**
 		 * API name: {@code action_type}
@@ -386,6 +407,21 @@ public final class Action implements ToJsonp {
 		}
 
 		/**
+		 * API name: {@code webhook}
+		 */
+		public Builder webhook(@Nullable ActionWebhook value) {
+			this.webhook = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code webhook}
+		 */
+		public Builder webhook(Function<ActionWebhook.Builder, ObjectBuilder<ActionWebhook>> fn) {
+			return this.webhook(fn.apply(new ActionWebhook.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link Action}.
 		 *
 		 * @throws NullPointerException
@@ -417,6 +453,7 @@ public final class Action implements ToJsonp {
 		op.add(Builder::transform, TransformContainer.DESERIALIZER, "transform");
 		op.add(Builder::index, Index.DESERIALIZER, "index");
 		op.add(Builder::logging, Logging.DESERIALIZER, "logging");
+		op.add(Builder::webhook, ActionWebhook.DESERIALIZER, "webhook");
 
 	}
 

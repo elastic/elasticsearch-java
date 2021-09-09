@@ -64,6 +64,8 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -72,6 +74,8 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Request timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -128,6 +132,8 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 		private List<JsonValue> actions;
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -136,6 +142,8 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Request timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {

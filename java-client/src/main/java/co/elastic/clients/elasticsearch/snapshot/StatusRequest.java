@@ -68,6 +68,8 @@ public final class StatusRequest extends RequestBase {
 	}
 
 	/**
+	 * A repository name
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -76,6 +78,8 @@ public final class StatusRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of snapshot names
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	@Nullable
@@ -84,6 +88,9 @@ public final class StatusRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore unavailable snapshots, defaults to false which means a
+	 * SnapshotMissingException is thrown
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -92,6 +99,8 @@ public final class StatusRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -118,6 +127,8 @@ public final class StatusRequest extends RequestBase {
 		private JsonValue masterTimeout;
 
 		/**
+		 * A repository name
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable String value) {
@@ -126,6 +137,8 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of snapshot names
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(@Nullable List<String> value) {
@@ -134,6 +147,8 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of snapshot names
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(String... value) {
@@ -153,6 +168,9 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore unavailable snapshots, defaults to false which means a
+		 * SnapshotMissingException is thrown
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -161,6 +179,8 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {

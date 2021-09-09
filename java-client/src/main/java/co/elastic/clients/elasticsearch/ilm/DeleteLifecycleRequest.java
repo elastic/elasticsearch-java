@@ -38,33 +38,23 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.delete_lifecycle.Request
 public final class DeleteLifecycleRequest extends RequestBase {
-	@Nullable
 	private final String policy;
-
-	private final String policyId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected DeleteLifecycleRequest(Builder builder) {
 
-		this.policy = builder.policy;
-		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
+		this.policy = Objects.requireNonNull(builder.policy, "policy");
 
 	}
 
 	/**
+	 * The name of the index lifecycle policy
+	 * <p>
 	 * API name: {@code policy}
 	 */
-	@Nullable
 	public String policy() {
 		return this.policy;
-	}
-
-	/**
-	 * API name: {@code policy_id}
-	 */
-	public String policyId() {
-		return this.policyId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -73,24 +63,15 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	 * Builder for {@link DeleteLifecycleRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<DeleteLifecycleRequest> {
-		@Nullable
 		private String policy;
 
-		private String policyId;
-
 		/**
+		 * The name of the index lifecycle policy
+		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder policy(@Nullable String value) {
+		public Builder policy(String value) {
 			this.policy = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code policy_id}
-		 */
-		public Builder policyId(String value) {
-			this.policyId = value;
 			return this;
 		}
 
@@ -121,14 +102,11 @@ public final class DeleteLifecycleRequest extends RequestBase {
 			// Request path
 			request -> {
 				final int _policy = 1 << 0;
-				final int _policyId = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.policy() != null)
 					propsSet |= _policy;
-				if (request.policyId() != null)
-					propsSet |= _policyId;
 
 				if (propsSet == (_policy)) {
 					StringBuilder buf = new StringBuilder();

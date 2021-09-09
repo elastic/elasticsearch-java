@@ -59,6 +59,8 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
+	 * The name of the index to explain
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -66,6 +68,9 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
+	 * filters the indices included in the response to ones in an ILM error state,
+	 * implies only_managed
+	 * <p>
 	 * API name: {@code only_errors}
 	 */
 	@Nullable
@@ -74,6 +79,8 @@ public final class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
+	 * filters the indices included in the response to ones managed by ILM
+	 * <p>
 	 * API name: {@code only_managed}
 	 */
 	@Nullable
@@ -96,6 +103,8 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		private Boolean onlyManaged;
 
 		/**
+		 * The name of the index to explain
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -104,6 +113,9 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		}
 
 		/**
+		 * filters the indices included in the response to ones in an ILM error state,
+		 * implies only_managed
+		 * <p>
 		 * API name: {@code only_errors}
 		 */
 		public Builder onlyErrors(@Nullable Boolean value) {
@@ -112,6 +124,8 @@ public final class ExplainLifecycleRequest extends RequestBase {
 		}
 
 		/**
+		 * filters the indices included in the response to ones managed by ILM
+		 * <p>
 		 * API name: {@code only_managed}
 		 */
 		public Builder onlyManaged(@Nullable Boolean value) {

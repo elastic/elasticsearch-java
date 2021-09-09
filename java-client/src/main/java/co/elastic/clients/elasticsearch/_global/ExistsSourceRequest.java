@@ -64,10 +64,10 @@ public final class ExistsSourceRequest extends RequestBase {
 	private final Boolean refresh;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
-	private final Boolean sourceEnabled;
+	private final JsonValue source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -92,7 +92,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.sourceEnabled = builder.sourceEnabled;
+		this.source = builder.source;
 		this.sourceExcludes = builder.sourceExcludes;
 		this.sourceIncludes = builder.sourceIncludes;
 		this.version = builder.version;
@@ -101,6 +101,8 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * The document ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -108,6 +110,8 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * The name of the index
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -115,6 +119,8 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * The type of the document; deprecated and optional starting with 7.0
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -123,6 +129,9 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -131,6 +140,8 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify whether to perform the operation in realtime or search mode
+	 * <p>
 	 * API name: {@code realtime}
 	 */
 	@Nullable
@@ -139,6 +150,8 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * Refresh the shard containing the document before performing the operation
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
@@ -147,23 +160,30 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * Specific routing value
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
 	/**
-	 * API name: {@code source_enabled}
+	 * True or false to return the _source field or not, or a list of fields to
+	 * return
+	 * <p>
+	 * API name: {@code _source}
 	 */
 	@Nullable
-	public Boolean sourceEnabled() {
-		return this.sourceEnabled;
+	public JsonValue source() {
+		return this.source;
 	}
 
 	/**
-	 * API name: {@code source_excludes}
+	 * A list of fields to exclude from the returned _source field
+	 * <p>
+	 * API name: {@code _source_excludes}
 	 */
 	@Nullable
 	public List<String> sourceExcludes() {
@@ -171,7 +191,9 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * API name: {@code source_includes}
+	 * A list of fields to extract and return from the _source field
+	 * <p>
+	 * API name: {@code _source_includes}
 	 */
 	@Nullable
 	public List<String> sourceIncludes() {
@@ -179,6 +201,8 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit version number for concurrency control
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -187,6 +211,8 @@ public final class ExistsSourceRequest extends RequestBase {
 	}
 
 	/**
+	 * Specific version type
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -217,10 +243,10 @@ public final class ExistsSourceRequest extends RequestBase {
 		private Boolean refresh;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
-		private Boolean sourceEnabled;
+		private JsonValue source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -235,6 +261,8 @@ public final class ExistsSourceRequest extends RequestBase {
 		private JsonValue versionType;
 
 		/**
+		 * The document ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -243,6 +271,8 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * The name of the index
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -251,6 +281,8 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * The type of the document; deprecated and optional starting with 7.0
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -259,6 +291,9 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -267,6 +302,8 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify whether to perform the operation in realtime or search mode
+		 * <p>
 		 * API name: {@code realtime}
 		 */
 		public Builder realtime(@Nullable Boolean value) {
@@ -275,6 +312,8 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * Refresh the shard containing the document before performing the operation
+		 * <p>
 		 * API name: {@code refresh}
 		 */
 		public Builder refresh(@Nullable Boolean value) {
@@ -283,23 +322,30 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * Specific routing value
+		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code source_enabled}
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
+		 * <p>
+		 * API name: {@code _source}
 		 */
-		public Builder sourceEnabled(@Nullable Boolean value) {
-			this.sourceEnabled = value;
+		public Builder source(@Nullable JsonValue value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code source_excludes}
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
+		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(@Nullable List<String> value) {
 			this.sourceExcludes = value;
@@ -307,7 +353,9 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code source_excludes}
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
+		 * API name: {@code _source_excludes}
 		 */
 		public Builder sourceExcludes(String... value) {
 			this.sourceExcludes = Arrays.asList(value);
@@ -326,7 +374,9 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code source_includes}
+		 * A list of fields to extract and return from the _source field
+		 * <p>
+		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(@Nullable List<String> value) {
 			this.sourceIncludes = value;
@@ -334,7 +384,9 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code source_includes}
+		 * A list of fields to extract and return from the _source field
+		 * <p>
+		 * API name: {@code _source_includes}
 		 */
 		public Builder sourceIncludes(String... value) {
 			this.sourceIncludes = Arrays.asList(value);
@@ -353,6 +405,8 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit version number for concurrency control
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Number value) {
@@ -361,6 +415,8 @@ public final class ExistsSourceRequest extends RequestBase {
 		}
 
 		/**
+		 * Specific version type
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public Builder versionType(@Nullable JsonValue value) {
@@ -444,17 +500,17 @@ public final class ExistsSourceRequest extends RequestBase {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
 				if (request.routing != null) {
-					params.put("routing", request.routing.toString());
+					params.put("routing", request.routing);
 				}
-				if (request.sourceEnabled != null) {
-					params.put("source_enabled", String.valueOf(request.sourceEnabled));
+				if (request.source != null) {
+					params.put("_source", request.source.toString());
 				}
 				if (request.sourceExcludes != null) {
-					params.put("source_excludes",
+					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.sourceIncludes != null) {
-					params.put("source_includes",
+					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {

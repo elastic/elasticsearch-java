@@ -26,88 +26,56 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Request
-public final class StatsRequest extends RequestBase implements ToJsonp {
-	private final Number stubA;
+public final class StatsRequest extends RequestBase {
+	@Nullable
+	private final List<String> index;
 
 	@Nullable
-	private final String index;
-
-	private final Number stubB;
-
-	private final Number stubC;
+	private final JsonValue level;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected StatsRequest(Builder builder) {
 
-		this.stubA = Objects.requireNonNull(builder.stubA, "stub_a");
 		this.index = builder.index;
-		this.stubB = Objects.requireNonNull(builder.stubB, "stub_b");
-		this.stubC = Objects.requireNonNull(builder.stubC, "stub_c");
+		this.level = builder.level;
 
 	}
 
 	/**
-	 * API name: {@code stub_a}
-	 */
-	public Number stubA() {
-		return this.stubA;
-	}
-
-	/**
-	 * Auto generated - missing in the input spec
+	 * A comma-separated list of index names
 	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public List<String> index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code stub_b}
+	 * Return stats aggregated at cluster, index or shard level
+	 * <p>
+	 * API name: {@code level}
 	 */
-	public Number stubB() {
-		return this.stubB;
-	}
-
-	/**
-	 * API name: {@code stub_c}
-	 */
-	public Number stubC() {
-		return this.stubC;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub_c");
-		generator.write(this.stubC.doubleValue());
-
+	@Nullable
+	public JsonValue level() {
+		return this.level;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -116,46 +84,50 @@ public final class StatsRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link StatsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<StatsRequest> {
-		private Number stubA;
+		@Nullable
+		private List<String> index;
 
 		@Nullable
-		private String index;
-
-		private Number stubB;
-
-		private Number stubC;
+		private JsonValue level;
 
 		/**
-		 * API name: {@code stub_a}
-		 */
-		public Builder stubA(Number value) {
-			this.stubA = value;
-			return this;
-		}
-
-		/**
-		 * Auto generated - missing in the input spec
+		 * A comma-separated list of index names
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public Builder index(@Nullable List<String> value) {
 			this.index = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub_b}
+		 * A comma-separated list of index names
+		 * <p>
+		 * API name: {@code index}
 		 */
-		public Builder stubB(Number value) {
-			this.stubB = value;
+		public Builder index(String... value) {
+			this.index = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub_c}
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
-		public Builder stubC(Number value) {
-			this.stubC = value;
+		public Builder addIndex(String value) {
+			if (this.index == null) {
+				this.index = new ArrayList<>();
+			}
+			this.index.add(value);
+			return this;
+		}
+
+		/**
+		 * Return stats aggregated at cluster, index or shard level
+		 * <p>
+		 * API name: {@code level}
+		 */
+		public Builder level(@Nullable JsonValue value) {
+			this.level = value;
 			return this;
 		}
 
@@ -174,20 +146,6 @@ public final class StatsRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StatsRequest
-	 */
-	public static final JsonpDeserializer<StatsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsRequest::setupStatsRequestDeserializer);
-
-	protected static void setupStatsRequestDeserializer(DelegatingDeserializer<StatsRequest.Builder> op) {
-
-		op.add(Builder::stubC, JsonpDeserializer.numberDeserializer(), "stub_c");
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
 	 * Endpoint "{@code searchable_snapshots.stats}".
 	 */
 	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
@@ -199,13 +157,10 @@ public final class StatsRequest extends RequestBase implements ToJsonp {
 
 			// Request path
 			request -> {
-				final int _stubA = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.stubA() != null)
-					propsSet |= _stubA;
 				if (request.index() != null)
 					propsSet |= _index;
 
@@ -218,7 +173,7 @@ public final class StatsRequest extends RequestBase implements ToJsonp {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					buf.append("/_searchable_snapshots");
 					buf.append("/stats");
 					return buf.toString();
@@ -230,8 +185,10 @@ public final class StatsRequest extends RequestBase implements ToJsonp {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				params.put("stub_b", request.stubB.toString());
+				if (request.level != null) {
+					params.put("level", request.level.toString());
+				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, StatsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, StatsResponse.DESERIALIZER);
 }

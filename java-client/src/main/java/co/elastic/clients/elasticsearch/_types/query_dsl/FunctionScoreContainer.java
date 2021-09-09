@@ -23,38 +23,51 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.StringEnum;
+import co.elastic.clients.util.TaggedUnion;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.lang.Object;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _types.query_dsl.FunctionScoreContainer
-public final class FunctionScoreContainer implements ToJsonp {
-	@Nullable
-	private final JsonValue exp;
+public class FunctionScoreContainer extends TaggedUnion<FunctionScoreContainer.Tag, Object> implements ToJsonp {
 
-	@Nullable
-	private final JsonValue gauss;
+	public enum Tag implements StringEnum {
 
-	@Nullable
-	private final JsonValue linear;
+		exp("exp"),
 
-	@Nullable
-	private final FieldValueFactorScoreFunction fieldValueFactor;
+		gauss("gauss"),
 
-	@Nullable
-	private final RandomScoreFunction randomScore;
+		linear("linear"),
 
-	@Nullable
-	private final ScriptScoreFunction scriptScore;
+		fieldValueFactor("field_value_factor"),
+
+		randomScore("random_score"),
+
+		scriptScore("script_score"),
+
+		;
+
+		private final String jsonValue;
+
+		Tag(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
+	}
 
 	@Nullable
 	private final QueryContainer filter;
@@ -62,67 +75,11 @@ public final class FunctionScoreContainer implements ToJsonp {
 	@Nullable
 	private final Number weight;
 
-	// ---------------------------------------------------------------------------------------------
-
-	protected FunctionScoreContainer(Builder builder) {
-
-		this.exp = builder.exp;
-		this.gauss = builder.gauss;
-		this.linear = builder.linear;
-		this.fieldValueFactor = builder.fieldValueFactor;
-		this.randomScore = builder.randomScore;
-		this.scriptScore = builder.scriptScore;
+	private FunctionScoreContainer(Builder builder) {
+		super(builder.$tag, builder.$variant);
 		this.filter = builder.filter;
 		this.weight = builder.weight;
 
-	}
-
-	/**
-	 * API name: {@code exp}
-	 */
-	@Nullable
-	public JsonValue exp() {
-		return this.exp;
-	}
-
-	/**
-	 * API name: {@code gauss}
-	 */
-	@Nullable
-	public JsonValue gauss() {
-		return this.gauss;
-	}
-
-	/**
-	 * API name: {@code linear}
-	 */
-	@Nullable
-	public JsonValue linear() {
-		return this.linear;
-	}
-
-	/**
-	 * API name: {@code field_value_factor}
-	 */
-	@Nullable
-	public FieldValueFactorScoreFunction fieldValueFactor() {
-		return this.fieldValueFactor;
-	}
-
-	/**
-	 * API name: {@code random_score}
-	 */
-	@Nullable
-	public RandomScoreFunction randomScore() {
-		return this.randomScore;
-	}
-
-	/**
-	 * API name: {@code script_score}
-	 */
-	@Nullable
-	public ScriptScoreFunction scriptScore() {
-		return this.scriptScore;
 	}
 
 	/**
@@ -142,52 +99,131 @@ public final class FunctionScoreContainer implements ToJsonp {
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Is this {@link FunctionScoreContainer} of a {@code exp} kind?
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
+	public boolean isExp() {
+		return is(Tag.exp);
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	/**
+	 * Get the {@code exp} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code exp} kind.
+	 */
+	public JsonValue exp() {
+		return get(Tag.exp);
+	}
 
-		if (this.exp != null) {
+	/**
+	 * Is this {@link FunctionScoreContainer} of a {@code gauss} kind?
+	 */
+	public boolean isGauss() {
+		return is(Tag.gauss);
+	}
 
-			generator.writeKey("exp");
-			generator.write(this.exp);
+	/**
+	 * Get the {@code gauss} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code gauss} kind.
+	 */
+	public JsonValue gauss() {
+		return get(Tag.gauss);
+	}
 
+	/**
+	 * Is this {@link FunctionScoreContainer} of a {@code linear} kind?
+	 */
+	public boolean isLinear() {
+		return is(Tag.linear);
+	}
+
+	/**
+	 * Get the {@code linear} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code linear} kind.
+	 */
+	public JsonValue linear() {
+		return get(Tag.linear);
+	}
+
+	/**
+	 * Is this {@link FunctionScoreContainer} of a {@code field_value_factor} kind?
+	 */
+	public boolean isFieldValueFactor() {
+		return is(Tag.fieldValueFactor);
+	}
+
+	/**
+	 * Get the {@code field_value_factor} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code field_value_factor}
+	 *             kind.
+	 */
+	public FieldValueFactorScoreFunction fieldValueFactor() {
+		return get(Tag.fieldValueFactor);
+	}
+
+	/**
+	 * Is this {@link FunctionScoreContainer} of a {@code random_score} kind?
+	 */
+	public boolean isRandomScore() {
+		return is(Tag.randomScore);
+	}
+
+	/**
+	 * Get the {@code random_score} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code random_score} kind.
+	 */
+	public RandomScoreFunction randomScore() {
+		return get(Tag.randomScore);
+	}
+
+	/**
+	 * Is this {@link FunctionScoreContainer} of a {@code script_score} kind?
+	 */
+	public boolean isScriptScore() {
+		return is(Tag.scriptScore);
+	}
+
+	/**
+	 * Get the {@code script_score} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code script_score} kind.
+	 */
+	public ScriptScoreFunction scriptScore() {
+		return get(Tag.scriptScore);
+	}
+
+	@Override
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		generator.writeKey(tag.jsonValue);
+		if (value instanceof ToJsonp) {
+			((ToJsonp) value).toJsonp(generator, mapper);
+		} else {
+			switch (this.tag) {
+				case exp :
+					generator.write(this.<JsonValue>get(Tag.exp));
+
+					break;
+				case gauss :
+					generator.write(this.<JsonValue>get(Tag.gauss));
+
+					break;
+				case linear :
+					generator.write(this.<JsonValue>get(Tag.linear));
+
+					break;
+			}
 		}
-		if (this.gauss != null) {
 
-			generator.writeKey("gauss");
-			generator.write(this.gauss);
-
-		}
-		if (this.linear != null) {
-
-			generator.writeKey("linear");
-			generator.write(this.linear);
-
-		}
-		if (this.fieldValueFactor != null) {
-
-			generator.writeKey("field_value_factor");
-			this.fieldValueFactor.toJsonp(generator, mapper);
-
-		}
-		if (this.randomScore != null) {
-
-			generator.writeKey("random_score");
-			this.randomScore.toJsonp(generator, mapper);
-
-		}
-		if (this.scriptScore != null) {
-
-			generator.writeKey("script_score");
-			this.scriptScore.toJsonp(generator, mapper);
-
-		}
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
@@ -201,107 +237,17 @@ public final class FunctionScoreContainer implements ToJsonp {
 
 		}
 
+		generator.writeEnd();
 	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link FunctionScoreContainer}.
-	 */
-	public static class Builder implements ObjectBuilder<FunctionScoreContainer> {
-		@Nullable
-		private JsonValue exp;
-
-		@Nullable
-		private JsonValue gauss;
-
-		@Nullable
-		private JsonValue linear;
-
-		@Nullable
-		private FieldValueFactorScoreFunction fieldValueFactor;
-
-		@Nullable
-		private RandomScoreFunction randomScore;
-
-		@Nullable
-		private ScriptScoreFunction scriptScore;
+	public static class Builder {
+		private Tag $tag;
+		private Object $variant;
 
 		@Nullable
 		private QueryContainer filter;
 
 		@Nullable
 		private Number weight;
-
-		/**
-		 * API name: {@code exp}
-		 */
-		public Builder exp(@Nullable JsonValue value) {
-			this.exp = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code gauss}
-		 */
-		public Builder gauss(@Nullable JsonValue value) {
-			this.gauss = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code linear}
-		 */
-		public Builder linear(@Nullable JsonValue value) {
-			this.linear = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code field_value_factor}
-		 */
-		public Builder fieldValueFactor(@Nullable FieldValueFactorScoreFunction value) {
-			this.fieldValueFactor = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code field_value_factor}
-		 */
-		public Builder fieldValueFactor(
-				Function<FieldValueFactorScoreFunction.Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn) {
-			return this.fieldValueFactor(fn.apply(new FieldValueFactorScoreFunction.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code random_score}
-		 */
-		public Builder randomScore(@Nullable RandomScoreFunction value) {
-			this.randomScore = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code random_score}
-		 */
-		public Builder randomScore(Function<RandomScoreFunction.Builder, ObjectBuilder<RandomScoreFunction>> fn) {
-			return this.randomScore(fn.apply(new RandomScoreFunction.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code script_score}
-		 */
-		public Builder scriptScore(@Nullable ScriptScoreFunction value) {
-			this.scriptScore = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code script_score}
-		 */
-		public Builder scriptScore(Function<ScriptScoreFunction.Builder, ObjectBuilder<ScriptScoreFunction>> fn) {
-			return this.scriptScore(fn.apply(new ScriptScoreFunction.Builder()).build());
-		}
 
 		/**
 		 * API name: {@code filter}
@@ -326,28 +272,102 @@ public final class FunctionScoreContainer implements ToJsonp {
 			return this;
 		}
 
-		/**
-		 * Builds a {@link FunctionScoreContainer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FunctionScoreContainer build() {
+		public ContainerBuilder exp(JsonValue v) {
+			this.$variant = v;
+			this.$tag = Tag.exp;
+			return new ContainerBuilder();
+		}
 
+		public ContainerBuilder gauss(JsonValue v) {
+			this.$variant = v;
+			this.$tag = Tag.gauss;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder linear(JsonValue v) {
+			this.$variant = v;
+			this.$tag = Tag.linear;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder fieldValueFactor(FieldValueFactorScoreFunction v) {
+			this.$variant = v;
+			this.$tag = Tag.fieldValueFactor;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder fieldValueFactor(
+				Function<FieldValueFactorScoreFunction.Builder, ObjectBuilder<FieldValueFactorScoreFunction>> f) {
+			return this.fieldValueFactor(f.apply(new FieldValueFactorScoreFunction.Builder()).build());
+		}
+
+		public ContainerBuilder randomScore(RandomScoreFunction v) {
+			this.$variant = v;
+			this.$tag = Tag.randomScore;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder randomScore(
+				Function<RandomScoreFunction.Builder, ObjectBuilder<RandomScoreFunction>> f) {
+			return this.randomScore(f.apply(new RandomScoreFunction.Builder()).build());
+		}
+
+		public ContainerBuilder scriptScore(ScriptScoreFunction v) {
+			this.$variant = v;
+			this.$tag = Tag.scriptScore;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder scriptScore(
+				Function<ScriptScoreFunction.Builder, ObjectBuilder<ScriptScoreFunction>> f) {
+			return this.scriptScore(f.apply(new ScriptScoreFunction.Builder()).build());
+		}
+
+		protected FunctionScoreContainer build() {
 			return new FunctionScoreContainer(this);
+		}
+
+		public class ContainerBuilder implements ObjectBuilder<FunctionScoreContainer> {
+
+			/**
+			 * API name: {@code filter}
+			 */
+			public ContainerBuilder filter(@Nullable QueryContainer value) {
+				Builder.this.filter = value;
+				return this;
+			}
+
+			/**
+			 * API name: {@code filter}
+			 */
+			public ContainerBuilder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
+				return this.filter(fn.apply(new QueryContainer.Builder()).build());
+			}
+
+			/**
+			 * API name: {@code weight}
+			 */
+			public ContainerBuilder weight(@Nullable Number value) {
+				Builder.this.weight = value;
+				return this;
+			}
+
+			public FunctionScoreContainer build() {
+				return Builder.this.build();
+			}
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	// Variants can be recursive data structures. Building the union's deserializer
+	// lazily
+	// avoids cyclic dependencies between static class initialization code, which
+	// can lead to unwanted things like NPEs or stack overflows
 
-	/**
-	 * Json deserializer for FunctionScoreContainer
-	 */
-	public static final JsonpDeserializer<FunctionScoreContainer> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FunctionScoreContainer::setupFunctionScoreContainerDeserializer);
+	public static final JsonpDeserializer<FunctionScoreContainer> DESERIALIZER = JsonpDeserializer
+			.lazy(FunctionScoreContainer::buildDeserializer);
 
-	protected static void setupFunctionScoreContainerDeserializer(
-			DelegatingDeserializer<FunctionScoreContainer.Builder> op) {
+	private static JsonpDeserializer<FunctionScoreContainer> buildDeserializer() {
+		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
 
 		op.add(Builder::exp, JsonpDeserializer.jsonValueDeserializer(), "exp");
 		op.add(Builder::gauss, JsonpDeserializer.jsonValueDeserializer(), "gauss");
@@ -358,6 +378,7 @@ public final class FunctionScoreContainer implements ToJsonp {
 		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
 		op.add(Builder::weight, JsonpDeserializer.numberDeserializer(), "weight");
 
+		return new BuildFunctionDeserializer<>(op, Builder::build);
 	}
 
 }

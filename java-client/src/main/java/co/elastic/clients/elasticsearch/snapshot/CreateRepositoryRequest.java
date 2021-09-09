@@ -74,6 +74,8 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	}
 
 	/**
+	 * A repository name
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public String repository() {
@@ -81,6 +83,8 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
@@ -89,6 +93,8 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
@@ -97,6 +103,8 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 	}
 
 	/**
+	 * Whether to verify the repository after creation
+	 * <p>
 	 * API name: {@code verify}
 	 */
 	@Nullable
@@ -159,6 +167,8 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		private RepositorySettings settings;
 
 		/**
+		 * A repository name
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String value) {
@@ -167,6 +177,8 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
 		public Builder masterTimeout(@Nullable JsonValue value) {
@@ -175,6 +187,8 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
 		public Builder timeout(@Nullable JsonValue value) {
@@ -183,6 +197,8 @@ public final class CreateRepositoryRequest extends RequestBase implements ToJson
 		}
 
 		/**
+		 * Whether to verify the repository after creation
+		 * <p>
 		 * API name: {@code verify}
 		 */
 		public Builder verify(@Nullable Boolean value) {

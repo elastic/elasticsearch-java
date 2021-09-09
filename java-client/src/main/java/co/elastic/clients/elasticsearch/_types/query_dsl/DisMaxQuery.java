@@ -34,12 +34,12 @@ import java.lang.Number;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DisMaxQuery
 public final class DisMaxQuery extends QueryBase {
-	@Nullable
 	private final List<QueryContainer> queries;
 
 	@Nullable
@@ -49,7 +49,7 @@ public final class DisMaxQuery extends QueryBase {
 
 	protected DisMaxQuery(Builder builder) {
 		super(builder);
-		this.queries = builder.queries;
+		this.queries = Objects.requireNonNull(builder.queries, "queries");
 		this.tieBreaker = builder.tieBreaker;
 
 	}
@@ -57,7 +57,6 @@ public final class DisMaxQuery extends QueryBase {
 	/**
 	 * API name: {@code queries}
 	 */
-	@Nullable
 	public List<QueryContainer> queries() {
 		return this.queries;
 	}
@@ -72,17 +71,15 @@ public final class DisMaxQuery extends QueryBase {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 		super.toJsonpInternal(generator, mapper);
-		if (this.queries != null) {
 
-			generator.writeKey("queries");
-			generator.writeStartArray();
-			for (QueryContainer item0 : this.queries) {
-				item0.toJsonp(generator, mapper);
-
-			}
-			generator.writeEnd();
+		generator.writeKey("queries");
+		generator.writeStartArray();
+		for (QueryContainer item0 : this.queries) {
+			item0.toJsonp(generator, mapper);
 
 		}
+		generator.writeEnd();
+
 		if (this.tieBreaker != null) {
 
 			generator.writeKey("tie_breaker");
@@ -98,7 +95,6 @@ public final class DisMaxQuery extends QueryBase {
 	 * Builder for {@link DisMaxQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<DisMaxQuery> {
-		@Nullable
 		private List<QueryContainer> queries;
 
 		@Nullable
@@ -107,7 +103,7 @@ public final class DisMaxQuery extends QueryBase {
 		/**
 		 * API name: {@code queries}
 		 */
-		public Builder queries(@Nullable List<QueryContainer> value) {
+		public Builder queries(List<QueryContainer> value) {
 			this.queries = value;
 			return this;
 		}

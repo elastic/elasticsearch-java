@@ -75,6 +75,8 @@ public final class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names to limit the returned information
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -83,6 +85,8 @@ public final class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
@@ -91,6 +95,9 @@ public final class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
@@ -99,6 +106,9 @@ public final class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * A health status (&quot;green&quot;, &quot;yellow&quot;, or &quot;red&quot; to
+	 * filter only indices matching the specified health status
+	 * <p>
 	 * API name: {@code health}
 	 */
 	@Nullable
@@ -107,6 +117,9 @@ public final class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * If set to true segment stats will include stats for segments that are not
+	 * currently loaded into memory
+	 * <p>
 	 * API name: {@code include_unloaded_segments}
 	 */
 	@Nullable
@@ -115,6 +128,8 @@ public final class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Set to true to return stats only for primary shards
+	 * <p>
 	 * API name: {@code pri}
 	 */
 	@Nullable
@@ -147,6 +162,8 @@ public final class IndicesRequest extends CatRequestBase {
 		private Boolean pri;
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -155,6 +172,8 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -174,6 +193,8 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
 		public Builder bytes(@Nullable JsonValue value) {
@@ -182,6 +203,9 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
 		public Builder expandWildcards(@Nullable JsonValue value) {
@@ -190,6 +214,9 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A health status (&quot;green&quot;, &quot;yellow&quot;, or &quot;red&quot; to
+		 * filter only indices matching the specified health status
+		 * <p>
 		 * API name: {@code health}
 		 */
 		public Builder health(@Nullable JsonValue value) {
@@ -198,6 +225,9 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * If set to true segment stats will include stats for segments that are not
+		 * currently loaded into memory
+		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */
 		public Builder includeUnloadedSegments(@Nullable Boolean value) {
@@ -206,6 +236,8 @@ public final class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Set to true to return stats only for primary shards
+		 * <p>
 		 * API name: {@code pri}
 		 */
 		public Builder pri(@Nullable Boolean value) {

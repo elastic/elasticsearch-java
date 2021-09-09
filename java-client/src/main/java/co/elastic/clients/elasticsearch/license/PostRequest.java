@@ -65,6 +65,8 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * whether the user has acknowledged acknowledge messages (default: false)
+	 * <p>
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
@@ -135,6 +137,8 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 		private List<License> licenses;
 
 		/**
+		 * whether the user has acknowledged acknowledge messages (default: false)
+		 * <p>
 		 * API name: {@code acknowledge}
 		 */
 		public Builder acknowledge(@Nullable Boolean value) {

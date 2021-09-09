@@ -138,8 +138,6 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 
 		spanWithin("span_within"),
 
-		template("template"),
-
 		term("term"),
 
 		terms("terms"),
@@ -217,7 +215,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code common} kind.
 	 */
-	public NamedValue<JsonValue> common() {
+	public NamedValue<CommonTermsQuery> common() {
 		return get(Tag.common);
 	}
 
@@ -338,7 +336,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code fuzzy} kind.
 	 */
-	public NamedValue<JsonValue> fuzzy() {
+	public NamedValue<FuzzyQuery> fuzzy() {
 		return get(Tag.fuzzy);
 	}
 
@@ -356,7 +354,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 *             if the current variant is not of the {@code geo_bounding_box}
 	 *             kind.
 	 */
-	public NamedQuery<JsonValue> geoBoundingBox() {
+	public GeoBoundingBoxQuery geoBoundingBox() {
 		return get(Tag.geoBoundingBox);
 	}
 
@@ -390,7 +388,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code geo_polygon} kind.
 	 */
-	public NamedQuery<JsonValue> geoPolygon() {
+	public GeoPolygonQuery geoPolygon() {
 		return get(Tag.geoPolygon);
 	}
 
@@ -407,7 +405,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code geo_shape} kind.
 	 */
-	public NamedQuery<JsonValue> geoShape() {
+	public GeoShapeQuery geoShape() {
 		return get(Tag.geoShape);
 	}
 
@@ -475,7 +473,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code intervals} kind.
 	 */
-	public NamedQuery<JsonValue> intervals() {
+	public NamedValue<IntervalsQuery> intervals() {
 		return get(Tag.intervals);
 	}
 
@@ -492,7 +490,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code match} kind.
 	 */
-	public NamedQuery<JsonValue> match() {
+	public NamedValue<MatchQuery> match() {
 		return get(Tag.match);
 	}
 
@@ -509,7 +507,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code match_all} kind.
 	 */
-	public MatchAllQuery matchAll() {
+	public JsonValue matchAll() {
 		return get(Tag.matchAll);
 	}
 
@@ -527,7 +525,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 *             if the current variant is not of the {@code match_bool_prefix}
 	 *             kind.
 	 */
-	public NamedQuery<JsonValue> matchBoolPrefix() {
+	public NamedValue<MatchBoolPrefixQuery> matchBoolPrefix() {
 		return get(Tag.matchBoolPrefix);
 	}
 
@@ -561,7 +559,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code match_phrase} kind.
 	 */
-	public NamedQuery<JsonValue> matchPhrase() {
+	public NamedValue<MatchPhraseQuery> matchPhrase() {
 		return get(Tag.matchPhrase);
 	}
 
@@ -579,7 +577,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 *             if the current variant is not of the {@code match_phrase_prefix}
 	 *             kind.
 	 */
-	public NamedQuery<JsonValue> matchPhrasePrefix() {
+	public NamedValue<MatchPhrasePrefixQuery> matchPhrasePrefix() {
 		return get(Tag.matchPhrasePrefix);
 	}
 
@@ -698,7 +696,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code prefix} kind.
 	 */
-	public NamedQuery<JsonValue> prefix() {
+	public NamedValue<PrefixQuery> prefix() {
 		return get(Tag.prefix);
 	}
 
@@ -732,7 +730,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code range} kind.
 	 */
-	public NamedQuery<RangeQuery> range() {
+	public NamedValue<JsonValue> range() {
 		return get(Tag.range);
 	}
 
@@ -749,7 +747,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code rank_feature} kind.
 	 */
-	public NamedQuery<JsonValue> rankFeature() {
+	public RankFeatureQuery rankFeature() {
 		return get(Tag.rankFeature);
 	}
 
@@ -766,7 +764,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code regexp} kind.
 	 */
-	public NamedQuery<JsonValue> regexp() {
+	public NamedValue<RegexpQuery> regexp() {
 		return get(Tag.regexp);
 	}
 
@@ -817,7 +815,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code shape} kind.
 	 */
-	public NamedQuery<JsonValue> shape() {
+	public JsonValue shape() {
 		return get(Tag.shape);
 	}
 
@@ -973,7 +971,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code span_term} kind.
 	 */
-	public NamedQuery<JsonValue> spanTerm() {
+	public NamedValue<SpanTermQuery> spanTerm() {
 		return get(Tag.spanTerm);
 	}
 
@@ -995,23 +993,6 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	}
 
 	/**
-	 * Is this {@link QueryContainer} of a {@code template} kind?
-	 */
-	public boolean isTemplate() {
-		return is(Tag.template);
-	}
-
-	/**
-	 * Get the {@code template} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code template} kind.
-	 */
-	public QueryTemplate template() {
-		return get(Tag.template);
-	}
-
-	/**
 	 * Is this {@link QueryContainer} of a {@code term} kind?
 	 */
 	public boolean isTerm() {
@@ -1024,7 +1005,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code term} kind.
 	 */
-	public NamedQuery<JsonValue> term() {
+	public NamedValue<TermQuery> term() {
 		return get(Tag.term);
 	}
 
@@ -1041,7 +1022,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code terms} kind.
 	 */
-	public NamedQuery<JsonValue> terms() {
+	public JsonValue terms() {
 		return get(Tag.terms);
 	}
 
@@ -1058,7 +1039,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code terms_set} kind.
 	 */
-	public NamedQuery<JsonValue> termsSet() {
+	public NamedValue<JsonValue> termsSet() {
 		return get(Tag.termsSet);
 	}
 
@@ -1075,7 +1056,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code wildcard} kind.
 	 */
-	public NamedQuery<JsonValue> wildcard() {
+	public NamedValue<WildcardQuery> wildcard() {
 		return get(Tag.wildcard);
 	}
 
@@ -1106,8 +1087,8 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			switch (this.tag) {
 				case common :
 					generator.writeStartObject();
-					generator.writeKey(this.<NamedValue<JsonValue>>get(Tag.common).name());
-					generator.write(this.<NamedValue<JsonValue>>get(Tag.common).value());
+					generator.writeKey(this.<NamedValue<CommonTermsQuery>>get(Tag.common).name());
+					this.<NamedValue<CommonTermsQuery>>get(Tag.common).value().toJsonp(generator, mapper);
 
 					generator.writeEnd();
 
@@ -1118,14 +1099,123 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 					break;
 				case fuzzy :
 					generator.writeStartObject();
-					generator.writeKey(this.<NamedValue<JsonValue>>get(Tag.fuzzy).name());
-					generator.write(this.<NamedValue<JsonValue>>get(Tag.fuzzy).value());
+					generator.writeKey(this.<NamedValue<FuzzyQuery>>get(Tag.fuzzy).name());
+					this.<NamedValue<FuzzyQuery>>get(Tag.fuzzy).value().toJsonp(generator, mapper);
+
+					generator.writeEnd();
+
+					break;
+				case intervals :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<IntervalsQuery>>get(Tag.intervals).name());
+					this.<NamedValue<IntervalsQuery>>get(Tag.intervals).value().toJsonp(generator, mapper);
+
+					generator.writeEnd();
+
+					break;
+				case match :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<MatchQuery>>get(Tag.match).name());
+					this.<NamedValue<MatchQuery>>get(Tag.match).value().toJsonp(generator, mapper);
+
+					generator.writeEnd();
+
+					break;
+				case matchAll :
+					generator.write(this.<JsonValue>get(Tag.matchAll));
+
+					break;
+				case matchBoolPrefix :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<MatchBoolPrefixQuery>>get(Tag.matchBoolPrefix).name());
+					this.<NamedValue<MatchBoolPrefixQuery>>get(Tag.matchBoolPrefix).value().toJsonp(generator, mapper);
 
 					generator.writeEnd();
 
 					break;
 				case matchNone :
 					generator.write(this.<JsonValue>get(Tag.matchNone));
+
+					break;
+				case matchPhrase :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<MatchPhraseQuery>>get(Tag.matchPhrase).name());
+					this.<NamedValue<MatchPhraseQuery>>get(Tag.matchPhrase).value().toJsonp(generator, mapper);
+
+					generator.writeEnd();
+
+					break;
+				case matchPhrasePrefix :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<MatchPhrasePrefixQuery>>get(Tag.matchPhrasePrefix).name());
+					this.<NamedValue<MatchPhrasePrefixQuery>>get(Tag.matchPhrasePrefix).value().toJsonp(generator,
+							mapper);
+
+					generator.writeEnd();
+
+					break;
+				case prefix :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<PrefixQuery>>get(Tag.prefix).name());
+					this.<NamedValue<PrefixQuery>>get(Tag.prefix).value().toJsonp(generator, mapper);
+
+					generator.writeEnd();
+
+					break;
+				case range :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<JsonValue>>get(Tag.range).name());
+					generator.write(this.<NamedValue<JsonValue>>get(Tag.range).value());
+
+					generator.writeEnd();
+
+					break;
+				case regexp :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<RegexpQuery>>get(Tag.regexp).name());
+					this.<NamedValue<RegexpQuery>>get(Tag.regexp).value().toJsonp(generator, mapper);
+
+					generator.writeEnd();
+
+					break;
+				case shape :
+					generator.write(this.<JsonValue>get(Tag.shape));
+
+					break;
+				case spanTerm :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<SpanTermQuery>>get(Tag.spanTerm).name());
+					this.<NamedValue<SpanTermQuery>>get(Tag.spanTerm).value().toJsonp(generator, mapper);
+
+					generator.writeEnd();
+
+					break;
+				case term :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<TermQuery>>get(Tag.term).name());
+					this.<NamedValue<TermQuery>>get(Tag.term).value().toJsonp(generator, mapper);
+
+					generator.writeEnd();
+
+					break;
+				case terms :
+					generator.write(this.<JsonValue>get(Tag.terms));
+
+					break;
+				case termsSet :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<JsonValue>>get(Tag.termsSet).name());
+					generator.write(this.<NamedValue<JsonValue>>get(Tag.termsSet).value());
+
+					generator.writeEnd();
+
+					break;
+				case wildcard :
+					generator.writeStartObject();
+					generator.writeKey(this.<NamedValue<WildcardQuery>>get(Tag.wildcard).name());
+					this.<NamedValue<WildcardQuery>>get(Tag.wildcard).value().toJsonp(generator, mapper);
+
+					generator.writeEnd();
 
 					break;
 			}
@@ -1157,7 +1247,7 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.boosting(f.apply(new BoostingQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> common(NamedValue<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> common(NamedValue<CommonTermsQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.common;
 			return new ObjectBuilder.Constant<>(this.build());
@@ -1222,21 +1312,21 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.functionScore(f.apply(new FunctionScoreQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> fuzzy(NamedValue<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> fuzzy(NamedValue<FuzzyQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.fuzzy;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> geoBoundingBox(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> geoBoundingBox(GeoBoundingBoxQuery v) {
 			this.$variant = v;
 			this.$tag = Tag.geoBoundingBox;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
 		public ObjectBuilder<QueryContainer> geoBoundingBox(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.geoBoundingBox(f.apply(new NamedQuery.Builder<JsonValue>()).build());
+				Function<GeoBoundingBoxQuery.Builder, ObjectBuilder<GeoBoundingBoxQuery>> f) {
+			return this.geoBoundingBox(f.apply(new GeoBoundingBoxQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<QueryContainer> geoDistance(GeoDistanceQuery v) {
@@ -1250,26 +1340,25 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.geoDistance(f.apply(new GeoDistanceQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> geoPolygon(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> geoPolygon(GeoPolygonQuery v) {
 			this.$variant = v;
 			this.$tag = Tag.geoPolygon;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
 		public ObjectBuilder<QueryContainer> geoPolygon(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.geoPolygon(f.apply(new NamedQuery.Builder<JsonValue>()).build());
+				Function<GeoPolygonQuery.Builder, ObjectBuilder<GeoPolygonQuery>> f) {
+			return this.geoPolygon(f.apply(new GeoPolygonQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> geoShape(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> geoShape(GeoShapeQuery v) {
 			this.$variant = v;
 			this.$tag = Tag.geoShape;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> geoShape(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.geoShape(f.apply(new NamedQuery.Builder<JsonValue>()).build());
+		public ObjectBuilder<QueryContainer> geoShape(Function<GeoShapeQuery.Builder, ObjectBuilder<GeoShapeQuery>> f) {
+			return this.geoShape(f.apply(new GeoShapeQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<QueryContainer> hasChild(HasChildQuery v) {
@@ -1303,47 +1392,28 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.ids(f.apply(new IdsQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> intervals(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> intervals(NamedValue<IntervalsQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.intervals;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> intervals(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.intervals(f.apply(new NamedQuery.Builder<JsonValue>()).build());
-		}
-
-		public ObjectBuilder<QueryContainer> match(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> match(NamedValue<MatchQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.match;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> match(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.match(f.apply(new NamedQuery.Builder<JsonValue>()).build());
-		}
-
-		public ObjectBuilder<QueryContainer> matchAll(MatchAllQuery v) {
+		public ObjectBuilder<QueryContainer> matchAll(JsonValue v) {
 			this.$variant = v;
 			this.$tag = Tag.matchAll;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> matchAll(Function<MatchAllQuery.Builder, ObjectBuilder<MatchAllQuery>> f) {
-			return this.matchAll(f.apply(new MatchAllQuery.Builder()).build());
-		}
-
-		public ObjectBuilder<QueryContainer> matchBoolPrefix(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> matchBoolPrefix(NamedValue<MatchBoolPrefixQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.matchBoolPrefix;
 			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<QueryContainer> matchBoolPrefix(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.matchBoolPrefix(f.apply(new NamedQuery.Builder<JsonValue>()).build());
 		}
 
 		public ObjectBuilder<QueryContainer> matchNone(JsonValue v) {
@@ -1352,26 +1422,16 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> matchPhrase(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> matchPhrase(NamedValue<MatchPhraseQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.matchPhrase;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> matchPhrase(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.matchPhrase(f.apply(new NamedQuery.Builder<JsonValue>()).build());
-		}
-
-		public ObjectBuilder<QueryContainer> matchPhrasePrefix(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> matchPhrasePrefix(NamedValue<MatchPhrasePrefixQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.matchPhrasePrefix;
 			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<QueryContainer> matchPhrasePrefix(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.matchPhrasePrefix(f.apply(new NamedQuery.Builder<JsonValue>()).build());
 		}
 
 		public ObjectBuilder<QueryContainer> moreLikeThis(MoreLikeThisQuery v) {
@@ -1437,15 +1497,10 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.pinned(f.apply(new PinnedQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> prefix(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> prefix(NamedValue<PrefixQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.prefix;
 			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<QueryContainer> prefix(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.prefix(f.apply(new NamedQuery.Builder<JsonValue>()).build());
 		}
 
 		public ObjectBuilder<QueryContainer> queryString(QueryStringQuery v) {
@@ -1459,37 +1514,27 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.queryString(f.apply(new QueryStringQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> range(NamedQuery<RangeQuery> v) {
+		public ObjectBuilder<QueryContainer> range(NamedValue<JsonValue> v) {
 			this.$variant = v;
 			this.$tag = Tag.range;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> range(
-				Function<NamedQuery.Builder<RangeQuery>, ObjectBuilder<NamedQuery<RangeQuery>>> f) {
-			return this.range(f.apply(new NamedQuery.Builder<RangeQuery>()).build());
-		}
-
-		public ObjectBuilder<QueryContainer> rankFeature(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> rankFeature(RankFeatureQuery v) {
 			this.$variant = v;
 			this.$tag = Tag.rankFeature;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
 		public ObjectBuilder<QueryContainer> rankFeature(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.rankFeature(f.apply(new NamedQuery.Builder<JsonValue>()).build());
+				Function<RankFeatureQuery.Builder, ObjectBuilder<RankFeatureQuery>> f) {
+			return this.rankFeature(f.apply(new RankFeatureQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> regexp(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> regexp(NamedValue<RegexpQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.regexp;
 			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<QueryContainer> regexp(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.regexp(f.apply(new NamedQuery.Builder<JsonValue>()).build());
 		}
 
 		public ObjectBuilder<QueryContainer> script(ScriptQuery v) {
@@ -1513,15 +1558,10 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.scriptScore(f.apply(new ScriptScoreQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> shape(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> shape(JsonValue v) {
 			this.$variant = v;
 			this.$tag = Tag.shape;
 			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<QueryContainer> shape(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.shape(f.apply(new NamedQuery.Builder<JsonValue>()).build());
 		}
 
 		public ObjectBuilder<QueryContainer> simpleQueryString(SimpleQueryStringQuery v) {
@@ -1609,15 +1649,10 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.spanOr(f.apply(new SpanOrQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> spanTerm(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> spanTerm(NamedValue<SpanTermQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.spanTerm;
 			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<QueryContainer> spanTerm(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.spanTerm(f.apply(new NamedQuery.Builder<JsonValue>()).build());
 		}
 
 		public ObjectBuilder<QueryContainer> spanWithin(SpanWithinQuery v) {
@@ -1631,58 +1666,28 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 			return this.spanWithin(f.apply(new SpanWithinQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<QueryContainer> template(QueryTemplate v) {
-			this.$variant = v;
-			this.$tag = Tag.template;
-			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<QueryContainer> template(Function<QueryTemplate.Builder, ObjectBuilder<QueryTemplate>> f) {
-			return this.template(f.apply(new QueryTemplate.Builder()).build());
-		}
-
-		public ObjectBuilder<QueryContainer> term(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> term(NamedValue<TermQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.term;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> term(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.term(f.apply(new NamedQuery.Builder<JsonValue>()).build());
-		}
-
-		public ObjectBuilder<QueryContainer> terms(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> terms(JsonValue v) {
 			this.$variant = v;
 			this.$tag = Tag.terms;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> terms(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.terms(f.apply(new NamedQuery.Builder<JsonValue>()).build());
-		}
-
-		public ObjectBuilder<QueryContainer> termsSet(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> termsSet(NamedValue<JsonValue> v) {
 			this.$variant = v;
 			this.$tag = Tag.termsSet;
 			return new ObjectBuilder.Constant<>(this.build());
 		}
 
-		public ObjectBuilder<QueryContainer> termsSet(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.termsSet(f.apply(new NamedQuery.Builder<JsonValue>()).build());
-		}
-
-		public ObjectBuilder<QueryContainer> wildcard(NamedQuery<JsonValue> v) {
+		public ObjectBuilder<QueryContainer> wildcard(NamedValue<WildcardQuery> v) {
 			this.$variant = v;
 			this.$tag = Tag.wildcard;
 			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<QueryContainer> wildcard(
-				Function<NamedQuery.Builder<JsonValue>, ObjectBuilder<NamedQuery<JsonValue>>> f) {
-			return this.wildcard(f.apply(new NamedQuery.Builder<JsonValue>()).build());
 		}
 
 		public ObjectBuilder<QueryContainer> type(TypeQuery v) {
@@ -1714,37 +1719,29 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 
 		op.add(Builder::bool, BoolQuery.DESERIALIZER, "bool");
 		op.add(Builder::boosting, BoostingQuery.DESERIALIZER, "boosting");
-		op.add(Builder::common, NamedValue.deserializer(() -> JsonpDeserializer.jsonValueDeserializer()), "common");
+		op.add(Builder::common, NamedValue.deserializer(() -> CommonTermsQuery.DESERIALIZER), "common");
 		op.add(Builder::combinedFields, CombinedFieldsQuery.DESERIALIZER, "combined_fields");
 		op.add(Builder::constantScore, ConstantScoreQuery.DESERIALIZER, "constant_score");
 		op.add(Builder::disMax, DisMaxQuery.DESERIALIZER, "dis_max");
 		op.add(Builder::distanceFeature, JsonpDeserializer.jsonValueDeserializer(), "distance_feature");
 		op.add(Builder::exists, ExistsQuery.DESERIALIZER, "exists");
 		op.add(Builder::functionScore, FunctionScoreQuery.DESERIALIZER, "function_score");
-		op.add(Builder::fuzzy, NamedValue.deserializer(() -> JsonpDeserializer.jsonValueDeserializer()), "fuzzy");
-		op.add(Builder::geoBoundingBox,
-				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()), "geo_bounding_box");
+		op.add(Builder::fuzzy, NamedValue.deserializer(() -> FuzzyQuery.DESERIALIZER), "fuzzy");
+		op.add(Builder::geoBoundingBox, GeoBoundingBoxQuery.DESERIALIZER, "geo_bounding_box");
 		op.add(Builder::geoDistance, GeoDistanceQuery.DESERIALIZER, "geo_distance");
-		op.add(Builder::geoPolygon, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"geo_polygon");
-		op.add(Builder::geoShape, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"geo_shape");
+		op.add(Builder::geoPolygon, GeoPolygonQuery.DESERIALIZER, "geo_polygon");
+		op.add(Builder::geoShape, GeoShapeQuery.DESERIALIZER, "geo_shape");
 		op.add(Builder::hasChild, HasChildQuery.DESERIALIZER, "has_child");
 		op.add(Builder::hasParent, HasParentQuery.DESERIALIZER, "has_parent");
 		op.add(Builder::ids, IdsQuery.DESERIALIZER, "ids");
-		op.add(Builder::intervals, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"intervals");
-		op.add(Builder::match, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"match");
-		op.add(Builder::matchAll, MatchAllQuery.DESERIALIZER, "match_all");
-		op.add(Builder::matchBoolPrefix,
-				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::intervals, NamedValue.deserializer(() -> IntervalsQuery.DESERIALIZER), "intervals");
+		op.add(Builder::match, NamedValue.deserializer(() -> MatchQuery.DESERIALIZER), "match");
+		op.add(Builder::matchAll, JsonpDeserializer.jsonValueDeserializer(), "match_all");
+		op.add(Builder::matchBoolPrefix, NamedValue.deserializer(() -> MatchBoolPrefixQuery.DESERIALIZER),
 				"match_bool_prefix");
 		op.add(Builder::matchNone, JsonpDeserializer.jsonValueDeserializer(), "match_none");
-		op.add(Builder::matchPhrase, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"match_phrase");
-		op.add(Builder::matchPhrasePrefix,
-				NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::matchPhrase, NamedValue.deserializer(() -> MatchPhraseQuery.DESERIALIZER), "match_phrase");
+		op.add(Builder::matchPhrasePrefix, NamedValue.deserializer(() -> MatchPhrasePrefixQuery.DESERIALIZER),
 				"match_phrase_prefix");
 		op.add(Builder::moreLikeThis, MoreLikeThisQuery.DESERIALIZER, "more_like_this");
 		op.add(Builder::multiMatch, MultiMatchQuery.DESERIALIZER, "multi_match");
@@ -1752,18 +1749,14 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 		op.add(Builder::parentId, ParentIdQuery.DESERIALIZER, "parent_id");
 		op.add(Builder::percolate, PercolateQuery.DESERIALIZER, "percolate");
 		op.add(Builder::pinned, PinnedQuery.DESERIALIZER, "pinned");
-		op.add(Builder::prefix, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"prefix");
+		op.add(Builder::prefix, NamedValue.deserializer(() -> PrefixQuery.DESERIALIZER), "prefix");
 		op.add(Builder::queryString, QueryStringQuery.DESERIALIZER, "query_string");
-		op.add(Builder::range, NamedQuery.createNamedQueryDeserializer(RangeQuery.DESERIALIZER), "range");
-		op.add(Builder::rankFeature, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"rank_feature");
-		op.add(Builder::regexp, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"regexp");
+		op.add(Builder::range, NamedValue.deserializer(() -> JsonpDeserializer.jsonValueDeserializer()), "range");
+		op.add(Builder::rankFeature, RankFeatureQuery.DESERIALIZER, "rank_feature");
+		op.add(Builder::regexp, NamedValue.deserializer(() -> RegexpQuery.DESERIALIZER), "regexp");
 		op.add(Builder::script, ScriptQuery.DESERIALIZER, "script");
 		op.add(Builder::scriptScore, ScriptScoreQuery.DESERIALIZER, "script_score");
-		op.add(Builder::shape, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"shape");
+		op.add(Builder::shape, JsonpDeserializer.jsonValueDeserializer(), "shape");
 		op.add(Builder::simpleQueryString, SimpleQueryStringQuery.DESERIALIZER, "simple_query_string");
 		op.add(Builder::spanContaining, SpanContainingQuery.DESERIALIZER, "span_containing");
 		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery.DESERIALIZER, "field_masking_span");
@@ -1772,18 +1765,13 @@ public class QueryContainer extends TaggedUnion<QueryContainer.Tag, Object> impl
 		op.add(Builder::spanNear, SpanNearQuery.DESERIALIZER, "span_near");
 		op.add(Builder::spanNot, SpanNotQuery.DESERIALIZER, "span_not");
 		op.add(Builder::spanOr, SpanOrQuery.DESERIALIZER, "span_or");
-		op.add(Builder::spanTerm, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"span_term");
+		op.add(Builder::spanTerm, NamedValue.deserializer(() -> SpanTermQuery.DESERIALIZER), "span_term");
 		op.add(Builder::spanWithin, SpanWithinQuery.DESERIALIZER, "span_within");
-		op.add(Builder::template, QueryTemplate.DESERIALIZER, "template");
-		op.add(Builder::term, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"term");
-		op.add(Builder::terms, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"terms");
-		op.add(Builder::termsSet, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::term, NamedValue.deserializer(() -> TermQuery.DESERIALIZER), "term");
+		op.add(Builder::terms, JsonpDeserializer.jsonValueDeserializer(), "terms");
+		op.add(Builder::termsSet, NamedValue.deserializer(() -> JsonpDeserializer.jsonValueDeserializer()),
 				"terms_set");
-		op.add(Builder::wildcard, NamedQuery.createNamedQueryDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"wildcard");
+		op.add(Builder::wildcard, NamedValue.deserializer(() -> WildcardQuery.DESERIALIZER), "wildcard");
 		op.add(Builder::type, TypeQuery.DESERIALIZER, "type");
 
 		return new BuildFunctionDeserializer<>(op, Builder::build);

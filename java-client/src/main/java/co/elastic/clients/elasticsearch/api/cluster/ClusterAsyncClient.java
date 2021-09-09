@@ -24,15 +24,14 @@
 package co.elastic.clients.elasticsearch.api.cluster;
 
 import co.elastic.clients.base.ApiClient;
+import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.cluster.AllocationExplainRequest;
 import co.elastic.clients.elasticsearch.cluster.AllocationExplainResponse;
 import co.elastic.clients.elasticsearch.cluster.DeleteComponentTemplateRequest;
 import co.elastic.clients.elasticsearch.cluster.DeleteComponentTemplateResponse;
 import co.elastic.clients.elasticsearch.cluster.DeleteVotingConfigExclusionsRequest;
-import co.elastic.clients.elasticsearch.cluster.DeleteVotingConfigExclusionsResponse;
 import co.elastic.clients.elasticsearch.cluster.ExistsComponentTemplateRequest;
-import co.elastic.clients.elasticsearch.cluster.ExistsComponentTemplateResponse;
 import co.elastic.clients.elasticsearch.cluster.GetComponentTemplateRequest;
 import co.elastic.clients.elasticsearch.cluster.GetComponentTemplateResponse;
 import co.elastic.clients.elasticsearch.cluster.GetSettingsRequest;
@@ -41,12 +40,11 @@ import co.elastic.clients.elasticsearch.cluster.HealthRequest;
 import co.elastic.clients.elasticsearch.cluster.HealthResponse;
 import co.elastic.clients.elasticsearch.cluster.PendingTasksRequest;
 import co.elastic.clients.elasticsearch.cluster.PendingTasksResponse;
+import co.elastic.clients.elasticsearch.cluster.PostVotingConfigExclusionsRequest;
 import co.elastic.clients.elasticsearch.cluster.PutComponentTemplateRequest;
 import co.elastic.clients.elasticsearch.cluster.PutComponentTemplateResponse;
 import co.elastic.clients.elasticsearch.cluster.PutSettingsRequest;
 import co.elastic.clients.elasticsearch.cluster.PutSettingsResponse;
-import co.elastic.clients.elasticsearch.cluster.PutVotingConfigExclusionsRequest;
-import co.elastic.clients.elasticsearch.cluster.PutVotingConfigExclusionsResponse;
 import co.elastic.clients.elasticsearch.cluster.RemoteInfoRequest;
 import co.elastic.clients.elasticsearch.cluster.RemoteInfoResponse;
 import co.elastic.clients.elasticsearch.cluster.RerouteRequest;
@@ -151,8 +149,8 @@ public class ClusterAsyncClient extends ApiClient<ClusterAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteVotingConfigExclusionsResponse> deleteVotingConfigExclusions(
-			DeleteVotingConfigExclusionsRequest request) throws IOException {
+	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
+			throws IOException {
 		return this.transport.performRequestAsync(request, DeleteVotingConfigExclusionsRequest.ENDPOINT,
 				this.requestOptions);
 	}
@@ -169,7 +167,7 @@ public class ClusterAsyncClient extends ApiClient<ClusterAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeleteVotingConfigExclusionsResponse> deleteVotingConfigExclusions(
+	public final CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(
 			Function<DeleteVotingConfigExclusionsRequest.Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn)
 			throws IOException {
 		return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
@@ -185,8 +183,8 @@ public class ClusterAsyncClient extends ApiClient<ClusterAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExistsComponentTemplateResponse> existsComponentTemplate(
-			ExistsComponentTemplateRequest request) throws IOException {
+	public CompletableFuture<BooleanResponse> existsComponentTemplate(ExistsComponentTemplateRequest request)
+			throws IOException {
 		return this.transport.performRequestAsync(request, ExistsComponentTemplateRequest.ENDPOINT,
 				this.requestOptions);
 	}
@@ -203,7 +201,7 @@ public class ClusterAsyncClient extends ApiClient<ClusterAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ExistsComponentTemplateResponse> existsComponentTemplate(
+	public final CompletableFuture<BooleanResponse> existsComponentTemplate(
 			Function<ExistsComponentTemplateRequest.Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn)
 			throws IOException {
 		return existsComponentTemplate(fn.apply(new ExistsComponentTemplateRequest.Builder()).build());
@@ -347,9 +345,9 @@ public class ClusterAsyncClient extends ApiClient<ClusterAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutVotingConfigExclusionsResponse> postVotingConfigExclusions(
-			PutVotingConfigExclusionsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PutVotingConfigExclusionsRequest.ENDPOINT,
+	public CompletableFuture<BooleanResponse> postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
+			throws IOException {
+		return this.transport.performRequestAsync(request, PostVotingConfigExclusionsRequest.ENDPOINT,
 				this.requestOptions);
 	}
 
@@ -365,10 +363,10 @@ public class ClusterAsyncClient extends ApiClient<ClusterAsyncClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutVotingConfigExclusionsResponse> postVotingConfigExclusions(
-			Function<PutVotingConfigExclusionsRequest.Builder, ObjectBuilder<PutVotingConfigExclusionsRequest>> fn)
+	public final CompletableFuture<BooleanResponse> postVotingConfigExclusions(
+			Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn)
 			throws IOException {
-		return postVotingConfigExclusions(fn.apply(new PutVotingConfigExclusionsRequest.Builder()).build());
+		return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cluster.put_component_template
@@ -444,26 +442,9 @@ public class ClusterAsyncClient extends ApiClient<ClusterAsyncClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public CompletableFuture<RemoteInfoResponse> remoteInfo(RemoteInfoRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, RemoteInfoRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Returns the information about configured remote clusters.
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<RemoteInfoResponse> remoteInfo(
-			Function<RemoteInfoRequest.Builder, ObjectBuilder<RemoteInfoRequest>> fn) throws IOException {
-		return remoteInfo(fn.apply(new RemoteInfoRequest.Builder()).build());
+	public CompletableFuture<RemoteInfoResponse> remoteInfo() throws IOException {
+		return this.transport.performRequestAsync(RemoteInfoRequest.INSTANCE, RemoteInfoRequest.ENDPOINT,
+				this.requestOptions);
 	}
 
 	// ----- Endpoint: cluster.reroute
