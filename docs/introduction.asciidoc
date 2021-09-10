@@ -1,0 +1,12 @@
+[[introduction]]
+== Introduction
+
+experimental[]
+
+This is the official Java high-level REST client for {es}. It works on the top 
+of the Java low-level REST client. The client provides strongly typed requests 
+and responses for all {es} APIs. It delegates protocol handling to an http 
+client such as the 
+https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-low.html[{es} Low Level REST client] 
+that takes care of all transport-level concerns. This page gives a quick 
+overview about the features of the client.

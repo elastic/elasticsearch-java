@@ -1,0 +1,7 @@
+= Elasticsearch Java High-level client
+
+:branch: master
+include::{asciidoc-dir}/../../shared/attributes.asciidoc[]
+
+include::introduction.asciidoc[]
+include::installation.asciidoc[]
