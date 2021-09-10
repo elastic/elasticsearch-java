@@ -1,0 +1,89 @@
+[[installation]]
+== Installation
+
+This page guides you through the installation process of the client.
+
+Requirements:
+
+* Java 8 or later. The library provides high-level type-safe classes 
+  and methods for all {es} APIs. It sits on top of the 
+  https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.htm8l[Low Level Rest Client] 
+  that manages all http communications.
+ 
+* The JSON implementation used by the Java client is pluggable and you must add 
+  a JSON object mapping library as a dependency to your project. It has support 
+  for https://github.com/FasterXML/jackson[Jackson] or a 
+  http://json-b.net/[JSON-B] library like 
+  https://github.com/eclipse-ee4j/yasson[Eclipse Yasson].
+
+
+The GA releases are hosted on Maven Central. Snapshot versions are hosted on 
+https://snapshots.elastic.co/maven/[Elastic's Maven snapshot repository].
+
+
+[discrete]
+[[gradle]]
+=== Installation in a Gradle project by using Jackson
+
+```
+repositories {
+    mavenCentral()
+    maven {
+        name = "Elastic-Snapshots"
+        url = uri("https://snapshots.elastic.co/maven")
+    }
+}
+
+dependencies {
+    implementation 'co.elastic.clients:elasticsearch-java:7.15.0-SNAPSHOT'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+}
+```
+
+[discrete]
+[[maven]]
+=== Installation in a Maven project by using Jackson
+
+In the `pom.xml` of your project, add the following repository definition and 
+dependencies:
+
+```
+<project>
+
+  <repositories>
+    <repository>
+      <id>Elastic-Snapshots</id>
+      <url>https://snapshots.elastic.co/maven</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>co.elastic.clients</groupId>
+      <artifactId>elasticsearch-java</artifactId>
+      <version>7.15.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.12.3</version>
+    </dependency>
+  </dependencies>
+
+</project>
+```
+
+[discrete]
+[[compatibility]]
+=== Compatibility
+
+The `main` branch targets the next major release (8.0), the `7.x` branch targets 
+the next minor release. Support is still incomplete as the API code is generated 
+from the {es} Specification that is also still a work in progress.
+
+The {es} Java client is forward compatible; meaning that the client supports 
+communicating with greater minor versions of {es}. Elastic language clients are 
+also backwards compatible with lesser supported minor {es} versions.
