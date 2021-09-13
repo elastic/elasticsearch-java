@@ -85,5 +85,5 @@ the next minor release. Support is still incomplete as the API code is generated
 from the {es} Specification that is also still a work in progress.
 
 The {es} Java client is forward compatible; meaning that the client supports 
-communicating with greater minor versions of {es}. Elastic language clients are 
+communicating with greater or equal minor versions of {es}. Elastic language clients are 
 also backwards compatible with lesser supported minor {es} versions.
