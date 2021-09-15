@@ -7,7 +7,7 @@ Requirements:
 
 * Java 8 or later. The library provides high-level type-safe classes 
   and methods for all {es} APIs. It sits on top of the 
-  https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.htm8l[Low Level Rest Client] 
+  https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html[Low Level Rest Client] 
   that manages all http communications.
  
 * The JSON implementation used by the Java client is pluggable and you must add 
