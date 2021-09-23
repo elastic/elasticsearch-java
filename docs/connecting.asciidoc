@@ -1,10 +1,14 @@
 [[connecting]]
 == Connecting
 
+experimental[]
+
 The code snippet below shows how to initialize a low level REST client and the 
 Jackson object mapper to configure an ElasticsearchClient:
 
-```
+
+["source","java"]
+--------------------------------------------------
 // Create the low-level client
 RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
 
@@ -13,7 +17,7 @@ Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper
 
 // And create our API client
 ElasticsearchClient client = new ElasticsearchClient(transport);
-```
+--------------------------------------------------
 
 Authentication is managed by the 
 https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html[low-level Rest Client].
