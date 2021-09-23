@@ -1,5 +1,17 @@
 = Elasticsearch Java High-level client
 
+[partintro]
+--
+
+The {es} Java High-level REST Client is an experimental Java client for {es}. 
+It removes all dependencies to the {es} server code base.
+
+* <<introduction>>
+* <<installation>>
+* <<connecting>>
+
+--
+
 :branch: master
 include::{asciidoc-dir}/../../shared/attributes.asciidoc[]
 
