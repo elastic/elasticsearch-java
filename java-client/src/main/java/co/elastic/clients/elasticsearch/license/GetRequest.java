@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: license.get.Request
@@ -46,7 +47,7 @@ public final class GetRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRequest(Builder builder) {
+	public GetRequest(Builder builder) {
 
 		this.acceptEnterprise = builder.acceptEnterprise;
 		this.local = builder.local;

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.slm;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Policy
-public final class Policy implements ToJsonp {
+public final class Policy implements JsonpSerializable {
 	private final Configuration config;
 
 	private final String name;
@@ -50,7 +50,7 @@ public final class Policy implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Policy(Builder builder) {
+	public Policy(Builder builder) {
 
 		this.config = Objects.requireNonNull(builder.config, "config");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -98,16 +98,16 @@ public final class Policy implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("config");
-		this.config.toJsonp(generator, mapper);
+		this.config.serialize(generator, mapper);
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -116,7 +116,7 @@ public final class Policy implements ToJsonp {
 		generator.write(this.repository);
 
 		generator.writeKey("retention");
-		this.retention.toJsonp(generator, mapper);
+		this.retention.serialize(generator, mapper);
 
 		generator.writeKey("schedule");
 		generator.write(this.schedule);
@@ -208,7 +208,7 @@ public final class Policy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Policy
+	 * Json deserializer for {@link Policy}
 	 */
 	public static final JsonpDeserializer<Policy> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Policy::setupPolicyDeserializer);

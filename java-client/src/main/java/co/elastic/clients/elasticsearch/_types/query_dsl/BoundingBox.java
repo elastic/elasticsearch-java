@@ -26,18 +26,19 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoundingBox
-public final class BoundingBox implements ToJsonp {
+public final class BoundingBox implements JsonpSerializable {
 	@Nullable
 	private final JsonValue bottomRight;
 
@@ -67,7 +68,7 @@ public final class BoundingBox implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BoundingBox(Builder builder) {
+	public BoundingBox(Builder builder) {
 
 		this.bottomRight = builder.bottomRight;
 		this.topLeft = builder.topLeft;
@@ -156,13 +157,13 @@ public final class BoundingBox implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.bottomRight != null) {
 
@@ -341,7 +342,7 @@ public final class BoundingBox implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BoundingBox
+	 * Json deserializer for {@link BoundingBox}
 	 */
 	public static final JsonpDeserializer<BoundingBox> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, BoundingBox::setupBoundingBoxDeserializer);

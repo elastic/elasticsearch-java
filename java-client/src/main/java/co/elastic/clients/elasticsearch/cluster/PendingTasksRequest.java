@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.Request
@@ -47,7 +48,7 @@ public final class PendingTasksRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PendingTasksRequest(Builder builder) {
+	public PendingTasksRequest(Builder builder) {
 
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;

@@ -47,7 +47,7 @@ public final class EnableUserRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EnableUserRequest(Builder builder) {
+	public EnableUserRequest(Builder builder) {
 
 		this.username = Objects.requireNonNull(builder.username, "username");
 		this.refresh = builder.refresh;

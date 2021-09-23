@@ -72,8 +72,9 @@ public final class KeyValueProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected KeyValueProcessor(Builder builder) {
+	public KeyValueProcessor(Builder builder) {
 		super(builder);
+
 		this.excludeKeys = builder.excludeKeys;
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.fieldSplit = Objects.requireNonNull(builder.fieldSplit, "field_split");
@@ -173,8 +174,9 @@ public final class KeyValueProcessor extends ProcessorBase {
 		return this.valueSplit;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.excludeKeys != null) {
 
 			generator.writeKey("exclude_keys");
@@ -430,7 +432,7 @@ public final class KeyValueProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for KeyValueProcessor
+	 * Json deserializer for {@link KeyValueProcessor}
 	 */
 	public static final JsonpDeserializer<KeyValueProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, KeyValueProcessor::setupKeyValueProcessorDeserializer);

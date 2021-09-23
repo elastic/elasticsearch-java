@@ -56,7 +56,7 @@ public final class DeleteAliasRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteAliasRequest(Builder builder) {
+	public DeleteAliasRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.name = Objects.requireNonNull(builder.name, "name");

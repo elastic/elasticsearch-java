@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -40,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNearQuery
-public final class SpanNearQuery extends QueryBase {
+public final class SpanNearQuery extends QueryBase implements SpanQuery, Query {
 	private final List<SpanQuery> clauses;
 
 	@Nullable
@@ -51,12 +52,21 @@ public final class SpanNearQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanNearQuery(Builder builder) {
+	public SpanNearQuery(Builder builder) {
 		super(builder);
+
 		this.clauses = Objects.requireNonNull(builder.clauses, "clauses");
 		this.inOrder = builder.inOrder;
 		this.slop = builder.slop;
 
+	}
+
+	/**
+	 * {@link SpanQuery}, {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "span_near";
 	}
 
 	/**
@@ -82,13 +92,15 @@ public final class SpanNearQuery extends QueryBase {
 		return this.slop;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("clauses");
 		generator.writeStartArray();
 		for (SpanQuery item0 : this.clauses) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -105,6 +117,8 @@ public final class SpanNearQuery extends QueryBase {
 			generator.write(this.slop.doubleValue());
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -198,11 +212,9 @@ public final class SpanNearQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for SpanNearQuery
-	 */
-	public static final JsonpDeserializer<SpanNearQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanNearQuery::setupSpanNearQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<SpanNearQuery.Builder, SpanNearQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(SpanNearQuery::setupSpanNearQueryDeserializer);
 
 	protected static void setupSpanNearQueryDeserializer(DelegatingDeserializer<SpanNearQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

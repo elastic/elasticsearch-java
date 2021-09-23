@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,6 +40,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -69,7 +71,7 @@ public final class StatsRequest extends RequestBase {
 	private final Boolean includeSegmentFileSizes;
 
 	@Nullable
-	private final JsonValue level;
+	private final Level level;
 
 	@Nullable
 	private final JsonValue masterTimeout;
@@ -85,7 +87,7 @@ public final class StatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsRequest(Builder builder) {
+	public StatsRequest(Builder builder) {
 
 		this.nodeId = builder.nodeId;
 		this.metric = builder.metric;
@@ -195,7 +197,7 @@ public final class StatsRequest extends RequestBase {
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public JsonValue level() {
+	public Level level() {
 		return this.level;
 	}
 
@@ -273,7 +275,7 @@ public final class StatsRequest extends RequestBase {
 		private Boolean includeSegmentFileSizes;
 
 		@Nullable
-		private JsonValue level;
+		private Level level;
 
 		@Nullable
 		private JsonValue masterTimeout;
@@ -508,7 +510,7 @@ public final class StatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable JsonValue value) {
+		public Builder level(@Nullable Level value) {
 			this.level = value;
 			return this;
 		}

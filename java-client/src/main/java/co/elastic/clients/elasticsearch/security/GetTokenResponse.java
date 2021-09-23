@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.security.get_token.AuthenticatedUser;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.Response
-public final class GetTokenResponse implements ToJsonp {
+public final class GetTokenResponse implements JsonpSerializable {
 	private final String accessToken;
 
 	private final Number expiresIn;
@@ -58,7 +58,7 @@ public final class GetTokenResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTokenResponse(Builder builder) {
+	public GetTokenResponse(Builder builder) {
 
 		this.accessToken = Objects.requireNonNull(builder.accessToken, "access_token");
 		this.expiresIn = Objects.requireNonNull(builder.expiresIn, "expires_in");
@@ -124,13 +124,13 @@ public final class GetTokenResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("access_token");
 		generator.write(this.accessToken);
@@ -159,7 +159,7 @@ public final class GetTokenResponse implements ToJsonp {
 		}
 
 		generator.writeKey("authentication");
-		this.authentication.toJsonp(generator, mapper);
+		this.authentication.serialize(generator, mapper);
 
 	}
 
@@ -263,7 +263,7 @@ public final class GetTokenResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetTokenResponse
+	 * Json deserializer for {@link GetTokenResponse}
 	 */
 	public static final JsonpDeserializer<GetTokenResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetTokenResponse::setupGetTokenResponseDeserializer);

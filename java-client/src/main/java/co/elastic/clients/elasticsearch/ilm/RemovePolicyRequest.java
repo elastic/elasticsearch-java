@@ -42,7 +42,7 @@ public final class RemovePolicyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RemovePolicyRequest(Builder builder) {
+	public RemovePolicyRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 

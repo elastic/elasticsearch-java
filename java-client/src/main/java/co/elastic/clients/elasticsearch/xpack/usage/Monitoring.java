@@ -45,8 +45,9 @@ public final class Monitoring extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Monitoring(Builder builder) {
+	public Monitoring(Builder builder) {
 		super(builder);
+
 		this.collectionEnabled = Objects.requireNonNull(builder.collectionEnabled, "collection_enabled");
 		this.enabledExporters = Objects.requireNonNull(builder.enabledExporters, "enabled_exporters");
 
@@ -66,8 +67,9 @@ public final class Monitoring extends Base {
 		return this.enabledExporters;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("collection_enabled");
 		generator.write(this.collectionEnabled);
@@ -141,7 +143,7 @@ public final class Monitoring extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Monitoring
+	 * Json deserializer for {@link Monitoring}
 	 */
 	public static final JsonpDeserializer<Monitoring> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Monitoring::setupMonitoringDeserializer);

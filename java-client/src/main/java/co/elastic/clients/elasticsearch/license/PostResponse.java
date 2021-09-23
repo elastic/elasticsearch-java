@@ -27,11 +27,10 @@ import co.elastic.clients.elasticsearch.license.post.Acknowledgement;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,17 +38,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Response
-public final class PostResponse implements ToJsonp {
+public final class PostResponse implements JsonpSerializable {
 	@Nullable
 	private final Acknowledgement acknowledge;
 
 	private final Boolean acknowledged;
 
-	private final JsonValue licenseStatus;
+	private final LicenseStatus licenseStatus;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostResponse(Builder builder) {
+	public PostResponse(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 		this.acknowledged = Objects.requireNonNull(builder.acknowledged, "acknowledged");
@@ -75,25 +74,25 @@ public final class PostResponse implements ToJsonp {
 	/**
 	 * API name: {@code license_status}
 	 */
-	public JsonValue licenseStatus() {
+	public LicenseStatus licenseStatus() {
 		return this.licenseStatus;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.acknowledge != null) {
 
 			generator.writeKey("acknowledge");
-			this.acknowledge.toJsonp(generator, mapper);
+			this.acknowledge.serialize(generator, mapper);
 
 		}
 
@@ -101,7 +100,7 @@ public final class PostResponse implements ToJsonp {
 		generator.write(this.acknowledged);
 
 		generator.writeKey("license_status");
-		generator.write(this.licenseStatus);
+		this.licenseStatus.serialize(generator, mapper);
 
 	}
 
@@ -116,7 +115,7 @@ public final class PostResponse implements ToJsonp {
 
 		private Boolean acknowledged;
 
-		private JsonValue licenseStatus;
+		private LicenseStatus licenseStatus;
 
 		/**
 		 * API name: {@code acknowledge}
@@ -144,7 +143,7 @@ public final class PostResponse implements ToJsonp {
 		/**
 		 * API name: {@code license_status}
 		 */
-		public Builder licenseStatus(JsonValue value) {
+		public Builder licenseStatus(LicenseStatus value) {
 			this.licenseStatus = value;
 			return this;
 		}
@@ -164,7 +163,7 @@ public final class PostResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PostResponse
+	 * Json deserializer for {@link PostResponse}
 	 */
 	public static final JsonpDeserializer<PostResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PostResponse::setupPostResponseDeserializer);
@@ -173,7 +172,7 @@ public final class PostResponse implements ToJsonp {
 
 		op.add(Builder::acknowledge, Acknowledgement.DESERIALIZER, "acknowledge");
 		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
-		op.add(Builder::licenseStatus, JsonpDeserializer.jsonValueDeserializer(), "license_status");
+		op.add(Builder::licenseStatus, LicenseStatus.DESERIALIZER, "license_status");
 
 	}
 

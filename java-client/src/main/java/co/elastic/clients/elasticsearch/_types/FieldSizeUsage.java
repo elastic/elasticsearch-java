@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldSizeUsage
-public final class FieldSizeUsage implements ToJsonp {
+public final class FieldSizeUsage implements JsonpSerializable {
 	@Nullable
 	private final JsonValue size;
 
@@ -45,7 +45,7 @@ public final class FieldSizeUsage implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FieldSizeUsage(Builder builder) {
+	public FieldSizeUsage(Builder builder) {
 
 		this.size = builder.size;
 		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
@@ -70,13 +70,13 @@ public final class FieldSizeUsage implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.size != null) {
 
@@ -132,7 +132,7 @@ public final class FieldSizeUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FieldSizeUsage
+	 * Json deserializer for {@link FieldSizeUsage}
 	 */
 	public static final JsonpDeserializer<FieldSizeUsage> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FieldSizeUsage::setupFieldSizeUsageDeserializer);

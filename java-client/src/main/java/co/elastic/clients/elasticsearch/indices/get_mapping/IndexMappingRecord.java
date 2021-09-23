@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_mapping.IndexMappingRecord
-public final class IndexMappingRecord implements ToJsonp {
+public final class IndexMappingRecord implements JsonpSerializable {
 	@Nullable
 	private final TypeMapping item;
 
@@ -45,7 +45,7 @@ public final class IndexMappingRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexMappingRecord(Builder builder) {
+	public IndexMappingRecord(Builder builder) {
 
 		this.item = builder.item;
 		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
@@ -70,23 +70,23 @@ public final class IndexMappingRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.item != null) {
 
 			generator.writeKey("item");
-			this.item.toJsonp(generator, mapper);
+			this.item.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("mappings");
-		this.mappings.toJsonp(generator, mapper);
+		this.mappings.serialize(generator, mapper);
 
 	}
 
@@ -146,7 +146,7 @@ public final class IndexMappingRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexMappingRecord
+	 * Json deserializer for {@link IndexMappingRecord}
 	 */
 	public static final JsonpDeserializer<IndexMappingRecord> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexMappingRecord::setupIndexMappingRecordDeserializer);

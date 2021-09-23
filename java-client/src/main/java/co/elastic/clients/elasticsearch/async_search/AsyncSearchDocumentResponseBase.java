@@ -44,8 +44,9 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
+	public AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
 		super(builder);
+
 		this.response = Objects.requireNonNull(builder.response, "response");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -58,11 +59,12 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		return this.response;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("response");
-		this.response.toJsonp(generator, mapper);
+		this.response.serialize(generator, mapper);
 
 	}
 

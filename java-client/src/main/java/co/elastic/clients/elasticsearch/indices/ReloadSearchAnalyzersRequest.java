@@ -58,7 +58,7 @@ public final class ReloadSearchAnalyzersRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ReloadSearchAnalyzersRequest(Builder builder) {
+	public ReloadSearchAnalyzersRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;

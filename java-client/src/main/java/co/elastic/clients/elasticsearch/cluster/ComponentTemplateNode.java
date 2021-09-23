@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.HashMap;
@@ -40,18 +40,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateNode
-public final class ComponentTemplateNode implements ToJsonp {
+public final class ComponentTemplateNode implements JsonpSerializable {
 	private final ComponentTemplateSummary template;
 
 	@Nullable
 	private final Number version;
 
 	@Nullable
-	private final Map<String, JsonValue> meta;
+	private final Map<String, JsonData> meta;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ComponentTemplateNode(Builder builder) {
+	public ComponentTemplateNode(Builder builder) {
 
 		this.template = Objects.requireNonNull(builder.template, "template");
 		this.version = builder.version;
@@ -78,23 +78,23 @@ public final class ComponentTemplateNode implements ToJsonp {
 	 * API name: {@code _meta}
 	 */
 	@Nullable
-	public Map<String, JsonValue> meta() {
+	public Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("template");
-		this.template.toJsonp(generator, mapper);
+		this.template.serialize(generator, mapper);
 
 		if (this.version != null) {
 
@@ -106,9 +106,9 @@ public final class ComponentTemplateNode implements ToJsonp {
 
 			generator.writeKey("_meta");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.meta.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -129,7 +129,7 @@ public final class ComponentTemplateNode implements ToJsonp {
 		private Number version;
 
 		@Nullable
-		private Map<String, JsonValue> meta;
+		private Map<String, JsonData> meta;
 
 		/**
 		 * API name: {@code template}
@@ -158,7 +158,7 @@ public final class ComponentTemplateNode implements ToJsonp {
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonValue> value) {
+		public Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
 			return this;
 		}
@@ -166,7 +166,7 @@ public final class ComponentTemplateNode implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder putMeta(String key, JsonValue value) {
+		public Builder put_meta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}
@@ -189,7 +189,7 @@ public final class ComponentTemplateNode implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ComponentTemplateNode
+	 * Json deserializer for {@link ComponentTemplateNode}
 	 */
 	public static final JsonpDeserializer<ComponentTemplateNode> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ComponentTemplateNode::setupComponentTemplateNodeDeserializer);
@@ -199,8 +199,7 @@ public final class ComponentTemplateNode implements ToJsonp {
 
 		op.add(Builder::template, ComponentTemplateSummary.DESERIALIZER, "template");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"_meta");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
 
 	}
 

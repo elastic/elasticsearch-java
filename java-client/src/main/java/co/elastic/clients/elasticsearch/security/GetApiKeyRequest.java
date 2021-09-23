@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.Request
@@ -56,7 +57,7 @@ public final class GetApiKeyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetApiKeyRequest(Builder builder) {
+	public GetApiKeyRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.name = builder.name;

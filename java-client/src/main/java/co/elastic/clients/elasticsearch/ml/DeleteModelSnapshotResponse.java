@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ml.delete_model_snapshot.Response
 public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteModelSnapshotResponse(Builder builder) {
+	public DeleteModelSnapshotResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteModelSnapshotResponse
+	 * Json deserializer for {@link DeleteModelSnapshotResponse}
 	 */
 	public static final JsonpDeserializer<DeleteModelSnapshotResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DeleteModelSnapshotResponse::setupDeleteModelSnapshotResponseDeserializer);

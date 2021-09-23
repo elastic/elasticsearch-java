@@ -26,19 +26,20 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthcRealms
-public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
+public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 	@Nullable
 	private final Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> file;
 
@@ -50,7 +51,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoXpackSecurityAuthcRealms(Builder builder) {
+	public NodeInfoXpackSecurityAuthcRealms(Builder builder) {
 
 		this.file = builder.file;
 		this.native_ = builder.native_;
@@ -85,13 +86,13 @@ public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.file != null) {
 
@@ -99,7 +100,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoXpackSecurityAuthcRealmsStatus> item0 : this.file.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -111,7 +112,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoXpackSecurityAuthcRealmsStatus> item0 : this.native_.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -123,7 +124,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoXpackSecurityAuthcRealmsStatus> item0 : this.pki.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -194,7 +195,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #native_(Map)}, creating the map if needed.
 		 */
-		public Builder putNative_(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
+		public Builder putNative(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
 			if (this.native_ == null) {
 				this.native_ = new HashMap<>();
 			}
@@ -214,9 +215,9 @@ public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #native_(Map)}, creating the map if needed.
 		 */
-		public Builder putNative_(String key,
+		public Builder putNative(String key,
 				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.putNative_(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
+			return this.putNative(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
 		}
 
 		/**
@@ -270,7 +271,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoXpackSecurityAuthcRealms
+	 * Json deserializer for {@link NodeInfoXpackSecurityAuthcRealms}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcRealms> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

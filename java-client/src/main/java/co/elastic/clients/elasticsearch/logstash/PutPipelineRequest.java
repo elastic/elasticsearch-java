@@ -30,9 +30,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -42,14 +42,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash.put_pipeline.Request
-public final class PutPipelineRequest extends RequestBase implements ToJsonp {
+public final class PutPipelineRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	private final Pipeline value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutPipelineRequest(Builder builder) {
+	public PutPipelineRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.value = Objects.requireNonNull(builder.value, "value");
@@ -77,8 +77,8 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.toJsonp(generator, mapper);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -136,7 +136,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutPipelineRequest
+	 * Json deserializer for {@link PutPipelineRequest}
 	 */
 	public static final JsonpDeserializer<PutPipelineRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer);

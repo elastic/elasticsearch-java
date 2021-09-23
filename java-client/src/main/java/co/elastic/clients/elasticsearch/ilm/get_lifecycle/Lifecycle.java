@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.ilm.Policy;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Lifecycle
-public final class Lifecycle implements ToJsonp {
+public final class Lifecycle implements JsonpSerializable {
 	private final String modifiedDate;
 
 	private final Policy policy;
@@ -48,7 +48,7 @@ public final class Lifecycle implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Lifecycle(Builder builder) {
+	public Lifecycle(Builder builder) {
 
 		this.modifiedDate = Objects.requireNonNull(builder.modifiedDate, "modified_date");
 		this.policy = Objects.requireNonNull(builder.policy, "policy");
@@ -80,19 +80,19 @@ public final class Lifecycle implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("modified_date");
 		generator.write(this.modifiedDate);
 
 		generator.writeKey("policy");
-		this.policy.toJsonp(generator, mapper);
+		this.policy.serialize(generator, mapper);
 
 		generator.writeKey("version");
 		generator.write(this.version.doubleValue());
@@ -157,7 +157,7 @@ public final class Lifecycle implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Lifecycle
+	 * Json deserializer for {@link Lifecycle}
 	 */
 	public static final JsonpDeserializer<Lifecycle> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Lifecycle::setupLifecycleDeserializer);

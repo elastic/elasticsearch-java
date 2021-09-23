@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.close;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.close.CloseIndexResult
-public final class CloseIndexResult implements ToJsonp {
+public final class CloseIndexResult implements JsonpSerializable {
 	private final Boolean closed;
 
 	@Nullable
@@ -48,7 +48,7 @@ public final class CloseIndexResult implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloseIndexResult(Builder builder) {
+	public CloseIndexResult(Builder builder) {
 
 		this.closed = Objects.requireNonNull(builder.closed, "closed");
 		this.shards = builder.shards;
@@ -73,13 +73,13 @@ public final class CloseIndexResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("closed");
 		generator.write(this.closed);
@@ -90,7 +90,7 @@ public final class CloseIndexResult implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, CloseShardResult> item0 : this.shards.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -166,7 +166,7 @@ public final class CloseIndexResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CloseIndexResult
+	 * Json deserializer for {@link CloseIndexResult}
 	 */
 	public static final JsonpDeserializer<CloseIndexResult> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CloseIndexResult::setupCloseIndexResultDeserializer);

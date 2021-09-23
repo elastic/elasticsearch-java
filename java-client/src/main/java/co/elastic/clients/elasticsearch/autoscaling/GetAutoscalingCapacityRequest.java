@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: autoscaling.get_autoscaling_capacity.Request
 public final class GetAutoscalingCapacityRequest extends RequestBase {
-	protected GetAutoscalingCapacityRequest() {
+	public GetAutoscalingCapacityRequest() {
 	}
 
 	/**

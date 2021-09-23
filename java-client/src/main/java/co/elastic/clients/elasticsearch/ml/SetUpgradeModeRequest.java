@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.set_upgrade_mode.Request
@@ -47,7 +48,7 @@ public final class SetUpgradeModeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SetUpgradeModeRequest(Builder builder) {
+	public SetUpgradeModeRequest(Builder builder) {
 
 		this.enabled = builder.enabled;
 		this.timeout = builder.timeout;

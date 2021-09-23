@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIngest
-public final class ClusterIngest implements ToJsonp {
+public final class ClusterIngest implements JsonpSerializable {
 	private final Number numberOfPipelines;
 
 	private final Map<String, ClusterProcessor> processorStats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterIngest(Builder builder) {
+	public ClusterIngest(Builder builder) {
 
 		this.numberOfPipelines = Objects.requireNonNull(builder.numberOfPipelines, "number_of_pipelines");
 		this.processorStats = Objects.requireNonNull(builder.processorStats, "processor_stats");
@@ -71,13 +71,13 @@ public final class ClusterIngest implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("number_of_pipelines");
 		generator.write(this.numberOfPipelines.doubleValue());
@@ -86,7 +86,7 @@ public final class ClusterIngest implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, ClusterProcessor> item0 : this.processorStats.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -161,7 +161,7 @@ public final class ClusterIngest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterIngest
+	 * Json deserializer for {@link ClusterIngest}
 	 */
 	public static final JsonpDeserializer<ClusterIngest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterIngest::setupClusterIngestDeserializer);

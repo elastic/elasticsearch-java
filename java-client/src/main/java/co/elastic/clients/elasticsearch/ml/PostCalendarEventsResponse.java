@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,12 +39,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_calendar_events.Response
-public final class PostCalendarEventsResponse implements ToJsonp {
+public final class PostCalendarEventsResponse implements JsonpSerializable {
 	private final List<CalendarEvent> events;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostCalendarEventsResponse(Builder builder) {
+	public PostCalendarEventsResponse(Builder builder) {
 
 		this.events = Objects.requireNonNull(builder.events, "events");
 
@@ -60,18 +60,18 @@ public final class PostCalendarEventsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("events");
 		generator.writeStartArray();
 		for (CalendarEvent item0 : this.events) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -142,7 +142,7 @@ public final class PostCalendarEventsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PostCalendarEventsResponse
+	 * Json deserializer for {@link PostCalendarEventsResponse}
 	 */
 	public static final JsonpDeserializer<PostCalendarEventsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PostCalendarEventsResponse::setupPostCalendarEventsResponseDeserializer);

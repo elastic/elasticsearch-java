@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -47,7 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_job.Request
-public final class PutJobRequest extends RequestBase implements ToJsonp {
+public final class PutJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
@@ -94,7 +94,7 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutJobRequest(Builder builder) {
+	public PutJobRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.allowLazyOpen = builder.allowLazyOpen;
@@ -321,13 +321,13 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowLazyOpen != null) {
 
@@ -337,12 +337,12 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 		}
 
 		generator.writeKey("analysis_config");
-		this.analysisConfig.toJsonp(generator, mapper);
+		this.analysisConfig.serialize(generator, mapper);
 
 		if (this.analysisLimits != null) {
 
 			generator.writeKey("analysis_limits");
-			this.analysisLimits.toJsonp(generator, mapper);
+			this.analysisLimits.serialize(generator, mapper);
 
 		}
 
@@ -352,7 +352,7 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 		if (this.customSettings != null) {
 
 			generator.writeKey("custom_settings");
-			this.customSettings.toJsonp(generator, mapper);
+			this.customSettings.serialize(generator, mapper);
 
 		}
 		if (this.dailyModelSnapshotRetentionAfterDays != null) {
@@ -363,12 +363,12 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 		}
 
 		generator.writeKey("data_description");
-		this.dataDescription.toJsonp(generator, mapper);
+		this.dataDescription.serialize(generator, mapper);
 
 		if (this.datafeedConfig != null) {
 
 			generator.writeKey("datafeed_config");
-			this.datafeedConfig.toJsonp(generator, mapper);
+			this.datafeedConfig.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
@@ -391,7 +391,7 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 		if (this.modelPlotConfig != null) {
 
 			generator.writeKey("model_plot_config");
-			this.modelPlotConfig.toJsonp(generator, mapper);
+			this.modelPlotConfig.serialize(generator, mapper);
 
 		}
 		if (this.modelSnapshotRetentionDays != null) {
@@ -782,7 +782,7 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutJobRequest
+	 * Json deserializer for {@link PutJobRequest}
 	 */
 	public static final JsonpDeserializer<PutJobRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutJobRequest::setupPutJobRequestDeserializer);

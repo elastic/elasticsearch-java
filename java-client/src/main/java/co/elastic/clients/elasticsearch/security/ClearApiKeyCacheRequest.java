@@ -46,7 +46,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearApiKeyCacheRequest(Builder builder) {
+	public ClearApiKeyCacheRequest(Builder builder) {
 
 		this.ids = Objects.requireNonNull(builder.ids, "ids");
 

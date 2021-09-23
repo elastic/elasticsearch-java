@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.NodesCredentials
-public final class NodesCredentials implements ToJsonp {
+public final class NodesCredentials implements JsonpSerializable {
 	private final NodeStatistics nodes;
 
 	private final Map<String, NodesCredentialsFileToken> fileTokens;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodesCredentials(Builder builder) {
+	public NodesCredentials(Builder builder) {
 
 		this.nodes = Objects.requireNonNull(builder.nodes, "_nodes");
 		this.fileTokens = Objects.requireNonNull(builder.fileTokens, "file_tokens");
@@ -75,22 +75,22 @@ public final class NodesCredentials implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_nodes");
-		this.nodes.toJsonp(generator, mapper);
+		this.nodes.serialize(generator, mapper);
 
 		generator.writeKey("file_tokens");
 		generator.writeStartObject();
 		for (Map.Entry<String, NodesCredentialsFileToken> item0 : this.fileTokens.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -179,7 +179,7 @@ public final class NodesCredentials implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodesCredentials
+	 * Json deserializer for {@link NodesCredentials}
 	 */
 	public static final JsonpDeserializer<NodesCredentials> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodesCredentials::setupNodesCredentialsDeserializer);

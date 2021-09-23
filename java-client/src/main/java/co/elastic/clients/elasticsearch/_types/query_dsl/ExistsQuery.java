@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,15 +36,24 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ExistsQuery
-public final class ExistsQuery extends QueryBase {
+public final class ExistsQuery extends QueryBase implements Query {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsQuery(Builder builder) {
+	public ExistsQuery(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "exists";
 	}
 
 	/**
@@ -53,11 +63,15 @@ public final class ExistsQuery extends QueryBase {
 		return this.field;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
+
+		generator.writeEnd();
 
 	}
 
@@ -96,11 +110,9 @@ public final class ExistsQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for ExistsQuery
-	 */
-	public static final JsonpDeserializer<ExistsQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExistsQuery::setupExistsQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<ExistsQuery.Builder, ExistsQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(ExistsQuery::setupExistsQueryDeserializer);
 
 	protected static void setupExistsQueryDeserializer(DelegatingDeserializer<ExistsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

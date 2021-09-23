@@ -43,8 +43,9 @@ public final class RuntimeFieldTypes extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RuntimeFieldTypes(Builder builder) {
+	public RuntimeFieldTypes(Builder builder) {
 		super(builder);
+
 		this.fieldTypes = Objects.requireNonNull(builder.fieldTypes, "field_types");
 
 	}
@@ -56,13 +57,14 @@ public final class RuntimeFieldTypes extends Base {
 		return this.fieldTypes;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field_types");
 		generator.writeStartArray();
 		for (RuntimeFieldsType item0 : this.fieldTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -138,7 +140,7 @@ public final class RuntimeFieldTypes extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RuntimeFieldTypes
+	 * Json deserializer for {@link RuntimeFieldTypes}
 	 */
 	public static final JsonpDeserializer<RuntimeFieldTypes> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RuntimeFieldTypes::setupRuntimeFieldTypesDeserializer);

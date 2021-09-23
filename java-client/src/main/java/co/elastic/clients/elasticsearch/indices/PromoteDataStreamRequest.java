@@ -42,7 +42,7 @@ public final class PromoteDataStreamRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PromoteDataStreamRequest(Builder builder) {
+	public PromoteDataStreamRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

@@ -44,7 +44,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteModelSnapshotRequest(Builder builder) {
+	public DeleteModelSnapshotRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");

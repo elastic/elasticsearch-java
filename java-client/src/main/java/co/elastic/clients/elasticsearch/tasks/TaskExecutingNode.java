@@ -41,8 +41,9 @@ public final class TaskExecutingNode extends BaseNode {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TaskExecutingNode(Builder builder) {
+	public TaskExecutingNode(Builder builder) {
 		super(builder);
+
 		this.tasks = Objects.requireNonNull(builder.tasks, "tasks");
 
 	}
@@ -54,8 +55,9 @@ public final class TaskExecutingNode extends BaseNode {
 		return this.tasks;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("tasks");
 		generator.write(this.tasks);
@@ -98,7 +100,7 @@ public final class TaskExecutingNode extends BaseNode {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TaskExecutingNode
+	 * Json deserializer for {@link TaskExecutingNode}
 	 */
 	public static final JsonpDeserializer<TaskExecutingNode> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TaskExecutingNode::setupTaskExecutingNodeDeserializer);

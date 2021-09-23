@@ -26,12 +26,13 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.indices.update_aliases.IndicesUpdateAliasBulk;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +41,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.Request
-public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
+public final class UpdateAliasesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final JsonValue masterTimeout;
 
@@ -51,11 +54,11 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 	private final JsonValue timeout;
 
 	@Nullable
-	private final List<JsonValue> actions;
+	private final List<IndicesUpdateAliasBulk> actions;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateAliasesRequest(Builder builder) {
+	public UpdateAliasesRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
@@ -87,27 +90,27 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code actions}
 	 */
 	@Nullable
-	public List<JsonValue> actions() {
+	public List<IndicesUpdateAliasBulk> actions() {
 		return this.actions;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.actions != null) {
 
 			generator.writeKey("actions");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.actions) {
-				generator.write(item0);
+			for (IndicesUpdateAliasBulk item0 : this.actions) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -129,7 +132,7 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 		private JsonValue timeout;
 
 		@Nullable
-		private List<JsonValue> actions;
+		private List<IndicesUpdateAliasBulk> actions;
 
 		/**
 		 * Specify timeout for connection to master
@@ -154,7 +157,7 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable List<JsonValue> value) {
+		public Builder actions(@Nullable List<IndicesUpdateAliasBulk> value) {
 			this.actions = value;
 			return this;
 		}
@@ -162,7 +165,7 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code actions}
 		 */
-		public Builder actions(JsonValue... value) {
+		public Builder actions(IndicesUpdateAliasBulk... value) {
 			this.actions = Arrays.asList(value);
 			return this;
 		}
@@ -170,12 +173,26 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
-		public Builder addActions(JsonValue value) {
+		public Builder addActions(IndicesUpdateAliasBulk value) {
 			if (this.actions == null) {
 				this.actions = new ArrayList<>();
 			}
 			this.actions.add(value);
 			return this;
+		}
+
+		/**
+		 * Set {@link #actions(List)} to a singleton list.
+		 */
+		public Builder actions(Function<IndicesUpdateAliasBulk.Builder, ObjectBuilder<IndicesUpdateAliasBulk>> fn) {
+			return this.actions(fn.apply(new IndicesUpdateAliasBulk.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 */
+		public Builder addActions(Function<IndicesUpdateAliasBulk.Builder, ObjectBuilder<IndicesUpdateAliasBulk>> fn) {
+			return this.addActions(fn.apply(new IndicesUpdateAliasBulk.Builder()).build());
 		}
 
 		/**
@@ -193,7 +210,7 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateAliasesRequest
+	 * Json deserializer for {@link UpdateAliasesRequest}
 	 */
 	public static final JsonpDeserializer<UpdateAliasesRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UpdateAliasesRequest::setupUpdateAliasesRequestDeserializer);
@@ -201,8 +218,7 @@ public final class UpdateAliasesRequest extends RequestBase implements ToJsonp {
 	protected static void setupUpdateAliasesRequestDeserializer(
 			DelegatingDeserializer<UpdateAliasesRequest.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"actions");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(IndicesUpdateAliasBulk.DESERIALIZER), "actions");
 
 	}
 

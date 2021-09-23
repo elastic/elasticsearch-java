@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ingest;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,12 +36,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfigRegression
-public final class InferenceConfigRegression implements ToJsonp {
+public final class InferenceConfigRegression implements JsonpSerializable {
 	private final String resultsField;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InferenceConfigRegression(Builder builder) {
+	public InferenceConfigRegression(Builder builder) {
 
 		this.resultsField = Objects.requireNonNull(builder.resultsField, "results_field");
 
@@ -57,13 +57,13 @@ public final class InferenceConfigRegression implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("results_field");
 		generator.write(this.resultsField);
@@ -101,7 +101,7 @@ public final class InferenceConfigRegression implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InferenceConfigRegression
+	 * Json deserializer for {@link InferenceConfigRegression}
 	 */
 	public static final JsonpDeserializer<InferenceConfigRegression> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, InferenceConfigRegression::setupInferenceConfigRegressionDeserializer);

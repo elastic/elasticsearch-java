@@ -29,19 +29,20 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsAggregation
 public final class MatrixStatsAggregation extends MatrixAggregation {
 	@Nullable
-	private final JsonValue mode;
+	private final MatrixStatsMode mode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MatrixStatsAggregation(Builder builder) {
+	public MatrixStatsAggregation(Builder builder) {
 		super(builder);
+
 		this.mode = builder.mode;
 
 	}
@@ -50,17 +51,17 @@ public final class MatrixStatsAggregation extends MatrixAggregation {
 	 * API name: {@code mode}
 	 */
 	@Nullable
-	public JsonValue mode() {
+	public MatrixStatsMode mode() {
 		return this.mode;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.mode != null) {
 
 			generator.writeKey("mode");
-			generator.write(this.mode);
-
+			this.mode.serialize(generator, mapper);
 		}
 
 	}
@@ -74,12 +75,12 @@ public final class MatrixStatsAggregation extends MatrixAggregation {
 			implements
 				ObjectBuilder<MatrixStatsAggregation> {
 		@Nullable
-		private JsonValue mode;
+		private MatrixStatsMode mode;
 
 		/**
 		 * API name: {@code mode}
 		 */
-		public Builder mode(@Nullable JsonValue value) {
+		public Builder mode(@Nullable MatrixStatsMode value) {
 			this.mode = value;
 			return this;
 		}
@@ -104,7 +105,7 @@ public final class MatrixStatsAggregation extends MatrixAggregation {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MatrixStatsAggregation
+	 * Json deserializer for {@link MatrixStatsAggregation}
 	 */
 	public static final JsonpDeserializer<MatrixStatsAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MatrixStatsAggregation::setupMatrixStatsAggregationDeserializer);
@@ -112,7 +113,7 @@ public final class MatrixStatsAggregation extends MatrixAggregation {
 	protected static void setupMatrixStatsAggregationDeserializer(
 			DelegatingDeserializer<MatrixStatsAggregation.Builder> op) {
 		MatrixAggregation.setupMatrixAggregationDeserializer(op);
-		op.add(Builder::mode, JsonpDeserializer.jsonValueDeserializer(), "mode");
+		op.add(Builder::mode, MatrixStatsMode.DESERIALIZER, "mode");
 
 	}
 

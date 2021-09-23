@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixItem
-public final class ConfusionMatrixItem implements ToJsonp {
+public final class ConfusionMatrixItem implements JsonpSerializable {
 	private final String actualClass;
 
 	private final Number actualClassDocCount;
@@ -52,7 +52,7 @@ public final class ConfusionMatrixItem implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ConfusionMatrixItem(Builder builder) {
+	public ConfusionMatrixItem(Builder builder) {
 
 		this.actualClass = Objects.requireNonNull(builder.actualClass, "actual_class");
 		this.actualClassDocCount = Objects.requireNonNull(builder.actualClassDocCount, "actual_class_doc_count");
@@ -93,13 +93,13 @@ public final class ConfusionMatrixItem implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actual_class");
 		generator.write(this.actualClass);
@@ -110,7 +110,7 @@ public final class ConfusionMatrixItem implements ToJsonp {
 		generator.writeKey("predicted_classes");
 		generator.writeStartArray();
 		for (ConfusionMatrixPrediction item0 : this.predictedClasses) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -216,7 +216,7 @@ public final class ConfusionMatrixItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ConfusionMatrixItem
+	 * Json deserializer for {@link ConfusionMatrixItem}
 	 */
 	public static final JsonpDeserializer<ConfusionMatrixItem> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ConfusionMatrixItem::setupConfusionMatrixItemDeserializer);

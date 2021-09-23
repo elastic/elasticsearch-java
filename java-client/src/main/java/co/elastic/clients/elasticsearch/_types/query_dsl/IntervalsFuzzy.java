@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,7 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsFuzzy
-public final class IntervalsFuzzy implements ToJsonp {
+public final class IntervalsFuzzy implements Intervals, JsonpSerializable {
 	@Nullable
 	private final String analyzer;
 
@@ -59,7 +60,7 @@ public final class IntervalsFuzzy implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IntervalsFuzzy(Builder builder) {
+	public IntervalsFuzzy(Builder builder) {
 
 		this.analyzer = builder.analyzer;
 		this.fuzziness = builder.fuzziness;
@@ -68,6 +69,14 @@ public final class IntervalsFuzzy implements ToJsonp {
 		this.transpositions = builder.transpositions;
 		this.useField = builder.useField;
 
+	}
+
+	/**
+	 * {@link Intervals} variant type
+	 */
+	@Override
+	public String _type() {
+		return "fuzzy";
 	}
 
 	/**
@@ -120,13 +129,14 @@ public final class IntervalsFuzzy implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		if (this.analyzer != null) {
 
@@ -162,6 +172,8 @@ public final class IntervalsFuzzy implements ToJsonp {
 			generator.write(this.useField);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -250,11 +262,9 @@ public final class IntervalsFuzzy implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for IntervalsFuzzy
-	 */
-	public static final JsonpDeserializer<IntervalsFuzzy> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IntervalsFuzzy::setupIntervalsFuzzyDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<IntervalsFuzzy.Builder, IntervalsFuzzy.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(IntervalsFuzzy::setupIntervalsFuzzyDeserializer);
 
 	protected static void setupIntervalsFuzzyDeserializer(DelegatingDeserializer<IntervalsFuzzy.Builder> op) {
 

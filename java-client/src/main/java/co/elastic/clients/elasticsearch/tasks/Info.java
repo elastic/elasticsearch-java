@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.tasks;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -44,7 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.Info
-public final class Info implements ToJsonp {
+public final class Info implements JsonpSerializable {
 	private final String action;
 
 	private final Boolean cancellable;
@@ -75,7 +75,7 @@ public final class Info implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Info(Builder builder) {
+	public Info(Builder builder) {
 
 		this.action = Objects.requireNonNull(builder.action, "action");
 		this.cancellable = Objects.requireNonNull(builder.cancellable, "cancellable");
@@ -183,13 +183,13 @@ public final class Info implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("action");
 		generator.write(this.action);
@@ -202,7 +202,7 @@ public final class Info implements ToJsonp {
 			generator.writeKey("children");
 			generator.writeStartArray();
 			for (co.elastic.clients.elasticsearch.tasks.Info item0 : this.children) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -244,7 +244,7 @@ public final class Info implements ToJsonp {
 		if (this.status != null) {
 
 			generator.writeKey("status");
-			this.status.toJsonp(generator, mapper);
+			this.status.serialize(generator, mapper);
 
 		}
 
@@ -458,7 +458,7 @@ public final class Info implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Info
+	 * Json deserializer for {@link Info}
 	 */
 	public static final JsonpDeserializer<Info> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Info::setupInfoDeserializer);

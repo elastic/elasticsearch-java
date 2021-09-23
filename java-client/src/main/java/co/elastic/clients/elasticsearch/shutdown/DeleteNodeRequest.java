@@ -42,7 +42,7 @@ public final class DeleteNodeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteNodeRequest(Builder builder) {
+	public DeleteNodeRequest(Builder builder) {
 
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
 

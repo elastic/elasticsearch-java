@@ -28,9 +28,9 @@ import co.elastic.clients.elasticsearch.ingest.geo_ip_stats.GeoIpNodeDatabases;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -41,14 +41,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.Response
-public final class GeoIpStatsResponse implements ToJsonp {
+public final class GeoIpStatsResponse implements JsonpSerializable {
 	private final GeoIpDownloadStatistics stats;
 
 	private final Map<String, GeoIpNodeDatabases> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoIpStatsResponse(Builder builder) {
+	public GeoIpStatsResponse(Builder builder) {
 
 		this.stats = Objects.requireNonNull(builder.stats, "stats");
 		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
@@ -76,22 +76,22 @@ public final class GeoIpStatsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("stats");
-		this.stats.toJsonp(generator, mapper);
+		this.stats.serialize(generator, mapper);
 
 		generator.writeKey("nodes");
 		generator.writeStartObject();
 		for (Map.Entry<String, GeoIpNodeDatabases> item0 : this.nodes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -178,7 +178,7 @@ public final class GeoIpStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoIpStatsResponse
+	 * Json deserializer for {@link GeoIpStatsResponse}
 	 */
 	public static final JsonpDeserializer<GeoIpStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GeoIpStatsResponse::setupGeoIpStatsResponseDeserializer);

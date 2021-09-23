@@ -34,6 +34,7 @@ import java.lang.Number;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesBucketAggregation
@@ -43,8 +44,9 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PercentilesBucketAggregation(Builder builder) {
+	public PercentilesBucketAggregation(Builder builder) {
 		super(builder);
+
 		this.percents = builder.percents;
 
 	}
@@ -57,8 +59,9 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 		return this.percents;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.percents != null) {
 
 			generator.writeKey("percents");
@@ -131,7 +134,7 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PercentilesBucketAggregation
+	 * Json deserializer for {@link PercentilesBucketAggregation}
 	 */
 	public static final JsonpDeserializer<PercentilesBucketAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PercentilesBucketAggregation::setupPercentilesBucketAggregationDeserializer);

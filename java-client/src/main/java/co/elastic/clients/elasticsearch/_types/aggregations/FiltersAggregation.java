@@ -33,6 +33,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FiltersAggregation
@@ -51,8 +52,9 @@ public final class FiltersAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FiltersAggregation(Builder builder) {
+	public FiltersAggregation(Builder builder) {
 		super(builder);
+
 		this.filters = builder.filters;
 		this.otherBucket = builder.otherBucket;
 		this.otherBucketKey = builder.otherBucketKey;
@@ -92,8 +94,9 @@ public final class FiltersAggregation extends BucketAggregationBase {
 		return this.keyed;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.filters != null) {
 
 			generator.writeKey("filters");
@@ -193,7 +196,7 @@ public final class FiltersAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FiltersAggregation
+	 * Json deserializer for {@link FiltersAggregation}
 	 */
 	public static final JsonpDeserializer<FiltersAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FiltersAggregation::setupFiltersAggregationDeserializer);

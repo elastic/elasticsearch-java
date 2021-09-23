@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,10 +43,10 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_job.Response
-public final class PutJobResponse implements ToJsonp {
+public final class PutJobResponse implements JsonpSerializable {
 	private final Boolean allowLazyOpen;
 
-	private final AnalysisConfig analysisConfig;
+	private final AnalysisConfigRead analysisConfig;
 
 	private final AnalysisLimits analysisLimits;
 
@@ -95,7 +95,7 @@ public final class PutJobResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutJobResponse(Builder builder) {
+	public PutJobResponse(Builder builder) {
 
 		this.allowLazyOpen = Objects.requireNonNull(builder.allowLazyOpen, "allow_lazy_open");
 		this.analysisConfig = Objects.requireNonNull(builder.analysisConfig, "analysis_config");
@@ -132,7 +132,7 @@ public final class PutJobResponse implements ToJsonp {
 	/**
 	 * API name: {@code analysis_config}
 	 */
-	public AnalysisConfig analysisConfig() {
+	public AnalysisConfigRead analysisConfig() {
 		return this.analysisConfig;
 	}
 
@@ -274,22 +274,22 @@ public final class PutJobResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("allow_lazy_open");
 		generator.write(this.allowLazyOpen);
 
 		generator.writeKey("analysis_config");
-		this.analysisConfig.toJsonp(generator, mapper);
+		this.analysisConfig.serialize(generator, mapper);
 
 		generator.writeKey("analysis_limits");
-		this.analysisLimits.toJsonp(generator, mapper);
+		this.analysisLimits.serialize(generator, mapper);
 
 		if (this.backgroundPersistInterval != null) {
 
@@ -304,7 +304,7 @@ public final class PutJobResponse implements ToJsonp {
 		if (this.customSettings != null) {
 
 			generator.writeKey("custom_settings");
-			this.customSettings.toJsonp(generator, mapper);
+			this.customSettings.serialize(generator, mapper);
 
 		}
 
@@ -312,12 +312,12 @@ public final class PutJobResponse implements ToJsonp {
 		generator.write(this.dailyModelSnapshotRetentionAfterDays.doubleValue());
 
 		generator.writeKey("data_description");
-		this.dataDescription.toJsonp(generator, mapper);
+		this.dataDescription.serialize(generator, mapper);
 
 		if (this.datafeedConfig != null) {
 
 			generator.writeKey("datafeed_config");
-			this.datafeedConfig.toJsonp(generator, mapper);
+			this.datafeedConfig.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
@@ -350,7 +350,7 @@ public final class PutJobResponse implements ToJsonp {
 		if (this.modelPlotConfig != null) {
 
 			generator.writeKey("model_plot_config");
-			this.modelPlotConfig.toJsonp(generator, mapper);
+			this.modelPlotConfig.serialize(generator, mapper);
 
 		}
 		if (this.modelSnapshotId != null) {
@@ -390,7 +390,7 @@ public final class PutJobResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<PutJobResponse> {
 		private Boolean allowLazyOpen;
 
-		private AnalysisConfig analysisConfig;
+		private AnalysisConfigRead analysisConfig;
 
 		private AnalysisLimits analysisLimits;
 
@@ -448,7 +448,7 @@ public final class PutJobResponse implements ToJsonp {
 		/**
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(AnalysisConfig value) {
+		public Builder analysisConfig(AnalysisConfigRead value) {
 			this.analysisConfig = value;
 			return this;
 		}
@@ -456,8 +456,8 @@ public final class PutJobResponse implements ToJsonp {
 		/**
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
-			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
+		public Builder analysisConfig(Function<AnalysisConfigRead.Builder, ObjectBuilder<AnalysisConfigRead>> fn) {
+			return this.analysisConfig(fn.apply(new AnalysisConfigRead.Builder()).build());
 		}
 
 		/**
@@ -673,7 +673,7 @@ public final class PutJobResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutJobResponse
+	 * Json deserializer for {@link PutJobResponse}
 	 */
 	public static final JsonpDeserializer<PutJobResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutJobResponse::setupPutJobResponseDeserializer);
@@ -681,7 +681,7 @@ public final class PutJobResponse implements ToJsonp {
 	protected static void setupPutJobResponseDeserializer(DelegatingDeserializer<PutJobResponse.Builder> op) {
 
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
-		op.add(Builder::analysisConfig, AnalysisConfig.DESERIALIZER, "analysis_config");
+		op.add(Builder::analysisConfig, AnalysisConfigRead.DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits.DESERIALIZER, "analysis_limits");
 		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.jsonValueDeserializer(),
 				"background_persist_interval");

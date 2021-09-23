@@ -37,10 +37,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixAggregation
-public abstract class MatrixAggregation extends Aggregation {
+public abstract class MatrixAggregation extends AggregationBase {
 	@Nullable
 	private final List<String> fields;
 
@@ -49,8 +50,9 @@ public abstract class MatrixAggregation extends Aggregation {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MatrixAggregation(AbstractBuilder<?> builder) {
+	public MatrixAggregation(AbstractBuilder<?> builder) {
 		super(builder);
+
 		this.fields = builder.fields;
 		this.missing = builder.missing;
 
@@ -72,8 +74,9 @@ public abstract class MatrixAggregation extends Aggregation {
 		return this.missing;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.fields != null) {
 
 			generator.writeKey("fields");
@@ -102,7 +105,7 @@ public abstract class MatrixAggregation extends Aggregation {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
-				Aggregation.AbstractBuilder<BuilderT> {
+				AggregationBase.AbstractBuilder<BuilderT> {
 		@Nullable
 		private List<String> fields;
 
@@ -160,7 +163,7 @@ public abstract class MatrixAggregation extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMatrixAggregationDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
-		Aggregation.setupAggregationDeserializer(op);
+		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(AbstractBuilder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"fields");
 		op.add(AbstractBuilder::missing,

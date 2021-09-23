@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: enrich.put_policy.Response
 public final class PutPolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutPolicyResponse(Builder builder) {
+	public PutPolicyResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class PutPolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutPolicyResponse
+	 * Json deserializer for {@link PutPolicyResponse}
 	 */
 	public static final JsonpDeserializer<PutPolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutPolicyResponse::setupPutPolicyResponseDeserializer);

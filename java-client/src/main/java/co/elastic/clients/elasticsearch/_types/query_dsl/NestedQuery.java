@@ -23,14 +23,14 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.elasticsearch._global.search.InnerHits;
+import co.elastic.clients.elasticsearch._core.search.InnerHits;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.NestedQuery
-public final class NestedQuery extends QueryBase {
+public final class NestedQuery extends QueryBase implements Query {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -48,21 +48,30 @@ public final class NestedQuery extends QueryBase {
 
 	private final String path;
 
-	private final QueryContainer query;
+	private final Query query;
 
 	@Nullable
-	private final JsonValue scoreMode;
+	private final NestedScoreMode scoreMode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NestedQuery(Builder builder) {
+	public NestedQuery(Builder builder) {
 		super(builder);
+
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
 		this.path = Objects.requireNonNull(builder.path, "path");
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.scoreMode = builder.scoreMode;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "nested";
 	}
 
 	/**
@@ -91,7 +100,7 @@ public final class NestedQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -99,12 +108,14 @@ public final class NestedQuery extends QueryBase {
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
-	public JsonValue scoreMode() {
+	public NestedScoreMode scoreMode() {
 		return this.scoreMode;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
 
 			generator.writeKey("ignore_unmapped");
@@ -114,7 +125,7 @@ public final class NestedQuery extends QueryBase {
 		if (this.innerHits != null) {
 
 			generator.writeKey("inner_hits");
-			this.innerHits.toJsonp(generator, mapper);
+			this.innerHits.serialize(generator, mapper);
 
 		}
 
@@ -122,14 +133,15 @@ public final class NestedQuery extends QueryBase {
 		generator.write(this.path);
 
 		generator.writeKey("query");
-		this.query.toJsonp(generator, mapper);
+		this.query.serialize(generator, mapper);
 
 		if (this.scoreMode != null) {
 
 			generator.writeKey("score_mode");
-			generator.write(this.scoreMode);
-
+			this.scoreMode.serialize(generator, mapper);
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -147,10 +159,10 @@ public final class NestedQuery extends QueryBase {
 
 		private String path;
 
-		private QueryContainer query;
+		private Query query;
 
 		@Nullable
-		private JsonValue scoreMode;
+		private NestedScoreMode scoreMode;
 
 		/**
 		 * API name: {@code ignore_unmapped}
@@ -186,7 +198,7 @@ public final class NestedQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(QueryContainer value) {
+		public Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -194,14 +206,14 @@ public final class NestedQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code score_mode}
 		 */
-		public Builder scoreMode(@Nullable JsonValue value) {
+		public Builder scoreMode(@Nullable NestedScoreMode value) {
 			this.scoreMode = value;
 			return this;
 		}
@@ -225,19 +237,17 @@ public final class NestedQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for NestedQuery
-	 */
-	public static final JsonpDeserializer<NestedQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NestedQuery::setupNestedQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<NestedQuery.Builder, NestedQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(NestedQuery::setupNestedQueryDeserializer);
 
 	protected static void setupNestedQueryDeserializer(DelegatingDeserializer<NestedQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 		op.add(Builder::innerHits, InnerHits.DESERIALIZER, "inner_hits");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
-		op.add(Builder::scoreMode, JsonpDeserializer.jsonValueDeserializer(), "score_mode");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
+		op.add(Builder::scoreMode, NestedScoreMode.DESERIALIZER, "score_mode");
 
 	}
 

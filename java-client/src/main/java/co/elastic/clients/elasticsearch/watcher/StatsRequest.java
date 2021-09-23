@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.watcher.stats.WatcherMetric;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.ArrayList;
@@ -38,20 +38,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Request
 public final class StatsRequest extends RequestBase {
 	@Nullable
-	private final List<JsonValue> metric;
+	private final List<WatcherMetric> metric;
 
 	@Nullable
 	private final Boolean emitStacktraces;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsRequest(Builder builder) {
+	public StatsRequest(Builder builder) {
 
 		this.metric = builder.metric;
 		this.emitStacktraces = builder.emitStacktraces;
@@ -64,7 +65,7 @@ public final class StatsRequest extends RequestBase {
 	 * API name: {@code metric}
 	 */
 	@Nullable
-	public List<JsonValue> metric() {
+	public List<WatcherMetric> metric() {
 		return this.metric;
 	}
 
@@ -85,7 +86,7 @@ public final class StatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<StatsRequest> {
 		@Nullable
-		private List<JsonValue> metric;
+		private List<WatcherMetric> metric;
 
 		@Nullable
 		private Boolean emitStacktraces;
@@ -95,7 +96,7 @@ public final class StatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(@Nullable List<JsonValue> value) {
+		public Builder metric(@Nullable List<WatcherMetric> value) {
 			this.metric = value;
 			return this;
 		}
@@ -105,7 +106,7 @@ public final class StatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(JsonValue... value) {
+		public Builder metric(WatcherMetric... value) {
 			this.metric = Arrays.asList(value);
 			return this;
 		}
@@ -113,7 +114,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Add a value to {@link #metric(List)}, creating the list if needed.
 		 */
-		public Builder addMetric(JsonValue value) {
+		public Builder addMetric(WatcherMetric value) {
 			if (this.metric == null) {
 				this.metric = new ArrayList<>();
 			}

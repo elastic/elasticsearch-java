@@ -23,14 +23,14 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.elasticsearch._types.LifecycleOperationMode;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.HashMap;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateIndexLifecycle
-public final class ClusterStateIndexLifecycle implements ToJsonp {
+public final class ClusterStateIndexLifecycle implements JsonpSerializable {
 	private final Map<String, ClusterStateIndexLifecycleSummary> policies;
 
-	private final JsonValue operationMode;
+	private final LifecycleOperationMode operationMode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterStateIndexLifecycle(Builder builder) {
+	public ClusterStateIndexLifecycle(Builder builder) {
 
 		this.policies = Objects.requireNonNull(builder.policies, "policies");
 		this.operationMode = Objects.requireNonNull(builder.operationMode, "operation_mode");
@@ -64,32 +64,32 @@ public final class ClusterStateIndexLifecycle implements ToJsonp {
 	/**
 	 * API name: {@code operation_mode}
 	 */
-	public JsonValue operationMode() {
+	public LifecycleOperationMode operationMode() {
 		return this.operationMode;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("policies");
 		generator.writeStartObject();
 		for (Map.Entry<String, ClusterStateIndexLifecycleSummary> item0 : this.policies.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("operation_mode");
-		generator.write(this.operationMode);
+		this.operationMode.serialize(generator, mapper);
 
 	}
 
@@ -101,7 +101,7 @@ public final class ClusterStateIndexLifecycle implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ClusterStateIndexLifecycle> {
 		private Map<String, ClusterStateIndexLifecycleSummary> policies;
 
-		private JsonValue operationMode;
+		private LifecycleOperationMode operationMode;
 
 		/**
 		 * API name: {@code policies}
@@ -142,7 +142,7 @@ public final class ClusterStateIndexLifecycle implements ToJsonp {
 		/**
 		 * API name: {@code operation_mode}
 		 */
-		public Builder operationMode(JsonValue value) {
+		public Builder operationMode(LifecycleOperationMode value) {
 			this.operationMode = value;
 			return this;
 		}
@@ -162,7 +162,7 @@ public final class ClusterStateIndexLifecycle implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterStateIndexLifecycle
+	 * Json deserializer for {@link ClusterStateIndexLifecycle}
 	 */
 	public static final JsonpDeserializer<ClusterStateIndexLifecycle> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterStateIndexLifecycle::setupClusterStateIndexLifecycleDeserializer);
@@ -172,7 +172,7 @@ public final class ClusterStateIndexLifecycle implements ToJsonp {
 
 		op.add(Builder::policies,
 				JsonpDeserializer.stringMapDeserializer(ClusterStateIndexLifecycleSummary.DESERIALIZER), "policies");
-		op.add(Builder::operationMode, JsonpDeserializer.jsonValueDeserializer(), "operation_mode");
+		op.add(Builder::operationMode, LifecycleOperationMode.DESERIALIZER, "operation_mode");
 
 	}
 

@@ -40,8 +40,9 @@ public final class ScriptScoreFunction extends ScoreFunctionBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptScoreFunction(Builder builder) {
+	public ScriptScoreFunction(Builder builder) {
 		super(builder);
+
 		this.script = Objects.requireNonNull(builder.script, "script");
 
 	}
@@ -53,8 +54,9 @@ public final class ScriptScoreFunction extends ScoreFunctionBase {
 		return this.script;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("script");
 		generator.write(this.script);
@@ -99,7 +101,7 @@ public final class ScriptScoreFunction extends ScoreFunctionBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ScriptScoreFunction
+	 * Json deserializer for {@link ScriptScoreFunction}
 	 */
 	public static final JsonpDeserializer<ScriptScoreFunction> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ScriptScoreFunction::setupScriptScoreFunctionDeserializer);

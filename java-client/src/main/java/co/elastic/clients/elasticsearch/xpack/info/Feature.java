@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.xpack.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Feature
-public final class Feature implements ToJsonp {
+public final class Feature implements JsonpSerializable {
 	private final Boolean available;
 
 	@Nullable
@@ -51,7 +51,7 @@ public final class Feature implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Feature(Builder builder) {
+	public Feature(Builder builder) {
 
 		this.available = Objects.requireNonNull(builder.available, "available");
 		this.description = builder.description;
@@ -93,13 +93,13 @@ public final class Feature implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("available");
 		generator.write(this.available);
@@ -117,7 +117,7 @@ public final class Feature implements ToJsonp {
 		if (this.nativeCodeInfo != null) {
 
 			generator.writeKey("native_code_info");
-			this.nativeCodeInfo.toJsonp(generator, mapper);
+			this.nativeCodeInfo.serialize(generator, mapper);
 
 		}
 
@@ -194,7 +194,7 @@ public final class Feature implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Feature
+	 * Json deserializer for {@link Feature}
 	 */
 	public static final JsonpDeserializer<Feature> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Feature::setupFeatureDeserializer);

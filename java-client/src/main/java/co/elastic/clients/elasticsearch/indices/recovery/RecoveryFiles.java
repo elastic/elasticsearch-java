@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.recovery;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryFiles
-public final class RecoveryFiles implements ToJsonp {
+public final class RecoveryFiles implements JsonpSerializable {
 	@Nullable
 	private final List<FileDetails> details;
 
@@ -55,7 +55,7 @@ public final class RecoveryFiles implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryFiles(Builder builder) {
+	public RecoveryFiles(Builder builder) {
 
 		this.details = builder.details;
 		this.percent = Objects.requireNonNull(builder.percent, "percent");
@@ -104,20 +104,20 @@ public final class RecoveryFiles implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.details != null) {
 
 			generator.writeKey("details");
 			generator.writeStartArray();
 			for (FileDetails item0 : this.details) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -243,7 +243,7 @@ public final class RecoveryFiles implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RecoveryFiles
+	 * Json deserializer for {@link RecoveryFiles}
 	 */
 	public static final JsonpDeserializer<RecoveryFiles> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RecoveryFiles::setupRecoveryFilesDeserializer);

@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: cluster.remote_info.Request
 public final class RemoteInfoRequest extends RequestBase {
-	protected RemoteInfoRequest() {
+	public RemoteInfoRequest() {
 	}
 
 	/**

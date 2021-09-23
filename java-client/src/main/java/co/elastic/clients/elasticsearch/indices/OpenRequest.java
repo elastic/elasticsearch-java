@@ -67,7 +67,7 @@ public final class OpenRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected OpenRequest(Builder builder) {
+	public OpenRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;

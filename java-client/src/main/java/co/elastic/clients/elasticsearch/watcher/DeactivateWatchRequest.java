@@ -42,7 +42,7 @@ public final class DeactivateWatchRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeactivateWatchRequest(Builder builder) {
+	public DeactivateWatchRequest(Builder builder) {
 
 		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
 

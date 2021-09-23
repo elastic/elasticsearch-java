@@ -27,11 +27,11 @@ import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Response
-public final class PreviewTransformResponse<TTransform> implements ToJsonp {
+public final class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	private final IndexState generatedDestIndex;
 
 	private final List<TTransform> preview;
@@ -53,7 +53,7 @@ public final class PreviewTransformResponse<TTransform> implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PreviewTransformResponse(Builder<TTransform> builder) {
+	public PreviewTransformResponse(Builder<TTransform> builder) {
 
 		this.generatedDestIndex = Objects.requireNonNull(builder.generatedDestIndex, "generated_dest_index");
 		this.preview = Objects.requireNonNull(builder.preview, "preview");
@@ -78,16 +78,16 @@ public final class PreviewTransformResponse<TTransform> implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("generated_dest_index");
-		this.generatedDestIndex.toJsonp(generator, mapper);
+		this.generatedDestIndex.serialize(generator, mapper);
 
 		generator.writeKey("preview");
 		generator.writeStartArray();

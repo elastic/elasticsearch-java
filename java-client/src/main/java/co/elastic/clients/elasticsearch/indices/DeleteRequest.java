@@ -64,7 +64,7 @@ public final class DeleteRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteRequest(Builder builder) {
+	public DeleteRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
@@ -97,8 +97,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
+	 * Whether wildcard expressions should get expanded to open, closed, or hidden
+	 * indices
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -205,8 +205,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Whether wildcard expressions should get expanded to open, closed, or hidden
+		 * indices
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */

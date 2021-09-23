@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,7 +39,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchQuery
-public final class MatchQuery extends QueryBase {
+public final class MatchQuery extends QueryBase implements Query {
+	private final String field;
+
 	@Nullable
 	private final String analyzer;
 
@@ -67,7 +70,7 @@ public final class MatchQuery extends QueryBase {
 	private final JsonValue minimumShouldMatch;
 
 	@Nullable
-	private final JsonValue operator;
+	private final Operator operator;
 
 	@Nullable
 	private final Number prefixLength;
@@ -75,12 +78,14 @@ public final class MatchQuery extends QueryBase {
 	private final JsonValue query;
 
 	@Nullable
-	private final JsonValue zeroTermsQuery;
+	private final ZeroTermsQuery zeroTermsQuery;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MatchQuery(Builder builder) {
+	public MatchQuery(Builder builder) {
 		super(builder);
+		this.field = Objects.requireNonNull(builder.field, "field");
+
 		this.analyzer = builder.analyzer;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.cutoffFrequency = builder.cutoffFrequency;
@@ -95,6 +100,23 @@ public final class MatchQuery extends QueryBase {
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "match";
+	}
+
+	/**
+	 * The target field
+	 * <p>
+	 * API name: {@code field}
+	 */
+	public String field() {
+		return this.field;
 	}
 
 	/**
@@ -173,7 +195,7 @@ public final class MatchQuery extends QueryBase {
 	 * API name: {@code operator}
 	 */
 	@Nullable
-	public JsonValue operator() {
+	public Operator operator() {
 		return this.operator;
 	}
 
@@ -196,12 +218,16 @@ public final class MatchQuery extends QueryBase {
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
-	public JsonValue zeroTermsQuery() {
+	public ZeroTermsQuery zeroTermsQuery() {
 		return this.zeroTermsQuery;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		generator.writeStartObject(this.field);
+
+		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
@@ -259,8 +285,7 @@ public final class MatchQuery extends QueryBase {
 		if (this.operator != null) {
 
 			generator.writeKey("operator");
-			generator.write(this.operator);
-
+			this.operator.serialize(generator, mapper);
 		}
 		if (this.prefixLength != null) {
 
@@ -275,9 +300,12 @@ public final class MatchQuery extends QueryBase {
 		if (this.zeroTermsQuery != null) {
 
 			generator.writeKey("zero_terms_query");
-			generator.write(this.zeroTermsQuery);
-
+			this.zeroTermsQuery.serialize(generator, mapper);
 		}
+
+		generator.writeEnd();
+
+		generator.writeEnd();
 
 	}
 
@@ -287,6 +315,18 @@ public final class MatchQuery extends QueryBase {
 	 * Builder for {@link MatchQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchQuery> {
+		private String field;
+
+		/**
+		 * The target field
+		 * <p>
+		 * API name: {@code field}
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		@Nullable
 		private String analyzer;
 
@@ -315,7 +355,7 @@ public final class MatchQuery extends QueryBase {
 		private JsonValue minimumShouldMatch;
 
 		@Nullable
-		private JsonValue operator;
+		private Operator operator;
 
 		@Nullable
 		private Number prefixLength;
@@ -323,7 +363,7 @@ public final class MatchQuery extends QueryBase {
 		private JsonValue query;
 
 		@Nullable
-		private JsonValue zeroTermsQuery;
+		private ZeroTermsQuery zeroTermsQuery;
 
 		/**
 		 * API name: {@code analyzer}
@@ -400,7 +440,7 @@ public final class MatchQuery extends QueryBase {
 		/**
 		 * API name: {@code operator}
 		 */
-		public Builder operator(@Nullable JsonValue value) {
+		public Builder operator(@Nullable Operator value) {
 			this.operator = value;
 			return this;
 		}
@@ -424,7 +464,7 @@ public final class MatchQuery extends QueryBase {
 		/**
 		 * API name: {@code zero_terms_query}
 		 */
-		public Builder zeroTermsQuery(@Nullable JsonValue value) {
+		public Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
 			this.zeroTermsQuery = value;
 			return this;
 		}
@@ -448,11 +488,9 @@ public final class MatchQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for MatchQuery
-	 */
-	public static final JsonpDeserializer<MatchQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MatchQuery::setupMatchQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<MatchQuery.Builder, MatchQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(MatchQuery::setupMatchQueryDeserializer);
 
 	protected static void setupMatchQueryDeserializer(DelegatingDeserializer<MatchQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
@@ -466,10 +504,12 @@ public final class MatchQuery extends QueryBase {
 		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
 		op.add(Builder::maxExpansions, JsonpDeserializer.numberDeserializer(), "max_expansions");
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
-		op.add(Builder::operator, JsonpDeserializer.jsonValueDeserializer(), "operator");
+		op.add(Builder::operator, Operator.DESERIALIZER, "operator");
 		op.add(Builder::prefixLength, JsonpDeserializer.numberDeserializer(), "prefix_length");
 		op.add(Builder::query, JsonpDeserializer.jsonValueDeserializer(), "query");
-		op.add(Builder::zeroTermsQuery, JsonpDeserializer.jsonValueDeserializer(), "zero_terms_query");
+		op.add(Builder::zeroTermsQuery, ZeroTermsQuery.DESERIALIZER, "zero_terms_query");
+
+		op.setKey(Builder::field);
 
 	}
 

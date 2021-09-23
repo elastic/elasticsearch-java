@@ -24,15 +24,15 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
-import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -49,8 +49,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_datafeed.Response
-public final class PutDatafeedResponse implements ToJsonp {
-	private final Map<String, AggregationContainer> aggregations;
+public final class PutDatafeedResponse implements JsonpSerializable {
+	private final Map<String, Aggregation> aggregations;
 
 	private final ChunkingConfig chunkingConfig;
 
@@ -70,7 +70,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 
 	private final Number maxEmptySearches;
 
-	private final QueryContainer query;
+	private final Query query;
 
 	private final JsonValue queryDelay;
 
@@ -84,7 +84,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutDatafeedResponse(Builder builder) {
+	public PutDatafeedResponse(Builder builder) {
 
 		this.aggregations = Objects.requireNonNull(builder.aggregations, "aggregations");
 		this.chunkingConfig = Objects.requireNonNull(builder.chunkingConfig, "chunking_config");
@@ -106,7 +106,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 	/**
 	 * API name: {@code aggregations}
 	 */
-	public Map<String, AggregationContainer> aggregations() {
+	public Map<String, Aggregation> aggregations() {
 		return this.aggregations;
 	}
 
@@ -171,7 +171,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 	/**
 	 * API name: {@code query}
 	 */
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -208,30 +208,30 @@ public final class PutDatafeedResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("aggregations");
 		generator.writeStartObject();
-		for (Map.Entry<String, AggregationContainer> item0 : this.aggregations.entrySet()) {
+		for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("chunking_config");
-		this.chunkingConfig.toJsonp(generator, mapper);
+		this.chunkingConfig.serialize(generator, mapper);
 
 		if (this.delayedDataCheckConfig != null) {
 
 			generator.writeKey("delayed_data_check_config");
-			this.delayedDataCheckConfig.toJsonp(generator, mapper);
+			this.delayedDataCheckConfig.serialize(generator, mapper);
 
 		}
 
@@ -255,7 +255,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 		if (this.indicesOptions != null) {
 
 			generator.writeKey("indices_options");
-			this.indicesOptions.toJsonp(generator, mapper);
+			this.indicesOptions.serialize(generator, mapper);
 
 		}
 
@@ -263,7 +263,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 		generator.write(this.maxEmptySearches.doubleValue());
 
 		generator.writeKey("query");
-		this.query.toJsonp(generator, mapper);
+		this.query.serialize(generator, mapper);
 
 		generator.writeKey("query_delay");
 		generator.write(this.queryDelay);
@@ -274,7 +274,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -286,7 +286,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -304,7 +304,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 	 * Builder for {@link PutDatafeedResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<PutDatafeedResponse> {
-		private Map<String, AggregationContainer> aggregations;
+		private Map<String, Aggregation> aggregations;
 
 		private ChunkingConfig chunkingConfig;
 
@@ -324,7 +324,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 
 		private Number maxEmptySearches;
 
-		private QueryContainer query;
+		private Query query;
 
 		private JsonValue queryDelay;
 
@@ -339,7 +339,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public Builder aggregations(Map<String, AggregationContainer> value) {
+		public Builder aggregations(Map<String, Aggregation> value) {
 			this.aggregations = value;
 			return this;
 		}
@@ -347,7 +347,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder putAggregations(String key, AggregationContainer value) {
+		public Builder putAggregations(String key, Aggregation value) {
 			if (this.aggregations == null) {
 				this.aggregations = new HashMap<>();
 			}
@@ -358,18 +358,15 @@ public final class PutDatafeedResponse implements ToJsonp {
 		/**
 		 * Set {@link #aggregations(Map)} to a singleton map.
 		 */
-		public Builder aggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this
-					.aggregations(Collections.singletonMap(key, fn.apply(new AggregationContainer.Builder()).build()));
+		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder putAggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.putAggregations(key, fn.apply(new AggregationContainer.Builder()).build());
+		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -481,7 +478,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(QueryContainer value) {
+		public Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -489,8 +486,8 @@ public final class PutDatafeedResponse implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -590,14 +587,14 @@ public final class PutDatafeedResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutDatafeedResponse
+	 * Json deserializer for {@link PutDatafeedResponse}
 	 */
 	public static final JsonpDeserializer<PutDatafeedResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutDatafeedResponse::setupPutDatafeedResponseDeserializer);
 
 	protected static void setupPutDatafeedResponseDeserializer(DelegatingDeserializer<PutDatafeedResponse.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER),
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER),
 				"aggregations");
 		op.add(Builder::chunkingConfig, ChunkingConfig.DESERIALIZER, "chunking_config");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig.DESERIALIZER, "delayed_data_check_config");
@@ -608,7 +605,7 @@ public final class PutDatafeedResponse implements ToJsonp {
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::indicesOptions, DatafeedIndicesOptions.DESERIALIZER, "indices_options");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.numberDeserializer(), "max_empty_searches");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
 		op.add(Builder::queryDelay, JsonpDeserializer.jsonValueDeserializer(), "query_delay");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
 				"runtime_mappings");

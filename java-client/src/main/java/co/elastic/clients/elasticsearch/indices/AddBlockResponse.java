@@ -48,8 +48,9 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AddBlockResponse(Builder builder) {
+	public AddBlockResponse(Builder builder) {
 		super(builder);
+
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
 
@@ -69,8 +70,9 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		return this.indices;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
@@ -78,7 +80,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		generator.writeKey("indices");
 		generator.writeStartArray();
 		for (IndicesBlockStatus item0 : this.indices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -166,7 +168,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AddBlockResponse
+	 * Json deserializer for {@link AddBlockResponse}
 	 */
 	public static final JsonpDeserializer<AddBlockResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AddBlockResponse::setupAddBlockResponseDeserializer);

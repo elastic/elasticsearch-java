@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,18 +37,27 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFirstQuery
-public final class SpanFirstQuery extends QueryBase {
+public final class SpanFirstQuery extends QueryBase implements SpanQuery, Query {
 	private final Number end;
 
 	private final SpanQuery match;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanFirstQuery(Builder builder) {
+	public SpanFirstQuery(Builder builder) {
 		super(builder);
+
 		this.end = Objects.requireNonNull(builder.end, "end");
 		this.match = Objects.requireNonNull(builder.match, "match");
 
+	}
+
+	/**
+	 * {@link SpanQuery}, {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "span_first";
 	}
 
 	/**
@@ -64,14 +74,18 @@ public final class SpanFirstQuery extends QueryBase {
 		return this.match;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("end");
 		generator.write(this.end.doubleValue());
 
 		generator.writeKey("match");
-		this.match.toJsonp(generator, mapper);
+		this.match.serialize(generator, mapper);
+
+		generator.writeEnd();
 
 	}
 
@@ -127,11 +141,9 @@ public final class SpanFirstQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for SpanFirstQuery
-	 */
-	public static final JsonpDeserializer<SpanFirstQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanFirstQuery::setupSpanFirstQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<SpanFirstQuery.Builder, SpanFirstQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(SpanFirstQuery::setupSpanFirstQueryDeserializer);
 
 	protected static void setupSpanFirstQueryDeserializer(DelegatingDeserializer<SpanFirstQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

@@ -33,12 +33,13 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DiversifiedSamplerAggregation
 public final class DiversifiedSamplerAggregation extends BucketAggregationBase {
 	@Nullable
-	private final JsonValue executionHint;
+	private final SamplerAggregationExecutionHint executionHint;
 
 	@Nullable
 	private final Number maxDocsPerValue;
@@ -54,8 +55,9 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DiversifiedSamplerAggregation(Builder builder) {
+	public DiversifiedSamplerAggregation(Builder builder) {
 		super(builder);
+
 		this.executionHint = builder.executionHint;
 		this.maxDocsPerValue = builder.maxDocsPerValue;
 		this.script = builder.script;
@@ -68,7 +70,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase {
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
-	public JsonValue executionHint() {
+	public SamplerAggregationExecutionHint executionHint() {
 		return this.executionHint;
 	}
 
@@ -104,13 +106,13 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase {
 		return this.field;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.executionHint != null) {
 
 			generator.writeKey("execution_hint");
-			generator.write(this.executionHint);
-
+			this.executionHint.serialize(generator, mapper);
 		}
 		if (this.maxDocsPerValue != null) {
 
@@ -148,7 +150,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase {
 			implements
 				ObjectBuilder<DiversifiedSamplerAggregation> {
 		@Nullable
-		private JsonValue executionHint;
+		private SamplerAggregationExecutionHint executionHint;
 
 		@Nullable
 		private Number maxDocsPerValue;
@@ -165,7 +167,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code execution_hint}
 		 */
-		public Builder executionHint(@Nullable JsonValue value) {
+		public Builder executionHint(@Nullable SamplerAggregationExecutionHint value) {
 			this.executionHint = value;
 			return this;
 		}
@@ -222,7 +224,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DiversifiedSamplerAggregation
+	 * Json deserializer for {@link DiversifiedSamplerAggregation}
 	 */
 	public static final JsonpDeserializer<DiversifiedSamplerAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
@@ -231,7 +233,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase {
 	protected static void setupDiversifiedSamplerAggregationDeserializer(
 			DelegatingDeserializer<DiversifiedSamplerAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::executionHint, JsonpDeserializer.jsonValueDeserializer(), "execution_hint");
+		op.add(Builder::executionHint, SamplerAggregationExecutionHint.DESERIALIZER, "execution_hint");
 		op.add(Builder::maxDocsPerValue, JsonpDeserializer.numberDeserializer(), "max_docs_per_value");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");

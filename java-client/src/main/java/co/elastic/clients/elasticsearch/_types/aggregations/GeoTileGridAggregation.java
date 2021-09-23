@@ -23,7 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,11 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoTileGridAggregation
-public final class GeoTileGridAggregation extends BucketAggregationBase {
+public final class GeoTileGridAggregation extends BucketAggregationBase
+		implements
+			PivotGroupBy,
+			CompositeAggregationSource {
 	@Nullable
 	private final String field;
 
@@ -54,14 +60,23 @@ public final class GeoTileGridAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoTileGridAggregation(Builder builder) {
+	public GeoTileGridAggregation(Builder builder) {
 		super(builder);
+
 		this.field = builder.field;
 		this.precision = builder.precision;
 		this.shardSize = builder.shardSize;
 		this.size = builder.size;
 		this.bounds = builder.bounds;
 
+	}
+
+	/**
+	 * {@link PivotGroupBy}, {@link CompositeAggregationSource} variant type
+	 */
+	@Override
+	public String _type() {
+		return "geotile_grid";
 	}
 
 	/**
@@ -104,8 +119,10 @@ public final class GeoTileGridAggregation extends BucketAggregationBase {
 		return this.bounds;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
 
 			generator.writeKey("field");
@@ -133,9 +150,11 @@ public final class GeoTileGridAggregation extends BucketAggregationBase {
 		if (this.bounds != null) {
 
 			generator.writeKey("bounds");
-			this.bounds.toJsonp(generator, mapper);
+			this.bounds.serialize(generator, mapper);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -228,11 +247,9 @@ public final class GeoTileGridAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for GeoTileGridAggregation
-	 */
-	public static final JsonpDeserializer<GeoTileGridAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoTileGridAggregation::setupGeoTileGridAggregationDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<GeoTileGridAggregation.Builder, GeoTileGridAggregation.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(GeoTileGridAggregation::setupGeoTileGridAggregationDeserializer);
 
 	protected static void setupGeoTileGridAggregationDeserializer(
 			DelegatingDeserializer<GeoTileGridAggregation.Builder> op) {

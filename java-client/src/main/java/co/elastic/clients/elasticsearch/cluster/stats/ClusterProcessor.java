@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcessor
-public final class ClusterProcessor implements ToJsonp {
+public final class ClusterProcessor implements JsonpSerializable {
 	private final Number count;
 
 	private final Number current;
@@ -47,7 +47,7 @@ public final class ClusterProcessor implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterProcessor(Builder builder) {
+	public ClusterProcessor(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.current = Objects.requireNonNull(builder.current, "current");
@@ -87,13 +87,13 @@ public final class ClusterProcessor implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
@@ -170,7 +170,7 @@ public final class ClusterProcessor implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterProcessor
+	 * Json deserializer for {@link ClusterProcessor}
 	 */
 	public static final JsonpDeserializer<ClusterProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterProcessor::setupClusterProcessorDeserializer);

@@ -23,13 +23,14 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
+import co.elastic.clients.elasticsearch._types.NodeRole;
 import co.elastic.clients.elasticsearch._types.PluginStats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -46,7 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfo
-public final class NodeInfo implements ToJsonp {
+public final class NodeInfo implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final String buildFlavor;
@@ -79,7 +80,7 @@ public final class NodeInfo implements ToJsonp {
 	@Nullable
 	private final NodeProcessInfo process;
 
-	private final List<JsonValue> roles;
+	private final List<NodeRole> roles;
 
 	@Nullable
 	private final NodeInfoSettings settings;
@@ -111,7 +112,7 @@ public final class NodeInfo implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfo(Builder builder) {
+	public NodeInfo(Builder builder) {
 
 		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
 		this.buildFlavor = Objects.requireNonNull(builder.buildFlavor, "build_flavor");
@@ -248,7 +249,7 @@ public final class NodeInfo implements ToJsonp {
 	/**
 	 * API name: {@code roles}
 	 */
-	public List<JsonValue> roles() {
+	public List<NodeRole> roles() {
 		return this.roles;
 	}
 
@@ -343,13 +344,13 @@ public final class NodeInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("attributes");
 		generator.writeStartObject();
@@ -375,7 +376,7 @@ public final class NodeInfo implements ToJsonp {
 		if (this.http != null) {
 
 			generator.writeKey("http");
-			this.http.toJsonp(generator, mapper);
+			this.http.serialize(generator, mapper);
 
 		}
 
@@ -385,7 +386,7 @@ public final class NodeInfo implements ToJsonp {
 		if (this.jvm != null) {
 
 			generator.writeKey("jvm");
-			this.jvm.toJsonp(generator, mapper);
+			this.jvm.serialize(generator, mapper);
 
 		}
 
@@ -395,13 +396,13 @@ public final class NodeInfo implements ToJsonp {
 		if (this.network != null) {
 
 			generator.writeKey("network");
-			this.network.toJsonp(generator, mapper);
+			this.network.serialize(generator, mapper);
 
 		}
 		if (this.os != null) {
 
 			generator.writeKey("os");
-			this.os.toJsonp(generator, mapper);
+			this.os.serialize(generator, mapper);
 
 		}
 		if (this.plugins != null) {
@@ -409,7 +410,7 @@ public final class NodeInfo implements ToJsonp {
 			generator.writeKey("plugins");
 			generator.writeStartArray();
 			for (PluginStats item0 : this.plugins) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -418,22 +419,21 @@ public final class NodeInfo implements ToJsonp {
 		if (this.process != null) {
 
 			generator.writeKey("process");
-			this.process.toJsonp(generator, mapper);
+			this.process.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("roles");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.roles) {
-			generator.write(item0);
-
+		for (NodeRole item0 : this.roles) {
+			item0.serialize(generator, mapper);
 		}
 		generator.writeEnd();
 
 		if (this.settings != null) {
 
 			generator.writeKey("settings");
-			this.settings.toJsonp(generator, mapper);
+			this.settings.serialize(generator, mapper);
 
 		}
 		if (this.threadPool != null) {
@@ -442,7 +442,7 @@ public final class NodeInfo implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeThreadPoolInfo> item0 : this.threadPool.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -463,7 +463,7 @@ public final class NodeInfo implements ToJsonp {
 		if (this.transport != null) {
 
 			generator.writeKey("transport");
-			this.transport.toJsonp(generator, mapper);
+			this.transport.serialize(generator, mapper);
 
 		}
 
@@ -478,7 +478,7 @@ public final class NodeInfo implements ToJsonp {
 			generator.writeKey("modules");
 			generator.writeStartArray();
 			for (PluginStats item0 : this.modules) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -487,7 +487,7 @@ public final class NodeInfo implements ToJsonp {
 		if (this.ingest != null) {
 
 			generator.writeKey("ingest");
-			this.ingest.toJsonp(generator, mapper);
+			this.ingest.serialize(generator, mapper);
 
 		}
 		if (this.aggregations != null) {
@@ -496,7 +496,7 @@ public final class NodeInfo implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoAggregation> item0 : this.aggregations.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -543,7 +543,7 @@ public final class NodeInfo implements ToJsonp {
 		@Nullable
 		private NodeProcessInfo process;
 
-		private List<JsonValue> roles;
+		private List<NodeRole> roles;
 
 		@Nullable
 		private NodeInfoSettings settings;
@@ -767,7 +767,7 @@ public final class NodeInfo implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(List<JsonValue> value) {
+		public Builder roles(List<NodeRole> value) {
 			this.roles = value;
 			return this;
 		}
@@ -775,7 +775,7 @@ public final class NodeInfo implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(JsonValue... value) {
+		public Builder roles(NodeRole... value) {
 			this.roles = Arrays.asList(value);
 			return this;
 		}
@@ -783,7 +783,7 @@ public final class NodeInfo implements ToJsonp {
 		/**
 		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
-		public Builder addRoles(JsonValue value) {
+		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {
 				this.roles = new ArrayList<>();
 			}
@@ -1005,7 +1005,7 @@ public final class NodeInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfo
+	 * Json deserializer for {@link NodeInfo}
 	 */
 	public static final JsonpDeserializer<NodeInfo> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfo::setupNodeInfoDeserializer);
@@ -1026,7 +1026,7 @@ public final class NodeInfo implements ToJsonp {
 		op.add(Builder::os, NodeOperatingSystemInfo.DESERIALIZER, "os");
 		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "plugins");
 		op.add(Builder::process, NodeProcessInfo.DESERIALIZER, "process");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "roles");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole.DESERIALIZER), "roles");
 		op.add(Builder::settings, NodeInfoSettings.DESERIALIZER, "settings");
 		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(NodeThreadPoolInfo.DESERIALIZER),
 				"thread_pool");

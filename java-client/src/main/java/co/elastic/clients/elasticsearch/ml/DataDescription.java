@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataDescription
-public final class DataDescription implements ToJsonp {
+public final class DataDescription implements JsonpSerializable {
 	@Nullable
 	private final String format;
 
@@ -50,7 +50,7 @@ public final class DataDescription implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataDescription(Builder builder) {
+	public DataDescription(Builder builder) {
 
 		this.format = builder.format;
 		this.timeField = Objects.requireNonNull(builder.timeField, "time_field");
@@ -108,13 +108,13 @@ public final class DataDescription implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.format != null) {
 
@@ -220,7 +220,7 @@ public final class DataDescription implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataDescription
+	 * Json deserializer for {@link DataDescription}
 	 */
 	public static final JsonpDeserializer<DataDescription> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DataDescription::setupDataDescriptionDeserializer);

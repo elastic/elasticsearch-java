@@ -42,7 +42,7 @@ public final class StartJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartJobRequest(Builder builder) {
+	public StartJobRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 

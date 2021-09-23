@@ -30,9 +30,9 @@ import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplate
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -45,7 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Request
-public final class SimulateTemplateRequest extends RequestBase implements ToJsonp {
+public final class SimulateTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
@@ -59,7 +59,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SimulateTemplateRequest(Builder builder) {
+	public SimulateTemplateRequest(Builder builder) {
 
 		this.name = builder.name;
 		this.create = builder.create;
@@ -116,8 +116,8 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.toJsonp(generator, mapper);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -208,7 +208,7 @@ public final class SimulateTemplateRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SimulateTemplateRequest
+	 * Json deserializer for {@link SimulateTemplateRequest}
 	 */
 	public static final JsonpDeserializer<SimulateTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SimulateTemplateRequest::setupSimulateTemplateRequestDeserializer);

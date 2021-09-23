@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -39,14 +39,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInference
-public final class MlInference implements ToJsonp {
+public final class MlInference implements JsonpSerializable {
 	private final Map<String, MlInferenceIngestProcessor> ingestProcessors;
 
 	private final MlInferenceTrainedModels trainedModels;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlInference(Builder builder) {
+	public MlInference(Builder builder) {
 
 		this.ingestProcessors = Objects.requireNonNull(builder.ingestProcessors, "ingest_processors");
 		this.trainedModels = Objects.requireNonNull(builder.trainedModels, "trained_models");
@@ -70,25 +70,25 @@ public final class MlInference implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("ingest_processors");
 		generator.writeStartObject();
 		for (Map.Entry<String, MlInferenceIngestProcessor> item0 : this.ingestProcessors.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("trained_models");
-		this.trainedModels.toJsonp(generator, mapper);
+		this.trainedModels.serialize(generator, mapper);
 
 	}
 
@@ -171,7 +171,7 @@ public final class MlInference implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlInference
+	 * Json deserializer for {@link MlInference}
 	 */
 	public static final JsonpDeserializer<MlInference> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MlInference::setupMlInferenceDeserializer);

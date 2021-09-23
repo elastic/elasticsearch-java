@@ -50,7 +50,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteComponentTemplateRequest(Builder builder) {
+	public DeleteComponentTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;

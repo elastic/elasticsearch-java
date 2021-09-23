@@ -26,17 +26,18 @@ package co.elastic.clients.elasticsearch.cat.nodes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodes.NodesRecord
-public final class NodesRecord implements ToJsonp {
+public final class NodesRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -327,7 +328,7 @@ public final class NodesRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodesRecord(Builder builder) {
+	public NodesRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.pid = builder.pid;
@@ -1392,13 +1393,13 @@ public final class NodesRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -3249,7 +3250,7 @@ public final class NodesRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodesRecord
+	 * Json deserializer for {@link NodesRecord}
 	 */
 	public static final JsonpDeserializer<NodesRecord> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodesRecord::setupNodesRecordDeserializer);

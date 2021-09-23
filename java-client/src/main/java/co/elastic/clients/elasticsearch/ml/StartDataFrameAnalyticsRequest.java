@@ -47,7 +47,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartDataFrameAnalyticsRequest(Builder builder) {
+	public StartDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.timeout = builder.timeout;

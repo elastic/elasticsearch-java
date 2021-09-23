@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ccr.pause_follow.Response
 public final class PauseFollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PauseFollowResponse(Builder builder) {
+	public PauseFollowResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class PauseFollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PauseFollowResponse
+	 * Json deserializer for {@link PauseFollowResponse}
 	 */
 	public static final JsonpDeserializer<PauseFollowResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PauseFollowResponse::setupPauseFollowResponseDeserializer);

@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelStats
-public final class TrainedModelStats implements ToJsonp {
+public final class TrainedModelStats implements JsonpSerializable {
 	private final String modelId;
 
 	private final Number pipelineCount;
@@ -50,11 +50,11 @@ public final class TrainedModelStats implements ToJsonp {
 	private final TrainedModelInferenceStats inferenceStats;
 
 	@Nullable
-	private final Map<String, JsonValue> ingest;
+	private final Map<String, JsonData> ingest;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TrainedModelStats(Builder builder) {
+	public TrainedModelStats(Builder builder) {
 
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.pipelineCount = Objects.requireNonNull(builder.pipelineCount, "pipeline_count");
@@ -99,20 +99,20 @@ public final class TrainedModelStats implements ToJsonp {
 	 * API name: {@code ingest}
 	 */
 	@Nullable
-	public Map<String, JsonValue> ingest() {
+	public Map<String, JsonData> ingest() {
 		return this.ingest;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
@@ -123,16 +123,16 @@ public final class TrainedModelStats implements ToJsonp {
 		if (this.inferenceStats != null) {
 
 			generator.writeKey("inference_stats");
-			this.inferenceStats.toJsonp(generator, mapper);
+			this.inferenceStats.serialize(generator, mapper);
 
 		}
 		if (this.ingest != null) {
 
 			generator.writeKey("ingest");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.ingest.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.ingest.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -155,7 +155,7 @@ public final class TrainedModelStats implements ToJsonp {
 		private TrainedModelInferenceStats inferenceStats;
 
 		@Nullable
-		private Map<String, JsonValue> ingest;
+		private Map<String, JsonData> ingest;
 
 		/**
 		 * The unique identifier of the trained model.
@@ -204,7 +204,7 @@ public final class TrainedModelStats implements ToJsonp {
 		 * <p>
 		 * API name: {@code ingest}
 		 */
-		public Builder ingest(@Nullable Map<String, JsonValue> value) {
+		public Builder ingest(@Nullable Map<String, JsonData> value) {
 			this.ingest = value;
 			return this;
 		}
@@ -212,7 +212,7 @@ public final class TrainedModelStats implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #ingest(Map)}, creating the map if needed.
 		 */
-		public Builder putIngest(String key, JsonValue value) {
+		public Builder putIngest(String key, JsonData value) {
 			if (this.ingest == null) {
 				this.ingest = new HashMap<>();
 			}
@@ -235,7 +235,7 @@ public final class TrainedModelStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TrainedModelStats
+	 * Json deserializer for {@link TrainedModelStats}
 	 */
 	public static final JsonpDeserializer<TrainedModelStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TrainedModelStats::setupTrainedModelStatsDeserializer);
@@ -245,8 +245,7 @@ public final class TrainedModelStats implements ToJsonp {
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::pipelineCount, JsonpDeserializer.numberDeserializer(), "pipeline_count");
 		op.add(Builder::inferenceStats, TrainedModelInferenceStats.DESERIALIZER, "inference_stats");
-		op.add(Builder::ingest, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"ingest");
+		op.add(Builder::ingest, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "ingest");
 
 	}
 

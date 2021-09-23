@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.QueryWatch
-public final class QueryWatch implements ToJsonp {
+public final class QueryWatch implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -55,7 +55,7 @@ public final class QueryWatch implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected QueryWatch(Builder builder) {
+	public QueryWatch(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.status = builder.status;
@@ -107,13 +107,13 @@ public final class QueryWatch implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_id");
 		generator.write(this.id);
@@ -121,13 +121,13 @@ public final class QueryWatch implements ToJsonp {
 		if (this.status != null) {
 
 			generator.writeKey("status");
-			this.status.toJsonp(generator, mapper);
+			this.status.serialize(generator, mapper);
 
 		}
 		if (this.watch != null) {
 
 			generator.writeKey("watch");
-			this.watch.toJsonp(generator, mapper);
+			this.watch.serialize(generator, mapper);
 
 		}
 		if (this.primaryTerm != null) {
@@ -234,7 +234,7 @@ public final class QueryWatch implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for QueryWatch
+	 * Json deserializer for {@link QueryWatch}
 	 */
 	public static final JsonpDeserializer<QueryWatch> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, QueryWatch::setupQueryWatchDeserializer);

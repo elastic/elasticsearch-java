@@ -68,7 +68,7 @@ public final class ExistsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsRequest(Builder builder) {
+	public ExistsRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;

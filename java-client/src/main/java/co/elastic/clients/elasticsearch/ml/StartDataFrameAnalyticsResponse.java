@@ -41,8 +41,9 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartDataFrameAnalyticsResponse(Builder builder) {
+	public StartDataFrameAnalyticsResponse(Builder builder) {
 		super(builder);
+
 		this.node = Objects.requireNonNull(builder.node, "node");
 
 	}
@@ -58,8 +59,9 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 		return this.node;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("node");
 		generator.write(this.node);
@@ -108,7 +110,7 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StartDataFrameAnalyticsResponse
+	 * Json deserializer for {@link StartDataFrameAnalyticsResponse}
 	 */
 	public static final JsonpDeserializer<StartDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

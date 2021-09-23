@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,12 +36,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.CreatedStatus
-public final class CreatedStatus implements ToJsonp {
+public final class CreatedStatus implements JsonpSerializable {
 	private final Boolean created;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreatedStatus(Builder builder) {
+	public CreatedStatus(Builder builder) {
 
 		this.created = Objects.requireNonNull(builder.created, "created");
 
@@ -57,13 +57,13 @@ public final class CreatedStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("created");
 		generator.write(this.created);
@@ -101,7 +101,7 @@ public final class CreatedStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CreatedStatus
+	 * Json deserializer for {@link CreatedStatus}
 	 */
 	public static final JsonpDeserializer<CreatedStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CreatedStatus::setupCreatedStatusDeserializer);

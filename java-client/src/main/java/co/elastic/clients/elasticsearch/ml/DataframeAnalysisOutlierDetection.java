@@ -24,20 +24,22 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisOutlierDetection
-public final class DataframeAnalysisOutlierDetection implements ToJsonp {
+public final class DataframeAnalysisOutlierDetection implements DataframeAnalysis, JsonpSerializable {
 	@Nullable
 	private final Boolean computeFeatureInfluence;
 
@@ -58,7 +60,7 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisOutlierDetection(Builder builder) {
+	public DataframeAnalysisOutlierDetection(Builder builder) {
 
 		this.computeFeatureInfluence = builder.computeFeatureInfluence;
 		this.featureInfluenceThreshold = builder.featureInfluenceThreshold;
@@ -67,6 +69,14 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 		this.outlierFraction = builder.outlierFraction;
 		this.standardizationEnabled = builder.standardizationEnabled;
 
+	}
+
+	/**
+	 * {@link DataframeAnalysis} variant type
+	 */
+	@Override
+	public String _type() {
+		return "outlier_detection";
 	}
 
 	/**
@@ -145,13 +155,14 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		if (this.computeFeatureInfluence != null) {
 
@@ -189,6 +200,8 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 			generator.write(this.standardizationEnabled);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -303,12 +316,9 @@ public final class DataframeAnalysisOutlierDetection implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for DataframeAnalysisOutlierDetection
-	 */
-	public static final JsonpDeserializer<DataframeAnalysisOutlierDetection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalysisOutlierDetection::setupDataframeAnalysisOutlierDetectionDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<DataframeAnalysisOutlierDetection.Builder, DataframeAnalysisOutlierDetection.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(DataframeAnalysisOutlierDetection::setupDataframeAnalysisOutlierDetectionDeserializer);
 
 	protected static void setupDataframeAnalysisOutlierDetectionDeserializer(
 			DelegatingDeserializer<DataframeAnalysisOutlierDetection.Builder> op) {

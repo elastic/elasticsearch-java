@@ -24,31 +24,31 @@
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Document
-public final class Document implements ToJsonp {
+public final class Document implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
 	@Nullable
 	private final String index;
 
-	private final JsonValue source;
+	private final JsonData source;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Document(Builder builder) {
+	public Document(Builder builder) {
 
 		this.id = builder.id;
 		this.index = builder.index;
@@ -75,20 +75,20 @@ public final class Document implements ToJsonp {
 	/**
 	 * API name: {@code _source}
 	 */
-	public JsonValue source() {
+	public JsonData source() {
 		return this.source;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -104,7 +104,7 @@ public final class Document implements ToJsonp {
 		}
 
 		generator.writeKey("_source");
-		generator.write(this.source);
+		this.source.serialize(generator, mapper);
 
 	}
 
@@ -120,7 +120,7 @@ public final class Document implements ToJsonp {
 		@Nullable
 		private String index;
 
-		private JsonValue source;
+		private JsonData source;
 
 		/**
 		 * API name: {@code _id}
@@ -141,7 +141,7 @@ public final class Document implements ToJsonp {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder source(JsonValue value) {
+		public Builder source(JsonData value) {
 			this.source = value;
 			return this;
 		}
@@ -161,7 +161,7 @@ public final class Document implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Document
+	 * Json deserializer for {@link Document}
 	 */
 	public static final JsonpDeserializer<Document> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Document::setupDocumentDeserializer);
@@ -170,7 +170,7 @@ public final class Document implements ToJsonp {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::source, JsonData.DESERIALIZER, "_source");
 
 	}
 

@@ -23,14 +23,14 @@
 
 package co.elastic.clients.elasticsearch._spec_utils;
 
+import co.elastic.clients.elasticsearch._types.NodeRole;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _spec_utils.BaseNode
-public abstract class BaseNode implements ToJsonp {
+public abstract class BaseNode implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final String host;
@@ -52,13 +52,13 @@ public abstract class BaseNode implements ToJsonp {
 	private final String name;
 
 	@Nullable
-	private final List<JsonValue> roles;
+	private final List<NodeRole> roles;
 
 	private final String transportAddress;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BaseNode(AbstractBuilder<?> builder) {
+	public BaseNode(AbstractBuilder<?> builder) {
 
 		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
 		this.host = Objects.requireNonNull(builder.host, "host");
@@ -101,7 +101,7 @@ public abstract class BaseNode implements ToJsonp {
 	 * API name: {@code roles}
 	 */
 	@Nullable
-	public List<JsonValue> roles() {
+	public List<NodeRole> roles() {
 		return this.roles;
 	}
 
@@ -115,13 +115,13 @@ public abstract class BaseNode implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("attributes");
 		generator.writeStartObject();
@@ -145,9 +145,8 @@ public abstract class BaseNode implements ToJsonp {
 
 			generator.writeKey("roles");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.roles) {
-				generator.write(item0);
-
+			for (NodeRole item0 : this.roles) {
+				item0.serialize(generator, mapper);
 			}
 			generator.writeEnd();
 
@@ -168,7 +167,7 @@ public abstract class BaseNode implements ToJsonp {
 		private String name;
 
 		@Nullable
-		private List<JsonValue> roles;
+		private List<NodeRole> roles;
 
 		private String transportAddress;
 
@@ -218,7 +217,7 @@ public abstract class BaseNode implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public BuilderT roles(@Nullable List<JsonValue> value) {
+		public BuilderT roles(@Nullable List<NodeRole> value) {
 			this.roles = value;
 			return self();
 		}
@@ -226,7 +225,7 @@ public abstract class BaseNode implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public BuilderT roles(JsonValue... value) {
+		public BuilderT roles(NodeRole... value) {
 			this.roles = Arrays.asList(value);
 			return self();
 		}
@@ -234,7 +233,7 @@ public abstract class BaseNode implements ToJsonp {
 		/**
 		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
-		public BuilderT addRoles(JsonValue value) {
+		public BuilderT addRoles(NodeRole value) {
 			if (this.roles == null) {
 				this.roles = new ArrayList<>();
 			}
@@ -263,8 +262,7 @@ public abstract class BaseNode implements ToJsonp {
 		op.add(AbstractBuilder::host, JsonpDeserializer.stringDeserializer(), "host");
 		op.add(AbstractBuilder::ip, JsonpDeserializer.stringDeserializer(), "ip");
 		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(AbstractBuilder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"roles");
+		op.add(AbstractBuilder::roles, JsonpDeserializer.arrayDeserializer(NodeRole.DESERIALIZER), "roles");
 		op.add(AbstractBuilder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 
 	}

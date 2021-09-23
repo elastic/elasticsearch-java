@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -38,7 +38,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedBounds
-public final class ExtendedBounds<T> implements ToJsonp {
+public final class ExtendedBounds<T> implements JsonpSerializable {
 	private final T max;
 
 	private final T min;
@@ -48,7 +48,7 @@ public final class ExtendedBounds<T> implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExtendedBounds(Builder<T> builder) {
+	public ExtendedBounds(Builder<T> builder) {
 
 		this.max = Objects.requireNonNull(builder.max, "max");
 		this.min = Objects.requireNonNull(builder.min, "min");
@@ -73,13 +73,13 @@ public final class ExtendedBounds<T> implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("max");
 		JsonpUtils.serialize(this.max, generator, tSerializer, mapper);

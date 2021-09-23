@@ -24,14 +24,14 @@
 package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,17 +42,17 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.HitsSequence
-public final class HitsSequence<TEvent> implements ToJsonp {
+public final class HitsSequence<TEvent> implements JsonpSerializable {
 	private final List<HitsEvent<TEvent>> events;
 
-	private final List<JsonValue> joinKeys;
+	private final List<JsonData> joinKeys;
 
 	@Nullable
 	private final JsonpSerializer<TEvent> tEventSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HitsSequence(Builder<TEvent> builder) {
+	public HitsSequence(Builder<TEvent> builder) {
 
 		this.events = Objects.requireNonNull(builder.events, "events");
 		this.joinKeys = Objects.requireNonNull(builder.joinKeys, "join_keys");
@@ -75,33 +75,33 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 	 * <p>
 	 * API name: {@code join_keys}
 	 */
-	public List<JsonValue> joinKeys() {
+	public List<JsonData> joinKeys() {
 		return this.joinKeys;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("events");
 		generator.writeStartArray();
 		for (HitsEvent<TEvent> item0 : this.events) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("join_keys");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.joinKeys) {
-			generator.write(item0);
+		for (JsonData item0 : this.joinKeys) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -116,7 +116,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 	public static class Builder<TEvent> implements ObjectBuilder<HitsSequence<TEvent>> {
 		private List<HitsEvent<TEvent>> events;
 
-		private List<JsonValue> joinKeys;
+		private List<JsonData> joinKeys;
 
 		@Nullable
 		private JsonpSerializer<TEvent> tEventSerializer;
@@ -172,7 +172,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 		 * <p>
 		 * API name: {@code join_keys}
 		 */
-		public Builder<TEvent> joinKeys(List<JsonValue> value) {
+		public Builder<TEvent> joinKeys(List<JsonData> value) {
 			this.joinKeys = value;
 			return this;
 		}
@@ -183,7 +183,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 		 * <p>
 		 * API name: {@code join_keys}
 		 */
-		public Builder<TEvent> joinKeys(JsonValue... value) {
+		public Builder<TEvent> joinKeys(JsonData... value) {
 			this.joinKeys = Arrays.asList(value);
 			return this;
 		}
@@ -191,7 +191,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 		/**
 		 * Add a value to {@link #joinKeys(List)}, creating the list if needed.
 		 */
-		public Builder<TEvent> addJoinKeys(JsonValue value) {
+		public Builder<TEvent> addJoinKeys(JsonData value) {
 			if (this.joinKeys == null) {
 				this.joinKeys = new ArrayList<>();
 			}
@@ -237,8 +237,7 @@ public final class HitsSequence<TEvent> implements ToJsonp {
 		op.add(Builder::events,
 				JsonpDeserializer.arrayDeserializer(HitsEvent.createHitsEventDeserializer(tEventDeserializer)),
 				"events");
-		op.add(Builder::joinKeys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"join_keys");
+		op.add(Builder::joinKeys, JsonpDeserializer.arrayDeserializer(JsonData.DESERIALIZER), "join_keys");
 
 	}
 

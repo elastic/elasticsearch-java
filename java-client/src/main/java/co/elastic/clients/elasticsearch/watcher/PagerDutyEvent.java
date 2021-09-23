@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -42,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyEvent
-public final class PagerDutyEvent implements ToJsonp {
+public final class PagerDutyEvent implements JsonpSerializable {
 	private final String account;
 
 	private final Boolean attachPayload;
@@ -55,13 +54,13 @@ public final class PagerDutyEvent implements ToJsonp {
 
 	private final String description;
 
-	private final JsonValue eventType;
+	private final PagerDutyEventType eventType;
 
 	private final String incidentKey;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PagerDutyEvent(Builder builder) {
+	public PagerDutyEvent(Builder builder) {
 
 		this.account = Objects.requireNonNull(builder.account, "account");
 		this.attachPayload = Objects.requireNonNull(builder.attachPayload, "attach_payload");
@@ -119,7 +118,7 @@ public final class PagerDutyEvent implements ToJsonp {
 	/**
 	 * API name: {@code event_type}
 	 */
-	public JsonValue eventType() {
+	public PagerDutyEventType eventType() {
 		return this.eventType;
 	}
 
@@ -133,13 +132,13 @@ public final class PagerDutyEvent implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("account");
 		generator.write(this.account);
@@ -156,7 +155,7 @@ public final class PagerDutyEvent implements ToJsonp {
 		generator.writeKey("context");
 		generator.writeStartArray();
 		for (PagerDutyContext item0 : this.context) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -165,7 +164,7 @@ public final class PagerDutyEvent implements ToJsonp {
 		generator.write(this.description);
 
 		generator.writeKey("event_type");
-		generator.write(this.eventType);
+		this.eventType.serialize(generator, mapper);
 
 		generator.writeKey("incident_key");
 		generator.write(this.incidentKey);
@@ -190,7 +189,7 @@ public final class PagerDutyEvent implements ToJsonp {
 
 		private String description;
 
-		private JsonValue eventType;
+		private PagerDutyEventType eventType;
 
 		private String incidentKey;
 
@@ -278,7 +277,7 @@ public final class PagerDutyEvent implements ToJsonp {
 		/**
 		 * API name: {@code event_type}
 		 */
-		public Builder eventType(JsonValue value) {
+		public Builder eventType(PagerDutyEventType value) {
 			this.eventType = value;
 			return this;
 		}
@@ -306,7 +305,7 @@ public final class PagerDutyEvent implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PagerDutyEvent
+	 * Json deserializer for {@link PagerDutyEvent}
 	 */
 	public static final JsonpDeserializer<PagerDutyEvent> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PagerDutyEvent::setupPagerDutyEventDeserializer);
@@ -319,7 +318,7 @@ public final class PagerDutyEvent implements ToJsonp {
 		op.add(Builder::clientUrl, JsonpDeserializer.stringDeserializer(), "client_url");
 		op.add(Builder::context, JsonpDeserializer.arrayDeserializer(PagerDutyContext.DESERIALIZER), "context");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::eventType, JsonpDeserializer.jsonValueDeserializer(), "event_type");
+		op.add(Builder::eventType, PagerDutyEventType.DESERIALIZER, "event_type");
 		op.add(Builder::incidentKey, JsonpDeserializer.stringDeserializer(), "incident_key");
 
 	}

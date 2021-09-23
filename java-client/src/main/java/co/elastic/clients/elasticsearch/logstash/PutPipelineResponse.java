@@ -28,10 +28,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: logstash.put_pipeline.Response
 public final class PutPipelineResponse {
-	protected PutPipelineResponse() {
+	public PutPipelineResponse() {
 	}
 
 	/**

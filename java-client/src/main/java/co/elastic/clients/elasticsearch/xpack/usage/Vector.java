@@ -45,8 +45,9 @@ public final class Vector extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Vector(Builder builder) {
+	public Vector(Builder builder) {
 		super(builder);
+
 		this.denseVectorDimsAvgCount = Objects.requireNonNull(builder.denseVectorDimsAvgCount,
 				"dense_vector_dims_avg_count");
 		this.denseVectorFieldsCount = Objects.requireNonNull(builder.denseVectorFieldsCount,
@@ -77,8 +78,9 @@ public final class Vector extends Base {
 		return this.sparseVectorFieldsCount;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("dense_vector_dims_avg_count");
 		generator.write(this.denseVectorDimsAvgCount.doubleValue());
@@ -152,7 +154,7 @@ public final class Vector extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Vector
+	 * Json deserializer for {@link Vector}
 	 */
 	public static final JsonpDeserializer<Vector> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Vector::setupVectorDeserializer);

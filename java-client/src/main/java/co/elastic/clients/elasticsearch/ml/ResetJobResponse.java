@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ml.reset_job.Response
 public final class ResetJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResetJobResponse(Builder builder) {
+	public ResetJobResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class ResetJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ResetJobResponse
+	 * Json deserializer for {@link ResetJobResponse}
 	 */
 	public static final JsonpDeserializer<ResetJobResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ResetJobResponse::setupResetJobResponseDeserializer);

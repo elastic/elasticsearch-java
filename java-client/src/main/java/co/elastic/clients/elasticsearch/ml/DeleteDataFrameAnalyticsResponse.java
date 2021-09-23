@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ml.delete_data_frame_analytics.Response
 public final class DeleteDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteDataFrameAnalyticsResponse(Builder builder) {
+	public DeleteDataFrameAnalyticsResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeleteDataFrameAnalyticsResponse extends AcknowledgedResponse
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteDataFrameAnalyticsResponse
+	 * Json deserializer for {@link DeleteDataFrameAnalyticsResponse}
 	 */
 	public static final JsonpDeserializer<DeleteDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

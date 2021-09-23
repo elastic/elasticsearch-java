@@ -29,13 +29,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TTestAggregation
-public final class TTestAggregation extends Aggregation {
+public final class TTestAggregation extends AggregationBase {
 	@Nullable
 	private final TestPopulation a;
 
@@ -43,12 +43,13 @@ public final class TTestAggregation extends Aggregation {
 	private final TestPopulation b;
 
 	@Nullable
-	private final JsonValue type;
+	private final TTestType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TTestAggregation(Builder builder) {
+	public TTestAggregation(Builder builder) {
 		super(builder);
+
 		this.a = builder.a;
 		this.b = builder.b;
 		this.type = builder.type;
@@ -75,29 +76,29 @@ public final class TTestAggregation extends Aggregation {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public JsonValue type() {
+	public TTestType type() {
 		return this.type;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.a != null) {
 
 			generator.writeKey("a");
-			this.a.toJsonp(generator, mapper);
+			this.a.serialize(generator, mapper);
 
 		}
 		if (this.b != null) {
 
 			generator.writeKey("b");
-			this.b.toJsonp(generator, mapper);
+			this.b.serialize(generator, mapper);
 
 		}
 		if (this.type != null) {
 
 			generator.writeKey("type");
-			generator.write(this.type);
-
+			this.type.serialize(generator, mapper);
 		}
 
 	}
@@ -107,7 +108,7 @@ public final class TTestAggregation extends Aggregation {
 	/**
 	 * Builder for {@link TTestAggregation}.
 	 */
-	public static class Builder extends Aggregation.AbstractBuilder<Builder>
+	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TTestAggregation> {
 		@Nullable
@@ -117,7 +118,7 @@ public final class TTestAggregation extends Aggregation {
 		private TestPopulation b;
 
 		@Nullable
-		private JsonValue type;
+		private TTestType type;
 
 		/**
 		 * API name: {@code a}
@@ -152,7 +153,7 @@ public final class TTestAggregation extends Aggregation {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable JsonValue value) {
+		public Builder type(@Nullable TTestType value) {
 			this.type = value;
 			return this;
 		}
@@ -177,16 +178,16 @@ public final class TTestAggregation extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TTestAggregation
+	 * Json deserializer for {@link TTestAggregation}
 	 */
 	public static final JsonpDeserializer<TTestAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TTestAggregation::setupTTestAggregationDeserializer);
 
 	protected static void setupTTestAggregationDeserializer(DelegatingDeserializer<TTestAggregation.Builder> op) {
-		Aggregation.setupAggregationDeserializer(op);
+		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(Builder::a, TestPopulation.DESERIALIZER, "a");
 		op.add(Builder::b, TestPopulation.DESERIALIZER, "b");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type, TTestType.DESERIALIZER, "type");
 
 	}
 

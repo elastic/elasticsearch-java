@@ -59,7 +59,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsTemplateRequest(Builder builder) {
+	public ExistsTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.flatSettings = builder.flatSettings;

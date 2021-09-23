@@ -34,6 +34,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -47,8 +48,9 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IpRangeAggregation(Builder builder) {
+	public IpRangeAggregation(Builder builder) {
 		super(builder);
+
 		this.field = builder.field;
 		this.ranges = builder.ranges;
 
@@ -70,8 +72,9 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 		return this.ranges;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
 
 			generator.writeKey("field");
@@ -83,7 +86,7 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (IpRangeAggregationRange item0 : this.ranges) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -175,7 +178,7 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IpRangeAggregation
+	 * Json deserializer for {@link IpRangeAggregation}
 	 */
 	public static final JsonpDeserializer<IpRangeAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IpRangeAggregation::setupIpRangeAggregationDeserializer);

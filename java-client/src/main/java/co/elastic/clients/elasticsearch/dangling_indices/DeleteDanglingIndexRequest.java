@@ -53,7 +53,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteDanglingIndexRequest(Builder builder) {
+	public DeleteDanglingIndexRequest(Builder builder) {
 
 		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
 		this.acceptDataLoss = Objects.requireNonNull(builder.acceptDataLoss, "accept_data_loss");

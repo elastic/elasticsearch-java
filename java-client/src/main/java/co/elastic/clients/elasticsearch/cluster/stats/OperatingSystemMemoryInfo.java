@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.OperatingSystemMemoryInfo
-public final class OperatingSystemMemoryInfo implements ToJsonp {
+public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 	private final Number freeInBytes;
 
 	private final Number freePercent;
@@ -49,7 +49,7 @@ public final class OperatingSystemMemoryInfo implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected OperatingSystemMemoryInfo(Builder builder) {
+	public OperatingSystemMemoryInfo(Builder builder) {
 
 		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
 		this.freePercent = Objects.requireNonNull(builder.freePercent, "free_percent");
@@ -97,13 +97,13 @@ public final class OperatingSystemMemoryInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("free_in_bytes");
 		generator.write(this.freeInBytes.doubleValue());
@@ -193,7 +193,7 @@ public final class OperatingSystemMemoryInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for OperatingSystemMemoryInfo
+	 * Json deserializer for {@link OperatingSystemMemoryInfo}
 	 */
 	public static final JsonpDeserializer<OperatingSystemMemoryInfo> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, OperatingSystemMemoryInfo::setupOperatingSystemMemoryInfoDeserializer);

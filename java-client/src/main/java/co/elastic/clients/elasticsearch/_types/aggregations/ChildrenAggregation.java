@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ChildrenAggregation
@@ -40,8 +41,9 @@ public final class ChildrenAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ChildrenAggregation(Builder builder) {
+	public ChildrenAggregation(Builder builder) {
 		super(builder);
+
 		this.type = builder.type;
 
 	}
@@ -54,8 +56,9 @@ public final class ChildrenAggregation extends BucketAggregationBase {
 		return this.type;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.type != null) {
 
 			generator.writeKey("type");
@@ -104,7 +107,7 @@ public final class ChildrenAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ChildrenAggregation
+	 * Json deserializer for {@link ChildrenAggregation}
 	 */
 	public static final JsonpDeserializer<ChildrenAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ChildrenAggregation::setupChildrenAggregationDeserializer);

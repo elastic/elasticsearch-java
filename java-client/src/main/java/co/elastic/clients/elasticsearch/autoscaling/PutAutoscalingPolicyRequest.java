@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,14 +41,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.put_autoscaling_policy.Request
-public final class PutAutoscalingPolicyRequest extends RequestBase implements ToJsonp {
+public final class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	private final AutoscalingPolicy value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutAutoscalingPolicyRequest(Builder builder) {
+	public PutAutoscalingPolicyRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.value = Objects.requireNonNull(builder.value, "value");
@@ -76,8 +76,8 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements To
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.toJsonp(generator, mapper);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -135,7 +135,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutAutoscalingPolicyRequest
+	 * Json deserializer for {@link PutAutoscalingPolicyRequest}
 	 */
 	public static final JsonpDeserializer<PutAutoscalingPolicyRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutAutoscalingPolicyRequest::setupPutAutoscalingPolicyRequestDeserializer);

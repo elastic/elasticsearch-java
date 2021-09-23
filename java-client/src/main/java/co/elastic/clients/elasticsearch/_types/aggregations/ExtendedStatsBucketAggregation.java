@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsBucketAggregation
@@ -40,8 +41,9 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExtendedStatsBucketAggregation(Builder builder) {
+	public ExtendedStatsBucketAggregation(Builder builder) {
 		super(builder);
+
 		this.sigma = builder.sigma;
 
 	}
@@ -54,8 +56,9 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 		return this.sigma;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.sigma != null) {
 
 			generator.writeKey("sigma");
@@ -104,7 +107,7 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExtendedStatsBucketAggregation
+	 * Json deserializer for {@link ExtendedStatsBucketAggregation}
 	 */
 	public static final JsonpDeserializer<ExtendedStatsBucketAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

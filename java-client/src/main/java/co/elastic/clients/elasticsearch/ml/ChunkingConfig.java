@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -36,15 +36,15 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ChunkingConfig
-public final class ChunkingConfig implements ToJsonp {
-	private final JsonValue mode;
+public final class ChunkingConfig implements JsonpSerializable {
+	private final ChunkingMode mode;
 
 	@Nullable
 	private final JsonValue timeSpan;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ChunkingConfig(Builder builder) {
+	public ChunkingConfig(Builder builder) {
 
 		this.mode = Objects.requireNonNull(builder.mode, "mode");
 		this.timeSpan = builder.timeSpan;
@@ -60,7 +60,7 @@ public final class ChunkingConfig implements ToJsonp {
 	 * <p>
 	 * API name: {@code mode}
 	 */
-	public JsonValue mode() {
+	public ChunkingMode mode() {
 		return this.mode;
 	}
 
@@ -78,17 +78,16 @@ public final class ChunkingConfig implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("mode");
-		generator.write(this.mode);
-
+		this.mode.serialize(generator, mapper);
 		if (this.timeSpan != null) {
 
 			generator.writeKey("time_span");
@@ -104,7 +103,7 @@ public final class ChunkingConfig implements ToJsonp {
 	 * Builder for {@link ChunkingConfig}.
 	 */
 	public static class Builder implements ObjectBuilder<ChunkingConfig> {
-		private JsonValue mode;
+		private ChunkingMode mode;
 
 		@Nullable
 		private JsonValue timeSpan;
@@ -118,7 +117,7 @@ public final class ChunkingConfig implements ToJsonp {
 		 * <p>
 		 * API name: {@code mode}
 		 */
-		public Builder mode(JsonValue value) {
+		public Builder mode(ChunkingMode value) {
 			this.mode = value;
 			return this;
 		}
@@ -149,14 +148,14 @@ public final class ChunkingConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ChunkingConfig
+	 * Json deserializer for {@link ChunkingConfig}
 	 */
 	public static final JsonpDeserializer<ChunkingConfig> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ChunkingConfig::setupChunkingConfigDeserializer);
 
 	protected static void setupChunkingConfigDeserializer(DelegatingDeserializer<ChunkingConfig.Builder> op) {
 
-		op.add(Builder::mode, JsonpDeserializer.jsonValueDeserializer(), "mode");
+		op.add(Builder::mode, ChunkingMode.DESERIALIZER, "mode");
 		op.add(Builder::timeSpan, JsonpDeserializer.jsonValueDeserializer(), "time_span");
 
 	}

@@ -28,9 +28,9 @@ import co.elastic.clients.elasticsearch.indices.reload_search_analyzers.ReloadDe
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -41,14 +41,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.Response
-public final class ReloadSearchAnalyzersResponse implements ToJsonp {
+public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 	private final List<ReloadDetails> reloadDetails;
 
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ReloadSearchAnalyzersResponse(Builder builder) {
+	public ReloadSearchAnalyzersResponse(Builder builder) {
 
 		this.reloadDetails = Objects.requireNonNull(builder.reloadDetails, "reload_details");
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
@@ -72,24 +72,24 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("reload_details");
 		generator.writeStartArray();
 		for (ReloadDetails item0 : this.reloadDetails) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("_shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 	}
 
@@ -174,7 +174,7 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ReloadSearchAnalyzersResponse
+	 * Json deserializer for {@link ReloadSearchAnalyzersResponse}
 	 */
 	public static final JsonpDeserializer<ReloadSearchAnalyzersResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.autoscaling;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,12 +36,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_policy.Response
-public final class GetAutoscalingPolicyResponse implements ToJsonp {
+public final class GetAutoscalingPolicyResponse implements JsonpSerializable {
 	private final AutoscalingPolicy value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetAutoscalingPolicyResponse(Builder builder) {
+	public GetAutoscalingPolicyResponse(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -59,8 +59,8 @@ public final class GetAutoscalingPolicyResponse implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.toJsonp(generator, mapper);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -106,7 +106,7 @@ public final class GetAutoscalingPolicyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetAutoscalingPolicyResponse
+	 * Json deserializer for {@link GetAutoscalingPolicyResponse}
 	 */
 	public static final JsonpDeserializer<GetAutoscalingPolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetAutoscalingPolicyResponse::setupGetAutoscalingPolicyResponseDeserializer);

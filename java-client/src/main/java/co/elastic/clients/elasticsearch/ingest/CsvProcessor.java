@@ -24,12 +24,12 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.CsvProcessor
 public final class CsvProcessor extends ProcessorBase {
-	private final JsonValue emptyValue;
+	private final JsonData emptyValue;
 
 	@Nullable
 	private final String description;
@@ -63,8 +63,9 @@ public final class CsvProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CsvProcessor(Builder builder) {
+	public CsvProcessor(Builder builder) {
 		super(builder);
+
 		this.emptyValue = Objects.requireNonNull(builder.emptyValue, "empty_value");
 		this.description = builder.description;
 		this.field = Objects.requireNonNull(builder.field, "field");
@@ -79,7 +80,7 @@ public final class CsvProcessor extends ProcessorBase {
 	/**
 	 * API name: {@code empty_value}
 	 */
-	public JsonValue emptyValue() {
+	public JsonData emptyValue() {
 		return this.emptyValue;
 	}
 
@@ -136,11 +137,12 @@ public final class CsvProcessor extends ProcessorBase {
 		return this.trim;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("empty_value");
-		generator.write(this.emptyValue);
+		this.emptyValue.serialize(generator, mapper);
 
 		if (this.description != null) {
 
@@ -190,7 +192,7 @@ public final class CsvProcessor extends ProcessorBase {
 	 * Builder for {@link CsvProcessor}.
 	 */
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<CsvProcessor> {
-		private JsonValue emptyValue;
+		private JsonData emptyValue;
 
 		@Nullable
 		private String description;
@@ -213,7 +215,7 @@ public final class CsvProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code empty_value}
 		 */
-		public Builder emptyValue(JsonValue value) {
+		public Builder emptyValue(JsonData value) {
 			this.emptyValue = value;
 			return this;
 		}
@@ -313,14 +315,14 @@ public final class CsvProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CsvProcessor
+	 * Json deserializer for {@link CsvProcessor}
 	 */
 	public static final JsonpDeserializer<CsvProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CsvProcessor::setupCsvProcessorDeserializer);
 
 	protected static void setupCsvProcessorDeserializer(DelegatingDeserializer<CsvProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
-		op.add(Builder::emptyValue, JsonpDeserializer.jsonValueDeserializer(), "empty_value");
+		op.add(Builder::emptyValue, JsonData.DESERIALIZER, "empty_value");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

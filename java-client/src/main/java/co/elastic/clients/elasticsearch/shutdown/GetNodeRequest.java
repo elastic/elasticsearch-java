@@ -46,7 +46,7 @@ public final class GetNodeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetNodeRequest(Builder builder) {
+	public GetNodeRequest(Builder builder) {
 
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
 

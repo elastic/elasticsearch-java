@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ccr.unfollow.Response
 public final class UnfollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected UnfollowResponse(Builder builder) {
+	public UnfollowResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class UnfollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UnfollowResponse
+	 * Json deserializer for {@link UnfollowResponse}
 	 */
 	public static final JsonpDeserializer<UnfollowResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UnfollowResponse::setupUnfollowResponseDeserializer);

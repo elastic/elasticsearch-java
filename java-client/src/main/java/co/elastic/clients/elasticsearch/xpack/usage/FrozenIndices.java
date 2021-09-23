@@ -40,8 +40,9 @@ public final class FrozenIndices extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FrozenIndices(Builder builder) {
+	public FrozenIndices(Builder builder) {
 		super(builder);
+
 		this.indicesCount = Objects.requireNonNull(builder.indicesCount, "indices_count");
 
 	}
@@ -53,8 +54,9 @@ public final class FrozenIndices extends Base {
 		return this.indicesCount;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("indices_count");
 		generator.write(this.indicesCount.doubleValue());
@@ -97,7 +99,7 @@ public final class FrozenIndices extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FrozenIndices
+	 * Json deserializer for {@link FrozenIndices}
 	 */
 	public static final JsonpDeserializer<FrozenIndices> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FrozenIndices::setupFrozenIndicesDeserializer);

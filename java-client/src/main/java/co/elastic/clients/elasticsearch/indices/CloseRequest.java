@@ -67,7 +67,7 @@ public final class CloseRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloseRequest(Builder builder) {
+	public CloseRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;

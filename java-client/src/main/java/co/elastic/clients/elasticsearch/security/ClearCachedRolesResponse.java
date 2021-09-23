@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_roles.Response
-public final class ClearCachedRolesResponse implements ToJsonp {
+public final class ClearCachedRolesResponse implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
 
 	private final String clusterName;
@@ -50,7 +50,7 @@ public final class ClearCachedRolesResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedRolesResponse(Builder builder) {
+	public ClearCachedRolesResponse(Builder builder) {
 
 		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
@@ -82,16 +82,16 @@ public final class ClearCachedRolesResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_nodes");
-		this.nodeStats.toJsonp(generator, mapper);
+		this.nodeStats.serialize(generator, mapper);
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -100,7 +100,7 @@ public final class ClearCachedRolesResponse implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, ClusterNode> item0 : this.nodes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -190,7 +190,7 @@ public final class ClearCachedRolesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClearCachedRolesResponse
+	 * Json deserializer for {@link ClearCachedRolesResponse}
 	 */
 	public static final JsonpDeserializer<ClearCachedRolesResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClearCachedRolesResponse::setupClearCachedRolesResponseDeserializer);

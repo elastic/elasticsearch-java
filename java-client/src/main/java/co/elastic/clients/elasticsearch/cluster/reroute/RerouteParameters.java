@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.reroute;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,7 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteParameters
-public final class RerouteParameters implements ToJsonp {
+public final class RerouteParameters implements JsonpSerializable {
 	private final Boolean allowPrimary;
 
 	private final String index;
@@ -55,7 +55,7 @@ public final class RerouteParameters implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RerouteParameters(Builder builder) {
+	public RerouteParameters(Builder builder) {
 
 		this.allowPrimary = Objects.requireNonNull(builder.allowPrimary, "allow_primary");
 		this.index = Objects.requireNonNull(builder.index, "index");
@@ -113,13 +113,13 @@ public final class RerouteParameters implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("allow_primary");
 		generator.write(this.allowPrimary);
@@ -231,7 +231,7 @@ public final class RerouteParameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RerouteParameters
+	 * Json deserializer for {@link RerouteParameters}
 	 */
 	public static final JsonpDeserializer<RerouteParameters> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RerouteParameters::setupRerouteParametersDeserializer);

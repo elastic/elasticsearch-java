@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml.put_trained_model;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,12 +39,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Input
-public final class Input implements ToJsonp {
+public final class Input implements JsonpSerializable {
 	private final List<String> fieldNames;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Input(Builder builder) {
+	public Input(Builder builder) {
 
 		this.fieldNames = Objects.requireNonNull(builder.fieldNames, "field_names");
 
@@ -60,13 +60,13 @@ public final class Input implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field_names");
 		generator.writeStartArray();
@@ -128,7 +128,7 @@ public final class Input implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Input
+	 * Json deserializer for {@link Input}
 	 */
 	public static final JsonpDeserializer<Input> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Input::setupInputDeserializer);

@@ -42,7 +42,7 @@ public final class PutNodeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutNodeRequest(Builder builder) {
+	public PutNodeRequest(Builder builder) {
 
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
 

@@ -38,6 +38,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -54,7 +55,7 @@ public final class RecoveryRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryRequest(Builder builder) {
+	public RecoveryRequest(Builder builder) {
 
 		this.index = builder.index;
 		this.activeOnly = builder.activeOnly;

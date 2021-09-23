@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.security.create_service_token.Token;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,14 +38,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Response
-public final class CreateServiceTokenResponse implements ToJsonp {
+public final class CreateServiceTokenResponse implements JsonpSerializable {
 	private final Boolean created;
 
 	private final Token token;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateServiceTokenResponse(Builder builder) {
+	public CreateServiceTokenResponse(Builder builder) {
 
 		this.created = Objects.requireNonNull(builder.created, "created");
 		this.token = Objects.requireNonNull(builder.token, "token");
@@ -69,19 +69,19 @@ public final class CreateServiceTokenResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("created");
 		generator.write(this.created);
 
 		generator.writeKey("token");
-		this.token.toJsonp(generator, mapper);
+		this.token.serialize(generator, mapper);
 
 	}
 
@@ -133,7 +133,7 @@ public final class CreateServiceTokenResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CreateServiceTokenResponse
+	 * Json deserializer for {@link CreateServiceTokenResponse}
 	 */
 	public static final JsonpDeserializer<CreateServiceTokenResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CreateServiceTokenResponse::setupCreateServiceTokenResponseDeserializer);

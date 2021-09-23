@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch.ml.info.NativeCode;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Response
-public final class InfoResponse implements ToJsonp {
+public final class InfoResponse implements JsonpSerializable {
 	private final Defaults defaults;
 
 	private final Limits limits;
@@ -51,7 +51,7 @@ public final class InfoResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InfoResponse(Builder builder) {
+	public InfoResponse(Builder builder) {
 
 		this.defaults = Objects.requireNonNull(builder.defaults, "defaults");
 		this.limits = Objects.requireNonNull(builder.limits, "limits");
@@ -91,25 +91,25 @@ public final class InfoResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("defaults");
-		this.defaults.toJsonp(generator, mapper);
+		this.defaults.serialize(generator, mapper);
 
 		generator.writeKey("limits");
-		this.limits.toJsonp(generator, mapper);
+		this.limits.serialize(generator, mapper);
 
 		generator.writeKey("upgrade_mode");
 		generator.write(this.upgradeMode);
 
 		generator.writeKey("native_code");
-		this.nativeCode.toJsonp(generator, mapper);
+		this.nativeCode.serialize(generator, mapper);
 
 	}
 
@@ -195,7 +195,7 @@ public final class InfoResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InfoResponse
+	 * Json deserializer for {@link InfoResponse}
 	 */
 	public static final JsonpDeserializer<InfoResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, InfoResponse::setupInfoResponseDeserializer);

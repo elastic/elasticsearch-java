@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.cat.ml_data_frame_analytics.DataFrameAna
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,12 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Response
-public final class MlDataFrameAnalyticsResponse implements ToJsonp {
+public final class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<DataFrameAnalyticsRecord> value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlDataFrameAnalyticsResponse(Builder builder) {
+	public MlDataFrameAnalyticsResponse(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -63,10 +63,10 @@ public final class MlDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
 		for (DataFrameAnalyticsRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -142,7 +142,7 @@ public final class MlDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlDataFrameAnalyticsResponse
+	 * Json deserializer for {@link MlDataFrameAnalyticsResponse}
 	 */
 	public static final JsonpDeserializer<MlDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MlDataFrameAnalyticsResponse::setupMlDataFrameAnalyticsResponseDeserializer);

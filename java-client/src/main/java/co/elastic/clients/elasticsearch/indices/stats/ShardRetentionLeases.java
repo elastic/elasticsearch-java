@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRetentionLeases
-public final class ShardRetentionLeases implements ToJsonp {
+public final class ShardRetentionLeases implements JsonpSerializable {
 	private final Number primaryTerm;
 
 	private final Number version;
@@ -49,7 +49,7 @@ public final class ShardRetentionLeases implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardRetentionLeases(Builder builder) {
+	public ShardRetentionLeases(Builder builder) {
 
 		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "primary_term");
 		this.version = Objects.requireNonNull(builder.version, "version");
@@ -81,13 +81,13 @@ public final class ShardRetentionLeases implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("primary_term");
 		generator.write(this.primaryTerm.doubleValue());
@@ -98,7 +98,7 @@ public final class ShardRetentionLeases implements ToJsonp {
 		generator.writeKey("leases");
 		generator.writeStartArray();
 		for (ShardLease item0 : this.leases) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -189,7 +189,7 @@ public final class ShardRetentionLeases implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardRetentionLeases
+	 * Json deserializer for {@link ShardRetentionLeases}
 	 */
 	public static final JsonpDeserializer<ShardRetentionLeases> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardRetentionLeases::setupShardRetentionLeasesDeserializer);

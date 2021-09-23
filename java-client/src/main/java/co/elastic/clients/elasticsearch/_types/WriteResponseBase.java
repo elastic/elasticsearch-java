@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -40,14 +39,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.WriteResponseBase
-public abstract class WriteResponseBase implements ToJsonp {
+public abstract class WriteResponseBase implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
 
 	private final Number primaryTerm;
 
-	private final JsonValue result;
+	private final Result result;
 
 	private final Number seqNo;
 
@@ -63,7 +62,7 @@ public abstract class WriteResponseBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WriteResponseBase(AbstractBuilder<?> builder) {
+	public WriteResponseBase(AbstractBuilder<?> builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.index = Objects.requireNonNull(builder.index, "_index");
@@ -101,7 +100,7 @@ public abstract class WriteResponseBase implements ToJsonp {
 	/**
 	 * API name: {@code result}
 	 */
-	public JsonValue result() {
+	public Result result() {
 		return this.result;
 	}
 
@@ -145,13 +144,13 @@ public abstract class WriteResponseBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_id");
 		generator.write(this.id);
@@ -163,13 +162,13 @@ public abstract class WriteResponseBase implements ToJsonp {
 		generator.write(this.primaryTerm.doubleValue());
 
 		generator.writeKey("result");
-		generator.write(this.result);
+		this.result.serialize(generator, mapper);
 
 		generator.writeKey("_seq_no");
 		generator.write(this.seqNo.doubleValue());
 
 		generator.writeKey("_shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 		if (this.type != null) {
 
@@ -197,7 +196,7 @@ public abstract class WriteResponseBase implements ToJsonp {
 
 		private Number primaryTerm;
 
-		private JsonValue result;
+		private Result result;
 
 		private Number seqNo;
 
@@ -238,7 +237,7 @@ public abstract class WriteResponseBase implements ToJsonp {
 		/**
 		 * API name: {@code result}
 		 */
-		public BuilderT result(JsonValue value) {
+		public BuilderT result(Result value) {
 			this.result = value;
 			return self();
 		}
@@ -301,7 +300,7 @@ public abstract class WriteResponseBase implements ToJsonp {
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(AbstractBuilder::result, JsonpDeserializer.jsonValueDeserializer(), "result");
+		op.add(AbstractBuilder::result, Result.DESERIALIZER, "result");
 		op.add(AbstractBuilder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
 		op.add(AbstractBuilder::shards, ShardStatistics.DESERIALIZER, "_shards");
 		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "_type");

@@ -27,11 +27,12 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -47,7 +48,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.put_auto_follow_pattern.Request
-public final class PutAutoFollowPatternRequest extends RequestBase implements ToJsonp {
+public final class PutAutoFollowPatternRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	private final String remoteCluster;
@@ -59,10 +60,13 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	private final List<String> leaderIndexPatterns;
 
 	@Nullable
+	private final List<String> leaderIndexExclusionPatterns;
+
+	@Nullable
 	private final Number maxOutstandingReadRequests;
 
 	@Nullable
-	private final Map<String, JsonValue> settings;
+	private final Map<String, JsonData> settings;
 
 	@Nullable
 	private final Number maxOutstandingWriteRequests;
@@ -93,12 +97,13 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutAutoFollowPatternRequest(Builder builder) {
+	public PutAutoFollowPatternRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
 		this.followIndexPattern = builder.followIndexPattern;
 		this.leaderIndexPatterns = builder.leaderIndexPatterns;
+		this.leaderIndexExclusionPatterns = builder.leaderIndexExclusionPatterns;
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.settings = builder.settings;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
@@ -114,7 +119,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
-	 * The name of the auto follow pattern.
+	 * The name of the collection of auto-follow patterns.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -123,6 +128,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The remote cluster containing the leader indices to match against.
+	 * <p>
 	 * API name: {@code remote_cluster}
 	 */
 	public String remoteCluster() {
@@ -130,6 +137,11 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The name of follower index. The template {{leader_index}} can be used to
+	 * derive the name of the follower index from the name of the leader index. When
+	 * following a data stream, use {{leader_index}}; CCR does not support changes
+	 * to the names of a follower data stream’s backing indices.
+	 * <p>
 	 * API name: {@code follow_index_pattern}
 	 */
 	@Nullable
@@ -138,6 +150,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * An array of simple index patterns to match against indices in the remote
+	 * cluster specified by the remote_cluster field.
+	 * <p>
 	 * API name: {@code leader_index_patterns}
 	 */
 	@Nullable
@@ -146,6 +161,21 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * An array of simple index patterns that can be used to exclude indices from
+	 * being auto-followed. Indices in the remote cluster whose names are matching
+	 * one or more leader_index_patterns and one or more
+	 * leader_index_exclusion_patterns won’t be followed.
+	 * <p>
+	 * API name: {@code leader_index_exclusion_patterns}
+	 */
+	@Nullable
+	public List<String> leaderIndexExclusionPatterns() {
+		return this.leaderIndexExclusionPatterns;
+	}
+
+	/**
+	 * The maximum number of outstanding reads requests from the remote cluster.
+	 * <p>
 	 * API name: {@code max_outstanding_read_requests}
 	 */
 	@Nullable
@@ -154,14 +184,19 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * Settings to override from the leader index. Note that certain settings can
+	 * not be overrode (e.g., index.number_of_shards).
+	 * <p>
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> settings() {
+	public Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
 	/**
+	 * The maximum number of outstanding reads requests from the remote cluster.
+	 * <p>
 	 * API name: {@code max_outstanding_write_requests}
 	 */
 	@Nullable
@@ -170,6 +205,12 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The maximum time to wait for new operations on the remote cluster when the
+	 * follower index is synchronized with the leader index. When the timeout has
+	 * elapsed, the poll for operations will return to the follower so that it can
+	 * update some statistics. Then the follower will immediately attempt to read
+	 * from the leader again.
+	 * <p>
 	 * API name: {@code read_poll_timeout}
 	 */
 	@Nullable
@@ -178,6 +219,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The maximum number of operations to pull per read from the remote cluster.
+	 * <p>
 	 * API name: {@code max_read_request_operation_count}
 	 */
 	@Nullable
@@ -186,6 +229,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The maximum size in bytes of per read of a batch of operations pulled from
+	 * the remote cluster.
+	 * <p>
 	 * API name: {@code max_read_request_size}
 	 */
 	@Nullable
@@ -194,6 +240,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The maximum time to wait before retrying an operation that failed
+	 * exceptionally. An exponential backoff strategy is employed when retrying.
+	 * <p>
 	 * API name: {@code max_retry_delay}
 	 */
 	@Nullable
@@ -202,6 +251,10 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The maximum number of operations that can be queued for writing. When this
+	 * limit is reached, reads from the remote cluster will be deferred until the
+	 * number of queued operations goes below the limit.
+	 * <p>
 	 * API name: {@code max_write_buffer_count}
 	 */
 	@Nullable
@@ -210,6 +263,10 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The maximum total bytes of operations that can be queued for writing. When
+	 * this limit is reached, reads from the remote cluster will be deferred until
+	 * the total bytes of queued operations goes below the limit.
+	 * <p>
 	 * API name: {@code max_write_buffer_size}
 	 */
 	@Nullable
@@ -218,6 +275,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The maximum number of operations per bulk write request executed on the
+	 * follower.
+	 * <p>
 	 * API name: {@code max_write_request_operation_count}
 	 */
 	@Nullable
@@ -226,6 +286,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	}
 
 	/**
+	 * The maximum total bytes of operations per bulk write request executed on the
+	 * follower.
+	 * <p>
 	 * API name: {@code max_write_request_size}
 	 */
 	@Nullable
@@ -236,13 +299,13 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("remote_cluster");
 		generator.write(this.remoteCluster);
@@ -264,6 +327,17 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 			generator.writeEnd();
 
 		}
+		if (this.leaderIndexExclusionPatterns != null) {
+
+			generator.writeKey("leader_index_exclusion_patterns");
+			generator.writeStartArray();
+			for (String item0 : this.leaderIndexExclusionPatterns) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.maxOutstandingReadRequests != null) {
 
 			generator.writeKey("max_outstanding_read_requests");
@@ -274,9 +348,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 
 			generator.writeKey("settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.settings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -356,10 +430,13 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		private List<String> leaderIndexPatterns;
 
 		@Nullable
+		private List<String> leaderIndexExclusionPatterns;
+
+		@Nullable
 		private Number maxOutstandingReadRequests;
 
 		@Nullable
-		private Map<String, JsonValue> settings;
+		private Map<String, JsonData> settings;
 
 		@Nullable
 		private Number maxOutstandingWriteRequests;
@@ -389,7 +466,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		private JsonValue maxWriteRequestSize;
 
 		/**
-		 * The name of the auto follow pattern.
+		 * The name of the collection of auto-follow patterns.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -399,6 +476,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The remote cluster containing the leader indices to match against.
+		 * <p>
 		 * API name: {@code remote_cluster}
 		 */
 		public Builder remoteCluster(String value) {
@@ -407,6 +486,11 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The name of follower index. The template {{leader_index}} can be used to
+		 * derive the name of the follower index from the name of the leader index. When
+		 * following a data stream, use {{leader_index}}; CCR does not support changes
+		 * to the names of a follower data stream’s backing indices.
+		 * <p>
 		 * API name: {@code follow_index_pattern}
 		 */
 		public Builder followIndexPattern(@Nullable String value) {
@@ -415,6 +499,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * An array of simple index patterns to match against indices in the remote
+		 * cluster specified by the remote_cluster field.
+		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
 		public Builder leaderIndexPatterns(@Nullable List<String> value) {
@@ -423,6 +510,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * An array of simple index patterns to match against indices in the remote
+		 * cluster specified by the remote_cluster field.
+		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
 		public Builder leaderIndexPatterns(String... value) {
@@ -443,6 +533,46 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * An array of simple index patterns that can be used to exclude indices from
+		 * being auto-followed. Indices in the remote cluster whose names are matching
+		 * one or more leader_index_patterns and one or more
+		 * leader_index_exclusion_patterns won’t be followed.
+		 * <p>
+		 * API name: {@code leader_index_exclusion_patterns}
+		 */
+		public Builder leaderIndexExclusionPatterns(@Nullable List<String> value) {
+			this.leaderIndexExclusionPatterns = value;
+			return this;
+		}
+
+		/**
+		 * An array of simple index patterns that can be used to exclude indices from
+		 * being auto-followed. Indices in the remote cluster whose names are matching
+		 * one or more leader_index_patterns and one or more
+		 * leader_index_exclusion_patterns won’t be followed.
+		 * <p>
+		 * API name: {@code leader_index_exclusion_patterns}
+		 */
+		public Builder leaderIndexExclusionPatterns(String... value) {
+			this.leaderIndexExclusionPatterns = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #leaderIndexExclusionPatterns(List)}, creating the list
+		 * if needed.
+		 */
+		public Builder addLeaderIndexExclusionPatterns(String value) {
+			if (this.leaderIndexExclusionPatterns == null) {
+				this.leaderIndexExclusionPatterns = new ArrayList<>();
+			}
+			this.leaderIndexExclusionPatterns.add(value);
+			return this;
+		}
+
+		/**
+		 * The maximum number of outstanding reads requests from the remote cluster.
+		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */
 		public Builder maxOutstandingReadRequests(@Nullable Number value) {
@@ -451,9 +581,12 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * Settings to override from the leader index. Note that certain settings can
+		 * not be overrode (e.g., index.number_of_shards).
+		 * <p>
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonValue> value) {
+		public Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
 			return this;
 		}
@@ -461,7 +594,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		/**
 		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
 		 */
-		public Builder putSettings(String key, JsonValue value) {
+		public Builder putSettings(String key, JsonData value) {
 			if (this.settings == null) {
 				this.settings = new HashMap<>();
 			}
@@ -470,6 +603,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum number of outstanding reads requests from the remote cluster.
+		 * <p>
 		 * API name: {@code max_outstanding_write_requests}
 		 */
 		public Builder maxOutstandingWriteRequests(@Nullable Number value) {
@@ -478,6 +613,12 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum time to wait for new operations on the remote cluster when the
+		 * follower index is synchronized with the leader index. When the timeout has
+		 * elapsed, the poll for operations will return to the follower so that it can
+		 * update some statistics. Then the follower will immediately attempt to read
+		 * from the leader again.
+		 * <p>
 		 * API name: {@code read_poll_timeout}
 		 */
 		public Builder readPollTimeout(@Nullable JsonValue value) {
@@ -486,6 +627,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum number of operations to pull per read from the remote cluster.
+		 * <p>
 		 * API name: {@code max_read_request_operation_count}
 		 */
 		public Builder maxReadRequestOperationCount(@Nullable Number value) {
@@ -494,6 +637,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum size in bytes of per read of a batch of operations pulled from
+		 * the remote cluster.
+		 * <p>
 		 * API name: {@code max_read_request_size}
 		 */
 		public Builder maxReadRequestSize(@Nullable JsonValue value) {
@@ -502,6 +648,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum time to wait before retrying an operation that failed
+		 * exceptionally. An exponential backoff strategy is employed when retrying.
+		 * <p>
 		 * API name: {@code max_retry_delay}
 		 */
 		public Builder maxRetryDelay(@Nullable JsonValue value) {
@@ -510,6 +659,10 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum number of operations that can be queued for writing. When this
+		 * limit is reached, reads from the remote cluster will be deferred until the
+		 * number of queued operations goes below the limit.
+		 * <p>
 		 * API name: {@code max_write_buffer_count}
 		 */
 		public Builder maxWriteBufferCount(@Nullable Number value) {
@@ -518,6 +671,10 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum total bytes of operations that can be queued for writing. When
+		 * this limit is reached, reads from the remote cluster will be deferred until
+		 * the total bytes of queued operations goes below the limit.
+		 * <p>
 		 * API name: {@code max_write_buffer_size}
 		 */
 		public Builder maxWriteBufferSize(@Nullable JsonValue value) {
@@ -526,6 +683,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum number of operations per bulk write request executed on the
+		 * follower.
+		 * <p>
 		 * API name: {@code max_write_request_operation_count}
 		 */
 		public Builder maxWriteRequestOperationCount(@Nullable Number value) {
@@ -534,6 +694,9 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		}
 
 		/**
+		 * The maximum total bytes of operations per bulk write request executed on the
+		 * follower.
+		 * <p>
 		 * API name: {@code max_write_request_size}
 		 */
 		public Builder maxWriteRequestSize(@Nullable JsonValue value) {
@@ -556,7 +719,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutAutoFollowPatternRequest
+	 * Json deserializer for {@link PutAutoFollowPatternRequest}
 	 */
 	public static final JsonpDeserializer<PutAutoFollowPatternRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer);
@@ -568,10 +731,12 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements To
 		op.add(Builder::followIndexPattern, JsonpDeserializer.stringDeserializer(), "follow_index_pattern");
 		op.add(Builder::leaderIndexPatterns,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "leader_index_patterns");
+		op.add(Builder::leaderIndexExclusionPatterns,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"leader_index_exclusion_patterns");
 		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.numberDeserializer(),
 				"max_outstanding_read_requests");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"settings");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "settings");
 		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.numberDeserializer(),
 				"max_outstanding_write_requests");
 		op.add(Builder::readPollTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_poll_timeout");

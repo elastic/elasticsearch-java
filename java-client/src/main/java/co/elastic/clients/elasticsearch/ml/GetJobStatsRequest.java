@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_job_stats.Request
@@ -47,7 +48,7 @@ public final class GetJobStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetJobStatsRequest(Builder builder) {
+	public GetJobStatsRequest(Builder builder) {
 
 		this.jobId = builder.jobId;
 		this.allowNoJobs = builder.allowNoJobs;

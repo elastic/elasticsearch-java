@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,7 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.AllocationStore
-public final class AllocationStore implements ToJsonp {
+public final class AllocationStore implements JsonpSerializable {
 	private final String allocationId;
 
 	private final Boolean found;
@@ -53,7 +53,7 @@ public final class AllocationStore implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AllocationStore(Builder builder) {
+	public AllocationStore(Builder builder) {
 
 		this.allocationId = Objects.requireNonNull(builder.allocationId, "allocation_id");
 		this.found = Objects.requireNonNull(builder.found, "found");
@@ -109,13 +109,13 @@ public final class AllocationStore implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("allocation_id");
 		generator.write(this.allocationId);
@@ -218,7 +218,7 @@ public final class AllocationStore implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AllocationStore
+	 * Json deserializer for {@link AllocationStore}
 	 */
 	public static final JsonpDeserializer<AllocationStore> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AllocationStore::setupAllocationStoreDeserializer);

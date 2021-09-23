@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.rollup.get_jobs;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -39,18 +39,18 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobStatus
-public final class RollupJobStatus implements ToJsonp {
+public final class RollupJobStatus implements JsonpSerializable {
 	@Nullable
-	private final Map<String, JsonValue> currentPosition;
+	private final Map<String, JsonData> currentPosition;
 
-	private final JsonValue jobState;
+	private final IndexingJobState jobState;
 
 	@Nullable
 	private final Boolean upgradedDocId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupJobStatus(Builder builder) {
+	public RollupJobStatus(Builder builder) {
 
 		this.currentPosition = builder.currentPosition;
 		this.jobState = Objects.requireNonNull(builder.jobState, "job_state");
@@ -62,14 +62,14 @@ public final class RollupJobStatus implements ToJsonp {
 	 * API name: {@code current_position}
 	 */
 	@Nullable
-	public Map<String, JsonValue> currentPosition() {
+	public Map<String, JsonData> currentPosition() {
 		return this.currentPosition;
 	}
 
 	/**
 	 * API name: {@code job_state}
 	 */
-	public JsonValue jobState() {
+	public IndexingJobState jobState() {
 		return this.jobState;
 	}
 
@@ -84,21 +84,21 @@ public final class RollupJobStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.currentPosition != null) {
 
 			generator.writeKey("current_position");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.currentPosition.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.currentPosition.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -106,8 +106,7 @@ public final class RollupJobStatus implements ToJsonp {
 		}
 
 		generator.writeKey("job_state");
-		generator.write(this.jobState);
-
+		this.jobState.serialize(generator, mapper);
 		if (this.upgradedDocId != null) {
 
 			generator.writeKey("upgraded_doc_id");
@@ -124,9 +123,9 @@ public final class RollupJobStatus implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<RollupJobStatus> {
 		@Nullable
-		private Map<String, JsonValue> currentPosition;
+		private Map<String, JsonData> currentPosition;
 
-		private JsonValue jobState;
+		private IndexingJobState jobState;
 
 		@Nullable
 		private Boolean upgradedDocId;
@@ -134,7 +133,7 @@ public final class RollupJobStatus implements ToJsonp {
 		/**
 		 * API name: {@code current_position}
 		 */
-		public Builder currentPosition(@Nullable Map<String, JsonValue> value) {
+		public Builder currentPosition(@Nullable Map<String, JsonData> value) {
 			this.currentPosition = value;
 			return this;
 		}
@@ -142,7 +141,7 @@ public final class RollupJobStatus implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #currentPosition(Map)}, creating the map if needed.
 		 */
-		public Builder putCurrentPosition(String key, JsonValue value) {
+		public Builder putCurrentPosition(String key, JsonData value) {
 			if (this.currentPosition == null) {
 				this.currentPosition = new HashMap<>();
 			}
@@ -153,7 +152,7 @@ public final class RollupJobStatus implements ToJsonp {
 		/**
 		 * API name: {@code job_state}
 		 */
-		public Builder jobState(JsonValue value) {
+		public Builder jobState(IndexingJobState value) {
 			this.jobState = value;
 			return this;
 		}
@@ -181,16 +180,16 @@ public final class RollupJobStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RollupJobStatus
+	 * Json deserializer for {@link RollupJobStatus}
 	 */
 	public static final JsonpDeserializer<RollupJobStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RollupJobStatus::setupRollupJobStatusDeserializer);
 
 	protected static void setupRollupJobStatusDeserializer(DelegatingDeserializer<RollupJobStatus.Builder> op) {
 
-		op.add(Builder::currentPosition,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "current_position");
-		op.add(Builder::jobState, JsonpDeserializer.jsonValueDeserializer(), "job_state");
+		op.add(Builder::currentPosition, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+				"current_position");
+		op.add(Builder::jobState, IndexingJobState.DESERIALIZER, "job_state");
 		op.add(Builder::upgradedDocId, JsonpDeserializer.booleanDeserializer(), "upgraded_doc_id");
 
 	}

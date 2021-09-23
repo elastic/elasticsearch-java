@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,15 +36,36 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanTermQuery
-public final class SpanTermQuery extends QueryBase {
+public final class SpanTermQuery extends QueryBase implements SpanQuery, Query {
+	private final String field;
+
 	private final String value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanTermQuery(Builder builder) {
+	public SpanTermQuery(Builder builder) {
 		super(builder);
+		this.field = Objects.requireNonNull(builder.field, "field");
+
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	/**
+	 * {@link SpanQuery}, {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "span_term";
+	}
+
+	/**
+	 * The target field
+	 * <p>
+	 * API name: {@code field}
+	 */
+	public String field() {
+		return this.field;
 	}
 
 	/**
@@ -53,11 +75,19 @@ public final class SpanTermQuery extends QueryBase {
 		return this.value;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		generator.writeStartObject(this.field);
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("value");
 		generator.write(this.value);
+
+		generator.writeEnd();
+
+		generator.writeEnd();
 
 	}
 
@@ -67,6 +97,18 @@ public final class SpanTermQuery extends QueryBase {
 	 * Builder for {@link SpanTermQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanTermQuery> {
+		private String field;
+
+		/**
+		 * The target field
+		 * <p>
+		 * API name: {@code field}
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		private String value;
 
 		/**
@@ -96,15 +138,15 @@ public final class SpanTermQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for SpanTermQuery
-	 */
-	public static final JsonpDeserializer<SpanTermQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanTermQuery::setupSpanTermQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<SpanTermQuery.Builder, SpanTermQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(SpanTermQuery::setupSpanTermQueryDeserializer);
 
 	protected static void setupSpanTermQueryDeserializer(DelegatingDeserializer<SpanTermQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+
+		op.setKey(Builder::field);
 
 	}
 

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TotalFeatureImportance
-public final class TotalFeatureImportance implements ToJsonp {
+public final class TotalFeatureImportance implements JsonpSerializable {
 	private final String featureName;
 
 	private final List<TotalFeatureImportanceStatistics> importance;
@@ -49,7 +49,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TotalFeatureImportance(Builder builder) {
+	public TotalFeatureImportance(Builder builder) {
 
 		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
 		this.importance = Objects.requireNonNull(builder.importance, "importance");
@@ -89,13 +89,13 @@ public final class TotalFeatureImportance implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
@@ -103,7 +103,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 		generator.writeKey("importance");
 		generator.writeStartArray();
 		for (TotalFeatureImportanceStatistics item0 : this.importance) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -111,7 +111,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 		generator.writeKey("classes");
 		generator.writeStartArray();
 		for (TotalFeatureImportanceClass item0 : this.classes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -253,7 +253,7 @@ public final class TotalFeatureImportance implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TotalFeatureImportance
+	 * Json deserializer for {@link TotalFeatureImportance}
 	 */
 	public static final JsonpDeserializer<TotalFeatureImportance> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TotalFeatureImportance::setupTotalFeatureImportanceDeserializer);

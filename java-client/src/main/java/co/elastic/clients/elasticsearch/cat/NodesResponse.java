@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.cat.nodes.NodesRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,12 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodes.Response
-public final class NodesResponse implements ToJsonp {
+public final class NodesResponse implements JsonpSerializable {
 	private final List<NodesRecord> value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodesResponse(Builder builder) {
+	public NodesResponse(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -63,10 +63,10 @@ public final class NodesResponse implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
 		for (NodesRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -141,7 +141,7 @@ public final class NodesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodesResponse
+	 * Json deserializer for {@link NodesResponse}
 	 */
 	public static final JsonpDeserializer<NodesResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodesResponse::setupNodesResponseDeserializer);

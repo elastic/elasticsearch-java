@@ -48,8 +48,9 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloseResponse(Builder builder) {
+	public CloseResponse(Builder builder) {
 		super(builder);
+
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 
@@ -69,14 +70,15 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 		return this.shardsAcknowledged;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("indices");
 		generator.writeStartObject();
 		for (Map.Entry<String, CloseIndexResult> item0 : this.indices.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -159,7 +161,7 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CloseResponse
+	 * Json deserializer for {@link CloseResponse}
 	 */
 	public static final JsonpDeserializer<CloseResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CloseResponse::setupCloseResponseDeserializer);

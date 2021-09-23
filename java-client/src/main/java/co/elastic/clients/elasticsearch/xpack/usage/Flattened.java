@@ -40,8 +40,9 @@ public final class Flattened extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Flattened(Builder builder) {
+	public Flattened(Builder builder) {
 		super(builder);
+
 		this.fieldCount = Objects.requireNonNull(builder.fieldCount, "field_count");
 
 	}
@@ -53,8 +54,9 @@ public final class Flattened extends Base {
 		return this.fieldCount;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field_count");
 		generator.write(this.fieldCount.doubleValue());
@@ -97,7 +99,7 @@ public final class Flattened extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Flattened
+	 * Json deserializer for {@link Flattened}
 	 */
 	public static final JsonpDeserializer<Flattened> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Flattened::setupFlattenedDeserializer);

@@ -46,7 +46,7 @@ public final class GetPipelineRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetPipelineRequest(Builder builder) {
+	public GetPipelineRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 

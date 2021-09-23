@@ -26,21 +26,20 @@ package co.elastic.clients.elasticsearch.migration.deprecations;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Deprecation
-public final class Deprecation implements ToJsonp {
+public final class Deprecation implements JsonpSerializable {
 	private final String details;
 
-	private final JsonValue level;
+	private final DeprecationLevel level;
 
 	private final String message;
 
@@ -48,7 +47,7 @@ public final class Deprecation implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Deprecation(Builder builder) {
+	public Deprecation(Builder builder) {
 
 		this.details = Objects.requireNonNull(builder.details, "details");
 		this.level = Objects.requireNonNull(builder.level, "level");
@@ -69,7 +68,7 @@ public final class Deprecation implements ToJsonp {
 	 * <p>
 	 * API name: {@code level}
 	 */
-	public JsonValue level() {
+	public DeprecationLevel level() {
 		return this.level;
 	}
 
@@ -90,19 +89,19 @@ public final class Deprecation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("details");
 		generator.write(this.details);
 
 		generator.writeKey("level");
-		generator.write(this.level);
+		this.level.serialize(generator, mapper);
 
 		generator.writeKey("message");
 		generator.write(this.message);
@@ -120,7 +119,7 @@ public final class Deprecation implements ToJsonp {
 	public static class Builder implements ObjectBuilder<Deprecation> {
 		private String details;
 
-		private JsonValue level;
+		private DeprecationLevel level;
 
 		private String message;
 
@@ -139,7 +138,7 @@ public final class Deprecation implements ToJsonp {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(JsonValue value) {
+		public Builder level(DeprecationLevel value) {
 			this.level = value;
 			return this;
 		}
@@ -175,7 +174,7 @@ public final class Deprecation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Deprecation
+	 * Json deserializer for {@link Deprecation}
 	 */
 	public static final JsonpDeserializer<Deprecation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Deprecation::setupDeprecationDeserializer);
@@ -183,7 +182,7 @@ public final class Deprecation implements ToJsonp {
 	protected static void setupDeprecationDeserializer(DelegatingDeserializer<Deprecation.Builder> op) {
 
 		op.add(Builder::details, JsonpDeserializer.stringDeserializer(), "details");
-		op.add(Builder::level, JsonpDeserializer.jsonValueDeserializer(), "level");
+		op.add(Builder::level, DeprecationLevel.DESERIALIZER, "level");
 		op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
 		op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
 

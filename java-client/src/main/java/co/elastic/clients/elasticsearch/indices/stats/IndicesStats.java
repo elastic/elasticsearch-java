@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndicesStats
-public final class IndicesStats implements ToJsonp {
+public final class IndicesStats implements JsonpSerializable {
 	private final IndexStats primaries;
 
 	@Nullable
@@ -53,7 +53,7 @@ public final class IndicesStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesStats(Builder builder) {
+	public IndicesStats(Builder builder) {
 
 		this.primaries = Objects.requireNonNull(builder.primaries, "primaries");
 		this.shards = builder.shards;
@@ -95,16 +95,16 @@ public final class IndicesStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("primaries");
-		this.primaries.toJsonp(generator, mapper);
+		this.primaries.serialize(generator, mapper);
 
 		if (this.shards != null) {
 
@@ -114,7 +114,7 @@ public final class IndicesStats implements ToJsonp {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
 				for (ShardStats item1 : item0.getValue()) {
-					item1.toJsonp(generator, mapper);
+					item1.serialize(generator, mapper);
 
 				}
 				generator.writeEnd();
@@ -125,7 +125,7 @@ public final class IndicesStats implements ToJsonp {
 		}
 
 		generator.writeKey("total");
-		this.total.toJsonp(generator, mapper);
+		this.total.serialize(generator, mapper);
 
 		if (this.uuid != null) {
 
@@ -224,7 +224,7 @@ public final class IndicesStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndicesStats
+	 * Json deserializer for {@link IndicesStats}
 	 */
 	public static final JsonpDeserializer<IndicesStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndicesStats::setupIndicesStatsDeserializer);

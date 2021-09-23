@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummary
-public final class DataframeClassificationSummary implements ToJsonp {
+public final class DataframeClassificationSummary implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationSummaryAucRoc aucRoc;
 
@@ -53,7 +54,7 @@ public final class DataframeClassificationSummary implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeClassificationSummary(Builder builder) {
+	public DataframeClassificationSummary(Builder builder) {
 
 		this.aucRoc = builder.aucRoc;
 		this.accuracy = builder.accuracy;
@@ -106,42 +107,42 @@ public final class DataframeClassificationSummary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aucRoc != null) {
 
 			generator.writeKey("auc_roc");
-			this.aucRoc.toJsonp(generator, mapper);
+			this.aucRoc.serialize(generator, mapper);
 
 		}
 		if (this.accuracy != null) {
 
 			generator.writeKey("accuracy");
-			this.accuracy.toJsonp(generator, mapper);
+			this.accuracy.serialize(generator, mapper);
 
 		}
 		if (this.multiclassConfusionMatrix != null) {
 
 			generator.writeKey("multiclass_confusion_matrix");
-			this.multiclassConfusionMatrix.toJsonp(generator, mapper);
+			this.multiclassConfusionMatrix.serialize(generator, mapper);
 
 		}
 		if (this.precision != null) {
 
 			generator.writeKey("precision");
-			this.precision.toJsonp(generator, mapper);
+			this.precision.serialize(generator, mapper);
 
 		}
 		if (this.recall != null) {
 
 			generator.writeKey("recall");
-			this.recall.toJsonp(generator, mapper);
+			this.recall.serialize(generator, mapper);
 
 		}
 
@@ -265,7 +266,7 @@ public final class DataframeClassificationSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeClassificationSummary
+	 * Json deserializer for {@link DataframeClassificationSummary}
 	 */
 	public static final JsonpDeserializer<DataframeClassificationSummary> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -41,7 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryStringQuery
-public final class QueryStringQuery extends QueryBase {
+public final class QueryStringQuery extends QueryBase implements Query {
 	@Nullable
 	private final Boolean allowLeadingWildcard;
 
@@ -58,7 +59,7 @@ public final class QueryStringQuery extends QueryBase {
 	private final String defaultField;
 
 	@Nullable
-	private final JsonValue defaultOperator;
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final Boolean enablePositionIncrements;
@@ -114,12 +115,13 @@ public final class QueryStringQuery extends QueryBase {
 	private final String timeZone;
 
 	@Nullable
-	private final JsonValue type;
+	private final TextQueryType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected QueryStringQuery(Builder builder) {
+	public QueryStringQuery(Builder builder) {
 		super(builder);
+
 		this.allowLeadingWildcard = builder.allowLeadingWildcard;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
@@ -146,6 +148,14 @@ public final class QueryStringQuery extends QueryBase {
 		this.timeZone = builder.timeZone;
 		this.type = builder.type;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "query_string";
 	}
 
 	/**
@@ -192,7 +202,7 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public JsonValue defaultOperator() {
+	public Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -343,12 +353,14 @@ public final class QueryStringQuery extends QueryBase {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public JsonValue type() {
+	public TextQueryType type() {
 		return this.type;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.allowLeadingWildcard != null) {
 
 			generator.writeKey("allow_leading_wildcard");
@@ -382,8 +394,7 @@ public final class QueryStringQuery extends QueryBase {
 		if (this.defaultOperator != null) {
 
 			generator.writeKey("default_operator");
-			generator.write(this.defaultOperator);
-
+			this.defaultOperator.serialize(generator, mapper);
 		}
 		if (this.enablePositionIncrements != null) {
 
@@ -499,9 +510,10 @@ public final class QueryStringQuery extends QueryBase {
 		if (this.type != null) {
 
 			generator.writeKey("type");
-			generator.write(this.type);
-
+			this.type.serialize(generator, mapper);
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -527,7 +539,7 @@ public final class QueryStringQuery extends QueryBase {
 		private String defaultField;
 
 		@Nullable
-		private JsonValue defaultOperator;
+		private Operator defaultOperator;
 
 		@Nullable
 		private Boolean enablePositionIncrements;
@@ -583,7 +595,7 @@ public final class QueryStringQuery extends QueryBase {
 		private String timeZone;
 
 		@Nullable
-		private JsonValue type;
+		private TextQueryType type;
 
 		/**
 		 * API name: {@code allow_leading_wildcard}
@@ -628,7 +640,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable JsonValue value) {
+		public Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -799,7 +811,7 @@ public final class QueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable JsonValue value) {
+		public Builder type(@Nullable TextQueryType value) {
 			this.type = value;
 			return this;
 		}
@@ -823,11 +835,9 @@ public final class QueryStringQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for QueryStringQuery
-	 */
-	public static final JsonpDeserializer<QueryStringQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, QueryStringQuery::setupQueryStringQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<QueryStringQuery.Builder, QueryStringQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(QueryStringQuery::setupQueryStringQueryDeserializer);
 
 	protected static void setupQueryStringQueryDeserializer(DelegatingDeserializer<QueryStringQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
@@ -837,7 +847,7 @@ public final class QueryStringQuery extends QueryBase {
 		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),
 				"auto_generate_synonyms_phrase_query");
 		op.add(Builder::defaultField, JsonpDeserializer.stringDeserializer(), "default_field");
-		op.add(Builder::defaultOperator, JsonpDeserializer.jsonValueDeserializer(), "default_operator");
+		op.add(Builder::defaultOperator, Operator.DESERIALIZER, "default_operator");
 		op.add(Builder::enablePositionIncrements, JsonpDeserializer.booleanDeserializer(),
 				"enable_position_increments");
 		op.add(Builder::escape, JsonpDeserializer.booleanDeserializer(), "escape");
@@ -857,7 +867,7 @@ public final class QueryStringQuery extends QueryBase {
 		op.add(Builder::rewrite, JsonpDeserializer.stringDeserializer(), "rewrite");
 		op.add(Builder::tieBreaker, JsonpDeserializer.numberDeserializer(), "tie_breaker");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type, TextQueryType.DESERIALIZER, "type");
 
 	}
 

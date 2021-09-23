@@ -49,7 +49,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeletePrivilegesRequest(Builder builder) {
+	public DeletePrivilegesRequest(Builder builder) {
 
 		this.application = Objects.requireNonNull(builder.application, "application");
 		this.name = Objects.requireNonNull(builder.name, "name");

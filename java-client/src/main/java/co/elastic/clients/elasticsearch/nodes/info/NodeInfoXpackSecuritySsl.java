@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,12 +38,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecuritySsl
-public final class NodeInfoXpackSecuritySsl implements ToJsonp {
+public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	private final Map<String, String> ssl;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoXpackSecuritySsl(Builder builder) {
+	public NodeInfoXpackSecuritySsl(Builder builder) {
 
 		this.ssl = Objects.requireNonNull(builder.ssl, "ssl");
 
@@ -59,13 +59,13 @@ public final class NodeInfoXpackSecuritySsl implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("ssl");
 		generator.writeStartObject();
@@ -120,7 +120,7 @@ public final class NodeInfoXpackSecuritySsl implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoXpackSecuritySsl
+	 * Json deserializer for {@link NodeInfoXpackSecuritySsl}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackSecuritySsl> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoXpackSecuritySsl::setupNodeInfoXpackSecuritySslDeserializer);

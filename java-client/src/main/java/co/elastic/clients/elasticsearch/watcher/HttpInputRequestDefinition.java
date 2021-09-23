@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -36,11 +36,12 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputRequestDefinition
-public class HttpInputRequestDefinition implements ToJsonp {
+public class HttpInputRequestDefinition implements JsonpSerializable {
 	@Nullable
 	private final HttpInputAuthentication auth;
 
@@ -57,7 +58,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	private final String host;
 
 	@Nullable
-	private final JsonValue method;
+	private final HttpInputMethod method;
 
 	@Nullable
 	private final Map<String, String> params;
@@ -75,14 +76,14 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	private final JsonValue readTimeout;
 
 	@Nullable
-	private final JsonValue scheme;
+	private final ConnectionScheme scheme;
 
 	@Nullable
 	private final String url;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HttpInputRequestDefinition(AbstractBuilder<?> builder) {
+	public HttpInputRequestDefinition(AbstractBuilder<?> builder) {
 
 		this.auth = builder.auth;
 		this.body = builder.body;
@@ -144,7 +145,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	 * API name: {@code method}
 	 */
 	@Nullable
-	public JsonValue method() {
+	public HttpInputMethod method() {
 		return this.method;
 	}
 
@@ -192,7 +193,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	 * API name: {@code scheme}
 	 */
 	@Nullable
-	public JsonValue scheme() {
+	public ConnectionScheme scheme() {
 		return this.scheme;
 	}
 
@@ -207,18 +208,18 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.auth != null) {
 
 			generator.writeKey("auth");
-			this.auth.toJsonp(generator, mapper);
+			this.auth.serialize(generator, mapper);
 
 		}
 		if (this.body != null) {
@@ -254,8 +255,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		if (this.method != null) {
 
 			generator.writeKey("method");
-			generator.write(this.method);
-
+			this.method.serialize(generator, mapper);
 		}
 		if (this.params != null) {
 
@@ -284,7 +284,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		if (this.proxy != null) {
 
 			generator.writeKey("proxy");
-			this.proxy.toJsonp(generator, mapper);
+			this.proxy.serialize(generator, mapper);
 
 		}
 		if (this.readTimeout != null) {
@@ -296,8 +296,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		if (this.scheme != null) {
 
 			generator.writeKey("scheme");
-			generator.write(this.scheme);
-
+			this.scheme.serialize(generator, mapper);
 		}
 		if (this.url != null) {
 
@@ -350,7 +349,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		private String host;
 
 		@Nullable
-		private JsonValue method;
+		private HttpInputMethod method;
 
 		@Nullable
 		private Map<String, String> params;
@@ -368,7 +367,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		private JsonValue readTimeout;
 
 		@Nullable
-		private JsonValue scheme;
+		private ConnectionScheme scheme;
 
 		@Nullable
 		private String url;
@@ -434,7 +433,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		/**
 		 * API name: {@code method}
 		 */
-		public BuilderT method(@Nullable JsonValue value) {
+		public BuilderT method(@Nullable HttpInputMethod value) {
 			this.method = value;
 			return self();
 		}
@@ -500,7 +499,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		/**
 		 * API name: {@code scheme}
 		 */
-		public BuilderT scheme(@Nullable JsonValue value) {
+		public BuilderT scheme(@Nullable ConnectionScheme value) {
 			this.scheme = value;
 			return self();
 		}
@@ -520,7 +519,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HttpInputRequestDefinition
+	 * Json deserializer for {@link HttpInputRequestDefinition}
 	 */
 	public static final JsonpDeserializer<HttpInputRequestDefinition> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, HttpInputRequestDefinition::setupHttpInputRequestDefinitionDeserializer);
@@ -534,14 +533,14 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		op.add(AbstractBuilder::headers,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "headers");
 		op.add(AbstractBuilder::host, JsonpDeserializer.stringDeserializer(), "host");
-		op.add(AbstractBuilder::method, JsonpDeserializer.jsonValueDeserializer(), "method");
+		op.add(AbstractBuilder::method, HttpInputMethod.DESERIALIZER, "method");
 		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"params");
 		op.add(AbstractBuilder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(AbstractBuilder::port, JsonpDeserializer.numberDeserializer(), "port");
 		op.add(AbstractBuilder::proxy, HttpInputProxy.DESERIALIZER, "proxy");
 		op.add(AbstractBuilder::readTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_timeout");
-		op.add(AbstractBuilder::scheme, JsonpDeserializer.jsonValueDeserializer(), "scheme");
+		op.add(AbstractBuilder::scheme, ConnectionScheme.DESERIALIZER, "scheme");
 		op.add(AbstractBuilder::url, JsonpDeserializer.stringDeserializer(), "url");
 
 	}

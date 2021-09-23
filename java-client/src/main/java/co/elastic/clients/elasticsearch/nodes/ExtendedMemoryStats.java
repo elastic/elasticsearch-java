@@ -48,8 +48,9 @@ public final class ExtendedMemoryStats extends MemoryStats {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExtendedMemoryStats(Builder builder) {
+	public ExtendedMemoryStats(Builder builder) {
 		super(builder);
+
 		this.freePercent = Objects.requireNonNull(builder.freePercent, "free_percent");
 		this.usedPercent = Objects.requireNonNull(builder.usedPercent, "used_percent");
 		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
@@ -93,8 +94,9 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		return this.usedInBytes;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("free_percent");
 		generator.write(this.freePercent.doubleValue());
@@ -191,7 +193,7 @@ public final class ExtendedMemoryStats extends MemoryStats {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExtendedMemoryStats
+	 * Json deserializer for {@link ExtendedMemoryStats}
 	 */
 	public static final JsonpDeserializer<ExtendedMemoryStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExtendedMemoryStats::setupExtendedMemoryStatsDeserializer);

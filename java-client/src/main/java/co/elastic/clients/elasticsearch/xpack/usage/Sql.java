@@ -46,8 +46,9 @@ public final class Sql extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Sql(Builder builder) {
+	public Sql(Builder builder) {
 		super(builder);
+
 		this.features = Objects.requireNonNull(builder.features, "features");
 		this.queries = Objects.requireNonNull(builder.queries, "queries");
 
@@ -67,8 +68,9 @@ public final class Sql extends Base {
 		return this.queries;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("features");
 		generator.writeStartObject();
@@ -83,7 +85,7 @@ public final class Sql extends Base {
 		generator.writeStartObject();
 		for (Map.Entry<String, Query> item0 : this.queries.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -172,7 +174,7 @@ public final class Sql extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Sql
+	 * Json deserializer for {@link Sql}
 	 */
 	public static final JsonpDeserializer<Sql> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Sql::setupSqlDeserializer);

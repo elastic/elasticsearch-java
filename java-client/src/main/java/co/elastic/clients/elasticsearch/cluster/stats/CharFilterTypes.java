@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.CharFilterTypes
-public final class CharFilterTypes implements ToJsonp {
+public final class CharFilterTypes implements JsonpSerializable {
 	private final List<FieldTypes> charFilterTypes;
 
 	private final List<FieldTypes> tokenizerTypes;
@@ -58,7 +58,7 @@ public final class CharFilterTypes implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CharFilterTypes(Builder builder) {
+	public CharFilterTypes(Builder builder) {
 
 		this.charFilterTypes = Objects.requireNonNull(builder.charFilterTypes, "char_filter_types");
 		this.tokenizerTypes = Objects.requireNonNull(builder.tokenizerTypes, "tokenizer_types");
@@ -130,18 +130,18 @@ public final class CharFilterTypes implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("char_filter_types");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.charFilterTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -149,7 +149,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("tokenizer_types");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.tokenizerTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -157,7 +157,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("filter_types");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.filterTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -165,7 +165,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("analyzer_types");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.analyzerTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -173,7 +173,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("built_in_char_filters");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.builtInCharFilters) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -181,7 +181,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("built_in_tokenizers");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.builtInTokenizers) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -189,7 +189,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("built_in_filters");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.builtInFilters) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -197,7 +197,7 @@ public final class CharFilterTypes implements ToJsonp {
 		generator.writeKey("built_in_analyzers");
 		generator.writeStartArray();
 		for (FieldTypes item0 : this.builtInAnalyzers) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -571,7 +571,7 @@ public final class CharFilterTypes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CharFilterTypes
+	 * Json deserializer for {@link CharFilterTypes}
 	 */
 	public static final JsonpDeserializer<CharFilterTypes> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CharFilterTypes::setupCharFilterTypesDeserializer);

@@ -49,7 +49,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTrainedModelAliasRequest(Builder builder) {
+	public PutTrainedModelAliasRequest(Builder builder) {
 
 		this.modelAlias = Objects.requireNonNull(builder.modelAlias, "model_alias");
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");

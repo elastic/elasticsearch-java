@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: rollup.put_job.Response
 public final class PutJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutJobResponse(Builder builder) {
+	public PutJobResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class PutJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutJobResponse
+	 * Json deserializer for {@link PutJobResponse}
 	 */
 	public static final JsonpDeserializer<PutJobResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutJobResponse::setupPutJobResponseDeserializer);

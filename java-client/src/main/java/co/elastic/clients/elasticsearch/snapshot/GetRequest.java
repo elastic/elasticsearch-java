@@ -66,7 +66,7 @@ public final class GetRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRequest(Builder builder) {
+	public GetRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
@@ -90,9 +90,13 @@ public final class GetRequest extends RequestBase {
 
 	/**
 	 * Comma-separated list of snapshot names to retrieve. Also accepts wildcards
-	 * (<em>). - To get information about all snapshots in a registered repository,
-	 * use a wildcard (</em>) or _all. - To get information about any snapshots that
-	 * are currently running, use _current.
+	 * (*).
+	 * <ul>
+	 * <li>To get information about all snapshots in a registered repository, use a
+	 * wildcard (*) or _all.</li>
+	 * <li>To get information about any snapshots that are currently running, use
+	 * _current.</li>
+	 * </ul>
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -193,9 +197,13 @@ public final class GetRequest extends RequestBase {
 
 		/**
 		 * Comma-separated list of snapshot names to retrieve. Also accepts wildcards
-		 * (<em>). - To get information about all snapshots in a registered repository,
-		 * use a wildcard (</em>) or _all. - To get information about any snapshots that
-		 * are currently running, use _current.
+		 * (*).
+		 * <ul>
+		 * <li>To get information about all snapshots in a registered repository, use a
+		 * wildcard (*) or _all.</li>
+		 * <li>To get information about any snapshots that are currently running, use
+		 * _current.</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
@@ -206,9 +214,13 @@ public final class GetRequest extends RequestBase {
 
 		/**
 		 * Comma-separated list of snapshot names to retrieve. Also accepts wildcards
-		 * (<em>). - To get information about all snapshots in a registered repository,
-		 * use a wildcard (</em>) or _all. - To get information about any snapshots that
-		 * are currently running, use _current.
+		 * (*).
+		 * <ul>
+		 * <li>To get information about all snapshots in a registered repository, use a
+		 * wildcard (*) or _all.</li>
+		 * <li>To get information about any snapshots that are currently running, use
+		 * _current.</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code snapshot}
 		 */

@@ -38,6 +38,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -54,7 +55,7 @@ public final class UsageRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UsageRequest(Builder builder) {
+	public UsageRequest(Builder builder) {
 
 		this.nodeId = builder.nodeId;
 		this.metric = builder.metric;

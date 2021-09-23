@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.get_index_template;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -45,7 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplate
-public final class IndexTemplate implements ToJsonp {
+public final class IndexTemplate implements JsonpSerializable {
 	private final List<String> indexPatterns;
 
 	private final List<String> composedOf;
@@ -59,17 +59,17 @@ public final class IndexTemplate implements ToJsonp {
 	private final Number priority;
 
 	@Nullable
-	private final Map<String, JsonValue> meta;
+	private final Map<String, JsonData> meta;
 
 	@Nullable
 	private final Boolean allowAutoCreate;
 
 	@Nullable
-	private final Map<String, JsonValue> dataStream;
+	private final Map<String, JsonData> dataStream;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexTemplate(Builder builder) {
+	public IndexTemplate(Builder builder) {
 
 		this.indexPatterns = Objects.requireNonNull(builder.indexPatterns, "index_patterns");
 		this.composedOf = Objects.requireNonNull(builder.composedOf, "composed_of");
@@ -123,7 +123,7 @@ public final class IndexTemplate implements ToJsonp {
 	 * API name: {@code _meta}
 	 */
 	@Nullable
-	public Map<String, JsonValue> meta() {
+	public Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -139,20 +139,20 @@ public final class IndexTemplate implements ToJsonp {
 	 * API name: {@code data_stream}
 	 */
 	@Nullable
-	public Map<String, JsonValue> dataStream() {
+	public Map<String, JsonData> dataStream() {
 		return this.dataStream;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index_patterns");
 		generator.writeStartArray();
@@ -171,7 +171,7 @@ public final class IndexTemplate implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("template");
-		this.template.toJsonp(generator, mapper);
+		this.template.serialize(generator, mapper);
 
 		if (this.version != null) {
 
@@ -189,9 +189,9 @@ public final class IndexTemplate implements ToJsonp {
 
 			generator.writeKey("_meta");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.meta.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -207,9 +207,9 @@ public final class IndexTemplate implements ToJsonp {
 
 			generator.writeKey("data_stream");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.dataStream.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.dataStream.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -237,13 +237,13 @@ public final class IndexTemplate implements ToJsonp {
 		private Number priority;
 
 		@Nullable
-		private Map<String, JsonValue> meta;
+		private Map<String, JsonData> meta;
 
 		@Nullable
 		private Boolean allowAutoCreate;
 
 		@Nullable
-		private Map<String, JsonValue> dataStream;
+		private Map<String, JsonData> dataStream;
 
 		/**
 		 * API name: {@code index_patterns}
@@ -333,7 +333,7 @@ public final class IndexTemplate implements ToJsonp {
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonValue> value) {
+		public Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
 			return this;
 		}
@@ -341,7 +341,7 @@ public final class IndexTemplate implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder putMeta(String key, JsonValue value) {
+		public Builder put_meta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}
@@ -360,7 +360,7 @@ public final class IndexTemplate implements ToJsonp {
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public Builder dataStream(@Nullable Map<String, JsonValue> value) {
+		public Builder dataStream(@Nullable Map<String, JsonData> value) {
 			this.dataStream = value;
 			return this;
 		}
@@ -368,7 +368,7 @@ public final class IndexTemplate implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #dataStream(Map)}, creating the map if needed.
 		 */
-		public Builder putDataStream(String key, JsonValue value) {
+		public Builder putDataStream(String key, JsonData value) {
 			if (this.dataStream == null) {
 				this.dataStream = new HashMap<>();
 			}
@@ -391,7 +391,7 @@ public final class IndexTemplate implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexTemplate
+	 * Json deserializer for {@link IndexTemplate}
 	 */
 	public static final JsonpDeserializer<IndexTemplate> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexTemplate::setupIndexTemplateDeserializer);
@@ -405,11 +405,9 @@ public final class IndexTemplate implements ToJsonp {
 		op.add(Builder::template, IndexTemplateSummary.DESERIALIZER, "template");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 		op.add(Builder::priority, JsonpDeserializer.numberDeserializer(), "priority");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"_meta");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
 		op.add(Builder::allowAutoCreate, JsonpDeserializer.booleanDeserializer(), "allow_auto_create");
-		op.add(Builder::dataStream, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"data_stream");
+		op.add(Builder::dataStream, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "data_stream");
 
 	}
 

@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.rollup.get_rollup_caps;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -39,8 +39,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.RollupCapabilitySummary
-public final class RollupCapabilitySummary implements ToJsonp {
-	private final Map<String, Map<String, JsonValue>> fields;
+public final class RollupCapabilitySummary implements JsonpSerializable {
+	private final Map<String, Map<String, JsonData>> fields;
 
 	private final String indexPattern;
 
@@ -50,7 +50,7 @@ public final class RollupCapabilitySummary implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupCapabilitySummary(Builder builder) {
+	public RollupCapabilitySummary(Builder builder) {
 
 		this.fields = Objects.requireNonNull(builder.fields, "fields");
 		this.indexPattern = Objects.requireNonNull(builder.indexPattern, "index_pattern");
@@ -62,7 +62,7 @@ public final class RollupCapabilitySummary implements ToJsonp {
 	/**
 	 * API name: {@code fields}
 	 */
-	public Map<String, Map<String, JsonValue>> fields() {
+	public Map<String, Map<String, JsonData>> fields() {
 		return this.fields;
 	}
 
@@ -90,22 +90,22 @@ public final class RollupCapabilitySummary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("fields");
 		generator.writeStartObject();
-		for (Map.Entry<String, Map<String, JsonValue>> item0 : this.fields.entrySet()) {
+		for (Map.Entry<String, Map<String, JsonData>> item0 : this.fields.entrySet()) {
 			generator.writeKey(item0.getKey());
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item1 : item0.getValue().entrySet()) {
+			for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
 				generator.writeKey(item1.getKey());
-				generator.write(item1.getValue());
+				item1.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -130,7 +130,7 @@ public final class RollupCapabilitySummary implements ToJsonp {
 	 * Builder for {@link RollupCapabilitySummary}.
 	 */
 	public static class Builder implements ObjectBuilder<RollupCapabilitySummary> {
-		private Map<String, Map<String, JsonValue>> fields;
+		private Map<String, Map<String, JsonData>> fields;
 
 		private String indexPattern;
 
@@ -141,7 +141,7 @@ public final class RollupCapabilitySummary implements ToJsonp {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(Map<String, Map<String, JsonValue>> value) {
+		public Builder fields(Map<String, Map<String, JsonData>> value) {
 			this.fields = value;
 			return this;
 		}
@@ -149,7 +149,7 @@ public final class RollupCapabilitySummary implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
 		 */
-		public Builder putFields(String key, Map<String, JsonValue> value) {
+		public Builder putFields(String key, Map<String, JsonData> value) {
 			if (this.fields == null) {
 				this.fields = new HashMap<>();
 			}
@@ -196,7 +196,7 @@ public final class RollupCapabilitySummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RollupCapabilitySummary
+	 * Json deserializer for {@link RollupCapabilitySummary}
 	 */
 	public static final JsonpDeserializer<RollupCapabilitySummary> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RollupCapabilitySummary::setupRollupCapabilitySummaryDeserializer);
@@ -204,8 +204,9 @@ public final class RollupCapabilitySummary implements ToJsonp {
 	protected static void setupRollupCapabilitySummaryDeserializer(
 			DelegatingDeserializer<RollupCapabilitySummary.Builder> op) {
 
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer())), "fields");
+		op.add(Builder::fields,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER)),
+				"fields");
 		op.add(Builder::indexPattern, JsonpDeserializer.stringDeserializer(), "index_pattern");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");

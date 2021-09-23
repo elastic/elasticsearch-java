@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,14 +37,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoMemory
-public final class NodeInfoMemory implements ToJsonp {
+public final class NodeInfoMemory implements JsonpSerializable {
 	private final String total;
 
 	private final Number totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoMemory(Builder builder) {
+	public NodeInfoMemory(Builder builder) {
 
 		this.total = Objects.requireNonNull(builder.total, "total");
 		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
@@ -68,13 +68,13 @@ public final class NodeInfoMemory implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("total");
 		generator.write(this.total);
@@ -125,7 +125,7 @@ public final class NodeInfoMemory implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoMemory
+	 * Json deserializer for {@link NodeInfoMemory}
 	 */
 	public static final JsonpDeserializer<NodeInfoMemory> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoMemory::setupNodeInfoMemoryDeserializer);

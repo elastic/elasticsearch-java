@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,15 +36,24 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptQuery
-public final class ScriptQuery extends QueryBase {
+public final class ScriptQuery extends QueryBase implements Query {
 	private final JsonValue script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptQuery(Builder builder) {
+	public ScriptQuery(Builder builder) {
 		super(builder);
+
 		this.script = Objects.requireNonNull(builder.script, "script");
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "script";
 	}
 
 	/**
@@ -53,11 +63,15 @@ public final class ScriptQuery extends QueryBase {
 		return this.script;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("script");
 		generator.write(this.script);
+
+		generator.writeEnd();
 
 	}
 
@@ -96,11 +110,9 @@ public final class ScriptQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for ScriptQuery
-	 */
-	public static final JsonpDeserializer<ScriptQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptQuery::setupScriptQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<ScriptQuery.Builder, ScriptQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(ScriptQuery::setupScriptQueryDeserializer);
 
 	protected static void setupScriptQueryDeserializer(DelegatingDeserializer<ScriptQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

@@ -47,7 +47,7 @@ public final class DisableUserRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DisableUserRequest(Builder builder) {
+	public DisableUserRequest(Builder builder) {
 
 		this.username = Objects.requireNonNull(builder.username, "username");
 		this.refresh = builder.refresh;

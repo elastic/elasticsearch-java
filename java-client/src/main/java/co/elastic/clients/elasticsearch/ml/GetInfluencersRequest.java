@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -44,7 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_influencers.Request
-public final class GetInfluencersRequest extends RequestBase implements ToJsonp {
+public final class GetInfluencersRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
@@ -76,7 +76,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetInfluencersRequest(Builder builder) {
+	public GetInfluencersRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.desc = builder.desc;
@@ -193,18 +193,18 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.page != null) {
 
 			generator.writeKey("page");
-			this.page.toJsonp(generator, mapper);
+			this.page.serialize(generator, mapper);
 
 		}
 
@@ -367,7 +367,7 @@ public final class GetInfluencersRequest extends RequestBase implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetInfluencersRequest
+	 * Json deserializer for {@link GetInfluencersRequest}
 	 */
 	public static final JsonpDeserializer<GetInfluencersRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetInfluencersRequest::setupGetInfluencersRequestDeserializer);

@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,10 +40,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Request
-public final class InvalidateApiKeyRequest extends RequestBase implements ToJsonp {
+public final class InvalidateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -64,7 +65,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements ToJson
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InvalidateApiKeyRequest(Builder builder) {
+	public InvalidateApiKeyRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.ids = builder.ids;
@@ -126,13 +127,13 @@ public final class InvalidateApiKeyRequest extends RequestBase implements ToJson
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -284,7 +285,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InvalidateApiKeyRequest
+	 * Json deserializer for {@link InvalidateApiKeyRequest}
 	 */
 	public static final JsonpDeserializer<InvalidateApiKeyRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, InvalidateApiKeyRequest::setupInvalidateApiKeyRequestDeserializer);

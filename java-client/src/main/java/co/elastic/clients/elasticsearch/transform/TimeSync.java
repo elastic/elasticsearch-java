@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,7 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.TimeSync
-public final class TimeSync implements ToJsonp {
+public final class TimeSync implements Sync, JsonpSerializable {
 	@Nullable
 	private final JsonValue delay;
 
@@ -45,11 +46,19 @@ public final class TimeSync implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TimeSync(Builder builder) {
+	public TimeSync(Builder builder) {
 
 		this.delay = builder.delay;
 		this.field = Objects.requireNonNull(builder.field, "field");
 
+	}
+
+	/**
+	 * {@link Sync} variant type
+	 */
+	@Override
+	public String _type() {
+		return "time";
 	}
 
 	/**
@@ -74,13 +83,14 @@ public final class TimeSync implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		if (this.delay != null) {
 
@@ -91,6 +101,8 @@ public final class TimeSync implements ToJsonp {
 
 		generator.writeKey("field");
 		generator.write(this.field);
+
+		generator.writeEnd();
 
 	}
 
@@ -139,11 +151,9 @@ public final class TimeSync implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for TimeSync
-	 */
-	public static final JsonpDeserializer<TimeSync> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TimeSync::setupTimeSyncDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<TimeSync.Builder, TimeSync.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(TimeSync::setupTimeSyncDeserializer);
 
 	protected static void setupTimeSyncDeserializer(DelegatingDeserializer<TimeSync.Builder> op) {
 

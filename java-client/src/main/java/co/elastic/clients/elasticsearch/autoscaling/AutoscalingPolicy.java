@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -42,14 +42,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling._types.AutoscalingPolicy
-public final class AutoscalingPolicy implements ToJsonp {
+public final class AutoscalingPolicy implements JsonpSerializable {
 	private final List<String> roles;
 
-	private final Map<String, JsonValue> deciders;
+	private final Map<String, JsonData> deciders;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoscalingPolicy(Builder builder) {
+	public AutoscalingPolicy(Builder builder) {
 
 		this.roles = Objects.requireNonNull(builder.roles, "roles");
 		this.deciders = Objects.requireNonNull(builder.deciders, "deciders");
@@ -68,20 +68,20 @@ public final class AutoscalingPolicy implements ToJsonp {
 	 * <p>
 	 * API name: {@code deciders}
 	 */
-	public Map<String, JsonValue> deciders() {
+	public Map<String, JsonData> deciders() {
 		return this.deciders;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("roles");
 		generator.writeStartArray();
@@ -93,9 +93,9 @@ public final class AutoscalingPolicy implements ToJsonp {
 
 		generator.writeKey("deciders");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.deciders.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.deciders.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -110,7 +110,7 @@ public final class AutoscalingPolicy implements ToJsonp {
 	public static class Builder implements ObjectBuilder<AutoscalingPolicy> {
 		private List<String> roles;
 
-		private Map<String, JsonValue> deciders;
+		private Map<String, JsonData> deciders;
 
 		/**
 		 * API name: {@code roles}
@@ -144,7 +144,7 @@ public final class AutoscalingPolicy implements ToJsonp {
 		 * <p>
 		 * API name: {@code deciders}
 		 */
-		public Builder deciders(Map<String, JsonValue> value) {
+		public Builder deciders(Map<String, JsonData> value) {
 			this.deciders = value;
 			return this;
 		}
@@ -152,7 +152,7 @@ public final class AutoscalingPolicy implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #deciders(Map)}, creating the map if needed.
 		 */
-		public Builder putDeciders(String key, JsonValue value) {
+		public Builder putDeciders(String key, JsonData value) {
 			if (this.deciders == null) {
 				this.deciders = new HashMap<>();
 			}
@@ -175,7 +175,7 @@ public final class AutoscalingPolicy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoscalingPolicy
+	 * Json deserializer for {@link AutoscalingPolicy}
 	 */
 	public static final JsonpDeserializer<AutoscalingPolicy> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AutoscalingPolicy::setupAutoscalingPolicyDeserializer);
@@ -183,8 +183,7 @@ public final class AutoscalingPolicy implements ToJsonp {
 	protected static void setupAutoscalingPolicyDeserializer(DelegatingDeserializer<AutoscalingPolicy.Builder> op) {
 
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
-		op.add(Builder::deciders, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"deciders");
+		op.add(Builder::deciders, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "deciders");
 
 	}
 

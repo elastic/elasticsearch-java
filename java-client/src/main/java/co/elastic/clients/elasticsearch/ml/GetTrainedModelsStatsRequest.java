@@ -36,6 +36,7 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models_stats.Request
@@ -54,7 +55,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTrainedModelsStatsRequest(Builder builder) {
+	public GetTrainedModelsStatsRequest(Builder builder) {
 
 		this.modelId = builder.modelId;
 		this.allowNoMatch = builder.allowNoMatch;
@@ -74,10 +75,12 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies what to do when the request: - Contains wildcard expressions and
-	 * there are no models that match. - Contains the _all string or no identifiers
-	 * and there are no matches. - Contains wildcard expressions and there are only
-	 * partial matches.
+	 * Specifies what to do when the request:
+	 * <ul>
+	 * <li>Contains wildcard expressions and there are no models that match.</li>
+	 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ul>
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -135,10 +138,12 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies what to do when the request: - Contains wildcard expressions and
-		 * there are no models that match. - Contains the _all string or no identifiers
-		 * and there are no matches. - Contains wildcard expressions and there are only
-		 * partial matches.
+		 * Specifies what to do when the request:
+		 * <ul>
+		 * <li>Contains wildcard expressions and there are no models that match.</li>
+		 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */

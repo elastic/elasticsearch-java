@@ -26,13 +26,13 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -41,11 +41,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Request
-public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
+public final class QueryWatchesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Number from;
 
@@ -53,7 +54,7 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 	private final Number size;
 
 	@Nullable
-	private final QueryContainer query;
+	private final Query query;
 
 	@Nullable
 	private final List<JsonValue> sort;
@@ -63,7 +64,7 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected QueryWatchesRequest(Builder builder) {
+	public QueryWatchesRequest(Builder builder) {
 
 		this.from = builder.from;
 		this.size = builder.size;
@@ -99,7 +100,7 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -126,13 +127,13 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.from != null) {
 
@@ -149,7 +150,7 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 		if (this.query != null) {
 
 			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
+			this.query.serialize(generator, mapper);
 
 		}
 		if (this.sort != null) {
@@ -190,7 +191,7 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 		private Number size;
 
 		@Nullable
-		private QueryContainer query;
+		private Query query;
 
 		@Nullable
 		private List<JsonValue> sort;
@@ -223,7 +224,7 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -233,8 +234,8 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -314,7 +315,7 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for QueryWatchesRequest
+	 * Json deserializer for {@link QueryWatchesRequest}
 	 */
 	public static final JsonpDeserializer<QueryWatchesRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, QueryWatchesRequest::setupQueryWatchesRequestDeserializer);
@@ -323,7 +324,7 @@ public final class QueryWatchesRequest extends RequestBase implements ToJsonp {
 
 		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"search_after");

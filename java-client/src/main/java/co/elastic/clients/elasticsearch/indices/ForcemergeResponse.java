@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: indices.forcemerge.Response
 public final class ForcemergeResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected ForcemergeResponse(Builder builder) {
+	public ForcemergeResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class ForcemergeResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ForcemergeResponse
+	 * Json deserializer for {@link ForcemergeResponse}
 	 */
 	public static final JsonpDeserializer<ForcemergeResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ForcemergeResponse::setupForcemergeResponseDeserializer);

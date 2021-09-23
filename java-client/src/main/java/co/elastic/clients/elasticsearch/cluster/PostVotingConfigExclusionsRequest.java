@@ -39,6 +39,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -55,7 +56,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostVotingConfigExclusionsRequest(Builder builder) {
+	public PostVotingConfigExclusionsRequest(Builder builder) {
 
 		this.nodeNames = builder.nodeNames;
 		this.nodeIds = builder.nodeIds;

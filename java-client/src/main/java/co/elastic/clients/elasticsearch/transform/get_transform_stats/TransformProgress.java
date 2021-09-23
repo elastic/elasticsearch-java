@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.TransformProgress
-public final class TransformProgress implements ToJsonp {
+public final class TransformProgress implements JsonpSerializable {
 	private final Number docsIndexed;
 
 	private final Number docsProcessed;
@@ -49,7 +49,7 @@ public final class TransformProgress implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TransformProgress(Builder builder) {
+	public TransformProgress(Builder builder) {
 
 		this.docsIndexed = Objects.requireNonNull(builder.docsIndexed, "docs_indexed");
 		this.docsProcessed = Objects.requireNonNull(builder.docsProcessed, "docs_processed");
@@ -97,13 +97,13 @@ public final class TransformProgress implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("docs_indexed");
 		generator.write(this.docsIndexed.doubleValue());
@@ -193,7 +193,7 @@ public final class TransformProgress implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TransformProgress
+	 * Json deserializer for {@link TransformProgress}
 	 */
 	public static final JsonpDeserializer<TransformProgress> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TransformProgress::setupTransformProgressDeserializer);

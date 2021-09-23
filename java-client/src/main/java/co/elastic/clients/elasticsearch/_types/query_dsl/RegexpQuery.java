@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,7 +38,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RegexpQuery
-public final class RegexpQuery extends QueryBase {
+public final class RegexpQuery extends QueryBase implements Query {
+	private final String field;
+
 	@Nullable
 	private final Boolean caseInsensitive;
 
@@ -54,14 +57,33 @@ public final class RegexpQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RegexpQuery(Builder builder) {
+	public RegexpQuery(Builder builder) {
 		super(builder);
+		this.field = Objects.requireNonNull(builder.field, "field");
+
 		this.caseInsensitive = builder.caseInsensitive;
 		this.flags = builder.flags;
 		this.maxDeterminizedStates = builder.maxDeterminizedStates;
 		this.rewrite = builder.rewrite;
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "regexp";
+	}
+
+	/**
+	 * The target field
+	 * <p>
+	 * API name: {@code field}
+	 */
+	public String field() {
+		return this.field;
 	}
 
 	/**
@@ -103,8 +125,12 @@ public final class RegexpQuery extends QueryBase {
 		return this.value;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		generator.writeStartObject(this.field);
+
+		super.serializeInternal(generator, mapper);
 		if (this.caseInsensitive != null) {
 
 			generator.writeKey("case_insensitive");
@@ -133,6 +159,10 @@ public final class RegexpQuery extends QueryBase {
 		generator.writeKey("value");
 		generator.write(this.value);
 
+		generator.writeEnd();
+
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -141,6 +171,18 @@ public final class RegexpQuery extends QueryBase {
 	 * Builder for {@link RegexpQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RegexpQuery> {
+		private String field;
+
+		/**
+		 * The target field
+		 * <p>
+		 * API name: {@code field}
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		@Nullable
 		private Boolean caseInsensitive;
 
@@ -214,11 +256,9 @@ public final class RegexpQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for RegexpQuery
-	 */
-	public static final JsonpDeserializer<RegexpQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RegexpQuery::setupRegexpQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<RegexpQuery.Builder, RegexpQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(RegexpQuery::setupRegexpQueryDeserializer);
 
 	protected static void setupRegexpQueryDeserializer(DelegatingDeserializer<RegexpQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
@@ -227,6 +267,8 @@ public final class RegexpQuery extends QueryBase {
 		op.add(Builder::maxDeterminizedStates, JsonpDeserializer.numberDeserializer(), "max_determinized_states");
 		op.add(Builder::rewrite, JsonpDeserializer.stringDeserializer(), "rewrite");
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+
+		op.setKey(Builder::field);
 
 	}
 

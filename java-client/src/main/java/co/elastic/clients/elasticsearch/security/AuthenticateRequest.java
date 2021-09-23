@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: security.authenticate.Request
 public final class AuthenticateRequest extends RequestBase {
-	protected AuthenticateRequest() {
+	public AuthenticateRequest() {
 	}
 
 	/**

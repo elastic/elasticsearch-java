@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -37,6 +37,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -46,11 +47,11 @@ public final class ShardsRequest extends CatRequestBase {
 	private final List<String> index;
 
 	@Nullable
-	private final JsonValue bytes;
+	private final Bytes bytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardsRequest(Builder builder) {
+	public ShardsRequest(Builder builder) {
 
 		this.index = builder.index;
 		this.bytes = builder.bytes;
@@ -73,7 +74,7 @@ public final class ShardsRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public JsonValue bytes() {
+	public Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -87,7 +88,7 @@ public final class ShardsRequest extends CatRequestBase {
 		private List<String> index;
 
 		@Nullable
-		private JsonValue bytes;
+		private Bytes bytes;
 
 		/**
 		 * A comma-separated list of index names to limit the returned information
@@ -125,7 +126,7 @@ public final class ShardsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable JsonValue value) {
+		public Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}

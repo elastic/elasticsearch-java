@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ingest;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,12 +38,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.processor_grok.Response
-public final class ProcessorGrokResponse implements ToJsonp {
+public final class ProcessorGrokResponse implements JsonpSerializable {
 	private final Map<String, String> patterns;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ProcessorGrokResponse(Builder builder) {
+	public ProcessorGrokResponse(Builder builder) {
 
 		this.patterns = Objects.requireNonNull(builder.patterns, "patterns");
 
@@ -59,13 +59,13 @@ public final class ProcessorGrokResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("patterns");
 		generator.writeStartObject();
@@ -120,7 +120,7 @@ public final class ProcessorGrokResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ProcessorGrokResponse
+	 * Json deserializer for {@link ProcessorGrokResponse}
 	 */
 	public static final JsonpDeserializer<ProcessorGrokResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ProcessorGrokResponse::setupProcessorGrokResponseDeserializer);

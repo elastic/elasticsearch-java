@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,14 +37,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplate
-public final class ComponentTemplate implements ToJsonp {
+public final class ComponentTemplate implements JsonpSerializable {
 	private final String name;
 
 	private final ComponentTemplateNode componentTemplate;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ComponentTemplate(Builder builder) {
+	public ComponentTemplate(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.componentTemplate = Objects.requireNonNull(builder.componentTemplate, "component_template");
@@ -68,19 +68,19 @@ public final class ComponentTemplate implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("component_template");
-		this.componentTemplate.toJsonp(generator, mapper);
+		this.componentTemplate.serialize(generator, mapper);
 
 	}
 
@@ -133,7 +133,7 @@ public final class ComponentTemplate implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ComponentTemplate
+	 * Json deserializer for {@link ComponentTemplate}
 	 */
 	public static final JsonpDeserializer<ComponentTemplate> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ComponentTemplate::setupComponentTemplateDeserializer);

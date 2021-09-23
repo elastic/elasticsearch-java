@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.slm;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -41,7 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: slm.get_stats.Response
-public final class GetStatsResponse implements ToJsonp {
+public final class GetStatsResponse implements JsonpSerializable {
 	private final String retentionDeletionTime;
 
 	private final JsonValue retentionDeletionTimeMillis;
@@ -64,7 +64,7 @@ public final class GetStatsResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetStatsResponse(Builder builder) {
+	public GetStatsResponse(Builder builder) {
 
 		this.retentionDeletionTime = Objects.requireNonNull(builder.retentionDeletionTime, "retention_deletion_time");
 		this.retentionDeletionTimeMillis = Objects.requireNonNull(builder.retentionDeletionTimeMillis,
@@ -154,13 +154,13 @@ public final class GetStatsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("retention_deletion_time");
 		generator.write(this.retentionDeletionTime);
@@ -339,7 +339,7 @@ public final class GetStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetStatsResponse
+	 * Json deserializer for {@link GetStatsResponse}
 	 */
 	public static final JsonpDeserializer<GetStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetStatsResponse::setupGetStatsResponseDeserializer);

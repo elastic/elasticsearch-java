@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SamplerAggregation
@@ -40,8 +41,9 @@ public final class SamplerAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SamplerAggregation(Builder builder) {
+	public SamplerAggregation(Builder builder) {
 		super(builder);
+
 		this.shardSize = builder.shardSize;
 
 	}
@@ -54,8 +56,9 @@ public final class SamplerAggregation extends BucketAggregationBase {
 		return this.shardSize;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.shardSize != null) {
 
 			generator.writeKey("shard_size");
@@ -104,7 +107,7 @@ public final class SamplerAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SamplerAggregation
+	 * Json deserializer for {@link SamplerAggregation}
 	 */
 	public static final JsonpDeserializer<SamplerAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SamplerAggregation::setupSamplerAggregationDeserializer);

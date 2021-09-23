@@ -49,8 +49,9 @@ public final class AuthenticatedUser extends User {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AuthenticatedUser(Builder builder) {
+	public AuthenticatedUser(Builder builder) {
 		super(builder);
+
 		this.authenticationRealm = Objects.requireNonNull(builder.authenticationRealm, "authentication_realm");
 		this.lookupRealm = Objects.requireNonNull(builder.lookupRealm, "lookup_realm");
 		this.authenticationProvider = builder.authenticationProvider;
@@ -87,19 +88,20 @@ public final class AuthenticatedUser extends User {
 		return this.authenticationType;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("authentication_realm");
-		this.authenticationRealm.toJsonp(generator, mapper);
+		this.authenticationRealm.serialize(generator, mapper);
 
 		generator.writeKey("lookup_realm");
-		this.lookupRealm.toJsonp(generator, mapper);
+		this.lookupRealm.serialize(generator, mapper);
 
 		if (this.authenticationProvider != null) {
 
 			generator.writeKey("authentication_provider");
-			this.authenticationProvider.toJsonp(generator, mapper);
+			this.authenticationProvider.serialize(generator, mapper);
 
 		}
 
@@ -197,7 +199,7 @@ public final class AuthenticatedUser extends User {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AuthenticatedUser
+	 * Json deserializer for {@link AuthenticatedUser}
 	 */
 	public static final JsonpDeserializer<AuthenticatedUser> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AuthenticatedUser::setupAuthenticatedUserDeserializer);

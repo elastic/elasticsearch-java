@@ -25,11 +25,12 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -47,7 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotInfo
-public final class SnapshotInfo implements ToJsonp {
+public final class SnapshotInfo implements JsonpSerializable {
 	private final List<String> dataStreams;
 
 	@Nullable
@@ -74,10 +75,13 @@ public final class SnapshotInfo implements ToJsonp {
 	private final Map<String, IndexDetails> indexDetails;
 
 	@Nullable
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final String reason;
+
+	@Nullable
+	private final String repository;
 
 	private final String snapshot;
 
@@ -106,7 +110,7 @@ public final class SnapshotInfo implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotInfo(Builder builder) {
+	public SnapshotInfo(Builder builder) {
 
 		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
 		this.duration = builder.duration;
@@ -119,6 +123,7 @@ public final class SnapshotInfo implements ToJsonp {
 		this.indexDetails = builder.indexDetails;
 		this.metadata = builder.metadata;
 		this.reason = builder.reason;
+		this.repository = builder.repository;
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 		this.shards = builder.shards;
 		this.startTime = builder.startTime;
@@ -205,7 +210,7 @@ public final class SnapshotInfo implements ToJsonp {
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -215,6 +220,14 @@ public final class SnapshotInfo implements ToJsonp {
 	@Nullable
 	public String reason() {
 		return this.reason;
+	}
+
+	/**
+	 * API name: {@code repository}
+	 */
+	@Nullable
+	public String repository() {
+		return this.repository;
 	}
 
 	/**
@@ -290,13 +303,13 @@ public final class SnapshotInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("data_streams");
 		generator.writeStartArray();
@@ -335,7 +348,7 @@ public final class SnapshotInfo implements ToJsonp {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (SnapshotShardFailure item0 : this.failures) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -362,7 +375,7 @@ public final class SnapshotInfo implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexDetails> item0 : this.indexDetails.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -372,9 +385,9 @@ public final class SnapshotInfo implements ToJsonp {
 
 			generator.writeKey("metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -386,6 +399,12 @@ public final class SnapshotInfo implements ToJsonp {
 			generator.write(this.reason);
 
 		}
+		if (this.repository != null) {
+
+			generator.writeKey("repository");
+			generator.write(this.repository);
+
+		}
 
 		generator.writeKey("snapshot");
 		generator.write(this.snapshot);
@@ -393,7 +412,7 @@ public final class SnapshotInfo implements ToJsonp {
 		if (this.shards != null) {
 
 			generator.writeKey("shards");
-			this.shards.toJsonp(generator, mapper);
+			this.shards.serialize(generator, mapper);
 
 		}
 		if (this.startTime != null) {
@@ -435,7 +454,7 @@ public final class SnapshotInfo implements ToJsonp {
 			generator.writeKey("feature_states");
 			generator.writeStartArray();
 			for (InfoFeatureState item0 : this.featureStates) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -476,10 +495,13 @@ public final class SnapshotInfo implements ToJsonp {
 		private Map<String, IndexDetails> indexDetails;
 
 		@Nullable
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private String reason;
+
+		@Nullable
+		private String repository;
 
 		private String snapshot;
 
@@ -677,7 +699,7 @@ public final class SnapshotInfo implements ToJsonp {
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonValue> value) {
+		public Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -685,7 +707,7 @@ public final class SnapshotInfo implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -698,6 +720,14 @@ public final class SnapshotInfo implements ToJsonp {
 		 */
 		public Builder reason(@Nullable String value) {
 			this.reason = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code repository}
+		 */
+		public Builder repository(@Nullable String value) {
+			this.repository = value;
 			return this;
 		}
 
@@ -828,7 +858,7 @@ public final class SnapshotInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotInfo
+	 * Json deserializer for {@link SnapshotInfo}
 	 */
 	public static final JsonpDeserializer<SnapshotInfo> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SnapshotInfo::setupSnapshotInfoDeserializer);
@@ -847,9 +877,9 @@ public final class SnapshotInfo implements ToJsonp {
 				"indices");
 		op.add(Builder::indexDetails, JsonpDeserializer.stringMapDeserializer(IndexDetails.DESERIALIZER),
 				"index_details");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
 		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "shards");
 		op.add(Builder::startTime, JsonpDeserializer.jsonValueDeserializer(), "start_time");

@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: indices.flush.Response
 public final class FlushResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected FlushResponse(Builder builder) {
+	public FlushResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class FlushResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FlushResponse
+	 * Json deserializer for {@link FlushResponse}
 	 */
 	public static final JsonpDeserializer<FlushResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FlushResponse::setupFlushResponseDeserializer);

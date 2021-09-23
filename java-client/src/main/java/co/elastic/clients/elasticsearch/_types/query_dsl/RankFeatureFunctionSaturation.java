@@ -26,22 +26,23 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSaturation
-public final class RankFeatureFunctionSaturation extends RankFeatureFunction implements ToJsonp {
+public final class RankFeatureFunctionSaturation extends RankFeatureFunction implements JsonpSerializable {
 	@Nullable
 	private final Number pivot;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RankFeatureFunctionSaturation(Builder builder) {
+	public RankFeatureFunctionSaturation(Builder builder) {
 
 		this.pivot = builder.pivot;
 
@@ -58,13 +59,13 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.pivot != null) {
 
@@ -107,7 +108,7 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RankFeatureFunctionSaturation
+	 * Json deserializer for {@link RankFeatureFunctionSaturation}
 	 */
 	public static final JsonpDeserializer<RankFeatureFunctionSaturation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

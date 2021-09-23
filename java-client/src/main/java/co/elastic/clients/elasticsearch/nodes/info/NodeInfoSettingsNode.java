@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -39,17 +39,17 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsNode
-public final class NodeInfoSettingsNode implements ToJsonp {
+public final class NodeInfoSettingsNode implements JsonpSerializable {
 	private final String name;
 
-	private final Map<String, JsonValue> attr;
+	private final Map<String, JsonData> attr;
 
 	@Nullable
 	private final String maxLocalStorageNodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoSettingsNode(Builder builder) {
+	public NodeInfoSettingsNode(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.attr = Objects.requireNonNull(builder.attr, "attr");
@@ -67,7 +67,7 @@ public final class NodeInfoSettingsNode implements ToJsonp {
 	/**
 	 * API name: {@code attr}
 	 */
-	public Map<String, JsonValue> attr() {
+	public Map<String, JsonData> attr() {
 		return this.attr;
 	}
 
@@ -82,22 +82,22 @@ public final class NodeInfoSettingsNode implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("attr");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.attr.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.attr.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -119,7 +119,7 @@ public final class NodeInfoSettingsNode implements ToJsonp {
 	public static class Builder implements ObjectBuilder<NodeInfoSettingsNode> {
 		private String name;
 
-		private Map<String, JsonValue> attr;
+		private Map<String, JsonData> attr;
 
 		@Nullable
 		private String maxLocalStorageNodes;
@@ -135,7 +135,7 @@ public final class NodeInfoSettingsNode implements ToJsonp {
 		/**
 		 * API name: {@code attr}
 		 */
-		public Builder attr(Map<String, JsonValue> value) {
+		public Builder attr(Map<String, JsonData> value) {
 			this.attr = value;
 			return this;
 		}
@@ -143,7 +143,7 @@ public final class NodeInfoSettingsNode implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #attr(Map)}, creating the map if needed.
 		 */
-		public Builder putAttr(String key, JsonValue value) {
+		public Builder putAttr(String key, JsonData value) {
 			if (this.attr == null) {
 				this.attr = new HashMap<>();
 			}
@@ -174,7 +174,7 @@ public final class NodeInfoSettingsNode implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoSettingsNode
+	 * Json deserializer for {@link NodeInfoSettingsNode}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsNode> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoSettingsNode::setupNodeInfoSettingsNodeDeserializer);
@@ -183,8 +183,7 @@ public final class NodeInfoSettingsNode implements ToJsonp {
 			DelegatingDeserializer<NodeInfoSettingsNode.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::attr, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"attr");
+		op.add(Builder::attr, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "attr");
 		op.add(Builder::maxLocalStorageNodes, JsonpDeserializer.stringDeserializer(), "max_local_storage_nodes");
 
 	}

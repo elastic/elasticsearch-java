@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.Retries;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -44,7 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.Status
-public final class Status implements ToJsonp {
+public final class Status implements JsonpSerializable {
 	private final Number batches;
 
 	@Nullable
@@ -87,7 +87,7 @@ public final class Status implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Status(Builder builder) {
+	public Status(Builder builder) {
 
 		this.batches = Objects.requireNonNull(builder.batches, "batches");
 		this.canceled = builder.canceled;
@@ -237,13 +237,13 @@ public final class Status implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("batches");
 		generator.write(this.batches.doubleValue());
@@ -280,7 +280,7 @@ public final class Status implements ToJsonp {
 		generator.write(this.requestsPerSecond.doubleValue());
 
 		generator.writeKey("retries");
-		this.retries.toJsonp(generator, mapper);
+		this.retries.serialize(generator, mapper);
 
 		if (this.throttled != null) {
 
@@ -549,7 +549,7 @@ public final class Status implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Status
+	 * Json deserializer for {@link Status}
 	 */
 	public static final JsonpDeserializer<Status> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Status::setupStatusDeserializer);

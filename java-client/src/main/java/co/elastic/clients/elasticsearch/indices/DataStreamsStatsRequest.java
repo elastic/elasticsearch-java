@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.Request
@@ -47,7 +48,7 @@ public final class DataStreamsStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataStreamsStatsRequest(Builder builder) {
+	public DataStreamsStatsRequest(Builder builder) {
 
 		this.name = builder.name;
 		this.expandWildcards = builder.expandWildcards;

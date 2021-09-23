@@ -26,13 +26,13 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -49,7 +49,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_alias.Request
-public final class PutAliasRequest extends RequestBase implements ToJsonp {
+public final class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> index;
 
 	private final String name;
@@ -61,7 +61,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	private final JsonValue timeout;
 
 	@Nullable
-	private final QueryContainer filter;
+	private final Query filter;
 
 	@Nullable
 	private final String indexRouting;
@@ -77,7 +77,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutAliasRequest(Builder builder) {
+	public PutAliasRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -134,7 +134,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public QueryContainer filter() {
+	public Query filter() {
 		return this.filter;
 	}
 
@@ -173,18 +173,18 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
+			this.filter.serialize(generator, mapper);
 
 		}
 		if (this.indexRouting != null) {
@@ -231,7 +231,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		private JsonValue timeout;
 
 		@Nullable
-		private QueryContainer filter;
+		private Query filter;
 
 		@Nullable
 		private String indexRouting;
@@ -311,7 +311,7 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable QueryContainer value) {
+		public Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -319,8 +319,8 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -370,14 +370,14 @@ public final class PutAliasRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutAliasRequest
+	 * Json deserializer for {@link PutAliasRequest}
 	 */
 	public static final JsonpDeserializer<PutAliasRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutAliasRequest::setupPutAliasRequestDeserializer);
 
 	protected static void setupPutAliasRequestDeserializer(DelegatingDeserializer<PutAliasRequest.Builder> op) {
 
-		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::filter, Query.DESERIALIZER, "filter");
 		op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
 		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");

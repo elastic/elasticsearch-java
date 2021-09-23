@@ -53,7 +53,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpgradeJobSnapshotRequest(Builder builder) {
+	public UpgradeJobSnapshotRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");

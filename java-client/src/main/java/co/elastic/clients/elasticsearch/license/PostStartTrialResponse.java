@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -46,12 +45,13 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 
 	private final Boolean trialWasStarted;
 
-	private final JsonValue type;
+	private final LicenseType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostStartTrialResponse(Builder builder) {
+	public PostStartTrialResponse(Builder builder) {
 		super(builder);
+
 		this.errorMessage = builder.errorMessage;
 		this.acknowledged = Objects.requireNonNull(builder.acknowledged, "acknowledged");
 		this.trialWasStarted = Objects.requireNonNull(builder.trialWasStarted, "trial_was_started");
@@ -84,12 +84,13 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code type}
 	 */
-	public JsonValue type() {
+	public LicenseType type() {
 		return this.type;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.errorMessage != null) {
 
 			generator.writeKey("error_message");
@@ -104,7 +105,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		generator.write(this.trialWasStarted);
 
 		generator.writeKey("type");
-		generator.write(this.type);
+		this.type.serialize(generator, mapper);
 
 	}
 
@@ -123,7 +124,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 
 		private Boolean trialWasStarted;
 
-		private JsonValue type;
+		private LicenseType type;
 
 		/**
 		 * API name: {@code error_message}
@@ -152,7 +153,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(LicenseType value) {
 			this.type = value;
 			return this;
 		}
@@ -177,7 +178,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PostStartTrialResponse
+	 * Json deserializer for {@link PostStartTrialResponse}
 	 */
 	public static final JsonpDeserializer<PostStartTrialResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PostStartTrialResponse::setupPostStartTrialResponseDeserializer);
@@ -188,7 +189,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		op.add(Builder::errorMessage, JsonpDeserializer.stringDeserializer(), "error_message");
 		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::trialWasStarted, JsonpDeserializer.booleanDeserializer(), "trial_was_started");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type, LicenseType.DESERIALIZER, "type");
 
 	}
 

@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -53,14 +53,15 @@ public final class EnrichProcessor extends ProcessorBase {
 	private final String policyName;
 
 	@Nullable
-	private final JsonValue shapeRelation;
+	private final GeoShapeRelation shapeRelation;
 
 	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EnrichProcessor(Builder builder) {
+	public EnrichProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.maxMatches = builder.maxMatches;
@@ -113,7 +114,7 @@ public final class EnrichProcessor extends ProcessorBase {
 	 * API name: {@code shape_relation}
 	 */
 	@Nullable
-	public JsonValue shapeRelation() {
+	public GeoShapeRelation shapeRelation() {
 		return this.shapeRelation;
 	}
 
@@ -124,8 +125,9 @@ public final class EnrichProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -155,8 +157,7 @@ public final class EnrichProcessor extends ProcessorBase {
 		if (this.shapeRelation != null) {
 
 			generator.writeKey("shape_relation");
-			generator.write(this.shapeRelation);
-
+			this.shapeRelation.serialize(generator, mapper);
 		}
 
 		generator.writeKey("target_field");
@@ -186,7 +187,7 @@ public final class EnrichProcessor extends ProcessorBase {
 		private String policyName;
 
 		@Nullable
-		private JsonValue shapeRelation;
+		private GeoShapeRelation shapeRelation;
 
 		private String targetField;
 
@@ -233,7 +234,7 @@ public final class EnrichProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code shape_relation}
 		 */
-		public Builder shapeRelation(@Nullable JsonValue value) {
+		public Builder shapeRelation(@Nullable GeoShapeRelation value) {
 			this.shapeRelation = value;
 			return this;
 		}
@@ -266,7 +267,7 @@ public final class EnrichProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EnrichProcessor
+	 * Json deserializer for {@link EnrichProcessor}
 	 */
 	public static final JsonpDeserializer<EnrichProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, EnrichProcessor::setupEnrichProcessorDeserializer);
@@ -278,7 +279,7 @@ public final class EnrichProcessor extends ProcessorBase {
 		op.add(Builder::maxMatches, JsonpDeserializer.numberDeserializer(), "max_matches");
 		op.add(Builder::override, JsonpDeserializer.booleanDeserializer(), "override");
 		op.add(Builder::policyName, JsonpDeserializer.stringDeserializer(), "policy_name");
-		op.add(Builder::shapeRelation, JsonpDeserializer.jsonValueDeserializer(), "shape_relation");
+		op.add(Builder::shapeRelation, GeoShapeRelation.DESERIALIZER, "shape_relation");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}

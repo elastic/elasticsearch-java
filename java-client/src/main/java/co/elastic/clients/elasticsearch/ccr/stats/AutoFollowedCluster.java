@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ccr.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.stats.AutoFollowedCluster
-public final class AutoFollowedCluster implements ToJsonp {
+public final class AutoFollowedCluster implements JsonpSerializable {
 	private final String clusterName;
 
 	private final Number lastSeenMetadataVersion;
@@ -46,7 +46,7 @@ public final class AutoFollowedCluster implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoFollowedCluster(Builder builder) {
+	public AutoFollowedCluster(Builder builder) {
 
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.lastSeenMetadataVersion = Objects.requireNonNull(builder.lastSeenMetadataVersion,
@@ -80,13 +80,13 @@ public final class AutoFollowedCluster implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -150,7 +150,7 @@ public final class AutoFollowedCluster implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoFollowedCluster
+	 * Json deserializer for {@link AutoFollowedCluster}
 	 */
 	public static final JsonpDeserializer<AutoFollowedCluster> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AutoFollowedCluster::setupAutoFollowedClusterDeserializer);

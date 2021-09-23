@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,14 +36,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.LatLon
-public final class LatLon implements ToJsonp {
+public final class LatLon implements JsonpSerializable {
 	private final Number lat;
 
 	private final Number lon;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected LatLon(Builder builder) {
+	public LatLon(Builder builder) {
 
 		this.lat = Objects.requireNonNull(builder.lat, "lat");
 		this.lon = Objects.requireNonNull(builder.lon, "lon");
@@ -67,13 +67,13 @@ public final class LatLon implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("lat");
 		generator.write(this.lat.doubleValue());
@@ -124,7 +124,7 @@ public final class LatLon implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for LatLon
+	 * Json deserializer for {@link LatLon}
 	 */
 	public static final JsonpDeserializer<LatLon> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			LatLon::setupLatLonDeserializer);

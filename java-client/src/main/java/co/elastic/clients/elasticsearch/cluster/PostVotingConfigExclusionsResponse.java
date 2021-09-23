@@ -28,10 +28,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: cluster.post_voting_config_exclusions.Response
 public final class PostVotingConfigExclusionsResponse {
-	protected PostVotingConfigExclusionsResponse() {
+	public PostVotingConfigExclusionsResponse() {
 	}
 
 	/**

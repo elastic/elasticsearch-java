@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.graph;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Vertex
-public final class Vertex implements ToJsonp {
+public final class Vertex implements JsonpSerializable {
 	private final Number depth;
 
 	private final String field;
@@ -48,7 +48,7 @@ public final class Vertex implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Vertex(Builder builder) {
+	public Vertex(Builder builder) {
 
 		this.depth = Objects.requireNonNull(builder.depth, "depth");
 		this.field = Objects.requireNonNull(builder.field, "field");
@@ -88,13 +88,13 @@ public final class Vertex implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("depth");
 		generator.write(this.depth.doubleValue());
@@ -171,7 +171,7 @@ public final class Vertex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Vertex
+	 * Json deserializer for {@link Vertex}
 	 */
 	public static final JsonpDeserializer<Vertex> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Vertex::setupVertexDeserializer);

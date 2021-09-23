@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassification
-public final class DataframeEvaluationClassification implements ToJsonp {
+public final class DataframeEvaluationClassification implements DataframeEvaluation, JsonpSerializable {
 	private final String actualField;
 
 	@Nullable
@@ -51,13 +52,21 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationClassification(Builder builder) {
+	public DataframeEvaluationClassification(Builder builder) {
 
 		this.actualField = Objects.requireNonNull(builder.actualField, "actual_field");
 		this.predictedField = builder.predictedField;
 		this.topClassesField = builder.topClassesField;
 		this.metrics = builder.metrics;
 
+	}
+
+	/**
+	 * {@link DataframeEvaluation} variant type
+	 */
+	@Override
+	public String _type() {
+		return "classification";
 	}
 
 	/**
@@ -107,13 +116,14 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("actual_field");
 		generator.write(this.actualField);
@@ -133,9 +143,11 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 		if (this.metrics != null) {
 
 			generator.writeKey("metrics");
-			this.metrics.toJsonp(generator, mapper);
+			this.metrics.serialize(generator, mapper);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -225,12 +237,9 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for DataframeEvaluationClassification
-	 */
-	public static final JsonpDeserializer<DataframeEvaluationClassification> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationClassification::setupDataframeEvaluationClassificationDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<DataframeEvaluationClassification.Builder, DataframeEvaluationClassification.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(DataframeEvaluationClassification::setupDataframeEvaluationClassificationDeserializer);
 
 	protected static void setupDataframeEvaluationClassificationDeserializer(
 			DelegatingDeserializer<DataframeEvaluationClassification.Builder> op) {

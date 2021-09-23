@@ -35,15 +35,16 @@ import java.lang.Number;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketSortAggregation
-public final class BucketSortAggregation extends Aggregation {
+public final class BucketSortAggregation extends AggregationBase {
 	@Nullable
 	private final Number from;
 
 	@Nullable
-	private final JsonValue gapPolicy;
+	private final GapPolicy gapPolicy;
 
 	@Nullable
 	private final Number size;
@@ -53,8 +54,9 @@ public final class BucketSortAggregation extends Aggregation {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BucketSortAggregation(Builder builder) {
+	public BucketSortAggregation(Builder builder) {
 		super(builder);
+
 		this.from = builder.from;
 		this.gapPolicy = builder.gapPolicy;
 		this.size = builder.size;
@@ -74,7 +76,7 @@ public final class BucketSortAggregation extends Aggregation {
 	 * API name: {@code gap_policy}
 	 */
 	@Nullable
-	public JsonValue gapPolicy() {
+	public GapPolicy gapPolicy() {
 		return this.gapPolicy;
 	}
 
@@ -94,8 +96,9 @@ public final class BucketSortAggregation extends Aggregation {
 		return this.sort;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.from != null) {
 
 			generator.writeKey("from");
@@ -105,8 +108,7 @@ public final class BucketSortAggregation extends Aggregation {
 		if (this.gapPolicy != null) {
 
 			generator.writeKey("gap_policy");
-			generator.write(this.gapPolicy);
-
+			this.gapPolicy.serialize(generator, mapper);
 		}
 		if (this.size != null) {
 
@@ -133,14 +135,14 @@ public final class BucketSortAggregation extends Aggregation {
 	/**
 	 * Builder for {@link BucketSortAggregation}.
 	 */
-	public static class Builder extends Aggregation.AbstractBuilder<Builder>
+	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BucketSortAggregation> {
 		@Nullable
 		private Number from;
 
 		@Nullable
-		private JsonValue gapPolicy;
+		private GapPolicy gapPolicy;
 
 		@Nullable
 		private Number size;
@@ -159,7 +161,7 @@ public final class BucketSortAggregation extends Aggregation {
 		/**
 		 * API name: {@code gap_policy}
 		 */
-		public Builder gapPolicy(@Nullable JsonValue value) {
+		public Builder gapPolicy(@Nullable GapPolicy value) {
 			this.gapPolicy = value;
 			return this;
 		}
@@ -219,16 +221,16 @@ public final class BucketSortAggregation extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BucketSortAggregation
+	 * Json deserializer for {@link BucketSortAggregation}
 	 */
 	public static final JsonpDeserializer<BucketSortAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, BucketSortAggregation::setupBucketSortAggregationDeserializer);
 
 	protected static void setupBucketSortAggregationDeserializer(
 			DelegatingDeserializer<BucketSortAggregation.Builder> op) {
-		Aggregation.setupAggregationDeserializer(op);
+		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
-		op.add(Builder::gapPolicy, JsonpDeserializer.jsonValueDeserializer(), "gap_policy");
+		op.add(Builder::gapPolicy, GapPolicy.DESERIALIZER, "gap_policy");
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 

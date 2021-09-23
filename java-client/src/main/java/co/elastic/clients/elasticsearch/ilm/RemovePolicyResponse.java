@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ilm;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,14 +40,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ilm.remove_policy.Response
-public final class RemovePolicyResponse implements ToJsonp {
+public final class RemovePolicyResponse implements JsonpSerializable {
 	private final List<String> failedIndexes;
 
 	private final Boolean hasFailures;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RemovePolicyResponse(Builder builder) {
+	public RemovePolicyResponse(Builder builder) {
 
 		this.failedIndexes = Objects.requireNonNull(builder.failedIndexes, "failed_indexes");
 		this.hasFailures = Objects.requireNonNull(builder.hasFailures, "has_failures");
@@ -71,13 +71,13 @@ public final class RemovePolicyResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("failed_indexes");
 		generator.writeStartArray();
@@ -152,7 +152,7 @@ public final class RemovePolicyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RemovePolicyResponse
+	 * Json deserializer for {@link RemovePolicyResponse}
 	 */
 	public static final JsonpDeserializer<RemovePolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RemovePolicyResponse::setupRemovePolicyResponseDeserializer);

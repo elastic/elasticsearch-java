@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsPrefix
-public final class IntervalsPrefix implements ToJsonp {
+public final class IntervalsPrefix implements Intervals, JsonpSerializable {
 	@Nullable
 	private final String analyzer;
 
@@ -47,12 +48,20 @@ public final class IntervalsPrefix implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IntervalsPrefix(Builder builder) {
+	public IntervalsPrefix(Builder builder) {
 
 		this.analyzer = builder.analyzer;
 		this.prefix = Objects.requireNonNull(builder.prefix, "prefix");
 		this.useField = builder.useField;
 
+	}
+
+	/**
+	 * {@link Intervals} variant type
+	 */
+	@Override
+	public String _type() {
+		return "prefix";
 	}
 
 	/**
@@ -81,13 +90,14 @@ public final class IntervalsPrefix implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		if (this.analyzer != null) {
 
@@ -105,6 +115,8 @@ public final class IntervalsPrefix implements ToJsonp {
 			generator.write(this.useField);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -160,11 +172,9 @@ public final class IntervalsPrefix implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for IntervalsPrefix
-	 */
-	public static final JsonpDeserializer<IntervalsPrefix> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IntervalsPrefix::setupIntervalsPrefixDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<IntervalsPrefix.Builder, IntervalsPrefix.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(IntervalsPrefix::setupIntervalsPrefixDeserializer);
 
 	protected static void setupIntervalsPrefixDeserializer(DelegatingDeserializer<IntervalsPrefix.Builder> op) {
 

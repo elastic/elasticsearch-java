@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: snapshot.clone.Response
 public final class CloneResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloneResponse(Builder builder) {
+	public CloneResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class CloneResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CloneResponse
+	 * Json deserializer for {@link CloneResponse}
 	 */
 	public static final JsonpDeserializer<CloneResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CloneResponse::setupCloneResponseDeserializer);

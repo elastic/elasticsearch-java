@@ -32,12 +32,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
+import java.util.Objects;
 
 // typedef: security.put_privileges.Response
 public final class PutPrivilegesResponse extends AdditionalProperties<String, Map<String, CreatedStatus>> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutPrivilegesResponse(Builder builder) {
+	public PutPrivilegesResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -74,7 +75,7 @@ public final class PutPrivilegesResponse extends AdditionalProperties<String, Ma
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutPrivilegesResponse
+	 * Json deserializer for {@link PutPrivilegesResponse}
 	 */
 	public static final JsonpDeserializer<PutPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutPrivilegesResponse::setupPutPrivilegesResponseDeserializer);

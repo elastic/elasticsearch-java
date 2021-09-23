@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: indices.delete_alias.Response
 public final class DeleteAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteAliasResponse(Builder builder) {
+	public DeleteAliasResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeleteAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteAliasResponse
+	 * Json deserializer for {@link DeleteAliasResponse}
 	 */
 	public static final JsonpDeserializer<DeleteAliasResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DeleteAliasResponse::setupDeleteAliasResponseDeserializer);

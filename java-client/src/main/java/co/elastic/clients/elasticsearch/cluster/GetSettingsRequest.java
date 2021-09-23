@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_settings.Request
@@ -53,7 +54,7 @@ public final class GetSettingsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetSettingsRequest(Builder builder) {
+	public GetSettingsRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
 		this.includeDefaults = builder.includeDefaults;

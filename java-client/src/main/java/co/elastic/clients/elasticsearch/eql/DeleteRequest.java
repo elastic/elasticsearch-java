@@ -42,7 +42,7 @@ public final class DeleteRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteRequest(Builder builder) {
+	public DeleteRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 

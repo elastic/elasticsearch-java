@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: ilm.get_status.Request
 public final class GetStatusRequest extends RequestBase {
-	protected GetStatusRequest() {
+	public GetStatusRequest() {
 	}
 
 	/**

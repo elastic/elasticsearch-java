@@ -27,13 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,16 +41,16 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Request
-public final class RollupRequest extends RequestBase implements ToJsonp {
+public final class RollupRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	private final String rollupIndex;
 
-	private final JsonValue value;
+	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupRequest(Builder builder) {
+	public RollupRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.rollupIndex = Objects.requireNonNull(builder.rollupIndex, "rollup_index");
@@ -81,15 +81,15 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public JsonValue value() {
+	public JsonData value() {
 		return this.value;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.write(this.value);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -103,7 +103,7 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 
 		private String rollupIndex;
 
-		private JsonValue value;
+		private JsonData value;
 
 		/**
 		 * The index to roll up
@@ -130,7 +130,7 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(JsonValue value) {
+		public Builder value(JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -150,14 +150,14 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RollupRequest
+	 * Json deserializer for {@link RollupRequest}
 	 */
 	public static final JsonpDeserializer<RollupRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RollupRequest::setupRollupRequestDeserializer);
 
 	protected static void setupRollupRequestDeserializer(DelegatingDeserializer<RollupRequest.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
+		op.add(Builder::value, JsonData.DESERIALIZER, "value");
 
 	}
 

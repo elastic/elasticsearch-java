@@ -42,8 +42,9 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WatcherWatchTriggerSchedule(Builder builder) {
+	public WatcherWatchTriggerSchedule(Builder builder) {
 		super(builder);
+
 		this.cron = Objects.requireNonNull(builder.cron, "cron");
 		this.all = Objects.requireNonNull(builder.all, "_all");
 
@@ -63,14 +64,15 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 		return this.all;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("cron");
-		this.cron.toJsonp(generator, mapper);
+		this.cron.serialize(generator, mapper);
 
 		generator.writeKey("_all");
-		this.all.toJsonp(generator, mapper);
+		this.all.serialize(generator, mapper);
 
 	}
 
@@ -136,7 +138,7 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WatcherWatchTriggerSchedule
+	 * Json deserializer for {@link WatcherWatchTriggerSchedule}
 	 */
 	public static final JsonpDeserializer<WatcherWatchTriggerSchedule> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, WatcherWatchTriggerSchedule::setupWatcherWatchTriggerScheduleDeserializer);

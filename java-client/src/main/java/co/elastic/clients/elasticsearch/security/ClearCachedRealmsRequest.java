@@ -50,7 +50,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedRealmsRequest(Builder builder) {
+	public ClearCachedRealmsRequest(Builder builder) {
 
 		this.realms = Objects.requireNonNull(builder.realms, "realms");
 		this.usernames = builder.usernames;

@@ -47,8 +47,9 @@ public final class BytesProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BytesProcessor(Builder builder) {
+	public BytesProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
@@ -78,8 +79,9 @@ public final class BytesProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -159,7 +161,7 @@ public final class BytesProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BytesProcessor
+	 * Json deserializer for {@link BytesProcessor}
 	 */
 	public static final JsonpDeserializer<BytesProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, BytesProcessor::setupBytesProcessorDeserializer);

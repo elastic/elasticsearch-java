@@ -42,7 +42,7 @@ public final class GetWatchRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetWatchRequest(Builder builder) {
+	public GetWatchRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 

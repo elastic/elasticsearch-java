@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ilm.retry.Response
 public final class RetryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected RetryResponse(Builder builder) {
+	public RetryResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class RetryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RetryResponse
+	 * Json deserializer for {@link RetryResponse}
 	 */
 	public static final JsonpDeserializer<RetryResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RetryResponse::setupRetryResponseDeserializer);

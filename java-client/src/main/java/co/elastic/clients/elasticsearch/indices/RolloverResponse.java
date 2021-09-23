@@ -54,8 +54,9 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RolloverResponse(Builder builder) {
+	public RolloverResponse(Builder builder) {
 		super(builder);
+
 		this.conditions = Objects.requireNonNull(builder.conditions, "conditions");
 		this.dryRun = Objects.requireNonNull(builder.dryRun, "dry_run");
 		this.newIndex = Objects.requireNonNull(builder.newIndex, "new_index");
@@ -107,8 +108,9 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		return this.shardsAcknowledged;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("conditions");
 		generator.writeStartObject();
@@ -235,7 +237,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RolloverResponse
+	 * Json deserializer for {@link RolloverResponse}
 	 */
 	public static final JsonpDeserializer<RolloverResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RolloverResponse::setupRolloverResponseDeserializer);

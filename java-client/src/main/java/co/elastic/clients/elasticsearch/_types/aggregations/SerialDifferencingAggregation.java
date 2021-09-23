@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SerialDifferencingAggregation
@@ -40,8 +41,9 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SerialDifferencingAggregation(Builder builder) {
+	public SerialDifferencingAggregation(Builder builder) {
 		super(builder);
+
 		this.lag = builder.lag;
 
 	}
@@ -54,8 +56,9 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 		return this.lag;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.lag != null) {
 
 			generator.writeKey("lag");
@@ -104,7 +107,7 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SerialDifferencingAggregation
+	 * Json deserializer for {@link SerialDifferencingAggregation}
 	 */
 	public static final JsonpDeserializer<SerialDifferencingAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

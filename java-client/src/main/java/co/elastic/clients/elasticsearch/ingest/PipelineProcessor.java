@@ -40,8 +40,9 @@ public final class PipelineProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PipelineProcessor(Builder builder) {
+	public PipelineProcessor(Builder builder) {
 		super(builder);
+
 		this.name = Objects.requireNonNull(builder.name, "name");
 
 	}
@@ -53,8 +54,9 @@ public final class PipelineProcessor extends ProcessorBase {
 		return this.name;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -99,7 +101,7 @@ public final class PipelineProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PipelineProcessor
+	 * Json deserializer for {@link PipelineProcessor}
 	 */
 	public static final JsonpDeserializer<PipelineProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PipelineProcessor::setupPipelineProcessorDeserializer);

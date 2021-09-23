@@ -42,7 +42,7 @@ public final class MigrateToDataStreamRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MigrateToDataStreamRequest(Builder builder) {
+	public MigrateToDataStreamRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

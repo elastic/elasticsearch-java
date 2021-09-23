@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -42,12 +42,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateMetadata
-public final class ClusterStateMetadata implements ToJsonp {
+public final class ClusterStateMetadata implements JsonpSerializable {
 	private final String clusterUuid;
 
 	private final Boolean clusterUuidCommitted;
 
-	private final JsonValue templates;
+	private final ClusterStateMetadataTemplate templates;
 
 	@Nullable
 	private final Map<String, ClusterStateBlockIndex> indices;
@@ -63,17 +63,17 @@ public final class ClusterStateMetadata implements ToJsonp {
 	private final Map<String, String> repositories;
 
 	@Nullable
-	private final Map<String, JsonValue> componentTemplate;
+	private final Map<String, JsonData> componentTemplate;
 
 	@Nullable
-	private final Map<String, JsonValue> indexTemplate;
+	private final Map<String, JsonData> indexTemplate;
 
 	@Nullable
 	private final ClusterStateIndexLifecycle indexLifecycle;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterStateMetadata(Builder builder) {
+	public ClusterStateMetadata(Builder builder) {
 
 		this.clusterUuid = Objects.requireNonNull(builder.clusterUuid, "cluster_uuid");
 		this.clusterUuidCommitted = Objects.requireNonNull(builder.clusterUuidCommitted, "cluster_uuid_committed");
@@ -106,7 +106,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 	/**
 	 * API name: {@code templates}
 	 */
-	public JsonValue templates() {
+	public ClusterStateMetadataTemplate templates() {
 		return this.templates;
 	}
 
@@ -152,7 +152,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 	 * API name: {@code component_template}
 	 */
 	@Nullable
-	public Map<String, JsonValue> componentTemplate() {
+	public Map<String, JsonData> componentTemplate() {
 		return this.componentTemplate;
 	}
 
@@ -160,7 +160,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 	 * API name: {@code index_template}
 	 */
 	@Nullable
-	public Map<String, JsonValue> indexTemplate() {
+	public Map<String, JsonData> indexTemplate() {
 		return this.indexTemplate;
 	}
 
@@ -175,13 +175,13 @@ public final class ClusterStateMetadata implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster_uuid");
 		generator.write(this.clusterUuid);
@@ -190,7 +190,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 		generator.write(this.clusterUuidCommitted);
 
 		generator.writeKey("templates");
-		generator.write(this.templates);
+		this.templates.serialize(generator, mapper);
 
 		if (this.indices != null) {
 
@@ -198,7 +198,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, ClusterStateBlockIndex> item0 : this.indices.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -206,15 +206,15 @@ public final class ClusterStateMetadata implements ToJsonp {
 		}
 
 		generator.writeKey("index-graveyard");
-		this.indexGraveyard.toJsonp(generator, mapper);
+		this.indexGraveyard.serialize(generator, mapper);
 
 		generator.writeKey("cluster_coordination");
-		this.clusterCoordination.toJsonp(generator, mapper);
+		this.clusterCoordination.serialize(generator, mapper);
 
 		if (this.ingest != null) {
 
 			generator.writeKey("ingest");
-			this.ingest.toJsonp(generator, mapper);
+			this.ingest.serialize(generator, mapper);
 
 		}
 		if (this.repositories != null) {
@@ -233,9 +233,9 @@ public final class ClusterStateMetadata implements ToJsonp {
 
 			generator.writeKey("component_template");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.componentTemplate.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.componentTemplate.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -245,9 +245,9 @@ public final class ClusterStateMetadata implements ToJsonp {
 
 			generator.writeKey("index_template");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.indexTemplate.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.indexTemplate.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -256,7 +256,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 		if (this.indexLifecycle != null) {
 
 			generator.writeKey("index_lifecycle");
-			this.indexLifecycle.toJsonp(generator, mapper);
+			this.indexLifecycle.serialize(generator, mapper);
 
 		}
 
@@ -272,7 +272,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 
 		private Boolean clusterUuidCommitted;
 
-		private JsonValue templates;
+		private ClusterStateMetadataTemplate templates;
 
 		@Nullable
 		private Map<String, ClusterStateBlockIndex> indices;
@@ -288,10 +288,10 @@ public final class ClusterStateMetadata implements ToJsonp {
 		private Map<String, String> repositories;
 
 		@Nullable
-		private Map<String, JsonValue> componentTemplate;
+		private Map<String, JsonData> componentTemplate;
 
 		@Nullable
-		private Map<String, JsonValue> indexTemplate;
+		private Map<String, JsonData> indexTemplate;
 
 		@Nullable
 		private ClusterStateIndexLifecycle indexLifecycle;
@@ -315,9 +315,17 @@ public final class ClusterStateMetadata implements ToJsonp {
 		/**
 		 * API name: {@code templates}
 		 */
-		public Builder templates(JsonValue value) {
+		public Builder templates(ClusterStateMetadataTemplate value) {
 			this.templates = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code templates}
+		 */
+		public Builder templates(
+				Function<ClusterStateMetadataTemplate.Builder, ObjectBuilder<ClusterStateMetadataTemplate>> fn) {
+			return this.templates(fn.apply(new ClusterStateMetadataTemplate.Builder()).build());
 		}
 
 		/**
@@ -424,7 +432,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 		/**
 		 * API name: {@code component_template}
 		 */
-		public Builder componentTemplate(@Nullable Map<String, JsonValue> value) {
+		public Builder componentTemplate(@Nullable Map<String, JsonData> value) {
 			this.componentTemplate = value;
 			return this;
 		}
@@ -433,7 +441,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 		 * Add a key/value to {@link #componentTemplate(Map)}, creating the map if
 		 * needed.
 		 */
-		public Builder putComponentTemplate(String key, JsonValue value) {
+		public Builder putComponentTemplate(String key, JsonData value) {
 			if (this.componentTemplate == null) {
 				this.componentTemplate = new HashMap<>();
 			}
@@ -444,7 +452,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 		/**
 		 * API name: {@code index_template}
 		 */
-		public Builder indexTemplate(@Nullable Map<String, JsonValue> value) {
+		public Builder indexTemplate(@Nullable Map<String, JsonData> value) {
 			this.indexTemplate = value;
 			return this;
 		}
@@ -452,7 +460,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #indexTemplate(Map)}, creating the map if needed.
 		 */
-		public Builder putIndexTemplate(String key, JsonValue value) {
+		public Builder putIndexTemplate(String key, JsonData value) {
 			if (this.indexTemplate == null) {
 				this.indexTemplate = new HashMap<>();
 			}
@@ -491,7 +499,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterStateMetadata
+	 * Json deserializer for {@link ClusterStateMetadata}
 	 */
 	public static final JsonpDeserializer<ClusterStateMetadata> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterStateMetadata::setupClusterStateMetadataDeserializer);
@@ -501,7 +509,7 @@ public final class ClusterStateMetadata implements ToJsonp {
 
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(Builder::clusterUuidCommitted, JsonpDeserializer.booleanDeserializer(), "cluster_uuid_committed");
-		op.add(Builder::templates, JsonpDeserializer.jsonValueDeserializer(), "templates");
+		op.add(Builder::templates, ClusterStateMetadataTemplate.DESERIALIZER, "templates");
 		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(ClusterStateBlockIndex.DESERIALIZER),
 				"indices");
 		op.add(Builder::indexGraveyard, ClusterStateMetadataIndexGraveyard.DESERIALIZER, "index-graveyard");
@@ -510,11 +518,10 @@ public final class ClusterStateMetadata implements ToJsonp {
 		op.add(Builder::ingest, ClusterStateIngest.DESERIALIZER, "ingest");
 		op.add(Builder::repositories, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"repositories");
-		op.add(Builder::componentTemplate,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::componentTemplate, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
 				"component_template");
-		op.add(Builder::indexTemplate,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "index_template");
+		op.add(Builder::indexTemplate, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+				"index_template");
 		op.add(Builder::indexLifecycle, ClusterStateIndexLifecycle.DESERIALIZER, "index_lifecycle");
 
 	}

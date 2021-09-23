@@ -47,7 +47,7 @@ public final class DeleteTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteTransformRequest(Builder builder) {
+	public DeleteTransformRequest(Builder builder) {
 
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.force = builder.force;

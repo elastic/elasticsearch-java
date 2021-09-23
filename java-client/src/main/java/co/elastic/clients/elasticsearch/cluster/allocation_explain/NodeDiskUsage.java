@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.NodeDiskUsage
-public final class NodeDiskUsage implements ToJsonp {
+public final class NodeDiskUsage implements JsonpSerializable {
 	private final String nodeName;
 
 	private final DiskUsage leastAvailable;
@@ -46,7 +46,7 @@ public final class NodeDiskUsage implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeDiskUsage(Builder builder) {
+	public NodeDiskUsage(Builder builder) {
 
 		this.nodeName = Objects.requireNonNull(builder.nodeName, "node_name");
 		this.leastAvailable = Objects.requireNonNull(builder.leastAvailable, "least_available");
@@ -78,22 +78,22 @@ public final class NodeDiskUsage implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("node_name");
 		generator.write(this.nodeName);
 
 		generator.writeKey("least_available");
-		this.leastAvailable.toJsonp(generator, mapper);
+		this.leastAvailable.serialize(generator, mapper);
 
 		generator.writeKey("most_available");
-		this.mostAvailable.toJsonp(generator, mapper);
+		this.mostAvailable.serialize(generator, mapper);
 
 	}
 
@@ -162,7 +162,7 @@ public final class NodeDiskUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeDiskUsage
+	 * Json deserializer for {@link NodeDiskUsage}
 	 */
 	public static final JsonpDeserializer<NodeDiskUsage> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeDiskUsage::setupNodeDiskUsageDeserializer);

@@ -23,24 +23,25 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
+import co.elastic.clients.elasticsearch.watcher.ActionStatusOptions;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.PipelineSimulation
-public final class PipelineSimulation implements ToJsonp {
+public final class PipelineSimulation implements JsonpSerializable {
 	@Nullable
 	private final DocumentSimulation doc;
 
@@ -54,11 +55,11 @@ public final class PipelineSimulation implements ToJsonp {
 	private final String processorType;
 
 	@Nullable
-	private final JsonValue status;
+	private final ActionStatusOptions status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PipelineSimulation(Builder builder) {
+	public PipelineSimulation(Builder builder) {
 
 		this.doc = builder.doc;
 		this.processorResults = builder.processorResults;
@@ -104,25 +105,25 @@ public final class PipelineSimulation implements ToJsonp {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public JsonValue status() {
+	public ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.doc != null) {
 
 			generator.writeKey("doc");
-			this.doc.toJsonp(generator, mapper);
+			this.doc.serialize(generator, mapper);
 
 		}
 		if (this.processorResults != null) {
@@ -130,7 +131,7 @@ public final class PipelineSimulation implements ToJsonp {
 			generator.writeKey("processor_results");
 			generator.writeStartArray();
 			for (co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation item0 : this.processorResults) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -151,8 +152,7 @@ public final class PipelineSimulation implements ToJsonp {
 		if (this.status != null) {
 
 			generator.writeKey("status");
-			generator.write(this.status);
-
+			this.status.serialize(generator, mapper);
 		}
 
 	}
@@ -176,7 +176,7 @@ public final class PipelineSimulation implements ToJsonp {
 		private String processorType;
 
 		@Nullable
-		private JsonValue status;
+		private ActionStatusOptions status;
 
 		/**
 		 * API name: {@code doc}
@@ -258,7 +258,7 @@ public final class PipelineSimulation implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable JsonValue value) {
+		public Builder status(@Nullable ActionStatusOptions value) {
 			this.status = value;
 			return this;
 		}
@@ -278,7 +278,7 @@ public final class PipelineSimulation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PipelineSimulation
+	 * Json deserializer for {@link PipelineSimulation}
 	 */
 	public static final JsonpDeserializer<PipelineSimulation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PipelineSimulation::setupPipelineSimulationDeserializer);
@@ -292,7 +292,7 @@ public final class PipelineSimulation implements ToJsonp {
 				"processor_results");
 		op.add(Builder::tag, JsonpDeserializer.stringDeserializer(), "tag");
 		op.add(Builder::processorType, JsonpDeserializer.stringDeserializer(), "processor_type");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::status, ActionStatusOptions.DESERIALIZER, "status");
 
 	}
 

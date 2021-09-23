@@ -24,33 +24,34 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ArrayCompareCondition
-public final class ArrayCompareCondition implements ToJsonp {
+public final class ArrayCompareCondition implements Condition, JsonpSerializable {
 	private final String arrayPath;
 
 	private final String comparison;
 
 	private final String path;
 
-	private final JsonValue quantifier;
+	private final Quantifier quantifier;
 
-	private final JsonValue value;
+	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ArrayCompareCondition(Builder builder) {
+	public ArrayCompareCondition(Builder builder) {
 
 		this.arrayPath = Objects.requireNonNull(builder.arrayPath, "array_path");
 		this.comparison = Objects.requireNonNull(builder.comparison, "comparison");
@@ -58,6 +59,14 @@ public final class ArrayCompareCondition implements ToJsonp {
 		this.quantifier = Objects.requireNonNull(builder.quantifier, "quantifier");
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	/**
+	 * {@link Condition} variant type
+	 */
+	@Override
+	public String _type() {
+		return "array_compare";
 	}
 
 	/**
@@ -84,27 +93,28 @@ public final class ArrayCompareCondition implements ToJsonp {
 	/**
 	 * API name: {@code quantifier}
 	 */
-	public JsonValue quantifier() {
+	public Quantifier quantifier() {
 		return this.quantifier;
 	}
 
 	/**
 	 * API name: {@code value}
 	 */
-	public JsonValue value() {
+	public JsonData value() {
 		return this.value;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("array_path");
 		generator.write(this.arrayPath);
@@ -116,10 +126,12 @@ public final class ArrayCompareCondition implements ToJsonp {
 		generator.write(this.path);
 
 		generator.writeKey("quantifier");
-		generator.write(this.quantifier);
+		this.quantifier.serialize(generator, mapper);
 
 		generator.writeKey("value");
-		generator.write(this.value);
+		this.value.serialize(generator, mapper);
+
+		generator.writeEnd();
 
 	}
 
@@ -135,9 +147,9 @@ public final class ArrayCompareCondition implements ToJsonp {
 
 		private String path;
 
-		private JsonValue quantifier;
+		private Quantifier quantifier;
 
-		private JsonValue value;
+		private JsonData value;
 
 		/**
 		 * API name: {@code array_path}
@@ -166,7 +178,7 @@ public final class ArrayCompareCondition implements ToJsonp {
 		/**
 		 * API name: {@code quantifier}
 		 */
-		public Builder quantifier(JsonValue value) {
+		public Builder quantifier(Quantifier value) {
 			this.quantifier = value;
 			return this;
 		}
@@ -174,7 +186,7 @@ public final class ArrayCompareCondition implements ToJsonp {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(JsonValue value) {
+		public Builder value(JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -193,11 +205,9 @@ public final class ArrayCompareCondition implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for ArrayCompareCondition
-	 */
-	public static final JsonpDeserializer<ArrayCompareCondition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ArrayCompareCondition::setupArrayCompareConditionDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<ArrayCompareCondition.Builder, ArrayCompareCondition.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(ArrayCompareCondition::setupArrayCompareConditionDeserializer);
 
 	protected static void setupArrayCompareConditionDeserializer(
 			DelegatingDeserializer<ArrayCompareCondition.Builder> op) {
@@ -205,8 +215,8 @@ public final class ArrayCompareCondition implements ToJsonp {
 		op.add(Builder::arrayPath, JsonpDeserializer.stringDeserializer(), "array_path");
 		op.add(Builder::comparison, JsonpDeserializer.stringDeserializer(), "comparison");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::quantifier, JsonpDeserializer.jsonValueDeserializer(), "quantifier");
-		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
+		op.add(Builder::quantifier, Quantifier.DESERIALIZER, "quantifier");
+		op.add(Builder::value, JsonData.DESERIALIZER, "value");
 
 	}
 

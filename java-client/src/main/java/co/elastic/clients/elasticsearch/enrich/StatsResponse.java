@@ -28,9 +28,9 @@ import co.elastic.clients.elasticsearch.enrich.stats.ExecutingPolicy;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -41,14 +41,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.Response
-public final class StatsResponse implements ToJsonp {
+public final class StatsResponse implements JsonpSerializable {
 	private final List<CoordinatorStats> coordinatorStats;
 
 	private final List<ExecutingPolicy> executingPolicies;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsResponse(Builder builder) {
+	public StatsResponse(Builder builder) {
 
 		this.coordinatorStats = Objects.requireNonNull(builder.coordinatorStats, "coordinator_stats");
 		this.executingPolicies = Objects.requireNonNull(builder.executingPolicies, "executing_policies");
@@ -72,18 +72,18 @@ public final class StatsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("coordinator_stats");
 		generator.writeStartArray();
 		for (CoordinatorStats item0 : this.coordinatorStats) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -91,7 +91,7 @@ public final class StatsResponse implements ToJsonp {
 		generator.writeKey("executing_policies");
 		generator.writeStartArray();
 		for (ExecutingPolicy item0 : this.executingPolicies) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -205,7 +205,7 @@ public final class StatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StatsResponse
+	 * Json deserializer for {@link StatsResponse}
 	 */
 	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.enrich;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Configuration
-public final class Configuration implements ToJsonp {
+public final class Configuration implements JsonpSerializable {
 	@Nullable
 	private final Policy geoMatch;
 
@@ -44,7 +44,7 @@ public final class Configuration implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Configuration(Builder builder) {
+	public Configuration(Builder builder) {
 
 		this.geoMatch = builder.geoMatch;
 		this.match = Objects.requireNonNull(builder.match, "match");
@@ -69,23 +69,23 @@ public final class Configuration implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.geoMatch != null) {
 
 			generator.writeKey("geo_match");
-			this.geoMatch.toJsonp(generator, mapper);
+			this.geoMatch.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("match");
-		this.match.toJsonp(generator, mapper);
+		this.match.serialize(generator, mapper);
 
 	}
 
@@ -145,7 +145,7 @@ public final class Configuration implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Configuration
+	 * Json deserializer for {@link Configuration}
 	 */
 	public static final JsonpDeserializer<Configuration> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Configuration::setupConfigurationDeserializer);

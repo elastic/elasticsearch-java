@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: snapshot.delete_repository.Response
 public final class DeleteRepositoryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteRepositoryResponse(Builder builder) {
+	public DeleteRepositoryResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeleteRepositoryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteRepositoryResponse
+	 * Json deserializer for {@link DeleteRepositoryResponse}
 	 */
 	public static final JsonpDeserializer<DeleteRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DeleteRepositoryResponse::setupDeleteRepositoryResponseDeserializer);

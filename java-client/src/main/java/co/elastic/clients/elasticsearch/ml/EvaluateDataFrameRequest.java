@@ -26,13 +26,13 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -42,17 +42,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Request
-public final class EvaluateDataFrameRequest extends RequestBase implements ToJsonp {
-	private final DataframeEvaluationContainer evaluation;
+public final class EvaluateDataFrameRequest extends RequestBase implements JsonpSerializable {
+	private final DataframeEvaluation evaluation;
 
 	private final String index;
 
 	@Nullable
-	private final QueryContainer query;
+	private final Query query;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EvaluateDataFrameRequest(Builder builder) {
+	public EvaluateDataFrameRequest(Builder builder) {
 
 		this.evaluation = Objects.requireNonNull(builder.evaluation, "evaluation");
 		this.index = Objects.requireNonNull(builder.index, "index");
@@ -65,7 +65,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 	 * <p>
 	 * API name: {@code evaluation}
 	 */
-	public DataframeEvaluationContainer evaluation() {
+	public DataframeEvaluation evaluation() {
 		return this.evaluation;
 	}
 
@@ -84,23 +84,23 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("evaluation");
-		this.evaluation.toJsonp(generator, mapper);
+		this.evaluation.serialize(generator, mapper);
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -108,7 +108,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 		if (this.query != null) {
 
 			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
+			this.query.serialize(generator, mapper);
 
 		}
 
@@ -120,19 +120,19 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 	 * Builder for {@link EvaluateDataFrameRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<EvaluateDataFrameRequest> {
-		private DataframeEvaluationContainer evaluation;
+		private DataframeEvaluation evaluation;
 
 		private String index;
 
 		@Nullable
-		private QueryContainer query;
+		private Query query;
 
 		/**
 		 * Defines the type of evaluation you want to perform.
 		 * <p>
 		 * API name: {@code evaluation}
 		 */
-		public Builder evaluation(DataframeEvaluationContainer value) {
+		public Builder evaluation(DataframeEvaluation value) {
 			this.evaluation = value;
 			return this;
 		}
@@ -142,9 +142,8 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 		 * <p>
 		 * API name: {@code evaluation}
 		 */
-		public Builder evaluation(
-				Function<DataframeEvaluationContainer.Builder, ObjectBuilder<DataframeEvaluationContainer>> fn) {
-			return this.evaluation(fn.apply(new DataframeEvaluationContainer.Builder()).build());
+		public Builder evaluation(Function<DataframeEvaluation.Builder, ObjectBuilder<DataframeEvaluation>> fn) {
+			return this.evaluation(fn.apply(new DataframeEvaluation.Builder()).build());
 		}
 
 		/**
@@ -162,7 +161,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -172,8 +171,8 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -191,7 +190,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EvaluateDataFrameRequest
+	 * Json deserializer for {@link EvaluateDataFrameRequest}
 	 */
 	public static final JsonpDeserializer<EvaluateDataFrameRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, EvaluateDataFrameRequest::setupEvaluateDataFrameRequestDeserializer);
@@ -199,9 +198,9 @@ public final class EvaluateDataFrameRequest extends RequestBase implements ToJso
 	protected static void setupEvaluateDataFrameRequestDeserializer(
 			DelegatingDeserializer<EvaluateDataFrameRequest.Builder> op) {
 
-		op.add(Builder::evaluation, DataframeEvaluationContainer.DESERIALIZER, "evaluation");
+		op.add(Builder::evaluation, DataframeEvaluation.DESERIALIZER, "evaluation");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
 
 	}
 

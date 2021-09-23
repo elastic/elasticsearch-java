@@ -32,7 +32,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -50,14 +49,15 @@ public final class StatsResponse extends NodesResponseBase {
 
 	private final ClusterNodes nodes;
 
-	private final JsonValue status;
+	private final ClusterStatus status;
 
 	private final Number timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsResponse(Builder builder) {
+	public StatsResponse(Builder builder) {
 		super(builder);
+
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.clusterUuid = Objects.requireNonNull(builder.clusterUuid, "cluster_uuid");
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
@@ -109,7 +109,7 @@ public final class StatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public ClusterStatus status() {
 		return this.status;
 	}
 
@@ -123,8 +123,9 @@ public final class StatsResponse extends NodesResponseBase {
 		return this.timestamp;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -133,13 +134,13 @@ public final class StatsResponse extends NodesResponseBase {
 		generator.write(this.clusterUuid);
 
 		generator.writeKey("indices");
-		this.indices.toJsonp(generator, mapper);
+		this.indices.serialize(generator, mapper);
 
 		generator.writeKey("nodes");
-		this.nodes.toJsonp(generator, mapper);
+		this.nodes.serialize(generator, mapper);
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp.doubleValue());
@@ -162,7 +163,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 		private ClusterNodes nodes;
 
-		private JsonValue status;
+		private ClusterStatus status;
 
 		private Number timestamp;
 
@@ -230,7 +231,7 @@ public final class StatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(ClusterStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -266,7 +267,7 @@ public final class StatsResponse extends NodesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StatsResponse
+	 * Json deserializer for {@link StatsResponse}
 	 */
 	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
@@ -277,7 +278,7 @@ public final class StatsResponse extends NodesResponseBase {
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(Builder::indices, ClusterIndices.DESERIALIZER, "indices");
 		op.add(Builder::nodes, ClusterNodes.DESERIALIZER, "nodes");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::status, ClusterStatus.DESERIALIZER, "status");
 		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
 
 	}

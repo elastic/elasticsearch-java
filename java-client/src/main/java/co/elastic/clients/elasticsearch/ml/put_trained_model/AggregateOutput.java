@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.ml.put_trained_model;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.AggregateOutput
-public final class AggregateOutput implements ToJsonp {
+public final class AggregateOutput implements JsonpSerializable {
 	@Nullable
 	private final Weights logisticRegression;
 
@@ -50,7 +51,7 @@ public final class AggregateOutput implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AggregateOutput(Builder builder) {
+	public AggregateOutput(Builder builder) {
 
 		this.logisticRegression = builder.logisticRegression;
 		this.weightedSum = builder.weightedSum;
@@ -94,36 +95,36 @@ public final class AggregateOutput implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.logisticRegression != null) {
 
 			generator.writeKey("logistic_regression");
-			this.logisticRegression.toJsonp(generator, mapper);
+			this.logisticRegression.serialize(generator, mapper);
 
 		}
 		if (this.weightedSum != null) {
 
 			generator.writeKey("weighted_sum");
-			this.weightedSum.toJsonp(generator, mapper);
+			this.weightedSum.serialize(generator, mapper);
 
 		}
 		if (this.weightedMode != null) {
 
 			generator.writeKey("weighted_mode");
-			this.weightedMode.toJsonp(generator, mapper);
+			this.weightedMode.serialize(generator, mapper);
 
 		}
 		if (this.exponent != null) {
 
 			generator.writeKey("exponent");
-			this.exponent.toJsonp(generator, mapper);
+			this.exponent.serialize(generator, mapper);
 
 		}
 
@@ -222,7 +223,7 @@ public final class AggregateOutput implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AggregateOutput
+	 * Json deserializer for {@link AggregateOutput}
 	 */
 	public static final JsonpDeserializer<AggregateOutput> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AggregateOutput::setupAggregateOutputDeserializer);

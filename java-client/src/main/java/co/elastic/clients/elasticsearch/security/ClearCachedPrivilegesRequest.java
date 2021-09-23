@@ -42,7 +42,7 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedPrivilegesRequest(Builder builder) {
+	public ClearCachedPrivilegesRequest(Builder builder) {
 
 		this.application = Objects.requireNonNull(builder.application, "application");
 

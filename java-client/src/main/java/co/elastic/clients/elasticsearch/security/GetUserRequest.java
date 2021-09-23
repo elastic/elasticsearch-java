@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -46,7 +47,7 @@ public final class GetUserRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetUserRequest(Builder builder) {
+	public GetUserRequest(Builder builder) {
 
 		this.username = builder.username;
 

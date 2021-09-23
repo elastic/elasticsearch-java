@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Jvm
-public final class Jvm implements ToJsonp {
+public final class Jvm implements JsonpSerializable {
 	private final Map<String, NodeBufferPool> bufferPools;
 
 	private final JvmClasses classes;
@@ -60,7 +60,7 @@ public final class Jvm implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Jvm(Builder builder) {
+	public Jvm(Builder builder) {
 
 		this.bufferPools = Objects.requireNonNull(builder.bufferPools, "buffer_pools");
 		this.classes = Objects.requireNonNull(builder.classes, "classes");
@@ -132,34 +132,34 @@ public final class Jvm implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("buffer_pools");
 		generator.writeStartObject();
 		for (Map.Entry<String, NodeBufferPool> item0 : this.bufferPools.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("classes");
-		this.classes.toJsonp(generator, mapper);
+		this.classes.serialize(generator, mapper);
 
 		generator.writeKey("gc");
-		this.gc.toJsonp(generator, mapper);
+		this.gc.serialize(generator, mapper);
 
 		generator.writeKey("mem");
-		this.mem.toJsonp(generator, mapper);
+		this.mem.serialize(generator, mapper);
 
 		generator.writeKey("threads");
-		this.threads.toJsonp(generator, mapper);
+		this.threads.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp.doubleValue());
@@ -326,7 +326,7 @@ public final class Jvm implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Jvm
+	 * Json deserializer for {@link Jvm}
 	 */
 	public static final JsonpDeserializer<Jvm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Jvm::setupJvmDeserializer);

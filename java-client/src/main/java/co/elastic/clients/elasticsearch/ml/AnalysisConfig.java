@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -42,7 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisConfig
-public final class AnalysisConfig implements ToJsonp {
+public final class AnalysisConfig implements JsonpSerializable {
 	private final String bucketSpan;
 
 	@Nullable
@@ -56,6 +56,7 @@ public final class AnalysisConfig implements ToJsonp {
 
 	private final List<Detector> detectors;
 
+	@Nullable
 	private final List<String> influencers;
 
 	@Nullable
@@ -75,14 +76,14 @@ public final class AnalysisConfig implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AnalysisConfig(Builder builder) {
+	public AnalysisConfig(Builder builder) {
 
 		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
 		this.categorizationAnalyzer = builder.categorizationAnalyzer;
 		this.categorizationFieldName = builder.categorizationFieldName;
 		this.categorizationFilters = builder.categorizationFilters;
 		this.detectors = Objects.requireNonNull(builder.detectors, "detectors");
-		this.influencers = Objects.requireNonNull(builder.influencers, "influencers");
+		this.influencers = builder.influencers;
 		this.modelPruneWindow = builder.modelPruneWindow;
 		this.latency = builder.latency;
 		this.multivariateByFields = builder.multivariateByFields;
@@ -95,7 +96,10 @@ public final class AnalysisConfig implements ToJsonp {
 	 * The size of the interval that the analysis is aggregated into, typically
 	 * between 5m and 1h. If the anomaly detection job uses a datafeed with
 	 * aggregations, this value must be divisible by the interval of the date
-	 * histogram aggregation. * @server_default 5m
+	 * histogram aggregation.
+	 * <ul>
+	 * <li>@server_default 5m</li>
+	 * </ul>
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
@@ -177,6 +181,7 @@ public final class AnalysisConfig implements ToJsonp {
 	 * <p>
 	 * API name: {@code influencers}
 	 */
+	@Nullable
 	public List<String> influencers() {
 		return this.influencers;
 	}
@@ -258,13 +263,13 @@ public final class AnalysisConfig implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bucket_span");
 		generator.write(this.bucketSpan);
@@ -296,19 +301,22 @@ public final class AnalysisConfig implements ToJsonp {
 		generator.writeKey("detectors");
 		generator.writeStartArray();
 		for (Detector item0 : this.detectors) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
-		generator.writeKey("influencers");
-		generator.writeStartArray();
-		for (String item0 : this.influencers) {
-			generator.write(item0);
+		if (this.influencers != null) {
+
+			generator.writeKey("influencers");
+			generator.writeStartArray();
+			for (String item0 : this.influencers) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.modelPruneWindow != null) {
 
 			generator.writeKey("model_prune_window");
@@ -330,7 +338,7 @@ public final class AnalysisConfig implements ToJsonp {
 		if (this.perPartitionCategorization != null) {
 
 			generator.writeKey("per_partition_categorization");
-			this.perPartitionCategorization.toJsonp(generator, mapper);
+			this.perPartitionCategorization.serialize(generator, mapper);
 
 		}
 		if (this.summaryCountFieldName != null) {
@@ -361,6 +369,7 @@ public final class AnalysisConfig implements ToJsonp {
 
 		private List<Detector> detectors;
 
+		@Nullable
 		private List<String> influencers;
 
 		@Nullable
@@ -382,7 +391,10 @@ public final class AnalysisConfig implements ToJsonp {
 		 * The size of the interval that the analysis is aggregated into, typically
 		 * between 5m and 1h. If the anomaly detection job uses a datafeed with
 		 * aggregations, this value must be divisible by the interval of the date
-		 * histogram aggregation. * @server_default 5m
+		 * histogram aggregation.
+		 * <ul>
+		 * <li>@server_default 5m</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
@@ -538,7 +550,7 @@ public final class AnalysisConfig implements ToJsonp {
 		 * <p>
 		 * API name: {@code influencers}
 		 */
-		public Builder influencers(List<String> value) {
+		public Builder influencers(@Nullable List<String> value) {
 			this.influencers = value;
 			return this;
 		}
@@ -668,7 +680,7 @@ public final class AnalysisConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AnalysisConfig
+	 * Json deserializer for {@link AnalysisConfig}
 	 */
 	public static final JsonpDeserializer<AnalysisConfig> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AnalysisConfig::setupAnalysisConfigDeserializer);

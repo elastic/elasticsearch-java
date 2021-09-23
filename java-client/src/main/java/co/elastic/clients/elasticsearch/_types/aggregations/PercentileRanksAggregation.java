@@ -35,6 +35,7 @@ import java.lang.Number;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -54,8 +55,9 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PercentileRanksAggregation(Builder builder) {
+	public PercentileRanksAggregation(Builder builder) {
 		super(builder);
+
 		this.keyed = builder.keyed;
 		this.values = builder.values;
 		this.hdr = builder.hdr;
@@ -95,8 +97,9 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		return this.tdigest;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.keyed != null) {
 
 			generator.writeKey("keyed");
@@ -117,13 +120,13 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		if (this.hdr != null) {
 
 			generator.writeKey("hdr");
-			this.hdr.toJsonp(generator, mapper);
+			this.hdr.serialize(generator, mapper);
 
 		}
 		if (this.tdigest != null) {
 
 			generator.writeKey("tdigest");
-			this.tdigest.toJsonp(generator, mapper);
+			this.tdigest.serialize(generator, mapper);
 
 		}
 
@@ -234,7 +237,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PercentileRanksAggregation
+	 * Json deserializer for {@link PercentileRanksAggregation}
 	 */
 	public static final JsonpDeserializer<PercentileRanksAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PercentileRanksAggregation::setupPercentileRanksAggregationDeserializer);

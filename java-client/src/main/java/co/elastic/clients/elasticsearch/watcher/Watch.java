@@ -23,15 +23,15 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.elasticsearch._types.TransformContainer;
+import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -43,15 +43,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Watch
-public final class Watch implements ToJsonp {
+public final class Watch implements JsonpSerializable {
 	private final Map<String, Action> actions;
 
-	private final ConditionContainer condition;
+	private final Condition condition;
 
-	private final InputContainer input;
+	private final Input input;
 
 	@Nullable
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final WatchStatus status;
@@ -60,16 +60,16 @@ public final class Watch implements ToJsonp {
 	private final String throttlePeriod;
 
 	@Nullable
-	private final TransformContainer transform;
+	private final Transform transform;
 
-	private final TriggerContainer trigger;
+	private final Trigger trigger;
 
 	@Nullable
 	private final Number throttlePeriodInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Watch(Builder builder) {
+	public Watch(Builder builder) {
 
 		this.actions = Objects.requireNonNull(builder.actions, "actions");
 		this.condition = Objects.requireNonNull(builder.condition, "condition");
@@ -93,14 +93,14 @@ public final class Watch implements ToJsonp {
 	/**
 	 * API name: {@code condition}
 	 */
-	public ConditionContainer condition() {
+	public Condition condition() {
 		return this.condition;
 	}
 
 	/**
 	 * API name: {@code input}
 	 */
-	public InputContainer input() {
+	public Input input() {
 		return this.input;
 	}
 
@@ -108,7 +108,7 @@ public final class Watch implements ToJsonp {
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -132,14 +132,14 @@ public final class Watch implements ToJsonp {
 	 * API name: {@code transform}
 	 */
 	@Nullable
-	public TransformContainer transform() {
+	public Transform transform() {
 		return this.transform;
 	}
 
 	/**
 	 * API name: {@code trigger}
 	 */
-	public TriggerContainer trigger() {
+	public Trigger trigger() {
 		return this.trigger;
 	}
 
@@ -154,36 +154,36 @@ public final class Watch implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actions");
 		generator.writeStartObject();
 		for (Map.Entry<String, Action> item0 : this.actions.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("condition");
-		this.condition.toJsonp(generator, mapper);
+		this.condition.serialize(generator, mapper);
 
 		generator.writeKey("input");
-		this.input.toJsonp(generator, mapper);
+		this.input.serialize(generator, mapper);
 
 		if (this.metadata != null) {
 
 			generator.writeKey("metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -192,7 +192,7 @@ public final class Watch implements ToJsonp {
 		if (this.status != null) {
 
 			generator.writeKey("status");
-			this.status.toJsonp(generator, mapper);
+			this.status.serialize(generator, mapper);
 
 		}
 		if (this.throttlePeriod != null) {
@@ -204,12 +204,12 @@ public final class Watch implements ToJsonp {
 		if (this.transform != null) {
 
 			generator.writeKey("transform");
-			this.transform.toJsonp(generator, mapper);
+			this.transform.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("trigger");
-		this.trigger.toJsonp(generator, mapper);
+		this.trigger.serialize(generator, mapper);
 
 		if (this.throttlePeriodInMillis != null) {
 
@@ -228,12 +228,12 @@ public final class Watch implements ToJsonp {
 	public static class Builder implements ObjectBuilder<Watch> {
 		private Map<String, Action> actions;
 
-		private ConditionContainer condition;
+		private Condition condition;
 
-		private InputContainer input;
+		private Input input;
 
 		@Nullable
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private WatchStatus status;
@@ -242,9 +242,9 @@ public final class Watch implements ToJsonp {
 		private String throttlePeriod;
 
 		@Nullable
-		private TransformContainer transform;
+		private Transform transform;
 
-		private TriggerContainer trigger;
+		private Trigger trigger;
 
 		@Nullable
 		private Number throttlePeriodInMillis;
@@ -285,7 +285,7 @@ public final class Watch implements ToJsonp {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(ConditionContainer value) {
+		public Builder condition(Condition value) {
 			this.condition = value;
 			return this;
 		}
@@ -293,14 +293,14 @@ public final class Watch implements ToJsonp {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(Function<ConditionContainer.Builder, ObjectBuilder<ConditionContainer>> fn) {
-			return this.condition(fn.apply(new ConditionContainer.Builder()).build());
+		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code input}
 		 */
-		public Builder input(InputContainer value) {
+		public Builder input(Input value) {
 			this.input = value;
 			return this;
 		}
@@ -308,14 +308,14 @@ public final class Watch implements ToJsonp {
 		/**
 		 * API name: {@code input}
 		 */
-		public Builder input(Function<InputContainer.Builder, ObjectBuilder<InputContainer>> fn) {
-			return this.input(fn.apply(new InputContainer.Builder()).build());
+		public Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return this.input(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonValue> value) {
+		public Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -323,7 +323,7 @@ public final class Watch implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -357,7 +357,7 @@ public final class Watch implements ToJsonp {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(@Nullable TransformContainer value) {
+		public Builder transform(@Nullable Transform value) {
 			this.transform = value;
 			return this;
 		}
@@ -365,14 +365,14 @@ public final class Watch implements ToJsonp {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(Function<TransformContainer.Builder, ObjectBuilder<TransformContainer>> fn) {
-			return this.transform(fn.apply(new TransformContainer.Builder()).build());
+		public Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+			return this.transform(fn.apply(new Transform.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code trigger}
 		 */
-		public Builder trigger(TriggerContainer value) {
+		public Builder trigger(Trigger value) {
 			this.trigger = value;
 			return this;
 		}
@@ -380,8 +380,8 @@ public final class Watch implements ToJsonp {
 		/**
 		 * API name: {@code trigger}
 		 */
-		public Builder trigger(Function<TriggerContainer.Builder, ObjectBuilder<TriggerContainer>> fn) {
-			return this.trigger(fn.apply(new TriggerContainer.Builder()).build());
+		public Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
+			return this.trigger(fn.apply(new Trigger.Builder()).build());
 		}
 
 		/**
@@ -407,7 +407,7 @@ public final class Watch implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Watch
+	 * Json deserializer for {@link Watch}
 	 */
 	public static final JsonpDeserializer<Watch> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Watch::setupWatchDeserializer);
@@ -415,14 +415,13 @@ public final class Watch implements ToJsonp {
 	protected static void setupWatchDeserializer(DelegatingDeserializer<Watch.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action.DESERIALIZER), "actions");
-		op.add(Builder::condition, ConditionContainer.DESERIALIZER, "condition");
-		op.add(Builder::input, InputContainer.DESERIALIZER, "input");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::condition, Condition.DESERIALIZER, "condition");
+		op.add(Builder::input, Input.DESERIALIZER, "input");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
 		op.add(Builder::status, WatchStatus.DESERIALIZER, "status");
 		op.add(Builder::throttlePeriod, JsonpDeserializer.stringDeserializer(), "throttle_period");
-		op.add(Builder::transform, TransformContainer.DESERIALIZER, "transform");
-		op.add(Builder::trigger, TriggerContainer.DESERIALIZER, "trigger");
+		op.add(Builder::transform, Transform.DESERIALIZER, "transform");
+		op.add(Builder::trigger, Trigger.DESERIALIZER, "trigger");
 		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.numberDeserializer(), "throttle_period_in_millis");
 
 	}

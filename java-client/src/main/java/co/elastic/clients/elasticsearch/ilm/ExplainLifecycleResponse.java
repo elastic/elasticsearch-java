@@ -26,22 +26,24 @@ package co.elastic.clients.elasticsearch.ilm;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.Response
-public final class ExplainLifecycleResponse implements ToJsonp {
-	private final JsonValue indices;
+public final class ExplainLifecycleResponse implements JsonpSerializable {
+	private final Map<String, JsonValue> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExplainLifecycleResponse(Builder builder) {
+	public ExplainLifecycleResponse(Builder builder) {
 
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
 
@@ -50,23 +52,29 @@ public final class ExplainLifecycleResponse implements ToJsonp {
 	/**
 	 * API name: {@code indices}
 	 */
-	public JsonValue indices() {
+	public Map<String, JsonValue> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("indices");
-		generator.write(this.indices);
+		generator.writeStartObject();
+		for (Map.Entry<String, JsonValue> item0 : this.indices.entrySet()) {
+			generator.writeKey(item0.getKey());
+			generator.write(item0.getValue());
+
+		}
+		generator.writeEnd();
 
 	}
 
@@ -76,13 +84,24 @@ public final class ExplainLifecycleResponse implements ToJsonp {
 	 * Builder for {@link ExplainLifecycleResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<ExplainLifecycleResponse> {
-		private JsonValue indices;
+		private Map<String, JsonValue> indices;
 
 		/**
 		 * API name: {@code indices}
 		 */
-		public Builder indices(JsonValue value) {
+		public Builder indices(Map<String, JsonValue> value) {
 			this.indices = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
+		 */
+		public Builder putIndices(String key, JsonValue value) {
+			if (this.indices == null) {
+				this.indices = new HashMap<>();
+			}
+			this.indices.put(key, value);
 			return this;
 		}
 
@@ -101,7 +120,7 @@ public final class ExplainLifecycleResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExplainLifecycleResponse
+	 * Json deserializer for {@link ExplainLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<ExplainLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExplainLifecycleResponse::setupExplainLifecycleResponseDeserializer);
@@ -109,7 +128,8 @@ public final class ExplainLifecycleResponse implements ToJsonp {
 	protected static void setupExplainLifecycleResponseDeserializer(
 			DelegatingDeserializer<ExplainLifecycleResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpDeserializer.jsonValueDeserializer(), "indices");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"indices");
 
 	}
 

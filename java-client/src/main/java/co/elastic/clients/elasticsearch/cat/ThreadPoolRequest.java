@@ -37,6 +37,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -50,7 +51,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ThreadPoolRequest(Builder builder) {
+	public ThreadPoolRequest(Builder builder) {
 
 		this.threadPoolPatterns = builder.threadPoolPatterns;
 		this.size = builder.size;

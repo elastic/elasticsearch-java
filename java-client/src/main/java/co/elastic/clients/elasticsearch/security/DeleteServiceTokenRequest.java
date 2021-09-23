@@ -51,7 +51,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteServiceTokenRequest(Builder builder) {
+	public DeleteServiceTokenRequest(Builder builder) {
 
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");

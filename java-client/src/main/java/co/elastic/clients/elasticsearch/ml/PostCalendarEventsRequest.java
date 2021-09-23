@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -44,14 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_calendar_events.Request
-public final class PostCalendarEventsRequest extends RequestBase implements ToJsonp {
+public final class PostCalendarEventsRequest extends RequestBase implements JsonpSerializable {
 	private final String calendarId;
 
 	private final List<CalendarEvent> events;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostCalendarEventsRequest(Builder builder) {
+	public PostCalendarEventsRequest(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.events = Objects.requireNonNull(builder.events, "events");
@@ -81,18 +81,18 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("events");
 		generator.writeStartArray();
 		for (CalendarEvent item0 : this.events) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -183,7 +183,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PostCalendarEventsRequest
+	 * Json deserializer for {@link PostCalendarEventsRequest}
 	 */
 	public static final JsonpDeserializer<PostCalendarEventsRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PostCalendarEventsRequest::setupPostCalendarEventsRequestDeserializer);

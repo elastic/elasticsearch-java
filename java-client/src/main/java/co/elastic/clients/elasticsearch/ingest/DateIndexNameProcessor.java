@@ -56,8 +56,9 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DateIndexNameProcessor(Builder builder) {
+	public DateIndexNameProcessor(Builder builder) {
 		super(builder);
+
 		this.dateFormats = Objects.requireNonNull(builder.dateFormats, "date_formats");
 		this.dateRounding = Objects.requireNonNull(builder.dateRounding, "date_rounding");
 		this.field = Objects.requireNonNull(builder.field, "field");
@@ -117,8 +118,9 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 		return this.timezone;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("date_formats");
 		generator.writeStartArray();
@@ -265,7 +267,7 @@ public final class DateIndexNameProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DateIndexNameProcessor
+	 * Json deserializer for {@link DateIndexNameProcessor}
 	 */
 	public static final JsonpDeserializer<DateIndexNameProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DateIndexNameProcessor::setupDateIndexNameProcessorDeserializer);

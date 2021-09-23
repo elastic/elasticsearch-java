@@ -35,6 +35,7 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Request
@@ -50,7 +51,7 @@ public final class GetFiltersRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetFiltersRequest(Builder builder) {
+	public GetFiltersRequest(Builder builder) {
 
 		this.filterId = builder.filterId;
 		this.from = builder.from;

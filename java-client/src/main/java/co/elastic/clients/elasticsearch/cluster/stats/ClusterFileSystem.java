@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterFileSystem
-public final class ClusterFileSystem implements ToJsonp {
+public final class ClusterFileSystem implements JsonpSerializable {
 	private final Number availableInBytes;
 
 	private final Number freeInBytes;
@@ -45,7 +45,7 @@ public final class ClusterFileSystem implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterFileSystem(Builder builder) {
+	public ClusterFileSystem(Builder builder) {
 
 		this.availableInBytes = Objects.requireNonNull(builder.availableInBytes, "available_in_bytes");
 		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
@@ -77,13 +77,13 @@ public final class ClusterFileSystem implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("available_in_bytes");
 		generator.write(this.availableInBytes.doubleValue());
@@ -147,7 +147,7 @@ public final class ClusterFileSystem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterFileSystem
+	 * Json deserializer for {@link ClusterFileSystem}
 	 */
 	public static final JsonpDeserializer<ClusterFileSystem> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterFileSystem::setupClusterFileSystemDeserializer);

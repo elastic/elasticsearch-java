@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.get_pipeline.Request
@@ -51,7 +52,7 @@ public final class GetPipelineRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetPipelineRequest(Builder builder) {
+	public GetPipelineRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.masterTimeout = builder.masterTimeout;

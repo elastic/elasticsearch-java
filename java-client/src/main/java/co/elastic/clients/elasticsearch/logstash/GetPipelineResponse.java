@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.logstash;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -39,12 +39,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash.get_pipeline.Response
-public final class GetPipelineResponse implements ToJsonp {
+public final class GetPipelineResponse implements JsonpSerializable {
 	private final Map<String, Pipeline> value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetPipelineResponse(Builder builder) {
+	public GetPipelineResponse(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -62,11 +62,11 @@ public final class GetPipelineResponse implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
 		for (Map.Entry<String, Pipeline> item0 : this.value.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -131,7 +131,7 @@ public final class GetPipelineResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetPipelineResponse
+	 * Json deserializer for {@link GetPipelineResponse}
 	 */
 	public static final JsonpDeserializer<GetPipelineResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer);

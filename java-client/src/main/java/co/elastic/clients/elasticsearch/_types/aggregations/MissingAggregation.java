@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MissingAggregation
@@ -44,8 +45,9 @@ public final class MissingAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MissingAggregation(Builder builder) {
+	public MissingAggregation(Builder builder) {
 		super(builder);
+
 		this.field = builder.field;
 		this.missing = builder.missing;
 
@@ -67,8 +69,9 @@ public final class MissingAggregation extends BucketAggregationBase {
 		return this.missing;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
 
 			generator.writeKey("field");
@@ -134,7 +137,7 @@ public final class MissingAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MissingAggregation
+	 * Json deserializer for {@link MissingAggregation}
 	 */
 	public static final JsonpDeserializer<MissingAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MissingAggregation::setupMissingAggregationDeserializer);

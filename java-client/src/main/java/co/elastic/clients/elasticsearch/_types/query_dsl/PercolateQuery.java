@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -40,12 +41,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PercolateQuery
-public final class PercolateQuery extends QueryBase {
+public final class PercolateQuery extends QueryBase implements Query {
 	@Nullable
-	private final JsonValue document;
+	private final JsonData document;
 
 	@Nullable
-	private final List<JsonValue> documents;
+	private final List<JsonData> documents;
 
 	private final String field;
 
@@ -69,8 +70,9 @@ public final class PercolateQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PercolateQuery(Builder builder) {
+	public PercolateQuery(Builder builder) {
 		super(builder);
+
 		this.document = builder.document;
 		this.documents = builder.documents;
 		this.field = Objects.requireNonNull(builder.field, "field");
@@ -84,10 +86,18 @@ public final class PercolateQuery extends QueryBase {
 	}
 
 	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "percolate";
+	}
+
+	/**
 	 * API name: {@code document}
 	 */
 	@Nullable
-	public JsonValue document() {
+	public JsonData document() {
 		return this.document;
 	}
 
@@ -95,7 +105,7 @@ public final class PercolateQuery extends QueryBase {
 	 * API name: {@code documents}
 	 */
 	@Nullable
-	public List<JsonValue> documents() {
+	public List<JsonData> documents() {
 		return this.documents;
 	}
 
@@ -154,20 +164,22 @@ public final class PercolateQuery extends QueryBase {
 		return this.version;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.document != null) {
 
 			generator.writeKey("document");
-			generator.write(this.document);
+			this.document.serialize(generator, mapper);
 
 		}
 		if (this.documents != null) {
 
 			generator.writeKey("documents");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.documents) {
-				generator.write(item0);
+			for (JsonData item0 : this.documents) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -214,6 +226,8 @@ public final class PercolateQuery extends QueryBase {
 
 		}
 
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -223,10 +237,10 @@ public final class PercolateQuery extends QueryBase {
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<PercolateQuery> {
 		@Nullable
-		private JsonValue document;
+		private JsonData document;
 
 		@Nullable
-		private List<JsonValue> documents;
+		private List<JsonData> documents;
 
 		private String field;
 
@@ -251,7 +265,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code document}
 		 */
-		public Builder document(@Nullable JsonValue value) {
+		public Builder document(@Nullable JsonData value) {
 			this.document = value;
 			return this;
 		}
@@ -259,7 +273,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code documents}
 		 */
-		public Builder documents(@Nullable List<JsonValue> value) {
+		public Builder documents(@Nullable List<JsonData> value) {
 			this.documents = value;
 			return this;
 		}
@@ -267,7 +281,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code documents}
 		 */
-		public Builder documents(JsonValue... value) {
+		public Builder documents(JsonData... value) {
 			this.documents = Arrays.asList(value);
 			return this;
 		}
@@ -275,7 +289,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * Add a value to {@link #documents(List)}, creating the list if needed.
 		 */
-		public Builder addDocuments(JsonValue value) {
+		public Builder addDocuments(JsonData value) {
 			if (this.documents == null) {
 				this.documents = new ArrayList<>();
 			}
@@ -358,17 +372,14 @@ public final class PercolateQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for PercolateQuery
-	 */
-	public static final JsonpDeserializer<PercolateQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PercolateQuery::setupPercolateQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<PercolateQuery.Builder, PercolateQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(PercolateQuery::setupPercolateQueryDeserializer);
 
 	protected static void setupPercolateQueryDeserializer(DelegatingDeserializer<PercolateQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::document, JsonpDeserializer.jsonValueDeserializer(), "document");
-		op.add(Builder::documents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"documents");
+		op.add(Builder::document, JsonData.DESERIALIZER, "document");
+		op.add(Builder::documents, JsonpDeserializer.arrayDeserializer(JsonData.DESERIALIZER), "documents");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");

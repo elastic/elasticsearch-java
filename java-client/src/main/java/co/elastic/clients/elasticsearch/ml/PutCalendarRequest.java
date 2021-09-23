@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Request
-public final class PutCalendarRequest extends RequestBase implements ToJsonp {
+public final class PutCalendarRequest extends RequestBase implements JsonpSerializable {
 	private final String calendarId;
 
 	@Nullable
@@ -48,7 +48,7 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutCalendarRequest(Builder builder) {
+	public PutCalendarRequest(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.description = builder.description;
@@ -75,13 +75,13 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -136,7 +136,7 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutCalendarRequest
+	 * Json deserializer for {@link PutCalendarRequest}
 	 */
 	public static final JsonpDeserializer<PutCalendarRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutCalendarRequest::setupPutCalendarRequestDeserializer);

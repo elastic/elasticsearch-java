@@ -39,6 +39,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -55,7 +56,7 @@ public final class GetRepositoryRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRepositoryRequest(Builder builder) {
+	public GetRepositoryRequest(Builder builder) {
 
 		this.repository = builder.repository;
 		this.local = builder.local;

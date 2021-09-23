@@ -44,7 +44,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetServiceCredentialsRequest(Builder builder) {
+	public GetServiceCredentialsRequest(Builder builder) {
 
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");

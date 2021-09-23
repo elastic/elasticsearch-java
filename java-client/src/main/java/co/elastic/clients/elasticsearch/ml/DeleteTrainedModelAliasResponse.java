@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ml.delete_trained_model_alias.Response
 public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteTrainedModelAliasResponse(Builder builder) {
+	public DeleteTrainedModelAliasResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseB
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteTrainedModelAliasResponse
+	 * Json deserializer for {@link DeleteTrainedModelAliasResponse}
 	 */
 	public static final JsonpDeserializer<DeleteTrainedModelAliasResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

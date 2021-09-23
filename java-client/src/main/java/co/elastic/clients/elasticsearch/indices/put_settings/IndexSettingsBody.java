@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -41,8 +42,9 @@ public final class IndexSettingsBody extends IndexSettings {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexSettingsBody(Builder builder) {
+	public IndexSettingsBody(Builder builder) {
 		super(builder);
+
 		this.settings = builder.settings;
 
 	}
@@ -55,12 +57,13 @@ public final class IndexSettingsBody extends IndexSettings {
 		return this.settings;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.settings != null) {
 
 			generator.writeKey("settings");
-			this.settings.toJsonp(generator, mapper);
+			this.settings.serialize(generator, mapper);
 
 		}
 
@@ -112,7 +115,7 @@ public final class IndexSettingsBody extends IndexSettings {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexSettingsBody
+	 * Json deserializer for {@link IndexSettingsBody}
 	 */
 	public static final JsonpDeserializer<IndexSettingsBody> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexSettingsBody::setupIndexSettingsBodyDeserializer);

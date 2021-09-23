@@ -42,8 +42,9 @@ public final class Ccr extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Ccr(Builder builder) {
+	public Ccr(Builder builder) {
 		super(builder);
+
 		this.autoFollowPatternsCount = Objects.requireNonNull(builder.autoFollowPatternsCount,
 				"auto_follow_patterns_count");
 		this.followerIndicesCount = Objects.requireNonNull(builder.followerIndicesCount, "follower_indices_count");
@@ -64,8 +65,9 @@ public final class Ccr extends Base {
 		return this.followerIndicesCount;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("auto_follow_patterns_count");
 		generator.write(this.autoFollowPatternsCount.doubleValue());
@@ -121,7 +123,7 @@ public final class Ccr extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Ccr
+	 * Json deserializer for {@link Ccr}
 	 */
 	public static final JsonpDeserializer<Ccr> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Ccr::setupCcrDeserializer);

@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.snapshot.get.SnapshotResponseItem;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.Response
-public final class GetResponse implements ToJsonp {
+public final class GetResponse implements JsonpSerializable {
 	@Nullable
 	private final List<SnapshotResponseItem> responses;
 
@@ -54,7 +54,7 @@ public final class GetResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetResponse(Builder builder) {
+	public GetResponse(Builder builder) {
 
 		this.responses = builder.responses;
 		this.snapshots = builder.snapshots;
@@ -102,20 +102,20 @@ public final class GetResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.responses != null) {
 
 			generator.writeKey("responses");
 			generator.writeStartArray();
 			for (SnapshotResponseItem item0 : this.responses) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -126,7 +126,7 @@ public final class GetResponse implements ToJsonp {
 			generator.writeKey("snapshots");
 			generator.writeStartArray();
 			for (SnapshotInfo item0 : this.snapshots) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -276,7 +276,7 @@ public final class GetResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetResponse
+	 * Json deserializer for {@link GetResponse}
 	 */
 	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);

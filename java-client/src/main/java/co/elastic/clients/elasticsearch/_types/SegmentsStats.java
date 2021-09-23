@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.indices.stats.ShardFileSizeInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -42,7 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SegmentsStats
-public final class SegmentsStats implements ToJsonp {
+public final class SegmentsStats implements JsonpSerializable {
 	private final Number count;
 
 	@Nullable
@@ -104,7 +104,7 @@ public final class SegmentsStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SegmentsStats(Builder builder) {
+	public SegmentsStats(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.docValuesMemory = builder.docValuesMemory;
@@ -322,13 +322,13 @@ public final class SegmentsStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
@@ -347,7 +347,7 @@ public final class SegmentsStats implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, ShardFileSizeInfo> item0 : this.fileSizes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -750,7 +750,7 @@ public final class SegmentsStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SegmentsStats
+	 * Json deserializer for {@link SegmentsStats}
 	 */
 	public static final JsonpDeserializer<SegmentsStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SegmentsStats::setupSegmentsStatsDeserializer);

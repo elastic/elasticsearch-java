@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.Request
@@ -42,7 +43,7 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetAutoFollowPatternRequest(Builder builder) {
+	public GetAutoFollowPatternRequest(Builder builder) {
 
 		this.name = builder.name;
 

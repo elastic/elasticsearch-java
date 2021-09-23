@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Response
-public final class PreviewDatafeedResponse<TDocument> implements ToJsonp {
+public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	private final List<TDocument> data;
 
 	@Nullable
@@ -49,7 +49,7 @@ public final class PreviewDatafeedResponse<TDocument> implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PreviewDatafeedResponse(Builder<TDocument> builder) {
+	public PreviewDatafeedResponse(Builder<TDocument> builder) {
 
 		this.data = Objects.requireNonNull(builder.data, "data");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -66,13 +66,13 @@ public final class PreviewDatafeedResponse<TDocument> implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("data");
 		generator.writeStartArray();

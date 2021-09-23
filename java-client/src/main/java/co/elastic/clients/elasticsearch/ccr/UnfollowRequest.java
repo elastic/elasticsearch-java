@@ -42,7 +42,7 @@ public final class UnfollowRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UnfollowRequest(Builder builder) {
+	public UnfollowRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 

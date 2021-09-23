@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ilm.delete_lifecycle.Response
 public final class DeleteLifecycleResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteLifecycleResponse(Builder builder) {
+	public DeleteLifecycleResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeleteLifecycleResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteLifecycleResponse
+	 * Json deserializer for {@link DeleteLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<DeleteLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DeleteLifecycleResponse::setupDeleteLifecycleResponseDeserializer);

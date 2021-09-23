@@ -33,12 +33,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
+import java.util.Objects;
 
 // typedef: security.delete_privileges.Response
 public final class DeletePrivilegesResponse extends AdditionalProperties<String, Map<String, FoundStatus>> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeletePrivilegesResponse(Builder builder) {
+	public DeletePrivilegesResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -73,7 +74,7 @@ public final class DeletePrivilegesResponse extends AdditionalProperties<String,
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeletePrivilegesResponse
+	 * Json deserializer for {@link DeletePrivilegesResponse}
 	 */
 	public static final JsonpDeserializer<DeletePrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DeletePrivilegesResponse::setupDeletePrivilegesResponseDeserializer);

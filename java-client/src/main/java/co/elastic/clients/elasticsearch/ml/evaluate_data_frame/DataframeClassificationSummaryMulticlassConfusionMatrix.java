@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryMulticlassConfusionMatrix
-public final class DataframeClassificationSummaryMulticlassConfusionMatrix implements ToJsonp {
+public final class DataframeClassificationSummaryMulticlassConfusionMatrix implements JsonpSerializable {
 	private final List<ConfusionMatrixItem> confusionMatrix;
 
 	private final Number otherActualClassCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeClassificationSummaryMulticlassConfusionMatrix(Builder builder) {
+	public DataframeClassificationSummaryMulticlassConfusionMatrix(Builder builder) {
 
 		this.confusionMatrix = Objects.requireNonNull(builder.confusionMatrix, "confusion_matrix");
 		this.otherActualClassCount = Objects.requireNonNull(builder.otherActualClassCount, "other_actual_class_count");
@@ -71,18 +71,18 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("confusion_matrix");
 		generator.writeStartArray();
 		for (ConfusionMatrixItem item0 : this.confusionMatrix) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -167,7 +167,8 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeClassificationSummaryMulticlassConfusionMatrix
+	 * Json deserializer for
+	 * {@link DataframeClassificationSummaryMulticlassConfusionMatrix}
 	 */
 	public static final JsonpDeserializer<DataframeClassificationSummaryMulticlassConfusionMatrix> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

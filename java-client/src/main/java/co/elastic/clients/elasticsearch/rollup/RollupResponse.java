@@ -24,24 +24,24 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Response
-public final class RollupResponse implements ToJsonp {
-	private final JsonValue value;
+public final class RollupResponse implements JsonpSerializable {
+	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupResponse(Builder builder) {
+	public RollupResponse(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -52,15 +52,15 @@ public final class RollupResponse implements ToJsonp {
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public JsonValue value() {
+	public JsonData value() {
 		return this.value;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.write(this.value);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -70,14 +70,14 @@ public final class RollupResponse implements ToJsonp {
 	 * Builder for {@link RollupResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<RollupResponse> {
-		private JsonValue value;
+		private JsonData value;
 
 		/**
 		 * Response value.
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(JsonValue value) {
+		public Builder value(JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -97,14 +97,14 @@ public final class RollupResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RollupResponse
+	 * Json deserializer for {@link RollupResponse}
 	 */
 	public static final JsonpDeserializer<RollupResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RollupResponse::setupRollupResponseDeserializer);
 
 	protected static void setupRollupResponseDeserializer(DelegatingDeserializer<RollupResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
+		op.add(Builder::value, JsonData.DESERIALIZER, "value");
 
 	}
 

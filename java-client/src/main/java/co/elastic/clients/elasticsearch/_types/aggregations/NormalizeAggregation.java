@@ -29,19 +29,20 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NormalizeAggregation
 public final class NormalizeAggregation extends PipelineAggregationBase {
 	@Nullable
-	private final JsonValue method;
+	private final NormalizeMethod method;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NormalizeAggregation(Builder builder) {
+	public NormalizeAggregation(Builder builder) {
 		super(builder);
+
 		this.method = builder.method;
 
 	}
@@ -50,17 +51,17 @@ public final class NormalizeAggregation extends PipelineAggregationBase {
 	 * API name: {@code method}
 	 */
 	@Nullable
-	public JsonValue method() {
+	public NormalizeMethod method() {
 		return this.method;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.method != null) {
 
 			generator.writeKey("method");
-			generator.write(this.method);
-
+			this.method.serialize(generator, mapper);
 		}
 
 	}
@@ -74,12 +75,12 @@ public final class NormalizeAggregation extends PipelineAggregationBase {
 			implements
 				ObjectBuilder<NormalizeAggregation> {
 		@Nullable
-		private JsonValue method;
+		private NormalizeMethod method;
 
 		/**
 		 * API name: {@code method}
 		 */
-		public Builder method(@Nullable JsonValue value) {
+		public Builder method(@Nullable NormalizeMethod value) {
 			this.method = value;
 			return this;
 		}
@@ -104,7 +105,7 @@ public final class NormalizeAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NormalizeAggregation
+	 * Json deserializer for {@link NormalizeAggregation}
 	 */
 	public static final JsonpDeserializer<NormalizeAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NormalizeAggregation::setupNormalizeAggregationDeserializer);
@@ -112,7 +113,7 @@ public final class NormalizeAggregation extends PipelineAggregationBase {
 	protected static void setupNormalizeAggregationDeserializer(
 			DelegatingDeserializer<NormalizeAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::method, JsonpDeserializer.jsonValueDeserializer(), "method");
+		op.add(Builder::method, NormalizeMethod.DESERIALIZER, "method");
 
 	}
 

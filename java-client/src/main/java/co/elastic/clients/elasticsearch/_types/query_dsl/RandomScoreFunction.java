@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RandomScoreFunction
@@ -44,8 +45,9 @@ public final class RandomScoreFunction extends ScoreFunctionBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RandomScoreFunction(Builder builder) {
+	public RandomScoreFunction(Builder builder) {
 		super(builder);
+
 		this.field = builder.field;
 		this.seed = builder.seed;
 
@@ -67,8 +69,9 @@ public final class RandomScoreFunction extends ScoreFunctionBase {
 		return this.seed;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
 
 			generator.writeKey("field");
@@ -134,7 +137,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RandomScoreFunction
+	 * Json deserializer for {@link RandomScoreFunction}
 	 */
 	public static final JsonpDeserializer<RandomScoreFunction> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RandomScoreFunction::setupRandomScoreFunctionDeserializer);

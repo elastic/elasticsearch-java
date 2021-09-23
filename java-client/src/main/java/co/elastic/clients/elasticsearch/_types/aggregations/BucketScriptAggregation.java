@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketScriptAggregation
@@ -40,8 +41,9 @@ public final class BucketScriptAggregation extends PipelineAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BucketScriptAggregation(Builder builder) {
+	public BucketScriptAggregation(Builder builder) {
 		super(builder);
+
 		this.script = builder.script;
 
 	}
@@ -54,8 +56,9 @@ public final class BucketScriptAggregation extends PipelineAggregationBase {
 		return this.script;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.script != null) {
 
 			generator.writeKey("script");
@@ -104,7 +107,7 @@ public final class BucketScriptAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BucketScriptAggregation
+	 * Json deserializer for {@link BucketScriptAggregation}
 	 */
 	public static final JsonpDeserializer<BucketScriptAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, BucketScriptAggregation::setupBucketScriptAggregationDeserializer);

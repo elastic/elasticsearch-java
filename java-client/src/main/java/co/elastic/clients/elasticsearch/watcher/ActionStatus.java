@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActionStatus
-public final class ActionStatus implements ToJsonp {
+public final class ActionStatus implements JsonpSerializable {
 	private final AcknowledgeState ack;
 
 	@Nullable
@@ -50,7 +50,7 @@ public final class ActionStatus implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ActionStatus(Builder builder) {
+	public ActionStatus(Builder builder) {
 
 		this.ack = Objects.requireNonNull(builder.ack, "ack");
 		this.lastExecution = builder.lastExecution;
@@ -93,33 +93,33 @@ public final class ActionStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("ack");
-		this.ack.toJsonp(generator, mapper);
+		this.ack.serialize(generator, mapper);
 
 		if (this.lastExecution != null) {
 
 			generator.writeKey("last_execution");
-			this.lastExecution.toJsonp(generator, mapper);
+			this.lastExecution.serialize(generator, mapper);
 
 		}
 		if (this.lastSuccessfulExecution != null) {
 
 			generator.writeKey("last_successful_execution");
-			this.lastSuccessfulExecution.toJsonp(generator, mapper);
+			this.lastSuccessfulExecution.serialize(generator, mapper);
 
 		}
 		if (this.lastThrottle != null) {
 
 			generator.writeKey("last_throttle");
-			this.lastThrottle.toJsonp(generator, mapper);
+			this.lastThrottle.serialize(generator, mapper);
 
 		}
 
@@ -217,7 +217,7 @@ public final class ActionStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ActionStatus
+	 * Json deserializer for {@link ActionStatus}
 	 */
 	public static final JsonpDeserializer<ActionStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ActionStatus::setupActionStatusDeserializer);

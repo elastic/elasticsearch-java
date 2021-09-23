@@ -46,8 +46,9 @@ public final class SearchableSnapshots extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SearchableSnapshots(Builder builder) {
+	public SearchableSnapshots(Builder builder) {
 		super(builder);
+
 		this.indicesCount = Objects.requireNonNull(builder.indicesCount, "indices_count");
 		this.fullCopyIndicesCount = builder.fullCopyIndicesCount;
 		this.sharedCacheIndicesCount = builder.sharedCacheIndicesCount;
@@ -77,8 +78,9 @@ public final class SearchableSnapshots extends Base {
 		return this.sharedCacheIndicesCount;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("indices_count");
 		generator.write(this.indicesCount.doubleValue());
@@ -156,7 +158,7 @@ public final class SearchableSnapshots extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SearchableSnapshots
+	 * Json deserializer for {@link SearchableSnapshots}
 	 */
 	public static final JsonpDeserializer<SearchableSnapshots> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SearchableSnapshots::setupSearchableSnapshotsDeserializer);

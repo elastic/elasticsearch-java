@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: cluster.put_component_template.Response
 public final class PutComponentTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutComponentTemplateResponse(Builder builder) {
+	public PutComponentTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class PutComponentTemplateResponse extends AcknowledgedResponseBase
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutComponentTemplateResponse
+	 * Json deserializer for {@link PutComponentTemplateResponse}
 	 */
 	public static final JsonpDeserializer<PutComponentTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutComponentTemplateResponse::setupPutComponentTemplateResponseDeserializer);

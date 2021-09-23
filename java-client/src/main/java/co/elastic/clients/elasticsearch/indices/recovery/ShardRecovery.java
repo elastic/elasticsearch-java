@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.recovery;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.ShardRecovery
-public final class ShardRecovery implements ToJsonp {
+public final class ShardRecovery implements JsonpSerializable {
 	private final Number id;
 
 	private final RecoveryIndexStatus index;
@@ -79,7 +79,7 @@ public final class ShardRecovery implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardRecovery(Builder builder) {
+	public ShardRecovery(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.index = Objects.requireNonNull(builder.index, "index");
@@ -219,25 +219,25 @@ public final class ShardRecovery implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("id");
 		generator.write(this.id.doubleValue());
 
 		generator.writeKey("index");
-		this.index.toJsonp(generator, mapper);
+		this.index.serialize(generator, mapper);
 
 		generator.writeKey("primary");
 		generator.write(this.primary);
 
 		generator.writeKey("source");
-		this.source.toJsonp(generator, mapper);
+		this.source.serialize(generator, mapper);
 
 		generator.writeKey("stage");
 		generator.write(this.stage);
@@ -245,7 +245,7 @@ public final class ShardRecovery implements ToJsonp {
 		if (this.start != null) {
 
 			generator.writeKey("start");
-			this.start.toJsonp(generator, mapper);
+			this.start.serialize(generator, mapper);
 
 		}
 		if (this.startTime != null) {
@@ -269,7 +269,7 @@ public final class ShardRecovery implements ToJsonp {
 		generator.write(this.stopTimeInMillis);
 
 		generator.writeKey("target");
-		this.target.toJsonp(generator, mapper);
+		this.target.serialize(generator, mapper);
 
 		if (this.totalTime != null) {
 
@@ -282,13 +282,13 @@ public final class ShardRecovery implements ToJsonp {
 		generator.write(this.totalTimeInMillis);
 
 		generator.writeKey("translog");
-		this.translog.toJsonp(generator, mapper);
+		this.translog.serialize(generator, mapper);
 
 		generator.writeKey("type");
 		generator.write(this.type);
 
 		generator.writeKey("verify_index");
-		this.verifyIndex.toJsonp(generator, mapper);
+		this.verifyIndex.serialize(generator, mapper);
 
 	}
 
@@ -519,7 +519,7 @@ public final class ShardRecovery implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardRecovery
+	 * Json deserializer for {@link ShardRecovery}
 	 */
 	public static final JsonpDeserializer<ShardRecovery> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardRecovery::setupShardRecoveryDeserializer);

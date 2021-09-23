@@ -40,8 +40,9 @@ public final class FailProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FailProcessor(Builder builder) {
+	public FailProcessor(Builder builder) {
 		super(builder);
+
 		this.message = Objects.requireNonNull(builder.message, "message");
 
 	}
@@ -53,8 +54,9 @@ public final class FailProcessor extends ProcessorBase {
 		return this.message;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("message");
 		generator.write(this.message);
@@ -97,7 +99,7 @@ public final class FailProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FailProcessor
+	 * Json deserializer for {@link FailProcessor}
 	 */
 	public static final JsonpDeserializer<FailProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FailProcessor::setupFailProcessorDeserializer);

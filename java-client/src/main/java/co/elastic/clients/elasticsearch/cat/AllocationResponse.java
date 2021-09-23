@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.cat.allocation.AllocationRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,12 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.Response
-public final class AllocationResponse implements ToJsonp {
+public final class AllocationResponse implements JsonpSerializable {
 	private final List<AllocationRecord> value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AllocationResponse(Builder builder) {
+	public AllocationResponse(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -63,10 +63,10 @@ public final class AllocationResponse implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
 		for (AllocationRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -141,7 +141,7 @@ public final class AllocationResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AllocationResponse
+	 * Json deserializer for {@link AllocationResponse}
 	 */
 	public static final JsonpDeserializer<AllocationResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AllocationResponse::setupAllocationResponseDeserializer);

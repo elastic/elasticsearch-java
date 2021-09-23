@@ -26,26 +26,25 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.FilterRef
-public final class FilterRef implements ToJsonp {
+public final class FilterRef implements JsonpSerializable {
 	private final String filterId;
 
 	@Nullable
-	private final JsonValue filterType;
+	private final FilterType filterType;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FilterRef(Builder builder) {
+	public FilterRef(Builder builder) {
 
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
 		this.filterType = builder.filterType;
@@ -68,20 +67,20 @@ public final class FilterRef implements ToJsonp {
 	 * API name: {@code filter_type}
 	 */
 	@Nullable
-	public JsonValue filterType() {
+	public FilterType filterType() {
 		return this.filterType;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("filter_id");
 		generator.write(this.filterId);
@@ -89,8 +88,7 @@ public final class FilterRef implements ToJsonp {
 		if (this.filterType != null) {
 
 			generator.writeKey("filter_type");
-			generator.write(this.filterType);
-
+			this.filterType.serialize(generator, mapper);
 		}
 
 	}
@@ -104,7 +102,7 @@ public final class FilterRef implements ToJsonp {
 		private String filterId;
 
 		@Nullable
-		private JsonValue filterType;
+		private FilterType filterType;
 
 		/**
 		 * The identifier for the filter.
@@ -122,7 +120,7 @@ public final class FilterRef implements ToJsonp {
 		 * <p>
 		 * API name: {@code filter_type}
 		 */
-		public Builder filterType(@Nullable JsonValue value) {
+		public Builder filterType(@Nullable FilterType value) {
 			this.filterType = value;
 			return this;
 		}
@@ -142,7 +140,7 @@ public final class FilterRef implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FilterRef
+	 * Json deserializer for {@link FilterRef}
 	 */
 	public static final JsonpDeserializer<FilterRef> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FilterRef::setupFilterRefDeserializer);
@@ -150,7 +148,7 @@ public final class FilterRef implements ToJsonp {
 	protected static void setupFilterRefDeserializer(DelegatingDeserializer<FilterRef.Builder> op) {
 
 		op.add(Builder::filterId, JsonpDeserializer.stringDeserializer(), "filter_id");
-		op.add(Builder::filterType, JsonpDeserializer.jsonValueDeserializer(), "filter_type");
+		op.add(Builder::filterType, FilterType.DESERIALIZER, "filter_type");
 
 	}
 

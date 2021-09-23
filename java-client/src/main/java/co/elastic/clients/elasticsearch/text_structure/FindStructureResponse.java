@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch.text_structure.find_structure.FieldStat;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -48,7 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.Response
-public final class FindStructureResponse implements ToJsonp {
+public final class FindStructureResponse implements JsonpSerializable {
 	private final String charset;
 
 	@Nullable
@@ -107,7 +107,7 @@ public final class FindStructureResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FindStructureResponse(Builder builder) {
+	public FindStructureResponse(Builder builder) {
 
 		this.charset = Objects.requireNonNull(builder.charset, "charset");
 		this.hasHeaderRow = builder.hasHeaderRow;
@@ -303,13 +303,13 @@ public final class FindStructureResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("charset");
 		generator.write(this.charset);
@@ -331,7 +331,7 @@ public final class FindStructureResponse implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, FieldStat> item0 : this.fieldStats.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -343,7 +343,7 @@ public final class FindStructureResponse implements ToJsonp {
 		generator.write(this.numMessagesAnalyzed.doubleValue());
 
 		generator.writeKey("mappings");
-		this.mappings.toJsonp(generator, mapper);
+		this.mappings.serialize(generator, mapper);
 
 		if (this.quote != null) {
 
@@ -440,7 +440,7 @@ public final class FindStructureResponse implements ToJsonp {
 		}
 
 		generator.writeKey("ingest_pipeline");
-		this.ingestPipeline.toJsonp(generator, mapper);
+		this.ingestPipeline.serialize(generator, mapper);
 
 	}
 
@@ -814,7 +814,7 @@ public final class FindStructureResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FindStructureResponse
+	 * Json deserializer for {@link FindStructureResponse}
 	 */
 	public static final JsonpDeserializer<FindStructureResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FindStructureResponse::setupFindStructureResponseDeserializer);

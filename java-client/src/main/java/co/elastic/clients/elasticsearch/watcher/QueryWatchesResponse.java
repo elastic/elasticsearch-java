@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Response
-public final class QueryWatchesResponse implements ToJsonp {
+public final class QueryWatchesResponse implements JsonpSerializable {
 	private final Number count;
 
 	private final List<QueryWatch> watches;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected QueryWatchesResponse(Builder builder) {
+	public QueryWatchesResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.watches = Objects.requireNonNull(builder.watches, "watches");
@@ -71,13 +71,13 @@ public final class QueryWatchesResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
@@ -85,7 +85,7 @@ public final class QueryWatchesResponse implements ToJsonp {
 		generator.writeKey("watches");
 		generator.writeStartArray();
 		for (QueryWatch item0 : this.watches) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -166,7 +166,7 @@ public final class QueryWatchesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for QueryWatchesResponse
+	 * Json deserializer for {@link QueryWatchesResponse}
 	 */
 	public static final JsonpDeserializer<QueryWatchesResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, QueryWatchesResponse::setupQueryWatchesResponseDeserializer);

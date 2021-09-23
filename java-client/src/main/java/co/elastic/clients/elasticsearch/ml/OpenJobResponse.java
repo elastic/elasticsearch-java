@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,12 +36,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.open_job.Response
-public final class OpenJobResponse implements ToJsonp {
+public final class OpenJobResponse implements JsonpSerializable {
 	private final Boolean opened;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected OpenJobResponse(Builder builder) {
+	public OpenJobResponse(Builder builder) {
 
 		this.opened = Objects.requireNonNull(builder.opened, "opened");
 
@@ -57,13 +57,13 @@ public final class OpenJobResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("opened");
 		generator.write(this.opened);
@@ -101,7 +101,7 @@ public final class OpenJobResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for OpenJobResponse
+	 * Json deserializer for {@link OpenJobResponse}
 	 */
 	public static final JsonpDeserializer<OpenJobResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, OpenJobResponse::setupOpenJobResponseDeserializer);

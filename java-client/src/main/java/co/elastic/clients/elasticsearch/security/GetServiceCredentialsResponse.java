@@ -25,13 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_service_credentials.NodesCredentials;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -42,18 +42,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Response
-public final class GetServiceCredentialsResponse implements ToJsonp {
+public final class GetServiceCredentialsResponse implements JsonpSerializable {
 	private final String serviceAccount;
 
 	private final Number count;
 
-	private final Map<String, Map<String, JsonValue>> tokens;
+	private final Map<String, Map<String, JsonData>> tokens;
 
 	private final NodesCredentials nodesCredentials;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetServiceCredentialsResponse(Builder builder) {
+	public GetServiceCredentialsResponse(Builder builder) {
 
 		this.serviceAccount = Objects.requireNonNull(builder.serviceAccount, "service_account");
 		this.count = Objects.requireNonNull(builder.count, "count");
@@ -79,7 +79,7 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 	/**
 	 * API name: {@code tokens}
 	 */
-	public Map<String, Map<String, JsonValue>> tokens() {
+	public Map<String, Map<String, JsonData>> tokens() {
 		return this.tokens;
 	}
 
@@ -95,13 +95,13 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("service_account");
 		generator.write(this.serviceAccount);
@@ -111,12 +111,12 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 
 		generator.writeKey("tokens");
 		generator.writeStartObject();
-		for (Map.Entry<String, Map<String, JsonValue>> item0 : this.tokens.entrySet()) {
+		for (Map.Entry<String, Map<String, JsonData>> item0 : this.tokens.entrySet()) {
 			generator.writeKey(item0.getKey());
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item1 : item0.getValue().entrySet()) {
+			for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
 				generator.writeKey(item1.getKey());
-				generator.write(item1.getValue());
+				item1.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -125,7 +125,7 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("nodes_credentials");
-		this.nodesCredentials.toJsonp(generator, mapper);
+		this.nodesCredentials.serialize(generator, mapper);
 
 	}
 
@@ -139,7 +139,7 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 
 		private Number count;
 
-		private Map<String, Map<String, JsonValue>> tokens;
+		private Map<String, Map<String, JsonData>> tokens;
 
 		private NodesCredentials nodesCredentials;
 
@@ -162,7 +162,7 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 		/**
 		 * API name: {@code tokens}
 		 */
-		public Builder tokens(Map<String, Map<String, JsonValue>> value) {
+		public Builder tokens(Map<String, Map<String, JsonData>> value) {
 			this.tokens = value;
 			return this;
 		}
@@ -170,7 +170,7 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #tokens(Map)}, creating the map if needed.
 		 */
-		public Builder putTokens(String key, Map<String, JsonValue> value) {
+		public Builder putTokens(String key, Map<String, JsonData> value) {
 			if (this.tokens == null) {
 				this.tokens = new HashMap<>();
 			}
@@ -212,7 +212,7 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetServiceCredentialsResponse
+	 * Json deserializer for {@link GetServiceCredentialsResponse}
 	 */
 	public static final JsonpDeserializer<GetServiceCredentialsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
@@ -223,8 +223,9 @@ public final class GetServiceCredentialsResponse implements ToJsonp {
 
 		op.add(Builder::serviceAccount, JsonpDeserializer.stringDeserializer(), "service_account");
 		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::tokens, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer())), "tokens");
+		op.add(Builder::tokens,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER)),
+				"tokens");
 		op.add(Builder::nodesCredentials, NodesCredentials.DESERIALIZER, "nodes_credentials");
 
 	}

@@ -56,7 +56,7 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsComponentTemplateRequest(Builder builder) {
+	public ExistsComponentTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;

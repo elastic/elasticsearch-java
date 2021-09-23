@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.JvmClasses
-public final class JvmClasses implements ToJsonp {
+public final class JvmClasses implements JsonpSerializable {
 	private final Number currentLoadedCount;
 
 	private final Number totalLoadedCount;
@@ -45,7 +45,7 @@ public final class JvmClasses implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JvmClasses(Builder builder) {
+	public JvmClasses(Builder builder) {
 
 		this.currentLoadedCount = Objects.requireNonNull(builder.currentLoadedCount, "current_loaded_count");
 		this.totalLoadedCount = Objects.requireNonNull(builder.totalLoadedCount, "total_loaded_count");
@@ -77,13 +77,13 @@ public final class JvmClasses implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("current_loaded_count");
 		generator.write(this.currentLoadedCount.doubleValue());
@@ -147,7 +147,7 @@ public final class JvmClasses implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JvmClasses
+	 * Json deserializer for {@link JvmClasses}
 	 */
 	public static final JsonpDeserializer<JvmClasses> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, JvmClasses::setupJvmClassesDeserializer);

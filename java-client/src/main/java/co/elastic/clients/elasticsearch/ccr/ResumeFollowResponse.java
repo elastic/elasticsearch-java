@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ccr.resume_follow.Response
 public final class ResumeFollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResumeFollowResponse(Builder builder) {
+	public ResumeFollowResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class ResumeFollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ResumeFollowResponse
+	 * Json deserializer for {@link ResumeFollowResponse}
 	 */
 	public static final JsonpDeserializer<ResumeFollowResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ResumeFollowResponse::setupResumeFollowResponseDeserializer);

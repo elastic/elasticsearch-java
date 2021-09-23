@@ -63,8 +63,9 @@ public final class AttachmentProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AttachmentProcessor(Builder builder) {
+	public AttachmentProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.indexedChars = builder.indexedChars;
@@ -130,8 +131,9 @@ public final class AttachmentProcessor extends ProcessorBase {
 		return this.resourceName;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -303,7 +305,7 @@ public final class AttachmentProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AttachmentProcessor
+	 * Json deserializer for {@link AttachmentProcessor}
 	 */
 	public static final JsonpDeserializer<AttachmentProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AttachmentProcessor::setupAttachmentProcessorDeserializer);

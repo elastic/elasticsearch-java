@@ -42,7 +42,7 @@ public final class CreateDataStreamRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateDataStreamRequest(Builder builder) {
+	public CreateDataStreamRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

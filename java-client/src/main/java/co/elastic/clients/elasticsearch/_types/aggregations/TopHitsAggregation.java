@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.elasticsearch._global.search.Highlight;
+import co.elastic.clients.elasticsearch._core.search.Highlight;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -42,6 +42,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -85,8 +86,9 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TopHitsAggregation(Builder builder) {
+	public TopHitsAggregation(Builder builder) {
 		super(builder);
+
 		this.docvalueFields = builder.docvalueFields;
 		this.explain = builder.explain;
 		this.from = builder.from;
@@ -198,8 +200,9 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 		return this.seqNoPrimaryTerm;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.docvalueFields != null) {
 
 			generator.writeKey("docvalue_fields");
@@ -226,7 +229,7 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 		if (this.highlight != null) {
 
 			generator.writeKey("highlight");
-			this.highlight.toJsonp(generator, mapper);
+			this.highlight.serialize(generator, mapper);
 
 		}
 		if (this.scriptFields != null) {
@@ -235,7 +238,7 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -545,7 +548,7 @@ public final class TopHitsAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TopHitsAggregation
+	 * Json deserializer for {@link TopHitsAggregation}
 	 */
 	public static final JsonpDeserializer<TopHitsAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TopHitsAggregation::setupTopHitsAggregationDeserializer);

@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.MountedSnapshot
-public final class MountedSnapshot implements ToJsonp {
+public final class MountedSnapshot implements JsonpSerializable {
 	private final String snapshot;
 
 	private final List<String> indices;
@@ -50,7 +50,7 @@ public final class MountedSnapshot implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MountedSnapshot(Builder builder) {
+	public MountedSnapshot(Builder builder) {
 
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
@@ -82,13 +82,13 @@ public final class MountedSnapshot implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("snapshot");
 		generator.write(this.snapshot);
@@ -102,7 +102,7 @@ public final class MountedSnapshot implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 	}
 
@@ -183,7 +183,7 @@ public final class MountedSnapshot implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MountedSnapshot
+	 * Json deserializer for {@link MountedSnapshot}
 	 */
 	public static final JsonpDeserializer<MountedSnapshot> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MountedSnapshot::setupMountedSnapshotDeserializer);

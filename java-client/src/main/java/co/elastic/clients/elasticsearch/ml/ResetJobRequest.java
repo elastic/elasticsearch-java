@@ -47,7 +47,7 @@ public final class ResetJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResetJobRequest(Builder builder) {
+	public ResetJobRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.waitForCompletion = builder.waitForCompletion;

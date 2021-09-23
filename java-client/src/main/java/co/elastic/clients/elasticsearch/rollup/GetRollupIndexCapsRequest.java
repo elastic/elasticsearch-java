@@ -42,7 +42,7 @@ public final class GetRollupIndexCapsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRollupIndexCapsRequest(Builder builder) {
+	public GetRollupIndexCapsRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 

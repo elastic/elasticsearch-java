@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BoxplotAggregation
@@ -40,8 +41,9 @@ public final class BoxplotAggregation extends MetricAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BoxplotAggregation(Builder builder) {
+	public BoxplotAggregation(Builder builder) {
 		super(builder);
+
 		this.compression = builder.compression;
 
 	}
@@ -54,8 +56,9 @@ public final class BoxplotAggregation extends MetricAggregationBase {
 		return this.compression;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.compression != null) {
 
 			generator.writeKey("compression");
@@ -104,7 +107,7 @@ public final class BoxplotAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BoxplotAggregation
+	 * Json deserializer for {@link BoxplotAggregation}
 	 */
 	public static final JsonpDeserializer<BoxplotAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, BoxplotAggregation::setupBoxplotAggregationDeserializer);

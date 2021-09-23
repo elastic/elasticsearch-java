@@ -23,32 +23,32 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
+import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlDataFrameAnalyticsJobs
-public final class MlDataFrameAnalyticsJobs implements ToJsonp {
+public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	@Nullable
 	private final MlDataFrameAnalyticsJobsMemory memoryUsage;
 
 	private final MlDataFrameAnalyticsJobsCount all;
 
 	@Nullable
-	private final JsonValue analysisCounts;
+	private final EmptyObject analysisCounts;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlDataFrameAnalyticsJobs(Builder builder) {
+	public MlDataFrameAnalyticsJobs(Builder builder) {
 
 		this.memoryUsage = builder.memoryUsage;
 		this.all = Objects.requireNonNull(builder.all, "_all");
@@ -75,35 +75,35 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 	 * API name: {@code analysis_counts}
 	 */
 	@Nullable
-	public JsonValue analysisCounts() {
+	public EmptyObject analysisCounts() {
 		return this.analysisCounts;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.memoryUsage != null) {
 
 			generator.writeKey("memory_usage");
-			this.memoryUsage.toJsonp(generator, mapper);
+			this.memoryUsage.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("_all");
-		this.all.toJsonp(generator, mapper);
+		this.all.serialize(generator, mapper);
 
 		if (this.analysisCounts != null) {
 
 			generator.writeKey("analysis_counts");
-			generator.write(this.analysisCounts);
+			this.analysisCounts.serialize(generator, mapper);
 
 		}
 
@@ -121,7 +121,7 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 		private MlDataFrameAnalyticsJobsCount all;
 
 		@Nullable
-		private JsonValue analysisCounts;
+		private EmptyObject analysisCounts;
 
 		/**
 		 * API name: {@code memory_usage}
@@ -158,9 +158,16 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 		/**
 		 * API name: {@code analysis_counts}
 		 */
-		public Builder analysisCounts(@Nullable JsonValue value) {
+		public Builder analysisCounts(@Nullable EmptyObject value) {
 			this.analysisCounts = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code analysis_counts}
+		 */
+		public Builder analysisCounts(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return this.analysisCounts(fn.apply(new EmptyObject.Builder()).build());
 		}
 
 		/**
@@ -178,7 +185,7 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlDataFrameAnalyticsJobs
+	 * Json deserializer for {@link MlDataFrameAnalyticsJobs}
 	 */
 	public static final JsonpDeserializer<MlDataFrameAnalyticsJobs> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MlDataFrameAnalyticsJobs::setupMlDataFrameAnalyticsJobsDeserializer);
@@ -188,7 +195,7 @@ public final class MlDataFrameAnalyticsJobs implements ToJsonp {
 
 		op.add(Builder::memoryUsage, MlDataFrameAnalyticsJobsMemory.DESERIALIZER, "memory_usage");
 		op.add(Builder::all, MlDataFrameAnalyticsJobsCount.DESERIALIZER, "_all");
-		op.add(Builder::analysisCounts, JsonpDeserializer.jsonValueDeserializer(), "analysis_counts");
+		op.add(Builder::analysisCounts, EmptyObject.DESERIALIZER, "analysis_counts");
 
 	}
 

@@ -26,22 +26,21 @@ package co.elastic.clients.elasticsearch.shutdown.get_node;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.PluginsStatus
-public final class PluginsStatus implements ToJsonp {
-	private final JsonValue status;
+public final class PluginsStatus implements JsonpSerializable {
+	private final ShutdownStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PluginsStatus(Builder builder) {
+	public PluginsStatus(Builder builder) {
 
 		this.status = Objects.requireNonNull(builder.status, "status");
 
@@ -50,23 +49,23 @@ public final class PluginsStatus implements ToJsonp {
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public ShutdownStatus status() {
 		return this.status;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 	}
 
@@ -76,12 +75,12 @@ public final class PluginsStatus implements ToJsonp {
 	 * Builder for {@link PluginsStatus}.
 	 */
 	public static class Builder implements ObjectBuilder<PluginsStatus> {
-		private JsonValue status;
+		private ShutdownStatus status;
 
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(ShutdownStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -101,14 +100,14 @@ public final class PluginsStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PluginsStatus
+	 * Json deserializer for {@link PluginsStatus}
 	 */
 	public static final JsonpDeserializer<PluginsStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PluginsStatus::setupPluginsStatusDeserializer);
 
 	protected static void setupPluginsStatusDeserializer(DelegatingDeserializer<PluginsStatus.Builder> op) {
 
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::status, ShutdownStatus.DESERIALIZER, "status");
 
 	}
 

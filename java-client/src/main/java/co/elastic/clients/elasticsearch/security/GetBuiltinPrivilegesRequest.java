@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: security.get_builtin_privileges.Request
 public final class GetBuiltinPrivilegesRequest extends RequestBase {
-	protected GetBuiltinPrivilegesRequest() {
+	public GetBuiltinPrivilegesRequest() {
 	}
 
 	/**

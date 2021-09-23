@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,14 +40,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.HistogramGrouping
-public final class HistogramGrouping implements ToJsonp {
+public final class HistogramGrouping implements JsonpSerializable {
 	private final List<String> fields;
 
 	private final Number interval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HistogramGrouping(Builder builder) {
+	public HistogramGrouping(Builder builder) {
 
 		this.fields = Objects.requireNonNull(builder.fields, "fields");
 		this.interval = Objects.requireNonNull(builder.interval, "interval");
@@ -71,13 +71,13 @@ public final class HistogramGrouping implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("fields");
 		generator.writeStartArray();
@@ -152,7 +152,7 @@ public final class HistogramGrouping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HistogramGrouping
+	 * Json deserializer for {@link HistogramGrouping}
 	 */
 	public static final JsonpDeserializer<HistogramGrouping> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, HistogramGrouping::setupHistogramGroupingDeserializer);

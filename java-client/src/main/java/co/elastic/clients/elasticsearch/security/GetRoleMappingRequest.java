@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_role_mapping.Request
@@ -42,7 +43,7 @@ public final class GetRoleMappingRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRoleMappingRequest(Builder builder) {
+	public GetRoleMappingRequest(Builder builder) {
 
 		this.name = builder.name;
 

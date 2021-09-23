@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,11 +37,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfigMetadata
-public final class TrainedModelConfigMetadata implements ToJsonp {
+public final class TrainedModelConfigMetadata implements JsonpSerializable {
 	@Nullable
 	private final List<String> modelAliases;
 
@@ -56,7 +57,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TrainedModelConfigMetadata(Builder builder) {
+	public TrainedModelConfigMetadata(Builder builder) {
 
 		this.modelAliases = builder.modelAliases;
 		this.featureImportanceBaseline = builder.featureImportanceBaseline;
@@ -112,13 +113,13 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.modelAliases != null) {
 
@@ -148,7 +149,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 			generator.writeKey("hyperparameters");
 			generator.writeStartArray();
 			for (Hyperparameter item0 : this.hyperparameters) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -159,7 +160,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 			generator.writeKey("total_feature_importance");
 			generator.writeStartArray();
 			for (TotalFeatureImportance item0 : this.totalFeatureImportance) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -354,7 +355,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TrainedModelConfigMetadata
+	 * Json deserializer for {@link TrainedModelConfigMetadata}
 	 */
 	public static final JsonpDeserializer<TrainedModelConfigMetadata> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TrainedModelConfigMetadata::setupTrainedModelConfigMetadataDeserializer);

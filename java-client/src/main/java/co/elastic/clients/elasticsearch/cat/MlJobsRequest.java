@@ -25,16 +25,17 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.Request
@@ -46,11 +47,11 @@ public final class MlJobsRequest extends CatRequestBase {
 	private final Boolean allowNoJobs;
 
 	@Nullable
-	private final JsonValue bytes;
+	private final Bytes bytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlJobsRequest(Builder builder) {
+	public MlJobsRequest(Builder builder) {
 
 		this.jobId = builder.jobId;
 		this.allowNoJobs = builder.allowNoJobs;
@@ -85,7 +86,7 @@ public final class MlJobsRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public JsonValue bytes() {
+	public Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -102,7 +103,7 @@ public final class MlJobsRequest extends CatRequestBase {
 		private Boolean allowNoJobs;
 
 		@Nullable
-		private JsonValue bytes;
+		private Bytes bytes;
 
 		/**
 		 * The ID of the jobs stats to fetch
@@ -130,7 +131,7 @@ public final class MlJobsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable JsonValue value) {
+		public Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}

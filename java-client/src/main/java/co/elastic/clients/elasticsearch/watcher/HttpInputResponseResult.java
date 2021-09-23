@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,7 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputResponseResult
-public final class HttpInputResponseResult implements ToJsonp {
+public final class HttpInputResponseResult implements JsonpSerializable {
 	private final String body;
 
 	private final Map<String, List<String>> headers;
@@ -49,7 +49,7 @@ public final class HttpInputResponseResult implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HttpInputResponseResult(Builder builder) {
+	public HttpInputResponseResult(Builder builder) {
 
 		this.body = Objects.requireNonNull(builder.body, "body");
 		this.headers = Objects.requireNonNull(builder.headers, "headers");
@@ -81,13 +81,13 @@ public final class HttpInputResponseResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("body");
 		generator.write(this.body);
@@ -173,7 +173,7 @@ public final class HttpInputResponseResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HttpInputResponseResult
+	 * Json deserializer for {@link HttpInputResponseResult}
 	 */
 	public static final JsonpDeserializer<HttpInputResponseResult> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, HttpInputResponseResult::setupHttpInputResponseResultDeserializer);

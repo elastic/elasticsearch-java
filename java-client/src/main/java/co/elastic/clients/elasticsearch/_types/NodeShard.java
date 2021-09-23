@@ -24,14 +24,14 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.UnassignedInformation;
+import co.elastic.clients.elasticsearch.indices.stats.ShardRoutingState;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -43,8 +43,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeShard
-public final class NodeShard implements ToJsonp {
-	private final JsonValue state;
+public final class NodeShard implements JsonpSerializable {
+	private final ShardRoutingState state;
 
 	private final Boolean primary;
 
@@ -66,7 +66,7 @@ public final class NodeShard implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeShard(Builder builder) {
+	public NodeShard(Builder builder) {
 
 		this.state = Objects.requireNonNull(builder.state, "state");
 		this.primary = Objects.requireNonNull(builder.primary, "primary");
@@ -82,7 +82,7 @@ public final class NodeShard implements ToJsonp {
 	/**
 	 * API name: {@code state}
 	 */
-	public JsonValue state() {
+	public ShardRoutingState state() {
 		return this.state;
 	}
 
@@ -142,16 +142,16 @@ public final class NodeShard implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("state");
-		generator.write(this.state);
+		this.state.serialize(generator, mapper);
 
 		generator.writeKey("primary");
 		generator.write(this.primary);
@@ -196,7 +196,7 @@ public final class NodeShard implements ToJsonp {
 		if (this.unassignedInfo != null) {
 
 			generator.writeKey("unassigned_info");
-			this.unassignedInfo.toJsonp(generator, mapper);
+			this.unassignedInfo.serialize(generator, mapper);
 
 		}
 
@@ -208,7 +208,7 @@ public final class NodeShard implements ToJsonp {
 	 * Builder for {@link NodeShard}.
 	 */
 	public static class Builder implements ObjectBuilder<NodeShard> {
-		private JsonValue state;
+		private ShardRoutingState state;
 
 		private Boolean primary;
 
@@ -231,7 +231,7 @@ public final class NodeShard implements ToJsonp {
 		/**
 		 * API name: {@code state}
 		 */
-		public Builder state(JsonValue value) {
+		public Builder state(ShardRoutingState value) {
 			this.state = value;
 			return this;
 		}
@@ -337,14 +337,14 @@ public final class NodeShard implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeShard
+	 * Json deserializer for {@link NodeShard}
 	 */
 	public static final JsonpDeserializer<NodeShard> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeShard::setupNodeShardDeserializer);
 
 	protected static void setupNodeShardDeserializer(DelegatingDeserializer<NodeShard.Builder> op) {
 
-		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
+		op.add(Builder::state, ShardRoutingState.DESERIALIZER, "state");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");

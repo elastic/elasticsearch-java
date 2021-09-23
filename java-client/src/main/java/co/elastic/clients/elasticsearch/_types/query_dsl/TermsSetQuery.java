@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,39 +32,48 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsSetQuery
-public final class TermsSetQuery extends QueryBase {
-	@Nullable
+public final class TermsSetQuery extends QueryBase implements Query {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TermsSetQuery(Builder builder) {
+	public TermsSetQuery(Builder builder) {
 		super(builder);
-		this.field = builder.field;
+		this.field = Objects.requireNonNull(builder.field, "field");
 
 	}
 
 	/**
-	 * Named of the field to query.
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "terms_set";
+	}
+
+	/**
+	 * The target field
 	 * <p>
 	 * API name: {@code field}
 	 */
-	@Nullable
 	public String field() {
 		return this.field;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.field != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
-			generator.writeKey("field");
-			generator.write(this.field);
+		generator.writeStartObject(this.field);
 
-		}
+		super.serializeInternal(generator, mapper);
+
+		generator.writeEnd();
+
+		generator.writeEnd();
 
 	}
 
@@ -73,15 +83,14 @@ public final class TermsSetQuery extends QueryBase {
 	 * Builder for {@link TermsSetQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsSetQuery> {
-		@Nullable
 		private String field;
 
 		/**
-		 * Named of the field to query.
+		 * The target field
 		 * <p>
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -105,15 +114,14 @@ public final class TermsSetQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for TermsSetQuery
-	 */
-	public static final JsonpDeserializer<TermsSetQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TermsSetQuery::setupTermsSetQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<TermsSetQuery.Builder, TermsSetQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(TermsSetQuery::setupTermsSetQueryDeserializer);
 
 	protected static void setupTermsSetQueryDeserializer(DelegatingDeserializer<TermsSetQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+
+		op.setKey(Builder::field);
 
 	}
 

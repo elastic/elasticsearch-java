@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.graph;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.ExploreControls
-public final class ExploreControls implements ToJsonp {
+public final class ExploreControls implements JsonpSerializable {
 	@Nullable
 	private final SampleDiversity sampleDiversity;
 
@@ -53,7 +53,7 @@ public final class ExploreControls implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExploreControls(Builder builder) {
+	public ExploreControls(Builder builder) {
 
 		this.sampleDiversity = builder.sampleDiversity;
 		this.sampleSize = builder.sampleSize;
@@ -96,18 +96,18 @@ public final class ExploreControls implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.sampleDiversity != null) {
 
 			generator.writeKey("sample_diversity");
-			this.sampleDiversity.toJsonp(generator, mapper);
+			this.sampleDiversity.serialize(generator, mapper);
 
 		}
 		if (this.sampleSize != null) {
@@ -199,7 +199,7 @@ public final class ExploreControls implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExploreControls
+	 * Json deserializer for {@link ExploreControls}
 	 */
 	public static final JsonpDeserializer<ExploreControls> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExploreControls::setupExploreControlsDeserializer);

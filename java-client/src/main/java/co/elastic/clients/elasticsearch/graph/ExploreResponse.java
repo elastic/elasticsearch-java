@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.ShardFailure;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,7 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph.explore.Response
-public final class ExploreResponse implements ToJsonp {
+public final class ExploreResponse implements JsonpSerializable {
 	private final List<Connection> connections;
 
 	private final List<ShardFailure> failures;
@@ -55,7 +55,7 @@ public final class ExploreResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExploreResponse(Builder builder) {
+	public ExploreResponse(Builder builder) {
 
 		this.connections = Objects.requireNonNull(builder.connections, "connections");
 		this.failures = Objects.requireNonNull(builder.failures, "failures");
@@ -103,18 +103,18 @@ public final class ExploreResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("connections");
 		generator.writeStartArray();
 		for (Connection item0 : this.connections) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -122,7 +122,7 @@ public final class ExploreResponse implements ToJsonp {
 		generator.writeKey("failures");
 		generator.writeStartArray();
 		for (ShardFailure item0 : this.failures) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -136,7 +136,7 @@ public final class ExploreResponse implements ToJsonp {
 		generator.writeKey("vertices");
 		generator.writeStartArray();
 		for (Vertex item0 : this.vertices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -313,7 +313,7 @@ public final class ExploreResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExploreResponse
+	 * Json deserializer for {@link ExploreResponse}
 	 */
 	public static final JsonpDeserializer<ExploreResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExploreResponse::setupExploreResponseDeserializer);

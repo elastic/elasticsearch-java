@@ -29,14 +29,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageAggregation
-public final class WeightedAverageAggregation extends Aggregation {
+public final class WeightedAverageAggregation extends AggregationBase {
 	@Nullable
 	private final String format;
 
@@ -44,15 +44,16 @@ public final class WeightedAverageAggregation extends Aggregation {
 	private final WeightedAverageValue value;
 
 	@Nullable
-	private final JsonValue valueType;
+	private final ValueType valueType;
 
 	@Nullable
 	private final WeightedAverageValue weight;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WeightedAverageAggregation(Builder builder) {
+	public WeightedAverageAggregation(Builder builder) {
 		super(builder);
+
 		this.format = builder.format;
 		this.value = builder.value;
 		this.valueType = builder.valueType;
@@ -80,7 +81,7 @@ public final class WeightedAverageAggregation extends Aggregation {
 	 * API name: {@code value_type}
 	 */
 	@Nullable
-	public JsonValue valueType() {
+	public ValueType valueType() {
 		return this.valueType;
 	}
 
@@ -92,8 +93,9 @@ public final class WeightedAverageAggregation extends Aggregation {
 		return this.weight;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.format != null) {
 
 			generator.writeKey("format");
@@ -103,19 +105,18 @@ public final class WeightedAverageAggregation extends Aggregation {
 		if (this.value != null) {
 
 			generator.writeKey("value");
-			this.value.toJsonp(generator, mapper);
+			this.value.serialize(generator, mapper);
 
 		}
 		if (this.valueType != null) {
 
 			generator.writeKey("value_type");
-			generator.write(this.valueType);
-
+			this.valueType.serialize(generator, mapper);
 		}
 		if (this.weight != null) {
 
 			generator.writeKey("weight");
-			this.weight.toJsonp(generator, mapper);
+			this.weight.serialize(generator, mapper);
 
 		}
 
@@ -126,7 +127,7 @@ public final class WeightedAverageAggregation extends Aggregation {
 	/**
 	 * Builder for {@link WeightedAverageAggregation}.
 	 */
-	public static class Builder extends Aggregation.AbstractBuilder<Builder>
+	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WeightedAverageAggregation> {
 		@Nullable
@@ -136,7 +137,7 @@ public final class WeightedAverageAggregation extends Aggregation {
 		private WeightedAverageValue value;
 
 		@Nullable
-		private JsonValue valueType;
+		private ValueType valueType;
 
 		@Nullable
 		private WeightedAverageValue weight;
@@ -167,7 +168,7 @@ public final class WeightedAverageAggregation extends Aggregation {
 		/**
 		 * API name: {@code value_type}
 		 */
-		public Builder valueType(@Nullable JsonValue value) {
+		public Builder valueType(@Nullable ValueType value) {
 			this.valueType = value;
 			return this;
 		}
@@ -207,17 +208,17 @@ public final class WeightedAverageAggregation extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WeightedAverageAggregation
+	 * Json deserializer for {@link WeightedAverageAggregation}
 	 */
 	public static final JsonpDeserializer<WeightedAverageAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, WeightedAverageAggregation::setupWeightedAverageAggregationDeserializer);
 
 	protected static void setupWeightedAverageAggregationDeserializer(
 			DelegatingDeserializer<WeightedAverageAggregation.Builder> op) {
-		Aggregation.setupAggregationDeserializer(op);
+		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::value, WeightedAverageValue.DESERIALIZER, "value");
-		op.add(Builder::valueType, JsonpDeserializer.jsonValueDeserializer(), "value_type");
+		op.add(Builder::valueType, ValueType.DESERIALIZER, "value_type");
 		op.add(Builder::weight, WeightedAverageValue.DESERIALIZER, "weight");
 
 	}

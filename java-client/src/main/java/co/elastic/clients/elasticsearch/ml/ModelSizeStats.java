@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,14 +38,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSizeStats
-public final class ModelSizeStats implements ToJsonp {
+public final class ModelSizeStats implements JsonpSerializable {
 	private final Number bucketAllocationFailuresCount;
 
 	private final String jobId;
 
 	private final JsonValue logTime;
 
-	private final JsonValue memoryStatus;
+	private final MemoryStatus memoryStatus;
 
 	private final Number modelBytes;
 
@@ -66,7 +66,7 @@ public final class ModelSizeStats implements ToJsonp {
 
 	private final Number totalPartitionFieldCount;
 
-	private final JsonValue categorizationStatus;
+	private final CategorizationStatus categorizationStatus;
 
 	private final Number categorizedDocCount;
 
@@ -85,7 +85,7 @@ public final class ModelSizeStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ModelSizeStats(Builder builder) {
+	public ModelSizeStats(Builder builder) {
 
 		this.bucketAllocationFailuresCount = Objects.requireNonNull(builder.bucketAllocationFailuresCount,
 				"bucket_allocation_failures_count");
@@ -137,7 +137,7 @@ public final class ModelSizeStats implements ToJsonp {
 	/**
 	 * API name: {@code memory_status}
 	 */
-	public JsonValue memoryStatus() {
+	public MemoryStatus memoryStatus() {
 		return this.memoryStatus;
 	}
 
@@ -208,7 +208,7 @@ public final class ModelSizeStats implements ToJsonp {
 	/**
 	 * API name: {@code categorization_status}
 	 */
-	public JsonValue categorizationStatus() {
+	public CategorizationStatus categorizationStatus() {
 		return this.categorizationStatus;
 	}
 
@@ -265,13 +265,13 @@ public final class ModelSizeStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bucket_allocation_failures_count");
 		generator.write(this.bucketAllocationFailuresCount.doubleValue());
@@ -283,7 +283,7 @@ public final class ModelSizeStats implements ToJsonp {
 		generator.write(this.logTime);
 
 		generator.writeKey("memory_status");
-		generator.write(this.memoryStatus);
+		this.memoryStatus.serialize(generator, mapper);
 
 		generator.writeKey("model_bytes");
 		generator.write(this.modelBytes.doubleValue());
@@ -317,7 +317,7 @@ public final class ModelSizeStats implements ToJsonp {
 		generator.write(this.totalPartitionFieldCount.doubleValue());
 
 		generator.writeKey("categorization_status");
-		generator.write(this.categorizationStatus);
+		this.categorizationStatus.serialize(generator, mapper);
 
 		generator.writeKey("categorized_doc_count");
 		generator.write(this.categorizedDocCount.doubleValue());
@@ -358,7 +358,7 @@ public final class ModelSizeStats implements ToJsonp {
 
 		private JsonValue logTime;
 
-		private JsonValue memoryStatus;
+		private MemoryStatus memoryStatus;
 
 		private Number modelBytes;
 
@@ -379,7 +379,7 @@ public final class ModelSizeStats implements ToJsonp {
 
 		private Number totalPartitionFieldCount;
 
-		private JsonValue categorizationStatus;
+		private CategorizationStatus categorizationStatus;
 
 		private Number categorizedDocCount;
 
@@ -423,7 +423,7 @@ public final class ModelSizeStats implements ToJsonp {
 		/**
 		 * API name: {@code memory_status}
 		 */
-		public Builder memoryStatus(JsonValue value) {
+		public Builder memoryStatus(MemoryStatus value) {
 			this.memoryStatus = value;
 			return this;
 		}
@@ -503,7 +503,7 @@ public final class ModelSizeStats implements ToJsonp {
 		/**
 		 * API name: {@code categorization_status}
 		 */
-		public Builder categorizationStatus(JsonValue value) {
+		public Builder categorizationStatus(CategorizationStatus value) {
 			this.categorizationStatus = value;
 			return this;
 		}
@@ -579,7 +579,7 @@ public final class ModelSizeStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ModelSizeStats
+	 * Json deserializer for {@link ModelSizeStats}
 	 */
 	public static final JsonpDeserializer<ModelSizeStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ModelSizeStats::setupModelSizeStatsDeserializer);
@@ -590,7 +590,7 @@ public final class ModelSizeStats implements ToJsonp {
 				"bucket_allocation_failures_count");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::logTime, JsonpDeserializer.jsonValueDeserializer(), "log_time");
-		op.add(Builder::memoryStatus, JsonpDeserializer.jsonValueDeserializer(), "memory_status");
+		op.add(Builder::memoryStatus, MemoryStatus.DESERIALIZER, "memory_status");
 		op.add(Builder::modelBytes, JsonpDeserializer.numberDeserializer(), "model_bytes");
 		op.add(Builder::modelBytesExceeded, JsonpDeserializer.numberDeserializer(), "model_bytes_exceeded");
 		op.add(Builder::modelBytesMemoryLimit, JsonpDeserializer.numberDeserializer(), "model_bytes_memory_limit");
@@ -601,7 +601,7 @@ public final class ModelSizeStats implements ToJsonp {
 		op.add(Builder::totalOverFieldCount, JsonpDeserializer.numberDeserializer(), "total_over_field_count");
 		op.add(Builder::totalPartitionFieldCount, JsonpDeserializer.numberDeserializer(),
 				"total_partition_field_count");
-		op.add(Builder::categorizationStatus, JsonpDeserializer.jsonValueDeserializer(), "categorization_status");
+		op.add(Builder::categorizationStatus, CategorizationStatus.DESERIALIZER, "categorization_status");
 		op.add(Builder::categorizedDocCount, JsonpDeserializer.numberDeserializer(), "categorized_doc_count");
 		op.add(Builder::deadCategoryCount, JsonpDeserializer.numberDeserializer(), "dead_category_count");
 		op.add(Builder::failedCategoryCount, JsonpDeserializer.numberDeserializer(), "failed_category_count");

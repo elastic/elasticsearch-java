@@ -47,8 +47,9 @@ public class PutTransformRequest extends PreviewTransformRequest {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTransformRequest(AbstractBuilder<?> builder) {
+	public PutTransformRequest(AbstractBuilder<?> builder) {
 		super(builder);
+
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.deferValidation = builder.deferValidation;
 
@@ -137,7 +138,7 @@ public class PutTransformRequest extends PreviewTransformRequest {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutTransformRequest
+	 * Json deserializer for {@link PutTransformRequest}
 	 */
 	public static final JsonpDeserializer<PutTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutTransformRequest::setupPutTransformRequestDeserializer);

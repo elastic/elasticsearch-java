@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,11 +39,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.list.Response
-public class ListResponse implements ToJsonp {
+public class ListResponse implements JsonpSerializable {
 	@Nullable
 	private final List<ErrorCause> nodeFailures;
 
@@ -55,7 +56,7 @@ public class ListResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ListResponse(AbstractBuilder<?> builder) {
+	public ListResponse(AbstractBuilder<?> builder) {
 
 		this.nodeFailures = builder.nodeFailures;
 		this.nodes = builder.nodes;
@@ -90,20 +91,20 @@ public class ListResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.nodeFailures != null) {
 
 			generator.writeKey("node_failures");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.nodeFailures) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -115,7 +116,7 @@ public class ListResponse implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, TaskExecutingNode> item0 : this.nodes.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -252,7 +253,7 @@ public class ListResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ListResponse
+	 * Json deserializer for {@link ListResponse}
 	 */
 	public static final JsonpDeserializer<ListResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ListResponse::setupListResponseDeserializer);

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,7 +38,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CommonTermsQuery
-public final class CommonTermsQuery extends QueryBase {
+public final class CommonTermsQuery extends QueryBase implements Query {
+	private final String field;
+
 	@Nullable
 	private final String analyzer;
 
@@ -45,10 +48,10 @@ public final class CommonTermsQuery extends QueryBase {
 	private final Number cutoffFrequency;
 
 	@Nullable
-	private final JsonValue highFreqOperator;
+	private final Operator highFreqOperator;
 
 	@Nullable
-	private final JsonValue lowFreqOperator;
+	private final Operator lowFreqOperator;
 
 	@Nullable
 	private final JsonValue minimumShouldMatch;
@@ -57,8 +60,10 @@ public final class CommonTermsQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CommonTermsQuery(Builder builder) {
+	public CommonTermsQuery(Builder builder) {
 		super(builder);
+		this.field = Objects.requireNonNull(builder.field, "field");
+
 		this.analyzer = builder.analyzer;
 		this.cutoffFrequency = builder.cutoffFrequency;
 		this.highFreqOperator = builder.highFreqOperator;
@@ -66,6 +71,23 @@ public final class CommonTermsQuery extends QueryBase {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.query = Objects.requireNonNull(builder.query, "query");
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "common";
+	}
+
+	/**
+	 * The target field
+	 * <p>
+	 * API name: {@code field}
+	 */
+	public String field() {
+		return this.field;
 	}
 
 	/**
@@ -88,7 +110,7 @@ public final class CommonTermsQuery extends QueryBase {
 	 * API name: {@code high_freq_operator}
 	 */
 	@Nullable
-	public JsonValue highFreqOperator() {
+	public Operator highFreqOperator() {
 		return this.highFreqOperator;
 	}
 
@@ -96,7 +118,7 @@ public final class CommonTermsQuery extends QueryBase {
 	 * API name: {@code low_freq_operator}
 	 */
 	@Nullable
-	public JsonValue lowFreqOperator() {
+	public Operator lowFreqOperator() {
 		return this.lowFreqOperator;
 	}
 
@@ -115,8 +137,12 @@ public final class CommonTermsQuery extends QueryBase {
 		return this.query;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		generator.writeStartObject(this.field);
+
+		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
@@ -132,14 +158,12 @@ public final class CommonTermsQuery extends QueryBase {
 		if (this.highFreqOperator != null) {
 
 			generator.writeKey("high_freq_operator");
-			generator.write(this.highFreqOperator);
-
+			this.highFreqOperator.serialize(generator, mapper);
 		}
 		if (this.lowFreqOperator != null) {
 
 			generator.writeKey("low_freq_operator");
-			generator.write(this.lowFreqOperator);
-
+			this.lowFreqOperator.serialize(generator, mapper);
 		}
 		if (this.minimumShouldMatch != null) {
 
@@ -151,6 +175,10 @@ public final class CommonTermsQuery extends QueryBase {
 		generator.writeKey("query");
 		generator.write(this.query);
 
+		generator.writeEnd();
+
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -159,6 +187,18 @@ public final class CommonTermsQuery extends QueryBase {
 	 * Builder for {@link CommonTermsQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<CommonTermsQuery> {
+		private String field;
+
+		/**
+		 * The target field
+		 * <p>
+		 * API name: {@code field}
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		@Nullable
 		private String analyzer;
 
@@ -166,10 +206,10 @@ public final class CommonTermsQuery extends QueryBase {
 		private Number cutoffFrequency;
 
 		@Nullable
-		private JsonValue highFreqOperator;
+		private Operator highFreqOperator;
 
 		@Nullable
-		private JsonValue lowFreqOperator;
+		private Operator lowFreqOperator;
 
 		@Nullable
 		private JsonValue minimumShouldMatch;
@@ -195,7 +235,7 @@ public final class CommonTermsQuery extends QueryBase {
 		/**
 		 * API name: {@code high_freq_operator}
 		 */
-		public Builder highFreqOperator(@Nullable JsonValue value) {
+		public Builder highFreqOperator(@Nullable Operator value) {
 			this.highFreqOperator = value;
 			return this;
 		}
@@ -203,7 +243,7 @@ public final class CommonTermsQuery extends QueryBase {
 		/**
 		 * API name: {@code low_freq_operator}
 		 */
-		public Builder lowFreqOperator(@Nullable JsonValue value) {
+		public Builder lowFreqOperator(@Nullable Operator value) {
 			this.lowFreqOperator = value;
 			return this;
 		}
@@ -243,20 +283,20 @@ public final class CommonTermsQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for CommonTermsQuery
-	 */
-	public static final JsonpDeserializer<CommonTermsQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CommonTermsQuery::setupCommonTermsQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<CommonTermsQuery.Builder, CommonTermsQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(CommonTermsQuery::setupCommonTermsQueryDeserializer);
 
 	protected static void setupCommonTermsQueryDeserializer(DelegatingDeserializer<CommonTermsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::cutoffFrequency, JsonpDeserializer.numberDeserializer(), "cutoff_frequency");
-		op.add(Builder::highFreqOperator, JsonpDeserializer.jsonValueDeserializer(), "high_freq_operator");
-		op.add(Builder::lowFreqOperator, JsonpDeserializer.jsonValueDeserializer(), "low_freq_operator");
+		op.add(Builder::highFreqOperator, Operator.DESERIALIZER, "high_freq_operator");
+		op.add(Builder::lowFreqOperator, Operator.DESERIALIZER, "low_freq_operator");
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+
+		op.setKey(Builder::field);
 
 	}
 

@@ -52,8 +52,9 @@ public final class SplitProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SplitProcessor(Builder builder) {
+	public SplitProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.preserveTrailing = builder.preserveTrailing;
@@ -100,8 +101,9 @@ public final class SplitProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -212,7 +214,7 @@ public final class SplitProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SplitProcessor
+	 * Json deserializer for {@link SplitProcessor}
 	 */
 	public static final JsonpDeserializer<SplitProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SplitProcessor::setupSplitProcessorDeserializer);

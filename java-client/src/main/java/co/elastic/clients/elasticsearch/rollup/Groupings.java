@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.Groupings
-public final class Groupings implements ToJsonp {
+public final class Groupings implements JsonpSerializable {
 	@Nullable
 	private final DateHistogramGrouping dateHistogram;
 
@@ -47,7 +48,7 @@ public final class Groupings implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Groupings(Builder builder) {
+	public Groupings(Builder builder) {
 
 		this.dateHistogram = builder.dateHistogram;
 		this.histogram = builder.histogram;
@@ -82,30 +83,30 @@ public final class Groupings implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.dateHistogram != null) {
 
 			generator.writeKey("date_histogram");
-			this.dateHistogram.toJsonp(generator, mapper);
+			this.dateHistogram.serialize(generator, mapper);
 
 		}
 		if (this.histogram != null) {
 
 			generator.writeKey("histogram");
-			this.histogram.toJsonp(generator, mapper);
+			this.histogram.serialize(generator, mapper);
 
 		}
 		if (this.terms != null) {
 
 			generator.writeKey("terms");
-			this.terms.toJsonp(generator, mapper);
+			this.terms.serialize(generator, mapper);
 
 		}
 
@@ -186,7 +187,7 @@ public final class Groupings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Groupings
+	 * Json deserializer for {@link Groupings}
 	 */
 	public static final JsonpDeserializer<Groupings> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Groupings::setupGroupingsDeserializer);

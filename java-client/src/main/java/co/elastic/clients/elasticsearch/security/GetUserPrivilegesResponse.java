@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user_privileges.Response
-public final class GetUserPrivilegesResponse implements ToJsonp {
+public final class GetUserPrivilegesResponse implements JsonpSerializable {
 	private final List<ApplicationPrivileges> applications;
 
 	private final List<String> cluster;
@@ -53,7 +53,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetUserPrivilegesResponse(Builder builder) {
+	public GetUserPrivilegesResponse(Builder builder) {
 
 		this.applications = Objects.requireNonNull(builder.applications, "applications");
 		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
@@ -101,18 +101,18 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("applications");
 		generator.writeStartArray();
 		for (ApplicationPrivileges item0 : this.applications) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -128,7 +128,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		generator.writeKey("global");
 		generator.writeStartArray();
 		for (GlobalPrivilege item0 : this.global) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -136,7 +136,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		generator.writeKey("indices");
 		generator.writeStartArray();
 		for (IndicesPrivileges item0 : this.indices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -360,7 +360,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetUserPrivilegesResponse
+	 * Json deserializer for {@link GetUserPrivilegesResponse}
 	 */
 	public static final JsonpDeserializer<GetUserPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetUserPrivilegesResponse::setupGetUserPrivilegesResponseDeserializer);

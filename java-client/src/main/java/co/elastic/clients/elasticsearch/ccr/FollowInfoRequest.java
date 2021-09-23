@@ -46,7 +46,7 @@ public final class FollowInfoRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FollowInfoRequest(Builder builder) {
+	public FollowInfoRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 

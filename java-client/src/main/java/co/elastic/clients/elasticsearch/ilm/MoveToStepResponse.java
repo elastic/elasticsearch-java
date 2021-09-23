@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ilm.move_to_step.Response
 public final class MoveToStepResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected MoveToStepResponse(Builder builder) {
+	public MoveToStepResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class MoveToStepResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MoveToStepResponse
+	 * Json deserializer for {@link MoveToStepResponse}
 	 */
 	public static final JsonpDeserializer<MoveToStepResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MoveToStepResponse::setupMoveToStepResponseDeserializer);

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.CompletionStats
-public final class CompletionStats implements ToJsonp {
+public final class CompletionStats implements JsonpSerializable {
 	private final Number sizeInBytes;
 
 	@Nullable
@@ -52,7 +52,7 @@ public final class CompletionStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CompletionStats(Builder builder) {
+	public CompletionStats(Builder builder) {
 
 		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
 		this.size = builder.size;
@@ -86,13 +86,13 @@ public final class CompletionStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("size_in_bytes");
 		generator.write(this.sizeInBytes.doubleValue());
@@ -109,7 +109,7 @@ public final class CompletionStats implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, FieldSizeUsage> item0 : this.fields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -196,7 +196,7 @@ public final class CompletionStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CompletionStats
+	 * Json deserializer for {@link CompletionStats}
 	 */
 	public static final JsonpDeserializer<CompletionStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CompletionStats::setupCompletionStatsDeserializer);

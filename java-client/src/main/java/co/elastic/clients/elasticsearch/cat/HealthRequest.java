@@ -33,6 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.Request
@@ -45,7 +46,7 @@ public final class HealthRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HealthRequest(Builder builder) {
+	public HealthRequest(Builder builder) {
 
 		this.includeTimestamp = builder.includeTimestamp;
 		this.ts = builder.ts;

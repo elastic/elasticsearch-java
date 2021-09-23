@@ -34,6 +34,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Request
@@ -43,7 +44,7 @@ public final class UsageRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UsageRequest(Builder builder) {
+	public UsageRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
 

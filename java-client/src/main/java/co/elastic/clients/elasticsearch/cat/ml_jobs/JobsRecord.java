@@ -23,25 +23,29 @@
 
 package co.elastic.clients.elasticsearch.cat.ml_jobs;
 
+import co.elastic.clients.elasticsearch.ml.CategorizationStatus;
+import co.elastic.clients.elasticsearch.ml.JobState;
+import co.elastic.clients.elasticsearch.ml.MemoryStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.JobsRecord
-public final class JobsRecord implements ToJsonp {
+public final class JobsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
 	@Nullable
-	private final JsonValue state;
+	private final JobState state;
 
 	@Nullable
 	private final String openedTime;
@@ -101,7 +105,7 @@ public final class JobsRecord implements ToJsonp {
 	private final JsonValue model_bytes;
 
 	@Nullable
-	private final JsonValue model_memoryStatus;
+	private final MemoryStatus model_memoryStatus;
 
 	@Nullable
 	private final JsonValue model_bytesExceeded;
@@ -122,7 +126,7 @@ public final class JobsRecord implements ToJsonp {
 	private final String model_bucketAllocationFailures;
 
 	@Nullable
-	private final JsonValue model_categorizationStatus;
+	private final CategorizationStatus model_categorizationStatus;
 
 	@Nullable
 	private final String model_categorizedDocCount;
@@ -219,7 +223,7 @@ public final class JobsRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JobsRecord(Builder builder) {
+	public JobsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.state = builder.state;
@@ -300,7 +304,7 @@ public final class JobsRecord implements ToJsonp {
 	 * API name: {@code state}
 	 */
 	@Nullable
-	public JsonValue state() {
+	public JobState state() {
 		return this.state;
 	}
 
@@ -500,7 +504,7 @@ public final class JobsRecord implements ToJsonp {
 	 * API name: {@code model.memory_status}
 	 */
 	@Nullable
-	public JsonValue model_memoryStatus() {
+	public MemoryStatus model_memoryStatus() {
 		return this.model_memoryStatus;
 	}
 
@@ -570,7 +574,7 @@ public final class JobsRecord implements ToJsonp {
 	 * API name: {@code model.categorization_status}
 	 */
 	@Nullable
-	public JsonValue model_categorizationStatus() {
+	public CategorizationStatus model_categorizationStatus() {
 		return this.model_categorizationStatus;
 	}
 
@@ -887,13 +891,13 @@ public final class JobsRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -904,8 +908,7 @@ public final class JobsRecord implements ToJsonp {
 		if (this.state != null) {
 
 			generator.writeKey("state");
-			generator.write(this.state);
-
+			this.state.serialize(generator, mapper);
 		}
 		if (this.openedTime != null) {
 
@@ -1024,8 +1027,7 @@ public final class JobsRecord implements ToJsonp {
 		if (this.model_memoryStatus != null) {
 
 			generator.writeKey("model.memory_status");
-			generator.write(this.model_memoryStatus);
-
+			this.model_memoryStatus.serialize(generator, mapper);
 		}
 		if (this.model_bytesExceeded != null) {
 
@@ -1066,8 +1068,7 @@ public final class JobsRecord implements ToJsonp {
 		if (this.model_categorizationStatus != null) {
 
 			generator.writeKey("model.categorization_status");
-			generator.write(this.model_categorizationStatus);
-
+			this.model_categorizationStatus.serialize(generator, mapper);
 		}
 		if (this.model_categorizedDocCount != null) {
 
@@ -1268,7 +1269,7 @@ public final class JobsRecord implements ToJsonp {
 		private String id;
 
 		@Nullable
-		private JsonValue state;
+		private JobState state;
 
 		@Nullable
 		private String openedTime;
@@ -1328,7 +1329,7 @@ public final class JobsRecord implements ToJsonp {
 		private JsonValue model_bytes;
 
 		@Nullable
-		private JsonValue model_memoryStatus;
+		private MemoryStatus model_memoryStatus;
 
 		@Nullable
 		private JsonValue model_bytesExceeded;
@@ -1349,7 +1350,7 @@ public final class JobsRecord implements ToJsonp {
 		private String model_bucketAllocationFailures;
 
 		@Nullable
-		private JsonValue model_categorizationStatus;
+		private CategorizationStatus model_categorizationStatus;
 
 		@Nullable
 		private String model_categorizedDocCount;
@@ -1459,7 +1460,7 @@ public final class JobsRecord implements ToJsonp {
 		 * <p>
 		 * API name: {@code state}
 		 */
-		public Builder state(@Nullable JsonValue value) {
+		public Builder state(@Nullable JobState value) {
 			this.state = value;
 			return this;
 		}
@@ -1659,7 +1660,7 @@ public final class JobsRecord implements ToJsonp {
 		 * <p>
 		 * API name: {@code model.memory_status}
 		 */
-		public Builder model_memoryStatus(@Nullable JsonValue value) {
+		public Builder model_memoryStatus(@Nullable MemoryStatus value) {
 			this.model_memoryStatus = value;
 			return this;
 		}
@@ -1729,7 +1730,7 @@ public final class JobsRecord implements ToJsonp {
 		 * <p>
 		 * API name: {@code model.categorization_status}
 		 */
-		public Builder model_categorizationStatus(@Nullable JsonValue value) {
+		public Builder model_categorizationStatus(@Nullable CategorizationStatus value) {
 			this.model_categorizationStatus = value;
 			return this;
 		}
@@ -2059,7 +2060,7 @@ public final class JobsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JobsRecord
+	 * Json deserializer for {@link JobsRecord}
 	 */
 	public static final JsonpDeserializer<JobsRecord> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, JobsRecord::setupJobsRecordDeserializer);
@@ -2067,7 +2068,7 @@ public final class JobsRecord implements ToJsonp {
 	protected static void setupJobsRecordDeserializer(DelegatingDeserializer<JobsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state", "s");
+		op.add(Builder::state, JobState.DESERIALIZER, "state", "s");
 		op.add(Builder::openedTime, JsonpDeserializer.stringDeserializer(), "opened_time", "ot");
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation", "ae");
 		op.add(Builder::data_processedRecords, JsonpDeserializer.stringDeserializer(), "data.processed_records", "dpr",
@@ -2101,7 +2102,7 @@ public final class JobsRecord implements ToJsonp {
 		op.add(Builder::data_lastSparseBucket, JsonpDeserializer.stringDeserializer(), "data.last_sparse_bucket",
 				"dlsb", "dataLastSparseBucket");
 		op.add(Builder::model_bytes, JsonpDeserializer.jsonValueDeserializer(), "model.bytes", "mb", "modelBytes");
-		op.add(Builder::model_memoryStatus, JsonpDeserializer.jsonValueDeserializer(), "model.memory_status", "mms",
+		op.add(Builder::model_memoryStatus, MemoryStatus.DESERIALIZER, "model.memory_status", "mms",
 				"modelMemoryStatus");
 		op.add(Builder::model_bytesExceeded, JsonpDeserializer.jsonValueDeserializer(), "model.bytes_exceeded", "mbe",
 				"modelBytesExceeded");
@@ -2115,8 +2116,8 @@ public final class JobsRecord implements ToJsonp {
 				"modelPartitionFields");
 		op.add(Builder::model_bucketAllocationFailures, JsonpDeserializer.stringDeserializer(),
 				"model.bucket_allocation_failures", "mbaf", "modelBucketAllocationFailures");
-		op.add(Builder::model_categorizationStatus, JsonpDeserializer.jsonValueDeserializer(),
-				"model.categorization_status", "mcs", "modelCategorizationStatus");
+		op.add(Builder::model_categorizationStatus, CategorizationStatus.DESERIALIZER, "model.categorization_status",
+				"mcs", "modelCategorizationStatus");
 		op.add(Builder::model_categorizedDocCount, JsonpDeserializer.stringDeserializer(),
 				"model.categorized_doc_count", "mcdc", "modelCategorizedDocCount");
 		op.add(Builder::model_totalCategoryCount, JsonpDeserializer.stringDeserializer(), "model.total_category_count",

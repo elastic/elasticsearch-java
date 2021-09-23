@@ -40,8 +40,9 @@ public final class Analytics extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Analytics(Builder builder) {
+	public Analytics(Builder builder) {
 		super(builder);
+
 		this.stats = Objects.requireNonNull(builder.stats, "stats");
 
 	}
@@ -53,11 +54,12 @@ public final class Analytics extends Base {
 		return this.stats;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("stats");
-		this.stats.toJsonp(generator, mapper);
+		this.stats.serialize(generator, mapper);
 
 	}
 
@@ -104,7 +106,7 @@ public final class Analytics extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Analytics
+	 * Json deserializer for {@link Analytics}
 	 */
 	public static final JsonpDeserializer<Analytics> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Analytics::setupAnalyticsDeserializer);

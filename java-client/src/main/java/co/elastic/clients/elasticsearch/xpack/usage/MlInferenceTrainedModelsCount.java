@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModelsCount
-public final class MlInferenceTrainedModelsCount implements ToJsonp {
+public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	private final Number total;
 
 	private final Number prepackaged;
@@ -49,7 +49,7 @@ public final class MlInferenceTrainedModelsCount implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlInferenceTrainedModelsCount(Builder builder) {
+	public MlInferenceTrainedModelsCount(Builder builder) {
 
 		this.total = Objects.requireNonNull(builder.total, "total");
 		this.prepackaged = Objects.requireNonNull(builder.prepackaged, "prepackaged");
@@ -97,13 +97,13 @@ public final class MlInferenceTrainedModelsCount implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("total");
 		generator.write(this.total.doubleValue());
@@ -193,7 +193,7 @@ public final class MlInferenceTrainedModelsCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlInferenceTrainedModelsCount
+	 * Json deserializer for {@link MlInferenceTrainedModelsCount}
 	 */
 	public static final JsonpDeserializer<MlInferenceTrainedModelsCount> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

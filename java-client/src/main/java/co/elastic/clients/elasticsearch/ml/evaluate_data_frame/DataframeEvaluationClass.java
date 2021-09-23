@@ -40,8 +40,9 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationClass(Builder builder) {
+	public DataframeEvaluationClass(Builder builder) {
 		super(builder);
+
 		this.className = Objects.requireNonNull(builder.className, "class_name");
 
 	}
@@ -53,8 +54,9 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 		return this.className;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("class_name");
 		generator.write(this.className);
@@ -99,7 +101,7 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationClass
+	 * Json deserializer for {@link DataframeEvaluationClass}
 	 */
 	public static final JsonpDeserializer<DataframeEvaluationClass> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DataframeEvaluationClass::setupDataframeEvaluationClassDeserializer);

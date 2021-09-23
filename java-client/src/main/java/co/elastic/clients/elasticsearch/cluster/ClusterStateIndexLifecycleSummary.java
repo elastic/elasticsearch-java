@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateIndexLifecycleSummary
-public final class ClusterStateIndexLifecycleSummary implements ToJsonp {
+public final class ClusterStateIndexLifecycleSummary implements JsonpSerializable {
 	private final ClusterStateIndexLifecyclePolicy policy;
 
 	private final Map<String, List<String>> headers;
@@ -54,7 +54,7 @@ public final class ClusterStateIndexLifecycleSummary implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterStateIndexLifecycleSummary(Builder builder) {
+	public ClusterStateIndexLifecycleSummary(Builder builder) {
 
 		this.policy = Objects.requireNonNull(builder.policy, "policy");
 		this.headers = Objects.requireNonNull(builder.headers, "headers");
@@ -102,16 +102,16 @@ public final class ClusterStateIndexLifecycleSummary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("policy");
-		this.policy.toJsonp(generator, mapper);
+		this.policy.serialize(generator, mapper);
 
 		generator.writeKey("headers");
 		generator.writeStartObject();
@@ -228,7 +228,7 @@ public final class ClusterStateIndexLifecycleSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterStateIndexLifecycleSummary
+	 * Json deserializer for {@link ClusterStateIndexLifecycleSummary}
 	 */
 	public static final JsonpDeserializer<ClusterStateIndexLifecycleSummary> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

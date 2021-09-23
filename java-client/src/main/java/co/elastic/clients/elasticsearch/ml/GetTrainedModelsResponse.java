@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Response
-public final class GetTrainedModelsResponse implements ToJsonp {
+public final class GetTrainedModelsResponse implements JsonpSerializable {
 	private final Number count;
 
 	private final List<TrainedModelConfig> trainedModelConfigs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTrainedModelsResponse(Builder builder) {
+	public GetTrainedModelsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.trainedModelConfigs = Objects.requireNonNull(builder.trainedModelConfigs, "trained_model_configs");
@@ -74,13 +74,13 @@ public final class GetTrainedModelsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
@@ -88,7 +88,7 @@ public final class GetTrainedModelsResponse implements ToJsonp {
 		generator.writeKey("trained_model_configs");
 		generator.writeStartArray();
 		for (TrainedModelConfig item0 : this.trainedModelConfigs) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -178,7 +178,7 @@ public final class GetTrainedModelsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetTrainedModelsResponse
+	 * Json deserializer for {@link GetTrainedModelsResponse}
 	 */
 	public static final JsonpDeserializer<GetTrainedModelsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetTrainedModelsResponse::setupGetTrainedModelsResponseDeserializer);

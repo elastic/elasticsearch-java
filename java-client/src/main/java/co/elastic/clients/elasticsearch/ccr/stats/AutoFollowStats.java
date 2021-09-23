@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.stats.AutoFollowStats
-public final class AutoFollowStats implements ToJsonp {
+public final class AutoFollowStats implements JsonpSerializable {
 	private final List<AutoFollowedCluster> autoFollowedClusters;
 
 	private final Number numberOfFailedFollowIndices;
@@ -54,7 +54,7 @@ public final class AutoFollowStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoFollowStats(Builder builder) {
+	public AutoFollowStats(Builder builder) {
 
 		this.autoFollowedClusters = Objects.requireNonNull(builder.autoFollowedClusters, "auto_followed_clusters");
 		this.numberOfFailedFollowIndices = Objects.requireNonNull(builder.numberOfFailedFollowIndices,
@@ -106,18 +106,18 @@ public final class AutoFollowStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("auto_followed_clusters");
 		generator.writeStartArray();
 		for (AutoFollowedCluster item0 : this.autoFollowedClusters) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -134,7 +134,7 @@ public final class AutoFollowStats implements ToJsonp {
 		generator.writeKey("recent_auto_follow_errors");
 		generator.writeStartArray();
 		for (ErrorCause item0 : this.recentAutoFollowErrors) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -284,7 +284,7 @@ public final class AutoFollowStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoFollowStats
+	 * Json deserializer for {@link AutoFollowStats}
 	 */
 	public static final JsonpDeserializer<AutoFollowStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AutoFollowStats::setupAutoFollowStatsDeserializer);

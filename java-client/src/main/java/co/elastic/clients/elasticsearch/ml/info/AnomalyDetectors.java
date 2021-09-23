@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.ml.CategorizationAnalyzer;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.AnomalyDetectors
-public final class AnomalyDetectors implements ToJsonp {
+public final class AnomalyDetectors implements JsonpSerializable {
 	private final CategorizationAnalyzer categorizationAnalyzer;
 
 	private final Number categorizationExamplesLimit;
@@ -52,7 +52,7 @@ public final class AnomalyDetectors implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AnomalyDetectors(Builder builder) {
+	public AnomalyDetectors(Builder builder) {
 
 		this.categorizationAnalyzer = Objects.requireNonNull(builder.categorizationAnalyzer, "categorization_analyzer");
 		this.categorizationExamplesLimit = Objects.requireNonNull(builder.categorizationExamplesLimit,
@@ -103,16 +103,16 @@ public final class AnomalyDetectors implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("categorization_analyzer");
-		this.categorizationAnalyzer.toJsonp(generator, mapper);
+		this.categorizationAnalyzer.serialize(generator, mapper);
 
 		generator.writeKey("categorization_examples_limit");
 		generator.write(this.categorizationExamplesLimit.doubleValue());
@@ -207,7 +207,7 @@ public final class AnomalyDetectors implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AnomalyDetectors
+	 * Json deserializer for {@link AnomalyDetectors}
 	 */
 	public static final JsonpDeserializer<AnomalyDetectors> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AnomalyDetectors::setupAnomalyDetectorsDeserializer);

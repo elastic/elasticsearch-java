@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -40,14 +39,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.FieldMetric
-public final class FieldMetric implements ToJsonp {
+public final class FieldMetric implements JsonpSerializable {
 	private final String field;
 
-	private final List<JsonValue> metrics;
+	private final List<Metric> metrics;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FieldMetric(Builder builder) {
+	public FieldMetric(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.metrics = Objects.requireNonNull(builder.metrics, "metrics");
@@ -64,29 +63,28 @@ public final class FieldMetric implements ToJsonp {
 	/**
 	 * API name: {@code metrics}
 	 */
-	public List<JsonValue> metrics() {
+	public List<Metric> metrics() {
 		return this.metrics;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		generator.writeKey("metrics");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.metrics) {
-			generator.write(item0);
-
+		for (Metric item0 : this.metrics) {
+			item0.serialize(generator, mapper);
 		}
 		generator.writeEnd();
 
@@ -100,7 +98,7 @@ public final class FieldMetric implements ToJsonp {
 	public static class Builder implements ObjectBuilder<FieldMetric> {
 		private String field;
 
-		private List<JsonValue> metrics;
+		private List<Metric> metrics;
 
 		/**
 		 * API name: {@code field}
@@ -113,7 +111,7 @@ public final class FieldMetric implements ToJsonp {
 		/**
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(List<JsonValue> value) {
+		public Builder metrics(List<Metric> value) {
 			this.metrics = value;
 			return this;
 		}
@@ -121,7 +119,7 @@ public final class FieldMetric implements ToJsonp {
 		/**
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(JsonValue... value) {
+		public Builder metrics(Metric... value) {
 			this.metrics = Arrays.asList(value);
 			return this;
 		}
@@ -129,7 +127,7 @@ public final class FieldMetric implements ToJsonp {
 		/**
 		 * Add a value to {@link #metrics(List)}, creating the list if needed.
 		 */
-		public Builder addMetrics(JsonValue value) {
+		public Builder addMetrics(Metric value) {
 			if (this.metrics == null) {
 				this.metrics = new ArrayList<>();
 			}
@@ -152,7 +150,7 @@ public final class FieldMetric implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FieldMetric
+	 * Json deserializer for {@link FieldMetric}
 	 */
 	public static final JsonpDeserializer<FieldMetric> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FieldMetric::setupFieldMetricDeserializer);
@@ -160,8 +158,7 @@ public final class FieldMetric implements ToJsonp {
 	protected static void setupFieldMetricDeserializer(DelegatingDeserializer<FieldMetric.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metrics");
+		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(Metric.DESERIALIZER), "metrics");
 
 	}
 

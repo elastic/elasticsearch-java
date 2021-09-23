@@ -23,13 +23,14 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.elasticsearch._types.Health;
 import co.elastic.clients.elasticsearch.cluster.health.IndexHealthStats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -44,7 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.Response
-public final class HealthResponse implements ToJsonp {
+public final class HealthResponse implements JsonpSerializable {
 	private final Number activePrimaryShards;
 
 	private final Number activeShards;
@@ -70,7 +71,7 @@ public final class HealthResponse implements ToJsonp {
 
 	private final Number relocatingShards;
 
-	private final JsonValue status;
+	private final Health status;
 
 	private final JsonValue taskMaxWaitingInQueueMillis;
 
@@ -80,7 +81,7 @@ public final class HealthResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HealthResponse(Builder builder) {
+	public HealthResponse(Builder builder) {
 
 		this.activePrimaryShards = Objects.requireNonNull(builder.activePrimaryShards, "active_primary_shards");
 		this.activeShards = Objects.requireNonNull(builder.activeShards, "active_shards");
@@ -213,7 +214,7 @@ public final class HealthResponse implements ToJsonp {
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public Health status() {
 		return this.status;
 	}
 
@@ -249,13 +250,13 @@ public final class HealthResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("active_primary_shards");
 		generator.write(this.activePrimaryShards.doubleValue());
@@ -278,7 +279,7 @@ public final class HealthResponse implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexHealthStats> item0 : this.indices.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -304,7 +305,7 @@ public final class HealthResponse implements ToJsonp {
 		generator.write(this.relocatingShards.doubleValue());
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 		generator.writeKey("task_max_waiting_in_queue_millis");
 		generator.write(this.taskMaxWaitingInQueueMillis);
@@ -348,7 +349,7 @@ public final class HealthResponse implements ToJsonp {
 
 		private Number relocatingShards;
 
-		private JsonValue status;
+		private Health status;
 
 		private JsonValue taskMaxWaitingInQueueMillis;
 
@@ -501,7 +502,7 @@ public final class HealthResponse implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(Health value) {
 			this.status = value;
 			return this;
 		}
@@ -553,7 +554,7 @@ public final class HealthResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HealthResponse
+	 * Json deserializer for {@link HealthResponse}
 	 */
 	public static final JsonpDeserializer<HealthResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, HealthResponse::setupHealthResponseDeserializer);
@@ -573,7 +574,7 @@ public final class HealthResponse implements ToJsonp {
 		op.add(Builder::numberOfNodes, JsonpDeserializer.numberDeserializer(), "number_of_nodes");
 		op.add(Builder::numberOfPendingTasks, JsonpDeserializer.numberDeserializer(), "number_of_pending_tasks");
 		op.add(Builder::relocatingShards, JsonpDeserializer.numberDeserializer(), "relocating_shards");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::status, Health.DESERIALIZER, "status");
 		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpDeserializer.jsonValueDeserializer(),
 				"task_max_waiting_in_queue_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");

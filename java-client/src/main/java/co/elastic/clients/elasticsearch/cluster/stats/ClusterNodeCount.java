@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNodeCount
-public final class ClusterNodeCount implements ToJsonp {
+public final class ClusterNodeCount implements JsonpSerializable {
 	private final Number coordinatingOnly;
 
 	private final Number data;
@@ -68,7 +68,7 @@ public final class ClusterNodeCount implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterNodeCount(Builder builder) {
+	public ClusterNodeCount(Builder builder) {
 
 		this.coordinatingOnly = Objects.requireNonNull(builder.coordinatingOnly, "coordinating_only");
 		this.data = Objects.requireNonNull(builder.data, "data");
@@ -189,13 +189,13 @@ public final class ClusterNodeCount implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("coordinating_only");
 		generator.write(this.coordinatingOnly.doubleValue());
@@ -407,7 +407,7 @@ public final class ClusterNodeCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterNodeCount
+	 * Json deserializer for {@link ClusterNodeCount}
 	 */
 	public static final JsonpDeserializer<ClusterNodeCount> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterNodeCount::setupClusterNodeCountDeserializer);

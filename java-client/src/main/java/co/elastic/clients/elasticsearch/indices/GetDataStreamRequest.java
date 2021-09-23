@@ -33,21 +33,26 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.Request
 public final class GetDataStreamRequest extends RequestBase {
 	@Nullable
-	private final String name;
+	private final List<String> name;
 
 	@Nullable
 	private final JsonValue expandWildcards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDataStreamRequest(Builder builder) {
+	public GetDataStreamRequest(Builder builder) {
 
 		this.name = builder.name;
 		this.expandWildcards = builder.expandWildcards;
@@ -61,7 +66,7 @@ public final class GetDataStreamRequest extends RequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public List<String> name() {
 		return this.name;
 	}
 
@@ -83,7 +88,7 @@ public final class GetDataStreamRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<GetDataStreamRequest> {
 		@Nullable
-		private String name;
+		private List<String> name;
 
 		@Nullable
 		private JsonValue expandWildcards;
@@ -94,8 +99,30 @@ public final class GetDataStreamRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public Builder name(@Nullable List<String> value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of data streams to get; use <code>*</code> to get all
+		 * data streams
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public Builder name(String... value) {
+			this.name = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 */
+		public Builder addName(String value) {
+			if (this.name == null) {
+				this.name = new ArrayList<>();
+			}
+			this.name.add(value);
 			return this;
 		}
 
@@ -152,7 +179,7 @@ public final class GetDataStreamRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_data_stream");
 					buf.append("/");
-					buf.append(request.name);
+					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");

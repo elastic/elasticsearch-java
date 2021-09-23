@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.Status
-public final class Status implements ToJsonp {
+public final class Status implements JsonpSerializable {
 	private final Boolean includeGlobalState;
 
 	private final Map<String, SnapshotIndexStats> indices;
@@ -60,7 +60,7 @@ public final class Status implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Status(Builder builder) {
+	public Status(Builder builder) {
 
 		this.includeGlobalState = Objects.requireNonNull(builder.includeGlobalState, "include_global_state");
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
@@ -132,13 +132,13 @@ public final class Status implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("include_global_state");
 		generator.write(this.includeGlobalState);
@@ -147,7 +147,7 @@ public final class Status implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, SnapshotIndexStats> item0 : this.indices.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -156,7 +156,7 @@ public final class Status implements ToJsonp {
 		generator.write(this.repository);
 
 		generator.writeKey("shards_stats");
-		this.shardsStats.toJsonp(generator, mapper);
+		this.shardsStats.serialize(generator, mapper);
 
 		generator.writeKey("snapshot");
 		generator.write(this.snapshot);
@@ -165,7 +165,7 @@ public final class Status implements ToJsonp {
 		generator.write(this.state);
 
 		generator.writeKey("stats");
-		this.stats.toJsonp(generator, mapper);
+		this.stats.serialize(generator, mapper);
 
 		generator.writeKey("uuid");
 		generator.write(this.uuid);
@@ -313,7 +313,7 @@ public final class Status implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Status
+	 * Json deserializer for {@link Status}
 	 */
 	public static final JsonpDeserializer<Status> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Status::setupStatusDeserializer);

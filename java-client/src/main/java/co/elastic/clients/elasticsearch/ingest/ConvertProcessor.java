@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -45,12 +44,13 @@ public final class ConvertProcessor extends ProcessorBase {
 
 	private final String targetField;
 
-	private final JsonValue type;
+	private final ConvertType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ConvertProcessor(Builder builder) {
+	public ConvertProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
@@ -83,12 +83,13 @@ public final class ConvertProcessor extends ProcessorBase {
 	/**
 	 * API name: {@code type}
 	 */
-	public JsonValue type() {
+	public ConvertType type() {
 		return this.type;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -104,7 +105,7 @@ public final class ConvertProcessor extends ProcessorBase {
 		generator.write(this.targetField);
 
 		generator.writeKey("type");
-		generator.write(this.type);
+		this.type.serialize(generator, mapper);
 
 	}
 
@@ -123,7 +124,7 @@ public final class ConvertProcessor extends ProcessorBase {
 
 		private String targetField;
 
-		private JsonValue type;
+		private ConvertType type;
 
 		/**
 		 * API name: {@code field}
@@ -152,7 +153,7 @@ public final class ConvertProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(ConvertType value) {
 			this.type = value;
 			return this;
 		}
@@ -177,7 +178,7 @@ public final class ConvertProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ConvertProcessor
+	 * Json deserializer for {@link ConvertProcessor}
 	 */
 	public static final JsonpDeserializer<ConvertProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ConvertProcessor::setupConvertProcessorDeserializer);
@@ -187,7 +188,7 @@ public final class ConvertProcessor extends ProcessorBase {
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type, ConvertType.DESERIALIZER, "type");
 
 	}
 

@@ -32,12 +32,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: cluster.remote_info.Response
 public final class RemoteInfoResponse extends AdditionalProperties<String, JsonValue> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected RemoteInfoResponse(Builder builder) {
+	public RemoteInfoResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -72,7 +73,7 @@ public final class RemoteInfoResponse extends AdditionalProperties<String, JsonV
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RemoteInfoResponse
+	 * Json deserializer for {@link RemoteInfoResponse}
 	 */
 	public static final JsonpDeserializer<RemoteInfoResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RemoteInfoResponse::setupRemoteInfoResponseDeserializer);

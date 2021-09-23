@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: slm.put_lifecycle.Response
 public final class PutLifecycleResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutLifecycleResponse(Builder builder) {
+	public PutLifecycleResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class PutLifecycleResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutLifecycleResponse
+	 * Json deserializer for {@link PutLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<PutLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutLifecycleResponse::setupPutLifecycleResponseDeserializer);

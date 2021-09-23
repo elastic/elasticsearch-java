@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.shutdown.get_node;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,16 +38,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.NodeShutdownStatus
-public final class NodeShutdownStatus implements ToJsonp {
+public final class NodeShutdownStatus implements JsonpSerializable {
 	private final String nodeId;
 
-	private final JsonValue type;
+	private final ShutdownType type;
 
 	private final String reason;
 
 	private final JsonValue shutdownStartedmillis;
 
-	private final JsonValue status;
+	private final ShutdownStatus status;
 
 	private final ShardMigrationStatus shardMigration;
 
@@ -57,7 +57,7 @@ public final class NodeShutdownStatus implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeShutdownStatus(Builder builder) {
+	public NodeShutdownStatus(Builder builder) {
 
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
 		this.type = Objects.requireNonNull(builder.type, "type");
@@ -80,7 +80,7 @@ public final class NodeShutdownStatus implements ToJsonp {
 	/**
 	 * API name: {@code type}
 	 */
-	public JsonValue type() {
+	public ShutdownType type() {
 		return this.type;
 	}
 
@@ -101,7 +101,7 @@ public final class NodeShutdownStatus implements ToJsonp {
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public ShutdownStatus status() {
 		return this.status;
 	}
 
@@ -129,19 +129,19 @@ public final class NodeShutdownStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("node_id");
 		generator.write(this.nodeId);
 
 		generator.writeKey("type");
-		generator.write(this.type);
+		this.type.serialize(generator, mapper);
 
 		generator.writeKey("reason");
 		generator.write(this.reason);
@@ -150,16 +150,16 @@ public final class NodeShutdownStatus implements ToJsonp {
 		generator.write(this.shutdownStartedmillis);
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 		generator.writeKey("shard_migration");
-		this.shardMigration.toJsonp(generator, mapper);
+		this.shardMigration.serialize(generator, mapper);
 
 		generator.writeKey("persistent_tasks");
-		this.persistentTasks.toJsonp(generator, mapper);
+		this.persistentTasks.serialize(generator, mapper);
 
 		generator.writeKey("plugins");
-		this.plugins.toJsonp(generator, mapper);
+		this.plugins.serialize(generator, mapper);
 
 	}
 
@@ -171,13 +171,13 @@ public final class NodeShutdownStatus implements ToJsonp {
 	public static class Builder implements ObjectBuilder<NodeShutdownStatus> {
 		private String nodeId;
 
-		private JsonValue type;
+		private ShutdownType type;
 
 		private String reason;
 
 		private JsonValue shutdownStartedmillis;
 
-		private JsonValue status;
+		private ShutdownStatus status;
 
 		private ShardMigrationStatus shardMigration;
 
@@ -196,7 +196,7 @@ public final class NodeShutdownStatus implements ToJsonp {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(ShutdownType value) {
 			this.type = value;
 			return this;
 		}
@@ -220,7 +220,7 @@ public final class NodeShutdownStatus implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(ShutdownStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -285,7 +285,7 @@ public final class NodeShutdownStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeShutdownStatus
+	 * Json deserializer for {@link NodeShutdownStatus}
 	 */
 	public static final JsonpDeserializer<NodeShutdownStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeShutdownStatus::setupNodeShutdownStatusDeserializer);
@@ -293,10 +293,10 @@ public final class NodeShutdownStatus implements ToJsonp {
 	protected static void setupNodeShutdownStatusDeserializer(DelegatingDeserializer<NodeShutdownStatus.Builder> op) {
 
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type, ShutdownType.DESERIALIZER, "type");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 		op.add(Builder::shutdownStartedmillis, JsonpDeserializer.jsonValueDeserializer(), "shutdown_startedmillis");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::status, ShutdownStatus.DESERIALIZER, "status");
 		op.add(Builder::shardMigration, ShardMigrationStatus.DESERIALIZER, "shard_migration");
 		op.add(Builder::persistentTasks, PersistentTaskStatus.DESERIALIZER, "persistent_tasks");
 		op.add(Builder::plugins, PluginsStatus.DESERIALIZER, "plugins");

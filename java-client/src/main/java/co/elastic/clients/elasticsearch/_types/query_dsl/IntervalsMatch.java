@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsMatch
-public final class IntervalsMatch implements ToJsonp {
+public final class IntervalsMatch implements Intervals, JsonpSerializable {
 	@Nullable
 	private final String analyzer;
 
@@ -59,7 +60,7 @@ public final class IntervalsMatch implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IntervalsMatch(Builder builder) {
+	public IntervalsMatch(Builder builder) {
 
 		this.analyzer = builder.analyzer;
 		this.maxGaps = builder.maxGaps;
@@ -68,6 +69,14 @@ public final class IntervalsMatch implements ToJsonp {
 		this.useField = builder.useField;
 		this.filter = builder.filter;
 
+	}
+
+	/**
+	 * {@link Intervals} variant type
+	 */
+	@Override
+	public String _type() {
+		return "match";
 	}
 
 	/**
@@ -120,13 +129,14 @@ public final class IntervalsMatch implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		if (this.analyzer != null) {
 
@@ -159,9 +169,11 @@ public final class IntervalsMatch implements ToJsonp {
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
+			this.filter.serialize(generator, mapper);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -257,11 +269,9 @@ public final class IntervalsMatch implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for IntervalsMatch
-	 */
-	public static final JsonpDeserializer<IntervalsMatch> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IntervalsMatch::setupIntervalsMatchDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<IntervalsMatch.Builder, IntervalsMatch.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(IntervalsMatch::setupIntervalsMatchDeserializer);
 
 	protected static void setupIntervalsMatchDeserializer(DelegatingDeserializer<IntervalsMatch.Builder> op) {
 

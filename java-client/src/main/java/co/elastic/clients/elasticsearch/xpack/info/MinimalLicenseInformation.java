@@ -23,12 +23,14 @@
 
 package co.elastic.clients.elasticsearch.xpack.info;
 
+import co.elastic.clients.elasticsearch.license.LicenseStatus;
+import co.elastic.clients.elasticsearch.license.LicenseType;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,20 +39,20 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.MinimalLicenseInformation
-public final class MinimalLicenseInformation implements ToJsonp {
+public final class MinimalLicenseInformation implements JsonpSerializable {
 	private final JsonValue expiryDateInMillis;
 
-	private final JsonValue mode;
+	private final LicenseType mode;
 
-	private final JsonValue status;
+	private final LicenseStatus status;
 
-	private final JsonValue type;
+	private final LicenseType type;
 
 	private final String uid;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MinimalLicenseInformation(Builder builder) {
+	public MinimalLicenseInformation(Builder builder) {
 
 		this.expiryDateInMillis = Objects.requireNonNull(builder.expiryDateInMillis, "expiry_date_in_millis");
 		this.mode = Objects.requireNonNull(builder.mode, "mode");
@@ -70,21 +72,21 @@ public final class MinimalLicenseInformation implements ToJsonp {
 	/**
 	 * API name: {@code mode}
 	 */
-	public JsonValue mode() {
+	public LicenseType mode() {
 		return this.mode;
 	}
 
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public LicenseStatus status() {
 		return this.status;
 	}
 
 	/**
 	 * API name: {@code type}
 	 */
-	public JsonValue type() {
+	public LicenseType type() {
 		return this.type;
 	}
 
@@ -98,25 +100,25 @@ public final class MinimalLicenseInformation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("expiry_date_in_millis");
 		generator.write(this.expiryDateInMillis);
 
 		generator.writeKey("mode");
-		generator.write(this.mode);
+		this.mode.serialize(generator, mapper);
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 		generator.writeKey("type");
-		generator.write(this.type);
+		this.type.serialize(generator, mapper);
 
 		generator.writeKey("uid");
 		generator.write(this.uid);
@@ -131,11 +133,11 @@ public final class MinimalLicenseInformation implements ToJsonp {
 	public static class Builder implements ObjectBuilder<MinimalLicenseInformation> {
 		private JsonValue expiryDateInMillis;
 
-		private JsonValue mode;
+		private LicenseType mode;
 
-		private JsonValue status;
+		private LicenseStatus status;
 
-		private JsonValue type;
+		private LicenseType type;
 
 		private String uid;
 
@@ -150,7 +152,7 @@ public final class MinimalLicenseInformation implements ToJsonp {
 		/**
 		 * API name: {@code mode}
 		 */
-		public Builder mode(JsonValue value) {
+		public Builder mode(LicenseType value) {
 			this.mode = value;
 			return this;
 		}
@@ -158,7 +160,7 @@ public final class MinimalLicenseInformation implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(LicenseStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -166,7 +168,7 @@ public final class MinimalLicenseInformation implements ToJsonp {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(LicenseType value) {
 			this.type = value;
 			return this;
 		}
@@ -194,7 +196,7 @@ public final class MinimalLicenseInformation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MinimalLicenseInformation
+	 * Json deserializer for {@link MinimalLicenseInformation}
 	 */
 	public static final JsonpDeserializer<MinimalLicenseInformation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MinimalLicenseInformation::setupMinimalLicenseInformationDeserializer);
@@ -203,9 +205,9 @@ public final class MinimalLicenseInformation implements ToJsonp {
 			DelegatingDeserializer<MinimalLicenseInformation.Builder> op) {
 
 		op.add(Builder::expiryDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "expiry_date_in_millis");
-		op.add(Builder::mode, JsonpDeserializer.jsonValueDeserializer(), "mode");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::mode, LicenseType.DESERIALIZER, "mode");
+		op.add(Builder::status, LicenseStatus.DESERIALIZER, "status");
+		op.add(Builder::type, LicenseType.DESERIALIZER, "type");
 		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");
 
 	}

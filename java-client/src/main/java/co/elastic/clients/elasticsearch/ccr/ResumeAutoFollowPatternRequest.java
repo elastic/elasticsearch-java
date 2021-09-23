@@ -42,7 +42,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResumeAutoFollowPatternRequest(Builder builder) {
+	public ResumeAutoFollowPatternRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

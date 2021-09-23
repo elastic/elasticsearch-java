@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.DocumentSimulation
-public final class DocumentSimulation implements ToJsonp {
+public final class DocumentSimulation implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
@@ -53,14 +53,14 @@ public final class DocumentSimulation implements ToJsonp {
 	@Nullable
 	private final String routing;
 
-	private final Map<String, JsonValue> source;
+	private final Map<String, JsonData> source;
 
 	@Nullable
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DocumentSimulation(Builder builder) {
+	public DocumentSimulation(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.index = Objects.requireNonNull(builder.index, "_index");
@@ -112,7 +112,7 @@ public final class DocumentSimulation implements ToJsonp {
 	/**
 	 * API name: {@code _source}
 	 */
-	public Map<String, JsonValue> source() {
+	public Map<String, JsonData> source() {
 		return this.source;
 	}
 
@@ -127,13 +127,13 @@ public final class DocumentSimulation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_id");
 		generator.write(this.id);
@@ -142,7 +142,7 @@ public final class DocumentSimulation implements ToJsonp {
 		generator.write(this.index);
 
 		generator.writeKey("_ingest");
-		this.ingest.toJsonp(generator, mapper);
+		this.ingest.serialize(generator, mapper);
 
 		if (this.parent != null) {
 
@@ -159,9 +159,9 @@ public final class DocumentSimulation implements ToJsonp {
 
 		generator.writeKey("_source");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.source.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.source.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -193,7 +193,7 @@ public final class DocumentSimulation implements ToJsonp {
 		@Nullable
 		private String routing;
 
-		private Map<String, JsonValue> source;
+		private Map<String, JsonData> source;
 
 		@Nullable
 		private String type;
@@ -248,7 +248,7 @@ public final class DocumentSimulation implements ToJsonp {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder source(Map<String, JsonValue> value) {
+		public Builder source(Map<String, JsonData> value) {
 			this.source = value;
 			return this;
 		}
@@ -256,7 +256,7 @@ public final class DocumentSimulation implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #source(Map)}, creating the map if needed.
 		 */
-		public Builder putSource(String key, JsonValue value) {
+		public Builder put_source(String key, JsonData value) {
 			if (this.source == null) {
 				this.source = new HashMap<>();
 			}
@@ -287,7 +287,7 @@ public final class DocumentSimulation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DocumentSimulation
+	 * Json deserializer for {@link DocumentSimulation}
 	 */
 	public static final JsonpDeserializer<DocumentSimulation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DocumentSimulation::setupDocumentSimulationDeserializer);
@@ -299,8 +299,7 @@ public final class DocumentSimulation implements ToJsonp {
 		op.add(Builder::ingest, Ingest.DESERIALIZER, "_ingest");
 		op.add(Builder::parent, JsonpDeserializer.stringDeserializer(), "_parent");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
-		op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"_source");
+		op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_source");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 
 	}

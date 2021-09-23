@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ilm.stop.Response
 public final class StopResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopResponse(Builder builder) {
+	public StopResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class StopResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StopResponse
+	 * Json deserializer for {@link StopResponse}
 	 */
 	public static final JsonpDeserializer<StopResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, StopResponse::setupStopResponseDeserializer);

@@ -51,7 +51,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteDataFrameAnalyticsRequest(Builder builder) {
+	public DeleteDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.force = builder.force;

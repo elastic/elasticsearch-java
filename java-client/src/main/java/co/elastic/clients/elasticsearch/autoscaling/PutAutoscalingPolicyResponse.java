@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: autoscaling.put_autoscaling_policy.Response
 public final class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutAutoscalingPolicyResponse(Builder builder) {
+	public PutAutoscalingPolicyResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutAutoscalingPolicyResponse
+	 * Json deserializer for {@link PutAutoscalingPolicyResponse}
 	 */
 	public static final JsonpDeserializer<PutAutoscalingPolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutAutoscalingPolicyResponse::setupPutAutoscalingPolicyResponseDeserializer);

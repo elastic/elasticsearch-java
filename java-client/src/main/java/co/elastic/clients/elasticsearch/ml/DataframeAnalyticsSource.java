@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -46,11 +46,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsSource
-public final class DataframeAnalyticsSource implements ToJsonp {
+public final class DataframeAnalyticsSource implements JsonpSerializable {
 	private final List<String> index;
 
 	@Nullable
-	private final QueryContainer query;
+	private final Query query;
 
 	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -60,7 +60,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsSource(Builder builder) {
+	public DataframeAnalyticsSource(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.query = builder.query;
@@ -91,7 +91,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -121,13 +121,13 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.writeStartArray();
@@ -140,7 +140,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		if (this.query != null) {
 
 			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
+			this.query.serialize(generator, mapper);
 
 		}
 		if (this.runtimeMappings != null) {
@@ -149,7 +149,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -173,7 +173,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		private List<String> index;
 
 		@Nullable
-		private QueryContainer query;
+		private Query query;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -227,7 +227,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -241,8 +241,8 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -308,7 +308,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsSource
+	 * Json deserializer for {@link DataframeAnalyticsSource}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsSource> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DataframeAnalyticsSource::setupDataframeAnalyticsSourceDeserializer);
@@ -317,7 +317,7 @@ public final class DataframeAnalyticsSource implements ToJsonp {
 			DelegatingDeserializer<DataframeAnalyticsSource.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
 				"runtime_mappings");
 		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");

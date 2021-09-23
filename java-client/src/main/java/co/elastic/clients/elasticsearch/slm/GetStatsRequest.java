@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: slm.get_stats.Request
 public final class GetStatsRequest extends RequestBase {
-	protected GetStatsRequest() {
+	public GetStatsRequest() {
 	}
 
 	/**

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.TransformIndexerStats
-public final class TransformIndexerStats implements ToJsonp {
+public final class TransformIndexerStats implements JsonpSerializable {
 	private final Number documentsIndexed;
 
 	private final Number documentsProcessed;
@@ -69,7 +69,7 @@ public final class TransformIndexerStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TransformIndexerStats(Builder builder) {
+	public TransformIndexerStats(Builder builder) {
 
 		this.documentsIndexed = Objects.requireNonNull(builder.documentsIndexed, "documents_indexed");
 		this.documentsProcessed = Objects.requireNonNull(builder.documentsProcessed, "documents_processed");
@@ -200,13 +200,13 @@ public final class TransformIndexerStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("documents_indexed");
 		generator.write(this.documentsIndexed.doubleValue());
@@ -426,7 +426,7 @@ public final class TransformIndexerStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TransformIndexerStats
+	 * Json deserializer for {@link TransformIndexerStats}
 	 */
 	public static final JsonpDeserializer<TransformIndexerStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TransformIndexerStats::setupTransformIndexerStatsDeserializer);

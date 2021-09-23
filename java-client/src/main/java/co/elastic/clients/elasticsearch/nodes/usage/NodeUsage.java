@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.nodes.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,18 +40,18 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.usage.NodeUsage
-public final class NodeUsage implements ToJsonp {
+public final class NodeUsage implements JsonpSerializable {
 	private final Map<String, Number> restActions;
 
 	private final JsonValue since;
 
 	private final JsonValue timestamp;
 
-	private final Map<String, JsonValue> aggregations;
+	private final Map<String, JsonData> aggregations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeUsage(Builder builder) {
+	public NodeUsage(Builder builder) {
 
 		this.restActions = Objects.requireNonNull(builder.restActions, "rest_actions");
 		this.since = Objects.requireNonNull(builder.since, "since");
@@ -83,20 +84,20 @@ public final class NodeUsage implements ToJsonp {
 	/**
 	 * API name: {@code aggregations}
 	 */
-	public Map<String, JsonValue> aggregations() {
+	public Map<String, JsonData> aggregations() {
 		return this.aggregations;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("rest_actions");
 		generator.writeStartObject();
@@ -115,9 +116,9 @@ public final class NodeUsage implements ToJsonp {
 
 		generator.writeKey("aggregations");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.aggregations.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.aggregations.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -136,7 +137,7 @@ public final class NodeUsage implements ToJsonp {
 
 		private JsonValue timestamp;
 
-		private Map<String, JsonValue> aggregations;
+		private Map<String, JsonData> aggregations;
 
 		/**
 		 * API name: {@code rest_actions}
@@ -176,7 +177,7 @@ public final class NodeUsage implements ToJsonp {
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public Builder aggregations(Map<String, JsonValue> value) {
+		public Builder aggregations(Map<String, JsonData> value) {
 			this.aggregations = value;
 			return this;
 		}
@@ -184,7 +185,7 @@ public final class NodeUsage implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder putAggregations(String key, JsonValue value) {
+		public Builder putAggregations(String key, JsonData value) {
 			if (this.aggregations == null) {
 				this.aggregations = new HashMap<>();
 			}
@@ -207,7 +208,7 @@ public final class NodeUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeUsage
+	 * Json deserializer for {@link NodeUsage}
 	 */
 	public static final JsonpDeserializer<NodeUsage> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeUsage::setupNodeUsageDeserializer);
@@ -218,8 +219,7 @@ public final class NodeUsage implements ToJsonp {
 				"rest_actions");
 		op.add(Builder::since, JsonpDeserializer.jsonValueDeserializer(), "since");
 		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
-		op.add(Builder::aggregations,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "aggregations");
 
 	}
 

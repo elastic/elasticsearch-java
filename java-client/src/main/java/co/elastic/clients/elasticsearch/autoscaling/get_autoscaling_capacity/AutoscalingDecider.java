@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,18 +38,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingDecider
-public final class AutoscalingDecider implements ToJsonp {
+public final class AutoscalingDecider implements JsonpSerializable {
 	private final AutoscalingCapacity requiredCapacity;
 
 	@Nullable
 	private final String reasonSummary;
 
 	@Nullable
-	private final JsonValue reasonDetails;
+	private final JsonData reasonDetails;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoscalingDecider(Builder builder) {
+	public AutoscalingDecider(Builder builder) {
 
 		this.requiredCapacity = Objects.requireNonNull(builder.requiredCapacity, "required_capacity");
 		this.reasonSummary = builder.reasonSummary;
@@ -76,23 +76,23 @@ public final class AutoscalingDecider implements ToJsonp {
 	 * API name: {@code reason_details}
 	 */
 	@Nullable
-	public JsonValue reasonDetails() {
+	public JsonData reasonDetails() {
 		return this.reasonDetails;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("required_capacity");
-		this.requiredCapacity.toJsonp(generator, mapper);
+		this.requiredCapacity.serialize(generator, mapper);
 
 		if (this.reasonSummary != null) {
 
@@ -103,7 +103,7 @@ public final class AutoscalingDecider implements ToJsonp {
 		if (this.reasonDetails != null) {
 
 			generator.writeKey("reason_details");
-			generator.write(this.reasonDetails);
+			this.reasonDetails.serialize(generator, mapper);
 
 		}
 
@@ -121,7 +121,7 @@ public final class AutoscalingDecider implements ToJsonp {
 		private String reasonSummary;
 
 		@Nullable
-		private JsonValue reasonDetails;
+		private JsonData reasonDetails;
 
 		/**
 		 * API name: {@code required_capacity}
@@ -149,7 +149,7 @@ public final class AutoscalingDecider implements ToJsonp {
 		/**
 		 * API name: {@code reason_details}
 		 */
-		public Builder reasonDetails(@Nullable JsonValue value) {
+		public Builder reasonDetails(@Nullable JsonData value) {
 			this.reasonDetails = value;
 			return this;
 		}
@@ -169,7 +169,7 @@ public final class AutoscalingDecider implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoscalingDecider
+	 * Json deserializer for {@link AutoscalingDecider}
 	 */
 	public static final JsonpDeserializer<AutoscalingDecider> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AutoscalingDecider::setupAutoscalingDeciderDeserializer);
@@ -178,7 +178,7 @@ public final class AutoscalingDecider implements ToJsonp {
 
 		op.add(Builder::requiredCapacity, AutoscalingCapacity.DESERIALIZER, "required_capacity");
 		op.add(Builder::reasonSummary, JsonpDeserializer.stringDeserializer(), "reason_summary");
-		op.add(Builder::reasonDetails, JsonpDeserializer.jsonValueDeserializer(), "reason_details");
+		op.add(Builder::reasonDetails, JsonData.DESERIALIZER, "reason_details");
 
 	}
 

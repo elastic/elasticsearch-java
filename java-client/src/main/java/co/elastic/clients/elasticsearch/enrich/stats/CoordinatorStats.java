@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.enrich.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.CoordinatorStats
-public final class CoordinatorStats implements ToJsonp {
+public final class CoordinatorStats implements JsonpSerializable {
 	private final Number executedSearchesTotal;
 
 	private final String nodeId;
@@ -50,7 +50,7 @@ public final class CoordinatorStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CoordinatorStats(Builder builder) {
+	public CoordinatorStats(Builder builder) {
 
 		this.executedSearchesTotal = Objects.requireNonNull(builder.executedSearchesTotal, "executed_searches_total");
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
@@ -98,13 +98,13 @@ public final class CoordinatorStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("executed_searches_total");
 		generator.write(this.executedSearchesTotal.doubleValue());
@@ -194,7 +194,7 @@ public final class CoordinatorStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CoordinatorStats
+	 * Json deserializer for {@link CoordinatorStats}
 	 */
 	public static final JsonpDeserializer<CoordinatorStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CoordinatorStats::setupCoordinatorStatsDeserializer);

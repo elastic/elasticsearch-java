@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.dangling_indices.list_dangling_indices;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,7 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.DanglingIndex
-public final class DanglingIndex implements ToJsonp {
+public final class DanglingIndex implements JsonpSerializable {
 	private final String indexName;
 
 	private final String indexUuid;
@@ -51,7 +51,7 @@ public final class DanglingIndex implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DanglingIndex(Builder builder) {
+	public DanglingIndex(Builder builder) {
 
 		this.indexName = Objects.requireNonNull(builder.indexName, "index_name");
 		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
@@ -91,13 +91,13 @@ public final class DanglingIndex implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index_name");
 		generator.write(this.indexName);
@@ -198,7 +198,7 @@ public final class DanglingIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DanglingIndex
+	 * Json deserializer for {@link DanglingIndex}
 	 */
 	public static final JsonpDeserializer<DanglingIndex> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DanglingIndex::setupDanglingIndexDeserializer);

@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultAction
-public final class ExecutionResultAction implements ToJsonp {
+public final class ExecutionResultAction implements JsonpSerializable {
 	@Nullable
 	private final EmailResult email;
 
@@ -59,16 +58,16 @@ public final class ExecutionResultAction implements ToJsonp {
 	@Nullable
 	private final SlackResult slack;
 
-	private final JsonValue status;
+	private final ActionStatusOptions status;
 
-	private final JsonValue type;
+	private final ActionType type;
 
 	@Nullable
 	private final WebhookResult webhook;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutionResultAction(Builder builder) {
+	public ExecutionResultAction(Builder builder) {
 
 		this.email = builder.email;
 		this.id = Objects.requireNonNull(builder.id, "id");
@@ -141,14 +140,14 @@ public final class ExecutionResultAction implements ToJsonp {
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
 	 * API name: {@code type}
 	 */
-	public JsonValue type() {
+	public ActionType type() {
 		return this.type;
 	}
 
@@ -163,18 +162,18 @@ public final class ExecutionResultAction implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.email != null) {
 
 			generator.writeKey("email");
-			this.email.toJsonp(generator, mapper);
+			this.email.serialize(generator, mapper);
 
 		}
 
@@ -184,19 +183,19 @@ public final class ExecutionResultAction implements ToJsonp {
 		if (this.index != null) {
 
 			generator.writeKey("index");
-			this.index.toJsonp(generator, mapper);
+			this.index.serialize(generator, mapper);
 
 		}
 		if (this.logging != null) {
 
 			generator.writeKey("logging");
-			this.logging.toJsonp(generator, mapper);
+			this.logging.serialize(generator, mapper);
 
 		}
 		if (this.pagerduty != null) {
 
 			generator.writeKey("pagerduty");
-			this.pagerduty.toJsonp(generator, mapper);
+			this.pagerduty.serialize(generator, mapper);
 
 		}
 		if (this.reason != null) {
@@ -208,20 +207,19 @@ public final class ExecutionResultAction implements ToJsonp {
 		if (this.slack != null) {
 
 			generator.writeKey("slack");
-			this.slack.toJsonp(generator, mapper);
+			this.slack.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 		generator.writeKey("type");
-		generator.write(this.type);
-
+		this.type.serialize(generator, mapper);
 		if (this.webhook != null) {
 
 			generator.writeKey("webhook");
-			this.webhook.toJsonp(generator, mapper);
+			this.webhook.serialize(generator, mapper);
 
 		}
 
@@ -253,9 +251,9 @@ public final class ExecutionResultAction implements ToJsonp {
 		@Nullable
 		private SlackResult slack;
 
-		private JsonValue status;
+		private ActionStatusOptions status;
 
-		private JsonValue type;
+		private ActionType type;
 
 		@Nullable
 		private WebhookResult webhook;
@@ -354,7 +352,7 @@ public final class ExecutionResultAction implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(ActionStatusOptions value) {
 			this.status = value;
 			return this;
 		}
@@ -362,7 +360,7 @@ public final class ExecutionResultAction implements ToJsonp {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(ActionType value) {
 			this.type = value;
 			return this;
 		}
@@ -397,7 +395,7 @@ public final class ExecutionResultAction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecutionResultAction
+	 * Json deserializer for {@link ExecutionResultAction}
 	 */
 	public static final JsonpDeserializer<ExecutionResultAction> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExecutionResultAction::setupExecutionResultActionDeserializer);
@@ -412,8 +410,8 @@ public final class ExecutionResultAction implements ToJsonp {
 		op.add(Builder::pagerduty, PagerDutyResult.DESERIALIZER, "pagerduty");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 		op.add(Builder::slack, SlackResult.DESERIALIZER, "slack");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::status, ActionStatusOptions.DESERIALIZER, "status");
+		op.add(Builder::type, ActionType.DESERIALIZER, "type");
 		op.add(Builder::webhook, WebhookResult.DESERIALIZER, "webhook");
 
 	}

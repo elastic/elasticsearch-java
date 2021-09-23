@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,14 +39,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.InfoFeatureState
-public final class InfoFeatureState implements ToJsonp {
+public final class InfoFeatureState implements JsonpSerializable {
 	private final String featureName;
 
 	private final List<String> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InfoFeatureState(Builder builder) {
+	public InfoFeatureState(Builder builder) {
 
 		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
@@ -70,13 +70,13 @@ public final class InfoFeatureState implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
@@ -151,7 +151,7 @@ public final class InfoFeatureState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InfoFeatureState
+	 * Json deserializer for {@link InfoFeatureState}
 	 */
 	public static final JsonpDeserializer<InfoFeatureState> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, InfoFeatureState::setupInfoFeatureStateDeserializer);

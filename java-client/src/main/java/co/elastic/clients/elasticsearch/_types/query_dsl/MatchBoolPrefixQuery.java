@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,7 +39,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchBoolPrefixQuery
-public final class MatchBoolPrefixQuery extends QueryBase {
+public final class MatchBoolPrefixQuery extends QueryBase implements Query {
+	private final String field;
+
 	@Nullable
 	private final String analyzer;
 
@@ -58,7 +61,7 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 	private final JsonValue minimumShouldMatch;
 
 	@Nullable
-	private final JsonValue operator;
+	private final Operator operator;
 
 	@Nullable
 	private final Number prefixLength;
@@ -67,8 +70,10 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MatchBoolPrefixQuery(Builder builder) {
+	public MatchBoolPrefixQuery(Builder builder) {
 		super(builder);
+		this.field = Objects.requireNonNull(builder.field, "field");
+
 		this.analyzer = builder.analyzer;
 		this.fuzziness = builder.fuzziness;
 		this.fuzzyRewrite = builder.fuzzyRewrite;
@@ -79,6 +84,23 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 		this.prefixLength = builder.prefixLength;
 		this.query = Objects.requireNonNull(builder.query, "query");
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "match_bool_prefix";
+	}
+
+	/**
+	 * The target field
+	 * <p>
+	 * API name: {@code field}
+	 */
+	public String field() {
+		return this.field;
 	}
 
 	/**
@@ -133,7 +155,7 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 	 * API name: {@code operator}
 	 */
 	@Nullable
-	public JsonValue operator() {
+	public Operator operator() {
 		return this.operator;
 	}
 
@@ -152,8 +174,12 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 		return this.query;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		generator.writeStartObject(this.field);
+
+		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
@@ -193,8 +219,7 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 		if (this.operator != null) {
 
 			generator.writeKey("operator");
-			generator.write(this.operator);
-
+			this.operator.serialize(generator, mapper);
 		}
 		if (this.prefixLength != null) {
 
@@ -206,6 +231,10 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 		generator.writeKey("query");
 		generator.write(this.query);
 
+		generator.writeEnd();
+
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -216,6 +245,18 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MatchBoolPrefixQuery> {
+		private String field;
+
+		/**
+		 * The target field
+		 * <p>
+		 * API name: {@code field}
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		@Nullable
 		private String analyzer;
 
@@ -235,7 +276,7 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 		private JsonValue minimumShouldMatch;
 
 		@Nullable
-		private JsonValue operator;
+		private Operator operator;
 
 		@Nullable
 		private Number prefixLength;
@@ -293,7 +334,7 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 		/**
 		 * API name: {@code operator}
 		 */
-		public Builder operator(@Nullable JsonValue value) {
+		public Builder operator(@Nullable Operator value) {
 			this.operator = value;
 			return this;
 		}
@@ -333,11 +374,9 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for MatchBoolPrefixQuery
-	 */
-	public static final JsonpDeserializer<MatchBoolPrefixQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MatchBoolPrefixQuery::setupMatchBoolPrefixQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<MatchBoolPrefixQuery.Builder, MatchBoolPrefixQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(MatchBoolPrefixQuery::setupMatchBoolPrefixQueryDeserializer);
 
 	protected static void setupMatchBoolPrefixQueryDeserializer(
 			DelegatingDeserializer<MatchBoolPrefixQuery.Builder> op) {
@@ -348,9 +387,11 @@ public final class MatchBoolPrefixQuery extends QueryBase {
 		op.add(Builder::fuzzyTranspositions, JsonpDeserializer.booleanDeserializer(), "fuzzy_transpositions");
 		op.add(Builder::maxExpansions, JsonpDeserializer.numberDeserializer(), "max_expansions");
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
-		op.add(Builder::operator, JsonpDeserializer.jsonValueDeserializer(), "operator");
+		op.add(Builder::operator, Operator.DESERIALIZER, "operator");
 		op.add(Builder::prefixLength, JsonpDeserializer.numberDeserializer(), "prefix_length");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+
+		op.setKey(Builder::field);
 
 	}
 

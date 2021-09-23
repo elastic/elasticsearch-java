@@ -39,6 +39,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -61,7 +62,7 @@ public final class CancelRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CancelRequest(Builder builder) {
+	public CancelRequest(Builder builder) {
 
 		this.taskId = builder.taskId;
 		this.actions = builder.actions;

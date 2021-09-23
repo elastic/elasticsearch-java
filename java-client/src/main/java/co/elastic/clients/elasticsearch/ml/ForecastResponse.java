@@ -41,8 +41,9 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ForecastResponse(Builder builder) {
+	public ForecastResponse(Builder builder) {
 		super(builder);
+
 		this.forecastId = Objects.requireNonNull(builder.forecastId, "forecast_id");
 
 	}
@@ -54,8 +55,9 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 		return this.forecastId;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("forecast_id");
 		generator.write(this.forecastId);
@@ -100,7 +102,7 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ForecastResponse
+	 * Json deserializer for {@link ForecastResponse}
 	 */
 	public static final JsonpDeserializer<ForecastResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ForecastResponse::setupForecastResponseDeserializer);

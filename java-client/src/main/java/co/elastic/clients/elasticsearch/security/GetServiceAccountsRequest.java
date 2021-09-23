@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.Request
@@ -45,7 +46,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetServiceAccountsRequest(Builder builder) {
+	public GetServiceAccountsRequest(Builder builder) {
 
 		this.namespace = builder.namespace;
 		this.service = builder.service;

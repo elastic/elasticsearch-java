@@ -28,10 +28,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: security.change_password.Response
 public final class ChangePasswordResponse {
-	protected ChangePasswordResponse() {
+	public ChangePasswordResponse() {
 	}
 
 	/**

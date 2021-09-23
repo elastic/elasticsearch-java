@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceIngestProcessorCount
-public final class MlInferenceIngestProcessorCount implements ToJsonp {
+public final class MlInferenceIngestProcessorCount implements JsonpSerializable {
 	private final Number max;
 
 	private final Number sum;
@@ -45,7 +45,7 @@ public final class MlInferenceIngestProcessorCount implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlInferenceIngestProcessorCount(Builder builder) {
+	public MlInferenceIngestProcessorCount(Builder builder) {
 
 		this.max = Objects.requireNonNull(builder.max, "max");
 		this.sum = Objects.requireNonNull(builder.sum, "sum");
@@ -77,13 +77,13 @@ public final class MlInferenceIngestProcessorCount implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("max");
 		generator.write(this.max.doubleValue());
@@ -147,7 +147,7 @@ public final class MlInferenceIngestProcessorCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlInferenceIngestProcessorCount
+	 * Json deserializer for {@link MlInferenceIngestProcessorCount}
 	 */
 	public static final JsonpDeserializer<MlInferenceIngestProcessorCount> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

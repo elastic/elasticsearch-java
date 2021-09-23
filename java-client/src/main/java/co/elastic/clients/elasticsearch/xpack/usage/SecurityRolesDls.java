@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,12 +36,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesDls
-public final class SecurityRolesDls implements ToJsonp {
+public final class SecurityRolesDls implements JsonpSerializable {
 	private final SecurityRolesDlsBitSetCache bitSetCache;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SecurityRolesDls(Builder builder) {
+	public SecurityRolesDls(Builder builder) {
 
 		this.bitSetCache = Objects.requireNonNull(builder.bitSetCache, "bit_set_cache");
 
@@ -57,16 +57,16 @@ public final class SecurityRolesDls implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bit_set_cache");
-		this.bitSetCache.toJsonp(generator, mapper);
+		this.bitSetCache.serialize(generator, mapper);
 
 	}
 
@@ -109,7 +109,7 @@ public final class SecurityRolesDls implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SecurityRolesDls
+	 * Json deserializer for {@link SecurityRolesDls}
 	 */
 	public static final JsonpDeserializer<SecurityRolesDls> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SecurityRolesDls::setupSecurityRolesDlsDeserializer);

@@ -26,22 +26,23 @@ package co.elastic.clients.elasticsearch.indices.get_index_template;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.Alias;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplateSummary
-public final class IndexTemplateSummary implements ToJsonp {
+public final class IndexTemplateSummary implements JsonpSerializable {
 	@Nullable
 	private final Map<String, Alias> aliases;
 
@@ -49,11 +50,11 @@ public final class IndexTemplateSummary implements ToJsonp {
 	private final TypeMapping mappings;
 
 	@Nullable
-	private final Map<String, JsonValue> settings;
+	private final Map<String, JsonData> settings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexTemplateSummary(Builder builder) {
+	public IndexTemplateSummary(Builder builder) {
 
 		this.aliases = builder.aliases;
 		this.mappings = builder.mappings;
@@ -81,20 +82,20 @@ public final class IndexTemplateSummary implements ToJsonp {
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> settings() {
+	public Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aliases != null) {
 
@@ -102,7 +103,7 @@ public final class IndexTemplateSummary implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -111,16 +112,16 @@ public final class IndexTemplateSummary implements ToJsonp {
 		if (this.mappings != null) {
 
 			generator.writeKey("mappings");
-			this.mappings.toJsonp(generator, mapper);
+			this.mappings.serialize(generator, mapper);
 
 		}
 		if (this.settings != null) {
 
 			generator.writeKey("settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.settings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -142,7 +143,7 @@ public final class IndexTemplateSummary implements ToJsonp {
 		private TypeMapping mappings;
 
 		@Nullable
-		private Map<String, JsonValue> settings;
+		private Map<String, JsonData> settings;
 
 		/**
 		 * API name: {@code aliases}
@@ -195,7 +196,7 @@ public final class IndexTemplateSummary implements ToJsonp {
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonValue> value) {
+		public Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
 			return this;
 		}
@@ -203,7 +204,7 @@ public final class IndexTemplateSummary implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
 		 */
-		public Builder putSettings(String key, JsonValue value) {
+		public Builder putSettings(String key, JsonData value) {
 			if (this.settings == null) {
 				this.settings = new HashMap<>();
 			}
@@ -226,7 +227,7 @@ public final class IndexTemplateSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexTemplateSummary
+	 * Json deserializer for {@link IndexTemplateSummary}
 	 */
 	public static final JsonpDeserializer<IndexTemplateSummary> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexTemplateSummary::setupIndexTemplateSummaryDeserializer);
@@ -236,8 +237,7 @@ public final class IndexTemplateSummary implements ToJsonp {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"settings");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "settings");
 
 	}
 

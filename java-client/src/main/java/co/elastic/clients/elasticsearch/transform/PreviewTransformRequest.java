@@ -25,25 +25,26 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.elasticsearch._global.reindex.Destination;
-import co.elastic.clients.elasticsearch._global.reindex.Source;
+import co.elastic.clients.elasticsearch._core.reindex.Destination;
+import co.elastic.clients.elasticsearch._core.reindex.Source;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Request
-public class PreviewTransformRequest extends RequestBase implements ToJsonp {
+public class PreviewTransformRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String transformId;
 
@@ -66,17 +67,17 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	private final Settings settings;
 
 	@Nullable
-	private final SyncContainer sync;
+	private final Sync sync;
 
 	@Nullable
-	private final RetentionPolicyContainer retentionPolicy;
+	private final RetentionPolicy retentionPolicy;
 
 	@Nullable
 	private final Latest latest;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PreviewTransformRequest(AbstractBuilder<?> builder) {
+	public PreviewTransformRequest(AbstractBuilder<?> builder) {
 
 		this.transformId = builder.transformId;
 		this.dest = builder.dest;
@@ -92,7 +93,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * Auto generated - missing in the input spec
+	 * The id of the transform to preview.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -171,7 +172,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code sync}
 	 */
 	@Nullable
-	public SyncContainer sync() {
+	public Sync sync() {
 		return this.sync;
 	}
 
@@ -182,7 +183,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code retention_policy}
 	 */
 	@Nullable
-	public RetentionPolicyContainer retentionPolicy() {
+	public RetentionPolicy retentionPolicy() {
 		return this.retentionPolicy;
 	}
 
@@ -200,18 +201,18 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.dest != null) {
 
 			generator.writeKey("dest");
-			this.dest.toJsonp(generator, mapper);
+			this.dest.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
@@ -229,37 +230,37 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		if (this.pivot != null) {
 
 			generator.writeKey("pivot");
-			this.pivot.toJsonp(generator, mapper);
+			this.pivot.serialize(generator, mapper);
 
 		}
 		if (this.source != null) {
 
 			generator.writeKey("source");
-			this.source.toJsonp(generator, mapper);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (this.settings != null) {
 
 			generator.writeKey("settings");
-			this.settings.toJsonp(generator, mapper);
+			this.settings.serialize(generator, mapper);
 
 		}
 		if (this.sync != null) {
 
 			generator.writeKey("sync");
-			this.sync.toJsonp(generator, mapper);
+			this.sync.serialize(generator, mapper);
 
 		}
 		if (this.retentionPolicy != null) {
 
 			generator.writeKey("retention_policy");
-			this.retentionPolicy.toJsonp(generator, mapper);
+			this.retentionPolicy.serialize(generator, mapper);
 
 		}
 		if (this.latest != null) {
 
 			generator.writeKey("latest");
-			this.latest.toJsonp(generator, mapper);
+			this.latest.serialize(generator, mapper);
 
 		}
 
@@ -313,16 +314,16 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		private Settings settings;
 
 		@Nullable
-		private SyncContainer sync;
+		private Sync sync;
 
 		@Nullable
-		private RetentionPolicyContainer retentionPolicy;
+		private RetentionPolicy retentionPolicy;
 
 		@Nullable
 		private Latest latest;
 
 		/**
-		 * Auto generated - missing in the input spec
+		 * The id of the transform to preview.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
@@ -437,7 +438,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code sync}
 		 */
-		public BuilderT sync(@Nullable SyncContainer value) {
+		public BuilderT sync(@Nullable Sync value) {
 			this.sync = value;
 			return self();
 		}
@@ -447,8 +448,8 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code sync}
 		 */
-		public BuilderT sync(Function<SyncContainer.Builder, ObjectBuilder<SyncContainer>> fn) {
-			return this.sync(fn.apply(new SyncContainer.Builder()).build());
+		public BuilderT sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
+			return this.sync(fn.apply(new Sync.Builder()).build());
 		}
 
 		/**
@@ -457,7 +458,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code retention_policy}
 		 */
-		public BuilderT retentionPolicy(@Nullable RetentionPolicyContainer value) {
+		public BuilderT retentionPolicy(@Nullable RetentionPolicy value) {
 			this.retentionPolicy = value;
 			return self();
 		}
@@ -468,9 +469,8 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code retention_policy}
 		 */
-		public BuilderT retentionPolicy(
-				Function<RetentionPolicyContainer.Builder, ObjectBuilder<RetentionPolicyContainer>> fn) {
-			return this.retentionPolicy(fn.apply(new RetentionPolicyContainer.Builder()).build());
+		public BuilderT retentionPolicy(Function<RetentionPolicy.Builder, ObjectBuilder<RetentionPolicy>> fn) {
+			return this.retentionPolicy(fn.apply(new RetentionPolicy.Builder()).build());
 		}
 
 		/**
@@ -501,7 +501,7 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PreviewTransformRequest
+	 * Json deserializer for {@link PreviewTransformRequest}
 	 */
 	public static final JsonpDeserializer<PreviewTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PreviewTransformRequest::setupPreviewTransformRequestDeserializer);
@@ -515,8 +515,8 @@ public class PreviewTransformRequest extends RequestBase implements ToJsonp {
 		op.add(AbstractBuilder::pivot, Pivot.DESERIALIZER, "pivot");
 		op.add(AbstractBuilder::source, Source.DESERIALIZER, "source");
 		op.add(AbstractBuilder::settings, Settings.DESERIALIZER, "settings");
-		op.add(AbstractBuilder::sync, SyncContainer.DESERIALIZER, "sync");
-		op.add(AbstractBuilder::retentionPolicy, RetentionPolicyContainer.DESERIALIZER, "retention_policy");
+		op.add(AbstractBuilder::sync, Sync.DESERIALIZER, "sync");
+		op.add(AbstractBuilder::retentionPolicy, RetentionPolicy.DESERIALIZER, "retention_policy");
 		op.add(AbstractBuilder::latest, Latest.DESERIALIZER, "latest");
 
 	}

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -41,7 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MultiMatchQuery
-public final class MultiMatchQuery extends QueryBase {
+public final class MultiMatchQuery extends QueryBase implements Query {
 	@Nullable
 	private final String analyzer;
 
@@ -73,7 +74,7 @@ public final class MultiMatchQuery extends QueryBase {
 	private final JsonValue minimumShouldMatch;
 
 	@Nullable
-	private final JsonValue operator;
+	private final Operator operator;
 
 	@Nullable
 	private final Number prefixLength;
@@ -87,15 +88,16 @@ public final class MultiMatchQuery extends QueryBase {
 	private final Number tieBreaker;
 
 	@Nullable
-	private final JsonValue type;
+	private final TextQueryType type;
 
 	@Nullable
-	private final JsonValue zeroTermsQuery;
+	private final ZeroTermsQuery zeroTermsQuery;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MultiMatchQuery(Builder builder) {
+	public MultiMatchQuery(Builder builder) {
 		super(builder);
+
 		this.analyzer = builder.analyzer;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.cutoffFrequency = builder.cutoffFrequency;
@@ -114,6 +116,14 @@ public final class MultiMatchQuery extends QueryBase {
 		this.type = builder.type;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "multi_match";
 	}
 
 	/**
@@ -200,7 +210,7 @@ public final class MultiMatchQuery extends QueryBase {
 	 * API name: {@code operator}
 	 */
 	@Nullable
-	public JsonValue operator() {
+	public Operator operator() {
 		return this.operator;
 	}
 
@@ -239,7 +249,7 @@ public final class MultiMatchQuery extends QueryBase {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public JsonValue type() {
+	public TextQueryType type() {
 		return this.type;
 	}
 
@@ -247,12 +257,14 @@ public final class MultiMatchQuery extends QueryBase {
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
-	public JsonValue zeroTermsQuery() {
+	public ZeroTermsQuery zeroTermsQuery() {
 		return this.zeroTermsQuery;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
@@ -321,8 +333,7 @@ public final class MultiMatchQuery extends QueryBase {
 		if (this.operator != null) {
 
 			generator.writeKey("operator");
-			generator.write(this.operator);
-
+			this.operator.serialize(generator, mapper);
 		}
 		if (this.prefixLength != null) {
 
@@ -349,15 +360,15 @@ public final class MultiMatchQuery extends QueryBase {
 		if (this.type != null) {
 
 			generator.writeKey("type");
-			generator.write(this.type);
-
+			this.type.serialize(generator, mapper);
 		}
 		if (this.zeroTermsQuery != null) {
 
 			generator.writeKey("zero_terms_query");
-			generator.write(this.zeroTermsQuery);
-
+			this.zeroTermsQuery.serialize(generator, mapper);
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -398,7 +409,7 @@ public final class MultiMatchQuery extends QueryBase {
 		private JsonValue minimumShouldMatch;
 
 		@Nullable
-		private JsonValue operator;
+		private Operator operator;
 
 		@Nullable
 		private Number prefixLength;
@@ -412,10 +423,10 @@ public final class MultiMatchQuery extends QueryBase {
 		private Number tieBreaker;
 
 		@Nullable
-		private JsonValue type;
+		private TextQueryType type;
 
 		@Nullable
-		private JsonValue zeroTermsQuery;
+		private ZeroTermsQuery zeroTermsQuery;
 
 		/**
 		 * API name: {@code analyzer}
@@ -519,7 +530,7 @@ public final class MultiMatchQuery extends QueryBase {
 		/**
 		 * API name: {@code operator}
 		 */
-		public Builder operator(@Nullable JsonValue value) {
+		public Builder operator(@Nullable Operator value) {
 			this.operator = value;
 			return this;
 		}
@@ -559,7 +570,7 @@ public final class MultiMatchQuery extends QueryBase {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable JsonValue value) {
+		public Builder type(@Nullable TextQueryType value) {
 			this.type = value;
 			return this;
 		}
@@ -567,7 +578,7 @@ public final class MultiMatchQuery extends QueryBase {
 		/**
 		 * API name: {@code zero_terms_query}
 		 */
-		public Builder zeroTermsQuery(@Nullable JsonValue value) {
+		public Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
 			this.zeroTermsQuery = value;
 			return this;
 		}
@@ -591,11 +602,9 @@ public final class MultiMatchQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for MultiMatchQuery
-	 */
-	public static final JsonpDeserializer<MultiMatchQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MultiMatchQuery::setupMultiMatchQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<MultiMatchQuery.Builder, MultiMatchQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(MultiMatchQuery::setupMultiMatchQueryDeserializer);
 
 	protected static void setupMultiMatchQueryDeserializer(DelegatingDeserializer<MultiMatchQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
@@ -610,13 +619,13 @@ public final class MultiMatchQuery extends QueryBase {
 		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
 		op.add(Builder::maxExpansions, JsonpDeserializer.numberDeserializer(), "max_expansions");
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
-		op.add(Builder::operator, JsonpDeserializer.jsonValueDeserializer(), "operator");
+		op.add(Builder::operator, Operator.DESERIALIZER, "operator");
 		op.add(Builder::prefixLength, JsonpDeserializer.numberDeserializer(), "prefix_length");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::slop, JsonpDeserializer.numberDeserializer(), "slop");
 		op.add(Builder::tieBreaker, JsonpDeserializer.numberDeserializer(), "tie_breaker");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
-		op.add(Builder::zeroTermsQuery, JsonpDeserializer.jsonValueDeserializer(), "zero_terms_query");
+		op.add(Builder::type, TextQueryType.DESERIALIZER, "type");
+		op.add(Builder::zeroTermsQuery, ZeroTermsQuery.DESERIALIZER, "zero_terms_query");
 
 	}
 

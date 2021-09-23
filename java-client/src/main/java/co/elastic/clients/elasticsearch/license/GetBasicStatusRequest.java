@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: license.get_basic_status.Request
 public final class GetBasicStatusRequest extends RequestBase {
-	protected GetBasicStatusRequest() {
+	public GetBasicStatusRequest() {
 	}
 
 	/**

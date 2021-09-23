@@ -25,6 +25,8 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.Health;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -38,6 +40,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -47,13 +50,13 @@ public final class IndicesRequest extends CatRequestBase {
 	private final List<String> index;
 
 	@Nullable
-	private final JsonValue bytes;
+	private final Bytes bytes;
 
 	@Nullable
 	private final JsonValue expandWildcards;
 
 	@Nullable
-	private final JsonValue health;
+	private final Health health;
 
 	@Nullable
 	private final Boolean includeUnloadedSegments;
@@ -63,7 +66,7 @@ public final class IndicesRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesRequest(Builder builder) {
+	public IndicesRequest(Builder builder) {
 
 		this.index = builder.index;
 		this.bytes = builder.bytes;
@@ -90,7 +93,7 @@ public final class IndicesRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public JsonValue bytes() {
+	public Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -112,7 +115,7 @@ public final class IndicesRequest extends CatRequestBase {
 	 * API name: {@code health}
 	 */
 	@Nullable
-	public JsonValue health() {
+	public Health health() {
 		return this.health;
 	}
 
@@ -147,13 +150,13 @@ public final class IndicesRequest extends CatRequestBase {
 		private List<String> index;
 
 		@Nullable
-		private JsonValue bytes;
+		private Bytes bytes;
 
 		@Nullable
 		private JsonValue expandWildcards;
 
 		@Nullable
-		private JsonValue health;
+		private Health health;
 
 		@Nullable
 		private Boolean includeUnloadedSegments;
@@ -197,7 +200,7 @@ public final class IndicesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable JsonValue value) {
+		public Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -219,7 +222,7 @@ public final class IndicesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code health}
 		 */
-		public Builder health(@Nullable JsonValue value) {
+		public Builder health(@Nullable Health value) {
 			this.health = value;
 			return this;
 		}

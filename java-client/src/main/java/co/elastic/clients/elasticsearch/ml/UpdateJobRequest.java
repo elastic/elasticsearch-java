@@ -27,11 +27,12 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -49,7 +50,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_job.Request
-public final class UpdateJobRequest extends RequestBase implements ToJsonp {
+public final class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
@@ -62,7 +63,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	private final JsonValue backgroundPersistInterval;
 
 	@Nullable
-	private final Map<String, JsonValue> customSettings;
+	private final Map<String, JsonData> customSettings;
 
 	@Nullable
 	private final List<String> categorizationFilters;
@@ -96,7 +97,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateJobRequest(Builder builder) {
+	public UpdateJobRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.allowLazyOpen = builder.allowLazyOpen;
@@ -160,7 +161,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code custom_settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> customSettings() {
+	public Map<String, JsonData> customSettings() {
 		return this.customSettings;
 	}
 
@@ -270,13 +271,13 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowLazyOpen != null) {
 
@@ -287,7 +288,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		if (this.analysisLimits != null) {
 
 			generator.writeKey("analysis_limits");
-			this.analysisLimits.toJsonp(generator, mapper);
+			this.analysisLimits.serialize(generator, mapper);
 
 		}
 		if (this.backgroundPersistInterval != null) {
@@ -300,9 +301,9 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("custom_settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.customSettings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.customSettings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -328,7 +329,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		if (this.modelPlotConfig != null) {
 
 			generator.writeKey("model_plot_config");
-			this.modelPlotConfig.toJsonp(generator, mapper);
+			this.modelPlotConfig.serialize(generator, mapper);
 
 		}
 		if (this.dailyModelSnapshotRetentionAfterDays != null) {
@@ -371,7 +372,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 			generator.writeKey("detectors");
 			generator.writeStartArray();
 			for (Detector item0 : this.detectors) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -380,7 +381,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		if (this.perPartitionCategorization != null) {
 
 			generator.writeKey("per_partition_categorization");
-			this.perPartitionCategorization.toJsonp(generator, mapper);
+			this.perPartitionCategorization.serialize(generator, mapper);
 
 		}
 
@@ -404,7 +405,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		private JsonValue backgroundPersistInterval;
 
 		@Nullable
-		private Map<String, JsonValue> customSettings;
+		private Map<String, JsonData> customSettings;
 
 		@Nullable
 		private List<String> categorizationFilters;
@@ -487,7 +488,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code custom_settings}
 		 */
-		public Builder customSettings(@Nullable Map<String, JsonValue> value) {
+		public Builder customSettings(@Nullable Map<String, JsonData> value) {
 			this.customSettings = value;
 			return this;
 		}
@@ -495,7 +496,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #customSettings(Map)}, creating the map if needed.
 		 */
-		public Builder putCustomSettings(String key, JsonValue value) {
+		public Builder putCustomSettings(String key, JsonData value) {
 			if (this.customSettings == null) {
 				this.customSettings = new HashMap<>();
 			}
@@ -714,7 +715,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateJobRequest
+	 * Json deserializer for {@link UpdateJobRequest}
 	 */
 	public static final JsonpDeserializer<UpdateJobRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UpdateJobRequest::setupUpdateJobRequestDeserializer);
@@ -725,8 +726,8 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::analysisLimits, AnalysisMemoryLimit.DESERIALIZER, "analysis_limits");
 		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.jsonValueDeserializer(),
 				"background_persist_interval");
-		op.add(Builder::customSettings,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "custom_settings");
+		op.add(Builder::customSettings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+				"custom_settings");
 		op.add(Builder::categorizationFilters,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");

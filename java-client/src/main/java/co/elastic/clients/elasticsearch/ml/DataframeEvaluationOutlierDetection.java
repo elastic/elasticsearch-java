@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetection
-public final class DataframeEvaluationOutlierDetection implements ToJsonp {
+public final class DataframeEvaluationOutlierDetection implements DataframeEvaluation, JsonpSerializable {
 	private final String actualField;
 
 	private final String predictedProbabilityField;
@@ -47,13 +48,21 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationOutlierDetection(Builder builder) {
+	public DataframeEvaluationOutlierDetection(Builder builder) {
 
 		this.actualField = Objects.requireNonNull(builder.actualField, "actual_field");
 		this.predictedProbabilityField = Objects.requireNonNull(builder.predictedProbabilityField,
 				"predicted_probability_field");
 		this.metrics = builder.metrics;
 
+	}
+
+	/**
+	 * {@link DataframeEvaluation} variant type
+	 */
+	@Override
+	public String _type() {
+		return "outlier_detection";
 	}
 
 	/**
@@ -91,13 +100,14 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("actual_field");
 		generator.write(this.actualField);
@@ -108,9 +118,11 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 		if (this.metrics != null) {
 
 			generator.writeKey("metrics");
-			this.metrics.toJsonp(generator, mapper);
+			this.metrics.serialize(generator, mapper);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -185,11 +197,9 @@ public final class DataframeEvaluationOutlierDetection implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for DataframeEvaluationOutlierDetection
-	 */
-	public static final JsonpDeserializer<DataframeEvaluationOutlierDetection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<DataframeEvaluationOutlierDetection.Builder, DataframeEvaluationOutlierDetection.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(
 					DataframeEvaluationOutlierDetection::setupDataframeEvaluationOutlierDetectionDeserializer);
 
 	protected static void setupDataframeEvaluationOutlierDetectionDeserializer(

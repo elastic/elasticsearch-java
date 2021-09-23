@@ -23,7 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -43,7 +45,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MoreLikeThisQuery
-public final class MoreLikeThisQuery extends QueryBase {
+public final class MoreLikeThisQuery extends QueryBase implements Query {
 	@Nullable
 	private final String analyzer;
 
@@ -98,12 +100,13 @@ public final class MoreLikeThisQuery extends QueryBase {
 	private final Number version;
 
 	@Nullable
-	private final JsonValue versionType;
+	private final VersionType versionType;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MoreLikeThisQuery(Builder builder) {
+	public MoreLikeThisQuery(Builder builder) {
 		super(builder);
+
 		this.analyzer = builder.analyzer;
 		this.boostTerms = builder.boostTerms;
 		this.failOnUnsupportedField = builder.failOnUnsupportedField;
@@ -124,6 +127,14 @@ public final class MoreLikeThisQuery extends QueryBase {
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "more_like_this";
 	}
 
 	/**
@@ -273,12 +284,14 @@ public final class MoreLikeThisQuery extends QueryBase {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public JsonValue versionType() {
+	public VersionType versionType() {
 		return this.versionType;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
@@ -414,9 +427,10 @@ public final class MoreLikeThisQuery extends QueryBase {
 		if (this.versionType != null) {
 
 			generator.writeKey("version_type");
-			generator.write(this.versionType);
-
+			this.versionType.serialize(generator, mapper);
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -480,7 +494,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		private Number version;
 
 		@Nullable
-		private JsonValue versionType;
+		private VersionType versionType;
 
 		/**
 		 * API name: {@code analyzer}
@@ -717,7 +731,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		/**
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable JsonValue value) {
+		public Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -741,11 +755,9 @@ public final class MoreLikeThisQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for MoreLikeThisQuery
-	 */
-	public static final JsonpDeserializer<MoreLikeThisQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<MoreLikeThisQuery.Builder, MoreLikeThisQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(MoreLikeThisQuery::setupMoreLikeThisQueryDeserializer);
 
 	protected static void setupMoreLikeThisQueryDeserializer(DelegatingDeserializer<MoreLikeThisQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
@@ -770,7 +782,7 @@ public final class MoreLikeThisQuery extends QueryBase {
 		op.add(Builder::unlike, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"unlike");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::versionType, JsonpDeserializer.jsonValueDeserializer(), "version_type");
+		op.add(Builder::versionType, VersionType.DESERIALIZER, "version_type");
 
 	}
 

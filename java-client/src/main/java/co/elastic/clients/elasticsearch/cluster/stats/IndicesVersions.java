@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.IndicesVersions
-public final class IndicesVersions implements ToJsonp {
+public final class IndicesVersions implements JsonpSerializable {
 	private final Number indexCount;
 
 	private final Number primaryShardCount;
@@ -48,7 +48,7 @@ public final class IndicesVersions implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesVersions(Builder builder) {
+	public IndicesVersions(Builder builder) {
 
 		this.indexCount = Objects.requireNonNull(builder.indexCount, "index_count");
 		this.primaryShardCount = Objects.requireNonNull(builder.primaryShardCount, "primary_shard_count");
@@ -88,13 +88,13 @@ public final class IndicesVersions implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index_count");
 		generator.write(this.indexCount.doubleValue());
@@ -171,7 +171,7 @@ public final class IndicesVersions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndicesVersions
+	 * Json deserializer for {@link IndicesVersions}
 	 */
 	public static final JsonpDeserializer<IndicesVersions> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndicesVersions::setupIndicesVersionsDeserializer);

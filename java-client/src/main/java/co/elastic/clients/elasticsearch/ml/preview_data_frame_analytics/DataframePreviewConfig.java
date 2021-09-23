@@ -23,14 +23,14 @@
 
 package co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics;
 
-import co.elastic.clients.elasticsearch.ml.DataframeAnalysisContainer;
+import co.elastic.clients.elasticsearch.ml.DataframeAnalysis;
 import co.elastic.clients.elasticsearch.ml.DataframeAnalyticsSource;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -41,10 +41,10 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.DataframePreviewConfig
-public final class DataframePreviewConfig implements ToJsonp {
+public final class DataframePreviewConfig implements JsonpSerializable {
 	private final DataframeAnalyticsSource source;
 
-	private final DataframeAnalysisContainer analysis;
+	private final DataframeAnalysis analysis;
 
 	@Nullable
 	private final String modelMemoryLimit;
@@ -57,7 +57,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframePreviewConfig(Builder builder) {
+	public DataframePreviewConfig(Builder builder) {
 
 		this.source = Objects.requireNonNull(builder.source, "source");
 		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
@@ -77,7 +77,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 	/**
 	 * API name: {@code analysis}
 	 */
-	public DataframeAnalysisContainer analysis() {
+	public DataframeAnalysis analysis() {
 		return this.analysis;
 	}
 
@@ -108,19 +108,19 @@ public final class DataframePreviewConfig implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("source");
-		this.source.toJsonp(generator, mapper);
+		this.source.serialize(generator, mapper);
 
 		generator.writeKey("analysis");
-		this.analysis.toJsonp(generator, mapper);
+		this.analysis.serialize(generator, mapper);
 
 		if (this.modelMemoryLimit != null) {
 
@@ -151,7 +151,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 	public static class Builder implements ObjectBuilder<DataframePreviewConfig> {
 		private DataframeAnalyticsSource source;
 
-		private DataframeAnalysisContainer analysis;
+		private DataframeAnalysis analysis;
 
 		@Nullable
 		private String modelMemoryLimit;
@@ -180,7 +180,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 		/**
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(DataframeAnalysisContainer value) {
+		public Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
 			return this;
 		}
@@ -188,9 +188,8 @@ public final class DataframePreviewConfig implements ToJsonp {
 		/**
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(
-				Function<DataframeAnalysisContainer.Builder, ObjectBuilder<DataframeAnalysisContainer>> fn) {
-			return this.analysis(fn.apply(new DataframeAnalysisContainer.Builder()).build());
+		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
@@ -232,7 +231,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframePreviewConfig
+	 * Json deserializer for {@link DataframePreviewConfig}
 	 */
 	public static final JsonpDeserializer<DataframePreviewConfig> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DataframePreviewConfig::setupDataframePreviewConfigDeserializer);
@@ -241,7 +240,7 @@ public final class DataframePreviewConfig implements ToJsonp {
 			DelegatingDeserializer<DataframePreviewConfig.Builder> op) {
 
 		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
-		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
+		op.add(Builder::analysis, DataframeAnalysis.DESERIALIZER, "analysis");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");

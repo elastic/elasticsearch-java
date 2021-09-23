@@ -64,7 +64,7 @@ public final class ExistsTypeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsTypeRequest(Builder builder) {
+	public ExistsTypeRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.type = Objects.requireNonNull(builder.type, "type");

@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: cluster.delete_component_template.Response
 public final class DeleteComponentTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteComponentTemplateResponse(Builder builder) {
+	public DeleteComponentTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeleteComponentTemplateResponse extends AcknowledgedResponseB
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteComponentTemplateResponse
+	 * Json deserializer for {@link DeleteComponentTemplateResponse}
 	 */
 	public static final JsonpDeserializer<DeleteComponentTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

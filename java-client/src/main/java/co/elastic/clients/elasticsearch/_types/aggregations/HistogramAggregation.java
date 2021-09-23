@@ -23,7 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,11 +36,15 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HistogramAggregation
-public final class HistogramAggregation extends BucketAggregationBase {
+public final class HistogramAggregation extends BucketAggregationBase
+		implements
+			PivotGroupBy,
+			CompositeAggregationSource {
 	@Nullable
 	private final ExtendedBounds<Number> extendedBounds;
 
@@ -74,8 +80,9 @@ public final class HistogramAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HistogramAggregation(Builder builder) {
+	public HistogramAggregation(Builder builder) {
 		super(builder);
+
 		this.extendedBounds = builder.extendedBounds;
 		this.hardBounds = builder.hardBounds;
 		this.field = builder.field;
@@ -88,6 +95,14 @@ public final class HistogramAggregation extends BucketAggregationBase {
 		this.format = builder.format;
 		this.keyed = builder.keyed;
 
+	}
+
+	/**
+	 * {@link PivotGroupBy}, {@link CompositeAggregationSource} variant type
+	 */
+	@Override
+	public String _type() {
+		return "histogram";
 	}
 
 	/**
@@ -178,18 +193,20 @@ public final class HistogramAggregation extends BucketAggregationBase {
 		return this.keyed;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.extendedBounds != null) {
 
 			generator.writeKey("extended_bounds");
-			this.extendedBounds.toJsonp(generator, mapper);
+			this.extendedBounds.serialize(generator, mapper);
 
 		}
 		if (this.hardBounds != null) {
 
 			generator.writeKey("hard_bounds");
-			this.hardBounds.toJsonp(generator, mapper);
+			this.hardBounds.serialize(generator, mapper);
 
 		}
 		if (this.field != null) {
@@ -225,7 +242,7 @@ public final class HistogramAggregation extends BucketAggregationBase {
 		if (this.order != null) {
 
 			generator.writeKey("order");
-			this.order.toJsonp(generator, mapper);
+			this.order.serialize(generator, mapper);
 
 		}
 		if (this.script != null) {
@@ -246,6 +263,8 @@ public final class HistogramAggregation extends BucketAggregationBase {
 			generator.write(this.keyed);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -419,11 +438,9 @@ public final class HistogramAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for HistogramAggregation
-	 */
-	public static final JsonpDeserializer<HistogramAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HistogramAggregation::setupHistogramAggregationDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<HistogramAggregation.Builder, HistogramAggregation.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(HistogramAggregation::setupHistogramAggregationDeserializer);
 
 	protected static void setupHistogramAggregationDeserializer(
 			DelegatingDeserializer<HistogramAggregation.Builder> op) {

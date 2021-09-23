@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_component_template.Request
@@ -54,7 +55,7 @@ public final class GetComponentTemplateRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetComponentTemplateRequest(Builder builder) {
+	public GetComponentTemplateRequest(Builder builder) {
 
 		this.name = builder.name;
 		this.flatSettings = builder.flatSettings;

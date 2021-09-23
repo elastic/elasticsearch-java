@@ -26,21 +26,21 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInput
-public final class HttpInput implements ToJsonp {
+public final class HttpInput implements JsonpSerializable {
 	@Nullable
 	private final co.elastic.clients.elasticsearch.watcher.HttpInput http;
 
@@ -51,11 +51,11 @@ public final class HttpInput implements ToJsonp {
 	private final HttpInputRequestDefinition request;
 
 	@Nullable
-	private final JsonValue responseContentType;
+	private final ResponseContentType responseContentType;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HttpInput(Builder builder) {
+	public HttpInput(Builder builder) {
 
 		this.http = builder.http;
 		this.extract = builder.extract;
@@ -92,25 +92,25 @@ public final class HttpInput implements ToJsonp {
 	 * API name: {@code response_content_type}
 	 */
 	@Nullable
-	public JsonValue responseContentType() {
+	public ResponseContentType responseContentType() {
 		return this.responseContentType;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.http != null) {
 
 			generator.writeKey("http");
-			this.http.toJsonp(generator, mapper);
+			this.http.serialize(generator, mapper);
 
 		}
 		if (this.extract != null) {
@@ -127,14 +127,13 @@ public final class HttpInput implements ToJsonp {
 		if (this.request != null) {
 
 			generator.writeKey("request");
-			this.request.toJsonp(generator, mapper);
+			this.request.serialize(generator, mapper);
 
 		}
 		if (this.responseContentType != null) {
 
 			generator.writeKey("response_content_type");
-			generator.write(this.responseContentType);
-
+			this.responseContentType.serialize(generator, mapper);
 		}
 
 	}
@@ -155,7 +154,7 @@ public final class HttpInput implements ToJsonp {
 		private HttpInputRequestDefinition request;
 
 		@Nullable
-		private JsonValue responseContentType;
+		private ResponseContentType responseContentType;
 
 		/**
 		 * API name: {@code http}
@@ -219,7 +218,7 @@ public final class HttpInput implements ToJsonp {
 		/**
 		 * API name: {@code response_content_type}
 		 */
-		public Builder responseContentType(@Nullable JsonValue value) {
+		public Builder responseContentType(@Nullable ResponseContentType value) {
 			this.responseContentType = value;
 			return this;
 		}
@@ -239,7 +238,7 @@ public final class HttpInput implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HttpInput
+	 * Json deserializer for {@link HttpInput}
 	 */
 	public static final JsonpDeserializer<HttpInput> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, HttpInput::setupHttpInputDeserializer);
@@ -250,7 +249,7 @@ public final class HttpInput implements ToJsonp {
 		op.add(Builder::extract, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extract");
 		op.add(Builder::request, HttpInputRequestDefinition.DESERIALIZER, "request");
-		op.add(Builder::responseContentType, JsonpDeserializer.jsonValueDeserializer(), "response_content_type");
+		op.add(Builder::responseContentType, ResponseContentType.DESERIALIZER, "response_content_type");
 
 	}
 

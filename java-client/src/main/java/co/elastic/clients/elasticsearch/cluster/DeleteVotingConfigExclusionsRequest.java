@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.delete_voting_config_exclusions.Request
@@ -44,7 +45,7 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteVotingConfigExclusionsRequest(Builder builder) {
+	public DeleteVotingConfigExclusionsRequest(Builder builder) {
 
 		this.waitForRemoval = builder.waitForRemoval;
 

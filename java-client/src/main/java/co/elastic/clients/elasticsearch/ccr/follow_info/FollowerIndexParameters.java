@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ccr.follow_info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,7 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.FollowerIndexParameters
-public final class FollowerIndexParameters implements ToJsonp {
+public final class FollowerIndexParameters implements JsonpSerializable {
 	private final Number maxOutstandingReadRequests;
 
 	private final Number maxOutstandingWriteRequests;
@@ -61,7 +61,7 @@ public final class FollowerIndexParameters implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FollowerIndexParameters(Builder builder) {
+	public FollowerIndexParameters(Builder builder) {
 
 		this.maxOutstandingReadRequests = Objects.requireNonNull(builder.maxOutstandingReadRequests,
 				"max_outstanding_read_requests");
@@ -153,13 +153,13 @@ public final class FollowerIndexParameters implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("max_outstanding_read_requests");
 		generator.write(this.maxOutstandingReadRequests.doubleValue());
@@ -314,7 +314,7 @@ public final class FollowerIndexParameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FollowerIndexParameters
+	 * Json deserializer for {@link FollowerIndexParameters}
 	 */
 	public static final JsonpDeserializer<FollowerIndexParameters> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FollowerIndexParameters::setupFollowerIndexParametersDeserializer);

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_influencers.Response
-public final class GetInfluencersResponse implements ToJsonp {
+public final class GetInfluencersResponse implements JsonpSerializable {
 	private final Number count;
 
 	private final List<BucketInfluencer> influencers;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetInfluencersResponse(Builder builder) {
+	public GetInfluencersResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.influencers = Objects.requireNonNull(builder.influencers, "influencers");
@@ -73,13 +73,13 @@ public final class GetInfluencersResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
@@ -87,7 +87,7 @@ public final class GetInfluencersResponse implements ToJsonp {
 		generator.writeKey("influencers");
 		generator.writeStartArray();
 		for (BucketInfluencer item0 : this.influencers) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -172,7 +172,7 @@ public final class GetInfluencersResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetInfluencersResponse
+	 * Json deserializer for {@link GetInfluencersResponse}
 	 */
 	public static final JsonpDeserializer<GetInfluencersResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetInfluencersResponse::setupGetInfluencersResponseDeserializer);

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Logging
-public final class Logging implements ToJsonp {
+public final class Logging implements JsonpSerializable {
 	@Nullable
 	private final String level;
 
@@ -47,7 +47,7 @@ public final class Logging implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Logging(Builder builder) {
+	public Logging(Builder builder) {
 
 		this.level = builder.level;
 		this.text = Objects.requireNonNull(builder.text, "text");
@@ -81,13 +81,13 @@ public final class Logging implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.level != null) {
 
@@ -161,7 +161,7 @@ public final class Logging implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Logging
+	 * Json deserializer for {@link Logging}
 	 */
 	public static final JsonpDeserializer<Logging> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Logging::setupLoggingDeserializer);

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ccr.get_auto_follow_pattern;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,7 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPatternSummary
-public final class AutoFollowPatternSummary implements ToJsonp {
+public final class AutoFollowPatternSummary implements JsonpSerializable {
 	private final Boolean active;
 
 	private final String remoteCluster;
@@ -51,16 +51,20 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 
 	private final List<String> leaderIndexPatterns;
 
+	private final List<String> leaderIndexExclusionPatterns;
+
 	private final Number maxOutstandingReadRequests;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoFollowPatternSummary(Builder builder) {
+	public AutoFollowPatternSummary(Builder builder) {
 
 		this.active = Objects.requireNonNull(builder.active, "active");
 		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
 		this.followIndexPattern = builder.followIndexPattern;
 		this.leaderIndexPatterns = Objects.requireNonNull(builder.leaderIndexPatterns, "leader_index_patterns");
+		this.leaderIndexExclusionPatterns = Objects.requireNonNull(builder.leaderIndexExclusionPatterns,
+				"leader_index_exclusion_patterns");
 		this.maxOutstandingReadRequests = Objects.requireNonNull(builder.maxOutstandingReadRequests,
 				"max_outstanding_read_requests");
 
@@ -74,6 +78,8 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 	}
 
 	/**
+	 * The remote cluster containing the leader indices to match against.
+	 * <p>
 	 * API name: {@code remote_cluster}
 	 */
 	public String remoteCluster() {
@@ -81,6 +87,8 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 	}
 
 	/**
+	 * The name of follower index.
+	 * <p>
 	 * API name: {@code follow_index_pattern}
 	 */
 	@Nullable
@@ -89,6 +97,9 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 	}
 
 	/**
+	 * An array of simple index patterns to match against indices in the remote
+	 * cluster specified by the remote_cluster field.
+	 * <p>
 	 * API name: {@code leader_index_patterns}
 	 */
 	public List<String> leaderIndexPatterns() {
@@ -96,6 +107,18 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 	}
 
 	/**
+	 * An array of simple index patterns that can be used to exclude indices from
+	 * being auto-followed.
+	 * <p>
+	 * API name: {@code leader_index_exclusion_patterns}
+	 */
+	public List<String> leaderIndexExclusionPatterns() {
+		return this.leaderIndexExclusionPatterns;
+	}
+
+	/**
+	 * The maximum number of outstanding reads requests from the remote cluster.
+	 * <p>
 	 * API name: {@code max_outstanding_read_requests}
 	 */
 	public Number maxOutstandingReadRequests() {
@@ -105,13 +128,13 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("active");
 		generator.write(this.active);
@@ -129,6 +152,14 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 		generator.writeKey("leader_index_patterns");
 		generator.writeStartArray();
 		for (String item0 : this.leaderIndexPatterns) {
+			generator.write(item0);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("leader_index_exclusion_patterns");
+		generator.writeStartArray();
+		for (String item0 : this.leaderIndexExclusionPatterns) {
 			generator.write(item0);
 
 		}
@@ -154,6 +185,8 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 
 		private List<String> leaderIndexPatterns;
 
+		private List<String> leaderIndexExclusionPatterns;
+
 		private Number maxOutstandingReadRequests;
 
 		/**
@@ -165,6 +198,8 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 		}
 
 		/**
+		 * The remote cluster containing the leader indices to match against.
+		 * <p>
 		 * API name: {@code remote_cluster}
 		 */
 		public Builder remoteCluster(String value) {
@@ -173,6 +208,8 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 		}
 
 		/**
+		 * The name of follower index.
+		 * <p>
 		 * API name: {@code follow_index_pattern}
 		 */
 		public Builder followIndexPattern(@Nullable String value) {
@@ -181,6 +218,9 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 		}
 
 		/**
+		 * An array of simple index patterns to match against indices in the remote
+		 * cluster specified by the remote_cluster field.
+		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
 		public Builder leaderIndexPatterns(List<String> value) {
@@ -189,6 +229,9 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 		}
 
 		/**
+		 * An array of simple index patterns to match against indices in the remote
+		 * cluster specified by the remote_cluster field.
+		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
 		public Builder leaderIndexPatterns(String... value) {
@@ -209,6 +252,42 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 		}
 
 		/**
+		 * An array of simple index patterns that can be used to exclude indices from
+		 * being auto-followed.
+		 * <p>
+		 * API name: {@code leader_index_exclusion_patterns}
+		 */
+		public Builder leaderIndexExclusionPatterns(List<String> value) {
+			this.leaderIndexExclusionPatterns = value;
+			return this;
+		}
+
+		/**
+		 * An array of simple index patterns that can be used to exclude indices from
+		 * being auto-followed.
+		 * <p>
+		 * API name: {@code leader_index_exclusion_patterns}
+		 */
+		public Builder leaderIndexExclusionPatterns(String... value) {
+			this.leaderIndexExclusionPatterns = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #leaderIndexExclusionPatterns(List)}, creating the list
+		 * if needed.
+		 */
+		public Builder addLeaderIndexExclusionPatterns(String value) {
+			if (this.leaderIndexExclusionPatterns == null) {
+				this.leaderIndexExclusionPatterns = new ArrayList<>();
+			}
+			this.leaderIndexExclusionPatterns.add(value);
+			return this;
+		}
+
+		/**
+		 * The maximum number of outstanding reads requests from the remote cluster.
+		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */
 		public Builder maxOutstandingReadRequests(Number value) {
@@ -231,7 +310,7 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoFollowPatternSummary
+	 * Json deserializer for {@link AutoFollowPatternSummary}
 	 */
 	public static final JsonpDeserializer<AutoFollowPatternSummary> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AutoFollowPatternSummary::setupAutoFollowPatternSummaryDeserializer);
@@ -244,6 +323,9 @@ public final class AutoFollowPatternSummary implements ToJsonp {
 		op.add(Builder::followIndexPattern, JsonpDeserializer.stringDeserializer(), "follow_index_pattern");
 		op.add(Builder::leaderIndexPatterns,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "leader_index_patterns");
+		op.add(Builder::leaderIndexExclusionPatterns,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"leader_index_exclusion_patterns");
 		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.numberDeserializer(),
 				"max_outstanding_read_requests");
 

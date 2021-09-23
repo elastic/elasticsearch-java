@@ -39,6 +39,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -55,7 +56,7 @@ public final class StatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsRequest(Builder builder) {
+	public StatsRequest(Builder builder) {
 
 		this.nodeId = builder.nodeId;
 		this.flatSettings = builder.flatSettings;

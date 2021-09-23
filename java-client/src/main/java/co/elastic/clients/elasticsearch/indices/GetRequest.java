@@ -73,7 +73,7 @@ public final class GetRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRequest(Builder builder) {
+	public GetRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;

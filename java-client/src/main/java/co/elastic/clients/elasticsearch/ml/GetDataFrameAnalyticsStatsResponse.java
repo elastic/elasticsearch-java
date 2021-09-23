@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics_stats.Response
-public final class GetDataFrameAnalyticsStatsResponse implements ToJsonp {
+public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializable {
 	private final Number count;
 
 	private final List<DataframeAnalytics> dataFrameAnalytics;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDataFrameAnalyticsStatsResponse(Builder builder) {
+	public GetDataFrameAnalyticsStatsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.dataFrameAnalytics = Objects.requireNonNull(builder.dataFrameAnalytics, "data_frame_analytics");
@@ -74,13 +74,13 @@ public final class GetDataFrameAnalyticsStatsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
@@ -88,7 +88,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements ToJsonp {
 		generator.writeKey("data_frame_analytics");
 		generator.writeStartArray();
 		for (DataframeAnalytics item0 : this.dataFrameAnalytics) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -178,7 +178,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetDataFrameAnalyticsStatsResponse
+	 * Json deserializer for {@link GetDataFrameAnalyticsStatsResponse}
 	 */
 	public static final JsonpDeserializer<GetDataFrameAnalyticsStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

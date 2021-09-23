@@ -32,9 +32,9 @@ import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -46,7 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndices
-public final class ClusterIndices implements ToJsonp {
+public final class ClusterIndices implements JsonpSerializable {
 	private final CompletionStats completion;
 
 	private final Number count;
@@ -72,7 +72,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterIndices(Builder builder) {
+	public ClusterIndices(Builder builder) {
 
 		this.completion = Objects.requireNonNull(builder.completion, "completion");
 		this.count = Objects.requireNonNull(builder.count, "count");
@@ -190,50 +190,50 @@ public final class ClusterIndices implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("completion");
-		this.completion.toJsonp(generator, mapper);
+		this.completion.serialize(generator, mapper);
 
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
 
 		generator.writeKey("docs");
-		this.docs.toJsonp(generator, mapper);
+		this.docs.serialize(generator, mapper);
 
 		generator.writeKey("fielddata");
-		this.fielddata.toJsonp(generator, mapper);
+		this.fielddata.serialize(generator, mapper);
 
 		generator.writeKey("query_cache");
-		this.queryCache.toJsonp(generator, mapper);
+		this.queryCache.serialize(generator, mapper);
 
 		generator.writeKey("segments");
-		this.segments.toJsonp(generator, mapper);
+		this.segments.serialize(generator, mapper);
 
 		generator.writeKey("shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 		generator.writeKey("store");
-		this.store.toJsonp(generator, mapper);
+		this.store.serialize(generator, mapper);
 
 		generator.writeKey("mappings");
-		this.mappings.toJsonp(generator, mapper);
+		this.mappings.serialize(generator, mapper);
 
 		generator.writeKey("analysis");
-		this.analysis.toJsonp(generator, mapper);
+		this.analysis.serialize(generator, mapper);
 
 		if (this.versions != null) {
 
 			generator.writeKey("versions");
 			generator.writeStartArray();
 			for (IndicesVersions item0 : this.versions) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -510,7 +510,7 @@ public final class ClusterIndices implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterIndices
+	 * Json deserializer for {@link ClusterIndices}
 	 */
 	public static final JsonpDeserializer<ClusterIndices> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterIndices::setupClusterIndicesDeserializer);

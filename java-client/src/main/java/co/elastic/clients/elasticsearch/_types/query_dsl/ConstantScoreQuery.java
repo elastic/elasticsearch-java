@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,29 +36,42 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ConstantScoreQuery
-public final class ConstantScoreQuery extends QueryBase {
-	private final QueryContainer filter;
+public final class ConstantScoreQuery extends QueryBase implements Query {
+	private final Query filter;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ConstantScoreQuery(Builder builder) {
+	public ConstantScoreQuery(Builder builder) {
 		super(builder);
+
 		this.filter = Objects.requireNonNull(builder.filter, "filter");
 
 	}
 
 	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "constant_score";
+	}
+
+	/**
 	 * API name: {@code filter}
 	 */
-	public QueryContainer filter() {
+	public Query filter() {
 		return this.filter;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("filter");
-		this.filter.toJsonp(generator, mapper);
+		this.filter.serialize(generator, mapper);
+
+		generator.writeEnd();
 
 	}
 
@@ -69,12 +83,12 @@ public final class ConstantScoreQuery extends QueryBase {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConstantScoreQuery> {
-		private QueryContainer filter;
+		private Query filter;
 
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(QueryContainer value) {
+		public Builder filter(Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -82,8 +96,8 @@ public final class ConstantScoreQuery extends QueryBase {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override
@@ -105,15 +119,13 @@ public final class ConstantScoreQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for ConstantScoreQuery
-	 */
-	public static final JsonpDeserializer<ConstantScoreQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ConstantScoreQuery::setupConstantScoreQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<ConstantScoreQuery.Builder, ConstantScoreQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(ConstantScoreQuery::setupConstantScoreQueryDeserializer);
 
 	protected static void setupConstantScoreQueryDeserializer(DelegatingDeserializer<ConstantScoreQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::filter, Query.DESERIALIZER, "filter");
 
 	}
 

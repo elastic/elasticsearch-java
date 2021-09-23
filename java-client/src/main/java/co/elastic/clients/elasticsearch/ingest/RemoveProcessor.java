@@ -47,8 +47,9 @@ public final class RemoveProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RemoveProcessor(Builder builder) {
+	public RemoveProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 
@@ -69,8 +70,9 @@ public final class RemoveProcessor extends ProcessorBase {
 		return this.ignoreMissing;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.writeStartArray();
@@ -157,7 +159,7 @@ public final class RemoveProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RemoveProcessor
+	 * Json deserializer for {@link RemoveProcessor}
 	 */
 	public static final JsonpDeserializer<RemoveProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RemoveProcessor::setupRemoveProcessorDeserializer);

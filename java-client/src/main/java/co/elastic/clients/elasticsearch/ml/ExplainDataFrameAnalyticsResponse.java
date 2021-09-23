@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,14 +39,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.explain_data_frame_analytics.Response
-public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
+public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<DataframeAnalyticsFieldSelection> fieldSelection;
 
 	private final DataframeAnalyticsMemoryEstimation memoryEstimation;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExplainDataFrameAnalyticsResponse(Builder builder) {
+	public ExplainDataFrameAnalyticsResponse(Builder builder) {
 
 		this.fieldSelection = Objects.requireNonNull(builder.fieldSelection, "field_selection");
 		this.memoryEstimation = Objects.requireNonNull(builder.memoryEstimation, "memory_estimation");
@@ -76,24 +76,24 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field_selection");
 		generator.writeStartArray();
 		for (DataframeAnalyticsFieldSelection item0 : this.fieldSelection) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("memory_estimation");
-		this.memoryEstimation.toJsonp(generator, mapper);
+		this.memoryEstimation.serialize(generator, mapper);
 
 	}
 
@@ -193,7 +193,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExplainDataFrameAnalyticsResponse
+	 * Json deserializer for {@link ExplainDataFrameAnalyticsResponse}
 	 */
 	public static final JsonpDeserializer<ExplainDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

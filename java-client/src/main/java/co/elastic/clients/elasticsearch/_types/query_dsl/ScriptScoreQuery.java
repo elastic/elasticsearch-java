@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,22 +38,31 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptScoreQuery
-public final class ScriptScoreQuery extends QueryBase {
+public final class ScriptScoreQuery extends QueryBase implements Query {
 	@Nullable
 	private final Number minScore;
 
-	private final QueryContainer query;
+	private final Query query;
 
 	private final JsonValue script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptScoreQuery(Builder builder) {
+	public ScriptScoreQuery(Builder builder) {
 		super(builder);
+
 		this.minScore = builder.minScore;
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.script = Objects.requireNonNull(builder.script, "script");
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "script_score";
 	}
 
 	/**
@@ -66,7 +76,7 @@ public final class ScriptScoreQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -77,8 +87,10 @@ public final class ScriptScoreQuery extends QueryBase {
 		return this.script;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.minScore != null) {
 
 			generator.writeKey("min_score");
@@ -87,10 +99,12 @@ public final class ScriptScoreQuery extends QueryBase {
 		}
 
 		generator.writeKey("query");
-		this.query.toJsonp(generator, mapper);
+		this.query.serialize(generator, mapper);
 
 		generator.writeKey("script");
 		generator.write(this.script);
+
+		generator.writeEnd();
 
 	}
 
@@ -103,7 +117,7 @@ public final class ScriptScoreQuery extends QueryBase {
 		@Nullable
 		private Number minScore;
 
-		private QueryContainer query;
+		private Query query;
 
 		private JsonValue script;
 
@@ -118,7 +132,7 @@ public final class ScriptScoreQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(QueryContainer value) {
+		public Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -126,8 +140,8 @@ public final class ScriptScoreQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -157,16 +171,14 @@ public final class ScriptScoreQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for ScriptScoreQuery
-	 */
-	public static final JsonpDeserializer<ScriptScoreQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptScoreQuery::setupScriptScoreQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<ScriptScoreQuery.Builder, ScriptScoreQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(ScriptScoreQuery::setupScriptScoreQueryDeserializer);
 
 	protected static void setupScriptScoreQueryDeserializer(DelegatingDeserializer<ScriptScoreQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::minScore, JsonpDeserializer.numberDeserializer(), "min_score");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}

@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -41,11 +41,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.Request
-public final class ReloadSecureSettingsRequest extends RequestBase implements ToJsonp {
+public final class ReloadSecureSettingsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> nodeId;
 
@@ -57,7 +58,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ReloadSecureSettingsRequest(Builder builder) {
+	public ReloadSecureSettingsRequest(Builder builder) {
 
 		this.nodeId = builder.nodeId;
 		this.timeout = builder.timeout;
@@ -97,13 +98,13 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.secureSettingsPassword != null) {
 
@@ -195,7 +196,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ReloadSecureSettingsRequest
+	 * Json deserializer for {@link ReloadSecureSettingsRequest}
 	 */
 	public static final JsonpDeserializer<ReloadSecureSettingsRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ReloadSecureSettingsRequest::setupReloadSecureSettingsRequestDeserializer);

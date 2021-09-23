@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,14 +36,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingResources
-public final class AutoscalingResources implements ToJsonp {
+public final class AutoscalingResources implements JsonpSerializable {
 	private final Number storage;
 
 	private final Number memory;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoscalingResources(Builder builder) {
+	public AutoscalingResources(Builder builder) {
 
 		this.storage = Objects.requireNonNull(builder.storage, "storage");
 		this.memory = Objects.requireNonNull(builder.memory, "memory");
@@ -67,13 +67,13 @@ public final class AutoscalingResources implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("storage");
 		generator.write(this.storage.doubleValue());
@@ -124,7 +124,7 @@ public final class AutoscalingResources implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoscalingResources
+	 * Json deserializer for {@link AutoscalingResources}
 	 */
 	public static final JsonpDeserializer<AutoscalingResources> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AutoscalingResources::setupAutoscalingResourcesDeserializer);

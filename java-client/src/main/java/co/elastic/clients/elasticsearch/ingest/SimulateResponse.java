@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,12 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Response
-public final class SimulateResponse implements ToJsonp {
+public final class SimulateResponse implements JsonpSerializable {
 	private final List<PipelineSimulation> docs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SimulateResponse(Builder builder) {
+	public SimulateResponse(Builder builder) {
 
 		this.docs = Objects.requireNonNull(builder.docs, "docs");
 
@@ -61,18 +61,18 @@ public final class SimulateResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("docs");
 		generator.writeStartArray();
 		for (PipelineSimulation item0 : this.docs) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -143,7 +143,7 @@ public final class SimulateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SimulateResponse
+	 * Json deserializer for {@link SimulateResponse}
 	 */
 	public static final JsonpDeserializer<SimulateResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SimulateResponse::setupSimulateResponseDeserializer);

@@ -54,7 +54,7 @@ public final class DeleteRepositoryRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteRepositoryRequest(Builder builder) {
+	public DeleteRepositoryRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.masterTimeout = builder.masterTimeout;

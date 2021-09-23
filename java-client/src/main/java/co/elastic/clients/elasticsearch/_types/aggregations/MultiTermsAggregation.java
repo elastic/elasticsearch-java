@@ -43,8 +43,9 @@ public final class MultiTermsAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MultiTermsAggregation(Builder builder) {
+	public MultiTermsAggregation(Builder builder) {
 		super(builder);
+
 		this.terms = Objects.requireNonNull(builder.terms, "terms");
 
 	}
@@ -56,13 +57,14 @@ public final class MultiTermsAggregation extends BucketAggregationBase {
 		return this.terms;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("terms");
 		generator.writeStartArray();
 		for (MultiTermLookup item0 : this.terms) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -140,7 +142,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MultiTermsAggregation
+	 * Json deserializer for {@link MultiTermsAggregation}
 	 */
 	public static final JsonpDeserializer<MultiTermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationDeserializer);

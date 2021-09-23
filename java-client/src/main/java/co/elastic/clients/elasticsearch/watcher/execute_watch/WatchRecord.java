@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.watcher.execute_watch;
 
-import co.elastic.clients.elasticsearch.watcher.ConditionContainer;
+import co.elastic.clients.elasticsearch.watcher.Condition;
 import co.elastic.clients.elasticsearch.watcher.ExecutionResult;
-import co.elastic.clients.elasticsearch.watcher.InputContainer;
+import co.elastic.clients.elasticsearch.watcher.ExecutionStatus;
+import co.elastic.clients.elasticsearch.watcher.Input;
 import co.elastic.clients.elasticsearch.watcher.TriggerEventResult;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -47,20 +48,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.WatchRecord
-public final class WatchRecord implements ToJsonp {
-	private final ConditionContainer condition;
+public final class WatchRecord implements JsonpSerializable {
+	private final Condition condition;
 
-	private final InputContainer input;
+	private final Input input;
 
 	private final List<String> messages;
 
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	private final String node;
 
 	private final ExecutionResult result;
 
-	private final JsonValue state;
+	private final ExecutionStatus state;
 
 	private final TriggerEventResult triggerEvent;
 
@@ -70,7 +71,7 @@ public final class WatchRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WatchRecord(Builder builder) {
+	public WatchRecord(Builder builder) {
 
 		this.condition = Objects.requireNonNull(builder.condition, "condition");
 		this.input = Objects.requireNonNull(builder.input, "input");
@@ -88,14 +89,14 @@ public final class WatchRecord implements ToJsonp {
 	/**
 	 * API name: {@code condition}
 	 */
-	public ConditionContainer condition() {
+	public Condition condition() {
 		return this.condition;
 	}
 
 	/**
 	 * API name: {@code input}
 	 */
-	public InputContainer input() {
+	public Input input() {
 		return this.input;
 	}
 
@@ -109,7 +110,7 @@ public final class WatchRecord implements ToJsonp {
 	/**
 	 * API name: {@code metadata}
 	 */
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -130,7 +131,7 @@ public final class WatchRecord implements ToJsonp {
 	/**
 	 * API name: {@code state}
 	 */
-	public JsonValue state() {
+	public ExecutionStatus state() {
 		return this.state;
 	}
 
@@ -158,19 +159,19 @@ public final class WatchRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("condition");
-		this.condition.toJsonp(generator, mapper);
+		this.condition.serialize(generator, mapper);
 
 		generator.writeKey("input");
-		this.input.toJsonp(generator, mapper);
+		this.input.serialize(generator, mapper);
 
 		generator.writeKey("messages");
 		generator.writeStartArray();
@@ -182,9 +183,9 @@ public final class WatchRecord implements ToJsonp {
 
 		generator.writeKey("metadata");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -193,13 +194,13 @@ public final class WatchRecord implements ToJsonp {
 		generator.write(this.node);
 
 		generator.writeKey("result");
-		this.result.toJsonp(generator, mapper);
+		this.result.serialize(generator, mapper);
 
 		generator.writeKey("state");
-		generator.write(this.state);
+		this.state.serialize(generator, mapper);
 
 		generator.writeKey("trigger_event");
-		this.triggerEvent.toJsonp(generator, mapper);
+		this.triggerEvent.serialize(generator, mapper);
 
 		generator.writeKey("user");
 		generator.write(this.user);
@@ -215,19 +216,19 @@ public final class WatchRecord implements ToJsonp {
 	 * Builder for {@link WatchRecord}.
 	 */
 	public static class Builder implements ObjectBuilder<WatchRecord> {
-		private ConditionContainer condition;
+		private Condition condition;
 
-		private InputContainer input;
+		private Input input;
 
 		private List<String> messages;
 
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		private String node;
 
 		private ExecutionResult result;
 
-		private JsonValue state;
+		private ExecutionStatus state;
 
 		private TriggerEventResult triggerEvent;
 
@@ -238,7 +239,7 @@ public final class WatchRecord implements ToJsonp {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(ConditionContainer value) {
+		public Builder condition(Condition value) {
 			this.condition = value;
 			return this;
 		}
@@ -246,14 +247,14 @@ public final class WatchRecord implements ToJsonp {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(Function<ConditionContainer.Builder, ObjectBuilder<ConditionContainer>> fn) {
-			return this.condition(fn.apply(new ConditionContainer.Builder()).build());
+		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code input}
 		 */
-		public Builder input(InputContainer value) {
+		public Builder input(Input value) {
 			this.input = value;
 			return this;
 		}
@@ -261,8 +262,8 @@ public final class WatchRecord implements ToJsonp {
 		/**
 		 * API name: {@code input}
 		 */
-		public Builder input(Function<InputContainer.Builder, ObjectBuilder<InputContainer>> fn) {
-			return this.input(fn.apply(new InputContainer.Builder()).build());
+		public Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return this.input(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
@@ -295,7 +296,7 @@ public final class WatchRecord implements ToJsonp {
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(Map<String, JsonValue> value) {
+		public Builder metadata(Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -303,7 +304,7 @@ public final class WatchRecord implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -337,7 +338,7 @@ public final class WatchRecord implements ToJsonp {
 		/**
 		 * API name: {@code state}
 		 */
-		public Builder state(JsonValue value) {
+		public Builder state(ExecutionStatus value) {
 			this.state = value;
 			return this;
 		}
@@ -388,22 +389,21 @@ public final class WatchRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WatchRecord
+	 * Json deserializer for {@link WatchRecord}
 	 */
 	public static final JsonpDeserializer<WatchRecord> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, WatchRecord::setupWatchRecordDeserializer);
 
 	protected static void setupWatchRecordDeserializer(DelegatingDeserializer<WatchRecord.Builder> op) {
 
-		op.add(Builder::condition, ConditionContainer.DESERIALIZER, "condition");
-		op.add(Builder::input, InputContainer.DESERIALIZER, "input");
+		op.add(Builder::condition, Condition.DESERIALIZER, "condition");
+		op.add(Builder::input, Input.DESERIALIZER, "input");
 		op.add(Builder::messages, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"messages");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::result, ExecutionResult.DESERIALIZER, "result");
-		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
+		op.add(Builder::state, ExecutionStatus.DESERIALIZER, "state");
 		op.add(Builder::triggerEvent, TriggerEventResult.DESERIALIZER, "trigger_event");
 		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
 		op.add(Builder::watchId, JsonpDeserializer.stringDeserializer(), "watch_id");

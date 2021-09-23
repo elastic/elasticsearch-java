@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,7 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_filter.Response
-public final class UpdateFilterResponse implements ToJsonp {
+public final class UpdateFilterResponse implements JsonpSerializable {
 	private final String description;
 
 	private final String filterId;
@@ -48,7 +48,7 @@ public final class UpdateFilterResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateFilterResponse(Builder builder) {
+	public UpdateFilterResponse(Builder builder) {
 
 		this.description = Objects.requireNonNull(builder.description, "description");
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
@@ -80,13 +80,13 @@ public final class UpdateFilterResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("description");
 		generator.write(this.description);
@@ -174,7 +174,7 @@ public final class UpdateFilterResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateFilterResponse
+	 * Json deserializer for {@link UpdateFilterResponse}
 	 */
 	public static final JsonpDeserializer<UpdateFilterResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UpdateFilterResponse::setupUpdateFilterResponseDeserializer);

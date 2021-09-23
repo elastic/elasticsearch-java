@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: indices.delete_index_template.Response
 public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteIndexTemplateResponse(Builder builder) {
+	public DeleteIndexTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteIndexTemplateResponse
+	 * Json deserializer for {@link DeleteIndexTemplateResponse}
 	 */
 	public static final JsonpDeserializer<DeleteIndexTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DeleteIndexTemplateResponse::setupDeleteIndexTemplateResponseDeserializer);

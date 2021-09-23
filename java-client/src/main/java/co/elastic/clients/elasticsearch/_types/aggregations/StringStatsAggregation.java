@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringStatsAggregation
@@ -40,8 +41,9 @@ public final class StringStatsAggregation extends MetricAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StringStatsAggregation(Builder builder) {
+	public StringStatsAggregation(Builder builder) {
 		super(builder);
+
 		this.showDistribution = builder.showDistribution;
 
 	}
@@ -54,8 +56,9 @@ public final class StringStatsAggregation extends MetricAggregationBase {
 		return this.showDistribution;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.showDistribution != null) {
 
 			generator.writeKey("show_distribution");
@@ -104,7 +107,7 @@ public final class StringStatsAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StringStatsAggregation
+	 * Json deserializer for {@link StringStatsAggregation}
 	 */
 	public static final JsonpDeserializer<StringStatsAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, StringStatsAggregation::setupStringStatsAggregationDeserializer);

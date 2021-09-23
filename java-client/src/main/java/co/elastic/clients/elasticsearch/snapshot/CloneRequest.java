@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -42,7 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.clone.Request
-public final class CloneRequest extends RequestBase implements ToJsonp {
+public final class CloneRequest extends RequestBase implements JsonpSerializable {
 	private final String repository;
 
 	private final String snapshot;
@@ -59,7 +59,7 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloneRequest(Builder builder) {
+	public CloneRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
@@ -125,13 +125,13 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("indices");
 		generator.write(this.indices);
@@ -229,7 +229,7 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CloneRequest
+	 * Json deserializer for {@link CloneRequest}
 	 */
 	public static final JsonpDeserializer<CloneRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CloneRequest::setupCloneRequestDeserializer);

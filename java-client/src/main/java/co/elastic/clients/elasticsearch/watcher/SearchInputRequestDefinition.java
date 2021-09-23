@@ -23,12 +23,13 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,11 +38,12 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestDefinition
-public final class SearchInputRequestDefinition implements ToJsonp {
+public final class SearchInputRequestDefinition implements JsonpSerializable {
 	@Nullable
 	private final SearchInputRequestBody body;
 
@@ -52,7 +54,7 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 	private final IndicesOptions indicesOptions;
 
 	@Nullable
-	private final JsonValue searchType;
+	private final SearchType searchType;
 
 	@Nullable
 	private final JsonValue template;
@@ -62,7 +64,7 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SearchInputRequestDefinition(Builder builder) {
+	public SearchInputRequestDefinition(Builder builder) {
 
 		this.body = builder.body;
 		this.indices = builder.indices;
@@ -101,7 +103,7 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public JsonValue searchType() {
+	public SearchType searchType() {
 		return this.searchType;
 	}
 
@@ -124,18 +126,18 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.body != null) {
 
 			generator.writeKey("body");
-			this.body.toJsonp(generator, mapper);
+			this.body.serialize(generator, mapper);
 
 		}
 		if (this.indices != null) {
@@ -152,14 +154,13 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 		if (this.indicesOptions != null) {
 
 			generator.writeKey("indices_options");
-			this.indicesOptions.toJsonp(generator, mapper);
+			this.indicesOptions.serialize(generator, mapper);
 
 		}
 		if (this.searchType != null) {
 
 			generator.writeKey("search_type");
-			generator.write(this.searchType);
-
+			this.searchType.serialize(generator, mapper);
 		}
 		if (this.template != null) {
 
@@ -192,7 +193,7 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 		private IndicesOptions indicesOptions;
 
 		@Nullable
-		private JsonValue searchType;
+		private SearchType searchType;
 
 		@Nullable
 		private JsonValue template;
@@ -260,7 +261,7 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 		/**
 		 * API name: {@code search_type}
 		 */
-		public Builder searchType(@Nullable JsonValue value) {
+		public Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
 			return this;
 		}
@@ -296,7 +297,7 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SearchInputRequestDefinition
+	 * Json deserializer for {@link SearchInputRequestDefinition}
 	 */
 	public static final JsonpDeserializer<SearchInputRequestDefinition> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SearchInputRequestDefinition::setupSearchInputRequestDefinitionDeserializer);
@@ -308,7 +309,7 @@ public final class SearchInputRequestDefinition implements ToJsonp {
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::indicesOptions, IndicesOptions.DESERIALIZER, "indices_options");
-		op.add(Builder::searchType, JsonpDeserializer.jsonValueDeserializer(), "search_type");
+		op.add(Builder::searchType, SearchType.DESERIALIZER, "search_type");
 		op.add(Builder::template, JsonpDeserializer.jsonValueDeserializer(), "template");
 		op.add(Builder::restTotalHitsAsInt, JsonpDeserializer.booleanDeserializer(), "rest_total_hits_as_int");
 

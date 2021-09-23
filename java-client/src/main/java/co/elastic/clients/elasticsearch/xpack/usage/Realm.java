@@ -36,6 +36,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -67,8 +68,9 @@ public final class Realm extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Realm(Builder builder) {
+	public Realm(Builder builder) {
 		super(builder);
+
 		this.name = builder.name;
 		this.order = builder.order;
 		this.size = builder.size;
@@ -144,8 +146,9 @@ public final class Realm extends Base {
 		return this.isAuthenticationDelegated;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.name != null) {
 
 			generator.writeKey("name");
@@ -184,7 +187,7 @@ public final class Realm extends Base {
 			generator.writeKey("cache");
 			generator.writeStartArray();
 			for (RealmCache item0 : this.cache) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -520,7 +523,7 @@ public final class Realm extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Realm
+	 * Json deserializer for {@link Realm}
 	 */
 	public static final JsonpDeserializer<Realm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Realm::setupRealmDeserializer);

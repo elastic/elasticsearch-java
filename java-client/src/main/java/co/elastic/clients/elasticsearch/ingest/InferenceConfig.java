@@ -26,22 +26,23 @@ package co.elastic.clients.elasticsearch.ingest;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfig
-public final class InferenceConfig implements ToJsonp {
+public final class InferenceConfig implements JsonpSerializable {
 	@Nullable
 	private final InferenceConfigRegression regression;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InferenceConfig(Builder builder) {
+	public InferenceConfig(Builder builder) {
 
 		this.regression = builder.regression;
 
@@ -58,18 +59,18 @@ public final class InferenceConfig implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.regression != null) {
 
 			generator.writeKey("regression");
-			this.regression.toJsonp(generator, mapper);
+			this.regression.serialize(generator, mapper);
 
 		}
 
@@ -115,7 +116,7 @@ public final class InferenceConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InferenceConfig
+	 * Json deserializer for {@link InferenceConfig}
 	 */
 	public static final JsonpDeserializer<InferenceConfig> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, InferenceConfig::setupInferenceConfigDeserializer);

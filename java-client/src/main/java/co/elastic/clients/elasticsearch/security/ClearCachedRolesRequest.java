@@ -46,7 +46,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedRolesRequest(Builder builder) {
+	public ClearCachedRolesRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

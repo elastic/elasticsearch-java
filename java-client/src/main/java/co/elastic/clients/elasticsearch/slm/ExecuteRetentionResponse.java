@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: slm.execute_retention.Response
 public final class ExecuteRetentionResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecuteRetentionResponse(Builder builder) {
+	public ExecuteRetentionResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class ExecuteRetentionResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecuteRetentionResponse
+	 * Json deserializer for {@link ExecuteRetentionResponse}
 	 */
 	public static final JsonpDeserializer<ExecuteRetentionResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExecuteRetentionResponse::setupExecuteRetentionResponseDeserializer);

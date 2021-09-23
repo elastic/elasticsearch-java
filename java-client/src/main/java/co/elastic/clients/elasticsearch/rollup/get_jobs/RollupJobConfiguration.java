@@ -28,9 +28,9 @@ import co.elastic.clients.elasticsearch.rollup.Groupings;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -44,7 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobConfiguration
-public final class RollupJobConfiguration implements ToJsonp {
+public final class RollupJobConfiguration implements JsonpSerializable {
 	private final String cron;
 
 	private final Groupings groups;
@@ -63,7 +63,7 @@ public final class RollupJobConfiguration implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupJobConfiguration(Builder builder) {
+	public RollupJobConfiguration(Builder builder) {
 
 		this.cron = Objects.requireNonNull(builder.cron, "cron");
 		this.groups = Objects.requireNonNull(builder.groups, "groups");
@@ -135,19 +135,19 @@ public final class RollupJobConfiguration implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cron");
 		generator.write(this.cron);
 
 		generator.writeKey("groups");
-		this.groups.toJsonp(generator, mapper);
+		this.groups.serialize(generator, mapper);
 
 		generator.writeKey("id");
 		generator.write(this.id);
@@ -158,7 +158,7 @@ public final class RollupJobConfiguration implements ToJsonp {
 		generator.writeKey("metrics");
 		generator.writeStartArray();
 		for (FieldMetric item0 : this.metrics) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -315,7 +315,7 @@ public final class RollupJobConfiguration implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RollupJobConfiguration
+	 * Json deserializer for {@link RollupJobConfiguration}
 	 */
 	public static final JsonpDeserializer<RollupJobConfiguration> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RollupJobConfiguration::setupRollupJobConfigurationDeserializer);

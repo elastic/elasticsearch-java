@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRouting
-public final class IndexRouting implements ToJsonp {
+public final class IndexRouting implements JsonpSerializable {
 	@Nullable
 	private final IndexRoutingAllocation allocation;
 
@@ -44,7 +45,7 @@ public final class IndexRouting implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexRouting(Builder builder) {
+	public IndexRouting(Builder builder) {
 
 		this.allocation = builder.allocation;
 		this.rebalance = builder.rebalance;
@@ -70,24 +71,24 @@ public final class IndexRouting implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allocation != null) {
 
 			generator.writeKey("allocation");
-			this.allocation.toJsonp(generator, mapper);
+			this.allocation.serialize(generator, mapper);
 
 		}
 		if (this.rebalance != null) {
 
 			generator.writeKey("rebalance");
-			this.rebalance.toJsonp(generator, mapper);
+			this.rebalance.serialize(generator, mapper);
 
 		}
 
@@ -150,7 +151,7 @@ public final class IndexRouting implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexRouting
+	 * Json deserializer for {@link IndexRouting}
 	 */
 	public static final JsonpDeserializer<IndexRouting> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexRouting::setupIndexRoutingDeserializer);

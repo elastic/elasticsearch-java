@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.ml.put_trained_model;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModel
-public final class TrainedModel implements ToJsonp {
+public final class TrainedModel implements JsonpSerializable {
 	@Nullable
 	private final TrainedModelTree tree;
 
@@ -47,7 +48,7 @@ public final class TrainedModel implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TrainedModel(Builder builder) {
+	public TrainedModel(Builder builder) {
 
 		this.tree = builder.tree;
 		this.treeNode = builder.treeNode;
@@ -67,9 +68,12 @@ public final class TrainedModel implements ToJsonp {
 
 	/**
 	 * The definition of a node in a tree. There are two major types of nodes: leaf
-	 * nodes and not-leaf nodes. - Leaf nodes only need node_index and leaf_value
-	 * defined. - All other nodes need split_feature, left_child, right_child,
-	 * threshold, decision_type, and default_left defined.
+	 * nodes and not-leaf nodes.
+	 * <ul>
+	 * <li>Leaf nodes only need node_index and leaf_value defined.</li>
+	 * <li>All other nodes need split_feature, left_child, right_child, threshold,
+	 * decision_type, and default_left defined.</li>
+	 * </ul>
 	 * <p>
 	 * API name: {@code tree_node}
 	 */
@@ -91,30 +95,30 @@ public final class TrainedModel implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.tree != null) {
 
 			generator.writeKey("tree");
-			this.tree.toJsonp(generator, mapper);
+			this.tree.serialize(generator, mapper);
 
 		}
 		if (this.treeNode != null) {
 
 			generator.writeKey("tree_node");
-			this.treeNode.toJsonp(generator, mapper);
+			this.treeNode.serialize(generator, mapper);
 
 		}
 		if (this.ensemble != null) {
 
 			generator.writeKey("ensemble");
-			this.ensemble.toJsonp(generator, mapper);
+			this.ensemble.serialize(generator, mapper);
 
 		}
 
@@ -156,9 +160,12 @@ public final class TrainedModel implements ToJsonp {
 
 		/**
 		 * The definition of a node in a tree. There are two major types of nodes: leaf
-		 * nodes and not-leaf nodes. - Leaf nodes only need node_index and leaf_value
-		 * defined. - All other nodes need split_feature, left_child, right_child,
-		 * threshold, decision_type, and default_left defined.
+		 * nodes and not-leaf nodes.
+		 * <ul>
+		 * <li>Leaf nodes only need node_index and leaf_value defined.</li>
+		 * <li>All other nodes need split_feature, left_child, right_child, threshold,
+		 * decision_type, and default_left defined.</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code tree_node}
 		 */
@@ -169,9 +176,12 @@ public final class TrainedModel implements ToJsonp {
 
 		/**
 		 * The definition of a node in a tree. There are two major types of nodes: leaf
-		 * nodes and not-leaf nodes. - Leaf nodes only need node_index and leaf_value
-		 * defined. - All other nodes need split_feature, left_child, right_child,
-		 * threshold, decision_type, and default_left defined.
+		 * nodes and not-leaf nodes.
+		 * <ul>
+		 * <li>Leaf nodes only need node_index and leaf_value defined.</li>
+		 * <li>All other nodes need split_feature, left_child, right_child, threshold,
+		 * decision_type, and default_left defined.</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code tree_node}
 		 */
@@ -213,7 +223,7 @@ public final class TrainedModel implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TrainedModel
+	 * Json deserializer for {@link TrainedModel}
 	 */
 	public static final JsonpDeserializer<TrainedModel> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TrainedModel::setupTrainedModelDeserializer);

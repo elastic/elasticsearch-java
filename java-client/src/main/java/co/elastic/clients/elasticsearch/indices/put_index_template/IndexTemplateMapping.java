@@ -29,19 +29,20 @@ import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.IndexTemplateMapping
-public final class IndexTemplateMapping implements ToJsonp {
+public final class IndexTemplateMapping implements JsonpSerializable {
 	@Nullable
 	private final Map<String, Alias> aliases;
 
@@ -53,7 +54,7 @@ public final class IndexTemplateMapping implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexTemplateMapping(Builder builder) {
+	public IndexTemplateMapping(Builder builder) {
 
 		this.aliases = builder.aliases;
 		this.mappings = builder.mappings;
@@ -88,13 +89,13 @@ public final class IndexTemplateMapping implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aliases != null) {
 
@@ -102,7 +103,7 @@ public final class IndexTemplateMapping implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -111,13 +112,13 @@ public final class IndexTemplateMapping implements ToJsonp {
 		if (this.mappings != null) {
 
 			generator.writeKey("mappings");
-			this.mappings.toJsonp(generator, mapper);
+			this.mappings.serialize(generator, mapper);
 
 		}
 		if (this.settings != null) {
 
 			generator.writeKey("settings");
-			this.settings.toJsonp(generator, mapper);
+			this.settings.serialize(generator, mapper);
 
 		}
 
@@ -216,7 +217,7 @@ public final class IndexTemplateMapping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexTemplateMapping
+	 * Json deserializer for {@link IndexTemplateMapping}
 	 */
 	public static final JsonpDeserializer<IndexTemplateMapping> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexTemplateMapping::setupIndexTemplateMappingDeserializer);

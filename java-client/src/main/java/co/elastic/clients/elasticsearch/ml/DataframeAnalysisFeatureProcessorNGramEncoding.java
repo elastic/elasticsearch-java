@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,7 +42,10 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorNGramEncoding
-public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJsonp {
+public final class DataframeAnalysisFeatureProcessorNGramEncoding
+		implements
+			DataframeAnalysisFeatureProcessor,
+			JsonpSerializable {
 	@Nullable
 	private final String featurePrefix;
 
@@ -60,7 +64,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisFeatureProcessorNGramEncoding(Builder builder) {
+	public DataframeAnalysisFeatureProcessorNGramEncoding(Builder builder) {
 
 		this.featurePrefix = builder.featurePrefix;
 		this.field = Objects.requireNonNull(builder.field, "field");
@@ -69,6 +73,14 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		this.start = builder.start;
 		this.custom = builder.custom;
 
+	}
+
+	/**
+	 * {@link DataframeAnalysisFeatureProcessor} variant type
+	 */
+	@Override
+	public String _type() {
+		return "n_gram_encoding";
 	}
 
 	/**
@@ -133,13 +145,14 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		if (this.featurePrefix != null) {
 
@@ -178,6 +191,8 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 			generator.write(this.custom);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -300,11 +315,9 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for DataframeAnalysisFeatureProcessorNGramEncoding
-	 */
-	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder, DataframeAnalysisFeatureProcessorNGramEncoding.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(
 					DataframeAnalysisFeatureProcessorNGramEncoding::setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer);
 
 	protected static void setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer(

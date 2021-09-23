@@ -24,13 +24,14 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -39,18 +40,26 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptTransform
-public final class ScriptTransform implements ToJsonp {
+public final class ScriptTransform implements Transform, JsonpSerializable {
 	private final String lang;
 
-	private final Map<String, JsonValue> params;
+	private final Map<String, JsonData> params;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptTransform(Builder builder) {
+	public ScriptTransform(Builder builder) {
 
 		this.lang = Objects.requireNonNull(builder.lang, "lang");
 		this.params = Objects.requireNonNull(builder.params, "params");
 
+	}
+
+	/**
+	 * {@link Transform} variant type
+	 */
+	@Override
+	public String _type() {
+		return "script";
 	}
 
 	/**
@@ -63,31 +72,34 @@ public final class ScriptTransform implements ToJsonp {
 	/**
 	 * API name: {@code params}
 	 */
-	public Map<String, JsonValue> params() {
+	public Map<String, JsonData> params() {
 		return this.params;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("lang");
 		generator.write(this.lang);
 
 		generator.writeKey("params");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.params.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
+		generator.writeEnd();
+
 		generator.writeEnd();
 
 	}
@@ -100,7 +112,7 @@ public final class ScriptTransform implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ScriptTransform> {
 		private String lang;
 
-		private Map<String, JsonValue> params;
+		private Map<String, JsonData> params;
 
 		/**
 		 * API name: {@code lang}
@@ -113,7 +125,7 @@ public final class ScriptTransform implements ToJsonp {
 		/**
 		 * API name: {@code params}
 		 */
-		public Builder params(Map<String, JsonValue> value) {
+		public Builder params(Map<String, JsonData> value) {
 			this.params = value;
 			return this;
 		}
@@ -121,7 +133,7 @@ public final class ScriptTransform implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
 		 */
-		public Builder putParams(String key, JsonValue value) {
+		public Builder putParams(String key, JsonData value) {
 			if (this.params == null) {
 				this.params = new HashMap<>();
 			}
@@ -143,17 +155,14 @@ public final class ScriptTransform implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for ScriptTransform
-	 */
-	public static final JsonpDeserializer<ScriptTransform> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptTransform::setupScriptTransformDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<ScriptTransform.Builder, ScriptTransform.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(ScriptTransform::setupScriptTransformDeserializer);
 
 	protected static void setupScriptTransformDeserializer(DelegatingDeserializer<ScriptTransform.Builder> op) {
 
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
 
 	}
 

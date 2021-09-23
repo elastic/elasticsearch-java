@@ -46,7 +46,7 @@ public final class FollowStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FollowStatsRequest(Builder builder) {
+	public FollowStatsRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 

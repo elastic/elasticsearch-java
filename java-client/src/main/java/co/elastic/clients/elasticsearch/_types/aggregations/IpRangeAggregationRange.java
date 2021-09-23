@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregationRange
-public final class IpRangeAggregationRange implements ToJsonp {
+public final class IpRangeAggregationRange implements JsonpSerializable {
 	@Nullable
 	private final String from;
 
@@ -47,7 +48,7 @@ public final class IpRangeAggregationRange implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IpRangeAggregationRange(Builder builder) {
+	public IpRangeAggregationRange(Builder builder) {
 
 		this.from = builder.from;
 		this.mask = builder.mask;
@@ -82,13 +83,13 @@ public final class IpRangeAggregationRange implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.from != null) {
 
@@ -165,7 +166,7 @@ public final class IpRangeAggregationRange implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IpRangeAggregationRange
+	 * Json deserializer for {@link IpRangeAggregationRange}
 	 */
 	public static final JsonpDeserializer<IpRangeAggregationRange> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IpRangeAggregationRange::setupIpRangeAggregationRangeDeserializer);

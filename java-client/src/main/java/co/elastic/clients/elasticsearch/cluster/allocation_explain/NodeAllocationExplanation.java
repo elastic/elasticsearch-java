@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -44,12 +43,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.NodeAllocationExplanation
-public final class NodeAllocationExplanation implements ToJsonp {
+public final class NodeAllocationExplanation implements JsonpSerializable {
 	private final List<AllocationDecision> deciders;
 
 	private final Map<String, String> nodeAttributes;
 
-	private final JsonValue nodeDecision;
+	private final Decision nodeDecision;
 
 	private final String nodeId;
 
@@ -64,7 +63,7 @@ public final class NodeAllocationExplanation implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeAllocationExplanation(Builder builder) {
+	public NodeAllocationExplanation(Builder builder) {
 
 		this.deciders = Objects.requireNonNull(builder.deciders, "deciders");
 		this.nodeAttributes = Objects.requireNonNull(builder.nodeAttributes, "node_attributes");
@@ -94,7 +93,7 @@ public final class NodeAllocationExplanation implements ToJsonp {
 	/**
 	 * API name: {@code node_decision}
 	 */
-	public JsonValue nodeDecision() {
+	public Decision nodeDecision() {
 		return this.nodeDecision;
 	}
 
@@ -137,18 +136,18 @@ public final class NodeAllocationExplanation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("deciders");
 		generator.writeStartArray();
 		for (AllocationDecision item0 : this.deciders) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -163,7 +162,7 @@ public final class NodeAllocationExplanation implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("node_decision");
-		generator.write(this.nodeDecision);
+		this.nodeDecision.serialize(generator, mapper);
 
 		generator.writeKey("node_id");
 		generator.write(this.nodeId);
@@ -174,7 +173,7 @@ public final class NodeAllocationExplanation implements ToJsonp {
 		if (this.store != null) {
 
 			generator.writeKey("store");
-			this.store.toJsonp(generator, mapper);
+			this.store.serialize(generator, mapper);
 
 		}
 
@@ -196,7 +195,7 @@ public final class NodeAllocationExplanation implements ToJsonp {
 
 		private Map<String, String> nodeAttributes;
 
-		private JsonValue nodeDecision;
+		private Decision nodeDecision;
 
 		private String nodeId;
 
@@ -272,7 +271,7 @@ public final class NodeAllocationExplanation implements ToJsonp {
 		/**
 		 * API name: {@code node_decision}
 		 */
-		public Builder nodeDecision(JsonValue value) {
+		public Builder nodeDecision(Decision value) {
 			this.nodeDecision = value;
 			return this;
 		}
@@ -339,7 +338,7 @@ public final class NodeAllocationExplanation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeAllocationExplanation
+	 * Json deserializer for {@link NodeAllocationExplanation}
 	 */
 	public static final JsonpDeserializer<NodeAllocationExplanation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeAllocationExplanation::setupNodeAllocationExplanationDeserializer);
@@ -350,7 +349,7 @@ public final class NodeAllocationExplanation implements ToJsonp {
 		op.add(Builder::deciders, JsonpDeserializer.arrayDeserializer(AllocationDecision.DESERIALIZER), "deciders");
 		op.add(Builder::nodeAttributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"node_attributes");
-		op.add(Builder::nodeDecision, JsonpDeserializer.jsonValueDeserializer(), "node_decision");
+		op.add(Builder::nodeDecision, Decision.DESERIALIZER, "node_decision");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
 		op.add(Builder::store, AllocationStore.DESERIALIZER, "store");

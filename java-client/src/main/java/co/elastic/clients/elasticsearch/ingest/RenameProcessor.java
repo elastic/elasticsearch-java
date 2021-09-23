@@ -46,8 +46,9 @@ public final class RenameProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RenameProcessor(Builder builder) {
+	public RenameProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
@@ -76,8 +77,9 @@ public final class RenameProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -153,7 +155,7 @@ public final class RenameProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RenameProcessor
+	 * Json deserializer for {@link RenameProcessor}
 	 */
 	public static final JsonpDeserializer<RenameProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RenameProcessor::setupRenameProcessorDeserializer);

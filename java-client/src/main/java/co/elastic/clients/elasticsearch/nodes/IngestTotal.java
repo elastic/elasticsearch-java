@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.IngestTotal
-public final class IngestTotal implements ToJsonp {
+public final class IngestTotal implements JsonpSerializable {
 	private final Number count;
 
 	private final Number current;
@@ -53,7 +53,7 @@ public final class IngestTotal implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IngestTotal(Builder builder) {
+	public IngestTotal(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.current = Objects.requireNonNull(builder.current, "current");
@@ -101,13 +101,13 @@ public final class IngestTotal implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
@@ -121,7 +121,7 @@ public final class IngestTotal implements ToJsonp {
 		generator.writeKey("processors");
 		generator.writeStartArray();
 		for (KeyedProcessor item0 : this.processors) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -235,7 +235,7 @@ public final class IngestTotal implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IngestTotal
+	 * Json deserializer for {@link IngestTotal}
 	 */
 	public static final JsonpDeserializer<IngestTotal> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IngestTotal::setupIngestTotalDeserializer);

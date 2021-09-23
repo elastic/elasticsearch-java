@@ -42,7 +42,7 @@ public final class DeleteWatchRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteWatchRequest(Builder builder) {
+	public DeleteWatchRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 

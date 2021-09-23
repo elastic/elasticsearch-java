@@ -28,11 +28,11 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -49,7 +49,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.Request
-public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
+public final class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 	@Nullable
 	private final String charset;
 
@@ -99,7 +99,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FindStructureRequest(Builder<TJsonDocument> builder) {
+	public FindStructureRequest(Builder<TJsonDocument> builder) {
 
 		this.charset = builder.charset;
 		this.columnNames = builder.columnNames;
@@ -317,7 +317,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
 		for (TJsonDocument item0 : this.value) {
 			JsonpUtils.serialize(item0, generator, tJsonDocumentSerializer, mapper);

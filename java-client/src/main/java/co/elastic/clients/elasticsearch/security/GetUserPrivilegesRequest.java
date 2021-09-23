@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user_privileges.Request
@@ -46,7 +47,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetUserPrivilegesRequest(Builder builder) {
+	public GetUserPrivilegesRequest(Builder builder) {
 
 		this.application = builder.application;
 		this.priviledge = builder.priviledge;

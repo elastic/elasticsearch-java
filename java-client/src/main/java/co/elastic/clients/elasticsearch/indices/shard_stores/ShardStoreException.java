@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.shard_stores;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,14 +36,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStoreException
-public final class ShardStoreException implements ToJsonp {
+public final class ShardStoreException implements JsonpSerializable {
 	private final String reason;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStoreException(Builder builder) {
+	public ShardStoreException(Builder builder) {
 
 		this.reason = Objects.requireNonNull(builder.reason, "reason");
 		this.type = Objects.requireNonNull(builder.type, "type");
@@ -67,13 +67,13 @@ public final class ShardStoreException implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("reason");
 		generator.write(this.reason);
@@ -124,7 +124,7 @@ public final class ShardStoreException implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardStoreException
+	 * Json deserializer for {@link ShardStoreException}
 	 */
 	public static final JsonpDeserializer<ShardStoreException> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardStoreException::setupShardStoreExceptionDeserializer);

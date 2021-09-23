@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -45,7 +46,7 @@ public final class CountRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CountRequest(Builder builder) {
+	public CountRequest(Builder builder) {
 
 		this.index = builder.index;
 

@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: ingest.processor_grok.Request
 public final class ProcessorGrokRequest extends RequestBase {
-	protected ProcessorGrokRequest() {
+	public ProcessorGrokRequest() {
 	}
 
 	/**

@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch.ccr.follow_info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.FollowerIndex
-public final class FollowerIndex implements ToJsonp {
+public final class FollowerIndex implements JsonpSerializable {
 	private final String followerIndex;
 
 	private final String leaderIndex;
@@ -48,11 +47,11 @@ public final class FollowerIndex implements ToJsonp {
 
 	private final String remoteCluster;
 
-	private final JsonValue status;
+	private final FollowerIndexStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FollowerIndex(Builder builder) {
+	public FollowerIndex(Builder builder) {
 
 		this.followerIndex = Objects.requireNonNull(builder.followerIndex, "follower_index");
 		this.leaderIndex = Objects.requireNonNull(builder.leaderIndex, "leader_index");
@@ -94,20 +93,20 @@ public final class FollowerIndex implements ToJsonp {
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public FollowerIndexStatus status() {
 		return this.status;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("follower_index");
 		generator.write(this.followerIndex);
@@ -118,7 +117,7 @@ public final class FollowerIndex implements ToJsonp {
 		if (this.parameters != null) {
 
 			generator.writeKey("parameters");
-			this.parameters.toJsonp(generator, mapper);
+			this.parameters.serialize(generator, mapper);
 
 		}
 
@@ -126,7 +125,7 @@ public final class FollowerIndex implements ToJsonp {
 		generator.write(this.remoteCluster);
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 	}
 
@@ -145,7 +144,7 @@ public final class FollowerIndex implements ToJsonp {
 
 		private String remoteCluster;
 
-		private JsonValue status;
+		private FollowerIndexStatus status;
 
 		/**
 		 * API name: {@code follower_index}
@@ -190,7 +189,7 @@ public final class FollowerIndex implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(FollowerIndexStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -210,7 +209,7 @@ public final class FollowerIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FollowerIndex
+	 * Json deserializer for {@link FollowerIndex}
 	 */
 	public static final JsonpDeserializer<FollowerIndex> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FollowerIndex::setupFollowerIndexDeserializer);
@@ -221,7 +220,7 @@ public final class FollowerIndex implements ToJsonp {
 		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
 		op.add(Builder::parameters, FollowerIndexParameters.DESERIALIZER, "parameters");
 		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::status, FollowerIndexStatus.DESERIALIZER, "status");
 
 	}
 

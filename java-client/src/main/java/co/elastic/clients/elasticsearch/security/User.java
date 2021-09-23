@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,14 +43,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.User
-public class User implements ToJsonp {
+public class User implements JsonpSerializable {
 	@Nullable
 	private final String email;
 
 	@Nullable
 	private final String fullName;
 
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	private final List<String> roles;
 
@@ -60,7 +60,7 @@ public class User implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected User(AbstractBuilder<?> builder) {
+	public User(AbstractBuilder<?> builder) {
 
 		this.email = builder.email;
 		this.fullName = builder.fullName;
@@ -90,7 +90,7 @@ public class User implements ToJsonp {
 	/**
 	 * API name: {@code metadata}
 	 */
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -118,13 +118,13 @@ public class User implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.email != null) {
 
@@ -141,9 +141,9 @@ public class User implements ToJsonp {
 
 		generator.writeKey("metadata");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -194,7 +194,7 @@ public class User implements ToJsonp {
 		@Nullable
 		private String fullName;
 
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		private List<String> roles;
 
@@ -221,7 +221,7 @@ public class User implements ToJsonp {
 		/**
 		 * API name: {@code metadata}
 		 */
-		public BuilderT metadata(Map<String, JsonValue> value) {
+		public BuilderT metadata(Map<String, JsonData> value) {
 			this.metadata = value;
 			return self();
 		}
@@ -229,7 +229,7 @@ public class User implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public BuilderT putMetadata(String key, JsonValue value) {
+		public BuilderT putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -287,7 +287,7 @@ public class User implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for User
+	 * Json deserializer for {@link User}
 	 */
 	public static final JsonpDeserializer<User> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			User::setupUserDeserializer);
@@ -297,8 +297,7 @@ public class User implements ToJsonp {
 
 		op.add(AbstractBuilder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(AbstractBuilder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
-		op.add(AbstractBuilder::metadata,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "metadata");
+		op.add(AbstractBuilder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
 		op.add(AbstractBuilder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"roles");
 		op.add(AbstractBuilder::username, JsonpDeserializer.stringDeserializer(), "username");

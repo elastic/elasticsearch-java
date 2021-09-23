@@ -25,21 +25,25 @@ package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.elasticsearch._global.search.FieldCollapse;
-import co.elastic.clients.elasticsearch._global.search.Highlight;
-import co.elastic.clients.elasticsearch._global.search.PointInTimeReference;
-import co.elastic.clients.elasticsearch._global.search.Rescore;
-import co.elastic.clients.elasticsearch._global.search.SuggestContainer;
+import co.elastic.clients.elasticsearch._core.search.FieldCollapse;
+import co.elastic.clients.elasticsearch._core.search.Highlight;
+import co.elastic.clients.elasticsearch._core.search.PointInTimeReference;
+import co.elastic.clients.elasticsearch._core.search.Rescore;
+import co.elastic.clients.elasticsearch._core.search.Suggest;
+import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
-import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.SearchType;
+import co.elastic.clients.elasticsearch._types.SuggestMode;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -52,17 +56,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: async_search.submit.Request
-public final class SubmitRequest extends RequestBase implements ToJsonp {
+public final class SubmitRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> index;
 
 	@Nullable
-	private final Map<String, AggregationContainer> aggs;
+	private final Map<String, Aggregation> aggs;
 
 	@Nullable
 	private final Boolean allowNoIndices;
@@ -83,7 +88,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	private final FieldCollapse collapse;
 
 	@Nullable
-	private final JsonValue defaultOperator;
+	private final DefaultOperator defaultOperator;
 
 	@Nullable
 	private final String df;
@@ -128,7 +133,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	private final Number minScore;
 
 	@Nullable
-	private final QueryContainer postFilter;
+	private final Query postFilter;
 
 	@Nullable
 	private final String preference;
@@ -140,10 +145,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	private final PointInTimeReference pit;
 
 	@Nullable
-	private final QueryContainer query;
-
-	@Nullable
-	private final String queryOnQueryString;
+	private final Query query;
 
 	@Nullable
 	private final Boolean requestCache;
@@ -161,7 +163,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	private final List<JsonValue> searchAfter;
 
 	@Nullable
-	private final JsonValue searchType;
+	private final SearchType searchType;
 
 	@Nullable
 	private final Boolean sequenceNumberPrimaryTerm;
@@ -182,13 +184,13 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	private final List<String> storedFields;
 
 	@Nullable
-	private final Map<String, SuggestContainer> suggest;
+	private final Map<String, Suggest> suggest;
 
 	@Nullable
 	private final String suggestField;
 
 	@Nullable
-	private final JsonValue suggestMode;
+	private final SuggestMode suggestMode;
 
 	@Nullable
 	private final Number suggestSize;
@@ -220,9 +222,12 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	@Nullable
 	private final List<JsonValue> fields;
 
+	@Nullable
+	private final Map<String, RuntimeField> runtimeMappings;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected SubmitRequest(Builder builder) {
+	public SubmitRequest(Builder builder) {
 
 		this.index = builder.index;
 		this.aggs = builder.aggs;
@@ -252,7 +257,6 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		this.profile = builder.profile;
 		this.pit = builder.pit;
 		this.query = builder.query;
-		this.queryOnQueryString = builder.queryOnQueryString;
 		this.requestCache = builder.requestCache;
 		this.rescore = builder.rescore;
 		this.routing = builder.routing;
@@ -278,6 +282,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		this.version = builder.version;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 		this.fields = builder.fields;
+		this.runtimeMappings = builder.runtimeMappings;
 
 	}
 
@@ -296,7 +301,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code aggs}
 	 */
 	@Nullable
-	public Map<String, AggregationContainer> aggs() {
+	public Map<String, Aggregation> aggs() {
 		return this.aggs;
 	}
 
@@ -352,7 +357,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public JsonValue defaultOperator() {
+	public DefaultOperator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -472,7 +477,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code post_filter}
 	 */
 	@Nullable
-	public QueryContainer postFilter() {
+	public Query postFilter() {
 		return this.postFilter;
 	}
 
@@ -504,16 +509,8 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
-	}
-
-	/**
-	 * API name: {@code query_on_query_string}
-	 */
-	@Nullable
-	public String queryOnQueryString() {
-		return this.queryOnQueryString;
 	}
 
 	/**
@@ -560,7 +557,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public JsonValue searchType() {
+	public SearchType searchType() {
 		return this.searchType;
 	}
 
@@ -616,7 +613,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code suggest}
 	 */
 	@Nullable
-	public Map<String, SuggestContainer> suggest() {
+	public Map<String, Suggest> suggest() {
 		return this.suggest;
 	}
 
@@ -632,7 +629,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code suggest_mode}
 	 */
 	@Nullable
-	public JsonValue suggestMode() {
+	public SuggestMode suggestMode() {
 		return this.suggestMode;
 	}
 
@@ -717,23 +714,31 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code runtime_mappings}
+	 */
+	@Nullable
+	public Map<String, RuntimeField> runtimeMappings() {
+		return this.runtimeMappings;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aggs != null) {
 
 			generator.writeKey("aggs");
 			generator.writeStartObject();
-			for (Map.Entry<String, AggregationContainer> item0 : this.aggs.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggs.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -772,14 +777,13 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		if (this.collapse != null) {
 
 			generator.writeKey("collapse");
-			this.collapse.toJsonp(generator, mapper);
+			this.collapse.serialize(generator, mapper);
 
 		}
 		if (this.defaultOperator != null) {
 
 			generator.writeKey("default_operator");
-			generator.write(this.defaultOperator);
-
+			this.defaultOperator.serialize(generator, mapper);
 		}
 		if (this.df != null) {
 
@@ -819,7 +823,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		if (this.highlight != null) {
 
 			generator.writeKey("highlight");
-			this.highlight.toJsonp(generator, mapper);
+			this.highlight.serialize(generator, mapper);
 
 		}
 		if (this.ignoreThrottled != null) {
@@ -884,7 +888,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		if (this.postFilter != null) {
 
 			generator.writeKey("post_filter");
-			this.postFilter.toJsonp(generator, mapper);
+			this.postFilter.serialize(generator, mapper);
 
 		}
 		if (this.preference != null) {
@@ -902,19 +906,13 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		if (this.pit != null) {
 
 			generator.writeKey("pit");
-			this.pit.toJsonp(generator, mapper);
+			this.pit.serialize(generator, mapper);
 
 		}
 		if (this.query != null) {
 
 			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
-
-		}
-		if (this.queryOnQueryString != null) {
-
-			generator.writeKey("query_on_query_string");
-			generator.write(this.queryOnQueryString);
+			this.query.serialize(generator, mapper);
 
 		}
 		if (this.requestCache != null) {
@@ -928,7 +926,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 			generator.writeKey("rescore");
 			generator.writeStartArray();
 			for (Rescore item0 : this.rescore) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -946,7 +944,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -966,8 +964,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		if (this.searchType != null) {
 
 			generator.writeKey("search_type");
-			generator.write(this.searchType);
-
+			this.searchType.serialize(generator, mapper);
 		}
 		if (this.sequenceNumberPrimaryTerm != null) {
 
@@ -1024,9 +1021,9 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("suggest");
 			generator.writeStartObject();
-			for (Map.Entry<String, SuggestContainer> item0 : this.suggest.entrySet()) {
+			for (Map.Entry<String, Suggest> item0 : this.suggest.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -1041,8 +1038,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		if (this.suggestMode != null) {
 
 			generator.writeKey("suggest_mode");
-			generator.write(this.suggestMode);
-
+			this.suggestMode.serialize(generator, mapper);
 		}
 		if (this.suggestSize != null) {
 
@@ -1109,6 +1105,18 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 			generator.writeEnd();
 
 		}
+		if (this.runtimeMappings != null) {
+
+			generator.writeKey("runtime_mappings");
+			generator.writeStartObject();
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -1122,7 +1130,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		private List<String> index;
 
 		@Nullable
-		private Map<String, AggregationContainer> aggs;
+		private Map<String, Aggregation> aggs;
 
 		@Nullable
 		private Boolean allowNoIndices;
@@ -1143,7 +1151,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		private FieldCollapse collapse;
 
 		@Nullable
-		private JsonValue defaultOperator;
+		private DefaultOperator defaultOperator;
 
 		@Nullable
 		private String df;
@@ -1188,7 +1196,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		private Number minScore;
 
 		@Nullable
-		private QueryContainer postFilter;
+		private Query postFilter;
 
 		@Nullable
 		private String preference;
@@ -1200,10 +1208,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		private PointInTimeReference pit;
 
 		@Nullable
-		private QueryContainer query;
-
-		@Nullable
-		private String queryOnQueryString;
+		private Query query;
 
 		@Nullable
 		private Boolean requestCache;
@@ -1221,7 +1226,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		private List<JsonValue> searchAfter;
 
 		@Nullable
-		private JsonValue searchType;
+		private SearchType searchType;
 
 		@Nullable
 		private Boolean sequenceNumberPrimaryTerm;
@@ -1242,13 +1247,13 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		private List<String> storedFields;
 
 		@Nullable
-		private Map<String, SuggestContainer> suggest;
+		private Map<String, Suggest> suggest;
 
 		@Nullable
 		private String suggestField;
 
 		@Nullable
-		private JsonValue suggestMode;
+		private SuggestMode suggestMode;
 
 		@Nullable
 		private Number suggestSize;
@@ -1279,6 +1284,9 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 
 		@Nullable
 		private List<JsonValue> fields;
+
+		@Nullable
+		private Map<String, RuntimeField> runtimeMappings;
 
 		/**
 		 * A comma-separated list of index names to search; use <code>_all</code> or
@@ -1316,7 +1324,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code aggs}
 		 */
-		public Builder aggs(@Nullable Map<String, AggregationContainer> value) {
+		public Builder aggs(@Nullable Map<String, Aggregation> value) {
 			this.aggs = value;
 			return this;
 		}
@@ -1324,7 +1332,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
-		public Builder putAggs(String key, AggregationContainer value) {
+		public Builder putAggs(String key, Aggregation value) {
 			if (this.aggs == null) {
 				this.aggs = new HashMap<>();
 			}
@@ -1335,17 +1343,15 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Set {@link #aggs(Map)} to a singleton map.
 		 */
-		public Builder aggs(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.aggs(Collections.singletonMap(key, fn.apply(new AggregationContainer.Builder()).build()));
+		public Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
-		public Builder putAggs(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.putAggs(key, fn.apply(new AggregationContainer.Builder()).build());
+		public Builder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -1406,7 +1412,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable JsonValue value) {
+		public Builder defaultOperator(@Nullable DefaultOperator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -1571,7 +1577,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code post_filter}
 		 */
-		public Builder postFilter(@Nullable QueryContainer value) {
+		public Builder postFilter(@Nullable Query value) {
 			this.postFilter = value;
 			return this;
 		}
@@ -1579,8 +1585,8 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code post_filter}
 		 */
-		public Builder postFilter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.postFilter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder postFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.postFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -1617,7 +1623,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -1625,16 +1631,8 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code query_on_query_string}
-		 */
-		public Builder queryOnQueryString(@Nullable String value) {
-			this.queryOnQueryString = value;
-			return this;
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -1757,7 +1755,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code search_type}
 		 */
-		public Builder searchType(@Nullable JsonValue value) {
+		public Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
 			return this;
 		}
@@ -1870,7 +1868,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code suggest}
 		 */
-		public Builder suggest(@Nullable Map<String, SuggestContainer> value) {
+		public Builder suggest(@Nullable Map<String, Suggest> value) {
 			this.suggest = value;
 			return this;
 		}
@@ -1878,7 +1876,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #suggest(Map)}, creating the map if needed.
 		 */
-		public Builder putSuggest(String key, SuggestContainer value) {
+		public Builder putSuggest(String key, Suggest value) {
 			if (this.suggest == null) {
 				this.suggest = new HashMap<>();
 			}
@@ -1889,15 +1887,15 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Set {@link #suggest(Map)} to a singleton map.
 		 */
-		public Builder suggest(String key, Function<SuggestContainer.Builder, ObjectBuilder<SuggestContainer>> fn) {
-			return this.suggest(Collections.singletonMap(key, fn.apply(new SuggestContainer.Builder()).build()));
+		public Builder suggest(String key, Function<Suggest.Builder, ObjectBuilder<Suggest>> fn) {
+			return this.suggest(Collections.singletonMap(key, fn.apply(new Suggest.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #suggest(Map)}, creating the map if needed.
 		 */
-		public Builder putSuggest(String key, Function<SuggestContainer.Builder, ObjectBuilder<SuggestContainer>> fn) {
-			return this.putSuggest(key, fn.apply(new SuggestContainer.Builder()).build());
+		public Builder putSuggest(String key, Function<Suggest.Builder, ObjectBuilder<Suggest>> fn) {
+			return this.putSuggest(key, fn.apply(new Suggest.Builder()).build());
 		}
 
 		/**
@@ -1911,7 +1909,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code suggest_mode}
 		 */
-		public Builder suggestMode(@Nullable JsonValue value) {
+		public Builder suggestMode(@Nullable SuggestMode value) {
 			this.suggestMode = value;
 			return this;
 		}
@@ -2016,6 +2014,39 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * API name: {@code runtime_mappings}
+		 */
+		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
+			this.runtimeMappings = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
+		 */
+		public Builder putRuntimeMappings(String key, RuntimeField value) {
+			if (this.runtimeMappings == null) {
+				this.runtimeMappings = new HashMap<>();
+			}
+			this.runtimeMappings.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #runtimeMappings(Map)} to a singleton map.
+		 */
+		public Builder runtimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
+		 */
+		public Builder putRuntimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return this.putRuntimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link SubmitRequest}.
 		 *
 		 * @throws NullPointerException
@@ -2030,14 +2061,14 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SubmitRequest
+	 * Json deserializer for {@link SubmitRequest}
 	 */
 	public static final JsonpDeserializer<SubmitRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SubmitRequest::setupSubmitRequestDeserializer);
 
 	protected static void setupSubmitRequestDeserializer(DelegatingDeserializer<SubmitRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER), "aggs");
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER), "aggs");
 		op.add(Builder::allowNoIndices, JsonpDeserializer.booleanDeserializer(), "allow_no_indices");
 		op.add(Builder::allowPartialSearchResults, JsonpDeserializer.booleanDeserializer(),
 				"allow_partial_search_results");
@@ -2045,7 +2076,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::analyzeWildcard, JsonpDeserializer.booleanDeserializer(), "analyze_wildcard");
 		op.add(Builder::batchedReduceSize, JsonpDeserializer.numberDeserializer(), "batched_reduce_size");
 		op.add(Builder::collapse, FieldCollapse.DESERIALIZER, "collapse");
-		op.add(Builder::defaultOperator, JsonpDeserializer.jsonValueDeserializer(), "default_operator");
+		op.add(Builder::defaultOperator, DefaultOperator.DESERIALIZER, "default_operator");
 		op.add(Builder::df, JsonpDeserializer.stringDeserializer(), "df");
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"docvalue_fields");
@@ -2065,12 +2096,11 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::maxConcurrentShardRequests, JsonpDeserializer.numberDeserializer(),
 				"max_concurrent_shard_requests");
 		op.add(Builder::minScore, JsonpDeserializer.numberDeserializer(), "min_score");
-		op.add(Builder::postFilter, QueryContainer.DESERIALIZER, "post_filter");
+		op.add(Builder::postFilter, Query.DESERIALIZER, "post_filter");
 		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::pit, PointInTimeReference.DESERIALIZER, "pit");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
-		op.add(Builder::queryOnQueryString, JsonpDeserializer.stringDeserializer(), "query_on_query_string");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
 		op.add(Builder::requestCache, JsonpDeserializer.booleanDeserializer(), "request_cache");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore.DESERIALIZER), "rescore");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
@@ -2078,7 +2108,7 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 				"script_fields");
 		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"search_after");
-		op.add(Builder::searchType, JsonpDeserializer.jsonValueDeserializer(), "search_type");
+		op.add(Builder::searchType, SearchType.DESERIALIZER, "search_type");
 		op.add(Builder::sequenceNumberPrimaryTerm, JsonpDeserializer.booleanDeserializer(),
 				"sequence_number_primary_term");
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
@@ -2087,9 +2117,9 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stats");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
-		op.add(Builder::suggest, JsonpDeserializer.stringMapDeserializer(SuggestContainer.DESERIALIZER), "suggest");
+		op.add(Builder::suggest, JsonpDeserializer.stringMapDeserializer(Suggest.DESERIALIZER), "suggest");
 		op.add(Builder::suggestField, JsonpDeserializer.stringDeserializer(), "suggest_field");
-		op.add(Builder::suggestMode, JsonpDeserializer.jsonValueDeserializer(), "suggest_mode");
+		op.add(Builder::suggestMode, SuggestMode.DESERIALIZER, "suggest_mode");
 		op.add(Builder::suggestSize, JsonpDeserializer.numberDeserializer(), "suggest_size");
 		op.add(Builder::suggestText, JsonpDeserializer.stringDeserializer(), "suggest_text");
 		op.add(Builder::terminateAfter, JsonpDeserializer.numberDeserializer(), "terminate_after");
@@ -2102,6 +2132,8 @@ public final class SubmitRequest extends RequestBase implements ToJsonp {
 				"wait_for_completion_timeout");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
+				"runtime_mappings");
 
 	}
 

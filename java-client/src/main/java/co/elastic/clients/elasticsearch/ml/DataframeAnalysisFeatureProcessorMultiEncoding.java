@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -39,15 +40,26 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorMultiEncoding
-public final class DataframeAnalysisFeatureProcessorMultiEncoding implements ToJsonp {
+public final class DataframeAnalysisFeatureProcessorMultiEncoding
+		implements
+			DataframeAnalysisFeatureProcessor,
+			JsonpSerializable {
 	private final List<Number> processors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisFeatureProcessorMultiEncoding(Builder builder) {
+	public DataframeAnalysisFeatureProcessorMultiEncoding(Builder builder) {
 
 		this.processors = Objects.requireNonNull(builder.processors, "processors");
 
+	}
+
+	/**
+	 * {@link DataframeAnalysisFeatureProcessor} variant type
+	 */
+	@Override
+	public String _type() {
+		return "multi_encoding";
 	}
 
 	/**
@@ -62,13 +74,14 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding implements ToJ
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("processors");
 		generator.writeStartArray();
@@ -76,6 +89,8 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding implements ToJ
 			generator.write(item0.doubleValue());
 
 		}
+		generator.writeEnd();
+
 		generator.writeEnd();
 
 	}
@@ -133,11 +148,9 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding implements ToJ
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for DataframeAnalysisFeatureProcessorMultiEncoding
-	 */
-	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorMultiEncoding> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<DataframeAnalysisFeatureProcessorMultiEncoding.Builder, DataframeAnalysisFeatureProcessorMultiEncoding.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(
 					DataframeAnalysisFeatureProcessorMultiEncoding::setupDataframeAnalysisFeatureProcessorMultiEncodingDeserializer);
 
 	protected static void setupDataframeAnalysisFeatureProcessorMultiEncodingDeserializer(

@@ -24,13 +24,14 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -39,22 +40,30 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScriptCondition
-public final class ScriptCondition implements ToJsonp {
+public final class ScriptCondition implements Condition, JsonpSerializable {
 	private final String lang;
 
 	@Nullable
-	private final Map<String, JsonValue> params;
+	private final Map<String, JsonData> params;
 
 	private final String source;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptCondition(Builder builder) {
+	public ScriptCondition(Builder builder) {
 
 		this.lang = Objects.requireNonNull(builder.lang, "lang");
 		this.params = builder.params;
 		this.source = Objects.requireNonNull(builder.source, "source");
 
+	}
+
+	/**
+	 * {@link Condition} variant type
+	 */
+	@Override
+	public String _type() {
+		return "script";
 	}
 
 	/**
@@ -68,7 +77,7 @@ public final class ScriptCondition implements ToJsonp {
 	 * API name: {@code params}
 	 */
 	@Nullable
-	public Map<String, JsonValue> params() {
+	public Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -82,13 +91,14 @@ public final class ScriptCondition implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("lang");
 		generator.write(this.lang);
@@ -97,9 +107,9 @@ public final class ScriptCondition implements ToJsonp {
 
 			generator.writeKey("params");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.params.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -108,6 +118,8 @@ public final class ScriptCondition implements ToJsonp {
 
 		generator.writeKey("source");
 		generator.write(this.source);
+
+		generator.writeEnd();
 
 	}
 
@@ -120,7 +132,7 @@ public final class ScriptCondition implements ToJsonp {
 		private String lang;
 
 		@Nullable
-		private Map<String, JsonValue> params;
+		private Map<String, JsonData> params;
 
 		private String source;
 
@@ -135,7 +147,7 @@ public final class ScriptCondition implements ToJsonp {
 		/**
 		 * API name: {@code params}
 		 */
-		public Builder params(@Nullable Map<String, JsonValue> value) {
+		public Builder params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
 			return this;
 		}
@@ -143,7 +155,7 @@ public final class ScriptCondition implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
 		 */
-		public Builder putParams(String key, JsonValue value) {
+		public Builder putParams(String key, JsonData value) {
 			if (this.params == null) {
 				this.params = new HashMap<>();
 			}
@@ -173,17 +185,14 @@ public final class ScriptCondition implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for ScriptCondition
-	 */
-	public static final JsonpDeserializer<ScriptCondition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptCondition::setupScriptConditionDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<ScriptCondition.Builder, ScriptCondition.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(ScriptCondition::setupScriptConditionDeserializer);
 
 	protected static void setupScriptConditionDeserializer(DelegatingDeserializer<ScriptCondition.Builder> op) {
 
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}

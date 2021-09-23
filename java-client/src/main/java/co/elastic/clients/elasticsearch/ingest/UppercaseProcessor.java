@@ -47,8 +47,9 @@ public final class UppercaseProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UppercaseProcessor(Builder builder) {
+	public UppercaseProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
@@ -78,8 +79,9 @@ public final class UppercaseProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -159,7 +161,7 @@ public final class UppercaseProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UppercaseProcessor
+	 * Json deserializer for {@link UppercaseProcessor}
 	 */
 	public static final JsonpDeserializer<UppercaseProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UppercaseProcessor::setupUppercaseProcessorDeserializer);

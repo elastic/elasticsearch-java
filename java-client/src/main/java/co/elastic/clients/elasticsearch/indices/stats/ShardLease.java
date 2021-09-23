@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardLease
-public final class ShardLease implements ToJsonp {
+public final class ShardLease implements JsonpSerializable {
 	private final String id;
 
 	private final Number retainingSeqNo;
@@ -48,7 +48,7 @@ public final class ShardLease implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardLease(Builder builder) {
+	public ShardLease(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.retainingSeqNo = Objects.requireNonNull(builder.retainingSeqNo, "retaining_seq_no");
@@ -88,13 +88,13 @@ public final class ShardLease implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("id");
 		generator.write(this.id);
@@ -171,7 +171,7 @@ public final class ShardLease implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardLease
+	 * Json deserializer for {@link ShardLease}
 	 */
 	public static final JsonpDeserializer<ShardLease> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardLease::setupShardLeaseDeserializer);

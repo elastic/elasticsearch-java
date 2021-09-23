@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.slm;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.SnapshotLifecycle
-public final class SnapshotLifecycle implements ToJsonp {
+public final class SnapshotLifecycle implements JsonpSerializable {
 	@Nullable
 	private final InProgress inProgress;
 
@@ -67,7 +67,7 @@ public final class SnapshotLifecycle implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotLifecycle(Builder builder) {
+	public SnapshotLifecycle(Builder builder) {
 
 		this.inProgress = builder.inProgress;
 		this.lastFailure = builder.lastFailure;
@@ -160,30 +160,30 @@ public final class SnapshotLifecycle implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.inProgress != null) {
 
 			generator.writeKey("in_progress");
-			this.inProgress.toJsonp(generator, mapper);
+			this.inProgress.serialize(generator, mapper);
 
 		}
 		if (this.lastFailure != null) {
 
 			generator.writeKey("last_failure");
-			this.lastFailure.toJsonp(generator, mapper);
+			this.lastFailure.serialize(generator, mapper);
 
 		}
 		if (this.lastSuccess != null) {
 
 			generator.writeKey("last_success");
-			this.lastSuccess.toJsonp(generator, mapper);
+			this.lastSuccess.serialize(generator, mapper);
 
 		}
 		if (this.modifiedDate != null) {
@@ -207,13 +207,13 @@ public final class SnapshotLifecycle implements ToJsonp {
 		generator.write(this.nextExecutionMillis);
 
 		generator.writeKey("policy");
-		this.policy.toJsonp(generator, mapper);
+		this.policy.serialize(generator, mapper);
 
 		generator.writeKey("version");
 		generator.write(this.version.doubleValue());
 
 		generator.writeKey("stats");
-		this.stats.toJsonp(generator, mapper);
+		this.stats.serialize(generator, mapper);
 
 	}
 
@@ -378,7 +378,7 @@ public final class SnapshotLifecycle implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotLifecycle
+	 * Json deserializer for {@link SnapshotLifecycle}
 	 */
 	public static final JsonpDeserializer<SnapshotLifecycle> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SnapshotLifecycle::setupSnapshotLifecycleDeserializer);

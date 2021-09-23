@@ -42,7 +42,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 	private final Boolean minimize;
 
 	@Nullable
-	private final JsonValue model;
+	private final MovingAverageModel model;
 
 	private final JsonValue settings;
 
@@ -54,8 +54,9 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MovingAverageAggregation(Builder builder) {
+	public MovingAverageAggregation(Builder builder) {
 		super(builder);
+
 		this.minimize = builder.minimize;
 		this.model = builder.model;
 		this.settings = Objects.requireNonNull(builder.settings, "settings");
@@ -76,7 +77,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 	 * API name: {@code model}
 	 */
 	@Nullable
-	public JsonValue model() {
+	public MovingAverageModel model() {
 		return this.model;
 	}
 
@@ -103,8 +104,9 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		return this.window;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.minimize != null) {
 
 			generator.writeKey("minimize");
@@ -114,8 +116,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		if (this.model != null) {
 
 			generator.writeKey("model");
-			generator.write(this.model);
-
+			this.model.serialize(generator, mapper);
 		}
 
 		generator.writeKey("settings");
@@ -148,7 +149,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		private Boolean minimize;
 
 		@Nullable
-		private JsonValue model;
+		private MovingAverageModel model;
 
 		private JsonValue settings;
 
@@ -169,7 +170,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		/**
 		 * API name: {@code model}
 		 */
-		public Builder model(@Nullable JsonValue value) {
+		public Builder model(@Nullable MovingAverageModel value) {
 			this.model = value;
 			return this;
 		}
@@ -218,7 +219,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MovingAverageAggregation
+	 * Json deserializer for {@link MovingAverageAggregation}
 	 */
 	public static final JsonpDeserializer<MovingAverageAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MovingAverageAggregation::setupMovingAverageAggregationDeserializer);
@@ -227,7 +228,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 			DelegatingDeserializer<MovingAverageAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::minimize, JsonpDeserializer.booleanDeserializer(), "minimize");
-		op.add(Builder::model, JsonpDeserializer.jsonValueDeserializer(), "model");
+		op.add(Builder::model, MovingAverageModel.DESERIALIZER, "model");
 		op.add(Builder::settings, JsonpDeserializer.jsonValueDeserializer(), "settings");
 		op.add(Builder::predict, JsonpDeserializer.numberDeserializer(), "predict");
 		op.add(Builder::window, JsonpDeserializer.numberDeserializer(), "window");

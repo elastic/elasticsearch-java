@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.segments;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.Segment
-public final class Segment implements ToJsonp {
+public final class Segment implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final Boolean committed;
@@ -63,7 +63,7 @@ public final class Segment implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Segment(Builder builder) {
+	public Segment(Builder builder) {
 
 		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
 		this.committed = Objects.requireNonNull(builder.committed, "committed");
@@ -151,13 +151,13 @@ public final class Segment implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("attributes");
 		generator.writeStartObject();
@@ -329,7 +329,7 @@ public final class Segment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Segment
+	 * Json deserializer for {@link Segment}
 	 */
 	public static final JsonpDeserializer<Segment> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Segment::setupSegmentDeserializer);

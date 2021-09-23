@@ -40,8 +40,9 @@ public final class InlineScript extends ScriptBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InlineScript(Builder builder) {
+	public InlineScript(Builder builder) {
 		super(builder);
+
 		this.source = Objects.requireNonNull(builder.source, "source");
 
 	}
@@ -53,8 +54,9 @@ public final class InlineScript extends ScriptBase {
 		return this.source;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("source");
 		generator.write(this.source);
@@ -97,7 +99,7 @@ public final class InlineScript extends ScriptBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InlineScript
+	 * Json deserializer for {@link InlineScript}
 	 */
 	public static final JsonpDeserializer<InlineScript> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, InlineScript::setupInlineScriptDeserializer);

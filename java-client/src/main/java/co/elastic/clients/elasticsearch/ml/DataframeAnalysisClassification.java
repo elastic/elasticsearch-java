@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisClassification
-public final class DataframeAnalysisClassification extends DataframeAnalysis {
+public final class DataframeAnalysisClassification extends DataframeAnalysisBase implements DataframeAnalysis {
 	@Nullable
 	private final String classAssignmentObjective;
 
@@ -44,11 +46,20 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisClassification(Builder builder) {
+	public DataframeAnalysisClassification(Builder builder) {
 		super(builder);
+
 		this.classAssignmentObjective = builder.classAssignmentObjective;
 		this.numTopClasses = builder.numTopClasses;
 
+	}
+
+	/**
+	 * {@link DataframeAnalysis} variant type
+	 */
+	@Override
+	public String _type() {
+		return "classification";
 	}
 
 	/**
@@ -75,8 +86,10 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 		return this.numTopClasses;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.classAssignmentObjective != null) {
 
 			generator.writeKey("class_assignment_objective");
@@ -90,6 +103,8 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 
 		}
 
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -97,7 +112,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 	/**
 	 * Builder for {@link DataframeAnalysisClassification}.
 	 */
-	public static class Builder extends DataframeAnalysis.AbstractBuilder<Builder>
+	public static class Builder extends DataframeAnalysisBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisClassification> {
 		@Nullable
@@ -149,16 +164,13 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for DataframeAnalysisClassification
-	 */
-	public static final JsonpDeserializer<DataframeAnalysisClassification> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalysisClassification::setupDataframeAnalysisClassificationDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<DataframeAnalysisClassification.Builder, DataframeAnalysisClassification.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(DataframeAnalysisClassification::setupDataframeAnalysisClassificationDeserializer);
 
 	protected static void setupDataframeAnalysisClassificationDeserializer(
 			DelegatingDeserializer<DataframeAnalysisClassification.Builder> op) {
-		DataframeAnalysis.setupDataframeAnalysisDeserializer(op);
+		DataframeAnalysisBase.setupDataframeAnalysisBaseDeserializer(op);
 		op.add(Builder::classAssignmentObjective, JsonpDeserializer.stringDeserializer(), "class_assignment_objective");
 		op.add(Builder::numTopClasses, JsonpDeserializer.numberDeserializer(), "num_top_classes");
 

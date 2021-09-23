@@ -47,7 +47,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutePolicyRequest(Builder builder) {
+	public ExecutePolicyRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.waitForCompletion = builder.waitForCompletion;

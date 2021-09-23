@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform.update_transform.Request
@@ -42,8 +43,9 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateTransformRequest(Builder builder) {
+	public UpdateTransformRequest(Builder builder) {
 		super(builder);
+
 		this.transformId = builder.transformId;
 
 	}
@@ -99,7 +101,7 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateTransformRequest
+	 * Json deserializer for {@link UpdateTransformRequest}
 	 */
 	public static final JsonpDeserializer<UpdateTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UpdateTransformRequest::setupUpdateTransformRequestDeserializer);

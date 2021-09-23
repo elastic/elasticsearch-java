@@ -26,17 +26,18 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndicesShards
-public final class ClusterIndicesShards implements ToJsonp {
+public final class ClusterIndicesShards implements JsonpSerializable {
 	@Nullable
 	private final ClusterIndicesShardsIndex index;
 
@@ -51,7 +52,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterIndicesShards(Builder builder) {
+	public ClusterIndicesShards(Builder builder) {
 
 		this.index = builder.index;
 		this.primaries = builder.primaries;
@@ -103,18 +104,18 @@ public final class ClusterIndicesShards implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.index != null) {
 
 			generator.writeKey("index");
-			this.index.toJsonp(generator, mapper);
+			this.index.serialize(generator, mapper);
 
 		}
 		if (this.primaries != null) {
@@ -220,7 +221,7 @@ public final class ClusterIndicesShards implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterIndicesShards
+	 * Json deserializer for {@link ClusterIndicesShards}
 	 */
 	public static final JsonpDeserializer<ClusterIndicesShards> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterIndicesShards::setupClusterIndicesShardsDeserializer);

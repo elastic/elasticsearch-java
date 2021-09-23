@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,10 +39,11 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Request
-public final class GetIndexTemplateRequest extends RequestBase implements ToJsonp {
+public final class GetIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
@@ -60,7 +61,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetIndexTemplateRequest(Builder builder) {
+	public GetIndexTemplateRequest(Builder builder) {
 
 		this.name = builder.name;
 		this.local = builder.local;
@@ -126,13 +127,13 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.flatSettings != null) {
 
@@ -244,7 +245,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetIndexTemplateRequest
+	 * Json deserializer for {@link GetIndexTemplateRequest}
 	 */
 	public static final JsonpDeserializer<GetIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetIndexTemplateRequest::setupGetIndexTemplateRequestDeserializer);

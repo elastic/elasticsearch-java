@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.TransformStats
-public final class TransformStats implements ToJsonp {
+public final class TransformStats implements JsonpSerializable {
 	private final Checkpointing checkpointing;
 
 	private final String id;
@@ -55,7 +55,7 @@ public final class TransformStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TransformStats(Builder builder) {
+	public TransformStats(Builder builder) {
 
 		this.checkpointing = Objects.requireNonNull(builder.checkpointing, "checkpointing");
 		this.id = Objects.requireNonNull(builder.id, "id");
@@ -113,16 +113,16 @@ public final class TransformStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("checkpointing");
-		this.checkpointing.toJsonp(generator, mapper);
+		this.checkpointing.serialize(generator, mapper);
 
 		generator.writeKey("id");
 		generator.write(this.id);
@@ -130,7 +130,7 @@ public final class TransformStats implements ToJsonp {
 		if (this.node != null) {
 
 			generator.writeKey("node");
-			this.node.toJsonp(generator, mapper);
+			this.node.serialize(generator, mapper);
 
 		}
 		if (this.reason != null) {
@@ -144,7 +144,7 @@ public final class TransformStats implements ToJsonp {
 		generator.write(this.state);
 
 		generator.writeKey("stats");
-		this.stats.toJsonp(generator, mapper);
+		this.stats.serialize(generator, mapper);
 
 	}
 
@@ -252,7 +252,7 @@ public final class TransformStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TransformStats
+	 * Json deserializer for {@link TransformStats}
 	 */
 	public static final JsonpDeserializer<TransformStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TransformStats::setupTransformStatsDeserializer);

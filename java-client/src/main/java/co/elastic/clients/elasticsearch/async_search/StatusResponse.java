@@ -49,8 +49,9 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatusResponse(Builder<TDocument> builder) {
+	public StatusResponse(Builder<TDocument> builder) {
 		super(builder);
+
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.completionStatus = Objects.requireNonNull(builder.completionStatus, "completion_status");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -71,11 +72,12 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		return this.completionStatus;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("_shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 		generator.writeKey("completion_status");
 		generator.write(this.completionStatus.doubleValue());

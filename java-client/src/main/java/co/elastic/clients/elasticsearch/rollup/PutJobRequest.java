@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -45,7 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.put_job.Request
-public final class PutJobRequest extends RequestBase implements ToJsonp {
+public final class PutJobRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -68,7 +68,7 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutJobRequest(Builder builder) {
+	public PutJobRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.cron = builder.cron;
@@ -140,13 +140,13 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.cron != null) {
 
@@ -157,7 +157,7 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 		if (this.groups != null) {
 
 			generator.writeKey("groups");
-			this.groups.toJsonp(generator, mapper);
+			this.groups.serialize(generator, mapper);
 
 		}
 		if (this.indexPattern != null) {
@@ -171,7 +171,7 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (FieldMetric item0 : this.metrics) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -331,7 +331,7 @@ public final class PutJobRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutJobRequest
+	 * Json deserializer for {@link PutJobRequest}
 	 */
 	public static final JsonpDeserializer<PutJobRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutJobRequest::setupPutJobRequestDeserializer);

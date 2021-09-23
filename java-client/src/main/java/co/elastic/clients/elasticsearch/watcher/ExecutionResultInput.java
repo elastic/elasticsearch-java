@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,16 +38,16 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultInput
-public final class ExecutionResultInput implements ToJsonp {
-	private final Map<String, JsonValue> payload;
+public final class ExecutionResultInput implements JsonpSerializable {
+	private final Map<String, JsonData> payload;
 
-	private final JsonValue status;
+	private final ActionStatusOptions status;
 
-	private final JsonValue type;
+	private final InputType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutionResultInput(Builder builder) {
+	public ExecutionResultInput(Builder builder) {
 
 		this.payload = Objects.requireNonNull(builder.payload, "payload");
 		this.status = Objects.requireNonNull(builder.status, "status");
@@ -58,49 +58,49 @@ public final class ExecutionResultInput implements ToJsonp {
 	/**
 	 * API name: {@code payload}
 	 */
-	public Map<String, JsonValue> payload() {
+	public Map<String, JsonData> payload() {
 		return this.payload;
 	}
 
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
 	 * API name: {@code type}
 	 */
-	public JsonValue type() {
+	public InputType type() {
 		return this.type;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("payload");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.payload.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.payload.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 		generator.writeKey("type");
-		generator.write(this.type);
+		this.type.serialize(generator, mapper);
 
 	}
 
@@ -110,16 +110,16 @@ public final class ExecutionResultInput implements ToJsonp {
 	 * Builder for {@link ExecutionResultInput}.
 	 */
 	public static class Builder implements ObjectBuilder<ExecutionResultInput> {
-		private Map<String, JsonValue> payload;
+		private Map<String, JsonData> payload;
 
-		private JsonValue status;
+		private ActionStatusOptions status;
 
-		private JsonValue type;
+		private InputType type;
 
 		/**
 		 * API name: {@code payload}
 		 */
-		public Builder payload(Map<String, JsonValue> value) {
+		public Builder payload(Map<String, JsonData> value) {
 			this.payload = value;
 			return this;
 		}
@@ -127,7 +127,7 @@ public final class ExecutionResultInput implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #payload(Map)}, creating the map if needed.
 		 */
-		public Builder putPayload(String key, JsonValue value) {
+		public Builder putPayload(String key, JsonData value) {
 			if (this.payload == null) {
 				this.payload = new HashMap<>();
 			}
@@ -138,7 +138,7 @@ public final class ExecutionResultInput implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(ActionStatusOptions value) {
 			this.status = value;
 			return this;
 		}
@@ -146,7 +146,7 @@ public final class ExecutionResultInput implements ToJsonp {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(InputType value) {
 			this.type = value;
 			return this;
 		}
@@ -166,7 +166,7 @@ public final class ExecutionResultInput implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecutionResultInput
+	 * Json deserializer for {@link ExecutionResultInput}
 	 */
 	public static final JsonpDeserializer<ExecutionResultInput> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExecutionResultInput::setupExecutionResultInputDeserializer);
@@ -174,10 +174,9 @@ public final class ExecutionResultInput implements ToJsonp {
 	protected static void setupExecutionResultInputDeserializer(
 			DelegatingDeserializer<ExecutionResultInput.Builder> op) {
 
-		op.add(Builder::payload, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"payload");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::payload, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "payload");
+		op.add(Builder::status, ActionStatusOptions.DESERIALIZER, "status");
+		op.add(Builder::type, InputType.DESERIALIZER, "type");
 
 	}
 

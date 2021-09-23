@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,7 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.ShardStats
-public final class ShardStats implements ToJsonp {
+public final class ShardStats implements JsonpSerializable {
 	private final Number bytesRead;
 
 	private final Number failedReadRequests;
@@ -105,7 +105,7 @@ public final class ShardStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStats(Builder builder) {
+	public ShardStats(Builder builder) {
 
 		this.bytesRead = Objects.requireNonNull(builder.bytesRead, "bytes_read");
 		this.failedReadRequests = Objects.requireNonNull(builder.failedReadRequests, "failed_read_requests");
@@ -359,13 +359,13 @@ public final class ShardStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bytes_read");
 		generator.write(this.bytesRead.doubleValue());
@@ -379,7 +379,7 @@ public final class ShardStats implements ToJsonp {
 		if (this.fatalException != null) {
 
 			generator.writeKey("fatal_exception");
-			this.fatalException.toJsonp(generator, mapper);
+			this.fatalException.serialize(generator, mapper);
 
 		}
 
@@ -428,7 +428,7 @@ public final class ShardStats implements ToJsonp {
 		generator.writeKey("read_exceptions");
 		generator.writeStartArray();
 		for (ReadException item0 : this.readExceptions) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -817,7 +817,7 @@ public final class ShardStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardStats
+	 * Json deserializer for {@link ShardStats}
 	 */
 	public static final JsonpDeserializer<ShardStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardStats::setupShardStatsDeserializer);

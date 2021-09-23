@@ -37,6 +37,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -50,7 +51,7 @@ public final class AliasesRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AliasesRequest(Builder builder) {
+	public AliasesRequest(Builder builder) {
 
 		this.name = builder.name;
 		this.expandWildcards = builder.expandWildcards;

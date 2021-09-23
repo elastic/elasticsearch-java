@@ -33,12 +33,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
+import java.util.Objects;
 
 // typedef: security.get_privileges.Response
 public final class GetPrivilegesResponse extends AdditionalProperties<String, Map<String, Actions>> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetPrivilegesResponse(Builder builder) {
+	public GetPrivilegesResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -73,7 +74,7 @@ public final class GetPrivilegesResponse extends AdditionalProperties<String, Ma
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetPrivilegesResponse
+	 * Json deserializer for {@link GetPrivilegesResponse}
 	 */
 	public static final JsonpDeserializer<GetPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetPrivilegesResponse::setupGetPrivilegesResponseDeserializer);

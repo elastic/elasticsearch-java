@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.Repository
-public final class Repository implements ToJsonp {
+public final class Repository implements JsonpSerializable {
 	private final String type;
 
 	@Nullable
@@ -47,7 +47,7 @@ public final class Repository implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Repository(Builder builder) {
+	public Repository(Builder builder) {
 
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.uuid = builder.uuid;
@@ -80,13 +80,13 @@ public final class Repository implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -99,7 +99,7 @@ public final class Repository implements ToJsonp {
 		}
 
 		generator.writeKey("settings");
-		this.settings.toJsonp(generator, mapper);
+		this.settings.serialize(generator, mapper);
 
 	}
 
@@ -162,7 +162,7 @@ public final class Repository implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Repository
+	 * Json deserializer for {@link Repository}
 	 */
 	public static final JsonpDeserializer<Repository> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Repository::setupRepositoryDeserializer);

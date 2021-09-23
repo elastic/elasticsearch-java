@@ -23,15 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.NodeRole;
 import co.elastic.clients.elasticsearch.indices.stats.IndexStats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -46,7 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Stats
-public final class Stats implements ToJsonp {
+public final class Stats implements JsonpSerializable {
 	private final Map<String, AdaptiveSelection> adaptiveSelection;
 
 	private final Map<String, Breaker> breakers;
@@ -71,7 +71,7 @@ public final class Stats implements ToJsonp {
 
 	private final Process process;
 
-	private final List<JsonValue> roles;
+	private final List<NodeRole> roles;
 
 	private final Scripting script;
 
@@ -87,7 +87,7 @@ public final class Stats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Stats(Builder builder) {
+	public Stats(Builder builder) {
 
 		this.adaptiveSelection = Objects.requireNonNull(builder.adaptiveSelection, "adaptive_selection");
 		this.breakers = Objects.requireNonNull(builder.breakers, "breakers");
@@ -198,7 +198,7 @@ public final class Stats implements ToJsonp {
 	/**
 	 * API name: {@code roles}
 	 */
-	public List<JsonValue> roles() {
+	public List<NodeRole> roles() {
 		return this.roles;
 	}
 
@@ -247,19 +247,19 @@ public final class Stats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("adaptive_selection");
 		generator.writeStartObject();
 		for (Map.Entry<String, AdaptiveSelection> item0 : this.adaptiveSelection.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -268,25 +268,25 @@ public final class Stats implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, Breaker> item0 : this.breakers.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("fs");
-		this.fs.toJsonp(generator, mapper);
+		this.fs.serialize(generator, mapper);
 
 		generator.writeKey("host");
 		generator.write(this.host);
 
 		generator.writeKey("http");
-		this.http.toJsonp(generator, mapper);
+		this.http.serialize(generator, mapper);
 
 		generator.writeKey("indices");
-		this.indices.toJsonp(generator, mapper);
+		this.indices.serialize(generator, mapper);
 
 		generator.writeKey("ingest");
-		this.ingest.toJsonp(generator, mapper);
+		this.ingest.serialize(generator, mapper);
 
 		generator.writeKey("ip");
 		generator.writeStartArray();
@@ -297,33 +297,32 @@ public final class Stats implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("jvm");
-		this.jvm.toJsonp(generator, mapper);
+		this.jvm.serialize(generator, mapper);
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("os");
-		this.os.toJsonp(generator, mapper);
+		this.os.serialize(generator, mapper);
 
 		generator.writeKey("process");
-		this.process.toJsonp(generator, mapper);
+		this.process.serialize(generator, mapper);
 
 		generator.writeKey("roles");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.roles) {
-			generator.write(item0);
-
+		for (NodeRole item0 : this.roles) {
+			item0.serialize(generator, mapper);
 		}
 		generator.writeEnd();
 
 		generator.writeKey("script");
-		this.script.toJsonp(generator, mapper);
+		this.script.serialize(generator, mapper);
 
 		generator.writeKey("thread_pool");
 		generator.writeStartObject();
 		for (Map.Entry<String, ThreadCount> item0 : this.threadPool.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -332,7 +331,7 @@ public final class Stats implements ToJsonp {
 		generator.write(this.timestamp.doubleValue());
 
 		generator.writeKey("transport");
-		this.transport.toJsonp(generator, mapper);
+		this.transport.serialize(generator, mapper);
 
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
@@ -378,7 +377,7 @@ public final class Stats implements ToJsonp {
 
 		private Process process;
 
-		private List<JsonValue> roles;
+		private List<NodeRole> roles;
 
 		private Scripting script;
 
@@ -614,7 +613,7 @@ public final class Stats implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(List<JsonValue> value) {
+		public Builder roles(List<NodeRole> value) {
 			this.roles = value;
 			return this;
 		}
@@ -622,7 +621,7 @@ public final class Stats implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(JsonValue... value) {
+		public Builder roles(NodeRole... value) {
 			this.roles = Arrays.asList(value);
 			return this;
 		}
@@ -630,7 +629,7 @@ public final class Stats implements ToJsonp {
 		/**
 		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
-		public Builder addRoles(JsonValue value) {
+		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {
 				this.roles = new ArrayList<>();
 			}
@@ -751,7 +750,7 @@ public final class Stats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Stats
+	 * Json deserializer for {@link Stats}
 	 */
 	public static final JsonpDeserializer<Stats> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Stats::setupStatsDeserializer);
@@ -771,7 +770,7 @@ public final class Stats implements ToJsonp {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::os, OperatingSystem.DESERIALIZER, "os");
 		op.add(Builder::process, Process.DESERIALIZER, "process");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "roles");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole.DESERIALIZER), "roles");
 		op.add(Builder::script, Scripting.DESERIALIZER, "script");
 		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(ThreadCount.DESERIALIZER), "thread_pool");
 		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");

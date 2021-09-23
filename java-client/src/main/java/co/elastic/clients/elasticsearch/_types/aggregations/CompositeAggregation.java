@@ -37,6 +37,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregation
@@ -52,8 +53,9 @@ public final class CompositeAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CompositeAggregation(Builder builder) {
+	public CompositeAggregation(Builder builder) {
 		super(builder);
+
 		this.after = builder.after;
 		this.size = builder.size;
 		this.sources = builder.sources;
@@ -84,8 +86,9 @@ public final class CompositeAggregation extends BucketAggregationBase {
 		return this.sources;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.after != null) {
 
 			generator.writeKey("after");
@@ -112,7 +115,7 @@ public final class CompositeAggregation extends BucketAggregationBase {
 				generator.writeStartObject();
 				for (Map.Entry<String, CompositeAggregationSource> item1 : item0.entrySet()) {
 					generator.writeKey(item1.getKey());
-					item1.getValue().toJsonp(generator, mapper);
+					item1.getValue().serialize(generator, mapper);
 
 				}
 				generator.writeEnd();
@@ -215,7 +218,7 @@ public final class CompositeAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CompositeAggregation
+	 * Json deserializer for {@link CompositeAggregation}
 	 */
 	public static final JsonpDeserializer<CompositeAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CompositeAggregation::setupCompositeAggregationDeserializer);

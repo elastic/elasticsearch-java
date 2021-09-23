@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,7 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.put_lifecycle.Request
-public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
+public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	private final String policyId;
 
 	@Nullable
@@ -69,7 +69,7 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutLifecycleRequest(Builder builder) {
+	public PutLifecycleRequest(Builder builder) {
 
 		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
 		this.masterTimeout = builder.masterTimeout;
@@ -171,18 +171,18 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.config != null) {
 
 			generator.writeKey("config");
-			this.config.toJsonp(generator, mapper);
+			this.config.serialize(generator, mapper);
 
 		}
 		if (this.name != null) {
@@ -200,7 +200,7 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		if (this.retention != null) {
 
 			generator.writeKey("retention");
-			this.retention.toJsonp(generator, mapper);
+			this.retention.serialize(generator, mapper);
 
 		}
 		if (this.schedule != null) {
@@ -361,7 +361,7 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutLifecycleRequest
+	 * Json deserializer for {@link PutLifecycleRequest}
 	 */
 	public static final JsonpDeserializer<PutLifecycleRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer);

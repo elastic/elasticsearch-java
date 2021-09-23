@@ -44,8 +44,9 @@ public final class Watcher extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Watcher(Builder builder) {
+	public Watcher(Builder builder) {
 		super(builder);
+
 		this.execution = Objects.requireNonNull(builder.execution, "execution");
 		this.watch = Objects.requireNonNull(builder.watch, "watch");
 		this.count = Objects.requireNonNull(builder.count, "count");
@@ -73,17 +74,18 @@ public final class Watcher extends Base {
 		return this.count;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("execution");
-		this.execution.toJsonp(generator, mapper);
+		this.execution.serialize(generator, mapper);
 
 		generator.writeKey("watch");
-		this.watch.toJsonp(generator, mapper);
+		this.watch.serialize(generator, mapper);
 
 		generator.writeKey("count");
-		this.count.toJsonp(generator, mapper);
+		this.count.serialize(generator, mapper);
 
 	}
 
@@ -164,7 +166,7 @@ public final class Watcher extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Watcher
+	 * Json deserializer for {@link Watcher}
 	 */
 	public static final JsonpDeserializer<Watcher> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Watcher::setupWatcherDeserializer);

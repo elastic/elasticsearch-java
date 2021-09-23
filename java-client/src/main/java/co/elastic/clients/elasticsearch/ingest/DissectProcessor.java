@@ -47,8 +47,9 @@ public final class DissectProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DissectProcessor(Builder builder) {
+	public DissectProcessor(Builder builder) {
 		super(builder);
+
 		this.appendSeparator = Objects.requireNonNull(builder.appendSeparator, "append_separator");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
@@ -84,8 +85,9 @@ public final class DissectProcessor extends ProcessorBase {
 		return this.pattern;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("append_separator");
 		generator.write(this.appendSeparator);
@@ -169,7 +171,7 @@ public final class DissectProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DissectProcessor
+	 * Json deserializer for {@link DissectProcessor}
 	 */
 	public static final JsonpDeserializer<DissectProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DissectProcessor::setupDissectProcessorDeserializer);

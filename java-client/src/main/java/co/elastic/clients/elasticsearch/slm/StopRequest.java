@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: slm.stop.Request
 public final class StopRequest extends RequestBase {
-	protected StopRequest() {
+	public StopRequest() {
 	}
 
 	/**

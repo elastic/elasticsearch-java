@@ -23,16 +23,16 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.elasticsearch.cluster.state.ClusterStateBlocks;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -47,7 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.state.Response
-public final class StateResponse implements ToJsonp {
+public final class StateResponse implements JsonpSerializable {
 	private final String clusterName;
 
 	private final String clusterUuid;
@@ -74,7 +74,7 @@ public final class StateResponse implements ToJsonp {
 	private final Map<String, NodeAttributes> nodes;
 
 	@Nullable
-	private final Map<String, JsonValue> routingTable;
+	private final Map<String, EmptyObject> routingTable;
 
 	@Nullable
 	private final ClusterStateRoutingNodes routingNodes;
@@ -87,7 +87,7 @@ public final class StateResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StateResponse(Builder builder) {
+	public StateResponse(Builder builder) {
 
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.clusterUuid = Objects.requireNonNull(builder.clusterUuid, "cluster_uuid");
@@ -179,7 +179,7 @@ public final class StateResponse implements ToJsonp {
 	 * API name: {@code routing_table}
 	 */
 	@Nullable
-	public Map<String, JsonValue> routingTable() {
+	public Map<String, EmptyObject> routingTable() {
 		return this.routingTable;
 	}
 
@@ -210,13 +210,13 @@ public final class StateResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -256,13 +256,13 @@ public final class StateResponse implements ToJsonp {
 		if (this.blocks != null) {
 
 			generator.writeKey("blocks");
-			this.blocks.toJsonp(generator, mapper);
+			this.blocks.serialize(generator, mapper);
 
 		}
 		if (this.metadata != null) {
 
 			generator.writeKey("metadata");
-			this.metadata.toJsonp(generator, mapper);
+			this.metadata.serialize(generator, mapper);
 
 		}
 		if (this.nodes != null) {
@@ -271,7 +271,7 @@ public final class StateResponse implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeAttributes> item0 : this.nodes.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -281,9 +281,9 @@ public final class StateResponse implements ToJsonp {
 
 			generator.writeKey("routing_table");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.routingTable.entrySet()) {
+			for (Map.Entry<String, EmptyObject> item0 : this.routingTable.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -292,19 +292,19 @@ public final class StateResponse implements ToJsonp {
 		if (this.routingNodes != null) {
 
 			generator.writeKey("routing_nodes");
-			this.routingNodes.toJsonp(generator, mapper);
+			this.routingNodes.serialize(generator, mapper);
 
 		}
 		if (this.snapshots != null) {
 
 			generator.writeKey("snapshots");
-			this.snapshots.toJsonp(generator, mapper);
+			this.snapshots.serialize(generator, mapper);
 
 		}
 		if (this.snapshotDeletions != null) {
 
 			generator.writeKey("snapshot_deletions");
-			this.snapshotDeletions.toJsonp(generator, mapper);
+			this.snapshotDeletions.serialize(generator, mapper);
 
 		}
 
@@ -342,7 +342,7 @@ public final class StateResponse implements ToJsonp {
 		private Map<String, NodeAttributes> nodes;
 
 		@Nullable
-		private Map<String, JsonValue> routingTable;
+		private Map<String, EmptyObject> routingTable;
 
 		@Nullable
 		private ClusterStateRoutingNodes routingNodes;
@@ -486,7 +486,7 @@ public final class StateResponse implements ToJsonp {
 		/**
 		 * API name: {@code routing_table}
 		 */
-		public Builder routingTable(@Nullable Map<String, JsonValue> value) {
+		public Builder routingTable(@Nullable Map<String, EmptyObject> value) {
 			this.routingTable = value;
 			return this;
 		}
@@ -494,12 +494,26 @@ public final class StateResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #routingTable(Map)}, creating the map if needed.
 		 */
-		public Builder putRoutingTable(String key, JsonValue value) {
+		public Builder putRoutingTable(String key, EmptyObject value) {
 			if (this.routingTable == null) {
 				this.routingTable = new HashMap<>();
 			}
 			this.routingTable.put(key, value);
 			return this;
+		}
+
+		/**
+		 * Set {@link #routingTable(Map)} to a singleton map.
+		 */
+		public Builder routingTable(String key, Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return this.routingTable(Collections.singletonMap(key, fn.apply(new EmptyObject.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #routingTable(Map)}, creating the map if needed.
+		 */
+		public Builder putRoutingTable(String key, Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return this.putRoutingTable(key, fn.apply(new EmptyObject.Builder()).build());
 		}
 
 		/**
@@ -564,7 +578,7 @@ public final class StateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StateResponse
+	 * Json deserializer for {@link StateResponse}
 	 */
 	public static final JsonpDeserializer<StateResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, StateResponse::setupStateResponseDeserializer);
@@ -580,8 +594,8 @@ public final class StateResponse implements ToJsonp {
 		op.add(Builder::blocks, ClusterStateBlocks.DESERIALIZER, "blocks");
 		op.add(Builder::metadata, ClusterStateMetadata.DESERIALIZER, "metadata");
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes.DESERIALIZER), "nodes");
-		op.add(Builder::routingTable,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "routing_table");
+		op.add(Builder::routingTable, JsonpDeserializer.stringMapDeserializer(EmptyObject.DESERIALIZER),
+				"routing_table");
 		op.add(Builder::routingNodes, ClusterStateRoutingNodes.DESERIALIZER, "routing_nodes");
 		op.add(Builder::snapshots, ClusterStateSnapshots.DESERIALIZER, "snapshots");
 		op.add(Builder::snapshotDeletions, ClusterStateDeletedSnapshots.DESERIALIZER, "snapshot_deletions");

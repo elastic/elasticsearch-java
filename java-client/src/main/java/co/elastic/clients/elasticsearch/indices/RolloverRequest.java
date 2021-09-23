@@ -28,11 +28,12 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.rollover.RolloverConditions;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -46,7 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.Request
-public final class RolloverRequest extends RequestBase implements ToJsonp {
+public final class RolloverRequest extends RequestBase implements JsonpSerializable {
 	private final String alias;
 
 	@Nullable
@@ -77,11 +78,11 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	private final JsonValue mappings;
 
 	@Nullable
-	private final Map<String, JsonValue> settings;
+	private final Map<String, JsonData> settings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RolloverRequest(Builder builder) {
+	public RolloverRequest(Builder builder) {
 
 		this.alias = Objects.requireNonNull(builder.alias, "alias");
 		this.newIndex = builder.newIndex;
@@ -194,20 +195,20 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> settings() {
+	public Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aliases != null) {
 
@@ -215,7 +216,7 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -224,7 +225,7 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		if (this.conditions != null) {
 
 			generator.writeKey("conditions");
-			this.conditions.toJsonp(generator, mapper);
+			this.conditions.serialize(generator, mapper);
 
 		}
 		if (this.mappings != null) {
@@ -237,9 +238,9 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.settings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -284,7 +285,7 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		private JsonValue mappings;
 
 		@Nullable
-		private Map<String, JsonValue> settings;
+		private Map<String, JsonData> settings;
 
 		/**
 		 * The name of the alias to rollover
@@ -415,7 +416,7 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonValue> value) {
+		public Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
 			return this;
 		}
@@ -423,7 +424,7 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
 		 */
-		public Builder putSettings(String key, JsonValue value) {
+		public Builder putSettings(String key, JsonData value) {
 			if (this.settings == null) {
 				this.settings = new HashMap<>();
 			}
@@ -446,7 +447,7 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RolloverRequest
+	 * Json deserializer for {@link RolloverRequest}
 	 */
 	public static final JsonpDeserializer<RolloverRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RolloverRequest::setupRolloverRequestDeserializer);
@@ -456,8 +457,7 @@ public final class RolloverRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
 		op.add(Builder::conditions, RolloverConditions.DESERIALIZER, "conditions");
 		op.add(Builder::mappings, JsonpDeserializer.jsonValueDeserializer(), "mappings");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"settings");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "settings");
 
 	}
 

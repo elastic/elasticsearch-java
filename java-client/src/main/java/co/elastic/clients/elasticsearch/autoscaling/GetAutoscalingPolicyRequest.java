@@ -42,7 +42,7 @@ public final class GetAutoscalingPolicyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetAutoscalingPolicyRequest(Builder builder) {
+	public GetAutoscalingPolicyRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

@@ -54,7 +54,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTransformStatsRequest(Builder builder) {
+	public GetTransformStatsRequest(Builder builder) {
 
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.allowNoMatch = builder.allowNoMatch;

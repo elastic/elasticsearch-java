@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,12 +39,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.TermsGrouping
-public final class TermsGrouping implements ToJsonp {
+public final class TermsGrouping implements JsonpSerializable {
 	private final List<String> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TermsGrouping(Builder builder) {
+	public TermsGrouping(Builder builder) {
 
 		this.fields = Objects.requireNonNull(builder.fields, "fields");
 
@@ -60,13 +60,13 @@ public final class TermsGrouping implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("fields");
 		generator.writeStartArray();
@@ -128,7 +128,7 @@ public final class TermsGrouping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TermsGrouping
+	 * Json deserializer for {@link TermsGrouping}
 	 */
 	public static final JsonpDeserializer<TermsGrouping> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TermsGrouping::setupTermsGroupingDeserializer);

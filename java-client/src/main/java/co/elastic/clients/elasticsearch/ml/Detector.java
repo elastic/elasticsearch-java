@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -43,7 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Detector
-public final class Detector implements ToJsonp {
+public final class Detector implements JsonpSerializable {
 	@Nullable
 	private final String byFieldName;
 
@@ -57,7 +56,7 @@ public final class Detector implements ToJsonp {
 	private final Number detectorIndex;
 
 	@Nullable
-	private final JsonValue excludeFrequent;
+	private final ExcludeFrequent excludeFrequent;
 
 	@Nullable
 	private final String fieldName;
@@ -75,7 +74,7 @@ public final class Detector implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Detector(Builder builder) {
+	public Detector(Builder builder) {
 
 		this.byFieldName = builder.byFieldName;
 		this.customRules = builder.customRules;
@@ -146,7 +145,7 @@ public final class Detector implements ToJsonp {
 	 * API name: {@code exclude_frequent}
 	 */
 	@Nullable
-	public JsonValue excludeFrequent() {
+	public ExcludeFrequent excludeFrequent() {
 		return this.excludeFrequent;
 	}
 
@@ -210,13 +209,13 @@ public final class Detector implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.byFieldName != null) {
 
@@ -229,7 +228,7 @@ public final class Detector implements ToJsonp {
 			generator.writeKey("custom_rules");
 			generator.writeStartArray();
 			for (DetectionRule item0 : this.customRules) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -250,8 +249,7 @@ public final class Detector implements ToJsonp {
 		if (this.excludeFrequent != null) {
 
 			generator.writeKey("exclude_frequent");
-			generator.write(this.excludeFrequent);
-
+			this.excludeFrequent.serialize(generator, mapper);
 		}
 		if (this.fieldName != null) {
 
@@ -303,7 +301,7 @@ public final class Detector implements ToJsonp {
 		private Number detectorIndex;
 
 		@Nullable
-		private JsonValue excludeFrequent;
+		private ExcludeFrequent excludeFrequent;
 
 		@Nullable
 		private String fieldName;
@@ -411,7 +409,7 @@ public final class Detector implements ToJsonp {
 		 * <p>
 		 * API name: {@code exclude_frequent}
 		 */
-		public Builder excludeFrequent(@Nullable JsonValue value) {
+		public Builder excludeFrequent(@Nullable ExcludeFrequent value) {
 			this.excludeFrequent = value;
 			return this;
 		}
@@ -489,7 +487,7 @@ public final class Detector implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Detector
+	 * Json deserializer for {@link Detector}
 	 */
 	public static final JsonpDeserializer<Detector> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Detector::setupDetectorDeserializer);
@@ -500,7 +498,7 @@ public final class Detector implements ToJsonp {
 		op.add(Builder::customRules, JsonpDeserializer.arrayDeserializer(DetectionRule.DESERIALIZER), "custom_rules");
 		op.add(Builder::detectorDescription, JsonpDeserializer.stringDeserializer(), "detector_description");
 		op.add(Builder::detectorIndex, JsonpDeserializer.numberDeserializer(), "detector_index");
-		op.add(Builder::excludeFrequent, JsonpDeserializer.jsonValueDeserializer(), "exclude_frequent");
+		op.add(Builder::excludeFrequent, ExcludeFrequent.DESERIALIZER, "exclude_frequent");
 		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
 		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
 		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");

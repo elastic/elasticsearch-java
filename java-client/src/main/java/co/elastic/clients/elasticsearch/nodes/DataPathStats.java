@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.DataPathStats
-public final class DataPathStats implements ToJsonp {
+public final class DataPathStats implements JsonpSerializable {
 	private final String available;
 
 	private final Number availableInBytes;
@@ -72,7 +72,7 @@ public final class DataPathStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataPathStats(Builder builder) {
+	public DataPathStats(Builder builder) {
 
 		this.available = Objects.requireNonNull(builder.available, "available");
 		this.availableInBytes = Objects.requireNonNull(builder.availableInBytes, "available_in_bytes");
@@ -208,13 +208,13 @@ public final class DataPathStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("available");
 		generator.write(this.available);
@@ -447,7 +447,7 @@ public final class DataPathStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataPathStats
+	 * Json deserializer for {@link DataPathStats}
 	 */
 	public static final JsonpDeserializer<DataPathStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DataPathStats::setupDataPathStatsDeserializer);

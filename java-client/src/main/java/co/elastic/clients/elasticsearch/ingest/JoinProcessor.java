@@ -45,8 +45,9 @@ public final class JoinProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JoinProcessor(Builder builder) {
+	public JoinProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.separator = Objects.requireNonNull(builder.separator, "separator");
 		this.targetField = builder.targetField;
@@ -75,8 +76,9 @@ public final class JoinProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -150,7 +152,7 @@ public final class JoinProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JoinProcessor
+	 * Json deserializer for {@link JoinProcessor}
 	 */
 	public static final JsonpDeserializer<JoinProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, JoinProcessor::setupJoinProcessorDeserializer);

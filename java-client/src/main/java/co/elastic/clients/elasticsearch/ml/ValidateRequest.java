@@ -29,19 +29,20 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate.Request
-public final class ValidateRequest extends RequestBase implements ToJsonp {
+public final class ValidateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String jobId;
 
@@ -68,7 +69,7 @@ public final class ValidateRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ValidateRequest(Builder builder) {
+	public ValidateRequest(Builder builder) {
 
 		this.jobId = builder.jobId;
 		this.analysisConfig = builder.analysisConfig;
@@ -148,13 +149,13 @@ public final class ValidateRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.jobId != null) {
 
@@ -165,19 +166,19 @@ public final class ValidateRequest extends RequestBase implements ToJsonp {
 		if (this.analysisConfig != null) {
 
 			generator.writeKey("analysis_config");
-			this.analysisConfig.toJsonp(generator, mapper);
+			this.analysisConfig.serialize(generator, mapper);
 
 		}
 		if (this.analysisLimits != null) {
 
 			generator.writeKey("analysis_limits");
-			this.analysisLimits.toJsonp(generator, mapper);
+			this.analysisLimits.serialize(generator, mapper);
 
 		}
 		if (this.dataDescription != null) {
 
 			generator.writeKey("data_description");
-			this.dataDescription.toJsonp(generator, mapper);
+			this.dataDescription.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
@@ -189,7 +190,7 @@ public final class ValidateRequest extends RequestBase implements ToJsonp {
 		if (this.modelPlot != null) {
 
 			generator.writeKey("model_plot");
-			this.modelPlot.toJsonp(generator, mapper);
+			this.modelPlot.serialize(generator, mapper);
 
 		}
 		if (this.modelSnapshotRetentionDays != null) {
@@ -344,7 +345,7 @@ public final class ValidateRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ValidateRequest
+	 * Json deserializer for {@link ValidateRequest}
 	 */
 	public static final JsonpDeserializer<ValidateRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ValidateRequest::setupValidateRequestDeserializer);

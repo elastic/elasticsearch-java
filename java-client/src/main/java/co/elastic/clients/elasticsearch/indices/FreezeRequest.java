@@ -63,7 +63,7 @@ public final class FreezeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FreezeRequest(Builder builder) {
+	public FreezeRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;

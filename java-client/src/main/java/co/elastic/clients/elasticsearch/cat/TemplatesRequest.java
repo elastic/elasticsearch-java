@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.templates.Request
@@ -41,7 +42,7 @@ public final class TemplatesRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TemplatesRequest(Builder builder) {
+	public TemplatesRequest(Builder builder) {
 
 		this.name = builder.name;
 

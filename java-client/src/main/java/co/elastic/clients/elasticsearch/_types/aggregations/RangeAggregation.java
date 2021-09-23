@@ -36,6 +36,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,8 +56,9 @@ public final class RangeAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RangeAggregation(Builder builder) {
+	public RangeAggregation(Builder builder) {
 		super(builder);
+
 		this.field = builder.field;
 		this.ranges = builder.ranges;
 		this.script = builder.script;
@@ -96,8 +98,9 @@ public final class RangeAggregation extends BucketAggregationBase {
 		return this.keyed;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
 
 			generator.writeKey("field");
@@ -109,7 +112,7 @@ public final class RangeAggregation extends BucketAggregationBase {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (AggregationRange item0 : this.ranges) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -235,7 +238,7 @@ public final class RangeAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RangeAggregation
+	 * Json deserializer for {@link RangeAggregation}
 	 */
 	public static final JsonpDeserializer<RangeAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RangeAggregation::setupRangeAggregationDeserializer);

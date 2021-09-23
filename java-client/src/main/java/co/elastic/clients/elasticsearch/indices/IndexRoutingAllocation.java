@@ -26,19 +26,19 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocation
-public final class IndexRoutingAllocation implements ToJsonp {
+public final class IndexRoutingAllocation implements JsonpSerializable {
 	@Nullable
-	private final JsonValue enable;
+	private final IndexRoutingAllocationOptions enable;
 
 	@Nullable
 	private final IndexRoutingAllocationInclude include;
@@ -51,7 +51,7 @@ public final class IndexRoutingAllocation implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexRoutingAllocation(Builder builder) {
+	public IndexRoutingAllocation(Builder builder) {
 
 		this.enable = builder.enable;
 		this.include = builder.include;
@@ -64,7 +64,7 @@ public final class IndexRoutingAllocation implements ToJsonp {
 	 * API name: {@code enable}
 	 */
 	@Nullable
-	public JsonValue enable() {
+	public IndexRoutingAllocationOptions enable() {
 		return this.enable;
 	}
 
@@ -95,36 +95,35 @@ public final class IndexRoutingAllocation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.enable != null) {
 
 			generator.writeKey("enable");
-			generator.write(this.enable);
-
+			this.enable.serialize(generator, mapper);
 		}
 		if (this.include != null) {
 
 			generator.writeKey("include");
-			this.include.toJsonp(generator, mapper);
+			this.include.serialize(generator, mapper);
 
 		}
 		if (this.initialRecovery != null) {
 
 			generator.writeKey("initial_recovery");
-			this.initialRecovery.toJsonp(generator, mapper);
+			this.initialRecovery.serialize(generator, mapper);
 
 		}
 		if (this.disk != null) {
 
 			generator.writeKey("disk");
-			this.disk.toJsonp(generator, mapper);
+			this.disk.serialize(generator, mapper);
 
 		}
 
@@ -137,7 +136,7 @@ public final class IndexRoutingAllocation implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<IndexRoutingAllocation> {
 		@Nullable
-		private JsonValue enable;
+		private IndexRoutingAllocationOptions enable;
 
 		@Nullable
 		private IndexRoutingAllocationInclude include;
@@ -151,7 +150,7 @@ public final class IndexRoutingAllocation implements ToJsonp {
 		/**
 		 * API name: {@code enable}
 		 */
-		public Builder enable(@Nullable JsonValue value) {
+		public Builder enable(@Nullable IndexRoutingAllocationOptions value) {
 			this.enable = value;
 			return this;
 		}
@@ -219,7 +218,7 @@ public final class IndexRoutingAllocation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexRoutingAllocation
+	 * Json deserializer for {@link IndexRoutingAllocation}
 	 */
 	public static final JsonpDeserializer<IndexRoutingAllocation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexRoutingAllocation::setupIndexRoutingAllocationDeserializer);
@@ -227,7 +226,7 @@ public final class IndexRoutingAllocation implements ToJsonp {
 	protected static void setupIndexRoutingAllocationDeserializer(
 			DelegatingDeserializer<IndexRoutingAllocation.Builder> op) {
 
-		op.add(Builder::enable, JsonpDeserializer.jsonValueDeserializer(), "enable");
+		op.add(Builder::enable, IndexRoutingAllocationOptions.DESERIALIZER, "enable");
 		op.add(Builder::include, IndexRoutingAllocationInclude.DESERIALIZER, "include");
 		op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery.DESERIALIZER, "initial_recovery");
 		op.add(Builder::disk, IndexRoutingAllocationDisk.DESERIALIZER, "disk");

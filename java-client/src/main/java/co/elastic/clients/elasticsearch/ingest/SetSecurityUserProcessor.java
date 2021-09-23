@@ -46,8 +46,9 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SetSecurityUserProcessor(Builder builder) {
+	public SetSecurityUserProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.properties = builder.properties;
 
@@ -68,8 +69,9 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 		return this.properties;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -156,7 +158,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SetSecurityUserProcessor
+	 * Json deserializer for {@link SetSecurityUserProcessor}
 	 */
 	public static final JsonpDeserializer<SetSecurityUserProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer);

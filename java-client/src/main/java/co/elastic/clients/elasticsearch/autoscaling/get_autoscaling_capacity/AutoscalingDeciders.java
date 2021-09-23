@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingDeciders
-public final class AutoscalingDeciders implements ToJsonp {
+public final class AutoscalingDeciders implements JsonpSerializable {
 	private final AutoscalingCapacity requiredCapacity;
 
 	private final AutoscalingCapacity currentCapacity;
@@ -53,7 +53,7 @@ public final class AutoscalingDeciders implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoscalingDeciders(Builder builder) {
+	public AutoscalingDeciders(Builder builder) {
 
 		this.requiredCapacity = Objects.requireNonNull(builder.requiredCapacity, "required_capacity");
 		this.currentCapacity = Objects.requireNonNull(builder.currentCapacity, "current_capacity");
@@ -93,24 +93,24 @@ public final class AutoscalingDeciders implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("required_capacity");
-		this.requiredCapacity.toJsonp(generator, mapper);
+		this.requiredCapacity.serialize(generator, mapper);
 
 		generator.writeKey("current_capacity");
-		this.currentCapacity.toJsonp(generator, mapper);
+		this.currentCapacity.serialize(generator, mapper);
 
 		generator.writeKey("current_nodes");
 		generator.writeStartArray();
 		for (AutoscalingNode item0 : this.currentNodes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -119,7 +119,7 @@ public final class AutoscalingDeciders implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, AutoscalingDecider> item0 : this.deciders.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -261,7 +261,7 @@ public final class AutoscalingDeciders implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoscalingDeciders
+	 * Json deserializer for {@link AutoscalingDeciders}
 	 */
 	public static final JsonpDeserializer<AutoscalingDeciders> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AutoscalingDeciders::setupAutoscalingDecidersDeserializer);

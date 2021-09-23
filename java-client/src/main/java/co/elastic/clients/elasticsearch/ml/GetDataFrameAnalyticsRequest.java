@@ -36,6 +36,7 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics.Request
@@ -57,7 +58,7 @@ public final class GetDataFrameAnalyticsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDataFrameAnalyticsRequest(Builder builder) {
+	public GetDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.allowNoMatch = builder.allowNoMatch;

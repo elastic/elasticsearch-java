@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesSequences
-public final class EqlFeaturesSequences implements ToJsonp {
+public final class EqlFeaturesSequences implements JsonpSerializable {
 	private final Number sequenceQueriesThree;
 
 	private final Number sequenceQueriesFour;
@@ -51,7 +51,7 @@ public final class EqlFeaturesSequences implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EqlFeaturesSequences(Builder builder) {
+	public EqlFeaturesSequences(Builder builder) {
 
 		this.sequenceQueriesThree = Objects.requireNonNull(builder.sequenceQueriesThree, "sequence_queries_three");
 		this.sequenceQueriesFour = Objects.requireNonNull(builder.sequenceQueriesFour, "sequence_queries_four");
@@ -108,13 +108,13 @@ public final class EqlFeaturesSequences implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("sequence_queries_three");
 		generator.write(this.sequenceQueriesThree.doubleValue());
@@ -217,7 +217,7 @@ public final class EqlFeaturesSequences implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EqlFeaturesSequences
+	 * Json deserializer for {@link EqlFeaturesSequences}
 	 */
 	public static final JsonpDeserializer<EqlFeaturesSequences> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, EqlFeaturesSequences::setupEqlFeaturesSequencesDeserializer);

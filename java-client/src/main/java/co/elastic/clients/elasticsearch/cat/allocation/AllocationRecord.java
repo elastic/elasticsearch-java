@@ -26,17 +26,18 @@ package co.elastic.clients.elasticsearch.cat.allocation;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.AllocationRecord
-public final class AllocationRecord implements ToJsonp {
+public final class AllocationRecord implements JsonpSerializable {
 	@Nullable
 	private final String shards;
 
@@ -66,7 +67,7 @@ public final class AllocationRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AllocationRecord(Builder builder) {
+	public AllocationRecord(Builder builder) {
 
 		this.shards = builder.shards;
 		this.disk_indices = builder.disk_indices;
@@ -173,13 +174,13 @@ public final class AllocationRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.shards != null) {
 
@@ -376,7 +377,7 @@ public final class AllocationRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AllocationRecord
+	 * Json deserializer for {@link AllocationRecord}
 	 */
 	public static final JsonpDeserializer<AllocationRecord> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AllocationRecord::setupAllocationRecordDeserializer);

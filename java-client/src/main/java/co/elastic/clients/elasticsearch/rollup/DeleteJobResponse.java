@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -45,8 +46,9 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteJobResponse(Builder builder) {
+	public DeleteJobResponse(Builder builder) {
 		super(builder);
+
 		this.taskFailures = builder.taskFailures;
 
 	}
@@ -59,14 +61,15 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 		return this.taskFailures;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.taskFailures != null) {
 
 			generator.writeKey("task_failures");
 			generator.writeStartArray();
 			for (TaskFailure item0 : this.taskFailures) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -147,7 +150,7 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteJobResponse
+	 * Json deserializer for {@link DeleteJobResponse}
 	 */
 	public static final JsonpDeserializer<DeleteJobResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DeleteJobResponse::setupDeleteJobResponseDeserializer);

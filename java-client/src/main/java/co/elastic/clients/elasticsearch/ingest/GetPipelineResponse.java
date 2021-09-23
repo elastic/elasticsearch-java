@@ -31,12 +31,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: ingest.get_pipeline.Response
 public final class GetPipelineResponse extends AdditionalProperties<String, Pipeline> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetPipelineResponse(Builder builder) {
+	public GetPipelineResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -71,7 +72,7 @@ public final class GetPipelineResponse extends AdditionalProperties<String, Pipe
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetPipelineResponse
+	 * Json deserializer for {@link GetPipelineResponse}
 	 */
 	public static final JsonpDeserializer<GetPipelineResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer);

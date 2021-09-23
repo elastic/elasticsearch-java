@@ -29,10 +29,10 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -47,7 +47,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Request
-public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
+public final class BulkRequest<TSource> extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String type;
 
@@ -64,7 +64,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BulkRequest(Builder<TSource> builder) {
+	public BulkRequest(Builder<TSource> builder) {
 
 		this.type = builder.type;
 		this.systemId = Objects.requireNonNull(builder.systemId, "system_id");
@@ -122,7 +122,7 @@ public final class BulkRequest<TSource> extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
 		for (JsonValue item0 : this.value) {
 			generator.write(item0);

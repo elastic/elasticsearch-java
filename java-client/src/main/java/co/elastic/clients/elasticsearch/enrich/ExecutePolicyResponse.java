@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.enrich.execute_policy.ExecuteEnrichPolic
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.Response
-public final class ExecutePolicyResponse implements ToJsonp {
+public final class ExecutePolicyResponse implements JsonpSerializable {
 	private final ExecuteEnrichPolicyStatus status;
 
 	@Nullable
@@ -46,7 +46,7 @@ public final class ExecutePolicyResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutePolicyResponse(Builder builder) {
+	public ExecutePolicyResponse(Builder builder) {
 
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.taskId = builder.taskId;
@@ -71,16 +71,16 @@ public final class ExecutePolicyResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("status");
-		this.status.toJsonp(generator, mapper);
+		this.status.serialize(generator, mapper);
 
 		if (this.taskId != null) {
 
@@ -141,7 +141,7 @@ public final class ExecutePolicyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecutePolicyResponse
+	 * Json deserializer for {@link ExecutePolicyResponse}
 	 */
 	public static final JsonpDeserializer<ExecutePolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExecutePolicyResponse::setupExecutePolicyResponseDeserializer);

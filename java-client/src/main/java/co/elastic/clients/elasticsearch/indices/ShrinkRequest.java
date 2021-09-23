@@ -27,11 +27,12 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -44,7 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shrink.Request
-public final class ShrinkRequest extends RequestBase implements ToJsonp {
+public final class ShrinkRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	private final String target;
@@ -62,11 +63,11 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 	private final Map<String, Alias> aliases;
 
 	@Nullable
-	private final Map<String, JsonValue> settings;
+	private final Map<String, JsonData> settings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShrinkRequest(Builder builder) {
+	public ShrinkRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.target = Objects.requireNonNull(builder.target, "target");
@@ -139,20 +140,20 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> settings() {
+	public Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aliases != null) {
 
@@ -160,7 +161,7 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -170,9 +171,9 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.settings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -204,7 +205,7 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 		private Map<String, Alias> aliases;
 
 		@Nullable
-		private Map<String, JsonValue> settings;
+		private Map<String, JsonData> settings;
 
 		/**
 		 * The name of the source index to shrink
@@ -293,7 +294,7 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonValue> value) {
+		public Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
 			return this;
 		}
@@ -301,7 +302,7 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
 		 */
-		public Builder putSettings(String key, JsonValue value) {
+		public Builder putSettings(String key, JsonData value) {
 			if (this.settings == null) {
 				this.settings = new HashMap<>();
 			}
@@ -324,7 +325,7 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShrinkRequest
+	 * Json deserializer for {@link ShrinkRequest}
 	 */
 	public static final JsonpDeserializer<ShrinkRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShrinkRequest::setupShrinkRequestDeserializer);
@@ -332,8 +333,7 @@ public final class ShrinkRequest extends RequestBase implements ToJsonp {
 	protected static void setupShrinkRequestDeserializer(DelegatingDeserializer<ShrinkRequest.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"settings");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "settings");
 
 	}
 

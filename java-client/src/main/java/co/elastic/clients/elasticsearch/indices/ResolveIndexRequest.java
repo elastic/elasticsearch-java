@@ -51,7 +51,7 @@ public final class ResolveIndexRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResolveIndexRequest(Builder builder) {
+	public ResolveIndexRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.expandWildcards = builder.expandWildcards;

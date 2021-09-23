@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,14 +36,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.Retries
-public final class Retries implements ToJsonp {
+public final class Retries implements JsonpSerializable {
 	private final Number bulk;
 
 	private final Number search;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Retries(Builder builder) {
+	public Retries(Builder builder) {
 
 		this.bulk = Objects.requireNonNull(builder.bulk, "bulk");
 		this.search = Objects.requireNonNull(builder.search, "search");
@@ -67,13 +67,13 @@ public final class Retries implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bulk");
 		generator.write(this.bulk.doubleValue());
@@ -124,7 +124,7 @@ public final class Retries implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Retries
+	 * Json deserializer for {@link Retries}
 	 */
 	public static final JsonpDeserializer<Retries> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Retries::setupRetriesDeserializer);

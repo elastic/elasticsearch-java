@@ -26,17 +26,18 @@ package co.elastic.clients.elasticsearch.cat.health;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.HealthRecord
-public final class HealthRecord implements ToJsonp {
+public final class HealthRecord implements JsonpSerializable {
 	@Nullable
 	private final JsonValue epoch;
 
@@ -81,7 +82,7 @@ public final class HealthRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HealthRecord(Builder builder) {
+	public HealthRecord(Builder builder) {
 
 		this.epoch = builder.epoch;
 		this.timestamp = builder.timestamp;
@@ -243,13 +244,13 @@ public final class HealthRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.epoch != null) {
 
@@ -541,7 +542,7 @@ public final class HealthRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HealthRecord
+	 * Json deserializer for {@link HealthRecord}
 	 */
 	public static final JsonpDeserializer<HealthRecord> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, HealthRecord::setupHealthRecordDeserializer);

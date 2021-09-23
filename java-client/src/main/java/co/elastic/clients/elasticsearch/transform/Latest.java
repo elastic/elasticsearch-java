@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,14 +39,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Latest
-public final class Latest implements ToJsonp {
+public final class Latest implements JsonpSerializable {
 	private final String sort;
 
 	private final List<String> uniqueKey;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Latest(Builder builder) {
+	public Latest(Builder builder) {
 
 		this.sort = Objects.requireNonNull(builder.sort, "sort");
 		this.uniqueKey = Objects.requireNonNull(builder.uniqueKey, "unique_key");
@@ -74,13 +74,13 @@ public final class Latest implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("sort");
 		generator.write(this.sort);
@@ -161,7 +161,7 @@ public final class Latest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Latest
+	 * Json deserializer for {@link Latest}
 	 */
 	public static final JsonpDeserializer<Latest> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Latest::setupLatestDeserializer);

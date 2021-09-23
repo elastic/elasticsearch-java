@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -45,8 +46,9 @@ public final class Slm extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Slm(Builder builder) {
+	public Slm(Builder builder) {
 		super(builder);
+
 		this.policyCount = builder.policyCount;
 		this.policyStats = builder.policyStats;
 
@@ -68,8 +70,9 @@ public final class Slm extends Base {
 		return this.policyStats;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.policyCount != null) {
 
 			generator.writeKey("policy_count");
@@ -79,7 +82,7 @@ public final class Slm extends Base {
 		if (this.policyStats != null) {
 
 			generator.writeKey("policy_stats");
-			this.policyStats.toJsonp(generator, mapper);
+			this.policyStats.serialize(generator, mapper);
 
 		}
 
@@ -140,7 +143,7 @@ public final class Slm extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Slm
+	 * Json deserializer for {@link Slm}
 	 */
 	public static final JsonpDeserializer<Slm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Slm::setupSlmDeserializer);

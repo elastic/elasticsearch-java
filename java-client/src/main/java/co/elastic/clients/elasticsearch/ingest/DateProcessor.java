@@ -54,8 +54,9 @@ public final class DateProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DateProcessor(Builder builder) {
+	public DateProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.formats = Objects.requireNonNull(builder.formats, "formats");
 		this.locale = builder.locale;
@@ -102,8 +103,9 @@ public final class DateProcessor extends ProcessorBase {
 		return this.timezone;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -235,7 +237,7 @@ public final class DateProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DateProcessor
+	 * Json deserializer for {@link DateProcessor}
 	 */
 	public static final JsonpDeserializer<DateProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DateProcessor::setupDateProcessorDeserializer);

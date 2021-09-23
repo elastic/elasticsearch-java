@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ingest.delete_pipeline.Response
 public final class DeletePipelineResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeletePipelineResponse(Builder builder) {
+	public DeletePipelineResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeletePipelineResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeletePipelineResponse
+	 * Json deserializer for {@link DeletePipelineResponse}
 	 */
 	public static final JsonpDeserializer<DeletePipelineResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DeletePipelineResponse::setupDeletePipelineResponseDeserializer);

@@ -26,20 +26,21 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettings
-public class IndexSettings implements ToJsonp {
+public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final JsonValue numberOfShards;
 
@@ -50,7 +51,7 @@ public class IndexSettings implements ToJsonp {
 	private final Number numberOfRoutingShards;
 
 	@Nullable
-	private final JsonValue checkOnStartup;
+	private final IndexCheckOnStartup checkOnStartup;
 
 	@Nullable
 	private final String codec;
@@ -65,7 +66,7 @@ public class IndexSettings implements ToJsonp {
 	private final Boolean loadFixedBitsetFiltersEagerly;
 
 	@Nullable
-	private final JsonValue hidden;
+	private final String hidden;
 
 	@Nullable
 	private final String autoExpandReplicas;
@@ -143,7 +144,7 @@ public class IndexSettings implements ToJsonp {
 	private final IndexVersioning version;
 
 	@Nullable
-	private final JsonValue verifiedBeforeClose;
+	private final String verifiedBeforeClose;
 
 	@Nullable
 	private final JsonValue format;
@@ -155,7 +156,7 @@ public class IndexSettings implements ToJsonp {
 	private final String translog_durability;
 
 	@Nullable
-	private final JsonValue queryString_lenient;
+	private final String queryString_lenient;
 
 	@Nullable
 	private final JsonValue priority;
@@ -168,7 +169,7 @@ public class IndexSettings implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexSettings(AbstractBuilder<?> builder) {
+	public IndexSettings(AbstractBuilder<?> builder) {
 
 		this.numberOfShards = builder.numberOfShards;
 		this.numberOfReplicas = builder.numberOfReplicas;
@@ -243,7 +244,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code check_on_startup}
 	 */
 	@Nullable
-	public JsonValue checkOnStartup() {
+	public IndexCheckOnStartup checkOnStartup() {
 		return this.checkOnStartup;
 	}
 
@@ -283,7 +284,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code hidden}
 	 */
 	@Nullable
-	public JsonValue hidden() {
+	public String hidden() {
 		return this.hidden;
 	}
 
@@ -491,7 +492,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code verified_before_close}
 	 */
 	@Nullable
-	public JsonValue verifiedBeforeClose() {
+	public String verifiedBeforeClose() {
 		return this.verifiedBeforeClose;
 	}
 
@@ -523,7 +524,7 @@ public class IndexSettings implements ToJsonp {
 	 * API name: {@code query_string.lenient}
 	 */
 	@Nullable
-	public JsonValue queryString_lenient() {
+	public String queryString_lenient() {
 		return this.queryString_lenient;
 	}
 
@@ -554,13 +555,13 @@ public class IndexSettings implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.numberOfShards != null) {
 
@@ -583,8 +584,7 @@ public class IndexSettings implements ToJsonp {
 		if (this.checkOnStartup != null) {
 
 			generator.writeKey("check_on_startup");
-			generator.write(this.checkOnStartup);
-
+			this.checkOnStartup.serialize(generator, mapper);
 		}
 		if (this.codec != null) {
 
@@ -679,7 +679,7 @@ public class IndexSettings implements ToJsonp {
 		if (this.blocks != null) {
 
 			generator.writeKey("blocks");
-			this.blocks.toJsonp(generator, mapper);
+			this.blocks.serialize(generator, mapper);
 
 		}
 		if (this.maxRefreshListeners != null) {
@@ -715,7 +715,7 @@ public class IndexSettings implements ToJsonp {
 		if (this.routing != null) {
 
 			generator.writeKey("routing");
-			this.routing.toJsonp(generator, mapper);
+			this.routing.serialize(generator, mapper);
 
 		}
 		if (this.gcDeletes != null) {
@@ -739,7 +739,7 @@ public class IndexSettings implements ToJsonp {
 		if (this.lifecycle != null) {
 
 			generator.writeKey("lifecycle");
-			this.lifecycle.toJsonp(generator, mapper);
+			this.lifecycle.serialize(generator, mapper);
 
 		}
 		if (this.providedName != null) {
@@ -763,7 +763,7 @@ public class IndexSettings implements ToJsonp {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			this.version.toJsonp(generator, mapper);
+			this.version.serialize(generator, mapper);
 
 		}
 		if (this.verifiedBeforeClose != null) {
@@ -811,7 +811,7 @@ public class IndexSettings implements ToJsonp {
 		if (this.analysis != null) {
 
 			generator.writeKey("analysis");
-			this.analysis.toJsonp(generator, mapper);
+			this.analysis.serialize(generator, mapper);
 
 		}
 
@@ -851,7 +851,7 @@ public class IndexSettings implements ToJsonp {
 		private Number numberOfRoutingShards;
 
 		@Nullable
-		private JsonValue checkOnStartup;
+		private IndexCheckOnStartup checkOnStartup;
 
 		@Nullable
 		private String codec;
@@ -866,7 +866,7 @@ public class IndexSettings implements ToJsonp {
 		private Boolean loadFixedBitsetFiltersEagerly;
 
 		@Nullable
-		private JsonValue hidden;
+		private String hidden;
 
 		@Nullable
 		private String autoExpandReplicas;
@@ -944,7 +944,7 @@ public class IndexSettings implements ToJsonp {
 		private IndexVersioning version;
 
 		@Nullable
-		private JsonValue verifiedBeforeClose;
+		private String verifiedBeforeClose;
 
 		@Nullable
 		private JsonValue format;
@@ -956,7 +956,7 @@ public class IndexSettings implements ToJsonp {
 		private String translog_durability;
 
 		@Nullable
-		private JsonValue queryString_lenient;
+		private String queryString_lenient;
 
 		@Nullable
 		private JsonValue priority;
@@ -994,7 +994,7 @@ public class IndexSettings implements ToJsonp {
 		/**
 		 * API name: {@code check_on_startup}
 		 */
-		public BuilderT checkOnStartup(@Nullable JsonValue value) {
+		public BuilderT checkOnStartup(@Nullable IndexCheckOnStartup value) {
 			this.checkOnStartup = value;
 			return self();
 		}
@@ -1034,7 +1034,7 @@ public class IndexSettings implements ToJsonp {
 		/**
 		 * API name: {@code hidden}
 		 */
-		public BuilderT hidden(@Nullable JsonValue value) {
+		public BuilderT hidden(@Nullable String value) {
 			this.hidden = value;
 			return self();
 		}
@@ -1270,7 +1270,7 @@ public class IndexSettings implements ToJsonp {
 		/**
 		 * API name: {@code verified_before_close}
 		 */
-		public BuilderT verifiedBeforeClose(@Nullable JsonValue value) {
+		public BuilderT verifiedBeforeClose(@Nullable String value) {
 			this.verifiedBeforeClose = value;
 			return self();
 		}
@@ -1302,7 +1302,7 @@ public class IndexSettings implements ToJsonp {
 		/**
 		 * API name: {@code query_string.lenient}
 		 */
-		public BuilderT queryString_lenient(@Nullable JsonValue value) {
+		public BuilderT queryString_lenient(@Nullable String value) {
 			this.queryString_lenient = value;
 			return self();
 		}
@@ -1345,7 +1345,7 @@ public class IndexSettings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexSettings
+	 * Json deserializer for {@link IndexSettings}
 	 */
 	public static final JsonpDeserializer<IndexSettings> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexSettings::setupIndexSettingsDeserializer);
@@ -1359,7 +1359,7 @@ public class IndexSettings implements ToJsonp {
 				"index.number_of_replicas");
 		op.add(AbstractBuilder::numberOfRoutingShards, JsonpDeserializer.numberDeserializer(),
 				"number_of_routing_shards", "index.number_of_routing_shards");
-		op.add(AbstractBuilder::checkOnStartup, JsonpDeserializer.jsonValueDeserializer(), "check_on_startup",
+		op.add(AbstractBuilder::checkOnStartup, IndexCheckOnStartup.DESERIALIZER, "check_on_startup",
 				"index.check_on_startup");
 		op.add(AbstractBuilder::codec, JsonpDeserializer.stringDeserializer(), "codec", "index.codec");
 		op.add(AbstractBuilder::routingPartitionSize, JsonpDeserializer.jsonValueDeserializer(),
@@ -1368,7 +1368,7 @@ public class IndexSettings implements ToJsonp {
 				"soft_deletes.retention_lease.period", "index.soft_deletes.retention_lease.period");
 		op.add(AbstractBuilder::loadFixedBitsetFiltersEagerly, JsonpDeserializer.booleanDeserializer(),
 				"load_fixed_bitset_filters_eagerly", "index.load_fixed_bitset_filters_eagerly");
-		op.add(AbstractBuilder::hidden, JsonpDeserializer.jsonValueDeserializer(), "hidden", "index.hidden");
+		op.add(AbstractBuilder::hidden, JsonpDeserializer.stringDeserializer(), "hidden", "index.hidden");
 		op.add(AbstractBuilder::autoExpandReplicas, JsonpDeserializer.stringDeserializer(), "auto_expand_replicas",
 				"index.auto_expand_replicas");
 		op.add(AbstractBuilder::search_idle_after, JsonpDeserializer.jsonValueDeserializer(), "search.idle.after",
@@ -1413,14 +1413,14 @@ public class IndexSettings implements ToJsonp {
 				"index.creation_date");
 		op.add(AbstractBuilder::uuid, JsonpDeserializer.stringDeserializer(), "uuid", "index.uuid");
 		op.add(AbstractBuilder::version, IndexVersioning.DESERIALIZER, "version", "index.version");
-		op.add(AbstractBuilder::verifiedBeforeClose, JsonpDeserializer.jsonValueDeserializer(), "verified_before_close",
+		op.add(AbstractBuilder::verifiedBeforeClose, JsonpDeserializer.stringDeserializer(), "verified_before_close",
 				"index.verified_before_close");
 		op.add(AbstractBuilder::format, JsonpDeserializer.jsonValueDeserializer(), "format", "index.format");
 		op.add(AbstractBuilder::maxSlicesPerScroll, JsonpDeserializer.numberDeserializer(), "max_slices_per_scroll",
 				"index.max_slices_per_scroll");
 		op.add(AbstractBuilder::translog_durability, JsonpDeserializer.stringDeserializer(), "translog.durability",
 				"index.translog.durability");
-		op.add(AbstractBuilder::queryString_lenient, JsonpDeserializer.jsonValueDeserializer(), "query_string.lenient",
+		op.add(AbstractBuilder::queryString_lenient, JsonpDeserializer.stringDeserializer(), "query_string.lenient",
 				"index.query_string.lenient");
 		op.add(AbstractBuilder::priority, JsonpDeserializer.jsonValueDeserializer(), "priority", "index.priority");
 		op.add(AbstractBuilder::topMetricsMaxSize, JsonpDeserializer.numberDeserializer(), "top_metrics_max_size");

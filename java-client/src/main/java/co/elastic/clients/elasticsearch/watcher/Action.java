@@ -23,28 +23,29 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.elasticsearch._types.TransformContainer;
+import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Action
-public final class Action implements ToJsonp {
+public final class Action implements JsonpSerializable {
 	@Nullable
-	private final JsonValue actionType;
+	private final ActionType actionType;
 
 	@Nullable
-	private final ConditionContainer condition;
+	private final Condition condition;
 
 	@Nullable
 	private final String foreach;
@@ -62,7 +63,7 @@ public final class Action implements ToJsonp {
 	private final JsonValue throttlePeriodInMillis;
 
 	@Nullable
-	private final TransformContainer transform;
+	private final Transform transform;
 
 	@Nullable
 	private final Index index;
@@ -75,7 +76,7 @@ public final class Action implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Action(Builder builder) {
+	public Action(Builder builder) {
 
 		this.actionType = builder.actionType;
 		this.condition = builder.condition;
@@ -95,7 +96,7 @@ public final class Action implements ToJsonp {
 	 * API name: {@code action_type}
 	 */
 	@Nullable
-	public JsonValue actionType() {
+	public ActionType actionType() {
 		return this.actionType;
 	}
 
@@ -103,7 +104,7 @@ public final class Action implements ToJsonp {
 	 * API name: {@code condition}
 	 */
 	@Nullable
-	public ConditionContainer condition() {
+	public Condition condition() {
 		return this.condition;
 	}
 
@@ -151,7 +152,7 @@ public final class Action implements ToJsonp {
 	 * API name: {@code transform}
 	 */
 	@Nullable
-	public TransformContainer transform() {
+	public Transform transform() {
 		return this.transform;
 	}
 
@@ -182,24 +183,23 @@ public final class Action implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.actionType != null) {
 
 			generator.writeKey("action_type");
-			generator.write(this.actionType);
-
+			this.actionType.serialize(generator, mapper);
 		}
 		if (this.condition != null) {
 
 			generator.writeKey("condition");
-			this.condition.toJsonp(generator, mapper);
+			this.condition.serialize(generator, mapper);
 
 		}
 		if (this.foreach != null) {
@@ -235,25 +235,25 @@ public final class Action implements ToJsonp {
 		if (this.transform != null) {
 
 			generator.writeKey("transform");
-			this.transform.toJsonp(generator, mapper);
+			this.transform.serialize(generator, mapper);
 
 		}
 		if (this.index != null) {
 
 			generator.writeKey("index");
-			this.index.toJsonp(generator, mapper);
+			this.index.serialize(generator, mapper);
 
 		}
 		if (this.logging != null) {
 
 			generator.writeKey("logging");
-			this.logging.toJsonp(generator, mapper);
+			this.logging.serialize(generator, mapper);
 
 		}
 		if (this.webhook != null) {
 
 			generator.writeKey("webhook");
-			this.webhook.toJsonp(generator, mapper);
+			this.webhook.serialize(generator, mapper);
 
 		}
 
@@ -266,10 +266,10 @@ public final class Action implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Action> {
 		@Nullable
-		private JsonValue actionType;
+		private ActionType actionType;
 
 		@Nullable
-		private ConditionContainer condition;
+		private Condition condition;
 
 		@Nullable
 		private String foreach;
@@ -287,7 +287,7 @@ public final class Action implements ToJsonp {
 		private JsonValue throttlePeriodInMillis;
 
 		@Nullable
-		private TransformContainer transform;
+		private Transform transform;
 
 		@Nullable
 		private Index index;
@@ -301,7 +301,7 @@ public final class Action implements ToJsonp {
 		/**
 		 * API name: {@code action_type}
 		 */
-		public Builder actionType(@Nullable JsonValue value) {
+		public Builder actionType(@Nullable ActionType value) {
 			this.actionType = value;
 			return this;
 		}
@@ -309,7 +309,7 @@ public final class Action implements ToJsonp {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(@Nullable ConditionContainer value) {
+		public Builder condition(@Nullable Condition value) {
 			this.condition = value;
 			return this;
 		}
@@ -317,8 +317,8 @@ public final class Action implements ToJsonp {
 		/**
 		 * API name: {@code condition}
 		 */
-		public Builder condition(Function<ConditionContainer.Builder, ObjectBuilder<ConditionContainer>> fn) {
-			return this.condition(fn.apply(new ConditionContainer.Builder()).build());
+		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
@@ -364,7 +364,7 @@ public final class Action implements ToJsonp {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(@Nullable TransformContainer value) {
+		public Builder transform(@Nullable Transform value) {
 			this.transform = value;
 			return this;
 		}
@@ -372,8 +372,8 @@ public final class Action implements ToJsonp {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(Function<TransformContainer.Builder, ObjectBuilder<TransformContainer>> fn) {
-			return this.transform(fn.apply(new TransformContainer.Builder()).build());
+		public Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+			return this.transform(fn.apply(new Transform.Builder()).build());
 		}
 
 		/**
@@ -436,21 +436,21 @@ public final class Action implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Action
+	 * Json deserializer for {@link Action}
 	 */
 	public static final JsonpDeserializer<Action> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Action::setupActionDeserializer);
 
 	protected static void setupActionDeserializer(DelegatingDeserializer<Action.Builder> op) {
 
-		op.add(Builder::actionType, JsonpDeserializer.jsonValueDeserializer(), "action_type");
-		op.add(Builder::condition, ConditionContainer.DESERIALIZER, "condition");
+		op.add(Builder::actionType, ActionType.DESERIALIZER, "action_type");
+		op.add(Builder::condition, Condition.DESERIALIZER, "condition");
 		op.add(Builder::foreach, JsonpDeserializer.stringDeserializer(), "foreach");
 		op.add(Builder::maxIterations, JsonpDeserializer.numberDeserializer(), "max_iterations");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::throttlePeriod, JsonpDeserializer.jsonValueDeserializer(), "throttle_period");
 		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.jsonValueDeserializer(), "throttle_period_in_millis");
-		op.add(Builder::transform, TransformContainer.DESERIALIZER, "transform");
+		op.add(Builder::transform, Transform.DESERIALIZER, "transform");
 		op.add(Builder::index, Index.DESERIALIZER, "index");
 		op.add(Builder::logging, Logging.DESERIALIZER, "logging");
 		op.add(Builder::webhook, ActionWebhook.DESERIALIZER, "webhook");

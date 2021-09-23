@@ -26,22 +26,21 @@ package co.elastic.clients.elasticsearch.shutdown.get_node;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.ShardMigrationStatus
-public final class ShardMigrationStatus implements ToJsonp {
-	private final JsonValue status;
+public final class ShardMigrationStatus implements JsonpSerializable {
+	private final ShutdownStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardMigrationStatus(Builder builder) {
+	public ShardMigrationStatus(Builder builder) {
 
 		this.status = Objects.requireNonNull(builder.status, "status");
 
@@ -50,23 +49,23 @@ public final class ShardMigrationStatus implements ToJsonp {
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public ShutdownStatus status() {
 		return this.status;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 	}
 
@@ -76,12 +75,12 @@ public final class ShardMigrationStatus implements ToJsonp {
 	 * Builder for {@link ShardMigrationStatus}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardMigrationStatus> {
-		private JsonValue status;
+		private ShutdownStatus status;
 
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(ShutdownStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -101,7 +100,7 @@ public final class ShardMigrationStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardMigrationStatus
+	 * Json deserializer for {@link ShardMigrationStatus}
 	 */
 	public static final JsonpDeserializer<ShardMigrationStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardMigrationStatus::setupShardMigrationStatusDeserializer);
@@ -109,7 +108,7 @@ public final class ShardMigrationStatus implements ToJsonp {
 	protected static void setupShardMigrationStatusDeserializer(
 			DelegatingDeserializer<ShardMigrationStatus.Builder> op) {
 
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::status, ShutdownStatus.DESERIALIZER, "status");
 
 	}
 

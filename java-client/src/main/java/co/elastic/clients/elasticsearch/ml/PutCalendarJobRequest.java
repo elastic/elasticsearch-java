@@ -44,7 +44,7 @@ public final class PutCalendarJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutCalendarJobRequest(Builder builder) {
+	public PutCalendarJobRequest(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");

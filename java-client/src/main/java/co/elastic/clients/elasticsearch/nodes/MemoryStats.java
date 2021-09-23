@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.MemoryStats
-public class MemoryStats implements ToJsonp {
+public class MemoryStats implements JsonpSerializable {
 	@Nullable
 	private final String resident;
 
@@ -64,7 +64,7 @@ public class MemoryStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MemoryStats(AbstractBuilder<?> builder) {
+	public MemoryStats(AbstractBuilder<?> builder) {
 
 		this.resident = builder.resident;
 		this.residentInBytes = builder.residentInBytes;
@@ -150,13 +150,13 @@ public class MemoryStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.resident != null) {
 
@@ -333,7 +333,7 @@ public class MemoryStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MemoryStats
+	 * Json deserializer for {@link MemoryStats}
 	 */
 	public static final JsonpDeserializer<MemoryStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MemoryStats::setupMemoryStatsDeserializer);

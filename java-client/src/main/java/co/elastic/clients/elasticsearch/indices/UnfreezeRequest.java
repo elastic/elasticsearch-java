@@ -63,7 +63,7 @@ public final class UnfreezeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UnfreezeRequest(Builder builder) {
+	public UnfreezeRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;

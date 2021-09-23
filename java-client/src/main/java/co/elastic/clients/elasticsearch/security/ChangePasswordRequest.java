@@ -29,19 +29,20 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.change_password.Request
-public final class ChangePasswordRequest extends RequestBase implements ToJsonp {
+public final class ChangePasswordRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String username;
 
@@ -53,7 +54,7 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ChangePasswordRequest(Builder builder) {
+	public ChangePasswordRequest(Builder builder) {
 
 		this.username = builder.username;
 		this.refresh = builder.refresh;
@@ -95,13 +96,13 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.password != null) {
 
@@ -173,7 +174,7 @@ public final class ChangePasswordRequest extends RequestBase implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ChangePasswordRequest
+	 * Json deserializer for {@link ChangePasswordRequest}
 	 */
 	public static final JsonpDeserializer<ChangePasswordRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ChangePasswordRequest::setupChangePasswordRequestDeserializer);

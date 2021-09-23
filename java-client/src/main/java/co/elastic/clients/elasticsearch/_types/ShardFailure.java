@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardFailure
-public final class ShardFailure implements ToJsonp {
+public final class ShardFailure implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
@@ -54,7 +54,7 @@ public final class ShardFailure implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardFailure(Builder builder) {
+	public ShardFailure(Builder builder) {
 
 		this.index = builder.index;
 		this.node = builder.node;
@@ -105,13 +105,13 @@ public final class ShardFailure implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.index != null) {
 
@@ -127,7 +127,7 @@ public final class ShardFailure implements ToJsonp {
 		}
 
 		generator.writeKey("reason");
-		this.reason.toJsonp(generator, mapper);
+		this.reason.serialize(generator, mapper);
 
 		generator.writeKey("shard");
 		generator.write(this.shard.doubleValue());
@@ -222,7 +222,7 @@ public final class ShardFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardFailure
+	 * Json deserializer for {@link ShardFailure}
 	 */
 	public static final JsonpDeserializer<ShardFailure> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardFailure::setupShardFailureDeserializer);

@@ -28,10 +28,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: cluster.delete_voting_config_exclusions.Response
 public final class DeleteVotingConfigExclusionsResponse {
-	protected DeleteVotingConfigExclusionsResponse() {
+	public DeleteVotingConfigExclusionsResponse() {
 	}
 
 	/**

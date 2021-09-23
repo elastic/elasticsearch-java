@@ -31,11 +31,12 @@ import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -50,7 +51,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.put_component_template.Request
-public final class PutComponentTemplateRequest extends RequestBase implements ToJsonp {
+public final class PutComponentTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -74,11 +75,11 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 	private final Number version;
 
 	@Nullable
-	private final Map<String, JsonValue> meta;
+	private final Map<String, JsonData> meta;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutComponentTemplateRequest(Builder builder) {
+	public PutComponentTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.create = builder.create;
@@ -165,23 +166,23 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 	 * API name: {@code _meta}
 	 */
 	@Nullable
-	public Map<String, JsonValue> meta() {
+	public Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("template");
-		this.template.toJsonp(generator, mapper);
+		this.template.serialize(generator, mapper);
 
 		if (this.aliases != null) {
 
@@ -189,7 +190,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 			generator.writeStartObject();
 			for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -198,13 +199,13 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 		if (this.mappings != null) {
 
 			generator.writeKey("mappings");
-			this.mappings.toJsonp(generator, mapper);
+			this.mappings.serialize(generator, mapper);
 
 		}
 		if (this.settings != null) {
 
 			generator.writeKey("settings");
-			this.settings.toJsonp(generator, mapper);
+			this.settings.serialize(generator, mapper);
 
 		}
 		if (this.version != null) {
@@ -217,9 +218,9 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 
 			generator.writeKey("_meta");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.meta.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -257,7 +258,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 		private Number version;
 
 		@Nullable
-		private Map<String, JsonValue> meta;
+		private Map<String, JsonData> meta;
 
 		/**
 		 * The name of the template
@@ -379,7 +380,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 		/**
 		 * API name: {@code _meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonValue> value) {
+		public Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
 			return this;
 		}
@@ -387,7 +388,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder putMeta(String key, JsonValue value) {
+		public Builder put_meta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}
@@ -410,7 +411,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutComponentTemplateRequest
+	 * Json deserializer for {@link PutComponentTemplateRequest}
 	 */
 	public static final JsonpDeserializer<PutComponentTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutComponentTemplateRequest::setupPutComponentTemplateRequestDeserializer);
@@ -423,8 +424,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings.DESERIALIZER, "settings");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"_meta");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
 
 	}
 

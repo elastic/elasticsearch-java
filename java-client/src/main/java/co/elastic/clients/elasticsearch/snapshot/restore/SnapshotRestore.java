@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.SnapshotRestore
-public final class SnapshotRestore implements ToJsonp {
+public final class SnapshotRestore implements JsonpSerializable {
 	private final List<String> indices;
 
 	private final String snapshot;
@@ -50,7 +50,7 @@ public final class SnapshotRestore implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotRestore(Builder builder) {
+	public SnapshotRestore(Builder builder) {
 
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
@@ -82,13 +82,13 @@ public final class SnapshotRestore implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("indices");
 		generator.writeStartArray();
@@ -102,7 +102,7 @@ public final class SnapshotRestore implements ToJsonp {
 		generator.write(this.snapshot);
 
 		generator.writeKey("shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 	}
 
@@ -183,7 +183,7 @@ public final class SnapshotRestore implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotRestore
+	 * Json deserializer for {@link SnapshotRestore}
 	 */
 	public static final JsonpDeserializer<SnapshotRestore> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SnapshotRestore::setupSnapshotRestoreDeserializer);

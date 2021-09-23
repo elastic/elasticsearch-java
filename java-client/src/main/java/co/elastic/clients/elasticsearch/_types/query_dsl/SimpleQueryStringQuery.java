@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -41,7 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringQuery
-public final class SimpleQueryStringQuery extends QueryBase {
+public final class SimpleQueryStringQuery extends QueryBase implements Query {
 	@Nullable
 	private final String analyzer;
 
@@ -52,7 +53,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	private final Boolean autoGenerateSynonymsPhraseQuery;
 
 	@Nullable
-	private final JsonValue defaultOperator;
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final List<String> fields;
@@ -82,8 +83,9 @@ public final class SimpleQueryStringQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SimpleQueryStringQuery(Builder builder) {
+	public SimpleQueryStringQuery(Builder builder) {
 		super(builder);
+
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
@@ -98,6 +100,14 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "simple_query_string";
 	}
 
 	/**
@@ -128,7 +138,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public JsonValue defaultOperator() {
+	public Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -203,8 +213,10 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		return this.quoteFieldSuffix;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
@@ -226,8 +238,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		if (this.defaultOperator != null) {
 
 			generator.writeKey("default_operator");
-			generator.write(this.defaultOperator);
-
+			this.defaultOperator.serialize(generator, mapper);
 		}
 		if (this.fields != null) {
 
@@ -287,6 +298,8 @@ public final class SimpleQueryStringQuery extends QueryBase {
 
 		}
 
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -307,7 +320,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		private Boolean autoGenerateSynonymsPhraseQuery;
 
 		@Nullable
-		private JsonValue defaultOperator;
+		private Operator defaultOperator;
 
 		@Nullable
 		private List<String> fields;
@@ -362,7 +375,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable JsonValue value) {
+		public Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -477,11 +490,9 @@ public final class SimpleQueryStringQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for SimpleQueryStringQuery
-	 */
-	public static final JsonpDeserializer<SimpleQueryStringQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimpleQueryStringQuery::setupSimpleQueryStringQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<SimpleQueryStringQuery.Builder, SimpleQueryStringQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(SimpleQueryStringQuery::setupSimpleQueryStringQueryDeserializer);
 
 	protected static void setupSimpleQueryStringQueryDeserializer(
 			DelegatingDeserializer<SimpleQueryStringQuery.Builder> op) {
@@ -490,7 +501,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		op.add(Builder::analyzeWildcard, JsonpDeserializer.booleanDeserializer(), "analyze_wildcard");
 		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),
 				"auto_generate_synonyms_phrase_query");
-		op.add(Builder::defaultOperator, JsonpDeserializer.jsonValueDeserializer(), "default_operator");
+		op.add(Builder::defaultOperator, Operator.DESERIALIZER, "default_operator");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::flags, JsonpDeserializer.jsonValueDeserializer(), "flags");
 		op.add(Builder::fuzzyMaxExpansions, JsonpDeserializer.numberDeserializer(), "fuzzy_max_expansions");

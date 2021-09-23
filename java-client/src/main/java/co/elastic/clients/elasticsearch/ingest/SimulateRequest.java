@@ -30,9 +30,9 @@ import co.elastic.clients.elasticsearch.ingest.simulate.Document;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,11 +42,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Request
-public final class SimulateRequest extends RequestBase implements ToJsonp {
+public final class SimulateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -61,7 +62,7 @@ public final class SimulateRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SimulateRequest(Builder builder) {
+	public SimulateRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.verbose = builder.verbose;
@@ -109,20 +110,20 @@ public final class SimulateRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.docs != null) {
 
 			generator.writeKey("docs");
 			generator.writeStartArray();
 			for (Document item0 : this.docs) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -131,7 +132,7 @@ public final class SimulateRequest extends RequestBase implements ToJsonp {
 		if (this.pipeline != null) {
 
 			generator.writeKey("pipeline");
-			this.pipeline.toJsonp(generator, mapper);
+			this.pipeline.serialize(generator, mapper);
 
 		}
 
@@ -246,7 +247,7 @@ public final class SimulateRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SimulateRequest
+	 * Json deserializer for {@link SimulateRequest}
 	 */
 	public static final JsonpDeserializer<SimulateRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SimulateRequest::setupSimulateRequestDeserializer);

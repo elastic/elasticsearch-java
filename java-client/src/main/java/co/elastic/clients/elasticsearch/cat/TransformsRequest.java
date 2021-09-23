@@ -35,6 +35,7 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Request
@@ -53,7 +54,7 @@ public final class TransformsRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TransformsRequest(Builder builder) {
+	public TransformsRequest(Builder builder) {
 
 		this.transformId = builder.transformId;
 		this.allowNoMatch = builder.allowNoMatch;

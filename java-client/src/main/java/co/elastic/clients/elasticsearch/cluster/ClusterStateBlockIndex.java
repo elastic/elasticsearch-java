@@ -27,13 +27,13 @@ import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.elasticsearch.indices.rollover.RolloverConditions;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -44,11 +44,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateBlockIndex
-public final class ClusterStateBlockIndex implements ToJsonp {
+public final class ClusterStateBlockIndex implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
@@ -95,14 +96,14 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 	private final Map<String, RolloverConditions> rolloverInfo;
 
 	@Nullable
-	private final Map<String, JsonValue> timestampRange;
+	private final Map<String, JsonData> timestampRange;
 
 	@Nullable
 	private final Boolean system;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterStateBlockIndex(Builder builder) {
+	public ClusterStateBlockIndex(Builder builder) {
 
 		this.description = builder.description;
 		this.retryable = builder.retryable;
@@ -248,7 +249,7 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 	 * API name: {@code timestamp_range}
 	 */
 	@Nullable
-	public Map<String, JsonValue> timestampRange() {
+	public Map<String, JsonData> timestampRange() {
 		return this.timestampRange;
 	}
 
@@ -263,13 +264,13 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -347,7 +348,7 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexSettings> item0 : this.settings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -388,7 +389,7 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, TypeMapping> item0 : this.mappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -400,7 +401,7 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, RolloverConditions> item0 : this.rolloverInfo.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -410,9 +411,9 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 
 			generator.writeKey("timestamp_range");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.timestampRange.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.timestampRange.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -479,7 +480,7 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 		private Map<String, RolloverConditions> rolloverInfo;
 
 		@Nullable
-		private Map<String, JsonValue> timestampRange;
+		private Map<String, JsonData> timestampRange;
 
 		@Nullable
 		private Boolean system;
@@ -745,7 +746,7 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 		/**
 		 * API name: {@code timestamp_range}
 		 */
-		public Builder timestampRange(@Nullable Map<String, JsonValue> value) {
+		public Builder timestampRange(@Nullable Map<String, JsonData> value) {
 			this.timestampRange = value;
 			return this;
 		}
@@ -753,7 +754,7 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #timestampRange(Map)}, creating the map if needed.
 		 */
-		public Builder putTimestampRange(String key, JsonValue value) {
+		public Builder putTimestampRange(String key, JsonData value) {
 			if (this.timestampRange == null) {
 				this.timestampRange = new HashMap<>();
 			}
@@ -784,7 +785,7 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterStateBlockIndex
+	 * Json deserializer for {@link ClusterStateBlockIndex}
 	 */
 	public static final JsonpDeserializer<ClusterStateBlockIndex> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterStateBlockIndex::setupClusterStateBlockIndexDeserializer);
@@ -813,8 +814,8 @@ public final class ClusterStateBlockIndex implements ToJsonp {
 		op.add(Builder::mappings, JsonpDeserializer.stringMapDeserializer(TypeMapping.DESERIALIZER), "mappings");
 		op.add(Builder::rolloverInfo, JsonpDeserializer.stringMapDeserializer(RolloverConditions.DESERIALIZER),
 				"rollover_info");
-		op.add(Builder::timestampRange,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "timestamp_range");
+		op.add(Builder::timestampRange, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+				"timestamp_range");
 		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
 
 	}

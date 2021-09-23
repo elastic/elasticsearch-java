@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.resolve_index;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,7 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexDataStreamsItem
-public final class ResolveIndexDataStreamsItem implements ToJsonp {
+public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	private final String name;
 
 	private final String timestampField;
@@ -48,7 +48,7 @@ public final class ResolveIndexDataStreamsItem implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResolveIndexDataStreamsItem(Builder builder) {
+	public ResolveIndexDataStreamsItem(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.timestampField = Objects.requireNonNull(builder.timestampField, "timestamp_field");
@@ -80,13 +80,13 @@ public final class ResolveIndexDataStreamsItem implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -174,7 +174,7 @@ public final class ResolveIndexDataStreamsItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ResolveIndexDataStreamsItem
+	 * Json deserializer for {@link ResolveIndexDataStreamsItem}
 	 */
 	public static final JsonpDeserializer<ResolveIndexDataStreamsItem> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ResolveIndexDataStreamsItem::setupResolveIndexDataStreamsItemDeserializer);

@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NestedAggregation
@@ -40,8 +41,9 @@ public final class NestedAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NestedAggregation(Builder builder) {
+	public NestedAggregation(Builder builder) {
 		super(builder);
+
 		this.path = builder.path;
 
 	}
@@ -54,8 +56,9 @@ public final class NestedAggregation extends BucketAggregationBase {
 		return this.path;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.path != null) {
 
 			generator.writeKey("path");
@@ -104,7 +107,7 @@ public final class NestedAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NestedAggregation
+	 * Json deserializer for {@link NestedAggregation}
 	 */
 	public static final JsonpDeserializer<NestedAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NestedAggregation::setupNestedAggregationDeserializer);

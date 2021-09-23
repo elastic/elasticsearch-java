@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,17 +38,17 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_settings.Response
-public final class GetSettingsResponse implements ToJsonp {
-	private final Map<String, JsonValue> persistent;
+public final class GetSettingsResponse implements JsonpSerializable {
+	private final Map<String, JsonData> persistent;
 
-	private final Map<String, JsonValue> transient_;
+	private final Map<String, JsonData> transient_;
 
 	@Nullable
-	private final Map<String, JsonValue> defaults;
+	private final Map<String, JsonData> defaults;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetSettingsResponse(Builder builder) {
+	public GetSettingsResponse(Builder builder) {
 
 		this.persistent = Objects.requireNonNull(builder.persistent, "persistent");
 		this.transient_ = Objects.requireNonNull(builder.transient_, "transient");
@@ -59,14 +59,14 @@ public final class GetSettingsResponse implements ToJsonp {
 	/**
 	 * API name: {@code persistent}
 	 */
-	public Map<String, JsonValue> persistent() {
+	public Map<String, JsonData> persistent() {
 		return this.persistent;
 	}
 
 	/**
 	 * API name: {@code transient}
 	 */
-	public Map<String, JsonValue> transient_() {
+	public Map<String, JsonData> transient_() {
 		return this.transient_;
 	}
 
@@ -74,35 +74,35 @@ public final class GetSettingsResponse implements ToJsonp {
 	 * API name: {@code defaults}
 	 */
 	@Nullable
-	public Map<String, JsonValue> defaults() {
+	public Map<String, JsonData> defaults() {
 		return this.defaults;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("persistent");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.persistent.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("transient");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.transient_.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -111,9 +111,9 @@ public final class GetSettingsResponse implements ToJsonp {
 
 			generator.writeKey("defaults");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.defaults.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.defaults.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -128,17 +128,17 @@ public final class GetSettingsResponse implements ToJsonp {
 	 * Builder for {@link GetSettingsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetSettingsResponse> {
-		private Map<String, JsonValue> persistent;
+		private Map<String, JsonData> persistent;
 
-		private Map<String, JsonValue> transient_;
+		private Map<String, JsonData> transient_;
 
 		@Nullable
-		private Map<String, JsonValue> defaults;
+		private Map<String, JsonData> defaults;
 
 		/**
 		 * API name: {@code persistent}
 		 */
-		public Builder persistent(Map<String, JsonValue> value) {
+		public Builder persistent(Map<String, JsonData> value) {
 			this.persistent = value;
 			return this;
 		}
@@ -146,7 +146,7 @@ public final class GetSettingsResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #persistent(Map)}, creating the map if needed.
 		 */
-		public Builder putPersistent(String key, JsonValue value) {
+		public Builder putPersistent(String key, JsonData value) {
 			if (this.persistent == null) {
 				this.persistent = new HashMap<>();
 			}
@@ -157,7 +157,7 @@ public final class GetSettingsResponse implements ToJsonp {
 		/**
 		 * API name: {@code transient}
 		 */
-		public Builder transient_(Map<String, JsonValue> value) {
+		public Builder transient_(Map<String, JsonData> value) {
 			this.transient_ = value;
 			return this;
 		}
@@ -165,7 +165,7 @@ public final class GetSettingsResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #transient_(Map)}, creating the map if needed.
 		 */
-		public Builder putTransient_(String key, JsonValue value) {
+		public Builder putTransient(String key, JsonData value) {
 			if (this.transient_ == null) {
 				this.transient_ = new HashMap<>();
 			}
@@ -176,7 +176,7 @@ public final class GetSettingsResponse implements ToJsonp {
 		/**
 		 * API name: {@code defaults}
 		 */
-		public Builder defaults(@Nullable Map<String, JsonValue> value) {
+		public Builder defaults(@Nullable Map<String, JsonData> value) {
 			this.defaults = value;
 			return this;
 		}
@@ -184,7 +184,7 @@ public final class GetSettingsResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #defaults(Map)}, creating the map if needed.
 		 */
-		public Builder putDefaults(String key, JsonValue value) {
+		public Builder putDefaults(String key, JsonData value) {
 			if (this.defaults == null) {
 				this.defaults = new HashMap<>();
 			}
@@ -207,19 +207,16 @@ public final class GetSettingsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetSettingsResponse
+	 * Json deserializer for {@link GetSettingsResponse}
 	 */
 	public static final JsonpDeserializer<GetSettingsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer);
 
 	protected static void setupGetSettingsResponseDeserializer(DelegatingDeserializer<GetSettingsResponse.Builder> op) {
 
-		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"persistent");
-		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"transient");
-		op.add(Builder::defaults, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"defaults");
+		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "persistent");
+		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "transient");
+		op.add(Builder::defaults, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "defaults");
 
 	}
 

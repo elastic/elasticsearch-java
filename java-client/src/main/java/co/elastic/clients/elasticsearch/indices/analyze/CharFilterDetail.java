@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.analyze;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,14 +39,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.CharFilterDetail
-public final class CharFilterDetail implements ToJsonp {
+public final class CharFilterDetail implements JsonpSerializable {
 	private final List<String> filteredText;
 
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CharFilterDetail(Builder builder) {
+	public CharFilterDetail(Builder builder) {
 
 		this.filteredText = Objects.requireNonNull(builder.filteredText, "filtered_text");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -70,13 +70,13 @@ public final class CharFilterDetail implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("filtered_text");
 		generator.writeStartArray();
@@ -151,7 +151,7 @@ public final class CharFilterDetail implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CharFilterDetail
+	 * Json deserializer for {@link CharFilterDetail}
 	 */
 	public static final JsonpDeserializer<CharFilterDetail> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CharFilterDetail::setupCharFilterDetailDeserializer);

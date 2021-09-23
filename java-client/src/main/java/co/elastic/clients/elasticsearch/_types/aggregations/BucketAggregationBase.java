@@ -33,18 +33,20 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketAggregationBase
-public abstract class BucketAggregationBase extends Aggregation {
+public abstract class BucketAggregationBase extends AggregationBase {
 	@Nullable
-	private final Map<String, AggregationContainer> aggregations;
+	private final Map<String, Aggregation> aggregations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BucketAggregationBase(AbstractBuilder<?> builder) {
+	public BucketAggregationBase(AbstractBuilder<?> builder) {
 		super(builder);
+
 		this.aggregations = builder.aggregations;
 
 	}
@@ -53,19 +55,20 @@ public abstract class BucketAggregationBase extends Aggregation {
 	 * API name: {@code aggregations}
 	 */
 	@Nullable
-	public Map<String, AggregationContainer> aggregations() {
+	public Map<String, Aggregation> aggregations() {
 		return this.aggregations;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.aggregations != null) {
 
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
-			for (Map.Entry<String, AggregationContainer> item0 : this.aggregations.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -76,14 +79,14 @@ public abstract class BucketAggregationBase extends Aggregation {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
-				Aggregation.AbstractBuilder<BuilderT> {
+				AggregationBase.AbstractBuilder<BuilderT> {
 		@Nullable
-		private Map<String, AggregationContainer> aggregations;
+		private Map<String, Aggregation> aggregations;
 
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public BuilderT aggregations(@Nullable Map<String, AggregationContainer> value) {
+		public BuilderT aggregations(@Nullable Map<String, Aggregation> value) {
 			this.aggregations = value;
 			return self();
 		}
@@ -91,7 +94,7 @@ public abstract class BucketAggregationBase extends Aggregation {
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public BuilderT putAggregations(String key, AggregationContainer value) {
+		public BuilderT putAggregations(String key, Aggregation value) {
 			if (this.aggregations == null) {
 				this.aggregations = new HashMap<>();
 			}
@@ -102,18 +105,15 @@ public abstract class BucketAggregationBase extends Aggregation {
 		/**
 		 * Set {@link #aggregations(Map)} to a singleton map.
 		 */
-		public BuilderT aggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this
-					.aggregations(Collections.singletonMap(key, fn.apply(new AggregationContainer.Builder()).build()));
+		public BuilderT aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public BuilderT putAggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.putAggregations(key, fn.apply(new AggregationContainer.Builder()).build());
+		public BuilderT putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 	}
@@ -121,9 +121,9 @@ public abstract class BucketAggregationBase extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBucketAggregationBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
-		Aggregation.setupAggregationDeserializer(op);
-		op.add(AbstractBuilder::aggregations,
-				JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER), "aggregations");
+		AggregationBase.setupAggregationBaseDeserializer(op);
+		op.add(AbstractBuilder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER),
+				"aggregations");
 
 	}
 

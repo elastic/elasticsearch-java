@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: indices.migrate_to_data_stream.Response
 public final class MigrateToDataStreamResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected MigrateToDataStreamResponse(Builder builder) {
+	public MigrateToDataStreamResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class MigrateToDataStreamResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MigrateToDataStreamResponse
+	 * Json deserializer for {@link MigrateToDataStreamResponse}
 	 */
 	public static final JsonpDeserializer<MigrateToDataStreamResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MigrateToDataStreamResponse::setupMigrateToDataStreamResponseDeserializer);

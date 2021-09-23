@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeAttributes
-public final class NodeAttributes implements ToJsonp {
+public final class NodeAttributes implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final String ephemeralId;
@@ -55,11 +54,11 @@ public final class NodeAttributes implements ToJsonp {
 	private final String transportAddress;
 
 	@Nullable
-	private final List<JsonValue> roles;
+	private final List<NodeRole> roles;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeAttributes(Builder builder) {
+	public NodeAttributes(Builder builder) {
 
 		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
 		this.ephemeralId = Objects.requireNonNull(builder.ephemeralId, "ephemeral_id");
@@ -120,20 +119,20 @@ public final class NodeAttributes implements ToJsonp {
 	 * API name: {@code roles}
 	 */
 	@Nullable
-	public List<JsonValue> roles() {
+	public List<NodeRole> roles() {
 		return this.roles;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("attributes");
 		generator.writeStartObject();
@@ -164,9 +163,8 @@ public final class NodeAttributes implements ToJsonp {
 
 			generator.writeKey("roles");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.roles) {
-				generator.write(item0);
-
+			for (NodeRole item0 : this.roles) {
+				item0.serialize(generator, mapper);
 			}
 			generator.writeEnd();
 
@@ -192,7 +190,7 @@ public final class NodeAttributes implements ToJsonp {
 		private String transportAddress;
 
 		@Nullable
-		private List<JsonValue> roles;
+		private List<NodeRole> roles;
 
 		/**
 		 * Lists node attributes.
@@ -258,7 +256,7 @@ public final class NodeAttributes implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(@Nullable List<JsonValue> value) {
+		public Builder roles(@Nullable List<NodeRole> value) {
 			this.roles = value;
 			return this;
 		}
@@ -266,7 +264,7 @@ public final class NodeAttributes implements ToJsonp {
 		/**
 		 * API name: {@code roles}
 		 */
-		public Builder roles(JsonValue... value) {
+		public Builder roles(NodeRole... value) {
 			this.roles = Arrays.asList(value);
 			return this;
 		}
@@ -274,7 +272,7 @@ public final class NodeAttributes implements ToJsonp {
 		/**
 		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
-		public Builder addRoles(JsonValue value) {
+		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {
 				this.roles = new ArrayList<>();
 			}
@@ -297,7 +295,7 @@ public final class NodeAttributes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeAttributes
+	 * Json deserializer for {@link NodeAttributes}
 	 */
 	public static final JsonpDeserializer<NodeAttributes> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeAttributes::setupNodeAttributesDeserializer);
@@ -310,7 +308,7 @@ public final class NodeAttributes implements ToJsonp {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "roles");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole.DESERIALIZER), "roles");
 
 	}
 

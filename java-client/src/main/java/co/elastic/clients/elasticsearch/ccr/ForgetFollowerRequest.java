@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.forget_follower.Request
-public final class ForgetFollowerRequest extends RequestBase implements ToJsonp {
+public final class ForgetFollowerRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
@@ -57,7 +57,7 @@ public final class ForgetFollowerRequest extends RequestBase implements ToJsonp 
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ForgetFollowerRequest(Builder builder) {
+	public ForgetFollowerRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.followerCluster = builder.followerCluster;
@@ -112,13 +112,13 @@ public final class ForgetFollowerRequest extends RequestBase implements ToJsonp 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.followerCluster != null) {
 
@@ -225,7 +225,7 @@ public final class ForgetFollowerRequest extends RequestBase implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ForgetFollowerRequest
+	 * Json deserializer for {@link ForgetFollowerRequest}
 	 */
 	public static final JsonpDeserializer<ForgetFollowerRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ForgetFollowerRequest::setupForgetFollowerRequestDeserializer);

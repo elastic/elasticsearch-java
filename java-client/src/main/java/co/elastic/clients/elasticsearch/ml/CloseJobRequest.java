@@ -54,7 +54,7 @@ public final class CloseJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloseJobRequest(Builder builder) {
+	public CloseJobRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.allowNoJobs = builder.allowNoJobs;

@@ -26,16 +26,16 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.AllocationDecision;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.ClusterInfo;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.CurrentNode;
+import co.elastic.clients.elasticsearch.cluster.allocation_explain.Decision;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.NodeAllocationExplanation;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.UnassignedInformation;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -48,7 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Response
-public final class AllocationExplainResponse implements ToJsonp {
+public final class AllocationExplainResponse implements JsonpSerializable {
 	@Nullable
 	private final String allocateExplanation;
 
@@ -59,25 +59,25 @@ public final class AllocationExplainResponse implements ToJsonp {
 	private final Number allocationDelayInMillis;
 
 	@Nullable
-	private final JsonValue canAllocate;
+	private final Decision canAllocate;
 
 	@Nullable
-	private final JsonValue canMoveToOtherNode;
+	private final Decision canMoveToOtherNode;
 
 	@Nullable
-	private final JsonValue canRebalanceCluster;
+	private final Decision canRebalanceCluster;
 
 	@Nullable
 	private final List<AllocationDecision> canRebalanceClusterDecisions;
 
 	@Nullable
-	private final JsonValue canRebalanceToOtherNode;
+	private final Decision canRebalanceToOtherNode;
 
 	@Nullable
 	private final List<AllocationDecision> canRemainDecisions;
 
 	@Nullable
-	private final JsonValue canRemainOnCurrentNode;
+	private final Decision canRemainOnCurrentNode;
 
 	@Nullable
 	private final ClusterInfo clusterInfo;
@@ -122,7 +122,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AllocationExplainResponse(Builder builder) {
+	public AllocationExplainResponse(Builder builder) {
 
 		this.allocateExplanation = builder.allocateExplanation;
 		this.allocationDelay = builder.allocationDelay;
@@ -180,7 +180,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 	 * API name: {@code can_allocate}
 	 */
 	@Nullable
-	public JsonValue canAllocate() {
+	public Decision canAllocate() {
 		return this.canAllocate;
 	}
 
@@ -188,7 +188,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 	 * API name: {@code can_move_to_other_node}
 	 */
 	@Nullable
-	public JsonValue canMoveToOtherNode() {
+	public Decision canMoveToOtherNode() {
 		return this.canMoveToOtherNode;
 	}
 
@@ -196,7 +196,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 	 * API name: {@code can_rebalance_cluster}
 	 */
 	@Nullable
-	public JsonValue canRebalanceCluster() {
+	public Decision canRebalanceCluster() {
 		return this.canRebalanceCluster;
 	}
 
@@ -212,7 +212,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 	 * API name: {@code can_rebalance_to_other_node}
 	 */
 	@Nullable
-	public JsonValue canRebalanceToOtherNode() {
+	public Decision canRebalanceToOtherNode() {
 		return this.canRebalanceToOtherNode;
 	}
 
@@ -228,7 +228,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 	 * API name: {@code can_remain_on_current_node}
 	 */
 	@Nullable
-	public JsonValue canRemainOnCurrentNode() {
+	public Decision canRemainOnCurrentNode() {
 		return this.canRemainOnCurrentNode;
 	}
 
@@ -351,13 +351,13 @@ public final class AllocationExplainResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allocateExplanation != null) {
 
@@ -380,27 +380,24 @@ public final class AllocationExplainResponse implements ToJsonp {
 		if (this.canAllocate != null) {
 
 			generator.writeKey("can_allocate");
-			generator.write(this.canAllocate);
-
+			this.canAllocate.serialize(generator, mapper);
 		}
 		if (this.canMoveToOtherNode != null) {
 
 			generator.writeKey("can_move_to_other_node");
-			generator.write(this.canMoveToOtherNode);
-
+			this.canMoveToOtherNode.serialize(generator, mapper);
 		}
 		if (this.canRebalanceCluster != null) {
 
 			generator.writeKey("can_rebalance_cluster");
-			generator.write(this.canRebalanceCluster);
-
+			this.canRebalanceCluster.serialize(generator, mapper);
 		}
 		if (this.canRebalanceClusterDecisions != null) {
 
 			generator.writeKey("can_rebalance_cluster_decisions");
 			generator.writeStartArray();
 			for (AllocationDecision item0 : this.canRebalanceClusterDecisions) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -409,15 +406,14 @@ public final class AllocationExplainResponse implements ToJsonp {
 		if (this.canRebalanceToOtherNode != null) {
 
 			generator.writeKey("can_rebalance_to_other_node");
-			generator.write(this.canRebalanceToOtherNode);
-
+			this.canRebalanceToOtherNode.serialize(generator, mapper);
 		}
 		if (this.canRemainDecisions != null) {
 
 			generator.writeKey("can_remain_decisions");
 			generator.writeStartArray();
 			for (AllocationDecision item0 : this.canRemainDecisions) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -426,13 +422,12 @@ public final class AllocationExplainResponse implements ToJsonp {
 		if (this.canRemainOnCurrentNode != null) {
 
 			generator.writeKey("can_remain_on_current_node");
-			generator.write(this.canRemainOnCurrentNode);
-
+			this.canRemainOnCurrentNode.serialize(generator, mapper);
 		}
 		if (this.clusterInfo != null) {
 
 			generator.writeKey("cluster_info");
-			this.clusterInfo.toJsonp(generator, mapper);
+			this.clusterInfo.serialize(generator, mapper);
 
 		}
 		if (this.configuredDelay != null) {
@@ -450,7 +445,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 		if (this.currentNode != null) {
 
 			generator.writeKey("current_node");
-			this.currentNode.toJsonp(generator, mapper);
+			this.currentNode.serialize(generator, mapper);
 
 		}
 
@@ -471,7 +466,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 			generator.writeKey("node_allocation_decisions");
 			generator.writeStartArray();
 			for (NodeAllocationExplanation item0 : this.nodeAllocationDecisions) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -506,7 +501,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 		if (this.unassignedInfo != null) {
 
 			generator.writeKey("unassigned_info");
-			this.unassignedInfo.toJsonp(generator, mapper);
+			this.unassignedInfo.serialize(generator, mapper);
 
 		}
 		if (this.note != null) {
@@ -534,25 +529,25 @@ public final class AllocationExplainResponse implements ToJsonp {
 		private Number allocationDelayInMillis;
 
 		@Nullable
-		private JsonValue canAllocate;
+		private Decision canAllocate;
 
 		@Nullable
-		private JsonValue canMoveToOtherNode;
+		private Decision canMoveToOtherNode;
 
 		@Nullable
-		private JsonValue canRebalanceCluster;
+		private Decision canRebalanceCluster;
 
 		@Nullable
 		private List<AllocationDecision> canRebalanceClusterDecisions;
 
 		@Nullable
-		private JsonValue canRebalanceToOtherNode;
+		private Decision canRebalanceToOtherNode;
 
 		@Nullable
 		private List<AllocationDecision> canRemainDecisions;
 
 		@Nullable
-		private JsonValue canRemainOnCurrentNode;
+		private Decision canRemainOnCurrentNode;
 
 		@Nullable
 		private ClusterInfo clusterInfo;
@@ -622,7 +617,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 		/**
 		 * API name: {@code can_allocate}
 		 */
-		public Builder canAllocate(@Nullable JsonValue value) {
+		public Builder canAllocate(@Nullable Decision value) {
 			this.canAllocate = value;
 			return this;
 		}
@@ -630,7 +625,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 		/**
 		 * API name: {@code can_move_to_other_node}
 		 */
-		public Builder canMoveToOtherNode(@Nullable JsonValue value) {
+		public Builder canMoveToOtherNode(@Nullable Decision value) {
 			this.canMoveToOtherNode = value;
 			return this;
 		}
@@ -638,7 +633,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 		/**
 		 * API name: {@code can_rebalance_cluster}
 		 */
-		public Builder canRebalanceCluster(@Nullable JsonValue value) {
+		public Builder canRebalanceCluster(@Nullable Decision value) {
 			this.canRebalanceCluster = value;
 			return this;
 		}
@@ -691,7 +686,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 		/**
 		 * API name: {@code can_rebalance_to_other_node}
 		 */
-		public Builder canRebalanceToOtherNode(@Nullable JsonValue value) {
+		public Builder canRebalanceToOtherNode(@Nullable Decision value) {
 			this.canRebalanceToOtherNode = value;
 			return this;
 		}
@@ -743,7 +738,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 		/**
 		 * API name: {@code can_remain_on_current_node}
 		 */
-		public Builder canRemainOnCurrentNode(@Nullable JsonValue value) {
+		public Builder canRemainOnCurrentNode(@Nullable Decision value) {
 			this.canRemainOnCurrentNode = value;
 			return this;
 		}
@@ -942,7 +937,7 @@ public final class AllocationExplainResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AllocationExplainResponse
+	 * Json deserializer for {@link AllocationExplainResponse}
 	 */
 	public static final JsonpDeserializer<AllocationExplainResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AllocationExplainResponse::setupAllocationExplainResponseDeserializer);
@@ -953,18 +948,16 @@ public final class AllocationExplainResponse implements ToJsonp {
 		op.add(Builder::allocateExplanation, JsonpDeserializer.stringDeserializer(), "allocate_explanation");
 		op.add(Builder::allocationDelay, JsonpDeserializer.stringDeserializer(), "allocation_delay");
 		op.add(Builder::allocationDelayInMillis, JsonpDeserializer.numberDeserializer(), "allocation_delay_in_millis");
-		op.add(Builder::canAllocate, JsonpDeserializer.jsonValueDeserializer(), "can_allocate");
-		op.add(Builder::canMoveToOtherNode, JsonpDeserializer.jsonValueDeserializer(), "can_move_to_other_node");
-		op.add(Builder::canRebalanceCluster, JsonpDeserializer.jsonValueDeserializer(), "can_rebalance_cluster");
+		op.add(Builder::canAllocate, Decision.DESERIALIZER, "can_allocate");
+		op.add(Builder::canMoveToOtherNode, Decision.DESERIALIZER, "can_move_to_other_node");
+		op.add(Builder::canRebalanceCluster, Decision.DESERIALIZER, "can_rebalance_cluster");
 		op.add(Builder::canRebalanceClusterDecisions,
 				JsonpDeserializer.arrayDeserializer(AllocationDecision.DESERIALIZER),
 				"can_rebalance_cluster_decisions");
-		op.add(Builder::canRebalanceToOtherNode, JsonpDeserializer.jsonValueDeserializer(),
-				"can_rebalance_to_other_node");
+		op.add(Builder::canRebalanceToOtherNode, Decision.DESERIALIZER, "can_rebalance_to_other_node");
 		op.add(Builder::canRemainDecisions, JsonpDeserializer.arrayDeserializer(AllocationDecision.DESERIALIZER),
 				"can_remain_decisions");
-		op.add(Builder::canRemainOnCurrentNode, JsonpDeserializer.jsonValueDeserializer(),
-				"can_remain_on_current_node");
+		op.add(Builder::canRemainOnCurrentNode, Decision.DESERIALIZER, "can_remain_on_current_node");
 		op.add(Builder::clusterInfo, ClusterInfo.DESERIALIZER, "cluster_info");
 		op.add(Builder::configuredDelay, JsonpDeserializer.stringDeserializer(), "configured_delay");
 		op.add(Builder::configuredDelayInMillis, JsonpDeserializer.numberDeserializer(), "configured_delay_in_millis");

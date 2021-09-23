@@ -23,8 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.elasticsearch._global.search.InnerHits;
+import co.elastic.clients.elasticsearch._core.search.InnerHits;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.HasParentQuery
-public final class HasParentQuery extends QueryBase {
+public final class HasParentQuery extends QueryBase implements Query {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -47,21 +48,30 @@ public final class HasParentQuery extends QueryBase {
 
 	private final String parentType;
 
-	private final QueryContainer query;
+	private final Query query;
 
 	@Nullable
 	private final Boolean score;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HasParentQuery(Builder builder) {
+	public HasParentQuery(Builder builder) {
 		super(builder);
+
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
 		this.parentType = Objects.requireNonNull(builder.parentType, "parent_type");
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.score = builder.score;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "has_parent";
 	}
 
 	/**
@@ -90,7 +100,7 @@ public final class HasParentQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -102,8 +112,10 @@ public final class HasParentQuery extends QueryBase {
 		return this.score;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
 
 			generator.writeKey("ignore_unmapped");
@@ -113,7 +125,7 @@ public final class HasParentQuery extends QueryBase {
 		if (this.innerHits != null) {
 
 			generator.writeKey("inner_hits");
-			this.innerHits.toJsonp(generator, mapper);
+			this.innerHits.serialize(generator, mapper);
 
 		}
 
@@ -121,7 +133,7 @@ public final class HasParentQuery extends QueryBase {
 		generator.write(this.parentType);
 
 		generator.writeKey("query");
-		this.query.toJsonp(generator, mapper);
+		this.query.serialize(generator, mapper);
 
 		if (this.score != null) {
 
@@ -129,6 +141,8 @@ public final class HasParentQuery extends QueryBase {
 			generator.write(this.score);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -146,7 +160,7 @@ public final class HasParentQuery extends QueryBase {
 
 		private String parentType;
 
-		private QueryContainer query;
+		private Query query;
 
 		@Nullable
 		private Boolean score;
@@ -185,7 +199,7 @@ public final class HasParentQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(QueryContainer value) {
+		public Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -193,8 +207,8 @@ public final class HasParentQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -224,18 +238,16 @@ public final class HasParentQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for HasParentQuery
-	 */
-	public static final JsonpDeserializer<HasParentQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HasParentQuery::setupHasParentQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<HasParentQuery.Builder, HasParentQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(HasParentQuery::setupHasParentQueryDeserializer);
 
 	protected static void setupHasParentQueryDeserializer(DelegatingDeserializer<HasParentQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 		op.add(Builder::innerHits, InnerHits.DESERIALIZER, "inner_hits");
 		op.add(Builder::parentType, JsonpDeserializer.stringDeserializer(), "parent_type");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
 		op.add(Builder::score, JsonpDeserializer.booleanDeserializer(), "score");
 
 	}

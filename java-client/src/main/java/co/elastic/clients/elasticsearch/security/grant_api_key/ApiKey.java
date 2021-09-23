@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.security.grant_api_key;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -41,18 +42,18 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.ApiKey
-public final class ApiKey implements ToJsonp {
+public final class ApiKey implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
 	private final JsonValue expiration;
 
 	@Nullable
-	private final List<Map<String, JsonValue>> roleDescriptors;
+	private final List<Map<String, JsonData>> roleDescriptors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ApiKey(Builder builder) {
+	public ApiKey(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.expiration = builder.expiration;
@@ -79,20 +80,20 @@ public final class ApiKey implements ToJsonp {
 	 * API name: {@code role_descriptors}
 	 */
 	@Nullable
-	public List<Map<String, JsonValue>> roleDescriptors() {
+	public List<Map<String, JsonData>> roleDescriptors() {
 		return this.roleDescriptors;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -107,11 +108,11 @@ public final class ApiKey implements ToJsonp {
 
 			generator.writeKey("role_descriptors");
 			generator.writeStartArray();
-			for (Map<String, JsonValue> item0 : this.roleDescriptors) {
+			for (Map<String, JsonData> item0 : this.roleDescriptors) {
 				generator.writeStartObject();
-				for (Map.Entry<String, JsonValue> item1 : item0.entrySet()) {
+				for (Map.Entry<String, JsonData> item1 : item0.entrySet()) {
 					generator.writeKey(item1.getKey());
-					generator.write(item1.getValue());
+					item1.getValue().serialize(generator, mapper);
 
 				}
 				generator.writeEnd();
@@ -135,7 +136,7 @@ public final class ApiKey implements ToJsonp {
 		private JsonValue expiration;
 
 		@Nullable
-		private List<Map<String, JsonValue>> roleDescriptors;
+		private List<Map<String, JsonData>> roleDescriptors;
 
 		/**
 		 * API name: {@code name}
@@ -156,7 +157,7 @@ public final class ApiKey implements ToJsonp {
 		/**
 		 * API name: {@code role_descriptors}
 		 */
-		public Builder roleDescriptors(@Nullable List<Map<String, JsonValue>> value) {
+		public Builder roleDescriptors(@Nullable List<Map<String, JsonData>> value) {
 			this.roleDescriptors = value;
 			return this;
 		}
@@ -164,7 +165,7 @@ public final class ApiKey implements ToJsonp {
 		/**
 		 * API name: {@code role_descriptors}
 		 */
-		public Builder roleDescriptors(Map<String, JsonValue>... value) {
+		public Builder roleDescriptors(Map<String, JsonData>... value) {
 			this.roleDescriptors = Arrays.asList(value);
 			return this;
 		}
@@ -172,7 +173,7 @@ public final class ApiKey implements ToJsonp {
 		/**
 		 * Add a value to {@link #roleDescriptors(List)}, creating the list if needed.
 		 */
-		public Builder addRoleDescriptors(Map<String, JsonValue> value) {
+		public Builder addRoleDescriptors(Map<String, JsonData> value) {
 			if (this.roleDescriptors == null) {
 				this.roleDescriptors = new ArrayList<>();
 			}
@@ -195,7 +196,7 @@ public final class ApiKey implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ApiKey
+	 * Json deserializer for {@link ApiKey}
 	 */
 	public static final JsonpDeserializer<ApiKey> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			ApiKey::setupApiKeyDeserializer);
@@ -205,8 +206,7 @@ public final class ApiKey implements ToJsonp {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::expiration, JsonpDeserializer.jsonValueDeserializer(), "expiration");
 		op.add(Builder::roleDescriptors,
-				JsonpDeserializer.arrayDeserializer(
-						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer())),
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER)),
 				"role_descriptors");
 
 	}

@@ -23,14 +23,14 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.elasticsearch._global.search.InnerHits;
+import co.elastic.clients.elasticsearch._core.search.InnerHits;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.HasChildQuery
-public final class HasChildQuery extends QueryBase {
+public final class HasChildQuery extends QueryBase implements Query {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -53,17 +53,18 @@ public final class HasChildQuery extends QueryBase {
 	@Nullable
 	private final Number minChildren;
 
-	private final QueryContainer query;
+	private final Query query;
 
 	@Nullable
-	private final JsonValue scoreMode;
+	private final ChildScoreMode scoreMode;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HasChildQuery(Builder builder) {
+	public HasChildQuery(Builder builder) {
 		super(builder);
+
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
 		this.maxChildren = builder.maxChildren;
@@ -72,6 +73,14 @@ public final class HasChildQuery extends QueryBase {
 		this.scoreMode = builder.scoreMode;
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "has_child";
 	}
 
 	/**
@@ -109,7 +118,7 @@ public final class HasChildQuery extends QueryBase {
 	/**
 	 * API name: {@code query}
 	 */
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -117,7 +126,7 @@ public final class HasChildQuery extends QueryBase {
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
-	public JsonValue scoreMode() {
+	public ChildScoreMode scoreMode() {
 		return this.scoreMode;
 	}
 
@@ -128,8 +137,10 @@ public final class HasChildQuery extends QueryBase {
 		return this.type;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
 
 			generator.writeKey("ignore_unmapped");
@@ -139,7 +150,7 @@ public final class HasChildQuery extends QueryBase {
 		if (this.innerHits != null) {
 
 			generator.writeKey("inner_hits");
-			this.innerHits.toJsonp(generator, mapper);
+			this.innerHits.serialize(generator, mapper);
 
 		}
 		if (this.maxChildren != null) {
@@ -156,17 +167,18 @@ public final class HasChildQuery extends QueryBase {
 		}
 
 		generator.writeKey("query");
-		this.query.toJsonp(generator, mapper);
+		this.query.serialize(generator, mapper);
 
 		if (this.scoreMode != null) {
 
 			generator.writeKey("score_mode");
-			generator.write(this.scoreMode);
-
+			this.scoreMode.serialize(generator, mapper);
 		}
 
 		generator.writeKey("type");
 		generator.write(this.type);
+
+		generator.writeEnd();
 
 	}
 
@@ -188,10 +200,10 @@ public final class HasChildQuery extends QueryBase {
 		@Nullable
 		private Number minChildren;
 
-		private QueryContainer query;
+		private Query query;
 
 		@Nullable
-		private JsonValue scoreMode;
+		private ChildScoreMode scoreMode;
 
 		private String type;
 
@@ -237,7 +249,7 @@ public final class HasChildQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(QueryContainer value) {
+		public Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -245,14 +257,14 @@ public final class HasChildQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code score_mode}
 		 */
-		public Builder scoreMode(@Nullable JsonValue value) {
+		public Builder scoreMode(@Nullable ChildScoreMode value) {
 			this.scoreMode = value;
 			return this;
 		}
@@ -284,11 +296,9 @@ public final class HasChildQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for HasChildQuery
-	 */
-	public static final JsonpDeserializer<HasChildQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HasChildQuery::setupHasChildQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<HasChildQuery.Builder, HasChildQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(HasChildQuery::setupHasChildQueryDeserializer);
 
 	protected static void setupHasChildQueryDeserializer(DelegatingDeserializer<HasChildQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
@@ -296,8 +306,8 @@ public final class HasChildQuery extends QueryBase {
 		op.add(Builder::innerHits, InnerHits.DESERIALIZER, "inner_hits");
 		op.add(Builder::maxChildren, JsonpDeserializer.numberDeserializer(), "max_children");
 		op.add(Builder::minChildren, JsonpDeserializer.numberDeserializer(), "min_children");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
-		op.add(Builder::scoreMode, JsonpDeserializer.jsonValueDeserializer(), "score_mode");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
+		op.add(Builder::scoreMode, ChildScoreMode.DESERIALIZER, "score_mode");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

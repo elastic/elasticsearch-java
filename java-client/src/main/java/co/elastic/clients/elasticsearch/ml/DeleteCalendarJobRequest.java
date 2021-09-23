@@ -44,7 +44,7 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteCalendarJobRequest(Builder builder) {
+	public DeleteCalendarJobRequest(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");

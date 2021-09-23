@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthcRealmsStatus
-public final class NodeInfoXpackSecurityAuthcRealmsStatus implements ToJsonp {
+public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable {
 	@Nullable
 	private final String enabled;
 
@@ -44,7 +44,7 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoXpackSecurityAuthcRealmsStatus(Builder builder) {
+	public NodeInfoXpackSecurityAuthcRealmsStatus(Builder builder) {
 
 		this.enabled = builder.enabled;
 		this.order = Objects.requireNonNull(builder.order, "order");
@@ -69,13 +69,13 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.enabled != null) {
 
@@ -131,7 +131,7 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoXpackSecurityAuthcRealmsStatus
+	 * Json deserializer for {@link NodeInfoXpackSecurityAuthcRealmsStatus}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcRealmsStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

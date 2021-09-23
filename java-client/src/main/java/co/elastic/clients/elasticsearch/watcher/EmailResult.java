@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.EmailResult
-public final class EmailResult implements ToJsonp {
+public final class EmailResult implements JsonpSerializable {
 	@Nullable
 	private final String account;
 
@@ -48,7 +48,7 @@ public final class EmailResult implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EmailResult(Builder builder) {
+	public EmailResult(Builder builder) {
 
 		this.account = builder.account;
 		this.message = Objects.requireNonNull(builder.message, "message");
@@ -82,13 +82,13 @@ public final class EmailResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.account != null) {
 
@@ -98,7 +98,7 @@ public final class EmailResult implements ToJsonp {
 		}
 
 		generator.writeKey("message");
-		this.message.toJsonp(generator, mapper);
+		this.message.serialize(generator, mapper);
 
 		if (this.reason != null) {
 
@@ -170,7 +170,7 @@ public final class EmailResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EmailResult
+	 * Json deserializer for {@link EmailResult}
 	 */
 	public static final JsonpDeserializer<EmailResult> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, EmailResult::setupEmailResultDeserializer);

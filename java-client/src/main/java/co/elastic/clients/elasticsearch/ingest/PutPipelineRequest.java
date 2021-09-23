@@ -27,11 +27,12 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -47,7 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.put_pipeline.Request
-public final class PutPipelineRequest extends RequestBase implements ToJsonp {
+public final class PutPipelineRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -57,23 +58,23 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	private final JsonValue timeout;
 
 	@Nullable
-	private final Map<String, JsonValue> meta;
+	private final Map<String, JsonData> meta;
 
 	@Nullable
 	private final String description;
 
 	@Nullable
-	private final List<ProcessorContainer> onFailure;
+	private final List<Processor> onFailure;
 
 	@Nullable
-	private final List<ProcessorContainer> processors;
+	private final List<Processor> processors;
 
 	@Nullable
 	private final Number version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutPipelineRequest(Builder builder) {
+	public PutPipelineRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.masterTimeout = builder.masterTimeout;
@@ -124,7 +125,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code _meta}
 	 */
 	@Nullable
-	public Map<String, JsonValue> meta() {
+	public Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -149,7 +150,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code on_failure}
 	 */
 	@Nullable
-	public List<ProcessorContainer> onFailure() {
+	public List<Processor> onFailure() {
 		return this.onFailure;
 	}
 
@@ -160,7 +161,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code processors}
 	 */
 	@Nullable
-	public List<ProcessorContainer> processors() {
+	public List<Processor> processors() {
 		return this.processors;
 	}
 
@@ -179,21 +180,21 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.meta != null) {
 
 			generator.writeKey("_meta");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.meta.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -209,8 +210,8 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("on_failure");
 			generator.writeStartArray();
-			for (ProcessorContainer item0 : this.onFailure) {
-				item0.toJsonp(generator, mapper);
+			for (Processor item0 : this.onFailure) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -220,8 +221,8 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("processors");
 			generator.writeStartArray();
-			for (ProcessorContainer item0 : this.processors) {
-				item0.toJsonp(generator, mapper);
+			for (Processor item0 : this.processors) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -251,16 +252,16 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		private JsonValue timeout;
 
 		@Nullable
-		private Map<String, JsonValue> meta;
+		private Map<String, JsonData> meta;
 
 		@Nullable
 		private String description;
 
 		@Nullable
-		private List<ProcessorContainer> onFailure;
+		private List<Processor> onFailure;
 
 		@Nullable
-		private List<ProcessorContainer> processors;
+		private List<Processor> processors;
 
 		@Nullable
 		private Number version;
@@ -303,7 +304,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code _meta}
 		 */
-		public Builder meta(@Nullable Map<String, JsonValue> value) {
+		public Builder meta(@Nullable Map<String, JsonData> value) {
 			this.meta = value;
 			return this;
 		}
@@ -311,7 +312,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder putMeta(String key, JsonValue value) {
+		public Builder put_meta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}
@@ -339,7 +340,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code on_failure}
 		 */
-		public Builder onFailure(@Nullable List<ProcessorContainer> value) {
+		public Builder onFailure(@Nullable List<Processor> value) {
 			this.onFailure = value;
 			return this;
 		}
@@ -354,7 +355,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code on_failure}
 		 */
-		public Builder onFailure(ProcessorContainer... value) {
+		public Builder onFailure(Processor... value) {
 			this.onFailure = Arrays.asList(value);
 			return this;
 		}
@@ -362,7 +363,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
 		 */
-		public Builder addOnFailure(ProcessorContainer value) {
+		public Builder addOnFailure(Processor value) {
 			if (this.onFailure == null) {
 				this.onFailure = new ArrayList<>();
 			}
@@ -373,15 +374,15 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Set {@link #onFailure(List)} to a singleton list.
 		 */
-		public Builder onFailure(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.onFailure(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.onFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
 		 */
-		public Builder addOnFailure(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.addOnFailure(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.addOnFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
@@ -390,7 +391,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code processors}
 		 */
-		public Builder processors(@Nullable List<ProcessorContainer> value) {
+		public Builder processors(@Nullable List<Processor> value) {
 			this.processors = value;
 			return this;
 		}
@@ -401,7 +402,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code processors}
 		 */
-		public Builder processors(ProcessorContainer... value) {
+		public Builder processors(Processor... value) {
 			this.processors = Arrays.asList(value);
 			return this;
 		}
@@ -409,7 +410,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
-		public Builder addProcessors(ProcessorContainer value) {
+		public Builder addProcessors(Processor value) {
 			if (this.processors == null) {
 				this.processors = new ArrayList<>();
 			}
@@ -420,15 +421,15 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Set {@link #processors(List)} to a singleton list.
 		 */
-		public Builder processors(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.processors(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.processors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
-		public Builder addProcessors(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.addProcessors(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.addProcessors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
@@ -458,18 +459,17 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutPipelineRequest
+	 * Json deserializer for {@link PutPipelineRequest}
 	 */
 	public static final JsonpDeserializer<PutPipelineRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer);
 
 	protected static void setupPutPipelineRequestDeserializer(DelegatingDeserializer<PutPipelineRequest.Builder> op) {
 
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"_meta");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER), "on_failure");
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER), "processors");
+		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "on_failure");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "processors");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 
 	}

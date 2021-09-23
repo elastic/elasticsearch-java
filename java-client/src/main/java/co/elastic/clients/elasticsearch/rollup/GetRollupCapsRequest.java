@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.Request
@@ -42,7 +43,7 @@ public final class GetRollupCapsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRollupCapsRequest(Builder builder) {
+	public GetRollupCapsRequest(Builder builder) {
 
 		this.id = builder.id;
 

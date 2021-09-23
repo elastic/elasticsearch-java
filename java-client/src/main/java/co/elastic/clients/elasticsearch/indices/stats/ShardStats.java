@@ -42,9 +42,9 @@ import co.elastic.clients.elasticsearch._types.WarmerStats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -52,7 +52,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardStats
-public final class ShardStats implements ToJsonp {
+public final class ShardStats implements JsonpSerializable {
 	private final ShardCommit commit;
 
 	private final CompletionStats completion;
@@ -100,7 +100,7 @@ public final class ShardStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStats(Builder builder) {
+	public ShardStats(Builder builder) {
 
 		this.commit = Objects.requireNonNull(builder.commit, "commit");
 		this.completion = Objects.requireNonNull(builder.completion, "completion");
@@ -285,81 +285,81 @@ public final class ShardStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("commit");
-		this.commit.toJsonp(generator, mapper);
+		this.commit.serialize(generator, mapper);
 
 		generator.writeKey("completion");
-		this.completion.toJsonp(generator, mapper);
+		this.completion.serialize(generator, mapper);
 
 		generator.writeKey("docs");
-		this.docs.toJsonp(generator, mapper);
+		this.docs.serialize(generator, mapper);
 
 		generator.writeKey("fielddata");
-		this.fielddata.toJsonp(generator, mapper);
+		this.fielddata.serialize(generator, mapper);
 
 		generator.writeKey("flush");
-		this.flush.toJsonp(generator, mapper);
+		this.flush.serialize(generator, mapper);
 
 		generator.writeKey("get");
-		this.get.toJsonp(generator, mapper);
+		this.get.serialize(generator, mapper);
 
 		generator.writeKey("indexing");
-		this.indexing.toJsonp(generator, mapper);
+		this.indexing.serialize(generator, mapper);
 
 		generator.writeKey("merges");
-		this.merges.toJsonp(generator, mapper);
+		this.merges.serialize(generator, mapper);
 
 		generator.writeKey("shard_path");
-		this.shardPath.toJsonp(generator, mapper);
+		this.shardPath.serialize(generator, mapper);
 
 		generator.writeKey("query_cache");
-		this.queryCache.toJsonp(generator, mapper);
+		this.queryCache.serialize(generator, mapper);
 
 		generator.writeKey("recovery");
-		this.recovery.toJsonp(generator, mapper);
+		this.recovery.serialize(generator, mapper);
 
 		generator.writeKey("refresh");
-		this.refresh.toJsonp(generator, mapper);
+		this.refresh.serialize(generator, mapper);
 
 		generator.writeKey("request_cache");
-		this.requestCache.toJsonp(generator, mapper);
+		this.requestCache.serialize(generator, mapper);
 
 		generator.writeKey("retention_leases");
-		this.retentionLeases.toJsonp(generator, mapper);
+		this.retentionLeases.serialize(generator, mapper);
 
 		generator.writeKey("routing");
-		this.routing.toJsonp(generator, mapper);
+		this.routing.serialize(generator, mapper);
 
 		generator.writeKey("search");
-		this.search.toJsonp(generator, mapper);
+		this.search.serialize(generator, mapper);
 
 		generator.writeKey("segments");
-		this.segments.toJsonp(generator, mapper);
+		this.segments.serialize(generator, mapper);
 
 		generator.writeKey("seq_no");
-		this.seqNo.toJsonp(generator, mapper);
+		this.seqNo.serialize(generator, mapper);
 
 		generator.writeKey("store");
-		this.store.toJsonp(generator, mapper);
+		this.store.serialize(generator, mapper);
 
 		generator.writeKey("translog");
-		this.translog.toJsonp(generator, mapper);
+		this.translog.serialize(generator, mapper);
 
 		generator.writeKey("warmer");
-		this.warmer.toJsonp(generator, mapper);
+		this.warmer.serialize(generator, mapper);
 
 		if (this.bulk != null) {
 
 			generator.writeKey("bulk");
-			this.bulk.toJsonp(generator, mapper);
+			this.bulk.serialize(generator, mapper);
 
 		}
 
@@ -761,7 +761,7 @@ public final class ShardStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardStats
+	 * Json deserializer for {@link ShardStats}
 	 */
 	public static final JsonpDeserializer<ShardStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardStats::setupShardStatsDeserializer);

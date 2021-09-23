@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,18 +39,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpack
-public final class NodeInfoXpack implements ToJsonp {
+public final class NodeInfoXpack implements JsonpSerializable {
 	@Nullable
 	private final NodeInfoXpackLicense license;
 
 	private final NodeInfoXpackSecurity security;
 
 	@Nullable
-	private final Map<String, JsonValue> notification;
+	private final Map<String, JsonData> notification;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoXpack(Builder builder) {
+	public NodeInfoXpack(Builder builder) {
 
 		this.license = builder.license;
 		this.security = Objects.requireNonNull(builder.security, "security");
@@ -77,38 +77,38 @@ public final class NodeInfoXpack implements ToJsonp {
 	 * API name: {@code notification}
 	 */
 	@Nullable
-	public Map<String, JsonValue> notification() {
+	public Map<String, JsonData> notification() {
 		return this.notification;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.license != null) {
 
 			generator.writeKey("license");
-			this.license.toJsonp(generator, mapper);
+			this.license.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("security");
-		this.security.toJsonp(generator, mapper);
+		this.security.serialize(generator, mapper);
 
 		if (this.notification != null) {
 
 			generator.writeKey("notification");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.notification.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.notification.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -129,7 +129,7 @@ public final class NodeInfoXpack implements ToJsonp {
 		private NodeInfoXpackSecurity security;
 
 		@Nullable
-		private Map<String, JsonValue> notification;
+		private Map<String, JsonData> notification;
 
 		/**
 		 * API name: {@code license}
@@ -164,7 +164,7 @@ public final class NodeInfoXpack implements ToJsonp {
 		/**
 		 * API name: {@code notification}
 		 */
-		public Builder notification(@Nullable Map<String, JsonValue> value) {
+		public Builder notification(@Nullable Map<String, JsonData> value) {
 			this.notification = value;
 			return this;
 		}
@@ -172,7 +172,7 @@ public final class NodeInfoXpack implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #notification(Map)}, creating the map if needed.
 		 */
-		public Builder putNotification(String key, JsonValue value) {
+		public Builder putNotification(String key, JsonData value) {
 			if (this.notification == null) {
 				this.notification = new HashMap<>();
 			}
@@ -195,7 +195,7 @@ public final class NodeInfoXpack implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoXpack
+	 * Json deserializer for {@link NodeInfoXpack}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpack> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoXpack::setupNodeInfoXpackDeserializer);
@@ -204,8 +204,7 @@ public final class NodeInfoXpack implements ToJsonp {
 
 		op.add(Builder::license, NodeInfoXpackLicense.DESERIALIZER, "license");
 		op.add(Builder::security, NodeInfoXpackSecurity.DESERIALIZER, "security");
-		op.add(Builder::notification,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "notification");
+		op.add(Builder::notification, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "notification");
 
 	}
 

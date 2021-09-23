@@ -27,11 +27,10 @@ import co.elastic.clients.elasticsearch.watcher.ExecutionThreadPool;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -43,7 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatcherNodeStats
-public final class WatcherNodeStats implements ToJsonp {
+public final class WatcherNodeStats implements JsonpSerializable {
 	@Nullable
 	private final List<WatchRecordStats> currentWatches;
 
@@ -54,13 +53,13 @@ public final class WatcherNodeStats implements ToJsonp {
 
 	private final Number watchCount;
 
-	private final JsonValue watcherState;
+	private final WatcherState watcherState;
 
 	private final String nodeId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WatcherNodeStats(Builder builder) {
+	public WatcherNodeStats(Builder builder) {
 
 		this.currentWatches = builder.currentWatches;
 		this.executionThreadPool = Objects.requireNonNull(builder.executionThreadPool, "execution_thread_pool");
@@ -104,7 +103,7 @@ public final class WatcherNodeStats implements ToJsonp {
 	/**
 	 * API name: {@code watcher_state}
 	 */
-	public JsonValue watcherState() {
+	public WatcherState watcherState() {
 		return this.watcherState;
 	}
 
@@ -118,20 +117,20 @@ public final class WatcherNodeStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.currentWatches != null) {
 
 			generator.writeKey("current_watches");
 			generator.writeStartArray();
 			for (WatchRecordStats item0 : this.currentWatches) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -139,14 +138,14 @@ public final class WatcherNodeStats implements ToJsonp {
 		}
 
 		generator.writeKey("execution_thread_pool");
-		this.executionThreadPool.toJsonp(generator, mapper);
+		this.executionThreadPool.serialize(generator, mapper);
 
 		if (this.queuedWatches != null) {
 
 			generator.writeKey("queued_watches");
 			generator.writeStartArray();
 			for (WatchRecordQueuedStats item0 : this.queuedWatches) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -157,7 +156,7 @@ public final class WatcherNodeStats implements ToJsonp {
 		generator.write(this.watchCount.doubleValue());
 
 		generator.writeKey("watcher_state");
-		generator.write(this.watcherState);
+		this.watcherState.serialize(generator, mapper);
 
 		generator.writeKey("node_id");
 		generator.write(this.nodeId);
@@ -180,7 +179,7 @@ public final class WatcherNodeStats implements ToJsonp {
 
 		private Number watchCount;
 
-		private JsonValue watcherState;
+		private WatcherState watcherState;
 
 		private String nodeId;
 
@@ -295,7 +294,7 @@ public final class WatcherNodeStats implements ToJsonp {
 		/**
 		 * API name: {@code watcher_state}
 		 */
-		public Builder watcherState(JsonValue value) {
+		public Builder watcherState(WatcherState value) {
 			this.watcherState = value;
 			return this;
 		}
@@ -323,7 +322,7 @@ public final class WatcherNodeStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WatcherNodeStats
+	 * Json deserializer for {@link WatcherNodeStats}
 	 */
 	public static final JsonpDeserializer<WatcherNodeStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, WatcherNodeStats::setupWatcherNodeStatsDeserializer);
@@ -336,7 +335,7 @@ public final class WatcherNodeStats implements ToJsonp {
 		op.add(Builder::queuedWatches, JsonpDeserializer.arrayDeserializer(WatchRecordQueuedStats.DESERIALIZER),
 				"queued_watches");
 		op.add(Builder::watchCount, JsonpDeserializer.numberDeserializer(), "watch_count");
-		op.add(Builder::watcherState, JsonpDeserializer.jsonValueDeserializer(), "watcher_state");
+		op.add(Builder::watcherState, WatcherState.DESERIALIZER, "watcher_state");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 
 	}

@@ -36,6 +36,7 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform.Request
@@ -57,7 +58,7 @@ public final class GetTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTransformRequest(Builder builder) {
+	public GetTransformRequest(Builder builder) {
 
 		this.transformId = builder.transformId;
 		this.allowNoMatch = builder.allowNoMatch;

@@ -28,9 +28,9 @@ import co.elastic.clients.elasticsearch.indices.data_streams_stats.DataStreamsSt
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,7 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.Response
-public final class DataStreamsStatsResponse implements ToJsonp {
+public final class DataStreamsStatsResponse implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	private final Number backingIndices;
@@ -59,7 +59,7 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataStreamsStatsResponse(Builder builder) {
+	public DataStreamsStatsResponse(Builder builder) {
 
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.backingIndices = Objects.requireNonNull(builder.backingIndices, "backing_indices");
@@ -116,16 +116,16 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 		generator.writeKey("backing_indices");
 		generator.write(this.backingIndices.doubleValue());
@@ -146,7 +146,7 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 		generator.writeKey("data_streams");
 		generator.writeStartArray();
 		for (DataStreamsStatsItem item0 : this.dataStreams) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -275,7 +275,7 @@ public final class DataStreamsStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataStreamsStatsResponse
+	 * Json deserializer for {@link DataStreamsStatsResponse}
 	 */
 	public static final JsonpDeserializer<DataStreamsStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DataStreamsStatsResponse::setupDataStreamsStatsResponseDeserializer);

@@ -47,7 +47,7 @@ public final class DeleteRoleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteRoleRequest(Builder builder) {
+	public DeleteRoleRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.refresh = builder.refresh;

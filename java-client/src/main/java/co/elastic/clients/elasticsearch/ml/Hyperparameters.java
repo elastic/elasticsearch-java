@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameters
-public final class Hyperparameters implements ToJsonp {
+public final class Hyperparameters implements JsonpSerializable {
 	@Nullable
 	private final Number alpha;
 
@@ -80,7 +81,7 @@ public final class Hyperparameters implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Hyperparameters(Builder builder) {
+	public Hyperparameters(Builder builder) {
 
 		this.alpha = builder.alpha;
 		this.lambda = builder.lambda;
@@ -214,13 +215,13 @@ public final class Hyperparameters implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.alpha != null) {
 
@@ -484,7 +485,7 @@ public final class Hyperparameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Hyperparameters
+	 * Json deserializer for {@link Hyperparameters}
 	 */
 	public static final JsonpDeserializer<Hyperparameters> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Hyperparameters::setupHyperparametersDeserializer);

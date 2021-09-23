@@ -26,17 +26,18 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Settings
-public final class Settings implements ToJsonp {
+public final class Settings implements JsonpSerializable {
 	@Nullable
 	private final Boolean datesAsEpochMillis;
 
@@ -48,7 +49,7 @@ public final class Settings implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Settings(Builder builder) {
+	public Settings(Builder builder) {
 
 		this.datesAsEpochMillis = builder.datesAsEpochMillis;
 		this.docsPerSecond = builder.docsPerSecond;
@@ -96,13 +97,13 @@ public final class Settings implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.datesAsEpochMillis != null) {
 
@@ -192,7 +193,7 @@ public final class Settings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Settings
+	 * Json deserializer for {@link Settings}
 	 */
 	public static final JsonpDeserializer<Settings> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Settings::setupSettingsDeserializer);

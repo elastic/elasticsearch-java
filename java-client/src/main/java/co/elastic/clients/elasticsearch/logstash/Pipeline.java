@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.logstash;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.Pipeline
-public final class Pipeline implements ToJsonp {
+public final class Pipeline implements JsonpSerializable {
 	private final String description;
 
 	private final String lastModified;
@@ -52,7 +52,7 @@ public final class Pipeline implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Pipeline(Builder builder) {
+	public Pipeline(Builder builder) {
 
 		this.description = Objects.requireNonNull(builder.description, "description");
 		this.lastModified = Objects.requireNonNull(builder.lastModified, "last_modified");
@@ -108,13 +108,13 @@ public final class Pipeline implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("description");
 		generator.write(this.description);
@@ -123,7 +123,7 @@ public final class Pipeline implements ToJsonp {
 		generator.write(this.lastModified);
 
 		generator.writeKey("pipeline_metadata");
-		this.pipelineMetadata.toJsonp(generator, mapper);
+		this.pipelineMetadata.serialize(generator, mapper);
 
 		generator.writeKey("username");
 		generator.write(this.username);
@@ -132,7 +132,7 @@ public final class Pipeline implements ToJsonp {
 		generator.write(this.pipeline);
 
 		generator.writeKey("pipeline_settings");
-		this.pipelineSettings.toJsonp(generator, mapper);
+		this.pipelineSettings.serialize(generator, mapper);
 
 	}
 
@@ -231,7 +231,7 @@ public final class Pipeline implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Pipeline
+	 * Json deserializer for {@link Pipeline}
 	 */
 	public static final JsonpDeserializer<Pipeline> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Pipeline::setupPipelineDeserializer);

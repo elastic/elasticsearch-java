@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,12 +36,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngestProcessor
-public final class NodeInfoIngestProcessor implements ToJsonp {
+public final class NodeInfoIngestProcessor implements JsonpSerializable {
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoIngestProcessor(Builder builder) {
+	public NodeInfoIngestProcessor(Builder builder) {
 
 		this.type = Objects.requireNonNull(builder.type, "type");
 
@@ -57,13 +57,13 @@ public final class NodeInfoIngestProcessor implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -101,7 +101,7 @@ public final class NodeInfoIngestProcessor implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoIngestProcessor
+	 * Json deserializer for {@link NodeInfoIngestProcessor}
 	 */
 	public static final JsonpDeserializer<NodeInfoIngestProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoIngestProcessor::setupNodeInfoIngestProcessorDeserializer);

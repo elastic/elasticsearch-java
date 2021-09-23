@@ -70,7 +70,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetFieldMappingRequest(Builder builder) {
+	public GetFieldMappingRequest(Builder builder) {
 
 		this.fields = Objects.requireNonNull(builder.fields, "fields");
 		this.index = builder.index;

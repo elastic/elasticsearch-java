@@ -47,8 +47,9 @@ public final class TrimProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TrimProcessor(Builder builder) {
+	public TrimProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
@@ -78,8 +79,9 @@ public final class TrimProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -157,7 +159,7 @@ public final class TrimProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TrimProcessor
+	 * Json deserializer for {@link TrimProcessor}
 	 */
 	public static final JsonpDeserializer<TrimProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TrimProcessor::setupTrimProcessorDeserializer);

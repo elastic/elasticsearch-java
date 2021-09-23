@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -55,8 +56,9 @@ public final class GeoHashGridAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoHashGridAggregation(Builder builder) {
+	public GeoHashGridAggregation(Builder builder) {
 		super(builder);
+
 		this.bounds = builder.bounds;
 		this.field = builder.field;
 		this.precision = builder.precision;
@@ -105,12 +107,13 @@ public final class GeoHashGridAggregation extends BucketAggregationBase {
 		return this.size;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.bounds != null) {
 
 			generator.writeKey("bounds");
-			this.bounds.toJsonp(generator, mapper);
+			this.bounds.serialize(generator, mapper);
 
 		}
 		if (this.field != null) {
@@ -230,7 +233,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoHashGridAggregation
+	 * Json deserializer for {@link GeoHashGridAggregation}
 	 */
 	public static final JsonpDeserializer<GeoHashGridAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GeoHashGridAggregation::setupGeoHashGridAggregationDeserializer);

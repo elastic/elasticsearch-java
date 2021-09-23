@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -41,12 +41,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStore
-public final class ShardStore implements ToJsonp {
-	private final JsonValue allocation;
+public final class ShardStore implements JsonpSerializable {
+	private final ShardStoreAllocation allocation;
 
 	private final String allocationId;
 
-	private final Map<String, JsonValue> attributes;
+	private final Map<String, JsonData> attributes;
 
 	private final String id;
 
@@ -60,7 +60,7 @@ public final class ShardStore implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStore(Builder builder) {
+	public ShardStore(Builder builder) {
 
 		this.allocation = Objects.requireNonNull(builder.allocation, "allocation");
 		this.allocationId = Objects.requireNonNull(builder.allocationId, "allocation_id");
@@ -76,7 +76,7 @@ public final class ShardStore implements ToJsonp {
 	/**
 	 * API name: {@code allocation}
 	 */
-	public JsonValue allocation() {
+	public ShardStoreAllocation allocation() {
 		return this.allocation;
 	}
 
@@ -90,7 +90,7 @@ public final class ShardStore implements ToJsonp {
 	/**
 	 * API name: {@code attributes}
 	 */
-	public Map<String, JsonValue> attributes() {
+	public Map<String, JsonData> attributes() {
 		return this.attributes;
 	}
 
@@ -132,25 +132,25 @@ public final class ShardStore implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("allocation");
-		generator.write(this.allocation);
+		this.allocation.serialize(generator, mapper);
 
 		generator.writeKey("allocation_id");
 		generator.write(this.allocationId);
 
 		generator.writeKey("attributes");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.attributes.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.attributes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -165,7 +165,7 @@ public final class ShardStore implements ToJsonp {
 		generator.write(this.name);
 
 		generator.writeKey("store_exception");
-		this.storeException.toJsonp(generator, mapper);
+		this.storeException.serialize(generator, mapper);
 
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
@@ -178,11 +178,11 @@ public final class ShardStore implements ToJsonp {
 	 * Builder for {@link ShardStore}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardStore> {
-		private JsonValue allocation;
+		private ShardStoreAllocation allocation;
 
 		private String allocationId;
 
-		private Map<String, JsonValue> attributes;
+		private Map<String, JsonData> attributes;
 
 		private String id;
 
@@ -197,7 +197,7 @@ public final class ShardStore implements ToJsonp {
 		/**
 		 * API name: {@code allocation}
 		 */
-		public Builder allocation(JsonValue value) {
+		public Builder allocation(ShardStoreAllocation value) {
 			this.allocation = value;
 			return this;
 		}
@@ -213,7 +213,7 @@ public final class ShardStore implements ToJsonp {
 		/**
 		 * API name: {@code attributes}
 		 */
-		public Builder attributes(Map<String, JsonValue> value) {
+		public Builder attributes(Map<String, JsonData> value) {
 			this.attributes = value;
 			return this;
 		}
@@ -221,7 +221,7 @@ public final class ShardStore implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #attributes(Map)}, creating the map if needed.
 		 */
-		public Builder putAttributes(String key, JsonValue value) {
+		public Builder putAttributes(String key, JsonData value) {
 			if (this.attributes == null) {
 				this.attributes = new HashMap<>();
 			}
@@ -291,17 +291,16 @@ public final class ShardStore implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardStore
+	 * Json deserializer for {@link ShardStore}
 	 */
 	public static final JsonpDeserializer<ShardStore> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardStore::setupShardStoreDeserializer);
 
 	protected static void setupShardStoreDeserializer(DelegatingDeserializer<ShardStore.Builder> op) {
 
-		op.add(Builder::allocation, JsonpDeserializer.jsonValueDeserializer(), "allocation");
+		op.add(Builder::allocation, ShardStoreAllocation.DESERIALIZER, "allocation");
 		op.add(Builder::allocationId, JsonpDeserializer.stringDeserializer(), "allocation_id");
-		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"attributes");
+		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "attributes");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::legacyVersion, JsonpDeserializer.numberDeserializer(), "legacy_version");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

@@ -31,12 +31,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: slm.get_lifecycle.Response
 public final class GetLifecycleResponse extends AdditionalProperties<String, SnapshotLifecycle> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetLifecycleResponse(Builder builder) {
+	public GetLifecycleResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -71,7 +72,7 @@ public final class GetLifecycleResponse extends AdditionalProperties<String, Sna
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetLifecycleResponse
+	 * Json deserializer for {@link GetLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<GetLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer);

@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,13 +37,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DetectionRule
-public final class DetectionRule implements ToJsonp {
+public final class DetectionRule implements JsonpSerializable {
 	@Nullable
-	private final List<JsonValue> actions;
+	private final List<RuleAction> actions;
 
 	@Nullable
 	private final List<RuleCondition> conditions;
@@ -54,7 +54,7 @@ public final class DetectionRule implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DetectionRule(Builder builder) {
+	public DetectionRule(Builder builder) {
 
 		this.actions = builder.actions;
 		this.conditions = builder.conditions;
@@ -69,7 +69,7 @@ public final class DetectionRule implements ToJsonp {
 	 * API name: {@code actions}
 	 */
 	@Nullable
-	public List<JsonValue> actions() {
+	public List<RuleAction> actions() {
 		return this.actions;
 	}
 
@@ -102,21 +102,20 @@ public final class DetectionRule implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.actions != null) {
 
 			generator.writeKey("actions");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.actions) {
-				generator.write(item0);
-
+			for (RuleAction item0 : this.actions) {
+				item0.serialize(generator, mapper);
 			}
 			generator.writeEnd();
 
@@ -126,7 +125,7 @@ public final class DetectionRule implements ToJsonp {
 			generator.writeKey("conditions");
 			generator.writeStartArray();
 			for (RuleCondition item0 : this.conditions) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -138,7 +137,7 @@ public final class DetectionRule implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, FilterRef> item0 : this.scope.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -154,7 +153,7 @@ public final class DetectionRule implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<DetectionRule> {
 		@Nullable
-		private List<JsonValue> actions;
+		private List<RuleAction> actions;
 
 		@Nullable
 		private List<RuleCondition> conditions;
@@ -168,7 +167,7 @@ public final class DetectionRule implements ToJsonp {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(@Nullable List<JsonValue> value) {
+		public Builder actions(@Nullable List<RuleAction> value) {
 			this.actions = value;
 			return this;
 		}
@@ -179,7 +178,7 @@ public final class DetectionRule implements ToJsonp {
 		 * <p>
 		 * API name: {@code actions}
 		 */
-		public Builder actions(JsonValue... value) {
+		public Builder actions(RuleAction... value) {
 			this.actions = Arrays.asList(value);
 			return this;
 		}
@@ -187,7 +186,7 @@ public final class DetectionRule implements ToJsonp {
 		/**
 		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
-		public Builder addActions(JsonValue value) {
+		public Builder addActions(RuleAction value) {
 			if (this.actions == null) {
 				this.actions = new ArrayList<>();
 			}
@@ -298,15 +297,14 @@ public final class DetectionRule implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DetectionRule
+	 * Json deserializer for {@link DetectionRule}
 	 */
 	public static final JsonpDeserializer<DetectionRule> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DetectionRule::setupDetectionRuleDeserializer);
 
 	protected static void setupDetectionRuleDeserializer(DelegatingDeserializer<DetectionRule.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"actions");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(RuleAction.DESERIALIZER), "actions");
 		op.add(Builder::conditions, JsonpDeserializer.arrayDeserializer(RuleCondition.DESERIALIZER), "conditions");
 		op.add(Builder::scope, JsonpDeserializer.stringMapDeserializer(FilterRef.DESERIALIZER), "scope");
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AutoDateHistogramAggregation
@@ -49,7 +51,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	private final String format;
 
 	@Nullable
-	private final JsonValue minimumInterval;
+	private final MinimumInterval minimumInterval;
 
 	@Nullable
 	private final String missing;
@@ -58,7 +60,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	private final String offset;
 
 	@Nullable
-	private final Map<String, JsonValue> params;
+	private final Map<String, JsonData> params;
 
 	@Nullable
 	private final JsonValue script;
@@ -68,8 +70,9 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoDateHistogramAggregation(Builder builder) {
+	public AutoDateHistogramAggregation(Builder builder) {
 		super(builder);
+
 		this.buckets = builder.buckets;
 		this.field = builder.field;
 		this.format = builder.format;
@@ -110,7 +113,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	 * API name: {@code minimum_interval}
 	 */
 	@Nullable
-	public JsonValue minimumInterval() {
+	public MinimumInterval minimumInterval() {
 		return this.minimumInterval;
 	}
 
@@ -134,7 +137,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	 * API name: {@code params}
 	 */
 	@Nullable
-	public Map<String, JsonValue> params() {
+	public Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -154,8 +157,9 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		return this.timeZone;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.buckets != null) {
 
 			generator.writeKey("buckets");
@@ -177,8 +181,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		if (this.minimumInterval != null) {
 
 			generator.writeKey("minimum_interval");
-			generator.write(this.minimumInterval);
-
+			this.minimumInterval.serialize(generator, mapper);
 		}
 		if (this.missing != null) {
 
@@ -196,9 +199,9 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 
 			generator.writeKey("params");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.params.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -237,7 +240,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		private String format;
 
 		@Nullable
-		private JsonValue minimumInterval;
+		private MinimumInterval minimumInterval;
 
 		@Nullable
 		private String missing;
@@ -246,7 +249,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		private String offset;
 
 		@Nullable
-		private Map<String, JsonValue> params;
+		private Map<String, JsonData> params;
 
 		@Nullable
 		private JsonValue script;
@@ -281,7 +284,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code minimum_interval}
 		 */
-		public Builder minimumInterval(@Nullable JsonValue value) {
+		public Builder minimumInterval(@Nullable MinimumInterval value) {
 			this.minimumInterval = value;
 			return this;
 		}
@@ -305,7 +308,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code params}
 		 */
-		public Builder params(@Nullable Map<String, JsonValue> value) {
+		public Builder params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
 			return this;
 		}
@@ -313,7 +316,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		/**
 		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
 		 */
-		public Builder putParams(String key, JsonValue value) {
+		public Builder putParams(String key, JsonData value) {
 			if (this.params == null) {
 				this.params = new HashMap<>();
 			}
@@ -357,7 +360,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoDateHistogramAggregation
+	 * Json deserializer for {@link AutoDateHistogramAggregation}
 	 */
 	public static final JsonpDeserializer<AutoDateHistogramAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationDeserializer);
@@ -368,11 +371,10 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		op.add(Builder::buckets, JsonpDeserializer.numberDeserializer(), "buckets");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::minimumInterval, JsonpDeserializer.jsonValueDeserializer(), "minimum_interval");
+		op.add(Builder::minimumInterval, MinimumInterval.DESERIALIZER, "minimum_interval");
 		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
 		op.add(Builder::offset, JsonpDeserializer.stringDeserializer(), "offset");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 

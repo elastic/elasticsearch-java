@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsTransport
-public final class NodeInfoSettingsTransport implements ToJsonp {
+public final class NodeInfoSettingsTransport implements JsonpSerializable {
 	private final JsonValue type;
 
 	@Nullable
@@ -49,7 +49,7 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoSettingsTransport(Builder builder) {
+	public NodeInfoSettingsTransport(Builder builder) {
 
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.type_default = builder.type_default;
@@ -83,13 +83,13 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -103,7 +103,7 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 		if (this.features != null) {
 
 			generator.writeKey("features");
-			this.features.toJsonp(generator, mapper);
+			this.features.serialize(generator, mapper);
 
 		}
 
@@ -170,7 +170,7 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoSettingsTransport
+	 * Json deserializer for {@link NodeInfoSettingsTransport}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsTransport> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoSettingsTransport::setupNodeInfoSettingsTransportDeserializer);

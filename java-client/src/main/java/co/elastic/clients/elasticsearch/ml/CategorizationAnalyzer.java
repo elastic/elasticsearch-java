@@ -26,19 +26,20 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CategorizationAnalyzer
-public final class CategorizationAnalyzer implements ToJsonp {
+public final class CategorizationAnalyzer implements JsonpSerializable {
 	@Nullable
 	private final List<JsonValue> charFilter;
 
@@ -50,7 +51,7 @@ public final class CategorizationAnalyzer implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CategorizationAnalyzer(Builder builder) {
+	public CategorizationAnalyzer(Builder builder) {
 
 		this.charFilter = builder.charFilter;
 		this.filter = builder.filter;
@@ -97,13 +98,13 @@ public final class CategorizationAnalyzer implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.charFilter != null) {
 
@@ -248,7 +249,7 @@ public final class CategorizationAnalyzer implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CategorizationAnalyzer
+	 * Json deserializer for {@link CategorizationAnalyzer}
 	 */
 	public static final JsonpDeserializer<CategorizationAnalyzer> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CategorizationAnalyzer::setupCategorizationAnalyzerDeserializer);

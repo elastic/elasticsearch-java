@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.elasticsearch.ingest.ProcessorContainer;
+import co.elastic.clients.elasticsearch.ingest.Processor;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -42,18 +42,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateIngestPipelineConfig
-public final class ClusterStateIngestPipelineConfig implements ToJsonp {
+public final class ClusterStateIngestPipelineConfig implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
 	@Nullable
 	private final Number version;
 
-	private final List<ProcessorContainer> processors;
+	private final List<Processor> processors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterStateIngestPipelineConfig(Builder builder) {
+	public ClusterStateIngestPipelineConfig(Builder builder) {
 
 		this.description = builder.description;
 		this.version = builder.version;
@@ -80,20 +80,20 @@ public final class ClusterStateIngestPipelineConfig implements ToJsonp {
 	/**
 	 * API name: {@code processors}
 	 */
-	public List<ProcessorContainer> processors() {
+	public List<Processor> processors() {
 		return this.processors;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -110,8 +110,8 @@ public final class ClusterStateIngestPipelineConfig implements ToJsonp {
 
 		generator.writeKey("processors");
 		generator.writeStartArray();
-		for (ProcessorContainer item0 : this.processors) {
-			item0.toJsonp(generator, mapper);
+		for (Processor item0 : this.processors) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -130,7 +130,7 @@ public final class ClusterStateIngestPipelineConfig implements ToJsonp {
 		@Nullable
 		private Number version;
 
-		private List<ProcessorContainer> processors;
+		private List<Processor> processors;
 
 		/**
 		 * API name: {@code description}
@@ -151,7 +151,7 @@ public final class ClusterStateIngestPipelineConfig implements ToJsonp {
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(List<ProcessorContainer> value) {
+		public Builder processors(List<Processor> value) {
 			this.processors = value;
 			return this;
 		}
@@ -159,7 +159,7 @@ public final class ClusterStateIngestPipelineConfig implements ToJsonp {
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(ProcessorContainer... value) {
+		public Builder processors(Processor... value) {
 			this.processors = Arrays.asList(value);
 			return this;
 		}
@@ -167,7 +167,7 @@ public final class ClusterStateIngestPipelineConfig implements ToJsonp {
 		/**
 		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
-		public Builder addProcessors(ProcessorContainer value) {
+		public Builder addProcessors(Processor value) {
 			if (this.processors == null) {
 				this.processors = new ArrayList<>();
 			}
@@ -178,15 +178,15 @@ public final class ClusterStateIngestPipelineConfig implements ToJsonp {
 		/**
 		 * Set {@link #processors(List)} to a singleton list.
 		 */
-		public Builder processors(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.processors(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.processors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
-		public Builder addProcessors(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.addProcessors(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.addProcessors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
@@ -204,7 +204,7 @@ public final class ClusterStateIngestPipelineConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterStateIngestPipelineConfig
+	 * Json deserializer for {@link ClusterStateIngestPipelineConfig}
 	 */
 	public static final JsonpDeserializer<ClusterStateIngestPipelineConfig> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
@@ -215,7 +215,7 @@ public final class ClusterStateIngestPipelineConfig implements ToJsonp {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER), "processors");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "processors");
 
 	}
 

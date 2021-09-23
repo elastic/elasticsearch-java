@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.pending_tasks;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.PendingTask
-public final class PendingTask implements ToJsonp {
+public final class PendingTask implements JsonpSerializable {
 	private final Number insertOrder;
 
 	private final String priority;
@@ -50,7 +50,7 @@ public final class PendingTask implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PendingTask(Builder builder) {
+	public PendingTask(Builder builder) {
 
 		this.insertOrder = Objects.requireNonNull(builder.insertOrder, "insert_order");
 		this.priority = Objects.requireNonNull(builder.priority, "priority");
@@ -98,13 +98,13 @@ public final class PendingTask implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("insert_order");
 		generator.write(this.insertOrder.doubleValue());
@@ -194,7 +194,7 @@ public final class PendingTask implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PendingTask
+	 * Json deserializer for {@link PendingTask}
 	 */
 	public static final JsonpDeserializer<PendingTask> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PendingTask::setupPendingTaskDeserializer);

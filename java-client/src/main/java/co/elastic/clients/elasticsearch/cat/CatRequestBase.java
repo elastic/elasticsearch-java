@@ -29,10 +29,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: cat._types.CatRequestBase
 public abstract class CatRequestBase extends RequestBase {
-	protected CatRequestBase() {
+	public CatRequestBase() {
+	}
+
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+		protected abstract BuilderT self();
+
 	}
 
 }

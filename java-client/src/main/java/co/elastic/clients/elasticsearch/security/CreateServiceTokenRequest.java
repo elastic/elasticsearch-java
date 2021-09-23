@@ -46,7 +46,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateServiceTokenRequest(Builder builder) {
+	public CreateServiceTokenRequest(Builder builder) {
 
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");

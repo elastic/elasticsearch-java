@@ -24,12 +24,12 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -45,15 +45,16 @@ public final class InferenceProcessor extends ProcessorBase {
 	private final String targetField;
 
 	@Nullable
-	private final Map<String, JsonValue> fieldMap;
+	private final Map<String, JsonData> fieldMap;
 
 	@Nullable
 	private final InferenceConfig inferenceConfig;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InferenceProcessor(Builder builder) {
+	public InferenceProcessor(Builder builder) {
 		super(builder);
+
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 		this.fieldMap = builder.fieldMap;
@@ -79,7 +80,7 @@ public final class InferenceProcessor extends ProcessorBase {
 	 * API name: {@code field_map}
 	 */
 	@Nullable
-	public Map<String, JsonValue> fieldMap() {
+	public Map<String, JsonData> fieldMap() {
 		return this.fieldMap;
 	}
 
@@ -91,8 +92,9 @@ public final class InferenceProcessor extends ProcessorBase {
 		return this.inferenceConfig;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
@@ -104,9 +106,9 @@ public final class InferenceProcessor extends ProcessorBase {
 
 			generator.writeKey("field_map");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.fieldMap.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.fieldMap.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -115,7 +117,7 @@ public final class InferenceProcessor extends ProcessorBase {
 		if (this.inferenceConfig != null) {
 
 			generator.writeKey("inference_config");
-			this.inferenceConfig.toJsonp(generator, mapper);
+			this.inferenceConfig.serialize(generator, mapper);
 
 		}
 
@@ -134,7 +136,7 @@ public final class InferenceProcessor extends ProcessorBase {
 		private String targetField;
 
 		@Nullable
-		private Map<String, JsonValue> fieldMap;
+		private Map<String, JsonData> fieldMap;
 
 		@Nullable
 		private InferenceConfig inferenceConfig;
@@ -158,7 +160,7 @@ public final class InferenceProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code field_map}
 		 */
-		public Builder fieldMap(@Nullable Map<String, JsonValue> value) {
+		public Builder fieldMap(@Nullable Map<String, JsonData> value) {
 			this.fieldMap = value;
 			return this;
 		}
@@ -166,7 +168,7 @@ public final class InferenceProcessor extends ProcessorBase {
 		/**
 		 * Add a key/value to {@link #fieldMap(Map)}, creating the map if needed.
 		 */
-		public Builder putFieldMap(String key, JsonValue value) {
+		public Builder putFieldMap(String key, JsonData value) {
 			if (this.fieldMap == null) {
 				this.fieldMap = new HashMap<>();
 			}
@@ -209,7 +211,7 @@ public final class InferenceProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InferenceProcessor
+	 * Json deserializer for {@link InferenceProcessor}
 	 */
 	public static final JsonpDeserializer<InferenceProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, InferenceProcessor::setupInferenceProcessorDeserializer);
@@ -218,8 +220,7 @@ public final class InferenceProcessor extends ProcessorBase {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
-		op.add(Builder::fieldMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"field_map");
+		op.add(Builder::fieldMap, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "field_map");
 		op.add(Builder::inferenceConfig, InferenceConfig.DESERIALIZER, "inference_config");
 
 	}

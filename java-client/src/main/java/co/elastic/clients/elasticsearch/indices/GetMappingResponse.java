@@ -32,12 +32,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: indices.get_mapping.Response
 public final class GetMappingResponse extends AdditionalProperties<String, IndexMappingRecord> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetMappingResponse(Builder builder) {
+	public GetMappingResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -72,7 +73,7 @@ public final class GetMappingResponse extends AdditionalProperties<String, Index
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetMappingResponse
+	 * Json deserializer for {@link GetMappingResponse}
 	 */
 	public static final JsonpDeserializer<GetMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetMappingResponse::setupGetMappingResponseDeserializer);

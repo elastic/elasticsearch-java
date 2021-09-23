@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSnapshot
-public final class ModelSnapshot implements ToJsonp {
+public final class ModelSnapshot implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
@@ -63,7 +63,7 @@ public final class ModelSnapshot implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ModelSnapshot(Builder builder) {
+	public ModelSnapshot(Builder builder) {
 
 		this.description = builder.description;
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
@@ -175,13 +175,13 @@ public final class ModelSnapshot implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -203,7 +203,7 @@ public final class ModelSnapshot implements ToJsonp {
 		generator.write(this.minVersion);
 
 		generator.writeKey("model_size_stats");
-		this.modelSizeStats.toJsonp(generator, mapper);
+		this.modelSizeStats.serialize(generator, mapper);
 
 		generator.writeKey("retain");
 		generator.write(this.retain);
@@ -373,7 +373,7 @@ public final class ModelSnapshot implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ModelSnapshot
+	 * Json deserializer for {@link ModelSnapshot}
 	 */
 	public static final JsonpDeserializer<ModelSnapshot> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ModelSnapshot::setupModelSnapshotDeserializer);

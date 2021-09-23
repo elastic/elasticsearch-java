@@ -49,7 +49,7 @@ public final class DeleteRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteRequest(Builder builder) {
+	public DeleteRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");

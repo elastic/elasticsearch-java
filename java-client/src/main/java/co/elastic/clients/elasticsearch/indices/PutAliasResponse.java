@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: indices.put_alias.Response
 public final class PutAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutAliasResponse(Builder builder) {
+	public PutAliasResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class PutAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutAliasResponse
+	 * Json deserializer for {@link PutAliasResponse}
 	 */
 	public static final JsonpDeserializer<PutAliasResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutAliasResponse::setupPutAliasResponseDeserializer);

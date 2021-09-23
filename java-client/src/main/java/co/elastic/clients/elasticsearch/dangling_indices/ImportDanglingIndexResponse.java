@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: dangling_indices.import_dangling_index.Response
 public final class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected ImportDanglingIndexResponse(Builder builder) {
+	public ImportDanglingIndexResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class ImportDanglingIndexResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ImportDanglingIndexResponse
+	 * Json deserializer for {@link ImportDanglingIndexResponse}
 	 */
 	public static final JsonpDeserializer<ImportDanglingIndexResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ImportDanglingIndexResponse::setupImportDanglingIndexResponseDeserializer);

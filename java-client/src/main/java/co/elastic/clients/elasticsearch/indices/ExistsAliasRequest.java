@@ -65,7 +65,7 @@ public final class ExistsAliasRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsAliasRequest(Builder builder) {
+	public ExistsAliasRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.index = builder.index;

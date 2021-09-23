@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.PerPartitionCategorization
-public final class PerPartitionCategorization implements ToJsonp {
+public final class PerPartitionCategorization implements JsonpSerializable {
 	@Nullable
 	private final Boolean enabled;
 
@@ -44,7 +45,7 @@ public final class PerPartitionCategorization implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PerPartitionCategorization(Builder builder) {
+	public PerPartitionCategorization(Builder builder) {
 
 		this.enabled = builder.enabled;
 		this.stopOnWarn = builder.stopOnWarn;
@@ -82,13 +83,13 @@ public final class PerPartitionCategorization implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.enabled != null) {
 
@@ -160,7 +161,7 @@ public final class PerPartitionCategorization implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PerPartitionCategorization
+	 * Json deserializer for {@link PerPartitionCategorization}
 	 */
 	public static final JsonpDeserializer<PerPartitionCategorization> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PerPartitionCategorization::setupPerPartitionCategorizationDeserializer);

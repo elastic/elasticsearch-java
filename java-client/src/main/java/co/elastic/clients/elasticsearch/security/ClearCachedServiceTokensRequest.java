@@ -50,7 +50,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedServiceTokensRequest(Builder builder) {
+	public ClearCachedServiceTokensRequest(Builder builder) {
 
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,12 +39,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_component_template.Response
-public final class GetComponentTemplateResponse implements ToJsonp {
+public final class GetComponentTemplateResponse implements JsonpSerializable {
 	private final List<ComponentTemplate> componentTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetComponentTemplateResponse(Builder builder) {
+	public GetComponentTemplateResponse(Builder builder) {
 
 		this.componentTemplates = Objects.requireNonNull(builder.componentTemplates, "component_templates");
 
@@ -60,18 +60,18 @@ public final class GetComponentTemplateResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("component_templates");
 		generator.writeStartArray();
 		for (ComponentTemplate item0 : this.componentTemplates) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -144,7 +144,7 @@ public final class GetComponentTemplateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetComponentTemplateResponse
+	 * Json deserializer for {@link GetComponentTemplateResponse}
 	 */
 	public static final JsonpDeserializer<GetComponentTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetComponentTemplateResponse::setupGetComponentTemplateResponseDeserializer);

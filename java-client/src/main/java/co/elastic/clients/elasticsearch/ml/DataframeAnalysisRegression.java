@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisRegression
-public final class DataframeAnalysisRegression extends DataframeAnalysis {
+public final class DataframeAnalysisRegression extends DataframeAnalysisBase implements DataframeAnalysis {
 	@Nullable
 	private final String lossFunction;
 
@@ -44,11 +46,20 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisRegression(Builder builder) {
+	public DataframeAnalysisRegression(Builder builder) {
 		super(builder);
+
 		this.lossFunction = builder.lossFunction;
 		this.lossFunctionParameter = builder.lossFunctionParameter;
 
+	}
+
+	/**
+	 * {@link DataframeAnalysis} variant type
+	 */
+	@Override
+	public String _type() {
+		return "regression";
 	}
 
 	/**
@@ -74,8 +85,10 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 		return this.lossFunctionParameter;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.lossFunction != null) {
 
 			generator.writeKey("loss_function");
@@ -89,6 +102,8 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 
 		}
 
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -96,7 +111,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 	/**
 	 * Builder for {@link DataframeAnalysisRegression}.
 	 */
-	public static class Builder extends DataframeAnalysis.AbstractBuilder<Builder>
+	public static class Builder extends DataframeAnalysisBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisRegression> {
 		@Nullable
@@ -147,15 +162,13 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for DataframeAnalysisRegression
-	 */
-	public static final JsonpDeserializer<DataframeAnalysisRegression> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeAnalysisRegression::setupDataframeAnalysisRegressionDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<DataframeAnalysisRegression.Builder, DataframeAnalysisRegression.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(DataframeAnalysisRegression::setupDataframeAnalysisRegressionDeserializer);
 
 	protected static void setupDataframeAnalysisRegressionDeserializer(
 			DelegatingDeserializer<DataframeAnalysisRegression.Builder> op) {
-		DataframeAnalysis.setupDataframeAnalysisDeserializer(op);
+		DataframeAnalysisBase.setupDataframeAnalysisBaseDeserializer(op);
 		op.add(Builder::lossFunction, JsonpDeserializer.stringDeserializer(), "loss_function");
 		op.add(Builder::lossFunctionParameter, JsonpDeserializer.numberDeserializer(), "loss_function_parameter");
 

@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -40,12 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate_detector.Request
-public final class ValidateDetectorRequest extends RequestBase implements ToJsonp {
+public final class ValidateDetectorRequest extends RequestBase implements JsonpSerializable {
 	private final Detector value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ValidateDetectorRequest(Builder builder) {
+	public ValidateDetectorRequest(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -63,8 +63,8 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.toJsonp(generator, mapper);
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -110,7 +110,7 @@ public final class ValidateDetectorRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ValidateDetectorRequest
+	 * Json deserializer for {@link ValidateDetectorRequest}
 	 */
 	public static final JsonpDeserializer<ValidateDetectorRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ValidateDetectorRequest::setupValidateDetectorRequestDeserializer);

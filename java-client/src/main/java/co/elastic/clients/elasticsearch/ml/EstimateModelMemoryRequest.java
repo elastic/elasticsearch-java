@@ -29,20 +29,21 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.estimate_model_memory.Request
-public final class EstimateModelMemoryRequest extends RequestBase implements ToJsonp {
+public final class EstimateModelMemoryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final AnalysisConfig analysisConfig;
 
@@ -54,7 +55,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements ToJ
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EstimateModelMemoryRequest(Builder builder) {
+	public EstimateModelMemoryRequest(Builder builder) {
 
 		this.analysisConfig = builder.analysisConfig;
 		this.maxBucketCardinality = builder.maxBucketCardinality;
@@ -89,18 +90,18 @@ public final class EstimateModelMemoryRequest extends RequestBase implements ToJ
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analysisConfig != null) {
 
 			generator.writeKey("analysis_config");
-			this.analysisConfig.toJsonp(generator, mapper);
+			this.analysisConfig.serialize(generator, mapper);
 
 		}
 		if (this.maxBucketCardinality != null) {
@@ -215,7 +216,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EstimateModelMemoryRequest
+	 * Json deserializer for {@link EstimateModelMemoryRequest}
 	 */
 	public static final JsonpDeserializer<EstimateModelMemoryRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, EstimateModelMemoryRequest::setupEstimateModelMemoryRequestDeserializer);

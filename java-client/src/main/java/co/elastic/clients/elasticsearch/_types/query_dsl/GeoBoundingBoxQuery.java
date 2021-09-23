@@ -24,37 +24,52 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoBoundingBoxQuery
-public final class GeoBoundingBoxQuery extends QueryBase {
+public final class GeoBoundingBoxQuery extends QueryBase implements Query {
 	@Nullable
-	private final JsonValue type;
+	private final GeoExecution type;
 
 	@Nullable
-	private final JsonValue validationMethod;
+	private final GeoValidationMethod validationMethod;
+
+	@Nullable
+	private final Boolean ignoreUnmapped;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoBoundingBoxQuery(Builder builder) {
+	public GeoBoundingBoxQuery(Builder builder) {
 		super(builder);
+
 		this.type = builder.type;
 		this.validationMethod = builder.validationMethod;
+		this.ignoreUnmapped = builder.ignoreUnmapped;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "geo_bounding_box";
 	}
 
 	/**
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public JsonValue type() {
+	public GeoExecution type() {
 		return this.type;
 	}
 
@@ -62,24 +77,40 @@ public final class GeoBoundingBoxQuery extends QueryBase {
 	 * API name: {@code validation_method}
 	 */
 	@Nullable
-	public JsonValue validationMethod() {
+	public GeoValidationMethod validationMethod() {
 		return this.validationMethod;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	/**
+	 * API name: {@code ignore_unmapped}
+	 */
+	@Nullable
+	public Boolean ignoreUnmapped() {
+		return this.ignoreUnmapped;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.type != null) {
 
 			generator.writeKey("type");
-			generator.write(this.type);
-
+			this.type.serialize(generator, mapper);
 		}
 		if (this.validationMethod != null) {
 
 			generator.writeKey("validation_method");
-			generator.write(this.validationMethod);
+			this.validationMethod.serialize(generator, mapper);
+		}
+		if (this.ignoreUnmapped != null) {
+
+			generator.writeKey("ignore_unmapped");
+			generator.write(this.ignoreUnmapped);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -92,15 +123,18 @@ public final class GeoBoundingBoxQuery extends QueryBase {
 			implements
 				ObjectBuilder<GeoBoundingBoxQuery> {
 		@Nullable
-		private JsonValue type;
+		private GeoExecution type;
 
 		@Nullable
-		private JsonValue validationMethod;
+		private GeoValidationMethod validationMethod;
+
+		@Nullable
+		private Boolean ignoreUnmapped;
 
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable JsonValue value) {
+		public Builder type(@Nullable GeoExecution value) {
 			this.type = value;
 			return this;
 		}
@@ -108,8 +142,16 @@ public final class GeoBoundingBoxQuery extends QueryBase {
 		/**
 		 * API name: {@code validation_method}
 		 */
-		public Builder validationMethod(@Nullable JsonValue value) {
+		public Builder validationMethod(@Nullable GeoValidationMethod value) {
 			this.validationMethod = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignore_unmapped}
+		 */
+		public Builder ignoreUnmapped(@Nullable Boolean value) {
+			this.ignoreUnmapped = value;
 			return this;
 		}
 
@@ -132,16 +174,15 @@ public final class GeoBoundingBoxQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for GeoBoundingBoxQuery
-	 */
-	public static final JsonpDeserializer<GeoBoundingBoxQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoBoundingBoxQuery::setupGeoBoundingBoxQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<GeoBoundingBoxQuery.Builder, GeoBoundingBoxQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(GeoBoundingBoxQuery::setupGeoBoundingBoxQueryDeserializer);
 
 	protected static void setupGeoBoundingBoxQueryDeserializer(DelegatingDeserializer<GeoBoundingBoxQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
-		op.add(Builder::validationMethod, JsonpDeserializer.jsonValueDeserializer(), "validation_method");
+		op.add(Builder::type, GeoExecution.DESERIALIZER, "type");
+		op.add(Builder::validationMethod, GeoValidationMethod.DESERIALIZER, "validation_method");
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
 	}
 

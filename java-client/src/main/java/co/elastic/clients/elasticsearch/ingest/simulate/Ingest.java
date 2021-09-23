@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ingest.simulate;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Ingest
-public final class Ingest implements ToJsonp {
+public final class Ingest implements JsonpSerializable {
 	private final String timestamp;
 
 	@Nullable
@@ -44,7 +44,7 @@ public final class Ingest implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Ingest(Builder builder) {
+	public Ingest(Builder builder) {
 
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 		this.pipeline = builder.pipeline;
@@ -69,13 +69,13 @@ public final class Ingest implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
@@ -131,7 +131,7 @@ public final class Ingest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Ingest
+	 * Json deserializer for {@link Ingest}
 	 */
 	public static final JsonpDeserializer<Ingest> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Ingest::setupIngestDeserializer);

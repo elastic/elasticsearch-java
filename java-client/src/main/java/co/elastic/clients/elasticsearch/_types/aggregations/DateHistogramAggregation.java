@@ -23,7 +23,10 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,11 +39,15 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateHistogramAggregation
-public final class DateHistogramAggregation extends BucketAggregationBase {
+public final class DateHistogramAggregation extends BucketAggregationBase
+		implements
+			PivotGroupBy,
+			CompositeAggregationSource {
 	@Nullable
 	private final JsonValue calendarInterval;
 
@@ -75,7 +82,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 	private final HistogramOrder order;
 
 	@Nullable
-	private final Map<String, JsonValue> params;
+	private final Map<String, JsonData> params;
 
 	@Nullable
 	private final JsonValue script;
@@ -88,8 +95,9 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DateHistogramAggregation(Builder builder) {
+	public DateHistogramAggregation(Builder builder) {
 		super(builder);
+
 		this.calendarInterval = builder.calendarInterval;
 		this.extendedBounds = builder.extendedBounds;
 		this.hardBounds = builder.hardBounds;
@@ -106,6 +114,14 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		this.timeZone = builder.timeZone;
 		this.keyed = builder.keyed;
 
+	}
+
+	/**
+	 * {@link PivotGroupBy}, {@link CompositeAggregationSource} variant type
+	 */
+	@Override
+	public String _type() {
+		return "date_histogram";
 	}
 
 	/**
@@ -200,7 +216,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 	 * API name: {@code params}
 	 */
 	@Nullable
-	public Map<String, JsonValue> params() {
+	public Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -228,8 +244,10 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		return this.keyed;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.calendarInterval != null) {
 
 			generator.writeKey("calendar_interval");
@@ -239,13 +257,13 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		if (this.extendedBounds != null) {
 
 			generator.writeKey("extended_bounds");
-			this.extendedBounds.toJsonp(generator, mapper);
+			this.extendedBounds.serialize(generator, mapper);
 
 		}
 		if (this.hardBounds != null) {
 
 			generator.writeKey("hard_bounds");
-			this.hardBounds.toJsonp(generator, mapper);
+			this.hardBounds.serialize(generator, mapper);
 
 		}
 		if (this.field != null) {
@@ -293,16 +311,16 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		if (this.order != null) {
 
 			generator.writeKey("order");
-			this.order.toJsonp(generator, mapper);
+			this.order.serialize(generator, mapper);
 
 		}
 		if (this.params != null) {
 
 			generator.writeKey("params");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.params.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -326,6 +344,8 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 			generator.write(this.keyed);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -371,7 +391,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		private HistogramOrder order;
 
 		@Nullable
-		private Map<String, JsonValue> params;
+		private Map<String, JsonData> params;
 
 		@Nullable
 		private JsonValue script;
@@ -496,7 +516,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code params}
 		 */
-		public Builder params(@Nullable Map<String, JsonValue> value) {
+		public Builder params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
 			return this;
 		}
@@ -504,7 +524,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		/**
 		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
 		 */
-		public Builder putParams(String key, JsonValue value) {
+		public Builder putParams(String key, JsonData value) {
 			if (this.params == null) {
 				this.params = new HashMap<>();
 			}
@@ -555,11 +575,9 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for DateHistogramAggregation
-	 */
-	public static final JsonpDeserializer<DateHistogramAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DateHistogramAggregation::setupDateHistogramAggregationDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<DateHistogramAggregation.Builder, DateHistogramAggregation.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(DateHistogramAggregation::setupDateHistogramAggregationDeserializer);
 
 	protected static void setupDateHistogramAggregationDeserializer(
 			DelegatingDeserializer<DateHistogramAggregation.Builder> op) {
@@ -579,8 +597,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase {
 		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
 		op.add(Builder::offset, JsonpDeserializer.jsonValueDeserializer(), "offset");
 		op.add(Builder::order, HistogramOrder.DESERIALIZER, "order");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");

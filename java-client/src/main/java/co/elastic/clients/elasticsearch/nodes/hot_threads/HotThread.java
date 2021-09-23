@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.hot_threads;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,7 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.HotThread
-public final class HotThread implements ToJsonp {
+public final class HotThread implements JsonpSerializable {
 	private final List<String> hosts;
 
 	private final String nodeId;
@@ -50,7 +50,7 @@ public final class HotThread implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HotThread(Builder builder) {
+	public HotThread(Builder builder) {
 
 		this.hosts = Objects.requireNonNull(builder.hosts, "hosts");
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
@@ -90,13 +90,13 @@ public final class HotThread implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("hosts");
 		generator.writeStartArray();
@@ -221,7 +221,7 @@ public final class HotThread implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HotThread
+	 * Json deserializer for {@link HotThread}
 	 */
 	public static final JsonpDeserializer<HotThread> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, HotThread::setupHotThreadDeserializer);

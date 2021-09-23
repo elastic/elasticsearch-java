@@ -47,7 +47,7 @@ public final class StartTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartTransformRequest(Builder builder) {
+	public StartTransformRequest(Builder builder) {
 
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.timeout = builder.timeout;

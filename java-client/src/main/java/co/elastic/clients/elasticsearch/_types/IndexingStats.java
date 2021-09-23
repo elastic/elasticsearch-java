@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,7 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.IndexingStats
-public final class IndexingStats implements ToJsonp {
+public final class IndexingStats implements JsonpSerializable {
 	private final Number indexCurrent;
 
 	private final Number deleteCurrent;
@@ -77,7 +77,7 @@ public final class IndexingStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexingStats(Builder builder) {
+	public IndexingStats(Builder builder) {
 
 		this.indexCurrent = Objects.requireNonNull(builder.indexCurrent, "index_current");
 		this.deleteCurrent = Objects.requireNonNull(builder.deleteCurrent, "delete_current");
@@ -201,13 +201,13 @@ public final class IndexingStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index_current");
 		generator.write(this.indexCurrent.doubleValue());
@@ -267,7 +267,7 @@ public final class IndexingStats implements ToJsonp {
 			for (Map.Entry<String, co.elastic.clients.elasticsearch._types.IndexingStats> item0 : this.types
 					.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -470,7 +470,7 @@ public final class IndexingStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexingStats
+	 * Json deserializer for {@link IndexingStats}
 	 */
 	public static final JsonpDeserializer<IndexingStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexingStats::setupIndexingStatsDeserializer);

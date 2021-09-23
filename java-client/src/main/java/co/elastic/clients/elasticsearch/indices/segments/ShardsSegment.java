@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.segments;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.ShardsSegment
-public final class ShardsSegment implements ToJsonp {
+public final class ShardsSegment implements JsonpSerializable {
 	private final Number numCommittedSegments;
 
 	private final ShardSegmentRouting routing;
@@ -51,7 +51,7 @@ public final class ShardsSegment implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardsSegment(Builder builder) {
+	public ShardsSegment(Builder builder) {
 
 		this.numCommittedSegments = Objects.requireNonNull(builder.numCommittedSegments, "num_committed_segments");
 		this.routing = Objects.requireNonNull(builder.routing, "routing");
@@ -91,19 +91,19 @@ public final class ShardsSegment implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("num_committed_segments");
 		generator.write(this.numCommittedSegments.doubleValue());
 
 		generator.writeKey("routing");
-		this.routing.toJsonp(generator, mapper);
+		this.routing.serialize(generator, mapper);
 
 		generator.writeKey("num_search_segments");
 		generator.write(this.numSearchSegments.doubleValue());
@@ -112,7 +112,7 @@ public final class ShardsSegment implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, Segment> item0 : this.segments.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -212,7 +212,7 @@ public final class ShardsSegment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardsSegment
+	 * Json deserializer for {@link ShardsSegment}
 	 */
 	public static final JsonpDeserializer<ShardsSegment> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardsSegment::setupShardsSegmentDeserializer);

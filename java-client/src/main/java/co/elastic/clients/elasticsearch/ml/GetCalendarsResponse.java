@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.ml.get_calendars.Calendar;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -41,14 +41,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Response
-public final class GetCalendarsResponse implements ToJsonp {
+public final class GetCalendarsResponse implements JsonpSerializable {
 	private final List<Calendar> calendars;
 
 	private final Number count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetCalendarsResponse(Builder builder) {
+	public GetCalendarsResponse(Builder builder) {
 
 		this.calendars = Objects.requireNonNull(builder.calendars, "calendars");
 		this.count = Objects.requireNonNull(builder.count, "count");
@@ -72,18 +72,18 @@ public final class GetCalendarsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("calendars");
 		generator.writeStartArray();
 		for (Calendar item0 : this.calendars) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -167,7 +167,7 @@ public final class GetCalendarsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetCalendarsResponse
+	 * Json deserializer for {@link GetCalendarsResponse}
 	 */
 	public static final JsonpDeserializer<GetCalendarsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetCalendarsResponse::setupGetCalendarsResponseDeserializer);

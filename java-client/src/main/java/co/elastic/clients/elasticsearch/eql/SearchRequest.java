@@ -26,13 +26,14 @@ package co.elastic.clients.elasticsearch.eql;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.eql.search.ResultPosition;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -49,7 +50,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.search.Request
-public final class SearchRequest extends RequestBase implements ToJsonp {
+public final class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
@@ -79,7 +80,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	private final Number fetchSize;
 
 	@Nullable
-	private final List<QueryContainer> filter;
+	private final List<Query> filter;
 
 	@Nullable
 	private final JsonValue keepAlive;
@@ -97,11 +98,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	private final List<JsonValue> fields;
 
 	@Nullable
-	private final JsonValue resultPosition;
+	private final ResultPosition resultPosition;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SearchRequest(Builder builder) {
+	public SearchRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
@@ -222,7 +223,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public List<QueryContainer> filter() {
+	public List<Query> filter() {
 		return this.filter;
 	}
 
@@ -276,20 +277,20 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code result_position}
 	 */
 	@Nullable
-	public JsonValue resultPosition() {
+	public ResultPosition resultPosition() {
 		return this.resultPosition;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("query");
 		generator.write(this.query);
@@ -328,8 +329,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("filter");
 			generator.writeStartArray();
-			for (QueryContainer item0 : this.filter) {
-				item0.toJsonp(generator, mapper);
+			for (Query item0 : this.filter) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -373,8 +374,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		if (this.resultPosition != null) {
 
 			generator.writeKey("result_position");
-			generator.write(this.resultPosition);
-
+			this.resultPosition.serialize(generator, mapper);
 		}
 
 	}
@@ -414,7 +414,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		private Number fetchSize;
 
 		@Nullable
-		private List<QueryContainer> filter;
+		private List<Query> filter;
 
 		@Nullable
 		private JsonValue keepAlive;
@@ -432,7 +432,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		private List<JsonValue> fields;
 
 		@Nullable
-		private JsonValue resultPosition;
+		private ResultPosition resultPosition;
 
 		/**
 		 * The name of the index to scope the operation
@@ -534,7 +534,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable List<QueryContainer> value) {
+		public Builder filter(@Nullable List<Query> value) {
 			this.filter = value;
 			return this;
 		}
@@ -545,7 +545,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(QueryContainer... value) {
+		public Builder filter(Query... value) {
 			this.filter = Arrays.asList(value);
 			return this;
 		}
@@ -553,7 +553,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
-		public Builder addFilter(QueryContainer value) {
+		public Builder addFilter(Query value) {
 			if (this.filter == null) {
 				this.filter = new ArrayList<>();
 			}
@@ -564,15 +564,15 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Set {@link #filter(List)} to a singleton list.
 		 */
-		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
-		public Builder addFilter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.addFilter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder addFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.addFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -646,7 +646,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code result_position}
 		 */
-		public Builder resultPosition(@Nullable JsonValue value) {
+		public Builder resultPosition(@Nullable ResultPosition value) {
 			this.resultPosition = value;
 			return this;
 		}
@@ -666,7 +666,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SearchRequest
+	 * Json deserializer for {@link SearchRequest}
 	 */
 	public static final JsonpDeserializer<SearchRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SearchRequest::setupSearchRequestDeserializer);
@@ -679,7 +679,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::tiebreakerField, JsonpDeserializer.stringDeserializer(), "tiebreaker_field");
 		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");
 		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
-		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(QueryContainer.DESERIALIZER), "filter");
+		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query.DESERIALIZER), "filter");
 		op.add(Builder::keepAlive, JsonpDeserializer.jsonValueDeserializer(), "keep_alive");
 		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
 		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.jsonValueDeserializer(),
@@ -687,7 +687,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
-		op.add(Builder::resultPosition, JsonpDeserializer.jsonValueDeserializer(), "result_position");
+		op.add(Builder::resultPosition, ResultPosition.DESERIALIZER, "result_position");
 
 	}
 

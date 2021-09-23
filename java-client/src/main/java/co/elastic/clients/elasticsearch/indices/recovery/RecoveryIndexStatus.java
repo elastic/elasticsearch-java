@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.recovery;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryIndexStatus
-public final class RecoveryIndexStatus implements ToJsonp {
+public final class RecoveryIndexStatus implements JsonpSerializable {
 	@Nullable
 	private final RecoveryBytes bytes;
 
@@ -62,7 +62,7 @@ public final class RecoveryIndexStatus implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryIndexStatus(Builder builder) {
+	public RecoveryIndexStatus(Builder builder) {
 
 		this.bytes = builder.bytes;
 		this.files = Objects.requireNonNull(builder.files, "files");
@@ -148,26 +148,26 @@ public final class RecoveryIndexStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.bytes != null) {
 
 			generator.writeKey("bytes");
-			this.bytes.toJsonp(generator, mapper);
+			this.bytes.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("files");
-		this.files.toJsonp(generator, mapper);
+		this.files.serialize(generator, mapper);
 
 		generator.writeKey("size");
-		this.size.toJsonp(generator, mapper);
+		this.size.serialize(generator, mapper);
 
 		if (this.sourceThrottleTime != null) {
 
@@ -337,7 +337,7 @@ public final class RecoveryIndexStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RecoveryIndexStatus
+	 * Json deserializer for {@link RecoveryIndexStatus}
 	 */
 	public static final JsonpDeserializer<RecoveryIndexStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RecoveryIndexStatus::setupRecoveryIndexStatusDeserializer);

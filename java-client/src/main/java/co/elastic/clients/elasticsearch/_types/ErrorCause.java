@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.elasticsearch._global.scripts_painless_execute.PainlessExecutionPosition;
+import co.elastic.clients.elasticsearch._core.scripts_painless_execute.PainlessExecutionPosition;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -46,7 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ErrorCause
-public class ErrorCause implements ToJsonp {
+public class ErrorCause implements JsonpSerializable {
 	private final String type;
 
 	private final String reason;
@@ -131,7 +131,7 @@ public class ErrorCause implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ErrorCause(AbstractBuilder<?> builder) {
+	public ErrorCause(AbstractBuilder<?> builder) {
 
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.reason = Objects.requireNonNull(builder.reason, "reason");
@@ -393,13 +393,13 @@ public class ErrorCause implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -410,7 +410,7 @@ public class ErrorCause implements ToJsonp {
 		if (this.causedBy != null) {
 
 			generator.writeKey("caused_by");
-			this.causedBy.toJsonp(generator, mapper);
+			this.causedBy.serialize(generator, mapper);
 
 		}
 		if (this.shard != null) {
@@ -430,7 +430,7 @@ public class ErrorCause implements ToJsonp {
 			generator.writeKey("root_cause");
 			generator.writeStartArray();
 			for (co.elastic.clients.elasticsearch._types.ErrorCause item0 : this.rootCause) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -465,7 +465,7 @@ public class ErrorCause implements ToJsonp {
 			generator.writeKey("failed_shards");
 			generator.writeStartArray();
 			for (ShardFailure item0 : this.failedShards) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -591,7 +591,7 @@ public class ErrorCause implements ToJsonp {
 		if (this.position != null) {
 
 			generator.writeKey("position");
-			this.position.toJsonp(generator, mapper);
+			this.position.serialize(generator, mapper);
 
 		}
 
@@ -1074,7 +1074,7 @@ public class ErrorCause implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ErrorCause
+	 * Json deserializer for {@link ErrorCause}
 	 */
 	public static final JsonpDeserializer<ErrorCause> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ErrorCause::setupErrorCauseDeserializer);

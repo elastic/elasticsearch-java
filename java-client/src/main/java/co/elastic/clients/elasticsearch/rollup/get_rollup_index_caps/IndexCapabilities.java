@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,12 +39,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.IndexCapabilities
-public final class IndexCapabilities implements ToJsonp {
+public final class IndexCapabilities implements JsonpSerializable {
 	private final List<RollupJobSummary> rollupJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexCapabilities(Builder builder) {
+	public IndexCapabilities(Builder builder) {
 
 		this.rollupJobs = Objects.requireNonNull(builder.rollupJobs, "rollup_jobs");
 
@@ -60,18 +60,18 @@ public final class IndexCapabilities implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("rollup_jobs");
 		generator.writeStartArray();
 		for (RollupJobSummary item0 : this.rollupJobs) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -142,7 +142,7 @@ public final class IndexCapabilities implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexCapabilities
+	 * Json deserializer for {@link IndexCapabilities}
 	 */
 	public static final JsonpDeserializer<IndexCapabilities> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexCapabilities::setupIndexCapabilitiesDeserializer);

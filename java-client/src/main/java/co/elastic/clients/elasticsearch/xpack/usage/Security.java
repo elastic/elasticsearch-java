@@ -66,8 +66,9 @@ public final class Security extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Security(Builder builder) {
+	public Security(Builder builder) {
 		super(builder);
+
 		this.apiKeyService = Objects.requireNonNull(builder.apiKeyService, "api_key_service");
 		this.anonymous = Objects.requireNonNull(builder.anonymous, "anonymous");
 		this.audit = Objects.requireNonNull(builder.audit, "audit");
@@ -168,29 +169,30 @@ public final class Security extends Base {
 		return this.operatorPrivileges;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("api_key_service");
-		this.apiKeyService.toJsonp(generator, mapper);
+		this.apiKeyService.serialize(generator, mapper);
 
 		generator.writeKey("anonymous");
-		this.anonymous.toJsonp(generator, mapper);
+		this.anonymous.serialize(generator, mapper);
 
 		generator.writeKey("audit");
-		this.audit.toJsonp(generator, mapper);
+		this.audit.serialize(generator, mapper);
 
 		generator.writeKey("fips_140");
-		this.fips140.toJsonp(generator, mapper);
+		this.fips140.serialize(generator, mapper);
 
 		generator.writeKey("ipfilter");
-		this.ipfilter.toJsonp(generator, mapper);
+		this.ipfilter.serialize(generator, mapper);
 
 		generator.writeKey("realms");
 		generator.writeStartObject();
 		for (Map.Entry<String, Realm> item0 : this.realms.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -199,29 +201,29 @@ public final class Security extends Base {
 		generator.writeStartObject();
 		for (Map.Entry<String, RoleMapping> item0 : this.roleMapping.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("roles");
-		this.roles.toJsonp(generator, mapper);
+		this.roles.serialize(generator, mapper);
 
 		generator.writeKey("ssl");
-		this.ssl.toJsonp(generator, mapper);
+		this.ssl.serialize(generator, mapper);
 
 		if (this.systemKey != null) {
 
 			generator.writeKey("system_key");
-			this.systemKey.toJsonp(generator, mapper);
+			this.systemKey.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("token_service");
-		this.tokenService.toJsonp(generator, mapper);
+		this.tokenService.serialize(generator, mapper);
 
 		generator.writeKey("operator_privileges");
-		this.operatorPrivileges.toJsonp(generator, mapper);
+		this.operatorPrivileges.serialize(generator, mapper);
 
 	}
 
@@ -492,7 +494,7 @@ public final class Security extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Security
+	 * Json deserializer for {@link Security}
 	 */
 	public static final JsonpDeserializer<Security> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Security::setupSecurityDeserializer);

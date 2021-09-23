@@ -24,12 +24,12 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -37,7 +37,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchPhraseQuery
-public final class MatchPhraseQuery extends QueryBase {
+public final class MatchPhraseQuery extends QueryBase implements Query {
+	private final String field;
+
 	@Nullable
 	private final String analyzer;
 
@@ -47,17 +49,36 @@ public final class MatchPhraseQuery extends QueryBase {
 	private final Number slop;
 
 	@Nullable
-	private final JsonValue zeroTermsQuery;
+	private final ZeroTermsQuery zeroTermsQuery;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MatchPhraseQuery(Builder builder) {
+	public MatchPhraseQuery(Builder builder) {
 		super(builder);
+		this.field = Objects.requireNonNull(builder.field, "field");
+
 		this.analyzer = builder.analyzer;
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.slop = builder.slop;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "match_phrase";
+	}
+
+	/**
+	 * The target field
+	 * <p>
+	 * API name: {@code field}
+	 */
+	public String field() {
+		return this.field;
 	}
 
 	/**
@@ -87,12 +108,16 @@ public final class MatchPhraseQuery extends QueryBase {
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
-	public JsonValue zeroTermsQuery() {
+	public ZeroTermsQuery zeroTermsQuery() {
 		return this.zeroTermsQuery;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		generator.writeStartObject(this.field);
+
+		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
@@ -112,9 +137,12 @@ public final class MatchPhraseQuery extends QueryBase {
 		if (this.zeroTermsQuery != null) {
 
 			generator.writeKey("zero_terms_query");
-			generator.write(this.zeroTermsQuery);
-
+			this.zeroTermsQuery.serialize(generator, mapper);
 		}
+
+		generator.writeEnd();
+
+		generator.writeEnd();
 
 	}
 
@@ -124,6 +152,18 @@ public final class MatchPhraseQuery extends QueryBase {
 	 * Builder for {@link MatchPhraseQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchPhraseQuery> {
+		private String field;
+
+		/**
+		 * The target field
+		 * <p>
+		 * API name: {@code field}
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		@Nullable
 		private String analyzer;
 
@@ -133,7 +173,7 @@ public final class MatchPhraseQuery extends QueryBase {
 		private Number slop;
 
 		@Nullable
-		private JsonValue zeroTermsQuery;
+		private ZeroTermsQuery zeroTermsQuery;
 
 		/**
 		 * API name: {@code analyzer}
@@ -162,7 +202,7 @@ public final class MatchPhraseQuery extends QueryBase {
 		/**
 		 * API name: {@code zero_terms_query}
 		 */
-		public Builder zeroTermsQuery(@Nullable JsonValue value) {
+		public Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
 			this.zeroTermsQuery = value;
 			return this;
 		}
@@ -186,18 +226,18 @@ public final class MatchPhraseQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for MatchPhraseQuery
-	 */
-	public static final JsonpDeserializer<MatchPhraseQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MatchPhraseQuery::setupMatchPhraseQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<MatchPhraseQuery.Builder, MatchPhraseQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(MatchPhraseQuery::setupMatchPhraseQueryDeserializer);
 
 	protected static void setupMatchPhraseQueryDeserializer(DelegatingDeserializer<MatchPhraseQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::slop, JsonpDeserializer.numberDeserializer(), "slop");
-		op.add(Builder::zeroTermsQuery, JsonpDeserializer.jsonValueDeserializer(), "zero_terms_query");
+		op.add(Builder::zeroTermsQuery, ZeroTermsQuery.DESERIALIZER, "zero_terms_query");
+
+		op.setKey(Builder::field);
 
 	}
 

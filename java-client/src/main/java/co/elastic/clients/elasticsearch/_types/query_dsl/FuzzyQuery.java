@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,7 +39,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FuzzyQuery
-public final class FuzzyQuery extends QueryBase {
+public final class FuzzyQuery extends QueryBase implements Query {
+	private final String field;
+
 	@Nullable
 	private final Number maxExpansions;
 
@@ -58,8 +61,10 @@ public final class FuzzyQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FuzzyQuery(Builder builder) {
+	public FuzzyQuery(Builder builder) {
 		super(builder);
+		this.field = Objects.requireNonNull(builder.field, "field");
+
 		this.maxExpansions = builder.maxExpansions;
 		this.prefixLength = builder.prefixLength;
 		this.rewrite = builder.rewrite;
@@ -67,6 +72,23 @@ public final class FuzzyQuery extends QueryBase {
 		this.fuzziness = builder.fuzziness;
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "fuzzy";
+	}
+
+	/**
+	 * The target field
+	 * <p>
+	 * API name: {@code field}
+	 */
+	public String field() {
+		return this.field;
 	}
 
 	/**
@@ -116,8 +138,12 @@ public final class FuzzyQuery extends QueryBase {
 		return this.value;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		generator.writeStartObject(this.field);
+
+		super.serializeInternal(generator, mapper);
 		if (this.maxExpansions != null) {
 
 			generator.writeKey("max_expansions");
@@ -152,6 +178,10 @@ public final class FuzzyQuery extends QueryBase {
 		generator.writeKey("value");
 		generator.write(this.value);
 
+		generator.writeEnd();
+
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -160,6 +190,18 @@ public final class FuzzyQuery extends QueryBase {
 	 * Builder for {@link FuzzyQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<FuzzyQuery> {
+		private String field;
+
+		/**
+		 * The target field
+		 * <p>
+		 * API name: {@code field}
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
 		@Nullable
 		private Number maxExpansions;
 
@@ -244,11 +286,9 @@ public final class FuzzyQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for FuzzyQuery
-	 */
-	public static final JsonpDeserializer<FuzzyQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FuzzyQuery::setupFuzzyQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<FuzzyQuery.Builder, FuzzyQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(FuzzyQuery::setupFuzzyQueryDeserializer);
 
 	protected static void setupFuzzyQueryDeserializer(DelegatingDeserializer<FuzzyQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
@@ -258,6 +298,8 @@ public final class FuzzyQuery extends QueryBase {
 		op.add(Builder::transpositions, JsonpDeserializer.booleanDeserializer(), "transpositions");
 		op.add(Builder::fuzziness, JsonpDeserializer.jsonValueDeserializer(), "fuzziness");
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+
+		op.setKey(Builder::field);
 
 	}
 

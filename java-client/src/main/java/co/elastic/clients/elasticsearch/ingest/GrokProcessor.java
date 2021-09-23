@@ -56,8 +56,9 @@ public final class GrokProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GrokProcessor(Builder builder) {
+	public GrokProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.patternDefinitions = Objects.requireNonNull(builder.patternDefinitions, "pattern_definitions");
@@ -103,8 +104,9 @@ public final class GrokProcessor extends ProcessorBase {
 		return this.traceMatch;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -251,7 +253,7 @@ public final class GrokProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GrokProcessor
+	 * Json deserializer for {@link GrokProcessor}
 	 */
 	public static final JsonpDeserializer<GrokProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GrokProcessor::setupGrokProcessorDeserializer);

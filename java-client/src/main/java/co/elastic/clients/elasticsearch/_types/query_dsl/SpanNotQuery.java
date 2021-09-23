@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNotQuery
-public final class SpanNotQuery extends QueryBase {
+public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 	@Nullable
 	private final Number dist;
 
@@ -52,14 +53,23 @@ public final class SpanNotQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanNotQuery(Builder builder) {
+	public SpanNotQuery(Builder builder) {
 		super(builder);
+
 		this.dist = builder.dist;
 		this.exclude = Objects.requireNonNull(builder.exclude, "exclude");
 		this.include = Objects.requireNonNull(builder.include, "include");
 		this.post = builder.post;
 		this.pre = builder.pre;
 
+	}
+
+	/**
+	 * {@link SpanQuery}, {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "span_not";
 	}
 
 	/**
@@ -100,8 +110,10 @@ public final class SpanNotQuery extends QueryBase {
 		return this.pre;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.dist != null) {
 
 			generator.writeKey("dist");
@@ -110,10 +122,10 @@ public final class SpanNotQuery extends QueryBase {
 		}
 
 		generator.writeKey("exclude");
-		this.exclude.toJsonp(generator, mapper);
+		this.exclude.serialize(generator, mapper);
 
 		generator.writeKey("include");
-		this.include.toJsonp(generator, mapper);
+		this.include.serialize(generator, mapper);
 
 		if (this.post != null) {
 
@@ -127,6 +139,8 @@ public final class SpanNotQuery extends QueryBase {
 			generator.write(this.pre.doubleValue());
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -222,11 +236,9 @@ public final class SpanNotQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for SpanNotQuery
-	 */
-	public static final JsonpDeserializer<SpanNotQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanNotQuery::setupSpanNotQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<SpanNotQuery.Builder, SpanNotQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(SpanNotQuery::setupSpanNotQueryDeserializer);
 
 	protected static void setupSpanNotQueryDeserializer(DelegatingDeserializer<SpanNotQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

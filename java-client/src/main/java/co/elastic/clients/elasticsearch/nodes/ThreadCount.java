@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.ThreadCount
-public final class ThreadCount implements ToJsonp {
+public final class ThreadCount implements JsonpSerializable {
 	private final Number active;
 
 	private final Number completed;
@@ -51,7 +51,7 @@ public final class ThreadCount implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ThreadCount(Builder builder) {
+	public ThreadCount(Builder builder) {
 
 		this.active = Objects.requireNonNull(builder.active, "active");
 		this.completed = Objects.requireNonNull(builder.completed, "completed");
@@ -107,13 +107,13 @@ public final class ThreadCount implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("active");
 		generator.write(this.active.doubleValue());
@@ -216,7 +216,7 @@ public final class ThreadCount implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ThreadCount
+	 * Json deserializer for {@link ThreadCount}
 	 */
 	public static final JsonpDeserializer<ThreadCount> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ThreadCount::setupThreadCountDeserializer);

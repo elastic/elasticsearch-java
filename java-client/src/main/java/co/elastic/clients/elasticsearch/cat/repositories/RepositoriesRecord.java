@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.cat.repositories;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.repositories.RepositoriesRecord
-public final class RepositoriesRecord implements ToJsonp {
+public final class RepositoriesRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -44,7 +45,7 @@ public final class RepositoriesRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RepositoriesRecord(Builder builder) {
+	public RepositoriesRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.type = builder.type;
@@ -74,13 +75,13 @@ public final class RepositoriesRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -144,7 +145,7 @@ public final class RepositoriesRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RepositoriesRecord
+	 * Json deserializer for {@link RepositoriesRecord}
 	 */
 	public static final JsonpDeserializer<RepositoriesRecord> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RepositoriesRecord::setupRepositoriesRecordDeserializer);

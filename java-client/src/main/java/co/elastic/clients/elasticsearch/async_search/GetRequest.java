@@ -54,7 +54,7 @@ public final class GetRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRequest(Builder builder) {
+	public GetRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.keepAlive = builder.keepAlive;

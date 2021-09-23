@@ -44,9 +44,9 @@ import co.elastic.clients.elasticsearch.xpack.usage.Watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -54,7 +54,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Response
-public final class UsageResponse implements ToJsonp {
+public final class UsageResponse implements JsonpSerializable {
 	private final Base aggregateMetric;
 
 	private final Analytics analytics;
@@ -117,7 +117,7 @@ public final class UsageResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UsageResponse(Builder builder) {
+	public UsageResponse(Builder builder) {
 
 		this.aggregateMetric = Objects.requireNonNull(builder.aggregateMetric, "aggregate_metric");
 		this.analytics = Objects.requireNonNull(builder.analytics, "analytics");
@@ -347,116 +347,116 @@ public final class UsageResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("aggregate_metric");
-		this.aggregateMetric.toJsonp(generator, mapper);
+		this.aggregateMetric.serialize(generator, mapper);
 
 		generator.writeKey("analytics");
-		this.analytics.toJsonp(generator, mapper);
+		this.analytics.serialize(generator, mapper);
 
 		generator.writeKey("watcher");
-		this.watcher.toJsonp(generator, mapper);
+		this.watcher.serialize(generator, mapper);
 
 		generator.writeKey("ccr");
-		this.ccr.toJsonp(generator, mapper);
+		this.ccr.serialize(generator, mapper);
 
 		if (this.dataFrame != null) {
 
 			generator.writeKey("data_frame");
-			this.dataFrame.toJsonp(generator, mapper);
+			this.dataFrame.serialize(generator, mapper);
 
 		}
 		if (this.dataScience != null) {
 
 			generator.writeKey("data_science");
-			this.dataScience.toJsonp(generator, mapper);
+			this.dataScience.serialize(generator, mapper);
 
 		}
 		if (this.dataStreams != null) {
 
 			generator.writeKey("data_streams");
-			this.dataStreams.toJsonp(generator, mapper);
+			this.dataStreams.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("data_tiers");
-		this.dataTiers.toJsonp(generator, mapper);
+		this.dataTiers.serialize(generator, mapper);
 
 		if (this.enrich != null) {
 
 			generator.writeKey("enrich");
-			this.enrich.toJsonp(generator, mapper);
+			this.enrich.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("eql");
-		this.eql.toJsonp(generator, mapper);
+		this.eql.serialize(generator, mapper);
 
 		if (this.flattened != null) {
 
 			generator.writeKey("flattened");
-			this.flattened.toJsonp(generator, mapper);
+			this.flattened.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("frozen_indices");
-		this.frozenIndices.toJsonp(generator, mapper);
+		this.frozenIndices.serialize(generator, mapper);
 
 		generator.writeKey("graph");
-		this.graph.toJsonp(generator, mapper);
+		this.graph.serialize(generator, mapper);
 
 		generator.writeKey("ilm");
-		this.ilm.toJsonp(generator, mapper);
+		this.ilm.serialize(generator, mapper);
 
 		generator.writeKey("logstash");
-		this.logstash.toJsonp(generator, mapper);
+		this.logstash.serialize(generator, mapper);
 
 		generator.writeKey("ml");
-		this.ml.toJsonp(generator, mapper);
+		this.ml.serialize(generator, mapper);
 
 		generator.writeKey("monitoring");
-		this.monitoring.toJsonp(generator, mapper);
+		this.monitoring.serialize(generator, mapper);
 
 		generator.writeKey("rollup");
-		this.rollup.toJsonp(generator, mapper);
+		this.rollup.serialize(generator, mapper);
 
 		if (this.runtimeFields != null) {
 
 			generator.writeKey("runtime_fields");
-			this.runtimeFields.toJsonp(generator, mapper);
+			this.runtimeFields.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("spatial");
-		this.spatial.toJsonp(generator, mapper);
+		this.spatial.serialize(generator, mapper);
 
 		generator.writeKey("searchable_snapshots");
-		this.searchableSnapshots.toJsonp(generator, mapper);
+		this.searchableSnapshots.serialize(generator, mapper);
 
 		generator.writeKey("security");
-		this.security.toJsonp(generator, mapper);
+		this.security.serialize(generator, mapper);
 
 		generator.writeKey("slm");
-		this.slm.toJsonp(generator, mapper);
+		this.slm.serialize(generator, mapper);
 
 		generator.writeKey("sql");
-		this.sql.toJsonp(generator, mapper);
+		this.sql.serialize(generator, mapper);
 
 		generator.writeKey("transform");
-		this.transform.toJsonp(generator, mapper);
+		this.transform.serialize(generator, mapper);
 
 		generator.writeKey("vectors");
-		this.vectors.toJsonp(generator, mapper);
+		this.vectors.serialize(generator, mapper);
 
 		generator.writeKey("voting_only");
-		this.votingOnly.toJsonp(generator, mapper);
+		this.votingOnly.serialize(generator, mapper);
 
 	}
 
@@ -947,7 +947,7 @@ public final class UsageResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UsageResponse
+	 * Json deserializer for {@link UsageResponse}
 	 */
 	public static final JsonpDeserializer<UsageResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UsageResponse::setupUsageResponseDeserializer);

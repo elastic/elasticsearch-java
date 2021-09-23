@@ -54,8 +54,9 @@ public final class GeoIpProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoIpProcessor(Builder builder) {
+	public GeoIpProcessor(Builder builder) {
 		super(builder);
+
 		this.databaseFile = Objects.requireNonNull(builder.databaseFile, "database_file");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.firstOnly = Objects.requireNonNull(builder.firstOnly, "first_only");
@@ -107,8 +108,9 @@ public final class GeoIpProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("database_file");
 		generator.write(this.databaseFile);
@@ -242,7 +244,7 @@ public final class GeoIpProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoIpProcessor
+	 * Json deserializer for {@link GeoIpProcessor}
 	 */
 	public static final JsonpDeserializer<GeoIpProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GeoIpProcessor::setupGeoIpProcessorDeserializer);

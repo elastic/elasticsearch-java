@@ -42,7 +42,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteAutoFollowPatternRequest(Builder builder) {
+	public DeleteAutoFollowPatternRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

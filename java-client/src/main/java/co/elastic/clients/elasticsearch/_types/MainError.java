@@ -33,6 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.MainError
@@ -42,8 +43,9 @@ public final class MainError extends ErrorCause {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MainError(Builder builder) {
+	public MainError(Builder builder) {
 		super(builder);
+
 		this.headers = builder.headers;
 
 	}
@@ -56,8 +58,9 @@ public final class MainError extends ErrorCause {
 		return this.headers;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.headers != null) {
 
 			generator.writeKey("headers");
@@ -121,7 +124,7 @@ public final class MainError extends ErrorCause {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MainError
+	 * Json deserializer for {@link MainError}
 	 */
 	public static final JsonpDeserializer<MainError> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MainError::setupMainErrorDeserializer);

@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -44,7 +44,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Request
-public final class GetModelSnapshotsRequest extends RequestBase implements ToJsonp {
+public final class GetModelSnapshotsRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
@@ -70,7 +70,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetModelSnapshotsRequest(Builder builder) {
+	public GetModelSnapshotsRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.snapshotId = builder.snapshotId;
@@ -162,13 +162,13 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.start != null) {
 
@@ -306,7 +306,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetModelSnapshotsRequest
+	 * Json deserializer for {@link GetModelSnapshotsRequest}
 	 */
 	public static final JsonpDeserializer<GetModelSnapshotsRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetModelSnapshotsRequest::setupGetModelSnapshotsRequestDeserializer);

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ccr;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.FollowIndexStats
-public final class FollowIndexStats implements ToJsonp {
+public final class FollowIndexStats implements JsonpSerializable {
 	private final String index;
 
 	private final List<ShardStats> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FollowIndexStats(Builder builder) {
+	public FollowIndexStats(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.shards = Objects.requireNonNull(builder.shards, "shards");
@@ -71,13 +71,13 @@ public final class FollowIndexStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -85,7 +85,7 @@ public final class FollowIndexStats implements ToJsonp {
 		generator.writeKey("shards");
 		generator.writeStartArray();
 		for (ShardStats item0 : this.shards) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -166,7 +166,7 @@ public final class FollowIndexStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FollowIndexStats
+	 * Json deserializer for {@link FollowIndexStats}
 	 */
 	public static final JsonpDeserializer<FollowIndexStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FollowIndexStats::setupFollowIndexStatsDeserializer);

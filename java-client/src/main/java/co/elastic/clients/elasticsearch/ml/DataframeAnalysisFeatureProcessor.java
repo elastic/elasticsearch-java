@@ -23,252 +23,202 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.StringEnum;
-import co.elastic.clients.util.TaggedUnion;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
+import jakarta.json.stream.JsonParser;
+import java.util.EnumSet;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-public class DataframeAnalysisFeatureProcessor extends TaggedUnion<DataframeAnalysisFeatureProcessor.Tag, Object>
-		implements
-			ToJsonp {
+// typedef: ml._types.DataframeAnalysisFeatureProcessor
+public interface DataframeAnalysisFeatureProcessor extends JsonpSerializable {
 
-	public enum Tag implements StringEnum {
-
-		frequencyEncoding("frequency_encoding"),
-
-		multiEncoding("multi_encoding"),
-
-		nGramEncoding("n_gram_encoding"),
-
-		oneHotEncoding("one_hot_encoding"),
-
-		targetMeanEncoding("target_mean_encoding"),
-
-		;
-
-		private final String jsonValue;
-
-		Tag(String jsonValue) {
-			this.jsonValue = jsonValue;
-		}
-
-		public String jsonValue() {
-			return this.jsonValue;
-		}
-
-		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
-	}
-
-	private DataframeAnalysisFeatureProcessor(Builder builder) {
-		super(builder.$tag, builder.$variant);
-
-	}
+	String FREQUENCY_ENCODING = "frequency_encoding";
+	String MULTI_ENCODING = "multi_encoding";
+	String N_GRAM_ENCODING = "n_gram_encoding";
+	String ONE_HOT_ENCODING = "one_hot_encoding";
+	String TARGET_MEAN_ENCODING = "target_mean_encoding";
 
 	/**
-	 * Is this {@link DataframeAnalysisFeatureProcessor} of a
-	 * {@code frequency_encoding} kind?
+	 * The type of this {@code DataframeAnalysisFeatureProcessor}.
 	 */
-	public boolean isFrequencyEncoding() {
-		return is(Tag.frequencyEncoding);
-	}
+	String _type();
 
-	/**
-	 * Get the {@code frequency_encoding} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code frequency_encoding}
-	 *             kind.
-	 */
-	public DataframeAnalysisFeatureProcessorFrequencyEncoding frequencyEncoding() {
-		return get(Tag.frequencyEncoding);
-	}
-
-	/**
-	 * Is this {@link DataframeAnalysisFeatureProcessor} of a {@code multi_encoding}
-	 * kind?
-	 */
-	public boolean isMultiEncoding() {
-		return is(Tag.multiEncoding);
-	}
-
-	/**
-	 * Get the {@code multi_encoding} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code multi_encoding} kind.
-	 */
-	public DataframeAnalysisFeatureProcessorMultiEncoding multiEncoding() {
-		return get(Tag.multiEncoding);
-	}
-
-	/**
-	 * Is this {@link DataframeAnalysisFeatureProcessor} of a
-	 * {@code n_gram_encoding} kind?
-	 */
-	public boolean isNGramEncoding() {
-		return is(Tag.nGramEncoding);
-	}
-
-	/**
-	 * Get the {@code n_gram_encoding} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code n_gram_encoding}
-	 *             kind.
-	 */
-	public DataframeAnalysisFeatureProcessorNGramEncoding nGramEncoding() {
-		return get(Tag.nGramEncoding);
-	}
-
-	/**
-	 * Is this {@link DataframeAnalysisFeatureProcessor} of a
-	 * {@code one_hot_encoding} kind?
-	 */
-	public boolean isOneHotEncoding() {
-		return is(Tag.oneHotEncoding);
-	}
-
-	/**
-	 * Get the {@code one_hot_encoding} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code one_hot_encoding}
-	 *             kind.
-	 */
-	public DataframeAnalysisFeatureProcessorOneHotEncoding oneHotEncoding() {
-		return get(Tag.oneHotEncoding);
-	}
-
-	/**
-	 * Is this {@link DataframeAnalysisFeatureProcessor} of a
-	 * {@code target_mean_encoding} kind?
-	 */
-	public boolean isTargetMeanEncoding() {
-		return is(Tag.targetMeanEncoding);
-	}
-
-	/**
-	 * Get the {@code target_mean_encoding} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code target_mean_encoding}
-	 *             kind.
-	 */
-	public DataframeAnalysisFeatureProcessorTargetMeanEncoding targetMeanEncoding() {
-		return get(Tag.targetMeanEncoding);
-	}
-
-	@Override
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.writeKey(tag.jsonValue);
-		if (value instanceof ToJsonp) {
-			((ToJsonp) value).toJsonp(generator, mapper);
-		}
-
-		generator.writeEnd();
-	}
-	public static class Builder {
-		private Tag $tag;
-		private Object $variant;
-
+	class Builder {
+		/**
+		 * The configuration information necessary to perform frequency encoding.
+		 * <p>
+		 * API name: {@code frequency_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> frequencyEncoding(
-				DataframeAnalysisFeatureProcessorFrequencyEncoding v) {
-			this.$variant = v;
-			this.$tag = Tag.frequencyEncoding;
-			return new ObjectBuilder.Constant<>(this.build());
+				DataframeAnalysisFeatureProcessorFrequencyEncoding value) {
+			return ObjectBuilder.constant(value);
 		}
 
+		/**
+		 * The configuration information necessary to perform frequency encoding.
+		 * <p>
+		 * API name: {@code frequency_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> frequencyEncoding(
-				Function<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding>> f) {
+				Function<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding>> fn) {
 			return this.frequencyEncoding(
-					f.apply(new DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder()).build());
+					fn.apply(new DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder()).build());
 		}
 
+		/**
+		 * The configuration information necessary to perform multi encoding. It allows
+		 * multiple processors to be changed together. This way the output of a
+		 * processor can then be passed to another as an input.
+		 * <p>
+		 * API name: {@code multi_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> multiEncoding(
-				DataframeAnalysisFeatureProcessorMultiEncoding v) {
-			this.$variant = v;
-			this.$tag = Tag.multiEncoding;
-			return new ObjectBuilder.Constant<>(this.build());
+				DataframeAnalysisFeatureProcessorMultiEncoding value) {
+			return ObjectBuilder.constant(value);
 		}
 
+		/**
+		 * The configuration information necessary to perform multi encoding. It allows
+		 * multiple processors to be changed together. This way the output of a
+		 * processor can then be passed to another as an input.
+		 * <p>
+		 * API name: {@code multi_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> multiEncoding(
-				Function<DataframeAnalysisFeatureProcessorMultiEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding>> f) {
-			return this.multiEncoding(f.apply(new DataframeAnalysisFeatureProcessorMultiEncoding.Builder()).build());
+				Function<DataframeAnalysisFeatureProcessorMultiEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding>> fn) {
+			return this.multiEncoding(fn.apply(new DataframeAnalysisFeatureProcessorMultiEncoding.Builder()).build());
 		}
 
+		/**
+		 * The configuration information necessary to perform n-gram encoding. Features
+		 * created by this encoder have the following name format:
+		 * &lt;feature_prefix&gt;.<ngram><string position>. For example, if the
+		 * feature_prefix is f, the feature name for the second unigram in a string is
+		 * f.11.
+		 * <p>
+		 * API name: {@code n_gram_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> nGramEncoding(
-				DataframeAnalysisFeatureProcessorNGramEncoding v) {
-			this.$variant = v;
-			this.$tag = Tag.nGramEncoding;
-			return new ObjectBuilder.Constant<>(this.build());
+				DataframeAnalysisFeatureProcessorNGramEncoding value) {
+			return ObjectBuilder.constant(value);
 		}
 
+		/**
+		 * The configuration information necessary to perform n-gram encoding. Features
+		 * created by this encoder have the following name format:
+		 * &lt;feature_prefix&gt;.<ngram><string position>. For example, if the
+		 * feature_prefix is f, the feature name for the second unigram in a string is
+		 * f.11.
+		 * <p>
+		 * API name: {@code n_gram_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> nGramEncoding(
-				Function<DataframeAnalysisFeatureProcessorNGramEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding>> f) {
-			return this.nGramEncoding(f.apply(new DataframeAnalysisFeatureProcessorNGramEncoding.Builder()).build());
+				Function<DataframeAnalysisFeatureProcessorNGramEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding>> fn) {
+			return this.nGramEncoding(fn.apply(new DataframeAnalysisFeatureProcessorNGramEncoding.Builder()).build());
 		}
 
+		/**
+		 * The configuration information necessary to perform one hot encoding.
+		 * <p>
+		 * API name: {@code one_hot_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> oneHotEncoding(
-				DataframeAnalysisFeatureProcessorOneHotEncoding v) {
-			this.$variant = v;
-			this.$tag = Tag.oneHotEncoding;
-			return new ObjectBuilder.Constant<>(this.build());
+				DataframeAnalysisFeatureProcessorOneHotEncoding value) {
+			return ObjectBuilder.constant(value);
 		}
 
+		/**
+		 * The configuration information necessary to perform one hot encoding.
+		 * <p>
+		 * API name: {@code one_hot_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> oneHotEncoding(
-				Function<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding>> f) {
-			return this.oneHotEncoding(f.apply(new DataframeAnalysisFeatureProcessorOneHotEncoding.Builder()).build());
+				Function<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding>> fn) {
+			return this.oneHotEncoding(fn.apply(new DataframeAnalysisFeatureProcessorOneHotEncoding.Builder()).build());
 		}
 
+		/**
+		 * The configuration information necessary to perform target mean encoding.
+		 * <p>
+		 * API name: {@code target_mean_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> targetMeanEncoding(
-				DataframeAnalysisFeatureProcessorTargetMeanEncoding v) {
-			this.$variant = v;
-			this.$tag = Tag.targetMeanEncoding;
-			return new ObjectBuilder.Constant<>(this.build());
+				DataframeAnalysisFeatureProcessorTargetMeanEncoding value) {
+			return ObjectBuilder.constant(value);
 		}
 
+		/**
+		 * The configuration information necessary to perform target mean encoding.
+		 * <p>
+		 * API name: {@code target_mean_encoding}
+		 */
 		public ObjectBuilder<DataframeAnalysisFeatureProcessor> targetMeanEncoding(
-				Function<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding>> f) {
+				Function<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding>> fn) {
 			return this.targetMeanEncoding(
-					f.apply(new DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder()).build());
-		}
-
-		protected DataframeAnalysisFeatureProcessor build() {
-			return new DataframeAnalysisFeatureProcessor(this);
+					fn.apply(new DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder()).build());
 		}
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily
-	// avoids cyclic dependencies between static class initialization code, which
-	// can lead to unwanted things like NPEs or stack overflows
+	class $Helper {
+		private static DataframeAnalysisFeatureProcessor deserialize(JsonParser parser, JsonpMapper mapper,
+				JsonParser.Event event) {
 
-	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessor> DESERIALIZER = JsonpDeserializer
-			.lazy(DataframeAnalysisFeatureProcessor::buildDeserializer);
+			ObjectBuilder<? extends DataframeAnalysisFeatureProcessor> builder = null;
+			String variant = null;
 
-	private static JsonpDeserializer<DataframeAnalysisFeatureProcessor> buildDeserializer() {
-		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
+			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
+				String fieldName = JsonpUtils.expectKeyName(parser, event);
+				switch (fieldName) {
+					case FREQUENCY_ENCODING : {
+						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
+						builder = DataframeAnalysisFeatureProcessorFrequencyEncoding.$BUILDER_DESERIALIZER.deserialize(
+								new DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder(), parser, mapper,
+								parser.next());
+						break;
+					}
+					case MULTI_ENCODING : {
+						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
+						builder = DataframeAnalysisFeatureProcessorMultiEncoding.$BUILDER_DESERIALIZER.deserialize(
+								new DataframeAnalysisFeatureProcessorMultiEncoding.Builder(), parser, mapper,
+								parser.next());
+						break;
+					}
+					case N_GRAM_ENCODING : {
+						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
+						builder = DataframeAnalysisFeatureProcessorNGramEncoding.$BUILDER_DESERIALIZER.deserialize(
+								new DataframeAnalysisFeatureProcessorNGramEncoding.Builder(), parser, mapper,
+								parser.next());
+						break;
+					}
+					case ONE_HOT_ENCODING : {
+						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
+						builder = DataframeAnalysisFeatureProcessorOneHotEncoding.$BUILDER_DESERIALIZER.deserialize(
+								new DataframeAnalysisFeatureProcessorOneHotEncoding.Builder(), parser, mapper,
+								parser.next());
+						break;
+					}
+					case TARGET_MEAN_ENCODING : {
+						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
+						builder = DataframeAnalysisFeatureProcessorTargetMeanEncoding.$BUILDER_DESERIALIZER.deserialize(
+								new DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder(), parser, mapper,
+								parser.next());
+						break;
+					}
+					default : {
+						JsonpUtils.unknownKey(parser, fieldName);
+					}
+				}
+			}
 
-		op.add(Builder::frequencyEncoding, DataframeAnalysisFeatureProcessorFrequencyEncoding.DESERIALIZER,
-				"frequency_encoding");
-		op.add(Builder::multiEncoding, DataframeAnalysisFeatureProcessorMultiEncoding.DESERIALIZER, "multi_encoding");
-		op.add(Builder::nGramEncoding, DataframeAnalysisFeatureProcessorNGramEncoding.DESERIALIZER, "n_gram_encoding");
-		op.add(Builder::oneHotEncoding, DataframeAnalysisFeatureProcessorOneHotEncoding.DESERIALIZER,
-				"one_hot_encoding");
-		op.add(Builder::targetMeanEncoding, DataframeAnalysisFeatureProcessorTargetMeanEncoding.DESERIALIZER,
-				"target_mean_encoding");
-
-		return new BuildFunctionDeserializer<>(op, Builder::build);
+			return JsonpUtils.buildVariant(parser, builder);
+		}
 	}
 
+	JsonpDeserializer<DataframeAnalysisFeatureProcessor> DESERIALIZER = JsonpDeserializer
+			.of(EnumSet.of(JsonParser.Event.START_OBJECT), $Helper::deserialize);
 }

@@ -45,8 +45,9 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ReloadSecureSettingsResponse(Builder builder) {
+	public ReloadSecureSettingsResponse(Builder builder) {
 		super(builder);
+
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
 
@@ -66,8 +67,9 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 		return this.nodes;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -142,7 +144,7 @@ public final class ReloadSecureSettingsResponse extends NodesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ReloadSecureSettingsResponse
+	 * Json deserializer for {@link ReloadSecureSettingsResponse}
 	 */
 	public static final JsonpDeserializer<ReloadSecureSettingsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ReloadSecureSettingsResponse::setupReloadSecureSettingsResponseDeserializer);

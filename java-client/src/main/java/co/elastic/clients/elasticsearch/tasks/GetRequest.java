@@ -51,7 +51,7 @@ public final class GetRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRequest(Builder builder) {
+	public GetRequest(Builder builder) {
 
 		this.taskId = Objects.requireNonNull(builder.taskId, "task_id");
 		this.timeout = builder.timeout;

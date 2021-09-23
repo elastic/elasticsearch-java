@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -36,15 +36,15 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobBlocked
-public final class JobBlocked implements ToJsonp {
-	private final JsonValue reason;
+public final class JobBlocked implements JsonpSerializable {
+	private final JobBlockedReason reason;
 
 	@Nullable
 	private final JsonValue taskId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JobBlocked(Builder builder) {
+	public JobBlocked(Builder builder) {
 
 		this.reason = Objects.requireNonNull(builder.reason, "reason");
 		this.taskId = builder.taskId;
@@ -54,7 +54,7 @@ public final class JobBlocked implements ToJsonp {
 	/**
 	 * API name: {@code reason}
 	 */
-	public JsonValue reason() {
+	public JobBlockedReason reason() {
 		return this.reason;
 	}
 
@@ -69,17 +69,16 @@ public final class JobBlocked implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("reason");
-		generator.write(this.reason);
-
+		this.reason.serialize(generator, mapper);
 		if (this.taskId != null) {
 
 			generator.writeKey("task_id");
@@ -95,7 +94,7 @@ public final class JobBlocked implements ToJsonp {
 	 * Builder for {@link JobBlocked}.
 	 */
 	public static class Builder implements ObjectBuilder<JobBlocked> {
-		private JsonValue reason;
+		private JobBlockedReason reason;
 
 		@Nullable
 		private JsonValue taskId;
@@ -103,7 +102,7 @@ public final class JobBlocked implements ToJsonp {
 		/**
 		 * API name: {@code reason}
 		 */
-		public Builder reason(JsonValue value) {
+		public Builder reason(JobBlockedReason value) {
 			this.reason = value;
 			return this;
 		}
@@ -131,14 +130,14 @@ public final class JobBlocked implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JobBlocked
+	 * Json deserializer for {@link JobBlocked}
 	 */
 	public static final JsonpDeserializer<JobBlocked> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, JobBlocked::setupJobBlockedDeserializer);
 
 	protected static void setupJobBlockedDeserializer(DelegatingDeserializer<JobBlocked.Builder> op) {
 
-		op.add(Builder::reason, JsonpDeserializer.jsonValueDeserializer(), "reason");
+		op.add(Builder::reason, JobBlockedReason.DESERIALIZER, "reason");
 		op.add(Builder::taskId, JsonpDeserializer.jsonValueDeserializer(), "task_id");
 
 	}

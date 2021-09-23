@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: indices.refresh.Response
 public final class RefreshResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected RefreshResponse(Builder builder) {
+	public RefreshResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class RefreshResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RefreshResponse
+	 * Json deserializer for {@link RefreshResponse}
 	 */
 	public static final JsonpDeserializer<RefreshResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RefreshResponse::setupRefreshResponseDeserializer);

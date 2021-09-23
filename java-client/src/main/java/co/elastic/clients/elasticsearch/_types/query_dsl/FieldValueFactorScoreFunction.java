@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -47,12 +46,13 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 	private final Number missing;
 
 	@Nullable
-	private final JsonValue modifier;
+	private final FieldValueFactorModifier modifier;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FieldValueFactorScoreFunction(Builder builder) {
+	public FieldValueFactorScoreFunction(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.factor = builder.factor;
 		this.missing = builder.missing;
@@ -87,12 +87,13 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 	 * API name: {@code modifier}
 	 */
 	@Nullable
-	public JsonValue modifier() {
+	public FieldValueFactorModifier modifier() {
 		return this.modifier;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -112,8 +113,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 		if (this.modifier != null) {
 
 			generator.writeKey("modifier");
-			generator.write(this.modifier);
-
+			this.modifier.serialize(generator, mapper);
 		}
 
 	}
@@ -135,7 +135,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 		private Number missing;
 
 		@Nullable
-		private JsonValue modifier;
+		private FieldValueFactorModifier modifier;
 
 		/**
 		 * API name: {@code field}
@@ -164,7 +164,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 		/**
 		 * API name: {@code modifier}
 		 */
-		public Builder modifier(@Nullable JsonValue value) {
+		public Builder modifier(@Nullable FieldValueFactorModifier value) {
 			this.modifier = value;
 			return this;
 		}
@@ -189,7 +189,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FieldValueFactorScoreFunction
+	 * Json deserializer for {@link FieldValueFactorScoreFunction}
 	 */
 	public static final JsonpDeserializer<FieldValueFactorScoreFunction> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
@@ -201,7 +201,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::factor, JsonpDeserializer.numberDeserializer(), "factor");
 		op.add(Builder::missing, JsonpDeserializer.numberDeserializer(), "missing");
-		op.add(Builder::modifier, JsonpDeserializer.jsonValueDeserializer(), "modifier");
+		op.add(Builder::modifier, FieldValueFactorModifier.DESERIALIZER, "modifier");
 
 	}
 

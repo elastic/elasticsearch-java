@@ -26,27 +26,26 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyContext
-public final class PagerDutyContext implements ToJsonp {
+public final class PagerDutyContext implements JsonpSerializable {
 	private final String href;
 
 	private final String src;
 
-	private final JsonValue type;
+	private final PagerDutyContextType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PagerDutyContext(Builder builder) {
+	public PagerDutyContext(Builder builder) {
 
 		this.href = Objects.requireNonNull(builder.href, "href");
 		this.src = Objects.requireNonNull(builder.src, "src");
@@ -71,20 +70,20 @@ public final class PagerDutyContext implements ToJsonp {
 	/**
 	 * API name: {@code type}
 	 */
-	public JsonValue type() {
+	public PagerDutyContextType type() {
 		return this.type;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("href");
 		generator.write(this.href);
@@ -93,7 +92,7 @@ public final class PagerDutyContext implements ToJsonp {
 		generator.write(this.src);
 
 		generator.writeKey("type");
-		generator.write(this.type);
+		this.type.serialize(generator, mapper);
 
 	}
 
@@ -107,7 +106,7 @@ public final class PagerDutyContext implements ToJsonp {
 
 		private String src;
 
-		private JsonValue type;
+		private PagerDutyContextType type;
 
 		/**
 		 * API name: {@code href}
@@ -128,7 +127,7 @@ public final class PagerDutyContext implements ToJsonp {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(PagerDutyContextType value) {
 			this.type = value;
 			return this;
 		}
@@ -148,7 +147,7 @@ public final class PagerDutyContext implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PagerDutyContext
+	 * Json deserializer for {@link PagerDutyContext}
 	 */
 	public static final JsonpDeserializer<PagerDutyContext> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PagerDutyContext::setupPagerDutyContextDeserializer);
@@ -157,7 +156,7 @@ public final class PagerDutyContext implements ToJsonp {
 
 		op.add(Builder::href, JsonpDeserializer.stringDeserializer(), "href");
 		op.add(Builder::src, JsonpDeserializer.stringDeserializer(), "src");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type, PagerDutyContextType.DESERIALIZER, "type");
 
 	}
 

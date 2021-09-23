@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,12 +39,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateDeletedSnapshots
-public final class ClusterStateDeletedSnapshots implements ToJsonp {
+public final class ClusterStateDeletedSnapshots implements JsonpSerializable {
 	private final List<String> snapshotDeletions;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterStateDeletedSnapshots(Builder builder) {
+	public ClusterStateDeletedSnapshots(Builder builder) {
 
 		this.snapshotDeletions = Objects.requireNonNull(builder.snapshotDeletions, "snapshot_deletions");
 
@@ -60,13 +60,13 @@ public final class ClusterStateDeletedSnapshots implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("snapshot_deletions");
 		generator.writeStartArray();
@@ -128,7 +128,7 @@ public final class ClusterStateDeletedSnapshots implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterStateDeletedSnapshots
+	 * Json deserializer for {@link ClusterStateDeletedSnapshots}
 	 */
 	public static final JsonpDeserializer<ClusterStateDeletedSnapshots> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterStateDeletedSnapshots::setupClusterStateDeletedSnapshotsDeserializer);

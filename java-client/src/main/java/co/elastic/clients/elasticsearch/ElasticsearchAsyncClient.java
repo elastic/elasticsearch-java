@@ -26,115 +26,115 @@ package co.elastic.clients.elasticsearch;
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch._global.BulkRequest;
-import co.elastic.clients.elasticsearch._global.BulkResponse;
-import co.elastic.clients.elasticsearch._global.ClearScrollRequest;
-import co.elastic.clients.elasticsearch._global.ClearScrollResponse;
-import co.elastic.clients.elasticsearch._global.ClosePointInTimeRequest;
-import co.elastic.clients.elasticsearch._global.ClosePointInTimeResponse;
-import co.elastic.clients.elasticsearch._global.CountRequest;
-import co.elastic.clients.elasticsearch._global.CountResponse;
-import co.elastic.clients.elasticsearch._global.CreateRequest;
-import co.elastic.clients.elasticsearch._global.CreateResponse;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryRequest;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryResponse;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryRethrottleRequest;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryRethrottleResponse;
-import co.elastic.clients.elasticsearch._global.DeleteRequest;
-import co.elastic.clients.elasticsearch._global.DeleteResponse;
-import co.elastic.clients.elasticsearch._global.DeleteScriptRequest;
-import co.elastic.clients.elasticsearch._global.DeleteScriptResponse;
-import co.elastic.clients.elasticsearch._global.ExistsRequest;
-import co.elastic.clients.elasticsearch._global.ExistsSourceRequest;
-import co.elastic.clients.elasticsearch._global.ExplainRequest;
-import co.elastic.clients.elasticsearch._global.ExplainResponse;
-import co.elastic.clients.elasticsearch._global.FieldCapsRequest;
-import co.elastic.clients.elasticsearch._global.FieldCapsResponse;
-import co.elastic.clients.elasticsearch._global.GetRequest;
-import co.elastic.clients.elasticsearch._global.GetResponse;
-import co.elastic.clients.elasticsearch._global.GetScriptContextRequest;
-import co.elastic.clients.elasticsearch._global.GetScriptContextResponse;
-import co.elastic.clients.elasticsearch._global.GetScriptLanguagesRequest;
-import co.elastic.clients.elasticsearch._global.GetScriptLanguagesResponse;
-import co.elastic.clients.elasticsearch._global.GetScriptRequest;
-import co.elastic.clients.elasticsearch._global.GetScriptResponse;
-import co.elastic.clients.elasticsearch._global.GetSourceRequest;
-import co.elastic.clients.elasticsearch._global.GetSourceResponse;
-import co.elastic.clients.elasticsearch._global.IndexRequest;
-import co.elastic.clients.elasticsearch._global.IndexResponse;
-import co.elastic.clients.elasticsearch._global.InfoRequest;
-import co.elastic.clients.elasticsearch._global.InfoResponse;
-import co.elastic.clients.elasticsearch._global.MgetRequest;
-import co.elastic.clients.elasticsearch._global.MgetResponse;
-import co.elastic.clients.elasticsearch._global.MsearchRequest;
-import co.elastic.clients.elasticsearch._global.MsearchResponse;
-import co.elastic.clients.elasticsearch._global.MsearchTemplateRequest;
-import co.elastic.clients.elasticsearch._global.MsearchTemplateResponse;
-import co.elastic.clients.elasticsearch._global.MtermvectorsRequest;
-import co.elastic.clients.elasticsearch._global.MtermvectorsResponse;
-import co.elastic.clients.elasticsearch._global.OpenPointInTimeRequest;
-import co.elastic.clients.elasticsearch._global.OpenPointInTimeResponse;
-import co.elastic.clients.elasticsearch._global.PingRequest;
-import co.elastic.clients.elasticsearch._global.PutScriptRequest;
-import co.elastic.clients.elasticsearch._global.PutScriptResponse;
-import co.elastic.clients.elasticsearch._global.RankEvalRequest;
-import co.elastic.clients.elasticsearch._global.RankEvalResponse;
-import co.elastic.clients.elasticsearch._global.ReindexRequest;
-import co.elastic.clients.elasticsearch._global.ReindexResponse;
-import co.elastic.clients.elasticsearch._global.ReindexRethrottleRequest;
-import co.elastic.clients.elasticsearch._global.ReindexRethrottleResponse;
-import co.elastic.clients.elasticsearch._global.ScriptsPainlessExecuteRequest;
-import co.elastic.clients.elasticsearch._global.ScriptsPainlessExecuteResponse;
-import co.elastic.clients.elasticsearch._global.SearchMvtRequest;
-import co.elastic.clients.elasticsearch._global.SearchMvtResponse;
-import co.elastic.clients.elasticsearch._global.SearchRequest;
-import co.elastic.clients.elasticsearch._global.SearchResponse;
-import co.elastic.clients.elasticsearch._global.SearchShardsRequest;
-import co.elastic.clients.elasticsearch._global.SearchShardsResponse;
-import co.elastic.clients.elasticsearch._global.SearchTemplateRequest;
-import co.elastic.clients.elasticsearch._global.SearchTemplateResponse;
-import co.elastic.clients.elasticsearch._global.TermsEnumRequest;
-import co.elastic.clients.elasticsearch._global.TermsEnumResponse;
-import co.elastic.clients.elasticsearch._global.TermvectorsRequest;
-import co.elastic.clients.elasticsearch._global.TermvectorsResponse;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryRequest;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryResponse;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleRequest;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleResponse;
-import co.elastic.clients.elasticsearch._global.UpdateRequest;
-import co.elastic.clients.elasticsearch._global.UpdateResponse;
-import co.elastic.clients.elasticsearch.api.async_search.AsyncSearchAsyncClient;
-import co.elastic.clients.elasticsearch.api.autoscaling.AutoscalingAsyncClient;
-import co.elastic.clients.elasticsearch.api.cat.CatAsyncClient;
-import co.elastic.clients.elasticsearch.api.ccr.CcrAsyncClient;
-import co.elastic.clients.elasticsearch.api.cluster.ClusterAsyncClient;
-import co.elastic.clients.elasticsearch.api.dangling_indices.DanglingIndicesAsyncClient;
-import co.elastic.clients.elasticsearch.api.enrich.EnrichAsyncClient;
-import co.elastic.clients.elasticsearch.api.eql.EqlAsyncClient;
-import co.elastic.clients.elasticsearch.api.features.FeaturesAsyncClient;
-import co.elastic.clients.elasticsearch.api.graph.GraphAsyncClient;
-import co.elastic.clients.elasticsearch.api.ilm.IlmAsyncClient;
-import co.elastic.clients.elasticsearch.api.indices.IndicesAsyncClient;
-import co.elastic.clients.elasticsearch.api.ingest.IngestAsyncClient;
-import co.elastic.clients.elasticsearch.api.license.LicenseAsyncClient;
-import co.elastic.clients.elasticsearch.api.logstash.LogstashAsyncClient;
-import co.elastic.clients.elasticsearch.api.migration.MigrationAsyncClient;
-import co.elastic.clients.elasticsearch.api.ml.MlAsyncClient;
-import co.elastic.clients.elasticsearch.api.monitoring.MonitoringAsyncClient;
-import co.elastic.clients.elasticsearch.api.nodes.NodesAsyncClient;
-import co.elastic.clients.elasticsearch.api.rollup.RollupAsyncClient;
-import co.elastic.clients.elasticsearch.api.searchable_snapshots.SearchableSnapshotsAsyncClient;
-import co.elastic.clients.elasticsearch.api.security.SecurityAsyncClient;
-import co.elastic.clients.elasticsearch.api.shutdown.ShutdownAsyncClient;
-import co.elastic.clients.elasticsearch.api.slm.SlmAsyncClient;
-import co.elastic.clients.elasticsearch.api.snapshot.SnapshotAsyncClient;
-import co.elastic.clients.elasticsearch.api.sql.SqlAsyncClient;
-import co.elastic.clients.elasticsearch.api.ssl.SslAsyncClient;
-import co.elastic.clients.elasticsearch.api.tasks.TasksAsyncClient;
-import co.elastic.clients.elasticsearch.api.text_structure.TextStructureAsyncClient;
-import co.elastic.clients.elasticsearch.api.transform.TransformAsyncClient;
-import co.elastic.clients.elasticsearch.api.watcher.WatcherAsyncClient;
-import co.elastic.clients.elasticsearch.api.xpack.XpackAsyncClient;
+import co.elastic.clients.elasticsearch._core.BulkRequest;
+import co.elastic.clients.elasticsearch._core.BulkResponse;
+import co.elastic.clients.elasticsearch._core.ClearScrollRequest;
+import co.elastic.clients.elasticsearch._core.ClearScrollResponse;
+import co.elastic.clients.elasticsearch._core.ClosePointInTimeRequest;
+import co.elastic.clients.elasticsearch._core.ClosePointInTimeResponse;
+import co.elastic.clients.elasticsearch._core.CountRequest;
+import co.elastic.clients.elasticsearch._core.CountResponse;
+import co.elastic.clients.elasticsearch._core.CreateRequest;
+import co.elastic.clients.elasticsearch._core.CreateResponse;
+import co.elastic.clients.elasticsearch._core.DeleteByQueryRequest;
+import co.elastic.clients.elasticsearch._core.DeleteByQueryResponse;
+import co.elastic.clients.elasticsearch._core.DeleteByQueryRethrottleRequest;
+import co.elastic.clients.elasticsearch._core.DeleteByQueryRethrottleResponse;
+import co.elastic.clients.elasticsearch._core.DeleteRequest;
+import co.elastic.clients.elasticsearch._core.DeleteResponse;
+import co.elastic.clients.elasticsearch._core.DeleteScriptRequest;
+import co.elastic.clients.elasticsearch._core.DeleteScriptResponse;
+import co.elastic.clients.elasticsearch._core.ExistsRequest;
+import co.elastic.clients.elasticsearch._core.ExistsSourceRequest;
+import co.elastic.clients.elasticsearch._core.ExplainRequest;
+import co.elastic.clients.elasticsearch._core.ExplainResponse;
+import co.elastic.clients.elasticsearch._core.FieldCapsRequest;
+import co.elastic.clients.elasticsearch._core.FieldCapsResponse;
+import co.elastic.clients.elasticsearch._core.GetRequest;
+import co.elastic.clients.elasticsearch._core.GetResponse;
+import co.elastic.clients.elasticsearch._core.GetScriptContextRequest;
+import co.elastic.clients.elasticsearch._core.GetScriptContextResponse;
+import co.elastic.clients.elasticsearch._core.GetScriptLanguagesRequest;
+import co.elastic.clients.elasticsearch._core.GetScriptLanguagesResponse;
+import co.elastic.clients.elasticsearch._core.GetScriptRequest;
+import co.elastic.clients.elasticsearch._core.GetScriptResponse;
+import co.elastic.clients.elasticsearch._core.GetSourceRequest;
+import co.elastic.clients.elasticsearch._core.GetSourceResponse;
+import co.elastic.clients.elasticsearch._core.IndexRequest;
+import co.elastic.clients.elasticsearch._core.IndexResponse;
+import co.elastic.clients.elasticsearch._core.InfoRequest;
+import co.elastic.clients.elasticsearch._core.InfoResponse;
+import co.elastic.clients.elasticsearch._core.MgetRequest;
+import co.elastic.clients.elasticsearch._core.MgetResponse;
+import co.elastic.clients.elasticsearch._core.MsearchRequest;
+import co.elastic.clients.elasticsearch._core.MsearchResponse;
+import co.elastic.clients.elasticsearch._core.MsearchTemplateRequest;
+import co.elastic.clients.elasticsearch._core.MsearchTemplateResponse;
+import co.elastic.clients.elasticsearch._core.MtermvectorsRequest;
+import co.elastic.clients.elasticsearch._core.MtermvectorsResponse;
+import co.elastic.clients.elasticsearch._core.OpenPointInTimeRequest;
+import co.elastic.clients.elasticsearch._core.OpenPointInTimeResponse;
+import co.elastic.clients.elasticsearch._core.PingRequest;
+import co.elastic.clients.elasticsearch._core.PutScriptRequest;
+import co.elastic.clients.elasticsearch._core.PutScriptResponse;
+import co.elastic.clients.elasticsearch._core.RankEvalRequest;
+import co.elastic.clients.elasticsearch._core.RankEvalResponse;
+import co.elastic.clients.elasticsearch._core.ReindexRequest;
+import co.elastic.clients.elasticsearch._core.ReindexResponse;
+import co.elastic.clients.elasticsearch._core.ReindexRethrottleRequest;
+import co.elastic.clients.elasticsearch._core.ReindexRethrottleResponse;
+import co.elastic.clients.elasticsearch._core.ScriptsPainlessExecuteRequest;
+import co.elastic.clients.elasticsearch._core.ScriptsPainlessExecuteResponse;
+import co.elastic.clients.elasticsearch._core.SearchMvtRequest;
+import co.elastic.clients.elasticsearch._core.SearchMvtResponse;
+import co.elastic.clients.elasticsearch._core.SearchRequest;
+import co.elastic.clients.elasticsearch._core.SearchResponse;
+import co.elastic.clients.elasticsearch._core.SearchShardsRequest;
+import co.elastic.clients.elasticsearch._core.SearchShardsResponse;
+import co.elastic.clients.elasticsearch._core.SearchTemplateRequest;
+import co.elastic.clients.elasticsearch._core.SearchTemplateResponse;
+import co.elastic.clients.elasticsearch._core.TermsEnumRequest;
+import co.elastic.clients.elasticsearch._core.TermsEnumResponse;
+import co.elastic.clients.elasticsearch._core.TermvectorsRequest;
+import co.elastic.clients.elasticsearch._core.TermvectorsResponse;
+import co.elastic.clients.elasticsearch._core.UpdateByQueryRequest;
+import co.elastic.clients.elasticsearch._core.UpdateByQueryResponse;
+import co.elastic.clients.elasticsearch._core.UpdateByQueryRethrottleRequest;
+import co.elastic.clients.elasticsearch._core.UpdateByQueryRethrottleResponse;
+import co.elastic.clients.elasticsearch._core.UpdateRequest;
+import co.elastic.clients.elasticsearch._core.UpdateResponse;
+import co.elastic.clients.elasticsearch.async_search.AsyncSearchApiAsyncClient;
+import co.elastic.clients.elasticsearch.autoscaling.AutoscalingApiAsyncClient;
+import co.elastic.clients.elasticsearch.cat.CatApiAsyncClient;
+import co.elastic.clients.elasticsearch.ccr.CcrApiAsyncClient;
+import co.elastic.clients.elasticsearch.cluster.ClusterApiAsyncClient;
+import co.elastic.clients.elasticsearch.dangling_indices.DanglingIndicesApiAsyncClient;
+import co.elastic.clients.elasticsearch.enrich.EnrichApiAsyncClient;
+import co.elastic.clients.elasticsearch.eql.EqlApiAsyncClient;
+import co.elastic.clients.elasticsearch.features.FeaturesApiAsyncClient;
+import co.elastic.clients.elasticsearch.graph.GraphApiAsyncClient;
+import co.elastic.clients.elasticsearch.ilm.IlmApiAsyncClient;
+import co.elastic.clients.elasticsearch.indices.IndicesApiAsyncClient;
+import co.elastic.clients.elasticsearch.ingest.IngestApiAsyncClient;
+import co.elastic.clients.elasticsearch.license.LicenseApiAsyncClient;
+import co.elastic.clients.elasticsearch.logstash.LogstashApiAsyncClient;
+import co.elastic.clients.elasticsearch.migration.MigrationApiAsyncClient;
+import co.elastic.clients.elasticsearch.ml.MlApiAsyncClient;
+import co.elastic.clients.elasticsearch.monitoring.MonitoringApiAsyncClient;
+import co.elastic.clients.elasticsearch.nodes.NodesApiAsyncClient;
+import co.elastic.clients.elasticsearch.rollup.RollupApiAsyncClient;
+import co.elastic.clients.elasticsearch.searchable_snapshots.SearchableSnapshotsApiAsyncClient;
+import co.elastic.clients.elasticsearch.security.SecurityApiAsyncClient;
+import co.elastic.clients.elasticsearch.shutdown.ShutdownApiAsyncClient;
+import co.elastic.clients.elasticsearch.slm.SlmApiAsyncClient;
+import co.elastic.clients.elasticsearch.snapshot.SnapshotApiAsyncClient;
+import co.elastic.clients.elasticsearch.sql.SqlApiAsyncClient;
+import co.elastic.clients.elasticsearch.ssl.SslApiAsyncClient;
+import co.elastic.clients.elasticsearch.tasks.TasksApiAsyncClient;
+import co.elastic.clients.elasticsearch.text_structure.TextStructureApiAsyncClient;
+import co.elastic.clients.elasticsearch.transform.TransformApiAsyncClient;
+import co.elastic.clients.elasticsearch.watcher.WatcherApiAsyncClient;
+import co.elastic.clients.elasticsearch.xpack.XpackApiAsyncClient;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -157,132 +157,132 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	// ----- Child clients
 
-	public AsyncSearchAsyncClient asyncSearch() {
-		return new AsyncSearchAsyncClient(this.transport);
+	public AsyncSearchApiAsyncClient asyncSearch() {
+		return new AsyncSearchApiAsyncClient(this.transport);
 	}
 
-	public AutoscalingAsyncClient autoscaling() {
-		return new AutoscalingAsyncClient(this.transport);
+	public AutoscalingApiAsyncClient autoscaling() {
+		return new AutoscalingApiAsyncClient(this.transport);
 	}
 
-	public CatAsyncClient cat() {
-		return new CatAsyncClient(this.transport);
+	public CatApiAsyncClient cat() {
+		return new CatApiAsyncClient(this.transport);
 	}
 
-	public CcrAsyncClient ccr() {
-		return new CcrAsyncClient(this.transport);
+	public CcrApiAsyncClient ccr() {
+		return new CcrApiAsyncClient(this.transport);
 	}
 
-	public ClusterAsyncClient cluster() {
-		return new ClusterAsyncClient(this.transport);
+	public ClusterApiAsyncClient cluster() {
+		return new ClusterApiAsyncClient(this.transport);
 	}
 
-	public DanglingIndicesAsyncClient danglingIndices() {
-		return new DanglingIndicesAsyncClient(this.transport);
+	public DanglingIndicesApiAsyncClient danglingIndices() {
+		return new DanglingIndicesApiAsyncClient(this.transport);
 	}
 
-	public EnrichAsyncClient enrich() {
-		return new EnrichAsyncClient(this.transport);
+	public EnrichApiAsyncClient enrich() {
+		return new EnrichApiAsyncClient(this.transport);
 	}
 
-	public EqlAsyncClient eql() {
-		return new EqlAsyncClient(this.transport);
+	public EqlApiAsyncClient eql() {
+		return new EqlApiAsyncClient(this.transport);
 	}
 
-	public FeaturesAsyncClient features() {
-		return new FeaturesAsyncClient(this.transport);
+	public FeaturesApiAsyncClient features() {
+		return new FeaturesApiAsyncClient(this.transport);
 	}
 
-	public GraphAsyncClient graph() {
-		return new GraphAsyncClient(this.transport);
+	public GraphApiAsyncClient graph() {
+		return new GraphApiAsyncClient(this.transport);
 	}
 
-	public IlmAsyncClient ilm() {
-		return new IlmAsyncClient(this.transport);
+	public IlmApiAsyncClient ilm() {
+		return new IlmApiAsyncClient(this.transport);
 	}
 
-	public IndicesAsyncClient indices() {
-		return new IndicesAsyncClient(this.transport);
+	public IndicesApiAsyncClient indices() {
+		return new IndicesApiAsyncClient(this.transport);
 	}
 
-	public IngestAsyncClient ingest() {
-		return new IngestAsyncClient(this.transport);
+	public IngestApiAsyncClient ingest() {
+		return new IngestApiAsyncClient(this.transport);
 	}
 
-	public LicenseAsyncClient license() {
-		return new LicenseAsyncClient(this.transport);
+	public LicenseApiAsyncClient license() {
+		return new LicenseApiAsyncClient(this.transport);
 	}
 
-	public LogstashAsyncClient logstash() {
-		return new LogstashAsyncClient(this.transport);
+	public LogstashApiAsyncClient logstash() {
+		return new LogstashApiAsyncClient(this.transport);
 	}
 
-	public MigrationAsyncClient migration() {
-		return new MigrationAsyncClient(this.transport);
+	public MigrationApiAsyncClient migration() {
+		return new MigrationApiAsyncClient(this.transport);
 	}
 
-	public MlAsyncClient ml() {
-		return new MlAsyncClient(this.transport);
+	public MlApiAsyncClient ml() {
+		return new MlApiAsyncClient(this.transport);
 	}
 
-	public MonitoringAsyncClient monitoring() {
-		return new MonitoringAsyncClient(this.transport);
+	public MonitoringApiAsyncClient monitoring() {
+		return new MonitoringApiAsyncClient(this.transport);
 	}
 
-	public NodesAsyncClient nodes() {
-		return new NodesAsyncClient(this.transport);
+	public NodesApiAsyncClient nodes() {
+		return new NodesApiAsyncClient(this.transport);
 	}
 
-	public RollupAsyncClient rollup() {
-		return new RollupAsyncClient(this.transport);
+	public RollupApiAsyncClient rollup() {
+		return new RollupApiAsyncClient(this.transport);
 	}
 
-	public SearchableSnapshotsAsyncClient searchableSnapshots() {
-		return new SearchableSnapshotsAsyncClient(this.transport);
+	public SearchableSnapshotsApiAsyncClient searchableSnapshots() {
+		return new SearchableSnapshotsApiAsyncClient(this.transport);
 	}
 
-	public SecurityAsyncClient security() {
-		return new SecurityAsyncClient(this.transport);
+	public SecurityApiAsyncClient security() {
+		return new SecurityApiAsyncClient(this.transport);
 	}
 
-	public ShutdownAsyncClient shutdown() {
-		return new ShutdownAsyncClient(this.transport);
+	public ShutdownApiAsyncClient shutdown() {
+		return new ShutdownApiAsyncClient(this.transport);
 	}
 
-	public SlmAsyncClient slm() {
-		return new SlmAsyncClient(this.transport);
+	public SlmApiAsyncClient slm() {
+		return new SlmApiAsyncClient(this.transport);
 	}
 
-	public SnapshotAsyncClient snapshot() {
-		return new SnapshotAsyncClient(this.transport);
+	public SnapshotApiAsyncClient snapshot() {
+		return new SnapshotApiAsyncClient(this.transport);
 	}
 
-	public SqlAsyncClient sql() {
-		return new SqlAsyncClient(this.transport);
+	public SqlApiAsyncClient sql() {
+		return new SqlApiAsyncClient(this.transport);
 	}
 
-	public SslAsyncClient ssl() {
-		return new SslAsyncClient(this.transport);
+	public SslApiAsyncClient ssl() {
+		return new SslApiAsyncClient(this.transport);
 	}
 
-	public TasksAsyncClient tasks() {
-		return new TasksAsyncClient(this.transport);
+	public TasksApiAsyncClient tasks() {
+		return new TasksApiAsyncClient(this.transport);
 	}
 
-	public TextStructureAsyncClient textStructure() {
-		return new TextStructureAsyncClient(this.transport);
+	public TextStructureApiAsyncClient textStructure() {
+		return new TextStructureApiAsyncClient(this.transport);
 	}
 
-	public TransformAsyncClient transform() {
-		return new TransformAsyncClient(this.transport);
+	public TransformApiAsyncClient transform() {
+		return new TransformApiAsyncClient(this.transport);
 	}
 
-	public WatcherAsyncClient watcher() {
-		return new WatcherAsyncClient(this.transport);
+	public WatcherApiAsyncClient watcher() {
+		return new WatcherApiAsyncClient(this.transport);
 	}
 
-	public XpackAsyncClient xpack() {
-		return new XpackAsyncClient(this.transport);
+	public XpackApiAsyncClient xpack() {
+		return new XpackApiAsyncClient(this.transport);
 	}
 
 	// ----- Endpoint: bulk

@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.indices.get_data_stream.IndicesGetDataSt
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,12 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.Response
-public final class GetDataStreamResponse implements ToJsonp {
+public final class GetDataStreamResponse implements JsonpSerializable {
 	private final List<IndicesGetDataStreamItem> dataStreams;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDataStreamResponse(Builder builder) {
+	public GetDataStreamResponse(Builder builder) {
 
 		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
 
@@ -61,18 +61,18 @@ public final class GetDataStreamResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("data_streams");
 		generator.writeStartArray();
 		for (IndicesGetDataStreamItem item0 : this.dataStreams) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -145,7 +145,7 @@ public final class GetDataStreamResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetDataStreamResponse
+	 * Json deserializer for {@link GetDataStreamResponse}
 	 */
 	public static final JsonpDeserializer<GetDataStreamResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetDataStreamResponse::setupGetDataStreamResponseDeserializer);

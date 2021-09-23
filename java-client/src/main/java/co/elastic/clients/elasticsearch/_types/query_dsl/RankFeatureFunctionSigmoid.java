@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,14 +36,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
-public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implements ToJsonp {
+public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implements JsonpSerializable {
 	private final Number pivot;
 
 	private final Number exponent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RankFeatureFunctionSigmoid(Builder builder) {
+	public RankFeatureFunctionSigmoid(Builder builder) {
 
 		this.pivot = Objects.requireNonNull(builder.pivot, "pivot");
 		this.exponent = Objects.requireNonNull(builder.exponent, "exponent");
@@ -67,13 +67,13 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("pivot");
 		generator.write(this.pivot.doubleValue());
@@ -124,7 +124,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RankFeatureFunctionSigmoid
+	 * Json deserializer for {@link RankFeatureFunctionSigmoid}
 	 */
 	public static final JsonpDeserializer<RankFeatureFunctionSigmoid> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RankFeatureFunctionSigmoid::setupRankFeatureFunctionSigmoidDeserializer);

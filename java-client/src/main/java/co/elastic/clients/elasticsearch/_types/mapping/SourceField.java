@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types.mapping;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,13 +40,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SourceField
-public final class SourceField implements ToJsonp {
+public final class SourceField implements JsonpSerializable {
 	@Nullable
 	private final Boolean compress;
 
 	@Nullable
 	private final String compressThreshold;
 
+	@Nullable
 	private final Boolean enabled;
 
 	@Nullable
@@ -57,11 +58,11 @@ public final class SourceField implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SourceField(Builder builder) {
+	public SourceField(Builder builder) {
 
 		this.compress = builder.compress;
 		this.compressThreshold = builder.compressThreshold;
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = builder.enabled;
 		this.excludes = builder.excludes;
 		this.includes = builder.includes;
 
@@ -86,6 +87,7 @@ public final class SourceField implements ToJsonp {
 	/**
 	 * API name: {@code enabled}
 	 */
+	@Nullable
 	public Boolean enabled() {
 		return this.enabled;
 	}
@@ -109,13 +111,13 @@ public final class SourceField implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.compress != null) {
 
@@ -129,10 +131,12 @@ public final class SourceField implements ToJsonp {
 			generator.write(this.compressThreshold);
 
 		}
+		if (this.enabled != null) {
 
-		generator.writeKey("enabled");
-		generator.write(this.enabled);
+			generator.writeKey("enabled");
+			generator.write(this.enabled);
 
+		}
 		if (this.excludes != null) {
 
 			generator.writeKey("excludes");
@@ -170,6 +174,7 @@ public final class SourceField implements ToJsonp {
 		@Nullable
 		private String compressThreshold;
 
+		@Nullable
 		private Boolean enabled;
 
 		@Nullable
@@ -197,7 +202,7 @@ public final class SourceField implements ToJsonp {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -271,7 +276,7 @@ public final class SourceField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SourceField
+	 * Json deserializer for {@link SourceField}
 	 */
 	public static final JsonpDeserializer<SourceField> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SourceField::setupSourceFieldDeserializer);

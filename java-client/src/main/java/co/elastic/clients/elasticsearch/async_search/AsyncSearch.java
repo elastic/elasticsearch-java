@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.elasticsearch._global.search.HitsMetadata;
-import co.elastic.clients.elasticsearch._global.search.Profile;
-import co.elastic.clients.elasticsearch._global.search.Suggest;
+import co.elastic.clients.elasticsearch._core.search.HitsMetadata;
+import co.elastic.clients.elasticsearch._core.search.Profile;
+import co.elastic.clients.elasticsearch._core.search.Suggestion;
 import co.elastic.clients.elasticsearch._types.ClusterStatistics;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -50,7 +51,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearch
-public final class AsyncSearch<TDocument> implements ToJsonp {
+public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Map<String, JsonValue> aggregations;
 
@@ -58,7 +59,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	private final ClusterStatistics clusters;
 
 	@Nullable
-	private final Map<String, JsonValue> fields;
+	private final Map<String, JsonData> fields;
 
 	private final HitsMetadata<TDocument> hits;
 
@@ -80,7 +81,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	private final ShardStatistics shards;
 
 	@Nullable
-	private final Map<String, List<Suggest<TDocument>>> suggest;
+	private final Map<String, List<Suggestion<TDocument>>> suggest;
 
 	@Nullable
 	private final Boolean terminatedEarly;
@@ -94,7 +95,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AsyncSearch(Builder<TDocument> builder) {
+	public AsyncSearch(Builder<TDocument> builder) {
 
 		this.aggregations = builder.aggregations;
 		this.clusters = builder.clusters;
@@ -134,7 +135,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	 * API name: {@code fields}
 	 */
 	@Nullable
-	public Map<String, JsonValue> fields() {
+	public Map<String, JsonData> fields() {
 		return this.fields;
 	}
 
@@ -196,7 +197,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	 * API name: {@code suggest}
 	 */
 	@Nullable
-	public Map<String, List<Suggest<TDocument>>> suggest() {
+	public Map<String, List<Suggestion<TDocument>>> suggest() {
 		return this.suggest;
 	}
 
@@ -225,13 +226,13 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aggregations != null) {
 
@@ -248,16 +249,16 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		if (this.clusters != null) {
 
 			generator.writeKey("_clusters");
-			this.clusters.toJsonp(generator, mapper);
+			this.clusters.serialize(generator, mapper);
 
 		}
 		if (this.fields != null) {
 
 			generator.writeKey("fields");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.fields.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -265,7 +266,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		}
 
 		generator.writeKey("hits");
-		this.hits.toJsonp(generator, mapper);
+		this.hits.serialize(generator, mapper);
 
 		if (this.maxScore != null) {
 
@@ -282,7 +283,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		if (this.profile != null) {
 
 			generator.writeKey("profile");
-			this.profile.toJsonp(generator, mapper);
+			this.profile.serialize(generator, mapper);
 
 		}
 		if (this.pitId != null) {
@@ -299,17 +300,17 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		}
 
 		generator.writeKey("_shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 		if (this.suggest != null) {
 
 			generator.writeKey("suggest");
 			generator.writeStartObject();
-			for (Map.Entry<String, List<Suggest<TDocument>>> item0 : this.suggest.entrySet()) {
+			for (Map.Entry<String, List<Suggestion<TDocument>>> item0 : this.suggest.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
-				for (Suggest<TDocument> item1 : item0.getValue()) {
-					item1.toJsonp(generator, mapper);
+				for (Suggestion<TDocument> item1 : item0.getValue()) {
+					item1.serialize(generator, mapper);
 
 				}
 				generator.writeEnd();
@@ -346,7 +347,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		private ClusterStatistics clusters;
 
 		@Nullable
-		private Map<String, JsonValue> fields;
+		private Map<String, JsonData> fields;
 
 		private HitsMetadata<TDocument> hits;
 
@@ -368,7 +369,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		private ShardStatistics shards;
 
 		@Nullable
-		private Map<String, List<Suggest<TDocument>>> suggest;
+		private Map<String, List<Suggestion<TDocument>>> suggest;
 
 		@Nullable
 		private Boolean terminatedEarly;
@@ -417,7 +418,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder<TDocument> fields(@Nullable Map<String, JsonValue> value) {
+		public Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
 			this.fields = value;
 			return this;
 		}
@@ -425,7 +426,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
 		 */
-		public Builder<TDocument> putFields(String key, JsonValue value) {
+		public Builder<TDocument> putFields(String key, JsonData value) {
 			if (this.fields == null) {
 				this.fields = new HashMap<>();
 			}
@@ -514,7 +515,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code suggest}
 		 */
-		public Builder<TDocument> suggest(@Nullable Map<String, List<Suggest<TDocument>>> value) {
+		public Builder<TDocument> suggest(@Nullable Map<String, List<Suggestion<TDocument>>> value) {
 			this.suggest = value;
 			return this;
 		}
@@ -522,7 +523,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #suggest(Map)}, creating the map if needed.
 		 */
-		public Builder<TDocument> putSuggest(String key, List<Suggest<TDocument>> value) {
+		public Builder<TDocument> putSuggest(String key, List<Suggestion<TDocument>> value) {
 			if (this.suggest == null) {
 				this.suggest = new HashMap<>();
 			}
@@ -593,8 +594,7 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		op.add(Builder::aggregations,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");
 		op.add(Builder::clusters, ClusterStatistics.DESERIALIZER, "_clusters");
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"fields");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "fields");
 		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
 		op.add(Builder::maxScore, JsonpDeserializer.numberDeserializer(), "max_score");
 		op.add(Builder::numReducePhases, JsonpDeserializer.numberDeserializer(), "num_reduce_phases");
@@ -602,9 +602,8 @@ public final class AsyncSearch<TDocument> implements ToJsonp {
 		op.add(Builder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
 		op.add(Builder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
 		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
-		op.add(Builder::suggest,
-				JsonpDeserializer.stringMapDeserializer(
-						JsonpDeserializer.arrayDeserializer(Suggest.createSuggestDeserializer(tDocumentDeserializer))),
+		op.add(Builder::suggest, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(Suggestion.createSuggestionDeserializer(tDocumentDeserializer))),
 				"suggest");
 		op.add(Builder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.rollup.delete_job;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailure
-public final class TaskFailure implements ToJsonp {
+public final class TaskFailure implements JsonpSerializable {
 	private final JsonValue taskId;
 
 	private final String nodeId;
@@ -49,7 +49,7 @@ public final class TaskFailure implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TaskFailure(Builder builder) {
+	public TaskFailure(Builder builder) {
 
 		this.taskId = Objects.requireNonNull(builder.taskId, "task_id");
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
@@ -89,13 +89,13 @@ public final class TaskFailure implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("task_id");
 		generator.write(this.taskId);
@@ -107,7 +107,7 @@ public final class TaskFailure implements ToJsonp {
 		generator.write(this.status);
 
 		generator.writeKey("reason");
-		this.reason.toJsonp(generator, mapper);
+		this.reason.serialize(generator, mapper);
 
 	}
 
@@ -179,7 +179,7 @@ public final class TaskFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TaskFailure
+	 * Json deserializer for {@link TaskFailure}
 	 */
 	public static final JsonpDeserializer<TaskFailure> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TaskFailure::setupTaskFailureDeserializer);

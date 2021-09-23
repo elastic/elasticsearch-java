@@ -27,11 +27,12 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -46,7 +47,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.Request
-public final class MountRequest extends RequestBase implements ToJsonp {
+public final class MountRequest extends RequestBase implements JsonpSerializable {
 	private final String repository;
 
 	private final String snapshot;
@@ -66,14 +67,14 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	private final String renamedIndex;
 
 	@Nullable
-	private final Map<String, JsonValue> indexSettings;
+	private final Map<String, JsonData> indexSettings;
 
 	@Nullable
 	private final List<String> ignoreIndexSettings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MountRequest(Builder builder) {
+	public MountRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
@@ -155,7 +156,7 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code index_settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> indexSettings() {
+	public Map<String, JsonData> indexSettings() {
 		return this.indexSettings;
 	}
 
@@ -170,13 +171,13 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -191,9 +192,9 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("index_settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.indexSettings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.indexSettings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -238,7 +239,7 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 		private String renamedIndex;
 
 		@Nullable
-		private Map<String, JsonValue> indexSettings;
+		private Map<String, JsonData> indexSettings;
 
 		@Nullable
 		private List<String> ignoreIndexSettings;
@@ -313,7 +314,7 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code index_settings}
 		 */
-		public Builder indexSettings(@Nullable Map<String, JsonValue> value) {
+		public Builder indexSettings(@Nullable Map<String, JsonData> value) {
 			this.indexSettings = value;
 			return this;
 		}
@@ -321,7 +322,7 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #indexSettings(Map)}, creating the map if needed.
 		 */
-		public Builder putIndexSettings(String key, JsonValue value) {
+		public Builder putIndexSettings(String key, JsonData value) {
 			if (this.indexSettings == null) {
 				this.indexSettings = new HashMap<>();
 			}
@@ -372,7 +373,7 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MountRequest
+	 * Json deserializer for {@link MountRequest}
 	 */
 	public static final JsonpDeserializer<MountRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MountRequest::setupMountRequestDeserializer);
@@ -381,8 +382,8 @@ public final class MountRequest extends RequestBase implements ToJsonp {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::renamedIndex, JsonpDeserializer.stringDeserializer(), "renamed_index");
-		op.add(Builder::indexSettings,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "index_settings");
+		op.add(Builder::indexSettings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+				"index_settings");
 		op.add(Builder::ignoreIndexSettings,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ignore_index_settings");
 

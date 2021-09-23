@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryRecall
-public final class DataframeClassificationSummaryRecall implements ToJsonp {
+public final class DataframeClassificationSummaryRecall implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
 
 	private final Number avgRecall;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeClassificationSummaryRecall(Builder builder) {
+	public DataframeClassificationSummaryRecall(Builder builder) {
 
 		this.classes = Objects.requireNonNull(builder.classes, "classes");
 		this.avgRecall = Objects.requireNonNull(builder.avgRecall, "avg_recall");
@@ -71,18 +71,18 @@ public final class DataframeClassificationSummaryRecall implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("classes");
 		generator.writeStartArray();
 		for (DataframeEvaluationClass item0 : this.classes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -167,7 +167,7 @@ public final class DataframeClassificationSummaryRecall implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeClassificationSummaryRecall
+	 * Json deserializer for {@link DataframeClassificationSummaryRecall}
 	 */
 	public static final JsonpDeserializer<DataframeClassificationSummaryRecall> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

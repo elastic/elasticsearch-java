@@ -42,7 +42,7 @@ public final class RetryRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RetryRequest(Builder builder) {
+	public RetryRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 

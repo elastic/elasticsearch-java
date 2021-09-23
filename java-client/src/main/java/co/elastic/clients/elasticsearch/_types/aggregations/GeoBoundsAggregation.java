@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBoundsAggregation
@@ -40,8 +41,9 @@ public final class GeoBoundsAggregation extends MetricAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoBoundsAggregation(Builder builder) {
+	public GeoBoundsAggregation(Builder builder) {
 		super(builder);
+
 		this.wrapLongitude = builder.wrapLongitude;
 
 	}
@@ -54,8 +56,9 @@ public final class GeoBoundsAggregation extends MetricAggregationBase {
 		return this.wrapLongitude;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.wrapLongitude != null) {
 
 			generator.writeKey("wrap_longitude");
@@ -104,7 +107,7 @@ public final class GeoBoundsAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoBoundsAggregation
+	 * Json deserializer for {@link GeoBoundsAggregation}
 	 */
 	public static final JsonpDeserializer<GeoBoundsAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GeoBoundsAggregation::setupGeoBoundsAggregationDeserializer);

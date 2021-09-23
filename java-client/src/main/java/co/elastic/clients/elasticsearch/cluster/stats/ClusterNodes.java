@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.PluginStats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -44,7 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNodes
-public final class ClusterNodes implements ToJsonp {
+public final class ClusterNodes implements JsonpSerializable {
 	private final ClusterNodeCount count;
 
 	private final Map<String, Number> discoveryTypes;
@@ -69,7 +69,7 @@ public final class ClusterNodes implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterNodes(Builder builder) {
+	public ClusterNodes(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.discoveryTypes = Objects.requireNonNull(builder.discoveryTypes, "discovery_types");
@@ -188,16 +188,16 @@ public final class ClusterNodes implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		this.count.toJsonp(generator, mapper);
+		this.count.serialize(generator, mapper);
 
 		generator.writeKey("discovery_types");
 		generator.writeStartObject();
@@ -209,24 +209,24 @@ public final class ClusterNodes implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("fs");
-		this.fs.toJsonp(generator, mapper);
+		this.fs.serialize(generator, mapper);
 
 		generator.writeKey("ingest");
-		this.ingest.toJsonp(generator, mapper);
+		this.ingest.serialize(generator, mapper);
 
 		generator.writeKey("jvm");
-		this.jvm.toJsonp(generator, mapper);
+		this.jvm.serialize(generator, mapper);
 
 		generator.writeKey("network_types");
-		this.networkTypes.toJsonp(generator, mapper);
+		this.networkTypes.serialize(generator, mapper);
 
 		generator.writeKey("os");
-		this.os.toJsonp(generator, mapper);
+		this.os.serialize(generator, mapper);
 
 		generator.writeKey("packaging_types");
 		generator.writeStartArray();
 		for (NodePackagingType item0 : this.packagingTypes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -234,13 +234,13 @@ public final class ClusterNodes implements ToJsonp {
 		generator.writeKey("plugins");
 		generator.writeStartArray();
 		for (PluginStats item0 : this.plugins) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("process");
-		this.process.toJsonp(generator, mapper);
+		this.process.serialize(generator, mapper);
 
 		generator.writeKey("versions");
 		generator.writeStartArray();
@@ -572,7 +572,7 @@ public final class ClusterNodes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterNodes
+	 * Json deserializer for {@link ClusterNodes}
 	 */
 	public static final JsonpDeserializer<ClusterNodes> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterNodes::setupClusterNodesDeserializer);

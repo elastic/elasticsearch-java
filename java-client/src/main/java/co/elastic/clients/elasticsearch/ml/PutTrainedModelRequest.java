@@ -26,17 +26,17 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfigContainer;
+import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Definition;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Input;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Request
-public final class PutTrainedModelRequest extends RequestBase implements ToJsonp {
+public final class PutTrainedModelRequest extends RequestBase implements JsonpSerializable {
 	private final String modelId;
 
 	@Nullable
@@ -60,19 +60,19 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	@Nullable
 	private final String description;
 
-	private final InferenceConfigContainer inferenceConfig;
+	private final InferenceConfig inferenceConfig;
 
 	private final Input input;
 
 	@Nullable
-	private final JsonValue metadata;
+	private final JsonData metadata;
 
 	@Nullable
 	private final List<String> tags;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTrainedModelRequest(Builder builder) {
+	public PutTrainedModelRequest(Builder builder) {
 
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.compressedDefinition = builder.compressedDefinition;
@@ -134,7 +134,7 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	 * <p>
 	 * API name: {@code inference_config}
 	 */
-	public InferenceConfigContainer inferenceConfig() {
+	public InferenceConfig inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
@@ -153,7 +153,7 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public JsonValue metadata() {
+	public JsonData metadata() {
 		return this.metadata;
 	}
 
@@ -170,13 +170,13 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.compressedDefinition != null) {
 
@@ -187,7 +187,7 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 		if (this.definition != null) {
 
 			generator.writeKey("definition");
-			this.definition.toJsonp(generator, mapper);
+			this.definition.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
@@ -198,15 +198,15 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 		}
 
 		generator.writeKey("inference_config");
-		this.inferenceConfig.toJsonp(generator, mapper);
+		this.inferenceConfig.serialize(generator, mapper);
 
 		generator.writeKey("input");
-		this.input.toJsonp(generator, mapper);
+		this.input.serialize(generator, mapper);
 
 		if (this.metadata != null) {
 
 			generator.writeKey("metadata");
-			generator.write(this.metadata);
+			this.metadata.serialize(generator, mapper);
 
 		}
 		if (this.tags != null) {
@@ -240,12 +240,12 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 		@Nullable
 		private String description;
 
-		private InferenceConfigContainer inferenceConfig;
+		private InferenceConfig inferenceConfig;
 
 		private Input input;
 
 		@Nullable
-		private JsonValue metadata;
+		private JsonData metadata;
 
 		@Nullable
 		private List<String> tags;
@@ -310,7 +310,7 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(InferenceConfigContainer value) {
+		public Builder inferenceConfig(InferenceConfig value) {
 			this.inferenceConfig = value;
 			return this;
 		}
@@ -322,9 +322,8 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(
-				Function<InferenceConfigContainer.Builder, ObjectBuilder<InferenceConfigContainer>> fn) {
-			return this.inferenceConfig(fn.apply(new InferenceConfigContainer.Builder()).build());
+		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
 		/**
@@ -351,7 +350,7 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable JsonValue value) {
+		public Builder metadata(@Nullable JsonData value) {
 			this.metadata = value;
 			return this;
 		}
@@ -402,7 +401,7 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutTrainedModelRequest
+	 * Json deserializer for {@link PutTrainedModelRequest}
 	 */
 	public static final JsonpDeserializer<PutTrainedModelRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer);
@@ -413,9 +412,9 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
 		op.add(Builder::definition, Definition.DESERIALIZER, "definition");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::inferenceConfig, InferenceConfigContainer.DESERIALIZER, "inference_config");
+		op.add(Builder::inferenceConfig, InferenceConfig.DESERIALIZER, "inference_config");
 		op.add(Builder::input, Input.DESERIALIZER, "input");
-		op.add(Builder::metadata, JsonpDeserializer.jsonValueDeserializer(), "metadata");
+		op.add(Builder::metadata, JsonData.DESERIALIZER, "metadata");
 		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
 
 	}

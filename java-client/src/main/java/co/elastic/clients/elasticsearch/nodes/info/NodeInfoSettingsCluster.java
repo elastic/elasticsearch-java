@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.indices.IndexRouting;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsCluster
-public final class NodeInfoSettingsCluster implements ToJsonp {
+public final class NodeInfoSettingsCluster implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -51,7 +51,7 @@ public final class NodeInfoSettingsCluster implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoSettingsCluster(Builder builder) {
+	public NodeInfoSettingsCluster(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.routing = builder.routing;
@@ -93,13 +93,13 @@ public final class NodeInfoSettingsCluster implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -107,12 +107,12 @@ public final class NodeInfoSettingsCluster implements ToJsonp {
 		if (this.routing != null) {
 
 			generator.writeKey("routing");
-			this.routing.toJsonp(generator, mapper);
+			this.routing.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("election");
-		this.election.toJsonp(generator, mapper);
+		this.election.serialize(generator, mapper);
 
 		if (this.initialMasterNodes != null) {
 
@@ -201,7 +201,7 @@ public final class NodeInfoSettingsCluster implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoSettingsCluster
+	 * Json deserializer for {@link NodeInfoSettingsCluster}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsCluster> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoSettingsCluster::setupNodeInfoSettingsClusterDeserializer);

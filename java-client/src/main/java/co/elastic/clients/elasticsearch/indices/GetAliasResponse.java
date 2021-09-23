@@ -32,12 +32,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: indices.get_alias.Response
 public final class GetAliasResponse extends AdditionalProperties<String, IndexAliases> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetAliasResponse(Builder builder) {
+	public GetAliasResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -72,7 +73,7 @@ public final class GetAliasResponse extends AdditionalProperties<String, IndexAl
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetAliasResponse
+	 * Json deserializer for {@link GetAliasResponse}
 	 */
 	public static final JsonpDeserializer<GetAliasResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetAliasResponse::setupGetAliasResponseDeserializer);

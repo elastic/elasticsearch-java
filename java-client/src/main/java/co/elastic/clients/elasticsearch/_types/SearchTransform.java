@@ -25,11 +25,12 @@ package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.watcher.SearchInputRequestDefinition;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,18 +39,26 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SearchTransform
-public final class SearchTransform implements ToJsonp {
+public final class SearchTransform implements Transform, JsonpSerializable {
 	private final SearchInputRequestDefinition request;
 
 	private final JsonValue timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SearchTransform(Builder builder) {
+	public SearchTransform(Builder builder) {
 
 		this.request = Objects.requireNonNull(builder.request, "request");
 		this.timeout = Objects.requireNonNull(builder.timeout, "timeout");
 
+	}
+
+	/**
+	 * {@link Transform} variant type
+	 */
+	@Override
+	public String _type() {
+		return "search";
 	}
 
 	/**
@@ -69,19 +78,22 @@ public final class SearchTransform implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("request");
-		this.request.toJsonp(generator, mapper);
+		this.request.serialize(generator, mapper);
 
 		generator.writeKey("timeout");
 		generator.write(this.timeout);
+
+		generator.writeEnd();
 
 	}
 
@@ -133,11 +145,9 @@ public final class SearchTransform implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for SearchTransform
-	 */
-	public static final JsonpDeserializer<SearchTransform> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchTransform::setupSearchTransformDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<SearchTransform.Builder, SearchTransform.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(SearchTransform::setupSearchTransformDeserializer);
 
 	protected static void setupSearchTransformDeserializer(DelegatingDeserializer<SearchTransform.Builder> op) {
 

@@ -24,15 +24,15 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -44,9 +44,9 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _types.InlineGet
-public final class InlineGet<TDocument> implements ToJsonp {
+public final class InlineGet<TDocument> implements JsonpSerializable {
 	@Nullable
-	private final Map<String, JsonValue> fields;
+	private final Map<String, JsonData> fields;
 
 	private final Boolean found;
 
@@ -64,7 +64,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InlineGet(Builder<TDocument> builder) {
+	public InlineGet(Builder<TDocument> builder) {
 
 		this.fields = builder.fields;
 		this.found = Objects.requireNonNull(builder.found, "found");
@@ -80,7 +80,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 	 * API name: {@code fields}
 	 */
 	@Nullable
-	public Map<String, JsonValue> fields() {
+	public Map<String, JsonData> fields() {
 		return this.fields;
 	}
 
@@ -123,21 +123,21 @@ public final class InlineGet<TDocument> implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.fields != null) {
 
 			generator.writeKey("fields");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.fields.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -172,7 +172,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<InlineGet<TDocument>> {
 		@Nullable
-		private Map<String, JsonValue> fields;
+		private Map<String, JsonData> fields;
 
 		private Boolean found;
 
@@ -191,7 +191,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder<TDocument> fields(@Nullable Map<String, JsonValue> value) {
+		public Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
 			this.fields = value;
 			return this;
 		}
@@ -199,7 +199,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
 		 */
-		public Builder<TDocument> putFields(String key, JsonValue value) {
+		public Builder<TDocument> putFields(String key, JsonData value) {
 			if (this.fields == null) {
 				this.fields = new HashMap<>();
 			}
@@ -283,8 +283,7 @@ public final class InlineGet<TDocument> implements ToJsonp {
 			DelegatingDeserializer<InlineGet.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"fields");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "fields");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
 		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");

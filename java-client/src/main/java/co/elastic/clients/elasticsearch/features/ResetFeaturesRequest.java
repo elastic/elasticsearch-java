@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: features.reset_features.Request
 public final class ResetFeaturesRequest extends RequestBase {
-	protected ResetFeaturesRequest() {
+	public ResetFeaturesRequest() {
 	}
 
 	/**

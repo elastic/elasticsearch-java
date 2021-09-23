@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: dangling_indices.list_dangling_indices.Request
 public final class ListDanglingIndicesRequest extends RequestBase {
-	protected ListDanglingIndicesRequest() {
+	public ListDanglingIndicesRequest() {
 	}
 
 	/**

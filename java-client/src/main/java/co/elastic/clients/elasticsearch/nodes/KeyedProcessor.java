@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,14 +37,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.KeyedProcessor
-public final class KeyedProcessor implements ToJsonp {
+public final class KeyedProcessor implements JsonpSerializable {
 	private final Process statistics;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected KeyedProcessor(Builder builder) {
+	public KeyedProcessor(Builder builder) {
 
 		this.statistics = Objects.requireNonNull(builder.statistics, "statistics");
 		this.type = Objects.requireNonNull(builder.type, "type");
@@ -68,16 +68,16 @@ public final class KeyedProcessor implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("statistics");
-		this.statistics.toJsonp(generator, mapper);
+		this.statistics.serialize(generator, mapper);
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -132,7 +132,7 @@ public final class KeyedProcessor implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for KeyedProcessor
+	 * Json deserializer for {@link KeyedProcessor}
 	 */
 	public static final JsonpDeserializer<KeyedProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, KeyedProcessor::setupKeyedProcessorDeserializer);

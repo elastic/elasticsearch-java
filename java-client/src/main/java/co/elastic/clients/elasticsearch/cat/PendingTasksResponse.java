@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.cat.pending_tasks.PendingTasksRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,12 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.pending_tasks.Response
-public final class PendingTasksResponse implements ToJsonp {
+public final class PendingTasksResponse implements JsonpSerializable {
 	private final List<PendingTasksRecord> value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PendingTasksResponse(Builder builder) {
+	public PendingTasksResponse(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -63,10 +63,10 @@ public final class PendingTasksResponse implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
 		for (PendingTasksRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -141,7 +141,7 @@ public final class PendingTasksResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PendingTasksResponse
+	 * Json deserializer for {@link PendingTasksResponse}
 	 */
 	public static final JsonpDeserializer<PendingTasksResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PendingTasksResponse::setupPendingTasksResponseDeserializer);

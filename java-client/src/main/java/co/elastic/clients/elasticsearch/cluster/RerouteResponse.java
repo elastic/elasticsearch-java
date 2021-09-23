@@ -49,8 +49,9 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RerouteResponse(Builder builder) {
+	public RerouteResponse(Builder builder) {
 		super(builder);
+
 		this.explanations = builder.explanations;
 		this.state = Objects.requireNonNull(builder.state, "state");
 
@@ -71,14 +72,15 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 		return this.state;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.explanations != null) {
 
 			generator.writeKey("explanations");
 			generator.writeStartArray();
 			for (RerouteExplanation item0 : this.explanations) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -86,7 +88,7 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 		}
 
 		generator.writeKey("state");
-		this.state.toJsonp(generator, mapper);
+		this.state.serialize(generator, mapper);
 
 	}
 
@@ -179,7 +181,7 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RerouteResponse
+	 * Json deserializer for {@link RerouteResponse}
 	 */
 	public static final JsonpDeserializer<RerouteResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RerouteResponse::setupRerouteResponseDeserializer);

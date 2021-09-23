@@ -41,8 +41,9 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateModelSnapshotResponse(Builder builder) {
+	public UpdateModelSnapshotResponse(Builder builder) {
 		super(builder);
+
 		this.model = Objects.requireNonNull(builder.model, "model");
 
 	}
@@ -54,11 +55,12 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 		return this.model;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("model");
-		this.model.toJsonp(generator, mapper);
+		this.model.serialize(generator, mapper);
 
 	}
 
@@ -107,7 +109,7 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateModelSnapshotResponse
+	 * Json deserializer for {@link UpdateModelSnapshotResponse}
 	 */
 	public static final JsonpDeserializer<UpdateModelSnapshotResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UpdateModelSnapshotResponse::setupUpdateModelSnapshotResponseDeserializer);

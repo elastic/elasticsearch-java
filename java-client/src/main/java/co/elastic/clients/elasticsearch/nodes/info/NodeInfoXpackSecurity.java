@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurity
-public final class NodeInfoXpackSecurity implements ToJsonp {
+public final class NodeInfoXpackSecurity implements JsonpSerializable {
 	private final NodeInfoXpackSecuritySsl http;
 
 	private final String enabled;
@@ -49,7 +49,7 @@ public final class NodeInfoXpackSecurity implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoXpackSecurity(Builder builder) {
+	public NodeInfoXpackSecurity(Builder builder) {
 
 		this.http = Objects.requireNonNull(builder.http, "http");
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
@@ -90,27 +90,27 @@ public final class NodeInfoXpackSecurity implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("http");
-		this.http.toJsonp(generator, mapper);
+		this.http.serialize(generator, mapper);
 
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
 
 		generator.writeKey("transport");
-		this.transport.toJsonp(generator, mapper);
+		this.transport.serialize(generator, mapper);
 
 		if (this.authc != null) {
 
 			generator.writeKey("authc");
-			this.authc.toJsonp(generator, mapper);
+			this.authc.serialize(generator, mapper);
 
 		}
 
@@ -201,7 +201,7 @@ public final class NodeInfoXpackSecurity implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoXpackSecurity
+	 * Json deserializer for {@link NodeInfoXpackSecurity}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackSecurity> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoXpackSecurity::setupNodeInfoXpackSecurityDeserializer);

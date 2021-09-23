@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.ThreadType;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -40,6 +41,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -61,14 +63,14 @@ public final class HotThreadsRequest extends RequestBase {
 	private final Number threads;
 
 	@Nullable
-	private final JsonValue threadType;
+	private final ThreadType threadType;
 
 	@Nullable
 	private final JsonValue timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HotThreadsRequest(Builder builder) {
+	public HotThreadsRequest(Builder builder) {
 
 		this.nodeId = builder.nodeId;
 		this.ignoreIdleThreads = builder.ignoreIdleThreads;
@@ -137,7 +139,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code thread_type}
 	 */
 	@Nullable
-	public JsonValue threadType() {
+	public ThreadType threadType() {
 		return this.threadType;
 	}
 
@@ -173,7 +175,7 @@ public final class HotThreadsRequest extends RequestBase {
 		private Number threads;
 
 		@Nullable
-		private JsonValue threadType;
+		private ThreadType threadType;
 
 		@Nullable
 		private JsonValue timeout;
@@ -257,7 +259,7 @@ public final class HotThreadsRequest extends RequestBase {
 		/**
 		 * API name: {@code thread_type}
 		 */
-		public Builder threadType(@Nullable JsonValue value) {
+		public Builder threadType(@Nullable ThreadType value) {
 			this.threadType = value;
 			return this;
 		}

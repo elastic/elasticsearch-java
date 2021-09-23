@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummaryField
-public final class RollupJobSummaryField implements ToJsonp {
+public final class RollupJobSummaryField implements JsonpSerializable {
 	private final String agg;
 
 	@Nullable
@@ -48,7 +48,7 @@ public final class RollupJobSummaryField implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupJobSummaryField(Builder builder) {
+	public RollupJobSummaryField(Builder builder) {
 
 		this.agg = Objects.requireNonNull(builder.agg, "agg");
 		this.timeZone = builder.timeZone;
@@ -82,13 +82,13 @@ public final class RollupJobSummaryField implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("agg");
 		generator.write(this.agg);
@@ -161,7 +161,7 @@ public final class RollupJobSummaryField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RollupJobSummaryField
+	 * Json deserializer for {@link RollupJobSummaryField}
 	 */
 	public static final JsonpDeserializer<RollupJobSummaryField> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RollupJobSummaryField::setupRollupJobSummaryFieldDeserializer);

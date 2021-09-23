@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.get.Response
-public final class GetResponse implements ToJsonp {
+public final class GetResponse implements JsonpSerializable {
 	private final Boolean completed;
 
 	private final Info task;
@@ -51,7 +51,7 @@ public final class GetResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetResponse(Builder builder) {
+	public GetResponse(Builder builder) {
 
 		this.completed = Objects.requireNonNull(builder.completed, "completed");
 		this.task = Objects.requireNonNull(builder.task, "task");
@@ -93,30 +93,30 @@ public final class GetResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("completed");
 		generator.write(this.completed);
 
 		generator.writeKey("task");
-		this.task.toJsonp(generator, mapper);
+		this.task.serialize(generator, mapper);
 
 		if (this.response != null) {
 
 			generator.writeKey("response");
-			this.response.toJsonp(generator, mapper);
+			this.response.serialize(generator, mapper);
 
 		}
 		if (this.error != null) {
 
 			generator.writeKey("error");
-			this.error.toJsonp(generator, mapper);
+			this.error.serialize(generator, mapper);
 
 		}
 
@@ -206,7 +206,7 @@ public final class GetResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetResponse
+	 * Json deserializer for {@link GetResponse}
 	 */
 	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);

@@ -24,49 +24,43 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.promote_data_stream.Response
-public final class PromoteDataStreamResponse implements ToJsonp {
-	private final Number stub;
+public final class PromoteDataStreamResponse implements JsonpSerializable {
+	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PromoteDataStreamResponse(Builder builder) {
+	public PromoteDataStreamResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.value = Objects.requireNonNull(builder.value, "value");
 
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Response value.
+	 * <p>
+	 * API name: {@code value}
 	 */
-	public Number stub() {
-		return this.stub;
+	public JsonData value() {
+		return this.value;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -76,13 +70,15 @@ public final class PromoteDataStreamResponse implements ToJsonp {
 	 * Builder for {@link PromoteDataStreamResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<PromoteDataStreamResponse> {
-		private Number stub;
+		private JsonData value;
 
 		/**
-		 * API name: {@code stub}
+		 * Response value.
+		 * <p>
+		 * API name: {@code value}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder value(JsonData value) {
+			this.value = value;
 			return this;
 		}
 
@@ -101,7 +97,7 @@ public final class PromoteDataStreamResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PromoteDataStreamResponse
+	 * Json deserializer for {@link PromoteDataStreamResponse}
 	 */
 	public static final JsonpDeserializer<PromoteDataStreamResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PromoteDataStreamResponse::setupPromoteDataStreamResponseDeserializer);
@@ -109,7 +105,7 @@ public final class PromoteDataStreamResponse implements ToJsonp {
 	protected static void setupPromoteDataStreamResponseDeserializer(
 			DelegatingDeserializer<PromoteDataStreamResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		op.add(Builder::value, JsonData.DESERIALIZER, "value");
 
 	}
 

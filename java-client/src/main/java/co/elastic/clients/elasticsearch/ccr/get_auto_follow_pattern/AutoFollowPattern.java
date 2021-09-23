@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ccr.get_auto_follow_pattern;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,14 +37,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPattern
-public final class AutoFollowPattern implements ToJsonp {
+public final class AutoFollowPattern implements JsonpSerializable {
 	private final String name;
 
 	private final AutoFollowPatternSummary pattern;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoFollowPattern(Builder builder) {
+	public AutoFollowPattern(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
@@ -68,19 +68,19 @@ public final class AutoFollowPattern implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("pattern");
-		this.pattern.toJsonp(generator, mapper);
+		this.pattern.serialize(generator, mapper);
 
 	}
 
@@ -132,7 +132,7 @@ public final class AutoFollowPattern implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoFollowPattern
+	 * Json deserializer for {@link AutoFollowPattern}
 	 */
 	public static final JsonpDeserializer<AutoFollowPattern> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AutoFollowPattern::setupAutoFollowPatternDeserializer);

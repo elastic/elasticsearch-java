@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldMemoryUsage
-public final class FieldMemoryUsage implements ToJsonp {
+public final class FieldMemoryUsage implements JsonpSerializable {
 	@Nullable
 	private final JsonValue memorySize;
 
@@ -45,7 +45,7 @@ public final class FieldMemoryUsage implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FieldMemoryUsage(Builder builder) {
+	public FieldMemoryUsage(Builder builder) {
 
 		this.memorySize = builder.memorySize;
 		this.memorySizeInBytes = Objects.requireNonNull(builder.memorySizeInBytes, "memory_size_in_bytes");
@@ -70,13 +70,13 @@ public final class FieldMemoryUsage implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.memorySize != null) {
 
@@ -132,7 +132,7 @@ public final class FieldMemoryUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FieldMemoryUsage
+	 * Json deserializer for {@link FieldMemoryUsage}
 	 */
 	public static final JsonpDeserializer<FieldMemoryUsage> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FieldMemoryUsage::setupFieldMemoryUsageDeserializer);

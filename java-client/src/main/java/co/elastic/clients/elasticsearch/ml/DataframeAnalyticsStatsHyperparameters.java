@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsHyperparameters
-public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
+public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable {
 	private final Hyperparameters hyperparameters;
 
 	private final Number iteration;
@@ -51,7 +51,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsStatsHyperparameters(Builder builder) {
+	public DataframeAnalyticsStatsHyperparameters(Builder builder) {
 
 		this.hyperparameters = Objects.requireNonNull(builder.hyperparameters, "hyperparameters");
 		this.iteration = Objects.requireNonNull(builder.iteration, "iteration");
@@ -101,16 +101,16 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("hyperparameters");
-		this.hyperparameters.toJsonp(generator, mapper);
+		this.hyperparameters.serialize(generator, mapper);
 
 		generator.writeKey("iteration");
 		generator.write(this.iteration.doubleValue());
@@ -119,10 +119,10 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 		generator.write(this.timestamp);
 
 		generator.writeKey("timing_stats");
-		this.timingStats.toJsonp(generator, mapper);
+		this.timingStats.serialize(generator, mapper);
 
 		generator.writeKey("validation_loss");
-		this.validationLoss.toJsonp(generator, mapper);
+		this.validationLoss.serialize(generator, mapper);
 
 	}
 
@@ -220,7 +220,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsStatsHyperparameters
+	 * Json deserializer for {@link DataframeAnalyticsStatsHyperparameters}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsStatsHyperparameters> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

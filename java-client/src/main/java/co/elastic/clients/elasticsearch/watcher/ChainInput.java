@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,12 +39,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ChainInput
-public final class ChainInput implements ToJsonp {
-	private final List<InputContainer> inputs;
+public final class ChainInput implements JsonpSerializable {
+	private final List<Input> inputs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ChainInput(Builder builder) {
+	public ChainInput(Builder builder) {
 
 		this.inputs = Objects.requireNonNull(builder.inputs, "inputs");
 
@@ -53,25 +53,25 @@ public final class ChainInput implements ToJsonp {
 	/**
 	 * API name: {@code inputs}
 	 */
-	public List<InputContainer> inputs() {
+	public List<Input> inputs() {
 		return this.inputs;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("inputs");
 		generator.writeStartArray();
-		for (InputContainer item0 : this.inputs) {
-			item0.toJsonp(generator, mapper);
+		for (Input item0 : this.inputs) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -84,12 +84,12 @@ public final class ChainInput implements ToJsonp {
 	 * Builder for {@link ChainInput}.
 	 */
 	public static class Builder implements ObjectBuilder<ChainInput> {
-		private List<InputContainer> inputs;
+		private List<Input> inputs;
 
 		/**
 		 * API name: {@code inputs}
 		 */
-		public Builder inputs(List<InputContainer> value) {
+		public Builder inputs(List<Input> value) {
 			this.inputs = value;
 			return this;
 		}
@@ -97,7 +97,7 @@ public final class ChainInput implements ToJsonp {
 		/**
 		 * API name: {@code inputs}
 		 */
-		public Builder inputs(InputContainer... value) {
+		public Builder inputs(Input... value) {
 			this.inputs = Arrays.asList(value);
 			return this;
 		}
@@ -105,7 +105,7 @@ public final class ChainInput implements ToJsonp {
 		/**
 		 * Add a value to {@link #inputs(List)}, creating the list if needed.
 		 */
-		public Builder addInputs(InputContainer value) {
+		public Builder addInputs(Input value) {
 			if (this.inputs == null) {
 				this.inputs = new ArrayList<>();
 			}
@@ -116,15 +116,15 @@ public final class ChainInput implements ToJsonp {
 		/**
 		 * Set {@link #inputs(List)} to a singleton list.
 		 */
-		public Builder inputs(Function<InputContainer.Builder, ObjectBuilder<InputContainer>> fn) {
-			return this.inputs(fn.apply(new InputContainer.Builder()).build());
+		public Builder inputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return this.inputs(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #inputs(List)}, creating the list if needed.
 		 */
-		public Builder addInputs(Function<InputContainer.Builder, ObjectBuilder<InputContainer>> fn) {
-			return this.addInputs(fn.apply(new InputContainer.Builder()).build());
+		public Builder addInputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return this.addInputs(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
@@ -142,14 +142,14 @@ public final class ChainInput implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ChainInput
+	 * Json deserializer for {@link ChainInput}
 	 */
 	public static final JsonpDeserializer<ChainInput> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ChainInput::setupChainInputDeserializer);
 
 	protected static void setupChainInputDeserializer(DelegatingDeserializer<ChainInput.Builder> op) {
 
-		op.add(Builder::inputs, JsonpDeserializer.arrayDeserializer(InputContainer.DESERIALIZER), "inputs");
+		op.add(Builder::inputs, JsonpDeserializer.arrayDeserializer(Input.DESERIALIZER), "inputs");
 
 	}
 

@@ -23,7 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,18 +39,19 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregation
-public final class TermsAggregation extends BucketAggregationBase {
+public final class TermsAggregation extends BucketAggregationBase implements PivotGroupBy, CompositeAggregationSource {
 	@Nullable
-	private final JsonValue collectMode;
+	private final TermsAggregationCollectMode collectMode;
 
 	@Nullable
 	private final List<String> exclude;
 
 	@Nullable
-	private final JsonValue executionHint;
+	private final TermsAggregationExecutionHint executionHint;
 
 	@Nullable
 	private final String field;
@@ -85,8 +88,9 @@ public final class TermsAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TermsAggregation(Builder builder) {
+	public TermsAggregation(Builder builder) {
 		super(builder);
+
 		this.collectMode = builder.collectMode;
 		this.exclude = builder.exclude;
 		this.executionHint = builder.executionHint;
@@ -105,10 +109,18 @@ public final class TermsAggregation extends BucketAggregationBase {
 	}
 
 	/**
+	 * {@link PivotGroupBy}, {@link CompositeAggregationSource} variant type
+	 */
+	@Override
+	public String _type() {
+		return "terms";
+	}
+
+	/**
 	 * API name: {@code collect_mode}
 	 */
 	@Nullable
-	public JsonValue collectMode() {
+	public TermsAggregationCollectMode collectMode() {
 		return this.collectMode;
 	}
 
@@ -124,7 +136,7 @@ public final class TermsAggregation extends BucketAggregationBase {
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
-	public JsonValue executionHint() {
+	public TermsAggregationExecutionHint executionHint() {
 		return this.executionHint;
 	}
 
@@ -216,13 +228,14 @@ public final class TermsAggregation extends BucketAggregationBase {
 		return this.size;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.collectMode != null) {
 
 			generator.writeKey("collect_mode");
-			generator.write(this.collectMode);
-
+			this.collectMode.serialize(generator, mapper);
 		}
 		if (this.exclude != null) {
 
@@ -238,8 +251,7 @@ public final class TermsAggregation extends BucketAggregationBase {
 		if (this.executionHint != null) {
 
 			generator.writeKey("execution_hint");
-			generator.write(this.executionHint);
-
+			this.executionHint.serialize(generator, mapper);
 		}
 		if (this.field != null) {
 
@@ -308,6 +320,8 @@ public final class TermsAggregation extends BucketAggregationBase {
 
 		}
 
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -319,13 +333,13 @@ public final class TermsAggregation extends BucketAggregationBase {
 			implements
 				ObjectBuilder<TermsAggregation> {
 		@Nullable
-		private JsonValue collectMode;
+		private TermsAggregationCollectMode collectMode;
 
 		@Nullable
 		private List<String> exclude;
 
 		@Nullable
-		private JsonValue executionHint;
+		private TermsAggregationExecutionHint executionHint;
 
 		@Nullable
 		private String field;
@@ -363,7 +377,7 @@ public final class TermsAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code collect_mode}
 		 */
-		public Builder collectMode(@Nullable JsonValue value) {
+		public Builder collectMode(@Nullable TermsAggregationCollectMode value) {
 			this.collectMode = value;
 			return this;
 		}
@@ -398,7 +412,7 @@ public final class TermsAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code execution_hint}
 		 */
-		public Builder executionHint(@Nullable JsonValue value) {
+		public Builder executionHint(@Nullable TermsAggregationExecutionHint value) {
 			this.executionHint = value;
 			return this;
 		}
@@ -510,18 +524,16 @@ public final class TermsAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for TermsAggregation
-	 */
-	public static final JsonpDeserializer<TermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TermsAggregation::setupTermsAggregationDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<TermsAggregation.Builder, TermsAggregation.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(TermsAggregation::setupTermsAggregationDeserializer);
 
 	protected static void setupTermsAggregationDeserializer(DelegatingDeserializer<TermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::collectMode, JsonpDeserializer.jsonValueDeserializer(), "collect_mode");
+		op.add(Builder::collectMode, TermsAggregationCollectMode.DESERIALIZER, "collect_mode");
 		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"exclude");
-		op.add(Builder::executionHint, JsonpDeserializer.jsonValueDeserializer(), "execution_hint");
+		op.add(Builder::executionHint, TermsAggregationExecutionHint.DESERIALIZER, "execution_hint");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::include, JsonpDeserializer.jsonValueDeserializer(), "include");
 		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");

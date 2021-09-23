@@ -49,7 +49,7 @@ public final class AckWatchRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AckWatchRequest(Builder builder) {
+	public AckWatchRequest(Builder builder) {
 
 		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
 		this.actionId = builder.actionId;

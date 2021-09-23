@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,18 +36,27 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanWithinQuery
-public final class SpanWithinQuery extends QueryBase {
+public final class SpanWithinQuery extends QueryBase implements SpanQuery, Query {
 	private final SpanQuery big;
 
 	private final SpanQuery little;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanWithinQuery(Builder builder) {
+	public SpanWithinQuery(Builder builder) {
 		super(builder);
+
 		this.big = Objects.requireNonNull(builder.big, "big");
 		this.little = Objects.requireNonNull(builder.little, "little");
 
+	}
+
+	/**
+	 * {@link SpanQuery}, {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "span_within";
 	}
 
 	/**
@@ -63,14 +73,18 @@ public final class SpanWithinQuery extends QueryBase {
 		return this.little;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("big");
-		this.big.toJsonp(generator, mapper);
+		this.big.serialize(generator, mapper);
 
 		generator.writeKey("little");
-		this.little.toJsonp(generator, mapper);
+		this.little.serialize(generator, mapper);
+
+		generator.writeEnd();
 
 	}
 
@@ -133,11 +147,9 @@ public final class SpanWithinQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for SpanWithinQuery
-	 */
-	public static final JsonpDeserializer<SpanWithinQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanWithinQuery::setupSpanWithinQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<SpanWithinQuery.Builder, SpanWithinQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(SpanWithinQuery::setupSpanWithinQueryDeserializer);
 
 	protected static void setupSpanWithinQueryDeserializer(DelegatingDeserializer<SpanWithinQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

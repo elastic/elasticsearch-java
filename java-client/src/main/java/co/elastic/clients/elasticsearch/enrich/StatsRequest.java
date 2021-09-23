@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: enrich.stats.Request
 public final class StatsRequest extends RequestBase {
-	protected StatsRequest() {
+	public StatsRequest() {
 	}
 
 	/**

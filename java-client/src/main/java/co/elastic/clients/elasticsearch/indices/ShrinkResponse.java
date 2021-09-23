@@ -44,8 +44,9 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShrinkResponse(Builder builder) {
+	public ShrinkResponse(Builder builder) {
 		super(builder);
+
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 		this.index = Objects.requireNonNull(builder.index, "index");
 
@@ -65,8 +66,9 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 		return this.index;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
@@ -124,7 +126,7 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShrinkResponse
+	 * Json deserializer for {@link ShrinkResponse}
 	 */
 	public static final JsonpDeserializer<ShrinkResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShrinkResponse::setupShrinkResponseDeserializer);

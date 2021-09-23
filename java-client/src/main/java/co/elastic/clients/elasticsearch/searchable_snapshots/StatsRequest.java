@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -47,11 +47,11 @@ public final class StatsRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
-	private final JsonValue level;
+	private final StatsLevel level;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsRequest(Builder builder) {
+	public StatsRequest(Builder builder) {
 
 		this.index = builder.index;
 		this.level = builder.level;
@@ -74,7 +74,7 @@ public final class StatsRequest extends RequestBase {
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public JsonValue level() {
+	public StatsLevel level() {
 		return this.level;
 	}
 
@@ -88,7 +88,7 @@ public final class StatsRequest extends RequestBase {
 		private List<String> index;
 
 		@Nullable
-		private JsonValue level;
+		private StatsLevel level;
 
 		/**
 		 * A comma-separated list of index names
@@ -126,7 +126,7 @@ public final class StatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable JsonValue value) {
+		public Builder level(@Nullable StatsLevel value) {
 			this.level = value;
 			return this;
 		}

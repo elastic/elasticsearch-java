@@ -47,8 +47,9 @@ public final class UsageResponse extends NodesResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UsageResponse(Builder builder) {
+	public UsageResponse(Builder builder) {
 		super(builder);
+
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
 
@@ -68,8 +69,9 @@ public final class UsageResponse extends NodesResponseBase {
 		return this.nodes;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -78,7 +80,7 @@ public final class UsageResponse extends NodesResponseBase {
 		generator.writeStartObject();
 		for (Map.Entry<String, NodeUsage> item0 : this.nodes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -158,7 +160,7 @@ public final class UsageResponse extends NodesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UsageResponse
+	 * Json deserializer for {@link UsageResponse}
 	 */
 	public static final JsonpDeserializer<UsageResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UsageResponse::setupUsageResponseDeserializer);

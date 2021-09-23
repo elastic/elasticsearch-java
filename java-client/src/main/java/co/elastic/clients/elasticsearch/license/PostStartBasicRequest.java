@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Request
@@ -43,7 +44,7 @@ public final class PostStartBasicRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostStartBasicRequest(Builder builder) {
+	public PostStartBasicRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 

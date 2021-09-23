@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_data_frame_analytics.Response
-public final class PutDataFrameAnalyticsResponse implements ToJsonp {
+public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final String id;
 
 	private final Number createTime;
@@ -60,14 +60,14 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 
 	private final Number maxNumThreads;
 
-	private final DataframeAnalysisContainer analysis;
+	private final DataframeAnalysis analysis;
 
 	@Nullable
 	private final JsonValue analyzedFields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutDataFrameAnalyticsResponse(Builder builder) {
+	public PutDataFrameAnalyticsResponse(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.createTime = Objects.requireNonNull(builder.createTime, "create_time");
@@ -150,7 +150,7 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * API name: {@code analysis}
 	 */
-	public DataframeAnalysisContainer analysis() {
+	public DataframeAnalysis analysis() {
 		return this.analysis;
 	}
 
@@ -165,13 +165,13 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("id");
 		generator.write(this.id);
@@ -183,7 +183,7 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 		generator.write(this.version);
 
 		generator.writeKey("source");
-		this.source.toJsonp(generator, mapper);
+		this.source.serialize(generator, mapper);
 
 		if (this.description != null) {
 
@@ -193,7 +193,7 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 		}
 
 		generator.writeKey("dest");
-		this.dest.toJsonp(generator, mapper);
+		this.dest.serialize(generator, mapper);
 
 		generator.writeKey("model_memory_limit");
 		generator.write(this.modelMemoryLimit);
@@ -205,7 +205,7 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 		generator.write(this.maxNumThreads.doubleValue());
 
 		generator.writeKey("analysis");
-		this.analysis.toJsonp(generator, mapper);
+		this.analysis.serialize(generator, mapper);
 
 		if (this.analyzedFields != null) {
 
@@ -241,7 +241,7 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 
 		private Number maxNumThreads;
 
-		private DataframeAnalysisContainer analysis;
+		private DataframeAnalysis analysis;
 
 		@Nullable
 		private JsonValue analyzedFields;
@@ -336,7 +336,7 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(DataframeAnalysisContainer value) {
+		public Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
 			return this;
 		}
@@ -344,9 +344,8 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(
-				Function<DataframeAnalysisContainer.Builder, ObjectBuilder<DataframeAnalysisContainer>> fn) {
-			return this.analysis(fn.apply(new DataframeAnalysisContainer.Builder()).build());
+		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
@@ -372,7 +371,7 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutDataFrameAnalyticsResponse
+	 * Json deserializer for {@link PutDataFrameAnalyticsResponse}
 	 */
 	public static final JsonpDeserializer<PutDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
@@ -390,7 +389,7 @@ public final class PutDataFrameAnalyticsResponse implements ToJsonp {
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
-		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
+		op.add(Builder::analysis, DataframeAnalysis.DESERIALIZER, "analysis");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 
 	}

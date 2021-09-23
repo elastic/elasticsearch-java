@@ -49,8 +49,9 @@ public final class DataTiers extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataTiers(Builder builder) {
+	public DataTiers(Builder builder) {
 		super(builder);
+
 		this.dataWarm = Objects.requireNonNull(builder.dataWarm, "data_warm");
 		this.dataFrozen = builder.dataFrozen;
 		this.dataCold = Objects.requireNonNull(builder.dataCold, "data_cold");
@@ -95,27 +96,28 @@ public final class DataTiers extends Base {
 		return this.dataHot;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("data_warm");
-		this.dataWarm.toJsonp(generator, mapper);
+		this.dataWarm.serialize(generator, mapper);
 
 		if (this.dataFrozen != null) {
 
 			generator.writeKey("data_frozen");
-			this.dataFrozen.toJsonp(generator, mapper);
+			this.dataFrozen.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("data_cold");
-		this.dataCold.toJsonp(generator, mapper);
+		this.dataCold.serialize(generator, mapper);
 
 		generator.writeKey("data_content");
-		this.dataContent.toJsonp(generator, mapper);
+		this.dataContent.serialize(generator, mapper);
 
 		generator.writeKey("data_hot");
-		this.dataHot.toJsonp(generator, mapper);
+		this.dataHot.serialize(generator, mapper);
 
 	}
 
@@ -233,7 +235,7 @@ public final class DataTiers extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataTiers
+	 * Json deserializer for {@link DataTiers}
 	 */
 	public static final JsonpDeserializer<DataTiers> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DataTiers::setupDataTiersDeserializer);

@@ -51,7 +51,7 @@ public final class StopJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopJobRequest(Builder builder) {
+	public StopJobRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.timeout = builder.timeout;

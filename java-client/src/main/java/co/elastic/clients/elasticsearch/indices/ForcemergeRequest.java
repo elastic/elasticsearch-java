@@ -40,6 +40,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -68,7 +69,7 @@ public final class ForcemergeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ForcemergeRequest(Builder builder) {
+	public ForcemergeRequest(Builder builder) {
 
 		this.index = builder.index;
 		this.allowNoIndices = builder.allowNoIndices;

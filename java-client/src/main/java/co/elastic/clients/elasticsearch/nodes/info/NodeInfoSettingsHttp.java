@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,21 +37,21 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsHttp
-public final class NodeInfoSettingsHttp implements ToJsonp {
+public final class NodeInfoSettingsHttp implements JsonpSerializable {
 	private final JsonValue type;
 
 	@Nullable
 	private final String type_default;
 
 	@Nullable
-	private final JsonValue compression;
+	private final String compression;
 
 	@Nullable
 	private final JsonValue port;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoSettingsHttp(Builder builder) {
+	public NodeInfoSettingsHttp(Builder builder) {
 
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.type_default = builder.type_default;
@@ -79,7 +79,7 @@ public final class NodeInfoSettingsHttp implements ToJsonp {
 	 * API name: {@code compression}
 	 */
 	@Nullable
-	public JsonValue compression() {
+	public String compression() {
 		return this.compression;
 	}
 
@@ -94,13 +94,13 @@ public final class NodeInfoSettingsHttp implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -138,7 +138,7 @@ public final class NodeInfoSettingsHttp implements ToJsonp {
 		private String type_default;
 
 		@Nullable
-		private JsonValue compression;
+		private String compression;
 
 		@Nullable
 		private JsonValue port;
@@ -162,7 +162,7 @@ public final class NodeInfoSettingsHttp implements ToJsonp {
 		/**
 		 * API name: {@code compression}
 		 */
-		public Builder compression(@Nullable JsonValue value) {
+		public Builder compression(@Nullable String value) {
 			this.compression = value;
 			return this;
 		}
@@ -190,7 +190,7 @@ public final class NodeInfoSettingsHttp implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoSettingsHttp
+	 * Json deserializer for {@link NodeInfoSettingsHttp}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsHttp> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoSettingsHttp::setupNodeInfoSettingsHttpDeserializer);
@@ -200,7 +200,7 @@ public final class NodeInfoSettingsHttp implements ToJsonp {
 
 		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
 		op.add(Builder::type_default, JsonpDeserializer.stringDeserializer(), "type.default");
-		op.add(Builder::compression, JsonpDeserializer.jsonValueDeserializer(), "compression");
+		op.add(Builder::compression, JsonpDeserializer.stringDeserializer(), "compression");
 		op.add(Builder::port, JsonpDeserializer.jsonValueDeserializer(), "port");
 
 	}

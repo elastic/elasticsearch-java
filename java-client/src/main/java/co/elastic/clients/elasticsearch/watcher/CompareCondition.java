@@ -24,20 +24,22 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.CompareCondition
-public final class CompareCondition implements ToJsonp {
+public final class CompareCondition implements Condition, JsonpSerializable {
 	@Nullable
 	private final String comparison;
 
@@ -45,7 +47,7 @@ public final class CompareCondition implements ToJsonp {
 	private final String path;
 
 	@Nullable
-	private final JsonValue value;
+	private final JsonData value;
 
 	@Nullable
 	private final CompareContextPayloadCondition ctx_payload_match;
@@ -55,7 +57,7 @@ public final class CompareCondition implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CompareCondition(Builder builder) {
+	public CompareCondition(Builder builder) {
 
 		this.comparison = builder.comparison;
 		this.path = builder.path;
@@ -63,6 +65,14 @@ public final class CompareCondition implements ToJsonp {
 		this.ctx_payload_match = builder.ctx_payload_match;
 		this.ctx_payload_value = builder.ctx_payload_value;
 
+	}
+
+	/**
+	 * {@link Condition} variant type
+	 */
+	@Override
+	public String _type() {
+		return "compare";
 	}
 
 	/**
@@ -85,7 +95,7 @@ public final class CompareCondition implements ToJsonp {
 	 * API name: {@code value}
 	 */
 	@Nullable
-	public JsonValue value() {
+	public JsonData value() {
 		return this.value;
 	}
 
@@ -108,13 +118,14 @@ public final class CompareCondition implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		if (this.comparison != null) {
 
@@ -131,21 +142,23 @@ public final class CompareCondition implements ToJsonp {
 		if (this.value != null) {
 
 			generator.writeKey("value");
-			generator.write(this.value);
+			this.value.serialize(generator, mapper);
 
 		}
 		if (this.ctx_payload_match != null) {
 
 			generator.writeKey("ctx.payload.match");
-			this.ctx_payload_match.toJsonp(generator, mapper);
+			this.ctx_payload_match.serialize(generator, mapper);
 
 		}
 		if (this.ctx_payload_value != null) {
 
 			generator.writeKey("ctx.payload.value");
-			this.ctx_payload_value.toJsonp(generator, mapper);
+			this.ctx_payload_value.serialize(generator, mapper);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -162,7 +175,7 @@ public final class CompareCondition implements ToJsonp {
 		private String path;
 
 		@Nullable
-		private JsonValue value;
+		private JsonData value;
 
 		@Nullable
 		private CompareContextPayloadCondition ctx_payload_match;
@@ -189,7 +202,7 @@ public final class CompareCondition implements ToJsonp {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(@Nullable JsonValue value) {
+		public Builder value(@Nullable JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -240,17 +253,15 @@ public final class CompareCondition implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for CompareCondition
-	 */
-	public static final JsonpDeserializer<CompareCondition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CompareCondition::setupCompareConditionDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<CompareCondition.Builder, CompareCondition.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(CompareCondition::setupCompareConditionDeserializer);
 
 	protected static void setupCompareConditionDeserializer(DelegatingDeserializer<CompareCondition.Builder> op) {
 
 		op.add(Builder::comparison, JsonpDeserializer.stringDeserializer(), "comparison");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
+		op.add(Builder::value, JsonData.DESERIALIZER, "value");
 		op.add(Builder::ctx_payload_match, CompareContextPayloadCondition.DESERIALIZER, "ctx.payload.match");
 		op.add(Builder::ctx_payload_value, CompareContextPayloadCondition.DESERIALIZER, "ctx.payload.value");
 

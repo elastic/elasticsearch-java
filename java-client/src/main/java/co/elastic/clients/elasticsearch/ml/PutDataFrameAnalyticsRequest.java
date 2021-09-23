@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -44,13 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_data_frame_analytics.Request
-public final class PutDataFrameAnalyticsRequest extends RequestBase implements ToJsonp {
+public final class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
 	private final Boolean allowLazyStart;
 
-	private final DataframeAnalysisContainer analysis;
+	private final DataframeAnalysis analysis;
 
 	@Nullable
 	private final JsonValue analyzedFields;
@@ -70,7 +70,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutDataFrameAnalyticsRequest(Builder builder) {
+	public PutDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.allowLazyStart = builder.allowLazyStart;
@@ -118,7 +118,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	 * <p>
 	 * API name: {@code analysis}
 	 */
-	public DataframeAnalysisContainer analysis() {
+	public DataframeAnalysis analysis() {
 		return this.analysis;
 	}
 
@@ -219,13 +219,13 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowLazyStart != null) {
 
@@ -235,7 +235,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		}
 
 		generator.writeKey("analysis");
-		this.analysis.toJsonp(generator, mapper);
+		this.analysis.serialize(generator, mapper);
 
 		if (this.analyzedFields != null) {
 
@@ -251,7 +251,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		}
 
 		generator.writeKey("dest");
-		this.dest.toJsonp(generator, mapper);
+		this.dest.serialize(generator, mapper);
 
 		if (this.maxNumThreads != null) {
 
@@ -267,7 +267,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		}
 
 		generator.writeKey("source");
-		this.source.toJsonp(generator, mapper);
+		this.source.serialize(generator, mapper);
 
 	}
 
@@ -282,7 +282,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		@Nullable
 		private Boolean allowLazyStart;
 
-		private DataframeAnalysisContainer analysis;
+		private DataframeAnalysis analysis;
 
 		@Nullable
 		private JsonValue analyzedFields;
@@ -335,7 +335,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(DataframeAnalysisContainer value) {
+		public Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
 			return this;
 		}
@@ -347,9 +347,8 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(
-				Function<DataframeAnalysisContainer.Builder, ObjectBuilder<DataframeAnalysisContainer>> fn) {
-			return this.analysis(fn.apply(new DataframeAnalysisContainer.Builder()).build());
+		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
@@ -482,7 +481,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutDataFrameAnalyticsRequest
+	 * Json deserializer for {@link PutDataFrameAnalyticsRequest}
 	 */
 	public static final JsonpDeserializer<PutDataFrameAnalyticsRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutDataFrameAnalyticsRequest::setupPutDataFrameAnalyticsRequestDeserializer);
@@ -491,7 +490,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements T
 			DelegatingDeserializer<PutDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
-		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
+		op.add(Builder::analysis, DataframeAnalysis.DESERIALIZER, "analysis");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, DataframeAnalyticsDestination.DESERIALIZER, "dest");

@@ -29,11 +29,12 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -42,10 +43,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_data.Request
-public final class PostDataRequest extends RequestBase implements ToJsonp {
+public final class PostDataRequest<TData> extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
@@ -54,17 +56,20 @@ public final class PostDataRequest extends RequestBase implements ToJsonp {
 	@Nullable
 	private final String resetStart;
 
+	private final List<TData> value;
+
 	@Nullable
-	private final List<JsonValue> data;
+	private final JsonpSerializer<TData> tDataSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostDataRequest(Builder builder) {
+	public PostDataRequest(Builder<TData> builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.resetEnd = builder.resetEnd;
 		this.resetStart = builder.resetStart;
-		this.data = builder.data;
+		this.value = Objects.requireNonNull(builder.value, "value");
+		this.tDataSerializer = builder.tDataSerializer;
 
 	}
 
@@ -98,35 +103,24 @@ public final class PostDataRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code data}
+	 * Request body.
+	 * <p>
+	 * API name: {@code value}
 	 */
-	@Nullable
-	public List<JsonValue> data() {
-		return this.data;
+	public List<TData> value() {
+		return this.value;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.data != null) {
-
-			generator.writeKey("data");
-			generator.writeStartArray();
-			for (JsonValue item0 : this.data) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartArray();
+		for (TData item0 : this.value) {
+			JsonpUtils.serialize(item0, generator, tDataSerializer, mapper);
 
 		}
+		generator.writeEnd();
 
 	}
 
@@ -135,7 +129,7 @@ public final class PostDataRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Builder for {@link PostDataRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PostDataRequest> {
+	public static class Builder<TData> implements ObjectBuilder<PostDataRequest<TData>> {
 		private String jobId;
 
 		@Nullable
@@ -144,15 +138,17 @@ public final class PostDataRequest extends RequestBase implements ToJsonp {
 		@Nullable
 		private String resetStart;
 
+		private List<TData> value;
+
 		@Nullable
-		private List<JsonValue> data;
+		private JsonpSerializer<TData> tDataSerializer;
 
 		/**
 		 * The name of the job receiving the data
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public Builder<TData> jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -162,7 +158,7 @@ public final class PostDataRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code reset_end}
 		 */
-		public Builder resetEnd(@Nullable String value) {
+		public Builder<TData> resetEnd(@Nullable String value) {
 			this.resetEnd = value;
 			return this;
 		}
@@ -172,35 +168,48 @@ public final class PostDataRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code reset_start}
 		 */
-		public Builder resetStart(@Nullable String value) {
+		public Builder<TData> resetStart(@Nullable String value) {
 			this.resetStart = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code data}
+		 * Request body.
+		 * <p>
+		 * API name: {@code value}
 		 */
-		public Builder data(@Nullable List<JsonValue> value) {
-			this.data = value;
+		public Builder<TData> value(List<TData> value) {
+			this.value = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code data}
+		 * Request body.
+		 * <p>
+		 * API name: {@code value}
 		 */
-		public Builder data(JsonValue... value) {
-			this.data = Arrays.asList(value);
+		public Builder<TData> value(TData... value) {
+			this.value = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
+		 * Add a value to {@link #value(List)}, creating the list if needed.
 		 */
-		public Builder addData(JsonValue value) {
-			if (this.data == null) {
-				this.data = new ArrayList<>();
+		public Builder<TData> addValue(TData value) {
+			if (this.value == null) {
+				this.value = new ArrayList<>();
 			}
-			this.data.add(value);
+			this.value.add(value);
+			return this;
+		}
+
+		/**
+		 * Serializer for TData. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 */
+		public Builder<TData> tDataSerializer(@Nullable JsonpSerializer<TData> value) {
+			this.tDataSerializer = value;
 			return this;
 		}
 
@@ -210,23 +219,27 @@ public final class PostDataRequest extends RequestBase implements ToJsonp {
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public PostDataRequest build() {
+		public PostDataRequest<TData> build() {
 
-			return new PostDataRequest(this);
+			return new PostDataRequest<TData>(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PostDataRequest
+	 * Create a json deserializer for PostDataRequest
 	 */
-	public static final JsonpDeserializer<PostDataRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PostDataRequest::setupPostDataRequestDeserializer);
+	public static <TData> JsonpDeserializer<PostDataRequest<TData>> createPostDataRequestDeserializer(
+			JsonpDeserializer<TData> tDataDeserializer) {
+		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TData>>) Builder::new,
+				op -> PostDataRequest.setupPostDataRequestDeserializer(op, tDataDeserializer));
+	};
 
-	protected static void setupPostDataRequestDeserializer(DelegatingDeserializer<PostDataRequest.Builder> op) {
+	protected static <TData> void setupPostDataRequestDeserializer(
+			DelegatingDeserializer<PostDataRequest.Builder<TData>> op, JsonpDeserializer<TData> tDataDeserializer) {
 
-		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "data");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(tDataDeserializer), "value");
 
 	}
 
@@ -235,7 +248,7 @@ public final class PostDataRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.post_data}".
 	 */
-	public static final Endpoint<PostDataRequest, PostDataResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PostDataRequest<?>, PostDataResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -51,8 +51,9 @@ public final class GsubProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GsubProcessor(Builder builder) {
+	public GsubProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
@@ -98,8 +99,9 @@ public final class GsubProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -204,7 +206,7 @@ public final class GsubProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GsubProcessor
+	 * Json deserializer for {@link GsubProcessor}
 	 */
 	public static final JsonpDeserializer<GsubProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GsubProcessor::setupGsubProcessorDeserializer);

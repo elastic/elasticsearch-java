@@ -42,7 +42,7 @@ public final class PauseFollowRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PauseFollowRequest(Builder builder) {
+	public PauseFollowRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 

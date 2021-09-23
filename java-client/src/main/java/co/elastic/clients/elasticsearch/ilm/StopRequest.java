@@ -34,6 +34,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ilm.stop.Request
@@ -46,7 +47,7 @@ public final class StopRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopRequest(Builder builder) {
+	public StopRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;

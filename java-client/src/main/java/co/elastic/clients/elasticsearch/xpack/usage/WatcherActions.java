@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -39,12 +39,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherActions
-public final class WatcherActions implements ToJsonp {
+public final class WatcherActions implements JsonpSerializable {
 	private final Map<String, WatcherActionTotals> actions;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WatcherActions(Builder builder) {
+	public WatcherActions(Builder builder) {
 
 		this.actions = Objects.requireNonNull(builder.actions, "actions");
 
@@ -60,19 +60,19 @@ public final class WatcherActions implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actions");
 		generator.writeStartObject();
 		for (Map.Entry<String, WatcherActionTotals> item0 : this.actions.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -137,7 +137,7 @@ public final class WatcherActions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WatcherActions
+	 * Json deserializer for {@link WatcherActions}
 	 */
 	public static final JsonpDeserializer<WatcherActions> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, WatcherActions::setupWatcherActionsDeserializer);

@@ -53,8 +53,9 @@ public final class MachineLearning extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MachineLearning(Builder builder) {
+	public MachineLearning(Builder builder) {
 		super(builder);
+
 		this.datafeeds = Objects.requireNonNull(builder.datafeeds, "datafeeds");
 		this.jobs = Objects.requireNonNull(builder.jobs, "jobs");
 		this.nodeCount = Objects.requireNonNull(builder.nodeCount, "node_count");
@@ -99,14 +100,15 @@ public final class MachineLearning extends Base {
 		return this.inference;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("datafeeds");
 		generator.writeStartObject();
 		for (Map.Entry<String, Datafeed> item0 : this.datafeeds.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -115,7 +117,7 @@ public final class MachineLearning extends Base {
 		generator.writeStartObject();
 		for (Map.Entry<String, Job> item0 : this.jobs.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -124,10 +126,10 @@ public final class MachineLearning extends Base {
 		generator.write(this.nodeCount.doubleValue());
 
 		generator.writeKey("data_frame_analytics_jobs");
-		this.dataFrameAnalyticsJobs.toJsonp(generator, mapper);
+		this.dataFrameAnalyticsJobs.serialize(generator, mapper);
 
 		generator.writeKey("inference");
-		this.inference.toJsonp(generator, mapper);
+		this.inference.serialize(generator, mapper);
 
 	}
 
@@ -272,7 +274,7 @@ public final class MachineLearning extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MachineLearning
+	 * Json deserializer for {@link MachineLearning}
 	 */
 	public static final JsonpDeserializer<MachineLearning> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MachineLearning::setupMachineLearningDeserializer);

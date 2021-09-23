@@ -31,12 +31,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: snapshot.get_repository.Response
 public final class GetRepositoryResponse extends AdditionalProperties<String, Repository> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRepositoryResponse(Builder builder) {
+	public GetRepositoryResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -71,7 +72,7 @@ public final class GetRepositoryResponse extends AdditionalProperties<String, Re
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetRepositoryResponse
+	 * Json deserializer for {@link GetRepositoryResponse}
 	 */
 	public static final JsonpDeserializer<GetRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetRepositoryResponse::setupGetRepositoryResponseDeserializer);

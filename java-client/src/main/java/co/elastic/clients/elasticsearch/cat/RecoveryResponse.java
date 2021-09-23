@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.cat.recovery.RecoveryRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,12 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.recovery.Response
-public final class RecoveryResponse implements ToJsonp {
+public final class RecoveryResponse implements JsonpSerializable {
 	private final List<RecoveryRecord> value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryResponse(Builder builder) {
+	public RecoveryResponse(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -63,10 +63,10 @@ public final class RecoveryResponse implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
 		for (RecoveryRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -141,7 +141,7 @@ public final class RecoveryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RecoveryResponse
+	 * Json deserializer for {@link RecoveryResponse}
 	 */
 	public static final JsonpDeserializer<RecoveryResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RecoveryResponse::setupRecoveryResponseDeserializer);

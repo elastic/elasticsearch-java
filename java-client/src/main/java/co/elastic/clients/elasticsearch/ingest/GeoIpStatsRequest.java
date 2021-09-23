@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: ingest.geo_ip_stats.Request
 public final class GeoIpStatsRequest extends RequestBase {
-	protected GeoIpStatsRequest() {
+	public GeoIpStatsRequest() {
 	}
 
 	/**

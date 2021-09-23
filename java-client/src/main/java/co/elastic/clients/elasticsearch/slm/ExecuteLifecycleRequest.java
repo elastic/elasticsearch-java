@@ -42,7 +42,7 @@ public final class ExecuteLifecycleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecuteLifecycleRequest(Builder builder) {
+	public ExecuteLifecycleRequest(Builder builder) {
 
 		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
 

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.WarmerStats
-public final class WarmerStats implements ToJsonp {
+public final class WarmerStats implements JsonpSerializable {
 	private final Number current;
 
 	private final Number total;
@@ -49,7 +49,7 @@ public final class WarmerStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WarmerStats(Builder builder) {
+	public WarmerStats(Builder builder) {
 
 		this.current = Objects.requireNonNull(builder.current, "current");
 		this.total = Objects.requireNonNull(builder.total, "total");
@@ -90,13 +90,13 @@ public final class WarmerStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("current");
 		generator.write(this.current.doubleValue());
@@ -178,7 +178,7 @@ public final class WarmerStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WarmerStats
+	 * Json deserializer for {@link WarmerStats}
 	 */
 	public static final JsonpDeserializer<WarmerStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, WarmerStats::setupWarmerStatsDeserializer);

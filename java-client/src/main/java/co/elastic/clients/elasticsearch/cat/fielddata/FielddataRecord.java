@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.cat.fielddata;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.FielddataRecord
-public final class FielddataRecord implements ToJsonp {
+public final class FielddataRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -56,7 +57,7 @@ public final class FielddataRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FielddataRecord(Builder builder) {
+	public FielddataRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.host = builder.host;
@@ -130,13 +131,13 @@ public final class FielddataRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -276,7 +277,7 @@ public final class FielddataRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FielddataRecord
+	 * Json deserializer for {@link FielddataRecord}
 	 */
 	public static final JsonpDeserializer<FielddataRecord> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, FielddataRecord::setupFielddataRecordDeserializer);

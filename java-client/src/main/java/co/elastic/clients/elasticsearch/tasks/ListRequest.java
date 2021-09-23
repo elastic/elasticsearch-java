@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.GroupBy;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,6 +40,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -51,7 +53,7 @@ public final class ListRequest extends RequestBase {
 	private final Boolean detailed;
 
 	@Nullable
-	private final JsonValue groupBy;
+	private final GroupBy groupBy;
 
 	@Nullable
 	private final List<String> nodes;
@@ -67,7 +69,7 @@ public final class ListRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ListRequest(Builder builder) {
+	public ListRequest(Builder builder) {
 
 		this.actions = builder.actions;
 		this.detailed = builder.detailed;
@@ -106,7 +108,7 @@ public final class ListRequest extends RequestBase {
 	 * API name: {@code group_by}
 	 */
 	@Nullable
-	public JsonValue groupBy() {
+	public GroupBy groupBy() {
 		return this.groupBy;
 	}
 
@@ -166,7 +168,7 @@ public final class ListRequest extends RequestBase {
 		private Boolean detailed;
 
 		@Nullable
-		private JsonValue groupBy;
+		private GroupBy groupBy;
 
 		@Nullable
 		private List<String> nodes;
@@ -228,7 +230,7 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code group_by}
 		 */
-		public Builder groupBy(@Nullable JsonValue value) {
+		public Builder groupBy(@Nullable GroupBy value) {
 			this.groupBy = value;
 			return this;
 		}

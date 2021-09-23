@@ -42,7 +42,7 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteIndexTemplateRequest(Builder builder) {
+	public DeleteIndexTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

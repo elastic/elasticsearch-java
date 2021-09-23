@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRocCurveItem
-public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp {
+public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializable {
 	private final Number tpr;
 
 	private final Number fpr;
@@ -45,7 +45,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp 
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationSummaryAucRocCurveItem(Builder builder) {
+	public DataframeEvaluationSummaryAucRocCurveItem(Builder builder) {
 
 		this.tpr = Objects.requireNonNull(builder.tpr, "tpr");
 		this.fpr = Objects.requireNonNull(builder.fpr, "fpr");
@@ -77,13 +77,13 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("tpr");
 		generator.write(this.tpr.doubleValue());
@@ -147,7 +147,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationSummaryAucRocCurveItem
+	 * Json deserializer for {@link DataframeEvaluationSummaryAucRocCurveItem}
 	 */
 	public static final JsonpDeserializer<DataframeEvaluationSummaryAucRocCurveItem> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,8 +42,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsAllOf
-public final class IntervalsAllOf implements ToJsonp {
-	private final List<IntervalsContainer> intervals;
+public final class IntervalsAllOf implements Intervals, JsonpSerializable {
+	private final List<Intervals> intervals;
 
 	@Nullable
 	private final Number maxGaps;
@@ -55,7 +56,7 @@ public final class IntervalsAllOf implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IntervalsAllOf(Builder builder) {
+	public IntervalsAllOf(Builder builder) {
 
 		this.intervals = Objects.requireNonNull(builder.intervals, "intervals");
 		this.maxGaps = builder.maxGaps;
@@ -65,9 +66,17 @@ public final class IntervalsAllOf implements ToJsonp {
 	}
 
 	/**
+	 * {@link Intervals} variant type
+	 */
+	@Override
+	public String _type() {
+		return "all_of";
+	}
+
+	/**
 	 * API name: {@code intervals}
 	 */
-	public List<IntervalsContainer> intervals() {
+	public List<Intervals> intervals() {
 		return this.intervals;
 	}
 
@@ -98,18 +107,19 @@ public final class IntervalsAllOf implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("intervals");
 		generator.writeStartArray();
-		for (IntervalsContainer item0 : this.intervals) {
-			item0.toJsonp(generator, mapper);
+		for (Intervals item0 : this.intervals) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -129,9 +139,11 @@ public final class IntervalsAllOf implements ToJsonp {
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
+			this.filter.serialize(generator, mapper);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -141,7 +153,7 @@ public final class IntervalsAllOf implements ToJsonp {
 	 * Builder for {@link IntervalsAllOf}.
 	 */
 	public static class Builder implements ObjectBuilder<IntervalsAllOf> {
-		private List<IntervalsContainer> intervals;
+		private List<Intervals> intervals;
 
 		@Nullable
 		private Number maxGaps;
@@ -155,7 +167,7 @@ public final class IntervalsAllOf implements ToJsonp {
 		/**
 		 * API name: {@code intervals}
 		 */
-		public Builder intervals(List<IntervalsContainer> value) {
+		public Builder intervals(List<Intervals> value) {
 			this.intervals = value;
 			return this;
 		}
@@ -163,7 +175,7 @@ public final class IntervalsAllOf implements ToJsonp {
 		/**
 		 * API name: {@code intervals}
 		 */
-		public Builder intervals(IntervalsContainer... value) {
+		public Builder intervals(Intervals... value) {
 			this.intervals = Arrays.asList(value);
 			return this;
 		}
@@ -171,7 +183,7 @@ public final class IntervalsAllOf implements ToJsonp {
 		/**
 		 * Add a value to {@link #intervals(List)}, creating the list if needed.
 		 */
-		public Builder addIntervals(IntervalsContainer value) {
+		public Builder addIntervals(Intervals value) {
 			if (this.intervals == null) {
 				this.intervals = new ArrayList<>();
 			}
@@ -182,15 +194,15 @@ public final class IntervalsAllOf implements ToJsonp {
 		/**
 		 * Set {@link #intervals(List)} to a singleton list.
 		 */
-		public Builder intervals(Function<IntervalsContainer.Builder, ObjectBuilder<IntervalsContainer>> fn) {
-			return this.intervals(fn.apply(new IntervalsContainer.Builder()).build());
+		public Builder intervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.intervals(fn.apply(new Intervals.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #intervals(List)}, creating the list if needed.
 		 */
-		public Builder addIntervals(Function<IntervalsContainer.Builder, ObjectBuilder<IntervalsContainer>> fn) {
-			return this.addIntervals(fn.apply(new IntervalsContainer.Builder()).build());
+		public Builder addIntervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return this.addIntervals(fn.apply(new Intervals.Builder()).build());
 		}
 
 		/**
@@ -238,15 +250,13 @@ public final class IntervalsAllOf implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for IntervalsAllOf
-	 */
-	public static final JsonpDeserializer<IntervalsAllOf> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IntervalsAllOf::setupIntervalsAllOfDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<IntervalsAllOf.Builder, IntervalsAllOf.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(IntervalsAllOf::setupIntervalsAllOfDeserializer);
 
 	protected static void setupIntervalsAllOfDeserializer(DelegatingDeserializer<IntervalsAllOf.Builder> op) {
 
-		op.add(Builder::intervals, JsonpDeserializer.arrayDeserializer(IntervalsContainer.DESERIALIZER), "intervals");
+		op.add(Builder::intervals, JsonpDeserializer.arrayDeserializer(Intervals.DESERIALIZER), "intervals");
 		op.add(Builder::maxGaps, JsonpDeserializer.numberDeserializer(), "max_gaps");
 		op.add(Builder::ordered, JsonpDeserializer.booleanDeserializer(), "ordered");
 		op.add(Builder::filter, IntervalsFilter.DESERIALIZER, "filter");

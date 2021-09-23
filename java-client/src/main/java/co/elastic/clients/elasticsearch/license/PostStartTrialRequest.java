@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_trial.Request
@@ -47,7 +48,7 @@ public final class PostStartTrialRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostStartTrialRequest(Builder builder) {
+	public PostStartTrialRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 		this.typeQueryString = builder.typeQueryString;

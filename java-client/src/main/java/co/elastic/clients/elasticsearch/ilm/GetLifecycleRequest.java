@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Request
@@ -42,7 +43,7 @@ public final class GetLifecycleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetLifecycleRequest(Builder builder) {
+	public GetLifecycleRequest(Builder builder) {
 
 		this.policy = builder.policy;
 

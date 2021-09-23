@@ -43,8 +43,9 @@ public final class DotExpanderProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DotExpanderProcessor(Builder builder) {
+	public DotExpanderProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.path = builder.path;
 
@@ -65,8 +66,9 @@ public final class DotExpanderProcessor extends ProcessorBase {
 		return this.path;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -129,7 +131,7 @@ public final class DotExpanderProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DotExpanderProcessor
+	 * Json deserializer for {@link DotExpanderProcessor}
 	 */
 	public static final JsonpDeserializer<DotExpanderProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DotExpanderProcessor::setupDotExpanderProcessorDeserializer);

@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: indices.clear_cache.Response
 public final class ClearCacheResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCacheResponse(Builder builder) {
+	public ClearCacheResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class ClearCacheResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClearCacheResponse
+	 * Json deserializer for {@link ClearCacheResponse}
 	 */
 	public static final JsonpDeserializer<ClearCacheResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClearCacheResponse::setupClearCacheResponseDeserializer);

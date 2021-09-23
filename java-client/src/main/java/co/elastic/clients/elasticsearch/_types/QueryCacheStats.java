@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.QueryCacheStats
-public final class QueryCacheStats implements ToJsonp {
+public final class QueryCacheStats implements JsonpSerializable {
 	private final Number cacheCount;
 
 	private final Number cacheSize;
@@ -57,7 +57,7 @@ public final class QueryCacheStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected QueryCacheStats(Builder builder) {
+	public QueryCacheStats(Builder builder) {
 
 		this.cacheCount = Objects.requireNonNull(builder.cacheCount, "cache_count");
 		this.cacheSize = Objects.requireNonNull(builder.cacheSize, "cache_size");
@@ -130,13 +130,13 @@ public final class QueryCacheStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cache_count");
 		generator.write(this.cacheCount.doubleValue());
@@ -270,7 +270,7 @@ public final class QueryCacheStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for QueryCacheStats
+	 * Json deserializer for {@link QueryCacheStats}
 	 */
 	public static final JsonpDeserializer<QueryCacheStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, QueryCacheStats::setupQueryCacheStatsDeserializer);

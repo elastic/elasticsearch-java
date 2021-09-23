@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoOSCPU
-public final class NodeInfoOSCPU implements ToJsonp {
+public final class NodeInfoOSCPU implements JsonpSerializable {
 	private final String cacheSize;
 
 	private final Number cacheSizeInBytes;
@@ -56,7 +56,7 @@ public final class NodeInfoOSCPU implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoOSCPU(Builder builder) {
+	public NodeInfoOSCPU(Builder builder) {
 
 		this.cacheSize = Objects.requireNonNull(builder.cacheSize, "cache_size");
 		this.cacheSizeInBytes = Objects.requireNonNull(builder.cacheSizeInBytes, "cache_size_in_bytes");
@@ -128,13 +128,13 @@ public final class NodeInfoOSCPU implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cache_size");
 		generator.write(this.cacheSize);
@@ -263,7 +263,7 @@ public final class NodeInfoOSCPU implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoOSCPU
+	 * Json deserializer for {@link NodeInfoOSCPU}
 	 */
 	public static final JsonpDeserializer<NodeInfoOSCPU> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoOSCPU::setupNodeInfoOSCPUDeserializer);

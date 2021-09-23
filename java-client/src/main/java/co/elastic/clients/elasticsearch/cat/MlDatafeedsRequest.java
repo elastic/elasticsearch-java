@@ -34,6 +34,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.Request
@@ -46,7 +47,7 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlDatafeedsRequest(Builder builder) {
+	public MlDatafeedsRequest(Builder builder) {
 
 		this.datafeedId = builder.datafeedId;
 		this.allowNoDatafeeds = builder.allowNoDatafeeds;

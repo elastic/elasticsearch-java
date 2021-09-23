@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,12 +36,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsValue
-public final class TopMetricsValue implements ToJsonp {
+public final class TopMetricsValue implements JsonpSerializable {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TopMetricsValue(Builder builder) {
+	public TopMetricsValue(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 
@@ -57,13 +57,13 @@ public final class TopMetricsValue implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -101,7 +101,7 @@ public final class TopMetricsValue implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TopMetricsValue
+	 * Json deserializer for {@link TopMetricsValue}
 	 */
 	public static final JsonpDeserializer<TopMetricsValue> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TopMetricsValue::setupTopMetricsValueDeserializer);

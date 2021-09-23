@@ -26,17 +26,18 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingBlocks
-public final class IndexSettingBlocks implements ToJsonp {
+public final class IndexSettingBlocks implements JsonpSerializable {
 	@Nullable
 	private final Boolean readOnly;
 
@@ -47,14 +48,14 @@ public final class IndexSettingBlocks implements ToJsonp {
 	private final Boolean read;
 
 	@Nullable
-	private final JsonValue write;
+	private final String write;
 
 	@Nullable
 	private final Boolean metadata;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexSettingBlocks(Builder builder) {
+	public IndexSettingBlocks(Builder builder) {
 
 		this.readOnly = builder.readOnly;
 		this.readOnlyAllowDelete = builder.readOnlyAllowDelete;
@@ -92,7 +93,7 @@ public final class IndexSettingBlocks implements ToJsonp {
 	 * API name: {@code write}
 	 */
 	@Nullable
-	public JsonValue write() {
+	public String write() {
 		return this.write;
 	}
 
@@ -107,13 +108,13 @@ public final class IndexSettingBlocks implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.readOnly != null) {
 
@@ -164,7 +165,7 @@ public final class IndexSettingBlocks implements ToJsonp {
 		private Boolean read;
 
 		@Nullable
-		private JsonValue write;
+		private String write;
 
 		@Nullable
 		private Boolean metadata;
@@ -196,7 +197,7 @@ public final class IndexSettingBlocks implements ToJsonp {
 		/**
 		 * API name: {@code write}
 		 */
-		public Builder write(@Nullable JsonValue value) {
+		public Builder write(@Nullable String value) {
 			this.write = value;
 			return this;
 		}
@@ -224,7 +225,7 @@ public final class IndexSettingBlocks implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexSettingBlocks
+	 * Json deserializer for {@link IndexSettingBlocks}
 	 */
 	public static final JsonpDeserializer<IndexSettingBlocks> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, IndexSettingBlocks::setupIndexSettingBlocksDeserializer);
@@ -235,7 +236,7 @@ public final class IndexSettingBlocks implements ToJsonp {
 		op.add(Builder::readOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(), "read_only_allow_delete",
 				"index.blocks.read_only_allow_delete");
 		op.add(Builder::read, JsonpDeserializer.booleanDeserializer(), "read", "index.blocks.read");
-		op.add(Builder::write, JsonpDeserializer.jsonValueDeserializer(), "write", "index.blocks.write");
+		op.add(Builder::write, JsonpDeserializer.stringDeserializer(), "write", "index.blocks.write");
 		op.add(Builder::metadata, JsonpDeserializer.booleanDeserializer(), "metadata", "index.blocks.metadata");
 
 	}

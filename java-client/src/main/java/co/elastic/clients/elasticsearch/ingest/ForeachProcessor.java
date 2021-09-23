@@ -43,12 +43,13 @@ public final class ForeachProcessor extends ProcessorBase {
 	@Nullable
 	private final Boolean ignoreMissing;
 
-	private final ProcessorContainer processor;
+	private final Processor processor;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ForeachProcessor(Builder builder) {
+	public ForeachProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.processor = Objects.requireNonNull(builder.processor, "processor");
@@ -73,12 +74,13 @@ public final class ForeachProcessor extends ProcessorBase {
 	/**
 	 * API name: {@code processor}
 	 */
-	public ProcessorContainer processor() {
+	public Processor processor() {
 		return this.processor;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -91,7 +93,7 @@ public final class ForeachProcessor extends ProcessorBase {
 		}
 
 		generator.writeKey("processor");
-		this.processor.toJsonp(generator, mapper);
+		this.processor.serialize(generator, mapper);
 
 	}
 
@@ -108,7 +110,7 @@ public final class ForeachProcessor extends ProcessorBase {
 		@Nullable
 		private Boolean ignoreMissing;
 
-		private ProcessorContainer processor;
+		private Processor processor;
 
 		/**
 		 * API name: {@code field}
@@ -129,7 +131,7 @@ public final class ForeachProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code processor}
 		 */
-		public Builder processor(ProcessorContainer value) {
+		public Builder processor(Processor value) {
 			this.processor = value;
 			return this;
 		}
@@ -137,8 +139,8 @@ public final class ForeachProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code processor}
 		 */
-		public Builder processor(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.processor(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder processor(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.processor(fn.apply(new Processor.Builder()).build());
 		}
 
 		@Override
@@ -161,7 +163,7 @@ public final class ForeachProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ForeachProcessor
+	 * Json deserializer for {@link ForeachProcessor}
 	 */
 	public static final JsonpDeserializer<ForeachProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ForeachProcessor::setupForeachProcessorDeserializer);
@@ -170,7 +172,7 @@ public final class ForeachProcessor extends ProcessorBase {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::processor, ProcessorContainer.DESERIALIZER, "processor");
+		op.add(Builder::processor, Processor.DESERIALIZER, "processor");
 
 	}
 

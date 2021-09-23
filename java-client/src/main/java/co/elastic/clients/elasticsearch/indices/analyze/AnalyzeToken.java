@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.analyze;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzeToken
-public final class AnalyzeToken implements ToJsonp {
+public final class AnalyzeToken implements JsonpSerializable {
 	private final Number endOffset;
 
 	private final Number position;
@@ -53,7 +53,7 @@ public final class AnalyzeToken implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AnalyzeToken(Builder builder) {
+	public AnalyzeToken(Builder builder) {
 
 		this.endOffset = Objects.requireNonNull(builder.endOffset, "end_offset");
 		this.position = Objects.requireNonNull(builder.position, "position");
@@ -110,13 +110,13 @@ public final class AnalyzeToken implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("end_offset");
 		generator.write(this.endOffset.doubleValue());
@@ -224,7 +224,7 @@ public final class AnalyzeToken implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AnalyzeToken
+	 * Json deserializer for {@link AnalyzeToken}
 	 */
 	public static final JsonpDeserializer<AnalyzeToken> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AnalyzeToken::setupAnalyzeTokenDeserializer);

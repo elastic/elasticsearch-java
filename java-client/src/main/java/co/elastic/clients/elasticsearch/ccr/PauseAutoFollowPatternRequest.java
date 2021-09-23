@@ -42,7 +42,7 @@ public final class PauseAutoFollowPatternRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PauseAutoFollowPatternRequest(Builder builder) {
+	public PauseAutoFollowPatternRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

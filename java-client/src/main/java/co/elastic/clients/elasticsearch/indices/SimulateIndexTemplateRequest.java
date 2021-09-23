@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -44,7 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_index_template.Request
-public final class SimulateIndexTemplateRequest extends RequestBase implements ToJsonp {
+public final class SimulateIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -61,7 +61,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SimulateIndexTemplateRequest(Builder builder) {
+	public SimulateIndexTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.indexPatterns = builder.indexPatterns;
@@ -117,13 +117,13 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.indexPatterns != null) {
 
@@ -152,7 +152,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 			generator.writeKey("overlapping");
 			generator.writeStartArray();
 			for (OverlappingIndexTemplate item0 : this.overlapping) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -161,7 +161,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 		if (this.template != null) {
 
 			generator.writeKey("template");
-			this.template.toJsonp(generator, mapper);
+			this.template.serialize(generator, mapper);
 
 		}
 
@@ -328,7 +328,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SimulateIndexTemplateRequest
+	 * Json deserializer for {@link SimulateIndexTemplateRequest}
 	 */
 	public static final JsonpDeserializer<SimulateIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SimulateIndexTemplateRequest::setupSimulateIndexTemplateRequestDeserializer);

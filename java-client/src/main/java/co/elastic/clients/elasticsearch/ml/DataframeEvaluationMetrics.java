@@ -24,33 +24,34 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationMetrics
-public abstract class DataframeEvaluationMetrics implements ToJsonp {
+public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationClassificationMetricsAucRoc aucRoc;
 
 	@Nullable
-	private final Map<String, JsonValue> precision;
+	private final Map<String, JsonData> precision;
 
 	@Nullable
-	private final Map<String, JsonValue> recall;
+	private final Map<String, JsonData> recall;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationMetrics(AbstractBuilder<?> builder) {
+	public DataframeEvaluationMetrics(AbstractBuilder<?> builder) {
 
 		this.aucRoc = builder.aucRoc;
 		this.precision = builder.precision;
@@ -76,7 +77,7 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 	 * API name: {@code precision}
 	 */
 	@Nullable
-	public Map<String, JsonValue> precision() {
+	public Map<String, JsonData> precision() {
 		return this.precision;
 	}
 
@@ -86,34 +87,34 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 	 * API name: {@code recall}
 	 */
 	@Nullable
-	public Map<String, JsonValue> recall() {
+	public Map<String, JsonData> recall() {
 		return this.recall;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aucRoc != null) {
 
 			generator.writeKey("auc_roc");
-			this.aucRoc.toJsonp(generator, mapper);
+			this.aucRoc.serialize(generator, mapper);
 
 		}
 		if (this.precision != null) {
 
 			generator.writeKey("precision");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.precision.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.precision.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -123,9 +124,9 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 
 			generator.writeKey("recall");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.recall.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.recall.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -139,10 +140,10 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 		private DataframeEvaluationClassificationMetricsAucRoc aucRoc;
 
 		@Nullable
-		private Map<String, JsonValue> precision;
+		private Map<String, JsonData> precision;
 
 		@Nullable
-		private Map<String, JsonValue> recall;
+		private Map<String, JsonData> recall;
 
 		/**
 		 * The AUC ROC (area under the curve of the receiver operating characteristic)
@@ -173,7 +174,7 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 		 * <p>
 		 * API name: {@code precision}
 		 */
-		public BuilderT precision(@Nullable Map<String, JsonValue> value) {
+		public BuilderT precision(@Nullable Map<String, JsonData> value) {
 			this.precision = value;
 			return self();
 		}
@@ -181,7 +182,7 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #precision(Map)}, creating the map if needed.
 		 */
-		public BuilderT putPrecision(String key, JsonValue value) {
+		public BuilderT putPrecision(String key, JsonData value) {
 			if (this.precision == null) {
 				this.precision = new HashMap<>();
 			}
@@ -194,7 +195,7 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 		 * <p>
 		 * API name: {@code recall}
 		 */
-		public BuilderT recall(@Nullable Map<String, JsonValue> value) {
+		public BuilderT recall(@Nullable Map<String, JsonData> value) {
 			this.recall = value;
 			return self();
 		}
@@ -202,7 +203,7 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #recall(Map)}, creating the map if needed.
 		 */
-		public BuilderT putRecall(String key, JsonValue value) {
+		public BuilderT putRecall(String key, JsonData value) {
 			if (this.recall == null) {
 				this.recall = new HashMap<>();
 			}
@@ -219,10 +220,8 @@ public abstract class DataframeEvaluationMetrics implements ToJsonp {
 			DelegatingDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::aucRoc, DataframeEvaluationClassificationMetricsAucRoc.DESERIALIZER, "auc_roc");
-		op.add(AbstractBuilder::precision,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "precision");
-		op.add(AbstractBuilder::recall,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "recall");
+		op.add(AbstractBuilder::precision, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "precision");
+		op.add(AbstractBuilder::recall, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "recall");
 
 	}
 

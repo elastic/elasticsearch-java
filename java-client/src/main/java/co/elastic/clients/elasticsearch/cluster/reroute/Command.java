@@ -26,16 +26,17 @@ package co.elastic.clients.elasticsearch.cluster.reroute;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Command
-public final class Command implements ToJsonp {
+public final class Command implements JsonpSerializable {
 	@Nullable
 	private final CommandCancelAction cancel;
 
@@ -53,7 +54,7 @@ public final class Command implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Command(Builder builder) {
+	public Command(Builder builder) {
 
 		this.cancel = builder.cancel;
 		this.move = builder.move;
@@ -140,42 +141,42 @@ public final class Command implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.cancel != null) {
 
 			generator.writeKey("cancel");
-			this.cancel.toJsonp(generator, mapper);
+			this.cancel.serialize(generator, mapper);
 
 		}
 		if (this.move != null) {
 
 			generator.writeKey("move");
-			this.move.toJsonp(generator, mapper);
+			this.move.serialize(generator, mapper);
 
 		}
 		if (this.allocateReplica != null) {
 
 			generator.writeKey("allocate_replica");
-			this.allocateReplica.toJsonp(generator, mapper);
+			this.allocateReplica.serialize(generator, mapper);
 
 		}
 		if (this.allocateStalePrimary != null) {
 
 			generator.writeKey("allocate_stale_primary");
-			this.allocateStalePrimary.toJsonp(generator, mapper);
+			this.allocateStalePrimary.serialize(generator, mapper);
 
 		}
 		if (this.allocateEmptyPrimary != null) {
 
 			generator.writeKey("allocate_empty_primary");
-			this.allocateEmptyPrimary.toJsonp(generator, mapper);
+			this.allocateEmptyPrimary.serialize(generator, mapper);
 
 		}
 
@@ -363,7 +364,7 @@ public final class Command implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Command
+	 * Json deserializer for {@link Command}
 	 */
 	public static final JsonpDeserializer<Command> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Command::setupCommandDeserializer);

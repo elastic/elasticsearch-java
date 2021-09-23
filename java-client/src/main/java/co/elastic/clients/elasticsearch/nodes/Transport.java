@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Transport
-public final class Transport implements ToJsonp {
+public final class Transport implements JsonpSerializable {
 	private final Number rxCount;
 
 	private final String rxSize;
@@ -54,7 +54,7 @@ public final class Transport implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Transport(Builder builder) {
+	public Transport(Builder builder) {
 
 		this.rxCount = Objects.requireNonNull(builder.rxCount, "rx_count");
 		this.rxSize = Objects.requireNonNull(builder.rxSize, "rx_size");
@@ -118,13 +118,13 @@ public final class Transport implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("rx_count");
 		generator.write(this.rxCount.doubleValue());
@@ -240,7 +240,7 @@ public final class Transport implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Transport
+	 * Json deserializer for {@link Transport}
 	 */
 	public static final JsonpDeserializer<Transport> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Transport::setupTransportDeserializer);

@@ -26,10 +26,10 @@ package co.elastic.clients.elasticsearch.eql;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.EqlSearchResponseBase
-public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
+public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -63,7 +63,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EqlSearchResponseBase(AbstractBuilder<TEvent, ?> builder) {
+	public EqlSearchResponseBase(AbstractBuilder<TEvent, ?> builder) {
 
 		this.id = builder.id;
 		this.isPartial = builder.isPartial;
@@ -137,13 +137,13 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -177,7 +177,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 		}
 
 		generator.writeKey("hits");
-		this.hits.toJsonp(generator, mapper);
+		this.hits.serialize(generator, mapper);
 
 	}
 

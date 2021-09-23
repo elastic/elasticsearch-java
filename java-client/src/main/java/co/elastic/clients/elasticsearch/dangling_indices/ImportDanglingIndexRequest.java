@@ -53,7 +53,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ImportDanglingIndexRequest(Builder builder) {
+	public ImportDanglingIndexRequest(Builder builder) {
 
 		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
 		this.acceptDataLoss = Objects.requireNonNull(builder.acceptDataLoss, "accept_data_loss");

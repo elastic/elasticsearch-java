@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -43,7 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeJvmInfo
-public final class NodeJvmInfo implements ToJsonp {
+public final class NodeJvmInfo implements JsonpSerializable {
 	private final List<String> gcCollectors;
 
 	private final NodeInfoJvmMemory mem;
@@ -67,13 +66,13 @@ public final class NodeJvmInfo implements ToJsonp {
 	private final Boolean usingBundledJdk;
 
 	@Nullable
-	private final JsonValue usingCompressedOrdinaryObjectPointers;
+	private final String usingCompressedOrdinaryObjectPointers;
 
 	private final List<String> inputArguments;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeJvmInfo(Builder builder) {
+	public NodeJvmInfo(Builder builder) {
 
 		this.gcCollectors = Objects.requireNonNull(builder.gcCollectors, "gc_collectors");
 		this.mem = Objects.requireNonNull(builder.mem, "mem");
@@ -172,7 +171,7 @@ public final class NodeJvmInfo implements ToJsonp {
 	 * API name: {@code using_compressed_ordinary_object_pointers}
 	 */
 	@Nullable
-	public JsonValue usingCompressedOrdinaryObjectPointers() {
+	public String usingCompressedOrdinaryObjectPointers() {
 		return this.usingCompressedOrdinaryObjectPointers;
 	}
 
@@ -186,13 +185,13 @@ public final class NodeJvmInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("gc_collectors");
 		generator.writeStartArray();
@@ -203,7 +202,7 @@ public final class NodeJvmInfo implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("mem");
-		this.mem.toJsonp(generator, mapper);
+		this.mem.serialize(generator, mapper);
 
 		generator.writeKey("memory_pools");
 		generator.writeStartArray();
@@ -283,7 +282,7 @@ public final class NodeJvmInfo implements ToJsonp {
 		private Boolean usingBundledJdk;
 
 		@Nullable
-		private JsonValue usingCompressedOrdinaryObjectPointers;
+		private String usingCompressedOrdinaryObjectPointers;
 
 		private List<String> inputArguments;
 
@@ -423,7 +422,7 @@ public final class NodeJvmInfo implements ToJsonp {
 		/**
 		 * API name: {@code using_compressed_ordinary_object_pointers}
 		 */
-		public Builder usingCompressedOrdinaryObjectPointers(@Nullable JsonValue value) {
+		public Builder usingCompressedOrdinaryObjectPointers(@Nullable String value) {
 			this.usingCompressedOrdinaryObjectPointers = value;
 			return this;
 		}
@@ -470,7 +469,7 @@ public final class NodeJvmInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeJvmInfo
+	 * Json deserializer for {@link NodeJvmInfo}
 	 */
 	public static final JsonpDeserializer<NodeJvmInfo> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeJvmInfo::setupNodeJvmInfoDeserializer);
@@ -490,7 +489,7 @@ public final class NodeJvmInfo implements ToJsonp {
 		op.add(Builder::vmVersion, JsonpDeserializer.stringDeserializer(), "vm_version");
 		op.add(Builder::bundledJdk, JsonpDeserializer.booleanDeserializer(), "bundled_jdk");
 		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk");
-		op.add(Builder::usingCompressedOrdinaryObjectPointers, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::usingCompressedOrdinaryObjectPointers, JsonpDeserializer.stringDeserializer(),
 				"using_compressed_ordinary_object_pointers");
 		op.add(Builder::inputArguments, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"input_arguments");

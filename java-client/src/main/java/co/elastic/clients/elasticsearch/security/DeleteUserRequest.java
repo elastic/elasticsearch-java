@@ -47,7 +47,7 @@ public final class DeleteUserRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteUserRequest(Builder builder) {
+	public DeleteUserRequest(Builder builder) {
 
 		this.username = Objects.requireNonNull(builder.username, "username");
 		this.refresh = builder.refresh;

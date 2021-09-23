@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingPercentilesAggregation
@@ -47,8 +48,9 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MovingPercentilesAggregation(Builder builder) {
+	public MovingPercentilesAggregation(Builder builder) {
 		super(builder);
+
 		this.window = builder.window;
 		this.shift = builder.shift;
 		this.keyed = builder.keyed;
@@ -79,8 +81,9 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		return this.keyed;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.window != null) {
 
 			generator.writeKey("window");
@@ -163,7 +166,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MovingPercentilesAggregation
+	 * Json deserializer for {@link MovingPercentilesAggregation}
 	 */
 	public static final JsonpDeserializer<MovingPercentilesAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MovingPercentilesAggregation::setupMovingPercentilesAggregationDeserializer);

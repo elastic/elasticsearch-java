@@ -24,44 +24,76 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoPolygonQuery
-public final class GeoPolygonQuery extends QueryBase {
+public final class GeoPolygonQuery extends QueryBase implements Query {
 	@Nullable
-	private final JsonValue validationMethod;
+	private final GeoValidationMethod validationMethod;
+
+	@Nullable
+	private final Boolean ignoreUnmapped;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoPolygonQuery(Builder builder) {
+	public GeoPolygonQuery(Builder builder) {
 		super(builder);
-		this.validationMethod = builder.validationMethod;
 
+		this.validationMethod = builder.validationMethod;
+		this.ignoreUnmapped = builder.ignoreUnmapped;
+
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "geo_polygon";
 	}
 
 	/**
 	 * API name: {@code validation_method}
 	 */
 	@Nullable
-	public JsonValue validationMethod() {
+	public GeoValidationMethod validationMethod() {
 		return this.validationMethod;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	/**
+	 * API name: {@code ignore_unmapped}
+	 */
+	@Nullable
+	public Boolean ignoreUnmapped() {
+		return this.ignoreUnmapped;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.validationMethod != null) {
 
 			generator.writeKey("validation_method");
-			generator.write(this.validationMethod);
+			this.validationMethod.serialize(generator, mapper);
+		}
+		if (this.ignoreUnmapped != null) {
+
+			generator.writeKey("ignore_unmapped");
+			generator.write(this.ignoreUnmapped);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -72,13 +104,24 @@ public final class GeoPolygonQuery extends QueryBase {
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoPolygonQuery> {
 		@Nullable
-		private JsonValue validationMethod;
+		private GeoValidationMethod validationMethod;
+
+		@Nullable
+		private Boolean ignoreUnmapped;
 
 		/**
 		 * API name: {@code validation_method}
 		 */
-		public Builder validationMethod(@Nullable JsonValue value) {
+		public Builder validationMethod(@Nullable GeoValidationMethod value) {
 			this.validationMethod = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignore_unmapped}
+		 */
+		public Builder ignoreUnmapped(@Nullable Boolean value) {
+			this.ignoreUnmapped = value;
 			return this;
 		}
 
@@ -101,15 +144,14 @@ public final class GeoPolygonQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for GeoPolygonQuery
-	 */
-	public static final JsonpDeserializer<GeoPolygonQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoPolygonQuery::setupGeoPolygonQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<GeoPolygonQuery.Builder, GeoPolygonQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(GeoPolygonQuery::setupGeoPolygonQueryDeserializer);
 
 	protected static void setupGeoPolygonQueryDeserializer(DelegatingDeserializer<GeoPolygonQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::validationMethod, JsonpDeserializer.jsonValueDeserializer(), "validation_method");
+		op.add(Builder::validationMethod, GeoValidationMethod.DESERIALIZER, "validation_method");
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
 	}
 

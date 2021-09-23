@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,14 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeeds.Response
-public final class GetDatafeedsResponse implements ToJsonp {
+public final class GetDatafeedsResponse implements JsonpSerializable {
 	private final Number count;
 
 	private final List<Datafeed> datafeeds;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDatafeedsResponse(Builder builder) {
+	public GetDatafeedsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.datafeeds = Objects.requireNonNull(builder.datafeeds, "datafeeds");
@@ -71,13 +71,13 @@ public final class GetDatafeedsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
 		generator.write(this.count.doubleValue());
@@ -85,7 +85,7 @@ public final class GetDatafeedsResponse implements ToJsonp {
 		generator.writeKey("datafeeds");
 		generator.writeStartArray();
 		for (Datafeed item0 : this.datafeeds) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -166,7 +166,7 @@ public final class GetDatafeedsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetDatafeedsResponse
+	 * Json deserializer for {@link GetDatafeedsResponse}
 	 */
 	public static final JsonpDeserializer<GetDatafeedsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetDatafeedsResponse::setupGetDatafeedsResponseDeserializer);

@@ -30,9 +30,9 @@ import co.elastic.clients.elasticsearch.security.put_privileges.Actions;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -42,7 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Request
-public final class PutPrivilegesRequest extends RequestBase implements ToJsonp {
+public final class PutPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final JsonValue refresh;
 
@@ -50,7 +50,7 @@ public final class PutPrivilegesRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutPrivilegesRequest(Builder builder) {
+	public PutPrivilegesRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
 		this.value = Objects.requireNonNull(builder.value, "value");
@@ -82,14 +82,14 @@ public final class PutPrivilegesRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
 		for (Map.Entry<String, Map<String, Actions>> item0 : this.value.entrySet()) {
 			generator.writeKey(item0.getKey());
 			generator.writeStartObject();
 			for (Map.Entry<String, Actions> item1 : item0.getValue().entrySet()) {
 				generator.writeKey(item1.getKey());
-				item1.getValue().toJsonp(generator, mapper);
+				item1.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -159,7 +159,7 @@ public final class PutPrivilegesRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutPrivilegesRequest
+	 * Json deserializer for {@link PutPrivilegesRequest}
 	 */
 	public static final JsonpDeserializer<PutPrivilegesRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutPrivilegesRequest::setupPutPrivilegesRequestDeserializer);

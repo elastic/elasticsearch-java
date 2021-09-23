@@ -43,7 +43,7 @@ public final class DeletePipelineRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeletePipelineRequest(Builder builder) {
+	public DeletePipelineRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 

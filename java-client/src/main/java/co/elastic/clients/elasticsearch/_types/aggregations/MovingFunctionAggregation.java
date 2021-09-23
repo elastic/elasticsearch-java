@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingFunctionAggregation
@@ -47,8 +48,9 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MovingFunctionAggregation(Builder builder) {
+	public MovingFunctionAggregation(Builder builder) {
 		super(builder);
+
 		this.script = builder.script;
 		this.shift = builder.shift;
 		this.window = builder.window;
@@ -79,8 +81,9 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 		return this.window;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.script != null) {
 
 			generator.writeKey("script");
@@ -163,7 +166,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MovingFunctionAggregation
+	 * Json deserializer for {@link MovingFunctionAggregation}
 	 */
 	public static final JsonpDeserializer<MovingFunctionAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, MovingFunctionAggregation::setupMovingFunctionAggregationDeserializer);

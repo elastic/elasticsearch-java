@@ -26,11 +26,10 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -41,16 +40,16 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfYear
-public final class TimeOfYear implements ToJsonp {
+public final class TimeOfYear implements JsonpSerializable {
 	private final List<String> at;
 
-	private final List<JsonValue> int_;
+	private final List<Month> int_;
 
 	private final List<Number> on;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TimeOfYear(Builder builder) {
+	public TimeOfYear(Builder builder) {
 
 		this.at = Objects.requireNonNull(builder.at, "at");
 		this.int_ = Objects.requireNonNull(builder.int_, "int");
@@ -68,7 +67,7 @@ public final class TimeOfYear implements ToJsonp {
 	/**
 	 * API name: {@code int}
 	 */
-	public List<JsonValue> int_() {
+	public List<Month> int_() {
 		return this.int_;
 	}
 
@@ -82,13 +81,13 @@ public final class TimeOfYear implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("at");
 		generator.writeStartArray();
@@ -100,9 +99,8 @@ public final class TimeOfYear implements ToJsonp {
 
 		generator.writeKey("int");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.int_) {
-			generator.write(item0);
-
+		for (Month item0 : this.int_) {
+			item0.serialize(generator, mapper);
 		}
 		generator.writeEnd();
 
@@ -124,7 +122,7 @@ public final class TimeOfYear implements ToJsonp {
 	public static class Builder implements ObjectBuilder<TimeOfYear> {
 		private List<String> at;
 
-		private List<JsonValue> int_;
+		private List<Month> int_;
 
 		private List<Number> on;
 
@@ -158,7 +156,7 @@ public final class TimeOfYear implements ToJsonp {
 		/**
 		 * API name: {@code int}
 		 */
-		public Builder int_(List<JsonValue> value) {
+		public Builder int_(List<Month> value) {
 			this.int_ = value;
 			return this;
 		}
@@ -166,7 +164,7 @@ public final class TimeOfYear implements ToJsonp {
 		/**
 		 * API name: {@code int}
 		 */
-		public Builder int_(JsonValue... value) {
+		public Builder int_(Month... value) {
 			this.int_ = Arrays.asList(value);
 			return this;
 		}
@@ -174,7 +172,7 @@ public final class TimeOfYear implements ToJsonp {
 		/**
 		 * Add a value to {@link #int_(List)}, creating the list if needed.
 		 */
-		public Builder addInt_(JsonValue value) {
+		public Builder addInt(Month value) {
 			if (this.int_ == null) {
 				this.int_ = new ArrayList<>();
 			}
@@ -224,7 +222,7 @@ public final class TimeOfYear implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TimeOfYear
+	 * Json deserializer for {@link TimeOfYear}
 	 */
 	public static final JsonpDeserializer<TimeOfYear> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TimeOfYear::setupTimeOfYearDeserializer);
@@ -232,7 +230,7 @@ public final class TimeOfYear implements ToJsonp {
 	protected static void setupTimeOfYearDeserializer(DelegatingDeserializer<TimeOfYear.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
-		op.add(Builder::int_, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "int");
+		op.add(Builder::int_, JsonpDeserializer.arrayDeserializer(Month.DESERIALIZER), "int");
 		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "on");
 
 	}

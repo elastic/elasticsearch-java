@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,18 +37,29 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorOneHotEncoding
-public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements ToJsonp {
+public final class DataframeAnalysisFeatureProcessorOneHotEncoding
+		implements
+			DataframeAnalysisFeatureProcessor,
+			JsonpSerializable {
 	private final String field;
 
 	private final String hotMap;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisFeatureProcessorOneHotEncoding(Builder builder) {
+	public DataframeAnalysisFeatureProcessorOneHotEncoding(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.hotMap = Objects.requireNonNull(builder.hotMap, "hot_map");
 
+	}
+
+	/**
+	 * {@link DataframeAnalysisFeatureProcessor} variant type
+	 */
+	@Override
+	public String _type() {
+		return "one_hot_encoding";
 	}
 
 	/**
@@ -71,19 +83,22 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		generator.writeKey("hot_map");
 		generator.write(this.hotMap);
+
+		generator.writeEnd();
 
 	}
 
@@ -131,11 +146,9 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding implements To
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for DataframeAnalysisFeatureProcessorOneHotEncoding
-	 */
-	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder, DataframeAnalysisFeatureProcessorOneHotEncoding.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(
 					DataframeAnalysisFeatureProcessorOneHotEncoding::setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer);
 
 	protected static void setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer(

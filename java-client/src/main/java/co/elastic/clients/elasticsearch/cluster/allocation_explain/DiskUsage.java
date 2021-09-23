@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.DiskUsage
-public final class DiskUsage implements ToJsonp {
+public final class DiskUsage implements JsonpSerializable {
 	private final String path;
 
 	private final Number totalBytes;
@@ -52,7 +52,7 @@ public final class DiskUsage implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DiskUsage(Builder builder) {
+	public DiskUsage(Builder builder) {
 
 		this.path = Objects.requireNonNull(builder.path, "path");
 		this.totalBytes = Objects.requireNonNull(builder.totalBytes, "total_bytes");
@@ -108,13 +108,13 @@ public final class DiskUsage implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("path");
 		generator.write(this.path);
@@ -217,7 +217,7 @@ public final class DiskUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DiskUsage
+	 * Json deserializer for {@link DiskUsage}
 	 */
 	public static final JsonpDeserializer<DiskUsage> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DiskUsage::setupDiskUsageDeserializer);

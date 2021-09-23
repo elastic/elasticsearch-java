@@ -54,7 +54,7 @@ public final class DeleteForecastRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteForecastRequest(Builder builder) {
+	public DeleteForecastRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.forecastId = builder.forecastId;

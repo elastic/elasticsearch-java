@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRoles
-public final class SecurityRoles implements ToJsonp {
+public final class SecurityRoles implements JsonpSerializable {
 	private final SecurityRolesNative native_;
 
 	private final SecurityRolesDls dls;
@@ -45,7 +45,7 @@ public final class SecurityRoles implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SecurityRoles(Builder builder) {
+	public SecurityRoles(Builder builder) {
 
 		this.native_ = Objects.requireNonNull(builder.native_, "native");
 		this.dls = Objects.requireNonNull(builder.dls, "dls");
@@ -77,22 +77,22 @@ public final class SecurityRoles implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("native");
-		this.native_.toJsonp(generator, mapper);
+		this.native_.serialize(generator, mapper);
 
 		generator.writeKey("dls");
-		this.dls.toJsonp(generator, mapper);
+		this.dls.serialize(generator, mapper);
 
 		generator.writeKey("file");
-		this.file.toJsonp(generator, mapper);
+		this.file.serialize(generator, mapper);
 
 	}
 
@@ -168,7 +168,7 @@ public final class SecurityRoles implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SecurityRoles
+	 * Json deserializer for {@link SecurityRoles}
 	 */
 	public static final JsonpDeserializer<SecurityRoles> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SecurityRoles::setupSecurityRolesDeserializer);

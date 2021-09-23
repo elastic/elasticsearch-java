@@ -60,7 +60,7 @@ public final class StopTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopTransformRequest(Builder builder) {
+	public StopTransformRequest(Builder builder) {
 
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.allowNoMatch = builder.allowNoMatch;

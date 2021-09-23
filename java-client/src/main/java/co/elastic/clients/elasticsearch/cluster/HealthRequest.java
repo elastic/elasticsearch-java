@@ -25,7 +25,10 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.WaitForEvents;
+import co.elastic.clients.elasticsearch._types.WaitForStatus;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -39,6 +42,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -51,7 +55,7 @@ public final class HealthRequest extends RequestBase {
 	private final JsonValue expandWildcards;
 
 	@Nullable
-	private final JsonValue level;
+	private final Level level;
 
 	@Nullable
 	private final Boolean local;
@@ -66,7 +70,7 @@ public final class HealthRequest extends RequestBase {
 	private final JsonValue waitForActiveShards;
 
 	@Nullable
-	private final JsonValue waitForEvents;
+	private final WaitForEvents waitForEvents;
 
 	@Nullable
 	private final String waitForNodes;
@@ -78,11 +82,11 @@ public final class HealthRequest extends RequestBase {
 	private final Boolean waitForNoRelocatingShards;
 
 	@Nullable
-	private final JsonValue waitForStatus;
+	private final WaitForStatus waitForStatus;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HealthRequest(Builder builder) {
+	public HealthRequest(Builder builder) {
 
 		this.index = builder.index;
 		this.expandWildcards = builder.expandWildcards;
@@ -129,7 +133,7 @@ public final class HealthRequest extends RequestBase {
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public JsonValue level() {
+	public Level level() {
 		return this.level;
 	}
 
@@ -184,7 +188,7 @@ public final class HealthRequest extends RequestBase {
 	 * API name: {@code wait_for_events}
 	 */
 	@Nullable
-	public JsonValue waitForEvents() {
+	public WaitForEvents waitForEvents() {
 		return this.waitForEvents;
 	}
 
@@ -232,7 +236,7 @@ public final class HealthRequest extends RequestBase {
 	 * API name: {@code wait_for_status}
 	 */
 	@Nullable
-	public JsonValue waitForStatus() {
+	public WaitForStatus waitForStatus() {
 		return this.waitForStatus;
 	}
 
@@ -249,7 +253,7 @@ public final class HealthRequest extends RequestBase {
 		private JsonValue expandWildcards;
 
 		@Nullable
-		private JsonValue level;
+		private Level level;
 
 		@Nullable
 		private Boolean local;
@@ -264,7 +268,7 @@ public final class HealthRequest extends RequestBase {
 		private JsonValue waitForActiveShards;
 
 		@Nullable
-		private JsonValue waitForEvents;
+		private WaitForEvents waitForEvents;
 
 		@Nullable
 		private String waitForNodes;
@@ -276,7 +280,7 @@ public final class HealthRequest extends RequestBase {
 		private Boolean waitForNoRelocatingShards;
 
 		@Nullable
-		private JsonValue waitForStatus;
+		private WaitForStatus waitForStatus;
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases used to
@@ -330,7 +334,7 @@ public final class HealthRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable JsonValue value) {
+		public Builder level(@Nullable Level value) {
 			this.level = value;
 			return this;
 		}
@@ -385,7 +389,7 @@ public final class HealthRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_events}
 		 */
-		public Builder waitForEvents(@Nullable JsonValue value) {
+		public Builder waitForEvents(@Nullable WaitForEvents value) {
 			this.waitForEvents = value;
 			return this;
 		}
@@ -433,7 +437,7 @@ public final class HealthRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_status}
 		 */
-		public Builder waitForStatus(@Nullable JsonValue value) {
+		public Builder waitForStatus(@Nullable WaitForStatus value) {
 			this.waitForStatus = value;
 			return this;
 		}

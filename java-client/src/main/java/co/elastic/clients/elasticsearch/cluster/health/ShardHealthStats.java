@@ -23,14 +23,14 @@
 
 package co.elastic.clients.elasticsearch.cluster.health;
 
+import co.elastic.clients.elasticsearch._types.Health;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -38,7 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.ShardHealthStats
-public final class ShardHealthStats implements ToJsonp {
+public final class ShardHealthStats implements JsonpSerializable {
 	private final Number activeShards;
 
 	private final Number initializingShards;
@@ -47,13 +47,13 @@ public final class ShardHealthStats implements ToJsonp {
 
 	private final Number relocatingShards;
 
-	private final JsonValue status;
+	private final Health status;
 
 	private final Number unassignedShards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardHealthStats(Builder builder) {
+	public ShardHealthStats(Builder builder) {
 
 		this.activeShards = Objects.requireNonNull(builder.activeShards, "active_shards");
 		this.initializingShards = Objects.requireNonNull(builder.initializingShards, "initializing_shards");
@@ -95,7 +95,7 @@ public final class ShardHealthStats implements ToJsonp {
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public Health status() {
 		return this.status;
 	}
 
@@ -109,13 +109,13 @@ public final class ShardHealthStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("active_shards");
 		generator.write(this.activeShards.doubleValue());
@@ -130,7 +130,7 @@ public final class ShardHealthStats implements ToJsonp {
 		generator.write(this.relocatingShards.doubleValue());
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 		generator.writeKey("unassigned_shards");
 		generator.write(this.unassignedShards.doubleValue());
@@ -151,7 +151,7 @@ public final class ShardHealthStats implements ToJsonp {
 
 		private Number relocatingShards;
 
-		private JsonValue status;
+		private Health status;
 
 		private Number unassignedShards;
 
@@ -190,7 +190,7 @@ public final class ShardHealthStats implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(Health value) {
 			this.status = value;
 			return this;
 		}
@@ -218,7 +218,7 @@ public final class ShardHealthStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardHealthStats
+	 * Json deserializer for {@link ShardHealthStats}
 	 */
 	public static final JsonpDeserializer<ShardHealthStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardHealthStats::setupShardHealthStatsDeserializer);
@@ -229,7 +229,7 @@ public final class ShardHealthStats implements ToJsonp {
 		op.add(Builder::initializingShards, JsonpDeserializer.numberDeserializer(), "initializing_shards");
 		op.add(Builder::primaryActive, JsonpDeserializer.booleanDeserializer(), "primary_active");
 		op.add(Builder::relocatingShards, JsonpDeserializer.numberDeserializer(), "relocating_shards");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
+		op.add(Builder::status, Health.DESERIALIZER, "status");
 		op.add(Builder::unassignedShards, JsonpDeserializer.numberDeserializer(), "unassigned_shards");
 
 	}

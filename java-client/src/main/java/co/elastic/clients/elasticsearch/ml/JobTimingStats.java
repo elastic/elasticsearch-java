@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,7 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobTimingStats
-public final class JobTimingStats implements ToJsonp {
+public final class JobTimingStats implements JsonpSerializable {
 	private final Number averageBucketProcessingTimeMs;
 
 	private final Number bucketCount;
@@ -56,7 +56,7 @@ public final class JobTimingStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JobTimingStats(Builder builder) {
+	public JobTimingStats(Builder builder) {
 
 		this.averageBucketProcessingTimeMs = Objects.requireNonNull(builder.averageBucketProcessingTimeMs,
 				"average_bucket_processing_time_ms");
@@ -135,13 +135,13 @@ public final class JobTimingStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("average_bucket_processing_time_ms");
 		generator.write(this.averageBucketProcessingTimeMs.doubleValue());
@@ -270,7 +270,7 @@ public final class JobTimingStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JobTimingStats
+	 * Json deserializer for {@link JobTimingStats}
 	 */
 	public static final JsonpDeserializer<JobTimingStats> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, JobTimingStats::setupJobTimingStatsDeserializer);

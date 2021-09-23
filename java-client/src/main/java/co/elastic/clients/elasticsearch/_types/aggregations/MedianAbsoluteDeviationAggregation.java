@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregation
@@ -40,8 +41,9 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MedianAbsoluteDeviationAggregation(Builder builder) {
+	public MedianAbsoluteDeviationAggregation(Builder builder) {
 		super(builder);
+
 		this.compression = builder.compression;
 
 	}
@@ -54,8 +56,9 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 		return this.compression;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.compression != null) {
 
 			generator.writeKey("compression");
@@ -104,7 +107,7 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MedianAbsoluteDeviationAggregation
+	 * Json deserializer for {@link MedianAbsoluteDeviationAggregation}
 	 */
 	public static final JsonpDeserializer<MedianAbsoluteDeviationAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

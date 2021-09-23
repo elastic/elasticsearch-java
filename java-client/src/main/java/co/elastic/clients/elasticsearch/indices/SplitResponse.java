@@ -44,8 +44,9 @@ public final class SplitResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SplitResponse(Builder builder) {
+	public SplitResponse(Builder builder) {
 		super(builder);
+
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 		this.index = Objects.requireNonNull(builder.index, "index");
 
@@ -65,8 +66,9 @@ public final class SplitResponse extends AcknowledgedResponseBase {
 		return this.index;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
@@ -124,7 +126,7 @@ public final class SplitResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SplitResponse
+	 * Json deserializer for {@link SplitResponse}
 	 */
 	public static final JsonpDeserializer<SplitResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, SplitResponse::setupSplitResponseDeserializer);

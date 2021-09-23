@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: enrich.delete_policy.Response
 public final class DeletePolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeletePolicyResponse(Builder builder) {
+	public DeletePolicyResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class DeletePolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeletePolicyResponse
+	 * Json deserializer for {@link DeletePolicyResponse}
 	 */
 	public static final JsonpDeserializer<DeletePolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DeletePolicyResponse::setupDeletePolicyResponseDeserializer);

@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.snapshot.cleanup_repository.CleanupRepos
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,12 +37,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.cleanup_repository.Response
-public final class CleanupRepositoryResponse implements ToJsonp {
+public final class CleanupRepositoryResponse implements JsonpSerializable {
 	private final CleanupRepositoryResults results;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CleanupRepositoryResponse(Builder builder) {
+	public CleanupRepositoryResponse(Builder builder) {
 
 		this.results = Objects.requireNonNull(builder.results, "results");
 
@@ -58,16 +58,16 @@ public final class CleanupRepositoryResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("results");
-		this.results.toJsonp(generator, mapper);
+		this.results.serialize(generator, mapper);
 
 	}
 
@@ -109,7 +109,7 @@ public final class CleanupRepositoryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CleanupRepositoryResponse
+	 * Json deserializer for {@link CleanupRepositoryResponse}
 	 */
 	public static final JsonpDeserializer<CleanupRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CleanupRepositoryResponse::setupCleanupRepositoryResponseDeserializer);

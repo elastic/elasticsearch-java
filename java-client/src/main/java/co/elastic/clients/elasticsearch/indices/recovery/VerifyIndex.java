@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.recovery;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.VerifyIndex
-public final class VerifyIndex implements ToJsonp {
+public final class VerifyIndex implements JsonpSerializable {
 	@Nullable
 	private final JsonValue checkIndexTime;
 
@@ -49,7 +49,7 @@ public final class VerifyIndex implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected VerifyIndex(Builder builder) {
+	public VerifyIndex(Builder builder) {
 
 		this.checkIndexTime = builder.checkIndexTime;
 		this.checkIndexTimeInMillis = Objects.requireNonNull(builder.checkIndexTimeInMillis,
@@ -92,13 +92,13 @@ public final class VerifyIndex implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.checkIndexTime != null) {
 
@@ -185,7 +185,7 @@ public final class VerifyIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for VerifyIndex
+	 * Json deserializer for {@link VerifyIndex}
 	 */
 	public static final JsonpDeserializer<VerifyIndex> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, VerifyIndex::setupVerifyIndexDeserializer);

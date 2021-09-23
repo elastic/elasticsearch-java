@@ -42,7 +42,7 @@ public final class ActivateWatchRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ActivateWatchRequest(Builder builder) {
+	public ActivateWatchRequest(Builder builder) {
 
 		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
 

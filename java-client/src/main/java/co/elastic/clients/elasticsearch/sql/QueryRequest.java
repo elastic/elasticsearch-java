@@ -26,13 +26,13 @@ package co.elastic.clients.elasticsearch.sql;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -41,11 +41,12 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Request
-public final class QueryRequest extends RequestBase implements ToJsonp {
+public final class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String format;
 
@@ -59,7 +60,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	private final Number fetchSize;
 
 	@Nullable
-	private final QueryContainer filter;
+	private final Query filter;
 
 	@Nullable
 	private final String query;
@@ -78,7 +79,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected QueryRequest(Builder builder) {
+	public QueryRequest(Builder builder) {
 
 		this.format = builder.format;
 		this.columnar = builder.columnar;
@@ -135,7 +136,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public QueryContainer filter() {
+	public Query filter() {
 		return this.filter;
 	}
 
@@ -195,13 +196,13 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.columnar != null) {
 
@@ -224,7 +225,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
+			this.filter.serialize(generator, mapper);
 
 		}
 		if (this.query != null) {
@@ -279,7 +280,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		private Number fetchSize;
 
 		@Nullable
-		private QueryContainer filter;
+		private Query filter;
 
 		@Nullable
 		private String query;
@@ -337,7 +338,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable QueryContainer value) {
+		public Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -347,8 +348,8 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -419,7 +420,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for QueryRequest
+	 * Json deserializer for {@link QueryRequest}
 	 */
 	public static final JsonpDeserializer<QueryRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, QueryRequest::setupQueryRequestDeserializer);
@@ -429,7 +430,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
 		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
 		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
-		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::filter, Query.DESERIALIZER, "filter");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::requestTimeout, JsonpDeserializer.jsonValueDeserializer(), "request_timeout");
 		op.add(Builder::pageTimeout, JsonpDeserializer.jsonValueDeserializer(), "page_timeout");

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
+import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.elasticsearch.cluster.ClusterStateDeletedSnapshots;
 import co.elastic.clients.elasticsearch.cluster.ClusterStateMetadata;
@@ -31,11 +32,10 @@ import co.elastic.clients.elasticsearch.cluster.ClusterStateSnapshots;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -47,7 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteState
-public final class RerouteState implements ToJsonp {
+public final class RerouteState implements JsonpSerializable {
 	private final String clusterUuid;
 
 	@Nullable
@@ -60,13 +60,13 @@ public final class RerouteState implements ToJsonp {
 	private final Number version;
 
 	@Nullable
-	private final JsonValue blocks;
+	private final EmptyObject blocks;
 
 	@Nullable
 	private final Map<String, NodeAttributes> nodes;
 
 	@Nullable
-	private final Map<String, JsonValue> routingTable;
+	private final RoutingTable routingTable;
 
 	@Nullable
 	private final ClusterStateRoutingNodes routingNodes;
@@ -85,7 +85,7 @@ public final class RerouteState implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RerouteState(Builder builder) {
+	public RerouteState(Builder builder) {
 
 		this.clusterUuid = Objects.requireNonNull(builder.clusterUuid, "cluster_uuid");
 		this.stateUuid = builder.stateUuid;
@@ -137,7 +137,7 @@ public final class RerouteState implements ToJsonp {
 	 * API name: {@code blocks}
 	 */
 	@Nullable
-	public JsonValue blocks() {
+	public EmptyObject blocks() {
 		return this.blocks;
 	}
 
@@ -153,7 +153,7 @@ public final class RerouteState implements ToJsonp {
 	 * API name: {@code routing_table}
 	 */
 	@Nullable
-	public Map<String, JsonValue> routingTable() {
+	public RoutingTable routingTable() {
 		return this.routingTable;
 	}
 
@@ -200,13 +200,13 @@ public final class RerouteState implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster_uuid");
 		generator.write(this.clusterUuid);
@@ -232,7 +232,7 @@ public final class RerouteState implements ToJsonp {
 		if (this.blocks != null) {
 
 			generator.writeKey("blocks");
-			generator.write(this.blocks);
+			this.blocks.serialize(generator, mapper);
 
 		}
 		if (this.nodes != null) {
@@ -241,7 +241,7 @@ public final class RerouteState implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeAttributes> item0 : this.nodes.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -250,19 +250,13 @@ public final class RerouteState implements ToJsonp {
 		if (this.routingTable != null) {
 
 			generator.writeKey("routing_table");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.routingTable.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
-
-			}
-			generator.writeEnd();
+			this.routingTable.serialize(generator, mapper);
 
 		}
 		if (this.routingNodes != null) {
 
 			generator.writeKey("routing_nodes");
-			this.routingNodes.toJsonp(generator, mapper);
+			this.routingNodes.serialize(generator, mapper);
 
 		}
 		if (this.securityTokens != null) {
@@ -280,19 +274,19 @@ public final class RerouteState implements ToJsonp {
 		if (this.snapshots != null) {
 
 			generator.writeKey("snapshots");
-			this.snapshots.toJsonp(generator, mapper);
+			this.snapshots.serialize(generator, mapper);
 
 		}
 		if (this.snapshotDeletions != null) {
 
 			generator.writeKey("snapshot_deletions");
-			this.snapshotDeletions.toJsonp(generator, mapper);
+			this.snapshotDeletions.serialize(generator, mapper);
 
 		}
 		if (this.metadata != null) {
 
 			generator.writeKey("metadata");
-			this.metadata.toJsonp(generator, mapper);
+			this.metadata.serialize(generator, mapper);
 
 		}
 
@@ -316,13 +310,13 @@ public final class RerouteState implements ToJsonp {
 		private Number version;
 
 		@Nullable
-		private JsonValue blocks;
+		private EmptyObject blocks;
 
 		@Nullable
 		private Map<String, NodeAttributes> nodes;
 
 		@Nullable
-		private Map<String, JsonValue> routingTable;
+		private RoutingTable routingTable;
 
 		@Nullable
 		private ClusterStateRoutingNodes routingNodes;
@@ -374,9 +368,16 @@ public final class RerouteState implements ToJsonp {
 		/**
 		 * API name: {@code blocks}
 		 */
-		public Builder blocks(@Nullable JsonValue value) {
+		public Builder blocks(@Nullable EmptyObject value) {
 			this.blocks = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code blocks}
+		 */
+		public Builder blocks(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return this.blocks(fn.apply(new EmptyObject.Builder()).build());
 		}
 
 		/**
@@ -415,20 +416,16 @@ public final class RerouteState implements ToJsonp {
 		/**
 		 * API name: {@code routing_table}
 		 */
-		public Builder routingTable(@Nullable Map<String, JsonValue> value) {
+		public Builder routingTable(@Nullable RoutingTable value) {
 			this.routingTable = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #routingTable(Map)}, creating the map if needed.
+		 * API name: {@code routing_table}
 		 */
-		public Builder putRoutingTable(String key, JsonValue value) {
-			if (this.routingTable == null) {
-				this.routingTable = new HashMap<>();
-			}
-			this.routingTable.put(key, value);
-			return this;
+		public Builder routingTable(Function<RoutingTable.Builder, ObjectBuilder<RoutingTable>> fn) {
+			return this.routingTable(fn.apply(new RoutingTable.Builder()).build());
 		}
 
 		/**
@@ -527,7 +524,7 @@ public final class RerouteState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RerouteState
+	 * Json deserializer for {@link RerouteState}
 	 */
 	public static final JsonpDeserializer<RerouteState> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RerouteState::setupRerouteStateDeserializer);
@@ -538,10 +535,9 @@ public final class RerouteState implements ToJsonp {
 		op.add(Builder::stateUuid, JsonpDeserializer.stringDeserializer(), "state_uuid");
 		op.add(Builder::masterNode, JsonpDeserializer.stringDeserializer(), "master_node");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::blocks, JsonpDeserializer.jsonValueDeserializer(), "blocks");
+		op.add(Builder::blocks, EmptyObject.DESERIALIZER, "blocks");
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes.DESERIALIZER), "nodes");
-		op.add(Builder::routingTable,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "routing_table");
+		op.add(Builder::routingTable, RoutingTable.DESERIALIZER, "routing_table");
 		op.add(Builder::routingNodes, ClusterStateRoutingNodes.DESERIALIZER, "routing_nodes");
 		op.add(Builder::securityTokens, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"security_tokens");

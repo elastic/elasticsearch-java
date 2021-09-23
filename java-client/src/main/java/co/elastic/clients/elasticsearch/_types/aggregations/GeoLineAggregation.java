@@ -23,14 +23,14 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._core.search.SortOrder;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLineAggregation
-public final class GeoLineAggregation implements ToJsonp {
+public final class GeoLineAggregation implements JsonpSerializable {
 	private final GeoLinePoint point;
 
 	private final GeoLineSort sort;
@@ -48,14 +48,14 @@ public final class GeoLineAggregation implements ToJsonp {
 	private final Boolean includeSort;
 
 	@Nullable
-	private final JsonValue sortOrder;
+	private final SortOrder sortOrder;
 
 	@Nullable
 	private final Number size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoLineAggregation(Builder builder) {
+	public GeoLineAggregation(Builder builder) {
 
 		this.point = Objects.requireNonNull(builder.point, "point");
 		this.sort = Objects.requireNonNull(builder.sort, "sort");
@@ -91,7 +91,7 @@ public final class GeoLineAggregation implements ToJsonp {
 	 * API name: {@code sort_order}
 	 */
 	@Nullable
-	public JsonValue sortOrder() {
+	public SortOrder sortOrder() {
 		return this.sortOrder;
 	}
 
@@ -106,19 +106,19 @@ public final class GeoLineAggregation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("point");
-		this.point.toJsonp(generator, mapper);
+		this.point.serialize(generator, mapper);
 
 		generator.writeKey("sort");
-		this.sort.toJsonp(generator, mapper);
+		this.sort.serialize(generator, mapper);
 
 		if (this.includeSort != null) {
 
@@ -129,8 +129,7 @@ public final class GeoLineAggregation implements ToJsonp {
 		if (this.sortOrder != null) {
 
 			generator.writeKey("sort_order");
-			generator.write(this.sortOrder);
-
+			this.sortOrder.serialize(generator, mapper);
 		}
 		if (this.size != null) {
 
@@ -155,7 +154,7 @@ public final class GeoLineAggregation implements ToJsonp {
 		private Boolean includeSort;
 
 		@Nullable
-		private JsonValue sortOrder;
+		private SortOrder sortOrder;
 
 		@Nullable
 		private Number size;
@@ -201,7 +200,7 @@ public final class GeoLineAggregation implements ToJsonp {
 		/**
 		 * API name: {@code sort_order}
 		 */
-		public Builder sortOrder(@Nullable JsonValue value) {
+		public Builder sortOrder(@Nullable SortOrder value) {
 			this.sortOrder = value;
 			return this;
 		}
@@ -229,7 +228,7 @@ public final class GeoLineAggregation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoLineAggregation
+	 * Json deserializer for {@link GeoLineAggregation}
 	 */
 	public static final JsonpDeserializer<GeoLineAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GeoLineAggregation::setupGeoLineAggregationDeserializer);
@@ -239,7 +238,7 @@ public final class GeoLineAggregation implements ToJsonp {
 		op.add(Builder::point, GeoLinePoint.DESERIALIZER, "point");
 		op.add(Builder::sort, GeoLineSort.DESERIALIZER, "sort");
 		op.add(Builder::includeSort, JsonpDeserializer.booleanDeserializer(), "include_sort");
-		op.add(Builder::sortOrder, JsonpDeserializer.jsonValueDeserializer(), "sort_order");
+		op.add(Builder::sortOrder, SortOrder.DESERIALIZER, "sort_order");
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 
 	}

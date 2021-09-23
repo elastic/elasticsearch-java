@@ -26,17 +26,18 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelPlotConfig
-public final class ModelPlotConfig implements ToJsonp {
+public final class ModelPlotConfig implements JsonpSerializable {
 	@Nullable
 	private final Boolean annotationsEnabled;
 
@@ -48,7 +49,7 @@ public final class ModelPlotConfig implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ModelPlotConfig(Builder builder) {
+	public ModelPlotConfig(Builder builder) {
 
 		this.annotationsEnabled = builder.annotationsEnabled;
 		this.enabled = builder.enabled;
@@ -94,13 +95,13 @@ public final class ModelPlotConfig implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.annotationsEnabled != null) {
 
@@ -188,7 +189,7 @@ public final class ModelPlotConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ModelPlotConfig
+	 * Json deserializer for {@link ModelPlotConfig}
 	 */
 	public static final JsonpDeserializer<ModelPlotConfig> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ModelPlotConfig::setupModelPlotConfigDeserializer);

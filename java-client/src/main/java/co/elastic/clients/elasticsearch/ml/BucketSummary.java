@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,7 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketSummary
-public final class BucketSummary implements ToJsonp {
+public final class BucketSummary implements JsonpSerializable {
 	private final Number anomalyScore;
 
 	private final List<BucketInfluencer> bucketInfluencers;
@@ -69,7 +69,7 @@ public final class BucketSummary implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BucketSummary(Builder builder) {
+	public BucketSummary(Builder builder) {
 
 		this.anomalyScore = Objects.requireNonNull(builder.anomalyScore, "anomaly_score");
 		this.bucketInfluencers = Objects.requireNonNull(builder.bucketInfluencers, "bucket_influencers");
@@ -166,13 +166,13 @@ public final class BucketSummary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("anomaly_score");
 		generator.write(this.anomalyScore.doubleValue());
@@ -180,7 +180,7 @@ public final class BucketSummary implements ToJsonp {
 		generator.writeKey("bucket_influencers");
 		generator.writeStartArray();
 		for (BucketInfluencer item0 : this.bucketInfluencers) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -205,7 +205,7 @@ public final class BucketSummary implements ToJsonp {
 			generator.writeKey("partition_scores");
 			generator.writeStartArray();
 			for (PartitionScore item0 : this.partitionScores) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -421,7 +421,7 @@ public final class BucketSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BucketSummary
+	 * Json deserializer for {@link BucketSummary}
 	 */
 	public static final JsonpDeserializer<BucketSummary> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, BucketSummary::setupBucketSummaryDeserializer);

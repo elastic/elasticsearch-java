@@ -50,7 +50,7 @@ public final class DeleteJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteJobRequest(Builder builder) {
+	public DeleteJobRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.force = builder.force;

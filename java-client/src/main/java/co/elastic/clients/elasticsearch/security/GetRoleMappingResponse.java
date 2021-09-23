@@ -31,12 +31,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: security.get_role_mapping.Response
 public final class GetRoleMappingResponse extends AdditionalProperties<String, RoleMapping> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRoleMappingResponse(Builder builder) {
+	public GetRoleMappingResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -71,7 +72,7 @@ public final class GetRoleMappingResponse extends AdditionalProperties<String, R
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetRoleMappingResponse
+	 * Json deserializer for {@link GetRoleMappingResponse}
 	 */
 	public static final JsonpDeserializer<GetRoleMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetRoleMappingResponse::setupGetRoleMappingResponseDeserializer);

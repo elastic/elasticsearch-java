@@ -32,12 +32,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: security.get_service_accounts.Response
 public final class GetServiceAccountsResponse extends AdditionalProperties<String, RoleDescriptorWrapper> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetServiceAccountsResponse(Builder builder) {
+	public GetServiceAccountsResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -72,7 +73,7 @@ public final class GetServiceAccountsResponse extends AdditionalProperties<Strin
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetServiceAccountsResponse
+	 * Json deserializer for {@link GetServiceAccountsResponse}
 	 */
 	public static final JsonpDeserializer<GetServiceAccountsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetServiceAccountsResponse::setupGetServiceAccountsResponseDeserializer);

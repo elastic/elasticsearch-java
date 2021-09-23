@@ -41,8 +41,9 @@ public final class UnfreezeResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UnfreezeResponse(Builder builder) {
+	public UnfreezeResponse(Builder builder) {
 		super(builder);
+
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 
 	}
@@ -54,8 +55,9 @@ public final class UnfreezeResponse extends AcknowledgedResponseBase {
 		return this.shardsAcknowledged;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
@@ -100,7 +102,7 @@ public final class UnfreezeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UnfreezeResponse
+	 * Json deserializer for {@link UnfreezeResponse}
 	 */
 	public static final JsonpDeserializer<UnfreezeResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UnfreezeResponse::setupUnfreezeResponseDeserializer);

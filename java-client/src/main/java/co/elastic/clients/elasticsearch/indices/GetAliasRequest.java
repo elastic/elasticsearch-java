@@ -39,6 +39,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -64,7 +65,7 @@ public final class GetAliasRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetAliasRequest(Builder builder) {
+	public GetAliasRequest(Builder builder) {
 
 		this.name = builder.name;
 		this.index = builder.index;

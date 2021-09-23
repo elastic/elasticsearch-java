@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Request
@@ -42,7 +43,7 @@ public final class DeprecationsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeprecationsRequest(Builder builder) {
+	public DeprecationsRequest(Builder builder) {
 
 		this.index = builder.index;
 

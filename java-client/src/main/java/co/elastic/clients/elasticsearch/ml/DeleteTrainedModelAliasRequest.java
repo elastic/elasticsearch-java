@@ -44,7 +44,7 @@ public final class DeleteTrainedModelAliasRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteTrainedModelAliasRequest(Builder builder) {
+	public DeleteTrainedModelAliasRequest(Builder builder) {
 
 		this.modelAlias = Objects.requireNonNull(builder.modelAlias, "model_alias");
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");

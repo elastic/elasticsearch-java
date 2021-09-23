@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: watcher.start.Request
 public final class StartRequest extends RequestBase {
-	protected StartRequest() {
+	public StartRequest() {
 	}
 
 	/**

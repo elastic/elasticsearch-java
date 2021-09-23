@@ -45,8 +45,9 @@ public final class JsonProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JsonProcessor(Builder builder) {
+	public JsonProcessor(Builder builder) {
 		super(builder);
+
 		this.addToRoot = Objects.requireNonNull(builder.addToRoot, "add_to_root");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
@@ -74,8 +75,9 @@ public final class JsonProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("add_to_root");
 		generator.write(this.addToRoot);
@@ -144,7 +146,7 @@ public final class JsonProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JsonProcessor
+	 * Json deserializer for {@link JsonProcessor}
 	 */
 	public static final JsonpDeserializer<JsonProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, JsonProcessor::setupJsonProcessorDeserializer);

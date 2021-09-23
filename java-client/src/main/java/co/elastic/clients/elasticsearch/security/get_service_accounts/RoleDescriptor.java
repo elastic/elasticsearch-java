@@ -27,13 +27,13 @@ import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.elasticsearch.security.GlobalPrivilege;
 import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.RoleDescriptor
-public final class RoleDescriptor implements ToJsonp {
+public final class RoleDescriptor implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<IndicesPrivileges> indices;
@@ -58,17 +58,17 @@ public final class RoleDescriptor implements ToJsonp {
 	private final List<ApplicationPrivileges> applications;
 
 	@Nullable
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final List<String> runAs;
 
 	@Nullable
-	private final Map<String, JsonValue> transientMetadata;
+	private final Map<String, JsonData> transientMetadata;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RoleDescriptor(Builder builder) {
+	public RoleDescriptor(Builder builder) {
 
 		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
@@ -114,7 +114,7 @@ public final class RoleDescriptor implements ToJsonp {
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -130,20 +130,20 @@ public final class RoleDescriptor implements ToJsonp {
 	 * API name: {@code transient_metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> transientMetadata() {
+	public Map<String, JsonData> transientMetadata() {
 		return this.transientMetadata;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster");
 		generator.writeStartArray();
@@ -156,7 +156,7 @@ public final class RoleDescriptor implements ToJsonp {
 		generator.writeKey("indices");
 		generator.writeStartArray();
 		for (IndicesPrivileges item0 : this.indices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -166,7 +166,7 @@ public final class RoleDescriptor implements ToJsonp {
 			generator.writeKey("global");
 			generator.writeStartArray();
 			for (GlobalPrivilege item0 : this.global) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -177,7 +177,7 @@ public final class RoleDescriptor implements ToJsonp {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -187,9 +187,9 @@ public final class RoleDescriptor implements ToJsonp {
 
 			generator.writeKey("metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -210,9 +210,9 @@ public final class RoleDescriptor implements ToJsonp {
 
 			generator.writeKey("transient_metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.transientMetadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.transientMetadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -238,13 +238,13 @@ public final class RoleDescriptor implements ToJsonp {
 		private List<ApplicationPrivileges> applications;
 
 		@Nullable
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private List<String> runAs;
 
 		@Nullable
-		private Map<String, JsonValue> transientMetadata;
+		private Map<String, JsonData> transientMetadata;
 
 		/**
 		 * API name: {@code cluster}
@@ -400,7 +400,7 @@ public final class RoleDescriptor implements ToJsonp {
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonValue> value) {
+		public Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -408,7 +408,7 @@ public final class RoleDescriptor implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -446,7 +446,7 @@ public final class RoleDescriptor implements ToJsonp {
 		/**
 		 * API name: {@code transient_metadata}
 		 */
-		public Builder transientMetadata(@Nullable Map<String, JsonValue> value) {
+		public Builder transientMetadata(@Nullable Map<String, JsonData> value) {
 			this.transientMetadata = value;
 			return this;
 		}
@@ -455,7 +455,7 @@ public final class RoleDescriptor implements ToJsonp {
 		 * Add a key/value to {@link #transientMetadata(Map)}, creating the map if
 		 * needed.
 		 */
-		public Builder putTransientMetadata(String key, JsonValue value) {
+		public Builder putTransientMetadata(String key, JsonData value) {
 			if (this.transientMetadata == null) {
 				this.transientMetadata = new HashMap<>();
 			}
@@ -478,7 +478,7 @@ public final class RoleDescriptor implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RoleDescriptor
+	 * Json deserializer for {@link RoleDescriptor}
 	 */
 	public static final JsonpDeserializer<RoleDescriptor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RoleDescriptor::setupRoleDescriptorDeserializer);
@@ -491,11 +491,9 @@ public final class RoleDescriptor implements ToJsonp {
 		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege.DESERIALIZER), "global");
 		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
 				"applications");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
-		op.add(Builder::transientMetadata,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
 				"transient_metadata");
 
 	}

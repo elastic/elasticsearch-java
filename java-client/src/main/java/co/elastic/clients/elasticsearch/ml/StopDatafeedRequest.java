@@ -29,9 +29,9 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,7 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_datafeed.Request
-public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
+public final class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
 
 	@Nullable
@@ -57,7 +57,7 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopDatafeedRequest(Builder builder) {
+	public StopDatafeedRequest(Builder builder) {
 
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.allowNoMatch = builder.allowNoMatch;
@@ -105,13 +105,13 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.force != null) {
 
@@ -197,7 +197,7 @@ public final class StopDatafeedRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StopDatafeedRequest
+	 * Json deserializer for {@link StopDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<StopDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer);

@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: transform.start_transform.Response
 public final class StartTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartTransformResponse(Builder builder) {
+	public StartTransformResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class StartTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StartTransformResponse
+	 * Json deserializer for {@link StartTransformResponse}
 	 */
 	public static final JsonpDeserializer<StartTransformResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, StartTransformResponse::setupStartTransformResponseDeserializer);

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.rollup.get_jobs;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJob
-public final class RollupJob implements ToJsonp {
+public final class RollupJob implements JsonpSerializable {
 	private final RollupJobConfiguration config;
 
 	private final RollupJobStats stats;
@@ -45,7 +45,7 @@ public final class RollupJob implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupJob(Builder builder) {
+	public RollupJob(Builder builder) {
 
 		this.config = Objects.requireNonNull(builder.config, "config");
 		this.stats = Objects.requireNonNull(builder.stats, "stats");
@@ -77,22 +77,22 @@ public final class RollupJob implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("config");
-		this.config.toJsonp(generator, mapper);
+		this.config.serialize(generator, mapper);
 
 		generator.writeKey("stats");
-		this.stats.toJsonp(generator, mapper);
+		this.stats.serialize(generator, mapper);
 
 		generator.writeKey("status");
-		this.status.toJsonp(generator, mapper);
+		this.status.serialize(generator, mapper);
 
 	}
 
@@ -168,7 +168,7 @@ public final class RollupJob implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RollupJob
+	 * Json deserializer for {@link RollupJob}
 	 */
 	public static final JsonpDeserializer<RollupJob> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RollupJob::setupRollupJobDeserializer);

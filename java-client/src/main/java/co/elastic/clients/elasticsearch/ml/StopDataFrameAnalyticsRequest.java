@@ -54,7 +54,7 @@ public final class StopDataFrameAnalyticsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopDataFrameAnalyticsRequest(Builder builder) {
+	public StopDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.allowNoMatch = builder.allowNoMatch;

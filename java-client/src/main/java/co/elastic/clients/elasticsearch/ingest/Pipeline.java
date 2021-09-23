@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ingest;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -36,26 +36,27 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.Pipeline
-public final class Pipeline implements ToJsonp {
+public final class Pipeline implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
 	@Nullable
-	private final List<ProcessorContainer> onFailure;
+	private final List<Processor> onFailure;
 
 	@Nullable
-	private final List<ProcessorContainer> processors;
+	private final List<Processor> processors;
 
 	@Nullable
 	private final Number version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Pipeline(Builder builder) {
+	public Pipeline(Builder builder) {
 
 		this.description = builder.description;
 		this.onFailure = builder.onFailure;
@@ -76,7 +77,7 @@ public final class Pipeline implements ToJsonp {
 	 * API name: {@code on_failure}
 	 */
 	@Nullable
-	public List<ProcessorContainer> onFailure() {
+	public List<Processor> onFailure() {
 		return this.onFailure;
 	}
 
@@ -84,7 +85,7 @@ public final class Pipeline implements ToJsonp {
 	 * API name: {@code processors}
 	 */
 	@Nullable
-	public List<ProcessorContainer> processors() {
+	public List<Processor> processors() {
 		return this.processors;
 	}
 
@@ -99,13 +100,13 @@ public final class Pipeline implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -117,8 +118,8 @@ public final class Pipeline implements ToJsonp {
 
 			generator.writeKey("on_failure");
 			generator.writeStartArray();
-			for (ProcessorContainer item0 : this.onFailure) {
-				item0.toJsonp(generator, mapper);
+			for (Processor item0 : this.onFailure) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -128,8 +129,8 @@ public final class Pipeline implements ToJsonp {
 
 			generator.writeKey("processors");
 			generator.writeStartArray();
-			for (ProcessorContainer item0 : this.processors) {
-				item0.toJsonp(generator, mapper);
+			for (Processor item0 : this.processors) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -154,10 +155,10 @@ public final class Pipeline implements ToJsonp {
 		private String description;
 
 		@Nullable
-		private List<ProcessorContainer> onFailure;
+		private List<Processor> onFailure;
 
 		@Nullable
-		private List<ProcessorContainer> processors;
+		private List<Processor> processors;
 
 		@Nullable
 		private Number version;
@@ -173,7 +174,7 @@ public final class Pipeline implements ToJsonp {
 		/**
 		 * API name: {@code on_failure}
 		 */
-		public Builder onFailure(@Nullable List<ProcessorContainer> value) {
+		public Builder onFailure(@Nullable List<Processor> value) {
 			this.onFailure = value;
 			return this;
 		}
@@ -181,7 +182,7 @@ public final class Pipeline implements ToJsonp {
 		/**
 		 * API name: {@code on_failure}
 		 */
-		public Builder onFailure(ProcessorContainer... value) {
+		public Builder onFailure(Processor... value) {
 			this.onFailure = Arrays.asList(value);
 			return this;
 		}
@@ -189,7 +190,7 @@ public final class Pipeline implements ToJsonp {
 		/**
 		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
 		 */
-		public Builder addOnFailure(ProcessorContainer value) {
+		public Builder addOnFailure(Processor value) {
 			if (this.onFailure == null) {
 				this.onFailure = new ArrayList<>();
 			}
@@ -200,21 +201,21 @@ public final class Pipeline implements ToJsonp {
 		/**
 		 * Set {@link #onFailure(List)} to a singleton list.
 		 */
-		public Builder onFailure(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.onFailure(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.onFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
 		 */
-		public Builder addOnFailure(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.addOnFailure(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.addOnFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(@Nullable List<ProcessorContainer> value) {
+		public Builder processors(@Nullable List<Processor> value) {
 			this.processors = value;
 			return this;
 		}
@@ -222,7 +223,7 @@ public final class Pipeline implements ToJsonp {
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(ProcessorContainer... value) {
+		public Builder processors(Processor... value) {
 			this.processors = Arrays.asList(value);
 			return this;
 		}
@@ -230,7 +231,7 @@ public final class Pipeline implements ToJsonp {
 		/**
 		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
-		public Builder addProcessors(ProcessorContainer value) {
+		public Builder addProcessors(Processor value) {
 			if (this.processors == null) {
 				this.processors = new ArrayList<>();
 			}
@@ -241,15 +242,15 @@ public final class Pipeline implements ToJsonp {
 		/**
 		 * Set {@link #processors(List)} to a singleton list.
 		 */
-		public Builder processors(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.processors(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.processors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
-		public Builder addProcessors(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.addProcessors(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.addProcessors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
@@ -275,7 +276,7 @@ public final class Pipeline implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Pipeline
+	 * Json deserializer for {@link Pipeline}
 	 */
 	public static final JsonpDeserializer<Pipeline> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, Pipeline::setupPipelineDeserializer);
@@ -283,8 +284,8 @@ public final class Pipeline implements ToJsonp {
 	protected static void setupPipelineDeserializer(DelegatingDeserializer<Pipeline.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER), "on_failure");
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER), "processors");
+		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "on_failure");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "processors");
 		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
 
 	}

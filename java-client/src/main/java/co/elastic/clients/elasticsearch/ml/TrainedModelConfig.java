@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfigContainer;
+import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -45,7 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfig
-public final class TrainedModelConfig implements ToJsonp {
+public final class TrainedModelConfig implements JsonpSerializable {
 	private final String modelId;
 
 	private final List<String> tags;
@@ -74,7 +74,7 @@ public final class TrainedModelConfig implements ToJsonp {
 	@Nullable
 	private final Number estimatedOperations;
 
-	private final InferenceConfigContainer inferenceConfig;
+	private final InferenceConfig inferenceConfig;
 
 	private final TrainedModelConfigInput input;
 
@@ -86,7 +86,7 @@ public final class TrainedModelConfig implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TrainedModelConfig(Builder builder) {
+	public TrainedModelConfig(Builder builder) {
 
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.tags = Objects.requireNonNull(builder.tags, "tags");
@@ -209,7 +209,7 @@ public final class TrainedModelConfig implements ToJsonp {
 	 * <p>
 	 * API name: {@code inference_config}
 	 */
-	public InferenceConfigContainer inferenceConfig() {
+	public InferenceConfig inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
@@ -246,13 +246,13 @@ public final class TrainedModelConfig implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
@@ -321,10 +321,10 @@ public final class TrainedModelConfig implements ToJsonp {
 		}
 
 		generator.writeKey("inference_config");
-		this.inferenceConfig.toJsonp(generator, mapper);
+		this.inferenceConfig.serialize(generator, mapper);
 
 		generator.writeKey("input");
-		this.input.toJsonp(generator, mapper);
+		this.input.serialize(generator, mapper);
 
 		if (this.licenseLevel != null) {
 
@@ -335,7 +335,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		if (this.metadata != null) {
 
 			generator.writeKey("metadata");
-			this.metadata.toJsonp(generator, mapper);
+			this.metadata.serialize(generator, mapper);
 
 		}
 
@@ -375,7 +375,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		@Nullable
 		private Number estimatedOperations;
 
-		private InferenceConfigContainer inferenceConfig;
+		private InferenceConfig inferenceConfig;
 
 		private TrainedModelConfigInput input;
 
@@ -524,7 +524,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(InferenceConfigContainer value) {
+		public Builder inferenceConfig(InferenceConfig value) {
 			this.inferenceConfig = value;
 			return this;
 		}
@@ -536,9 +536,8 @@ public final class TrainedModelConfig implements ToJsonp {
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(
-				Function<InferenceConfigContainer.Builder, ObjectBuilder<InferenceConfigContainer>> fn) {
-			return this.inferenceConfig(fn.apply(new InferenceConfigContainer.Builder()).build());
+		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
 		/**
@@ -607,7 +606,7 @@ public final class TrainedModelConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TrainedModelConfig
+	 * Json deserializer for {@link TrainedModelConfig}
 	 */
 	public static final JsonpDeserializer<TrainedModelConfig> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer);
@@ -626,7 +625,7 @@ public final class TrainedModelConfig implements ToJsonp {
 		op.add(Builder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.numberDeserializer(),
 				"estimated_heap_memory_usage_bytes");
 		op.add(Builder::estimatedOperations, JsonpDeserializer.numberDeserializer(), "estimated_operations");
-		op.add(Builder::inferenceConfig, InferenceConfigContainer.DESERIALIZER, "inference_config");
+		op.add(Builder::inferenceConfig, InferenceConfig.DESERIALIZER, "inference_config");
 		op.add(Builder::input, TrainedModelConfigInput.DESERIALIZER, "input");
 		op.add(Builder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");
 		op.add(Builder::metadata, TrainedModelConfigMetadata.DESERIALIZER, "metadata");

@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -39,16 +39,16 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.put_settings.Response
-public final class PutSettingsResponse implements ToJsonp {
+public final class PutSettingsResponse implements JsonpSerializable {
 	private final Boolean acknowledged;
 
-	private final Map<String, JsonValue> persistent;
+	private final Map<String, JsonData> persistent;
 
-	private final Map<String, JsonValue> transient_;
+	private final Map<String, JsonData> transient_;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutSettingsResponse(Builder builder) {
+	public PutSettingsResponse(Builder builder) {
 
 		this.acknowledged = Objects.requireNonNull(builder.acknowledged, "acknowledged");
 		this.persistent = Objects.requireNonNull(builder.persistent, "persistent");
@@ -66,45 +66,45 @@ public final class PutSettingsResponse implements ToJsonp {
 	/**
 	 * API name: {@code persistent}
 	 */
-	public Map<String, JsonValue> persistent() {
+	public Map<String, JsonData> persistent() {
 		return this.persistent;
 	}
 
 	/**
 	 * API name: {@code transient}
 	 */
-	public Map<String, JsonValue> transient_() {
+	public Map<String, JsonData> transient_() {
 		return this.transient_;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("acknowledged");
 		generator.write(this.acknowledged);
 
 		generator.writeKey("persistent");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.persistent.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("transient");
 		generator.writeStartObject();
-		for (Map.Entry<String, JsonValue> item0 : this.transient_.entrySet()) {
+		for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -119,9 +119,9 @@ public final class PutSettingsResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<PutSettingsResponse> {
 		private Boolean acknowledged;
 
-		private Map<String, JsonValue> persistent;
+		private Map<String, JsonData> persistent;
 
-		private Map<String, JsonValue> transient_;
+		private Map<String, JsonData> transient_;
 
 		/**
 		 * API name: {@code acknowledged}
@@ -134,7 +134,7 @@ public final class PutSettingsResponse implements ToJsonp {
 		/**
 		 * API name: {@code persistent}
 		 */
-		public Builder persistent(Map<String, JsonValue> value) {
+		public Builder persistent(Map<String, JsonData> value) {
 			this.persistent = value;
 			return this;
 		}
@@ -142,7 +142,7 @@ public final class PutSettingsResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #persistent(Map)}, creating the map if needed.
 		 */
-		public Builder putPersistent(String key, JsonValue value) {
+		public Builder putPersistent(String key, JsonData value) {
 			if (this.persistent == null) {
 				this.persistent = new HashMap<>();
 			}
@@ -153,7 +153,7 @@ public final class PutSettingsResponse implements ToJsonp {
 		/**
 		 * API name: {@code transient}
 		 */
-		public Builder transient_(Map<String, JsonValue> value) {
+		public Builder transient_(Map<String, JsonData> value) {
 			this.transient_ = value;
 			return this;
 		}
@@ -161,7 +161,7 @@ public final class PutSettingsResponse implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #transient_(Map)}, creating the map if needed.
 		 */
-		public Builder putTransient_(String key, JsonValue value) {
+		public Builder putTransient(String key, JsonData value) {
 			if (this.transient_ == null) {
 				this.transient_ = new HashMap<>();
 			}
@@ -184,7 +184,7 @@ public final class PutSettingsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutSettingsResponse
+	 * Json deserializer for {@link PutSettingsResponse}
 	 */
 	public static final JsonpDeserializer<PutSettingsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutSettingsResponse::setupPutSettingsResponseDeserializer);
@@ -192,10 +192,8 @@ public final class PutSettingsResponse implements ToJsonp {
 	protected static void setupPutSettingsResponseDeserializer(DelegatingDeserializer<PutSettingsResponse.Builder> op) {
 
 		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
-		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"persistent");
-		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"transient");
+		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "persistent");
+		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "transient");
 
 	}
 

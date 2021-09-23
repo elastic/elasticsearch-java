@@ -42,7 +42,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteTrainedModelRequest(Builder builder) {
+	public DeleteTrainedModelRequest(Builder builder) {
 
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 

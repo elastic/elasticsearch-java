@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.security.get_service_credentials;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,12 +39,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.NodesCredentialsFileToken
-public final class NodesCredentialsFileToken implements ToJsonp {
+public final class NodesCredentialsFileToken implements JsonpSerializable {
 	private final List<String> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodesCredentialsFileToken(Builder builder) {
+	public NodesCredentialsFileToken(Builder builder) {
 
 		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
 
@@ -60,13 +60,13 @@ public final class NodesCredentialsFileToken implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("nodes");
 		generator.writeStartArray();
@@ -128,7 +128,7 @@ public final class NodesCredentialsFileToken implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodesCredentialsFileToken
+	 * Json deserializer for {@link NodesCredentialsFileToken}
 	 */
 	public static final JsonpDeserializer<NodesCredentialsFileToken> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodesCredentialsFileToken::setupNodesCredentialsFileTokenDeserializer);

@@ -42,8 +42,9 @@ public final class DataStreams extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataStreams(Builder builder) {
+	public DataStreams(Builder builder) {
 		super(builder);
+
 		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
 		this.indicesCount = Objects.requireNonNull(builder.indicesCount, "indices_count");
 
@@ -63,8 +64,9 @@ public final class DataStreams extends Base {
 		return this.indicesCount;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("data_streams");
 		generator.write(this.dataStreams.doubleValue());
@@ -120,7 +122,7 @@ public final class DataStreams extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataStreams
+	 * Json deserializer for {@link DataStreams}
 	 */
 	public static final JsonpDeserializer<DataStreams> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DataStreams::setupDataStreamsDeserializer);

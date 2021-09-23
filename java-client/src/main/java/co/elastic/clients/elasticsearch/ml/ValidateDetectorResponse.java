@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ml.validate_detector.Response
 public final class ValidateDetectorResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected ValidateDetectorResponse(Builder builder) {
+	public ValidateDetectorResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class ValidateDetectorResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ValidateDetectorResponse
+	 * Json deserializer for {@link ValidateDetectorResponse}
 	 */
 	public static final JsonpDeserializer<ValidateDetectorResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ValidateDetectorResponse::setupValidateDetectorResponseDeserializer);

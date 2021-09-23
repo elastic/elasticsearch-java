@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -37,14 +37,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsProgress
-public final class DataframeAnalyticsStatsProgress implements ToJsonp {
+public final class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 	private final String phase;
 
 	private final Number progressPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsStatsProgress(Builder builder) {
+	public DataframeAnalyticsStatsProgress(Builder builder) {
 
 		this.phase = Objects.requireNonNull(builder.phase, "phase");
 		this.progressPercent = Objects.requireNonNull(builder.progressPercent, "progress_percent");
@@ -73,13 +73,13 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("phase");
 		generator.write(this.phase);
@@ -135,7 +135,7 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsStatsProgress
+	 * Json deserializer for {@link DataframeAnalyticsStatsProgress}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsStatsProgress> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,

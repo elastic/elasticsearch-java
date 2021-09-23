@@ -27,23 +27,24 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Request
-public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
+public final class ExecuteWatchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -51,10 +52,10 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 	private final Boolean debug;
 
 	@Nullable
-	private final Map<String, JsonValue> actionModes;
+	private final Map<String, ActionExecutionMode> actionModes;
 
 	@Nullable
-	private final Map<String, JsonValue> alternativeInput;
+	private final Map<String, JsonData> alternativeInput;
 
 	@Nullable
 	private final Boolean ignoreCondition;
@@ -73,7 +74,7 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecuteWatchRequest(Builder builder) {
+	public ExecuteWatchRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.debug = builder.debug;
@@ -111,7 +112,7 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code action_modes}
 	 */
 	@Nullable
-	public Map<String, JsonValue> actionModes() {
+	public Map<String, ActionExecutionMode> actionModes() {
 		return this.actionModes;
 	}
 
@@ -119,7 +120,7 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code alternative_input}
 	 */
 	@Nullable
-	public Map<String, JsonValue> alternativeInput() {
+	public Map<String, JsonData> alternativeInput() {
 		return this.alternativeInput;
 	}
 
@@ -166,22 +167,21 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.actionModes != null) {
 
 			generator.writeKey("action_modes");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.actionModes.entrySet()) {
+			for (Map.Entry<String, ActionExecutionMode> item0 : this.actionModes.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
-
+				item0.getValue().serialize(generator, mapper);
 			}
 			generator.writeEnd();
 
@@ -190,9 +190,9 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("alternative_input");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.alternativeInput.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.alternativeInput.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -213,19 +213,19 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 		if (this.simulatedActions != null) {
 
 			generator.writeKey("simulated_actions");
-			this.simulatedActions.toJsonp(generator, mapper);
+			this.simulatedActions.serialize(generator, mapper);
 
 		}
 		if (this.triggerData != null) {
 
 			generator.writeKey("trigger_data");
-			this.triggerData.toJsonp(generator, mapper);
+			this.triggerData.serialize(generator, mapper);
 
 		}
 		if (this.watch != null) {
 
 			generator.writeKey("watch");
-			this.watch.toJsonp(generator, mapper);
+			this.watch.serialize(generator, mapper);
 
 		}
 
@@ -244,10 +244,10 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 		private Boolean debug;
 
 		@Nullable
-		private Map<String, JsonValue> actionModes;
+		private Map<String, ActionExecutionMode> actionModes;
 
 		@Nullable
-		private Map<String, JsonValue> alternativeInput;
+		private Map<String, JsonData> alternativeInput;
 
 		@Nullable
 		private Boolean ignoreCondition;
@@ -287,7 +287,7 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code action_modes}
 		 */
-		public Builder actionModes(@Nullable Map<String, JsonValue> value) {
+		public Builder actionModes(@Nullable Map<String, ActionExecutionMode> value) {
 			this.actionModes = value;
 			return this;
 		}
@@ -295,7 +295,7 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #actionModes(Map)}, creating the map if needed.
 		 */
-		public Builder putActionModes(String key, JsonValue value) {
+		public Builder putActionModes(String key, ActionExecutionMode value) {
 			if (this.actionModes == null) {
 				this.actionModes = new HashMap<>();
 			}
@@ -306,7 +306,7 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code alternative_input}
 		 */
-		public Builder alternativeInput(@Nullable Map<String, JsonValue> value) {
+		public Builder alternativeInput(@Nullable Map<String, JsonData> value) {
 			this.alternativeInput = value;
 			return this;
 		}
@@ -315,7 +315,7 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 		 * Add a key/value to {@link #alternativeInput(Map)}, creating the map if
 		 * needed.
 		 */
-		public Builder putAlternativeInput(String key, JsonValue value) {
+		public Builder putAlternativeInput(String key, JsonData value) {
 			if (this.alternativeInput == null) {
 				this.alternativeInput = new HashMap<>();
 			}
@@ -399,17 +399,16 @@ public final class ExecuteWatchRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecuteWatchRequest
+	 * Json deserializer for {@link ExecuteWatchRequest}
 	 */
 	public static final JsonpDeserializer<ExecuteWatchRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExecuteWatchRequest::setupExecuteWatchRequestDeserializer);
 
 	protected static void setupExecuteWatchRequestDeserializer(DelegatingDeserializer<ExecuteWatchRequest.Builder> op) {
 
-		op.add(Builder::actionModes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::actionModes, JsonpDeserializer.stringMapDeserializer(ActionExecutionMode.DESERIALIZER),
 				"action_modes");
-		op.add(Builder::alternativeInput,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::alternativeInput, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
 				"alternative_input");
 		op.add(Builder::ignoreCondition, JsonpDeserializer.booleanDeserializer(), "ignore_condition");
 		op.add(Builder::recordExecution, JsonpDeserializer.booleanDeserializer(), "record_execution");

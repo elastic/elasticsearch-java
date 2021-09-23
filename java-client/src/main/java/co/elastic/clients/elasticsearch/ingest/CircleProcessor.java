@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -45,14 +44,15 @@ public final class CircleProcessor extends ProcessorBase {
 
 	private final Boolean ignoreMissing;
 
-	private final JsonValue shapeType;
+	private final ShapeType shapeType;
 
 	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CircleProcessor(Builder builder) {
+	public CircleProcessor(Builder builder) {
 		super(builder);
+
 		this.errorDistance = Objects.requireNonNull(builder.errorDistance, "error_distance");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
@@ -85,7 +85,7 @@ public final class CircleProcessor extends ProcessorBase {
 	/**
 	 * API name: {@code shape_type}
 	 */
-	public JsonValue shapeType() {
+	public ShapeType shapeType() {
 		return this.shapeType;
 	}
 
@@ -96,8 +96,9 @@ public final class CircleProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("error_distance");
 		generator.write(this.errorDistance.doubleValue());
@@ -109,7 +110,7 @@ public final class CircleProcessor extends ProcessorBase {
 		generator.write(this.ignoreMissing);
 
 		generator.writeKey("shape_type");
-		generator.write(this.shapeType);
+		this.shapeType.serialize(generator, mapper);
 
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
@@ -130,7 +131,7 @@ public final class CircleProcessor extends ProcessorBase {
 
 		private Boolean ignoreMissing;
 
-		private JsonValue shapeType;
+		private ShapeType shapeType;
 
 		private String targetField;
 
@@ -161,7 +162,7 @@ public final class CircleProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code shape_type}
 		 */
-		public Builder shapeType(JsonValue value) {
+		public Builder shapeType(ShapeType value) {
 			this.shapeType = value;
 			return this;
 		}
@@ -194,7 +195,7 @@ public final class CircleProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CircleProcessor
+	 * Json deserializer for {@link CircleProcessor}
 	 */
 	public static final JsonpDeserializer<CircleProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CircleProcessor::setupCircleProcessorDeserializer);
@@ -204,7 +205,7 @@ public final class CircleProcessor extends ProcessorBase {
 		op.add(Builder::errorDistance, JsonpDeserializer.numberDeserializer(), "error_distance");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::shapeType, JsonpDeserializer.jsonValueDeserializer(), "shape_type");
+		op.add(Builder::shapeType, ShapeType.DESERIALIZER, "shape_type");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}

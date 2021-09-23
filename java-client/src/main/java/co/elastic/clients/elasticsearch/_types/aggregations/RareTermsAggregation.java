@@ -36,6 +36,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RareTermsAggregation
@@ -63,8 +64,9 @@ public final class RareTermsAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RareTermsAggregation(Builder builder) {
+	public RareTermsAggregation(Builder builder) {
 		super(builder);
+
 		this.exclude = builder.exclude;
 		this.field = builder.field;
 		this.include = builder.include;
@@ -131,8 +133,9 @@ public final class RareTermsAggregation extends BucketAggregationBase {
 		return this.valueType;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.exclude != null) {
 
 			generator.writeKey("exclude");
@@ -307,7 +310,7 @@ public final class RareTermsAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RareTermsAggregation
+	 * Json deserializer for {@link RareTermsAggregation}
 	 */
 	public static final JsonpDeserializer<RareTermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RareTermsAggregation::setupRareTermsAggregationDeserializer);

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardStatistics
-public final class ShardStatistics implements ToJsonp {
+public final class ShardStatistics implements JsonpSerializable {
 	private final Number failed;
 
 	private final Number successful;
@@ -55,7 +55,7 @@ public final class ShardStatistics implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStatistics(Builder builder) {
+	public ShardStatistics(Builder builder) {
 
 		this.failed = Objects.requireNonNull(builder.failed, "failed");
 		this.successful = Objects.requireNonNull(builder.successful, "successful");
@@ -105,13 +105,13 @@ public final class ShardStatistics implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("failed");
 		generator.write(this.failed.doubleValue());
@@ -127,7 +127,7 @@ public final class ShardStatistics implements ToJsonp {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (ShardFailure item0 : this.failures) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -248,7 +248,7 @@ public final class ShardStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardStatistics
+	 * Json deserializer for {@link ShardStatistics}
 	 */
 	public static final JsonpDeserializer<ShardStatistics> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ShardStatistics::setupShardStatisticsDeserializer);

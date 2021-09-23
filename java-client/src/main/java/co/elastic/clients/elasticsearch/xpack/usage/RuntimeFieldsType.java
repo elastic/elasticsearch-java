@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,7 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RuntimeFieldsType
-public final class RuntimeFieldsType implements ToJsonp {
+public final class RuntimeFieldsType implements JsonpSerializable {
 	private final Number charsMax;
 
 	private final Number charsTotal;
@@ -71,7 +71,7 @@ public final class RuntimeFieldsType implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RuntimeFieldsType(Builder builder) {
+	public RuntimeFieldsType(Builder builder) {
 
 		this.charsMax = Objects.requireNonNull(builder.charsMax, "chars_max");
 		this.charsTotal = Objects.requireNonNull(builder.charsTotal, "chars_total");
@@ -191,13 +191,13 @@ public final class RuntimeFieldsType implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("chars_max");
 		generator.write(this.charsMax.doubleValue());
@@ -428,7 +428,7 @@ public final class RuntimeFieldsType implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RuntimeFieldsType
+	 * Json deserializer for {@link RuntimeFieldsType}
 	 */
 	public static final JsonpDeserializer<RuntimeFieldsType> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RuntimeFieldsType::setupRuntimeFieldsTypeDeserializer);

@@ -50,7 +50,7 @@ public final class VerifyRepositoryRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected VerifyRepositoryRequest(Builder builder) {
+	public VerifyRepositoryRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.masterTimeout = builder.masterTimeout;

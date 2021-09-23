@@ -23,172 +23,113 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.StringEnum;
-import co.elastic.clients.util.TaggedUnion;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
+import jakarta.json.stream.JsonParser;
+import java.util.EnumSet;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-public class Preprocessor extends TaggedUnion<Preprocessor.Tag, Object> implements ToJsonp {
+// typedef: ml.put_trained_model.Preprocessor
+public interface Preprocessor extends JsonpSerializable {
 
-	public enum Tag implements StringEnum {
+	String FREQUENCY_ENCODING = "frequency_encoding";
+	String ONE_HOT_ENCODING = "one_hot_encoding";
+	String TARGET_MEAN_ENCODING = "target_mean_encoding";
 
-		frequencyEncoding("frequency_encoding"),
+	/**
+	 * The type of this {@code Preprocessor}.
+	 */
+	String _type();
 
-		oneHotEncoding("one_hot_encoding"),
-
-		targetMeanEncoding("target_mean_encoding"),
-
-		;
-
-		private final String jsonValue;
-
-		Tag(String jsonValue) {
-			this.jsonValue = jsonValue;
+	class Builder {
+		/**
+		 * API name: {@code frequency_encoding}
+		 */
+		public ObjectBuilder<Preprocessor> frequencyEncoding(FrequencyEncodingPreprocessor value) {
+			return ObjectBuilder.constant(value);
 		}
 
-		public String jsonValue() {
-			return this.jsonValue;
-		}
-
-		public static StringEnum.Deserializer<Tag> DESERIALIZER = new StringEnum.Deserializer<>(Tag.values());
-	}
-
-	private Preprocessor(Builder builder) {
-		super(builder.$tag, builder.$variant);
-
-	}
-
-	/**
-	 * Is this {@link Preprocessor} of a {@code frequency_encoding} kind?
-	 */
-	public boolean isFrequencyEncoding() {
-		return is(Tag.frequencyEncoding);
-	}
-
-	/**
-	 * Get the {@code frequency_encoding} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code frequency_encoding}
-	 *             kind.
-	 */
-	public FrequencyEncodingPreprocessor frequencyEncoding() {
-		return get(Tag.frequencyEncoding);
-	}
-
-	/**
-	 * Is this {@link Preprocessor} of a {@code one_hot_encoding} kind?
-	 */
-	public boolean isOneHotEncoding() {
-		return is(Tag.oneHotEncoding);
-	}
-
-	/**
-	 * Get the {@code one_hot_encoding} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code one_hot_encoding}
-	 *             kind.
-	 */
-	public OneHotEncodingPreprocessor oneHotEncoding() {
-		return get(Tag.oneHotEncoding);
-	}
-
-	/**
-	 * Is this {@link Preprocessor} of a {@code target_mean_encoding} kind?
-	 */
-	public boolean isTargetMeanEncoding() {
-		return is(Tag.targetMeanEncoding);
-	}
-
-	/**
-	 * Get the {@code target_mean_encoding} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code target_mean_encoding}
-	 *             kind.
-	 */
-	public TargetMeanEncodingPreprocessor targetMeanEncoding() {
-		return get(Tag.targetMeanEncoding);
-	}
-
-	@Override
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.writeKey(tag.jsonValue);
-		if (value instanceof ToJsonp) {
-			((ToJsonp) value).toJsonp(generator, mapper);
-		}
-
-		generator.writeEnd();
-	}
-	public static class Builder {
-		private Tag $tag;
-		private Object $variant;
-
-		public ObjectBuilder<Preprocessor> frequencyEncoding(FrequencyEncodingPreprocessor v) {
-			this.$variant = v;
-			this.$tag = Tag.frequencyEncoding;
-			return new ObjectBuilder.Constant<>(this.build());
-		}
-
+		/**
+		 * API name: {@code frequency_encoding}
+		 */
 		public ObjectBuilder<Preprocessor> frequencyEncoding(
-				Function<FrequencyEncodingPreprocessor.Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> f) {
-			return this.frequencyEncoding(f.apply(new FrequencyEncodingPreprocessor.Builder()).build());
+				Function<FrequencyEncodingPreprocessor.Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> fn) {
+			return this.frequencyEncoding(fn.apply(new FrequencyEncodingPreprocessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Preprocessor> oneHotEncoding(OneHotEncodingPreprocessor v) {
-			this.$variant = v;
-			this.$tag = Tag.oneHotEncoding;
-			return new ObjectBuilder.Constant<>(this.build());
+		/**
+		 * API name: {@code one_hot_encoding}
+		 */
+		public ObjectBuilder<Preprocessor> oneHotEncoding(OneHotEncodingPreprocessor value) {
+			return ObjectBuilder.constant(value);
 		}
 
+		/**
+		 * API name: {@code one_hot_encoding}
+		 */
 		public ObjectBuilder<Preprocessor> oneHotEncoding(
-				Function<OneHotEncodingPreprocessor.Builder, ObjectBuilder<OneHotEncodingPreprocessor>> f) {
-			return this.oneHotEncoding(f.apply(new OneHotEncodingPreprocessor.Builder()).build());
+				Function<OneHotEncodingPreprocessor.Builder, ObjectBuilder<OneHotEncodingPreprocessor>> fn) {
+			return this.oneHotEncoding(fn.apply(new OneHotEncodingPreprocessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Preprocessor> targetMeanEncoding(TargetMeanEncodingPreprocessor v) {
-			this.$variant = v;
-			this.$tag = Tag.targetMeanEncoding;
-			return new ObjectBuilder.Constant<>(this.build());
+		/**
+		 * API name: {@code target_mean_encoding}
+		 */
+		public ObjectBuilder<Preprocessor> targetMeanEncoding(TargetMeanEncodingPreprocessor value) {
+			return ObjectBuilder.constant(value);
 		}
 
+		/**
+		 * API name: {@code target_mean_encoding}
+		 */
 		public ObjectBuilder<Preprocessor> targetMeanEncoding(
-				Function<TargetMeanEncodingPreprocessor.Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> f) {
-			return this.targetMeanEncoding(f.apply(new TargetMeanEncodingPreprocessor.Builder()).build());
-		}
-
-		protected Preprocessor build() {
-			return new Preprocessor(this);
+				Function<TargetMeanEncodingPreprocessor.Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> fn) {
+			return this.targetMeanEncoding(fn.apply(new TargetMeanEncodingPreprocessor.Builder()).build());
 		}
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily
-	// avoids cyclic dependencies between static class initialization code, which
-	// can lead to unwanted things like NPEs or stack overflows
+	class $Helper {
+		private static Preprocessor deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
-	public static final JsonpDeserializer<Preprocessor> DESERIALIZER = JsonpDeserializer
-			.lazy(Preprocessor::buildDeserializer);
+			ObjectBuilder<? extends Preprocessor> builder = null;
+			String variant = null;
 
-	private static JsonpDeserializer<Preprocessor> buildDeserializer() {
-		ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
+			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
+				String fieldName = JsonpUtils.expectKeyName(parser, event);
+				switch (fieldName) {
+					case FREQUENCY_ENCODING : {
+						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
+						builder = FrequencyEncodingPreprocessor.$BUILDER_DESERIALIZER.deserialize(
+								new FrequencyEncodingPreprocessor.Builder(), parser, mapper, parser.next());
+						break;
+					}
+					case ONE_HOT_ENCODING : {
+						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
+						builder = OneHotEncodingPreprocessor.$BUILDER_DESERIALIZER
+								.deserialize(new OneHotEncodingPreprocessor.Builder(), parser, mapper, parser.next());
+						break;
+					}
+					case TARGET_MEAN_ENCODING : {
+						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
+						builder = TargetMeanEncodingPreprocessor.$BUILDER_DESERIALIZER.deserialize(
+								new TargetMeanEncodingPreprocessor.Builder(), parser, mapper, parser.next());
+						break;
+					}
+					default : {
+						JsonpUtils.unknownKey(parser, fieldName);
+					}
+				}
+			}
 
-		op.add(Builder::frequencyEncoding, FrequencyEncodingPreprocessor.DESERIALIZER, "frequency_encoding");
-		op.add(Builder::oneHotEncoding, OneHotEncodingPreprocessor.DESERIALIZER, "one_hot_encoding");
-		op.add(Builder::targetMeanEncoding, TargetMeanEncodingPreprocessor.DESERIALIZER, "target_mean_encoding");
-
-		return new BuildFunctionDeserializer<>(op, Builder::build);
+			return JsonpUtils.buildVariant(parser, builder);
+		}
 	}
 
+	JsonpDeserializer<Preprocessor> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
+			$Helper::deserialize);
 }

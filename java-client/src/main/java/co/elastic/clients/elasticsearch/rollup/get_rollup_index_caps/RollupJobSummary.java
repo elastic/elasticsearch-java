@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,7 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummary
-public final class RollupJobSummary implements ToJsonp {
+public final class RollupJobSummary implements JsonpSerializable {
 	private final Map<String, List<RollupJobSummaryField>> fields;
 
 	private final String indexPattern;
@@ -50,7 +50,7 @@ public final class RollupJobSummary implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupJobSummary(Builder builder) {
+	public RollupJobSummary(Builder builder) {
 
 		this.fields = Objects.requireNonNull(builder.fields, "fields");
 		this.indexPattern = Objects.requireNonNull(builder.indexPattern, "index_pattern");
@@ -90,13 +90,13 @@ public final class RollupJobSummary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("fields");
 		generator.writeStartObject();
@@ -104,7 +104,7 @@ public final class RollupJobSummary implements ToJsonp {
 			generator.writeKey(item0.getKey());
 			generator.writeStartArray();
 			for (RollupJobSummaryField item1 : item0.getValue()) {
-				item1.toJsonp(generator, mapper);
+				item1.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -195,7 +195,7 @@ public final class RollupJobSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RollupJobSummary
+	 * Json deserializer for {@link RollupJobSummary}
 	 */
 	public static final JsonpDeserializer<RollupJobSummary> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RollupJobSummary::setupRollupJobSummaryDeserializer);

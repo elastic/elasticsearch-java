@@ -50,7 +50,7 @@ public final class ExplainLifecycleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExplainLifecycleRequest(Builder builder) {
+	public ExplainLifecycleRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.onlyErrors = builder.onlyErrors;

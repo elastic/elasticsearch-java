@@ -42,7 +42,7 @@ public final class DeleteFilterRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteFilterRequest(Builder builder) {
+	public DeleteFilterRequest(Builder builder) {
 
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
 

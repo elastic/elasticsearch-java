@@ -47,7 +47,7 @@ public final class DeleteDatafeedRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteDatafeedRequest(Builder builder) {
+	public DeleteDatafeedRequest(Builder builder) {
 
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.force = builder.force;

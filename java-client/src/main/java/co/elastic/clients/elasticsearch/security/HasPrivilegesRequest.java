@@ -31,9 +31,9 @@ import co.elastic.clients.elasticsearch.security.has_privileges.IndexPrivilegesC
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,11 +41,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Request
-public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
+public final class HasPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String user;
 
@@ -53,14 +54,14 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	private final List<ApplicationPrivilegesCheck> application;
 
 	@Nullable
-	private final List<String> cluster;
+	private final List<ClusterPrivilege> cluster;
 
 	@Nullable
 	private final List<IndexPrivilegesCheck> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HasPrivilegesRequest(Builder builder) {
+	public HasPrivilegesRequest(Builder builder) {
 
 		this.user = builder.user;
 		this.application = builder.application;
@@ -91,7 +92,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code cluster}
 	 */
 	@Nullable
-	public List<String> cluster() {
+	public List<ClusterPrivilege> cluster() {
 		return this.cluster;
 	}
 
@@ -106,20 +107,20 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.application != null) {
 
 			generator.writeKey("application");
 			generator.writeStartArray();
 			for (ApplicationPrivilegesCheck item0 : this.application) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -129,9 +130,8 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("cluster");
 			generator.writeStartArray();
-			for (String item0 : this.cluster) {
-				generator.write(item0);
-
+			for (ClusterPrivilege item0 : this.cluster) {
+				item0.serialize(generator, mapper);
 			}
 			generator.writeEnd();
 
@@ -141,7 +141,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (IndexPrivilegesCheck item0 : this.index) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -163,7 +163,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 		private List<ApplicationPrivilegesCheck> application;
 
 		@Nullable
-		private List<String> cluster;
+		private List<ClusterPrivilege> cluster;
 
 		@Nullable
 		private List<IndexPrivilegesCheck> index;
@@ -224,7 +224,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(@Nullable List<String> value) {
+		public Builder cluster(@Nullable List<ClusterPrivilege> value) {
 			this.cluster = value;
 			return this;
 		}
@@ -232,7 +232,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(String... value) {
+		public Builder cluster(ClusterPrivilege... value) {
 			this.cluster = Arrays.asList(value);
 			return this;
 		}
@@ -240,7 +240,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a value to {@link #cluster(List)}, creating the list if needed.
 		 */
-		public Builder addCluster(String value) {
+		public Builder addCluster(ClusterPrivilege value) {
 			if (this.cluster == null) {
 				this.cluster = new ArrayList<>();
 			}
@@ -304,7 +304,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HasPrivilegesRequest
+	 * Json deserializer for {@link HasPrivilegesRequest}
 	 */
 	public static final JsonpDeserializer<HasPrivilegesRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, HasPrivilegesRequest::setupHasPrivilegesRequestDeserializer);
@@ -314,8 +314,7 @@ public final class HasPrivilegesRequest extends RequestBase implements ToJsonp {
 
 		op.add(Builder::application, JsonpDeserializer.arrayDeserializer(ApplicationPrivilegesCheck.DESERIALIZER),
 				"application");
-		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"cluster");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(ClusterPrivilege.DESERIALIZER), "cluster");
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivilegesCheck.DESERIALIZER), "index");
 
 	}

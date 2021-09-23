@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.cat.plugins.PluginsRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,12 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.plugins.Response
-public final class PluginsResponse implements ToJsonp {
+public final class PluginsResponse implements JsonpSerializable {
 	private final List<PluginsRecord> value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PluginsResponse(Builder builder) {
+	public PluginsResponse(Builder builder) {
 
 		this.value = Objects.requireNonNull(builder.value, "value");
 
@@ -63,10 +63,10 @@ public final class PluginsResponse implements ToJsonp {
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
 		for (PluginsRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -141,7 +141,7 @@ public final class PluginsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PluginsResponse
+	 * Json deserializer for {@link PluginsResponse}
 	 */
 	public static final JsonpDeserializer<PluginsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PluginsResponse::setupPluginsResponseDeserializer);

@@ -32,12 +32,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: rollup.get_rollup_index_caps.Response
 public final class GetRollupIndexCapsResponse extends AdditionalProperties<String, IndexCapabilities> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRollupIndexCapsResponse(Builder builder) {
+	public GetRollupIndexCapsResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -72,7 +73,7 @@ public final class GetRollupIndexCapsResponse extends AdditionalProperties<Strin
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetRollupIndexCapsResponse
+	 * Json deserializer for {@link GetRollupIndexCapsResponse}
 	 */
 	public static final JsonpDeserializer<GetRollupIndexCapsResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetRollupIndexCapsResponse::setupGetRollupIndexCapsResponseDeserializer);

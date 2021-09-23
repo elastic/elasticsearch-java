@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.indices.data_streams_stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,7 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.DataStreamsStatsItem
-public final class DataStreamsStatsItem implements ToJsonp {
+public final class DataStreamsStatsItem implements JsonpSerializable {
 	private final Number backingIndices;
 
 	private final String dataStream;
@@ -52,7 +52,7 @@ public final class DataStreamsStatsItem implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataStreamsStatsItem(Builder builder) {
+	public DataStreamsStatsItem(Builder builder) {
 
 		this.backingIndices = Objects.requireNonNull(builder.backingIndices, "backing_indices");
 		this.dataStream = Objects.requireNonNull(builder.dataStream, "data_stream");
@@ -101,13 +101,13 @@ public final class DataStreamsStatsItem implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("backing_indices");
 		generator.write(this.backingIndices.doubleValue());
@@ -202,7 +202,7 @@ public final class DataStreamsStatsItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataStreamsStatsItem
+	 * Json deserializer for {@link DataStreamsStatsItem}
 	 */
 	public static final JsonpDeserializer<DataStreamsStatsItem> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, DataStreamsStatsItem::setupDataStreamsStatsItemDeserializer);

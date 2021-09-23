@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -46,7 +47,7 @@ public final class GetLifecycleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetLifecycleRequest(Builder builder) {
+	public GetLifecycleRequest(Builder builder) {
 
 		this.policyId = builder.policyId;
 

@@ -32,12 +32,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: indices.recovery.Response
 public final class RecoveryResponse extends AdditionalProperties<String, RecoveryStatus> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryResponse(Builder builder) {
+	public RecoveryResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -72,7 +73,7 @@ public final class RecoveryResponse extends AdditionalProperties<String, Recover
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RecoveryResponse
+	 * Json deserializer for {@link RecoveryResponse}
 	 */
 	public static final JsonpDeserializer<RecoveryResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RecoveryResponse::setupRecoveryResponseDeserializer);

@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -40,7 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystem
-public final class ClusterOperatingSystem implements ToJsonp {
+public final class ClusterOperatingSystem implements JsonpSerializable {
 	private final Number allocatedProcessors;
 
 	private final Number availableProcessors;
@@ -49,14 +49,14 @@ public final class ClusterOperatingSystem implements ToJsonp {
 
 	private final List<ClusterOperatingSystemName> names;
 
-	private final List<ClusterOperatingSystemName> prettyNames;
+	private final List<ClusterOperatingSystemPrettyName> prettyNames;
 
 	@Nullable
 	private final List<ClusterOperatingSystemArchitecture> architectures;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterOperatingSystem(Builder builder) {
+	public ClusterOperatingSystem(Builder builder) {
 
 		this.allocatedProcessors = Objects.requireNonNull(builder.allocatedProcessors, "allocated_processors");
 		this.availableProcessors = Objects.requireNonNull(builder.availableProcessors, "available_processors");
@@ -98,7 +98,7 @@ public final class ClusterOperatingSystem implements ToJsonp {
 	/**
 	 * API name: {@code pretty_names}
 	 */
-	public List<ClusterOperatingSystemName> prettyNames() {
+	public List<ClusterOperatingSystemPrettyName> prettyNames() {
 		return this.prettyNames;
 	}
 
@@ -113,13 +113,13 @@ public final class ClusterOperatingSystem implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("allocated_processors");
 		generator.write(this.allocatedProcessors.doubleValue());
@@ -128,20 +128,20 @@ public final class ClusterOperatingSystem implements ToJsonp {
 		generator.write(this.availableProcessors.doubleValue());
 
 		generator.writeKey("mem");
-		this.mem.toJsonp(generator, mapper);
+		this.mem.serialize(generator, mapper);
 
 		generator.writeKey("names");
 		generator.writeStartArray();
 		for (ClusterOperatingSystemName item0 : this.names) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("pretty_names");
 		generator.writeStartArray();
-		for (ClusterOperatingSystemName item0 : this.prettyNames) {
-			item0.toJsonp(generator, mapper);
+		for (ClusterOperatingSystemPrettyName item0 : this.prettyNames) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -151,7 +151,7 @@ public final class ClusterOperatingSystem implements ToJsonp {
 			generator.writeKey("architectures");
 			generator.writeStartArray();
 			for (ClusterOperatingSystemArchitecture item0 : this.architectures) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -174,7 +174,7 @@ public final class ClusterOperatingSystem implements ToJsonp {
 
 		private List<ClusterOperatingSystemName> names;
 
-		private List<ClusterOperatingSystemName> prettyNames;
+		private List<ClusterOperatingSystemPrettyName> prettyNames;
 
 		@Nullable
 		private List<ClusterOperatingSystemArchitecture> architectures;
@@ -256,7 +256,7 @@ public final class ClusterOperatingSystem implements ToJsonp {
 		/**
 		 * API name: {@code pretty_names}
 		 */
-		public Builder prettyNames(List<ClusterOperatingSystemName> value) {
+		public Builder prettyNames(List<ClusterOperatingSystemPrettyName> value) {
 			this.prettyNames = value;
 			return this;
 		}
@@ -264,7 +264,7 @@ public final class ClusterOperatingSystem implements ToJsonp {
 		/**
 		 * API name: {@code pretty_names}
 		 */
-		public Builder prettyNames(ClusterOperatingSystemName... value) {
+		public Builder prettyNames(ClusterOperatingSystemPrettyName... value) {
 			this.prettyNames = Arrays.asList(value);
 			return this;
 		}
@@ -272,7 +272,7 @@ public final class ClusterOperatingSystem implements ToJsonp {
 		/**
 		 * Add a value to {@link #prettyNames(List)}, creating the list if needed.
 		 */
-		public Builder addPrettyNames(ClusterOperatingSystemName value) {
+		public Builder addPrettyNames(ClusterOperatingSystemPrettyName value) {
 			if (this.prettyNames == null) {
 				this.prettyNames = new ArrayList<>();
 			}
@@ -284,16 +284,16 @@ public final class ClusterOperatingSystem implements ToJsonp {
 		 * Set {@link #prettyNames(List)} to a singleton list.
 		 */
 		public Builder prettyNames(
-				Function<ClusterOperatingSystemName.Builder, ObjectBuilder<ClusterOperatingSystemName>> fn) {
-			return this.prettyNames(fn.apply(new ClusterOperatingSystemName.Builder()).build());
+				Function<ClusterOperatingSystemPrettyName.Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn) {
+			return this.prettyNames(fn.apply(new ClusterOperatingSystemPrettyName.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #prettyNames(List)}, creating the list if needed.
 		 */
 		public Builder addPrettyNames(
-				Function<ClusterOperatingSystemName.Builder, ObjectBuilder<ClusterOperatingSystemName>> fn) {
-			return this.addPrettyNames(fn.apply(new ClusterOperatingSystemName.Builder()).build());
+				Function<ClusterOperatingSystemPrettyName.Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn) {
+			return this.addPrettyNames(fn.apply(new ClusterOperatingSystemPrettyName.Builder()).build());
 		}
 
 		/**
@@ -354,7 +354,7 @@ public final class ClusterOperatingSystem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterOperatingSystem
+	 * Json deserializer for {@link ClusterOperatingSystem}
 	 */
 	public static final JsonpDeserializer<ClusterOperatingSystem> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ClusterOperatingSystem::setupClusterOperatingSystemDeserializer);
@@ -366,7 +366,7 @@ public final class ClusterOperatingSystem implements ToJsonp {
 		op.add(Builder::availableProcessors, JsonpDeserializer.numberDeserializer(), "available_processors");
 		op.add(Builder::mem, OperatingSystemMemoryInfo.DESERIALIZER, "mem");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemName.DESERIALIZER), "names");
-		op.add(Builder::prettyNames, JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemName.DESERIALIZER),
+		op.add(Builder::prettyNames, JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemPrettyName.DESERIALIZER),
 				"pretty_names");
 		op.add(Builder::architectures,
 				JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemArchitecture.DESERIALIZER), "architectures");

@@ -26,22 +26,21 @@ package co.elastic.clients.elasticsearch.enrich.execute_policy;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.ExecuteEnrichPolicyStatus
-public final class ExecuteEnrichPolicyStatus implements ToJsonp {
-	private final JsonValue phase;
+public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
+	private final EnrichPolicyPhase phase;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecuteEnrichPolicyStatus(Builder builder) {
+	public ExecuteEnrichPolicyStatus(Builder builder) {
 
 		this.phase = Objects.requireNonNull(builder.phase, "phase");
 
@@ -50,23 +49,23 @@ public final class ExecuteEnrichPolicyStatus implements ToJsonp {
 	/**
 	 * API name: {@code phase}
 	 */
-	public JsonValue phase() {
+	public EnrichPolicyPhase phase() {
 		return this.phase;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("phase");
-		generator.write(this.phase);
+		this.phase.serialize(generator, mapper);
 
 	}
 
@@ -76,12 +75,12 @@ public final class ExecuteEnrichPolicyStatus implements ToJsonp {
 	 * Builder for {@link ExecuteEnrichPolicyStatus}.
 	 */
 	public static class Builder implements ObjectBuilder<ExecuteEnrichPolicyStatus> {
-		private JsonValue phase;
+		private EnrichPolicyPhase phase;
 
 		/**
 		 * API name: {@code phase}
 		 */
-		public Builder phase(JsonValue value) {
+		public Builder phase(EnrichPolicyPhase value) {
 			this.phase = value;
 			return this;
 		}
@@ -101,7 +100,7 @@ public final class ExecuteEnrichPolicyStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecuteEnrichPolicyStatus
+	 * Json deserializer for {@link ExecuteEnrichPolicyStatus}
 	 */
 	public static final JsonpDeserializer<ExecuteEnrichPolicyStatus> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExecuteEnrichPolicyStatus::setupExecuteEnrichPolicyStatusDeserializer);
@@ -109,7 +108,7 @@ public final class ExecuteEnrichPolicyStatus implements ToJsonp {
 	protected static void setupExecuteEnrichPolicyStatusDeserializer(
 			DelegatingDeserializer<ExecuteEnrichPolicyStatus.Builder> op) {
 
-		op.add(Builder::phase, JsonpDeserializer.jsonValueDeserializer(), "phase");
+		op.add(Builder::phase, EnrichPolicyPhase.DESERIALIZER, "phase");
 
 	}
 

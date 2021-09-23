@@ -49,8 +49,9 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostStartBasicResponse(Builder builder) {
+	public PostStartBasicResponse(Builder builder) {
 		super(builder);
+
 		this.acknowledge = Objects.requireNonNull(builder.acknowledge, "acknowledge");
 		this.basicWasStarted = Objects.requireNonNull(builder.basicWasStarted, "basic_was_started");
 		this.errorMessage = Objects.requireNonNull(builder.errorMessage, "error_message");
@@ -78,8 +79,9 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		return this.errorMessage;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("acknowledge");
 		generator.writeStartObject();
@@ -172,7 +174,7 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PostStartBasicResponse
+	 * Json deserializer for {@link PostStartBasicResponse}
 	 */
 	public static final JsonpDeserializer<PostStartBasicResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PostStartBasicResponse::setupPostStartBasicResponseDeserializer);

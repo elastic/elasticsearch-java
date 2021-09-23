@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,19 +32,29 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoShapeQuery
-public final class GeoShapeQuery extends QueryBase {
+public final class GeoShapeQuery extends QueryBase implements Query {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoShapeQuery(Builder builder) {
+	public GeoShapeQuery(Builder builder) {
 		super(builder);
+
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _type() {
+		return "geo_shape";
 	}
 
 	/**
@@ -54,14 +65,18 @@ public final class GeoShapeQuery extends QueryBase {
 		return this.ignoreUnmapped;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
+
+		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
 
 			generator.writeKey("ignore_unmapped");
 			generator.write(this.ignoreUnmapped);
 
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -101,11 +116,9 @@ public final class GeoShapeQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for GeoShapeQuery
-	 */
-	public static final JsonpDeserializer<GeoShapeQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoShapeQuery::setupGeoShapeQueryDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<GeoShapeQuery.Builder, GeoShapeQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(GeoShapeQuery::setupGeoShapeQueryDeserializer);
 
 	protected static void setupGeoShapeQueryDeserializer(DelegatingDeserializer<GeoShapeQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

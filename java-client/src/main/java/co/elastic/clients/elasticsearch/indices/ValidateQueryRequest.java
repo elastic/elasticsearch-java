@@ -25,14 +25,15 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,12 +44,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.Request
-public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
+public final class ValidateQueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> index;
 
@@ -68,7 +70,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	private final Boolean analyzeWildcard;
 
 	@Nullable
-	private final JsonValue defaultOperator;
+	private final DefaultOperator defaultOperator;
 
 	@Nullable
 	private final String df;
@@ -86,20 +88,17 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	private final Boolean lenient;
 
 	@Nullable
-	private final String queryOnQueryString;
-
-	@Nullable
 	private final Boolean rewrite;
 
 	@Nullable
 	private final String q;
 
 	@Nullable
-	private final QueryContainer query;
+	private final Query query;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ValidateQueryRequest(Builder builder) {
+	public ValidateQueryRequest(Builder builder) {
 
 		this.index = builder.index;
 		this.type = builder.type;
@@ -113,7 +112,6 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		this.explain = builder.explain;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.lenient = builder.lenient;
-		this.queryOnQueryString = builder.queryOnQueryString;
 		this.rewrite = builder.rewrite;
 		this.q = builder.q;
 		this.query = builder.query;
@@ -191,7 +189,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public JsonValue defaultOperator() {
+	public DefaultOperator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -250,14 +248,6 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code query_on_query_string}
-	 */
-	@Nullable
-	public String queryOnQueryString() {
-		return this.queryOnQueryString;
-	}
-
-	/**
 	 * Provide a more detailed explanation showing the actual Lucene query that will
 	 * be executed.
 	 * <p>
@@ -282,25 +272,25 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.query != null) {
 
 			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
+			this.query.serialize(generator, mapper);
 
 		}
 
@@ -331,7 +321,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		private Boolean analyzeWildcard;
 
 		@Nullable
-		private JsonValue defaultOperator;
+		private DefaultOperator defaultOperator;
 
 		@Nullable
 		private String df;
@@ -349,16 +339,13 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		private Boolean lenient;
 
 		@Nullable
-		private String queryOnQueryString;
-
-		@Nullable
 		private Boolean rewrite;
 
 		@Nullable
 		private String q;
 
 		@Nullable
-		private QueryContainer query;
+		private Query query;
 
 		/**
 		 * A comma-separated list of index names to restrict the operation; use
@@ -474,7 +461,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable JsonValue value) {
+		public Builder defaultOperator(@Nullable DefaultOperator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -534,14 +521,6 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code query_on_query_string}
-		 */
-		public Builder queryOnQueryString(@Nullable String value) {
-			this.queryOnQueryString = value;
-			return this;
-		}
-
-		/**
 		 * Provide a more detailed explanation showing the actual Lucene query that will
 		 * be executed.
 		 * <p>
@@ -565,7 +544,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -573,8 +552,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -592,7 +571,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ValidateQueryRequest
+	 * Json deserializer for {@link ValidateQueryRequest}
 	 */
 	public static final JsonpDeserializer<ValidateQueryRequest> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ValidateQueryRequest::setupValidateQueryRequestDeserializer);
@@ -600,7 +579,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	protected static void setupValidateQueryRequestDeserializer(
 			DelegatingDeserializer<ValidateQueryRequest.Builder> op) {
 
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::query, Query.DESERIALIZER, "query");
 
 	}
 
@@ -688,9 +667,6 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
-				}
-				if (request.queryOnQueryString != null) {
-					params.put("query_on_query_string", request.queryOnQueryString);
 				}
 				if (request.rewrite != null) {
 					params.put("rewrite", String.valueOf(request.rewrite));

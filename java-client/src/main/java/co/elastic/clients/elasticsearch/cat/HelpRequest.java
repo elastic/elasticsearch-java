@@ -31,10 +31,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: cat.help.Request
 public final class HelpRequest extends CatRequestBase {
-	protected HelpRequest() {
+	public HelpRequest() {
 	}
 
 	/**

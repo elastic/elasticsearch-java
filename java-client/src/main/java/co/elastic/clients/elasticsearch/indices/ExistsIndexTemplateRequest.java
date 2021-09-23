@@ -48,7 +48,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsIndexTemplateRequest(Builder builder) {
+	public ExistsIndexTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;

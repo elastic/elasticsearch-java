@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: ilm.start.Response
 public final class StartResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartResponse(Builder builder) {
+	public StartResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class StartResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StartResponse
+	 * Json deserializer for {@link StartResponse}
 	 */
 	public static final JsonpDeserializer<StartResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, StartResponse::setupStartResponseDeserializer);

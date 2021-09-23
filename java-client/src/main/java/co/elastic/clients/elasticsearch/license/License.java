@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.license;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,7 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: license._types.License
-public final class License implements ToJsonp {
+public final class License implements JsonpSerializable {
 	private final JsonValue expiryDateInMillis;
 
 	private final JsonValue issueDateInMillis;
@@ -57,13 +57,13 @@ public final class License implements ToJsonp {
 
 	private final JsonValue startDateInMillis;
 
-	private final JsonValue type;
+	private final LicenseType type;
 
 	private final String uid;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected License(Builder builder) {
+	public License(Builder builder) {
 
 		this.expiryDateInMillis = Objects.requireNonNull(builder.expiryDateInMillis, "expiry_date_in_millis");
 		this.issueDateInMillis = Objects.requireNonNull(builder.issueDateInMillis, "issue_date_in_millis");
@@ -139,7 +139,7 @@ public final class License implements ToJsonp {
 	/**
 	 * API name: {@code type}
 	 */
-	public JsonValue type() {
+	public LicenseType type() {
 		return this.type;
 	}
 
@@ -153,13 +153,13 @@ public final class License implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("expiry_date_in_millis");
 		generator.write(this.expiryDateInMillis);
@@ -193,7 +193,7 @@ public final class License implements ToJsonp {
 		generator.write(this.startDateInMillis);
 
 		generator.writeKey("type");
-		generator.write(this.type);
+		this.type.serialize(generator, mapper);
 
 		generator.writeKey("uid");
 		generator.write(this.uid);
@@ -224,7 +224,7 @@ public final class License implements ToJsonp {
 
 		private JsonValue startDateInMillis;
 
-		private JsonValue type;
+		private LicenseType type;
 
 		private String uid;
 
@@ -295,7 +295,7 @@ public final class License implements ToJsonp {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(JsonValue value) {
+		public Builder type(LicenseType value) {
 			this.type = value;
 			return this;
 		}
@@ -323,7 +323,7 @@ public final class License implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for License
+	 * Json deserializer for {@link License}
 	 */
 	public static final JsonpDeserializer<License> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, License::setupLicenseDeserializer);
@@ -338,7 +338,7 @@ public final class License implements ToJsonp {
 		op.add(Builder::maxResourceUnits, JsonpDeserializer.numberDeserializer(), "max_resource_units");
 		op.add(Builder::signature, JsonpDeserializer.stringDeserializer(), "signature");
 		op.add(Builder::startDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_date_in_millis");
-		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
+		op.add(Builder::type, LicenseType.DESERIALIZER, "type");
 		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");
 
 	}

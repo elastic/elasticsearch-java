@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.indices.add_block.IndicesBlockOptions;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 public final class AddBlockRequest extends RequestBase {
 	private final String index;
 
-	private final JsonValue block;
+	private final IndicesBlockOptions block;
 
 	@Nullable
 	private final Boolean allowNoIndices;
@@ -62,7 +63,7 @@ public final class AddBlockRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AddBlockRequest(Builder builder) {
+	public AddBlockRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.block = Objects.requireNonNull(builder.block, "block");
@@ -88,7 +89,7 @@ public final class AddBlockRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code block}
 	 */
-	public JsonValue block() {
+	public IndicesBlockOptions block() {
 		return this.block;
 	}
 
@@ -154,7 +155,7 @@ public final class AddBlockRequest extends RequestBase {
 	public static class Builder implements ObjectBuilder<AddBlockRequest> {
 		private String index;
 
-		private JsonValue block;
+		private IndicesBlockOptions block;
 
 		@Nullable
 		private Boolean allowNoIndices;
@@ -186,7 +187,7 @@ public final class AddBlockRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code block}
 		 */
-		public Builder block(JsonValue value) {
+		public Builder block(IndicesBlockOptions value) {
 			this.block = value;
 			return this;
 		}

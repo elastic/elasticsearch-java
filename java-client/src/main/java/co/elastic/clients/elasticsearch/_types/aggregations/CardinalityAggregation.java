@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CardinalityAggregation
@@ -44,8 +45,9 @@ public final class CardinalityAggregation extends MetricAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CardinalityAggregation(Builder builder) {
+	public CardinalityAggregation(Builder builder) {
 		super(builder);
+
 		this.precisionThreshold = builder.precisionThreshold;
 		this.rehash = builder.rehash;
 
@@ -67,8 +69,9 @@ public final class CardinalityAggregation extends MetricAggregationBase {
 		return this.rehash;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.precisionThreshold != null) {
 
 			generator.writeKey("precision_threshold");
@@ -134,7 +137,7 @@ public final class CardinalityAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CardinalityAggregation
+	 * Json deserializer for {@link CardinalityAggregation}
 	 */
 	public static final JsonpDeserializer<CardinalityAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CardinalityAggregation::setupCardinalityAggregationDeserializer);

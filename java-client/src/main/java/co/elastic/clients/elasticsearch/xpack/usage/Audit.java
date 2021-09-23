@@ -34,6 +34,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Audit
@@ -43,8 +44,9 @@ public final class Audit extends FeatureToggle {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Audit(Builder builder) {
+	public Audit(Builder builder) {
 		super(builder);
+
 		this.outputs = builder.outputs;
 
 	}
@@ -57,8 +59,9 @@ public final class Audit extends FeatureToggle {
 		return this.outputs;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.outputs != null) {
 
 			generator.writeKey("outputs");
@@ -129,7 +132,7 @@ public final class Audit extends FeatureToggle {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Audit
+	 * Json deserializer for {@link Audit}
 	 */
 	public static final JsonpDeserializer<Audit> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
 			Audit::setupAuditDeserializer);

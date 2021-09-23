@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -39,7 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TargetMeanEncodingPreprocessor
-public final class TargetMeanEncodingPreprocessor implements ToJsonp {
+public final class TargetMeanEncodingPreprocessor implements Preprocessor, JsonpSerializable {
 	private final String field;
 
 	private final String featureName;
@@ -50,13 +51,21 @@ public final class TargetMeanEncodingPreprocessor implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TargetMeanEncodingPreprocessor(Builder builder) {
+	public TargetMeanEncodingPreprocessor(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
 		this.targetMap = Objects.requireNonNull(builder.targetMap, "target_map");
 		this.defaultValue = Objects.requireNonNull(builder.defaultValue, "default_value");
 
+	}
+
+	/**
+	 * {@link Preprocessor} variant type
+	 */
+	@Override
+	public String _type() {
+		return "target_mean_encoding";
 	}
 
 	/**
@@ -90,13 +99,14 @@ public final class TargetMeanEncodingPreprocessor implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject(_type());
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -115,6 +125,8 @@ public final class TargetMeanEncodingPreprocessor implements ToJsonp {
 
 		generator.writeKey("default_value");
 		generator.write(this.defaultValue.doubleValue());
+
+		generator.writeEnd();
 
 	}
 
@@ -189,12 +201,9 @@ public final class TargetMeanEncodingPreprocessor implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for TargetMeanEncodingPreprocessor
-	 */
-	public static final JsonpDeserializer<TargetMeanEncodingPreprocessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					TargetMeanEncodingPreprocessor::setupTargetMeanEncodingPreprocessorDeserializer);
+	// Internal - Deserializer for variant builder
+	public static final InstanceDeserializer<TargetMeanEncodingPreprocessor.Builder, TargetMeanEncodingPreprocessor.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
+			.createForBuilder(TargetMeanEncodingPreprocessor::setupTargetMeanEncodingPreprocessorDeserializer);
 
 	protected static void setupTargetMeanEncodingPreprocessorDeserializer(
 			DelegatingDeserializer<TargetMeanEncodingPreprocessor.Builder> op) {

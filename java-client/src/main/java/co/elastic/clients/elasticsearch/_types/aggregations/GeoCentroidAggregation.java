@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoCentroidAggregation
@@ -44,8 +45,9 @@ public final class GeoCentroidAggregation extends MetricAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoCentroidAggregation(Builder builder) {
+	public GeoCentroidAggregation(Builder builder) {
 		super(builder);
+
 		this.count = builder.count;
 		this.location = builder.location;
 
@@ -67,8 +69,9 @@ public final class GeoCentroidAggregation extends MetricAggregationBase {
 		return this.location;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.count != null) {
 
 			generator.writeKey("count");
@@ -134,7 +137,7 @@ public final class GeoCentroidAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoCentroidAggregation
+	 * Json deserializer for {@link GeoCentroidAggregation}
 	 */
 	public static final JsonpDeserializer<GeoCentroidAggregation> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GeoCentroidAggregation::setupGeoCentroidAggregationDeserializer);

@@ -47,8 +47,9 @@ public final class UrlDecodeProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UrlDecodeProcessor(Builder builder) {
+	public UrlDecodeProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
@@ -78,8 +79,9 @@ public final class UrlDecodeProcessor extends ProcessorBase {
 		return this.targetField;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -159,7 +161,7 @@ public final class UrlDecodeProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UrlDecodeProcessor
+	 * Json deserializer for {@link UrlDecodeProcessor}
 	 */
 	public static final JsonpDeserializer<UrlDecodeProcessor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, UrlDecodeProcessor::setupUrlDecodeProcessorDeserializer);

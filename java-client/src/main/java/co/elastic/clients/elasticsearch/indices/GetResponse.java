@@ -31,12 +31,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
 
 // typedef: indices.get.Response
 public final class GetResponse extends AdditionalProperties<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetResponse(Builder builder) {
+	public GetResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -71,7 +72,7 @@ public final class GetResponse extends AdditionalProperties<String, IndexState> 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetResponse
+	 * Json deserializer for {@link GetResponse}
 	 */
 	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);

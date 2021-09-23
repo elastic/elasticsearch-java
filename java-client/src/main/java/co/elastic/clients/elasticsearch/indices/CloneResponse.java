@@ -44,8 +44,9 @@ public final class CloneResponse extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloneResponse(Builder builder) {
+	public CloneResponse(Builder builder) {
 		super(builder);
+
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 
@@ -65,8 +66,9 @@ public final class CloneResponse extends AcknowledgedResponseBase {
 		return this.shardsAcknowledged;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -124,7 +126,7 @@ public final class CloneResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CloneResponse
+	 * Json deserializer for {@link CloneResponse}
 	 */
 	public static final JsonpDeserializer<CloneResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CloneResponse::setupCloneResponseDeserializer);

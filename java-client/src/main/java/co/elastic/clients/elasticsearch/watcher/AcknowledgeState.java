@@ -26,25 +26,24 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.AcknowledgeState
-public final class AcknowledgeState implements ToJsonp {
-	private final JsonValue state;
+public final class AcknowledgeState implements JsonpSerializable {
+	private final AcknowledgementOptions state;
 
 	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AcknowledgeState(Builder builder) {
+	public AcknowledgeState(Builder builder) {
 
 		this.state = Objects.requireNonNull(builder.state, "state");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
@@ -54,7 +53,7 @@ public final class AcknowledgeState implements ToJsonp {
 	/**
 	 * API name: {@code state}
 	 */
-	public JsonValue state() {
+	public AcknowledgementOptions state() {
 		return this.state;
 	}
 
@@ -68,16 +67,16 @@ public final class AcknowledgeState implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("state");
-		generator.write(this.state);
+		this.state.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
@@ -90,14 +89,14 @@ public final class AcknowledgeState implements ToJsonp {
 	 * Builder for {@link AcknowledgeState}.
 	 */
 	public static class Builder implements ObjectBuilder<AcknowledgeState> {
-		private JsonValue state;
+		private AcknowledgementOptions state;
 
 		private String timestamp;
 
 		/**
 		 * API name: {@code state}
 		 */
-		public Builder state(JsonValue value) {
+		public Builder state(AcknowledgementOptions value) {
 			this.state = value;
 			return this;
 		}
@@ -125,14 +124,14 @@ public final class AcknowledgeState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AcknowledgeState
+	 * Json deserializer for {@link AcknowledgeState}
 	 */
 	public static final JsonpDeserializer<AcknowledgeState> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, AcknowledgeState::setupAcknowledgeStateDeserializer);
 
 	protected static void setupAcknowledgeStateDeserializer(DelegatingDeserializer<AcknowledgeState.Builder> op) {
 
-		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
+		op.add(Builder::state, AcknowledgementOptions.DESERIALIZER, "state");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}

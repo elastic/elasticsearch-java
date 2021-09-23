@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,12 +36,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicenseType
-public final class NodeInfoXpackLicenseType implements ToJsonp {
+public final class NodeInfoXpackLicenseType implements JsonpSerializable {
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoXpackLicenseType(Builder builder) {
+	public NodeInfoXpackLicenseType(Builder builder) {
 
 		this.type = Objects.requireNonNull(builder.type, "type");
 
@@ -57,13 +57,13 @@ public final class NodeInfoXpackLicenseType implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -101,7 +101,7 @@ public final class NodeInfoXpackLicenseType implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoXpackLicenseType
+	 * Json deserializer for {@link NodeInfoXpackLicenseType}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackLicenseType> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, NodeInfoXpackLicenseType::setupNodeInfoXpackLicenseTypeDeserializer);

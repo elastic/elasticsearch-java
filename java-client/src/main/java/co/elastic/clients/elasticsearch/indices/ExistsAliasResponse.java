@@ -28,10 +28,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: indices.exists_alias.Response
 public final class ExistsAliasResponse {
-	protected ExistsAliasResponse() {
+	public ExistsAliasResponse() {
 	}
 
 	/**

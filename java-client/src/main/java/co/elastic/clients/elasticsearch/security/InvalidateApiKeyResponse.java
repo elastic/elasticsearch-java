@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -42,7 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Response
-public final class InvalidateApiKeyResponse implements ToJsonp {
+public final class InvalidateApiKeyResponse implements JsonpSerializable {
 	private final Number errorCount;
 
 	@Nullable
@@ -54,7 +54,7 @@ public final class InvalidateApiKeyResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InvalidateApiKeyResponse(Builder builder) {
+	public InvalidateApiKeyResponse(Builder builder) {
 
 		this.errorCount = Objects.requireNonNull(builder.errorCount, "error_count");
 		this.errorDetails = builder.errorDetails;
@@ -96,13 +96,13 @@ public final class InvalidateApiKeyResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("error_count");
 		generator.write(this.errorCount.doubleValue());
@@ -112,7 +112,7 @@ public final class InvalidateApiKeyResponse implements ToJsonp {
 			generator.writeKey("error_details");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.errorDetails) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -272,7 +272,7 @@ public final class InvalidateApiKeyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InvalidateApiKeyResponse
+	 * Json deserializer for {@link InvalidateApiKeyResponse}
 	 */
 	public static final JsonpDeserializer<InvalidateApiKeyResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, InvalidateApiKeyResponse::setupInvalidateApiKeyResponseDeserializer);

@@ -42,7 +42,7 @@ public final class GetStatusRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetStatusRequest(Builder builder) {
+	public GetStatusRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 

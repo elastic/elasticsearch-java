@@ -42,7 +42,7 @@ public final class DeletePolicyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeletePolicyRequest(Builder builder) {
+	public DeletePolicyRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 

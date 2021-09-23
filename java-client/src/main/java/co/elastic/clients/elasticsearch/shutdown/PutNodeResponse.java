@@ -30,12 +30,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 
 // typedef: shutdown.put_node.Response
 public final class PutNodeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutNodeResponse(Builder builder) {
+	public PutNodeResponse(Builder builder) {
 		super(builder);
 
 	}
@@ -68,7 +69,7 @@ public final class PutNodeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutNodeResponse
+	 * Json deserializer for {@link PutNodeResponse}
 	 */
 	public static final JsonpDeserializer<PutNodeResponse> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, PutNodeResponse::setupPutNodeResponseDeserializer);

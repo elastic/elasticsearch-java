@@ -50,7 +50,7 @@ public final class CleanupRepositoryRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CleanupRepositoryRequest(Builder builder) {
+	public CleanupRepositoryRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.masterTimeout = builder.masterTimeout;

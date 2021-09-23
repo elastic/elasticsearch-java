@@ -27,9 +27,9 @@ import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.RoleDescriptor
-public final class RoleDescriptor implements ToJsonp {
+public final class RoleDescriptor implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<IndexPrivileges> index;
@@ -51,7 +51,7 @@ public final class RoleDescriptor implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RoleDescriptor(Builder builder) {
+	public RoleDescriptor(Builder builder) {
 
 		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
 		this.index = Objects.requireNonNull(builder.index, "index");
@@ -84,13 +84,13 @@ public final class RoleDescriptor implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster");
 		generator.writeStartArray();
@@ -103,7 +103,7 @@ public final class RoleDescriptor implements ToJsonp {
 		generator.writeKey("index");
 		generator.writeStartArray();
 		for (IndexPrivileges item0 : this.index) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -113,7 +113,7 @@ public final class RoleDescriptor implements ToJsonp {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -260,7 +260,7 @@ public final class RoleDescriptor implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RoleDescriptor
+	 * Json deserializer for {@link RoleDescriptor}
 	 */
 	public static final JsonpDeserializer<RoleDescriptor> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, RoleDescriptor::setupRoleDescriptorDeserializer);

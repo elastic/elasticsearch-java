@@ -38,6 +38,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -57,7 +58,7 @@ public final class TasksRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TasksRequest(Builder builder) {
+	public TasksRequest(Builder builder) {
 
 		this.actions = builder.actions;
 		this.detailed = builder.detailed;

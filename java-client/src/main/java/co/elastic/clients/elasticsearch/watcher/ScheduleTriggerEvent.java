@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -36,7 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScheduleTriggerEvent
-public final class ScheduleTriggerEvent implements ToJsonp {
+public final class ScheduleTriggerEvent implements JsonpSerializable {
 	private final JsonValue scheduledTime;
 
 	@Nullable
@@ -44,7 +44,7 @@ public final class ScheduleTriggerEvent implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScheduleTriggerEvent(Builder builder) {
+	public ScheduleTriggerEvent(Builder builder) {
 
 		this.scheduledTime = Objects.requireNonNull(builder.scheduledTime, "scheduled_time");
 		this.triggeredTime = builder.triggeredTime;
@@ -69,13 +69,13 @@ public final class ScheduleTriggerEvent implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("scheduled_time");
 		generator.write(this.scheduledTime);
@@ -131,7 +131,7 @@ public final class ScheduleTriggerEvent implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ScheduleTriggerEvent
+	 * Json deserializer for {@link ScheduleTriggerEvent}
 	 */
 	public static final JsonpDeserializer<ScheduleTriggerEvent> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ScheduleTriggerEvent::setupScheduleTriggerEventDeserializer);

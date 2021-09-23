@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CustomSettings
-public final class CustomSettings implements ToJsonp {
+public final class CustomSettings implements JsonpSerializable {
 	@Nullable
 	private final List<JsonValue> customUrls;
 
@@ -53,7 +54,7 @@ public final class CustomSettings implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CustomSettings(Builder builder) {
+	public CustomSettings(Builder builder) {
 
 		this.customUrls = builder.customUrls;
 		this.createdBy = builder.createdBy;
@@ -88,13 +89,13 @@ public final class CustomSettings implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.customUrls != null) {
 
@@ -212,7 +213,7 @@ public final class CustomSettings implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CustomSettings
+	 * Json deserializer for {@link CustomSettings}
 	 */
 	public static final JsonpDeserializer<CustomSettings> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, CustomSettings::setupCustomSettingsDeserializer);

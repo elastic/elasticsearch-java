@@ -26,9 +26,9 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
@@ -41,7 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResult
-public final class ExecutionResult implements ToJsonp {
+public final class ExecutionResult implements JsonpSerializable {
 	private final List<ExecutionResultAction> actions;
 
 	private final ExecutionResultCondition condition;
@@ -54,7 +54,7 @@ public final class ExecutionResult implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutionResult(Builder builder) {
+	public ExecutionResult(Builder builder) {
 
 		this.actions = Objects.requireNonNull(builder.actions, "actions");
 		this.condition = Objects.requireNonNull(builder.condition, "condition");
@@ -102,24 +102,24 @@ public final class ExecutionResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actions");
 		generator.writeStartArray();
 		for (ExecutionResultAction item0 : this.actions) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("condition");
-		this.condition.toJsonp(generator, mapper);
+		this.condition.serialize(generator, mapper);
 
 		generator.writeKey("execution_duration");
 		generator.write(this.executionDuration.doubleValue());
@@ -128,7 +128,7 @@ public final class ExecutionResult implements ToJsonp {
 		generator.write(this.executionTime);
 
 		generator.writeKey("input");
-		this.input.toJsonp(generator, mapper);
+		this.input.serialize(generator, mapper);
 
 	}
 
@@ -251,7 +251,7 @@ public final class ExecutionResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecutionResult
+	 * Json deserializer for {@link ExecutionResult}
 	 */
 	public static final JsonpDeserializer<ExecutionResult> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new, ExecutionResult::setupExecutionResultDeserializer);

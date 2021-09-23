@@ -32,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
 
 // typedef: slm.execute_retention.Request
 public final class ExecuteRetentionRequest extends RequestBase {
-	protected ExecuteRetentionRequest() {
+	public ExecuteRetentionRequest() {
 	}
 
 	/**
