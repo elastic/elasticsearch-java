@@ -61,7 +61,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 
 	private final List<String> targetFields;
 
-	private final Boolean trim;
+	private final boolean trim;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -143,7 +143,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 	/**
 	 * API name: {@code trim}
 	 */
-	public Boolean trim() {
+	public boolean trim() {
 		return this.trim;
 	}
 
@@ -300,7 +300,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code trim}
 		 */
-		public Builder trim(Boolean value) {
+		public Builder trim(boolean value) {
 			this.trim = value;
 			return this;
 		}

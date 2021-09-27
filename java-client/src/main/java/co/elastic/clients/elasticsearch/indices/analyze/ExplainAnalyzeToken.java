@@ -43,18 +43,18 @@ import javax.annotation.Nullable;
 public final class ExplainAnalyzeToken implements JsonpSerializable {
 	private final String bytes;
 
-	private final Long endOffset;
+	private final long endOffset;
 
 	@Nullable
 	private final Boolean keyword;
 
-	private final Long position;
+	private final long position;
 
-	private final Long positionlength;
+	private final long positionlength;
 
-	private final Long startOffset;
+	private final long startOffset;
 
-	private final Long termfrequency;
+	private final long termfrequency;
 
 	private final String token;
 
@@ -86,7 +86,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	/**
 	 * API name: {@code end_offset}
 	 */
-	public Long endOffset() {
+	public long endOffset() {
 		return this.endOffset;
 	}
 
@@ -101,28 +101,28 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	/**
 	 * API name: {@code position}
 	 */
-	public Long position() {
+	public long position() {
 		return this.position;
 	}
 
 	/**
 	 * API name: {@code positionLength}
 	 */
-	public Long positionlength() {
+	public long positionlength() {
 		return this.positionlength;
 	}
 
 	/**
 	 * API name: {@code start_offset}
 	 */
-	public Long startOffset() {
+	public long startOffset() {
 		return this.startOffset;
 	}
 
 	/**
 	 * API name: {@code termFrequency}
 	 */
-	public Long termfrequency() {
+	public long termfrequency() {
 		return this.termfrequency;
 	}
 
@@ -220,7 +220,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code end_offset}
 		 */
-		public Builder endOffset(Long value) {
+		public Builder endOffset(long value) {
 			this.endOffset = value;
 			return this;
 		}
@@ -236,7 +236,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code position}
 		 */
-		public Builder position(Long value) {
+		public Builder position(long value) {
 			this.position = value;
 			return this;
 		}
@@ -244,7 +244,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code positionLength}
 		 */
-		public Builder positionlength(Long value) {
+		public Builder positionlength(long value) {
 			this.positionlength = value;
 			return this;
 		}
@@ -252,7 +252,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code start_offset}
 		 */
-		public Builder startOffset(Long value) {
+		public Builder startOffset(long value) {
 			this.startOffset = value;
 			return this;
 		}
@@ -260,7 +260,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code termFrequency}
 		 */
-		public Builder termfrequency(Long value) {
+		public Builder termfrequency(long value) {
 			this.termfrequency = value;
 			return this;
 		}

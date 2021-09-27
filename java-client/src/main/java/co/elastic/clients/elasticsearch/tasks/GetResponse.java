@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: tasks.get.Response
 @JsonpDeserializable
 public final class GetResponse implements JsonpSerializable {
-	private final Boolean completed;
+	private final boolean completed;
 
 	private final Info task;
 
@@ -65,7 +65,7 @@ public final class GetResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code completed}
 	 */
-	public Boolean completed() {
+	public boolean completed() {
 		return this.completed;
 	}
 
@@ -143,7 +143,7 @@ public final class GetResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code completed}
 		 */
-		public Builder completed(Boolean value) {
+		public Builder completed(boolean value) {
 			this.completed = value;
 			return this;
 		}

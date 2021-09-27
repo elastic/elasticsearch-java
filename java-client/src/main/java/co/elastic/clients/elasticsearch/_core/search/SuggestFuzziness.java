@@ -43,13 +43,13 @@ import javax.annotation.Nullable;
 public final class SuggestFuzziness implements JsonpSerializable {
 	private final String fuzziness;
 
-	private final Integer minLength;
+	private final int minLength;
 
-	private final Integer prefixLength;
+	private final int prefixLength;
 
-	private final Boolean transpositions;
+	private final boolean transpositions;
 
-	private final Boolean unicodeAware;
+	private final boolean unicodeAware;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,28 +73,28 @@ public final class SuggestFuzziness implements JsonpSerializable {
 	/**
 	 * API name: {@code min_length}
 	 */
-	public Integer minLength() {
+	public int minLength() {
 		return this.minLength;
 	}
 
 	/**
 	 * API name: {@code prefix_length}
 	 */
-	public Integer prefixLength() {
+	public int prefixLength() {
 		return this.prefixLength;
 	}
 
 	/**
 	 * API name: {@code transpositions}
 	 */
-	public Boolean transpositions() {
+	public boolean transpositions() {
 		return this.transpositions;
 	}
 
 	/**
 	 * API name: {@code unicode_aware}
 	 */
-	public Boolean unicodeAware() {
+	public boolean unicodeAware() {
 		return this.unicodeAware;
 	}
 
@@ -153,7 +153,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * API name: {@code min_length}
 		 */
-		public Builder minLength(Integer value) {
+		public Builder minLength(int value) {
 			this.minLength = value;
 			return this;
 		}
@@ -161,7 +161,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(Integer value) {
+		public Builder prefixLength(int value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -169,7 +169,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * API name: {@code transpositions}
 		 */
-		public Builder transpositions(Boolean value) {
+		public Builder transpositions(boolean value) {
 			this.transpositions = value;
 			return this;
 		}
@@ -177,7 +177,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * API name: {@code unicode_aware}
 		 */
-		public Builder unicodeAware(Boolean value) {
+		public Builder unicodeAware(boolean value) {
 			this.unicodeAware = value;
 			return this;
 		}

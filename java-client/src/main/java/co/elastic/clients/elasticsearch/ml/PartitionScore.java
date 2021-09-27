@@ -40,15 +40,15 @@ import javax.annotation.Nullable;
 // typedef: ml._types.PartitionScore
 @JsonpDeserializable
 public final class PartitionScore implements JsonpSerializable {
-	private final Double initialRecordScore;
+	private final double initialRecordScore;
 
 	private final String partitionFieldName;
 
 	private final String partitionFieldValue;
 
-	private final Double probability;
+	private final double probability;
 
-	private final Double recordScore;
+	private final double recordScore;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ public final class PartitionScore implements JsonpSerializable {
 	/**
 	 * API name: {@code initial_record_score}
 	 */
-	public Double initialRecordScore() {
+	public double initialRecordScore() {
 		return this.initialRecordScore;
 	}
 
@@ -86,14 +86,14 @@ public final class PartitionScore implements JsonpSerializable {
 	/**
 	 * API name: {@code probability}
 	 */
-	public Double probability() {
+	public double probability() {
 		return this.probability;
 	}
 
 	/**
 	 * API name: {@code record_score}
 	 */
-	public Double recordScore() {
+	public double recordScore() {
 		return this.recordScore;
 	}
 
@@ -144,7 +144,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * API name: {@code initial_record_score}
 		 */
-		public Builder initialRecordScore(Double value) {
+		public Builder initialRecordScore(double value) {
 			this.initialRecordScore = value;
 			return this;
 		}
@@ -168,7 +168,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * API name: {@code probability}
 		 */
-		public Builder probability(Double value) {
+		public Builder probability(double value) {
 			this.probability = value;
 			return this;
 		}
@@ -176,7 +176,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * API name: {@code record_score}
 		 */
-		public Builder recordScore(Double value) {
+		public Builder recordScore(double value) {
 			this.recordScore = value;
 			return this;
 		}

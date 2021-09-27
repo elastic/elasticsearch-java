@@ -55,9 +55,9 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	@Nullable
 	private final Map<String, Long> status;
 
-	private final Long total;
+	private final long total;
 
-	private final Integer forecastedJobs;
+	private final int forecastedJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -107,14 +107,14 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code forecasted_jobs}
 	 */
-	public Integer forecastedJobs() {
+	public int forecastedJobs() {
 		return this.forecastedJobs;
 	}
 
@@ -257,7 +257,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Long value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -265,7 +265,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code forecasted_jobs}
 		 */
-		public Builder forecastedJobs(Integer value) {
+		public Builder forecastedJobs(int value) {
 			this.forecastedJobs = value;
 			return this;
 		}

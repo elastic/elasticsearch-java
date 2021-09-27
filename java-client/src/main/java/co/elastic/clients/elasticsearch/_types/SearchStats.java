@@ -43,32 +43,32 @@ import javax.annotation.Nullable;
 // typedef: _types.SearchStats
 @JsonpDeserializable
 public final class SearchStats implements JsonpSerializable {
-	private final Long fetchCurrent;
+	private final long fetchCurrent;
 
-	private final Long fetchTimeInMillis;
+	private final long fetchTimeInMillis;
 
-	private final Long fetchTotal;
+	private final long fetchTotal;
 
 	@Nullable
 	private final Long openContexts;
 
-	private final Long queryCurrent;
+	private final long queryCurrent;
 
-	private final Long queryTimeInMillis;
+	private final long queryTimeInMillis;
 
-	private final Long queryTotal;
+	private final long queryTotal;
 
-	private final Long scrollCurrent;
+	private final long scrollCurrent;
 
-	private final Long scrollTimeInMillis;
+	private final long scrollTimeInMillis;
 
-	private final Long scrollTotal;
+	private final long scrollTotal;
 
-	private final Long suggestCurrent;
+	private final long suggestCurrent;
 
-	private final Long suggestTimeInMillis;
+	private final long suggestTimeInMillis;
 
-	private final Long suggestTotal;
+	private final long suggestTotal;
 
 	@Nullable
 	private final Map<String, SearchStats> groups;
@@ -97,21 +97,21 @@ public final class SearchStats implements JsonpSerializable {
 	/**
 	 * API name: {@code fetch_current}
 	 */
-	public Long fetchCurrent() {
+	public long fetchCurrent() {
 		return this.fetchCurrent;
 	}
 
 	/**
 	 * API name: {@code fetch_time_in_millis}
 	 */
-	public Long fetchTimeInMillis() {
+	public long fetchTimeInMillis() {
 		return this.fetchTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code fetch_total}
 	 */
-	public Long fetchTotal() {
+	public long fetchTotal() {
 		return this.fetchTotal;
 	}
 
@@ -126,63 +126,63 @@ public final class SearchStats implements JsonpSerializable {
 	/**
 	 * API name: {@code query_current}
 	 */
-	public Long queryCurrent() {
+	public long queryCurrent() {
 		return this.queryCurrent;
 	}
 
 	/**
 	 * API name: {@code query_time_in_millis}
 	 */
-	public Long queryTimeInMillis() {
+	public long queryTimeInMillis() {
 		return this.queryTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code query_total}
 	 */
-	public Long queryTotal() {
+	public long queryTotal() {
 		return this.queryTotal;
 	}
 
 	/**
 	 * API name: {@code scroll_current}
 	 */
-	public Long scrollCurrent() {
+	public long scrollCurrent() {
 		return this.scrollCurrent;
 	}
 
 	/**
 	 * API name: {@code scroll_time_in_millis}
 	 */
-	public Long scrollTimeInMillis() {
+	public long scrollTimeInMillis() {
 		return this.scrollTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code scroll_total}
 	 */
-	public Long scrollTotal() {
+	public long scrollTotal() {
 		return this.scrollTotal;
 	}
 
 	/**
 	 * API name: {@code suggest_current}
 	 */
-	public Long suggestCurrent() {
+	public long suggestCurrent() {
 		return this.suggestCurrent;
 	}
 
 	/**
 	 * API name: {@code suggest_time_in_millis}
 	 */
-	public Long suggestTimeInMillis() {
+	public long suggestTimeInMillis() {
 		return this.suggestTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code suggest_total}
 	 */
-	public Long suggestTotal() {
+	public long suggestTotal() {
 		return this.suggestTotal;
 	}
 
@@ -302,7 +302,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fetch_current}
 		 */
-		public Builder fetchCurrent(Long value) {
+		public Builder fetchCurrent(long value) {
 			this.fetchCurrent = value;
 			return this;
 		}
@@ -310,7 +310,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fetch_time_in_millis}
 		 */
-		public Builder fetchTimeInMillis(Long value) {
+		public Builder fetchTimeInMillis(long value) {
 			this.fetchTimeInMillis = value;
 			return this;
 		}
@@ -318,7 +318,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fetch_total}
 		 */
-		public Builder fetchTotal(Long value) {
+		public Builder fetchTotal(long value) {
 			this.fetchTotal = value;
 			return this;
 		}
@@ -334,7 +334,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code query_current}
 		 */
-		public Builder queryCurrent(Long value) {
+		public Builder queryCurrent(long value) {
 			this.queryCurrent = value;
 			return this;
 		}
@@ -342,7 +342,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code query_time_in_millis}
 		 */
-		public Builder queryTimeInMillis(Long value) {
+		public Builder queryTimeInMillis(long value) {
 			this.queryTimeInMillis = value;
 			return this;
 		}
@@ -350,7 +350,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code query_total}
 		 */
-		public Builder queryTotal(Long value) {
+		public Builder queryTotal(long value) {
 			this.queryTotal = value;
 			return this;
 		}
@@ -358,7 +358,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code scroll_current}
 		 */
-		public Builder scrollCurrent(Long value) {
+		public Builder scrollCurrent(long value) {
 			this.scrollCurrent = value;
 			return this;
 		}
@@ -366,7 +366,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code scroll_time_in_millis}
 		 */
-		public Builder scrollTimeInMillis(Long value) {
+		public Builder scrollTimeInMillis(long value) {
 			this.scrollTimeInMillis = value;
 			return this;
 		}
@@ -374,7 +374,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code scroll_total}
 		 */
-		public Builder scrollTotal(Long value) {
+		public Builder scrollTotal(long value) {
 			this.scrollTotal = value;
 			return this;
 		}
@@ -382,7 +382,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest_current}
 		 */
-		public Builder suggestCurrent(Long value) {
+		public Builder suggestCurrent(long value) {
 			this.suggestCurrent = value;
 			return this;
 		}
@@ -390,7 +390,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest_time_in_millis}
 		 */
-		public Builder suggestTimeInMillis(Long value) {
+		public Builder suggestTimeInMillis(long value) {
 			this.suggestTimeInMillis = value;
 			return this;
 		}
@@ -398,7 +398,7 @@ public final class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest_total}
 		 */
-		public Builder suggestTotal(Long value) {
+		public Builder suggestTotal(long value) {
 			this.suggestTotal = value;
 			return this;
 		}

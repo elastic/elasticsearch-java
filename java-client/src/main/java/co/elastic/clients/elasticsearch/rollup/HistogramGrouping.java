@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class HistogramGrouping implements JsonpSerializable {
 	private final List<String> fields;
 
-	private final Long interval;
+	private final long interval;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 	/**
 	 * API name: {@code interval}
 	 */
-	public Long interval() {
+	public long interval() {
 		return this.interval;
 	}
 
@@ -134,7 +134,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code interval}
 		 */
-		public Builder interval(Long value) {
+		public Builder interval(long value) {
 			this.interval = value;
 			return this;
 		}

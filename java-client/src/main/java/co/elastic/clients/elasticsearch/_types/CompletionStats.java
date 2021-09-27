@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 // typedef: _types.CompletionStats
 @JsonpDeserializable
 public final class CompletionStats implements JsonpSerializable {
-	private final Long sizeInBytes;
+	private final long sizeInBytes;
 
 	@Nullable
 	private final String size;
@@ -65,7 +65,7 @@ public final class CompletionStats implements JsonpSerializable {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Long sizeInBytes() {
+	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -137,7 +137,7 @@ public final class CompletionStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Long value) {
+		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}

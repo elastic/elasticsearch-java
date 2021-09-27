@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class ShardFileSizeInfo implements JsonpSerializable {
 	private final String description;
 
-	private final Long sizeInBytes;
+	private final long sizeInBytes;
 
 	@Nullable
 	private final Long minSizeInBytes;
@@ -79,7 +79,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Long sizeInBytes() {
+	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -192,7 +192,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Long value) {
+		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}

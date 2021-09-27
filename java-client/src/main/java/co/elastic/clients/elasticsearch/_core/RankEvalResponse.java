@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: _global.rank_eval.Response
 @JsonpDeserializable
 public final class RankEvalResponse implements JsonpSerializable {
-	private final Double metricScore;
+	private final double metricScore;
 
 	private final Map<String, RankEvalMetricDetail> details;
 
@@ -66,7 +66,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code metric_score}
 	 */
-	public Double metricScore() {
+	public double metricScore() {
 		return this.metricScore;
 	}
 
@@ -138,7 +138,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric_score}
 		 */
-		public Builder metricScore(Double value) {
+		public Builder metricScore(double value) {
 			this.metricScore = value;
 			return this;
 		}

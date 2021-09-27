@@ -55,11 +55,11 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 
 	private final List<IndicesGetDataStreamItemIndex> indices;
 
-	private final Integer generation;
+	private final int generation;
 
 	private final String template;
 
-	private final Boolean hidden;
+	private final boolean hidden;
 
 	@Nullable
 	private final Boolean system;
@@ -113,7 +113,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	/**
 	 * API name: {@code generation}
 	 */
-	public Integer generation() {
+	public int generation() {
 		return this.generation;
 	}
 
@@ -127,7 +127,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	/**
 	 * API name: {@code hidden}
 	 */
-	public Boolean hidden() {
+	public boolean hidden() {
 		return this.hidden;
 	}
 
@@ -325,7 +325,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * API name: {@code generation}
 		 */
-		public Builder generation(Integer value) {
+		public Builder generation(int value) {
 			this.generation = value;
 			return this;
 		}
@@ -341,7 +341,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * API name: {@code hidden}
 		 */
-		public Builder hidden(Boolean value) {
+		public Builder hidden(boolean value) {
 			this.hidden = value;
 			return this;
 		}

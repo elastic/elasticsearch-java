@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: transform.get_transform_stats.CheckpointStats
 @JsonpDeserializable
 public final class CheckpointStats implements JsonpSerializable {
-	private final Long checkpoint;
+	private final long checkpoint;
 
 	@Nullable
 	private final TransformProgress checkpointProgress;
@@ -73,7 +73,7 @@ public final class CheckpointStats implements JsonpSerializable {
 	/**
 	 * API name: {@code checkpoint}
 	 */
-	public Long checkpoint() {
+	public long checkpoint() {
 		return this.checkpoint;
 	}
 
@@ -186,7 +186,7 @@ public final class CheckpointStats implements JsonpSerializable {
 		/**
 		 * API name: {@code checkpoint}
 		 */
-		public Builder checkpoint(Long value) {
+		public Builder checkpoint(long value) {
 			this.checkpoint = value;
 			return this;
 		}

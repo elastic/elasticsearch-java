@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.Retries
 @JsonpDeserializable
 public final class Retries implements JsonpSerializable {
-	private final Long bulk;
+	private final long bulk;
 
-	private final Long search;
+	private final long search;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class Retries implements JsonpSerializable {
 	/**
 	 * API name: {@code bulk}
 	 */
-	public Long bulk() {
+	public long bulk() {
 		return this.bulk;
 	}
 
 	/**
 	 * API name: {@code search}
 	 */
-	public Long search() {
+	public long search() {
 		return this.search;
 	}
 
@@ -98,7 +97,7 @@ public final class Retries implements JsonpSerializable {
 		/**
 		 * API name: {@code bulk}
 		 */
-		public Builder bulk(Long value) {
+		public Builder bulk(long value) {
 			this.bulk = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class Retries implements JsonpSerializable {
 		/**
 		 * API name: {@code search}
 		 */
-		public Builder search(Long value) {
+		public Builder search(long value) {
 			this.search = value;
 			return this;
 		}

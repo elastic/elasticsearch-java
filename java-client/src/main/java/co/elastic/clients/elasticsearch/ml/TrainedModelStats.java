@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 public final class TrainedModelStats implements JsonpSerializable {
 	private final String modelId;
 
-	private final Integer pipelineCount;
+	private final int pipelineCount;
 
 	@Nullable
 	private final TrainedModelInferenceStats inferenceStats;
@@ -79,7 +79,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code pipeline_count}
 	 */
-	public Integer pipelineCount() {
+	public int pipelineCount() {
 		return this.pipelineCount;
 	}
 
@@ -174,7 +174,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pipeline_count}
 		 */
-		public Builder pipelineCount(Integer value) {
+		public Builder pipelineCount(int value) {
 			this.pipelineCount = value;
 			return this;
 		}

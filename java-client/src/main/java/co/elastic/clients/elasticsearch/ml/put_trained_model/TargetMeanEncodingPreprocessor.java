@@ -48,7 +48,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 
 	private final Map<String, Double> targetMap;
 
-	private final Double defaultValue;
+	private final double defaultValue;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -93,7 +93,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 	/**
 	 * API name: {@code default_value}
 	 */
-	public Double defaultValue() {
+	public double defaultValue() {
 		return this.defaultValue;
 	}
 
@@ -180,7 +180,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		/**
 		 * API name: {@code default_value}
 		 */
-		public Builder defaultValue(Double value) {
+		public Builder defaultValue(double value) {
 			this.defaultValue = value;
 			return this;
 		}

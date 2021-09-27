@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionLogarithm
 @JsonpDeserializable
 public final class RankFeatureFunctionLogarithm extends RankFeatureFunction implements JsonpSerializable {
-	private final Float scalingFactor;
+	private final float scalingFactor;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 	/**
 	 * API name: {@code scaling_factor}
 	 */
-	public Float scalingFactor() {
+	public float scalingFactor() {
 		return this.scalingFactor;
 	}
 
@@ -83,7 +82,7 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 		/**
 		 * API name: {@code scaling_factor}
 		 */
-		public Builder scalingFactor(Float value) {
+		public Builder scalingFactor(float value) {
 			this.scalingFactor = value;
 			return this;
 		}

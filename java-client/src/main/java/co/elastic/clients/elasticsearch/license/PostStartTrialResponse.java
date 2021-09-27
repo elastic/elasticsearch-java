@@ -43,9 +43,9 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 	@Nullable
 	private final String errorMessage;
 
-	private final Boolean acknowledged;
+	private final boolean acknowledged;
 
-	private final Boolean trialWasStarted;
+	private final boolean trialWasStarted;
 
 	private final LicenseType type;
 
@@ -72,14 +72,14 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code acknowledged}
 	 */
-	public Boolean acknowledged() {
+	public boolean acknowledged() {
 		return this.acknowledged;
 	}
 
 	/**
 	 * API name: {@code trial_was_started}
 	 */
-	public Boolean trialWasStarted() {
+	public boolean trialWasStarted() {
 		return this.trialWasStarted;
 	}
 
@@ -139,7 +139,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code acknowledged}
 		 */
-		public Builder acknowledged(Boolean value) {
+		public Builder acknowledged(boolean value) {
 			this.acknowledged = value;
 			return this;
 		}
@@ -147,7 +147,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code trial_was_started}
 		 */
-		public Builder trialWasStarted(Boolean value) {
+		public Builder trialWasStarted(boolean value) {
 			this.trialWasStarted = value;
 			return this;
 		}

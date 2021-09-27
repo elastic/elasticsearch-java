@@ -47,7 +47,7 @@ public final class RankEvalHit implements JsonpSerializable {
 	@Nullable
 	private final String type;
 
-	private final Double score;
+	private final double score;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -85,7 +85,7 @@ public final class RankEvalHit implements JsonpSerializable {
 	/**
 	 * API name: {@code _score}
 	 */
-	public Double score() {
+	public double score() {
 		return this.score;
 	}
 
@@ -160,7 +160,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		/**
 		 * API name: {@code _score}
 		 */
-		public Builder score(Double value) {
+		public Builder score(double value) {
 			this.score = value;
 			return this;
 		}

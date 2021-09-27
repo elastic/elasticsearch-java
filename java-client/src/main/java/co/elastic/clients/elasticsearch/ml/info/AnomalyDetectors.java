@@ -44,13 +44,13 @@ import javax.annotation.Nullable;
 public final class AnomalyDetectors implements JsonpSerializable {
 	private final CategorizationAnalyzer categorizationAnalyzer;
 
-	private final Integer categorizationExamplesLimit;
+	private final int categorizationExamplesLimit;
 
 	private final String modelMemoryLimit;
 
-	private final Integer modelSnapshotRetentionDays;
+	private final int modelSnapshotRetentionDays;
 
-	private final Integer dailyModelSnapshotRetentionAfterDays;
+	private final int dailyModelSnapshotRetentionAfterDays;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 	/**
 	 * API name: {@code categorization_examples_limit}
 	 */
-	public Integer categorizationExamplesLimit() {
+	public int categorizationExamplesLimit() {
 		return this.categorizationExamplesLimit;
 	}
 
@@ -91,14 +91,14 @@ public final class AnomalyDetectors implements JsonpSerializable {
 	/**
 	 * API name: {@code model_snapshot_retention_days}
 	 */
-	public Integer modelSnapshotRetentionDays() {
+	public int modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
 	/**
 	 * API name: {@code daily_model_snapshot_retention_after_days}
 	 */
-	public Integer dailyModelSnapshotRetentionAfterDays() {
+	public int dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
@@ -165,7 +165,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * API name: {@code categorization_examples_limit}
 		 */
-		public Builder categorizationExamplesLimit(Integer value) {
+		public Builder categorizationExamplesLimit(int value) {
 			this.categorizationExamplesLimit = value;
 			return this;
 		}
@@ -181,7 +181,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(Integer value) {
+		public Builder modelSnapshotRetentionDays(int value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -189,7 +189,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * API name: {@code daily_model_snapshot_retention_after_days}
 		 */
-		public Builder dailyModelSnapshotRetentionAfterDays(Integer value) {
+		public Builder dailyModelSnapshotRetentionAfterDays(int value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
 			return this;
 		}

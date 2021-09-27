@@ -639,8 +639,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 				if (request.id() != null)
 					propsSet |= _id;
 

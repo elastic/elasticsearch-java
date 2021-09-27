@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationDisk
 @JsonpDeserializable
 public final class IndexRoutingAllocationDisk implements JsonpSerializable {
-	private final Boolean thresholdEnabled;
+	private final boolean thresholdEnabled;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class IndexRoutingAllocationDisk implements JsonpSerializable {
 	/**
 	 * API name: {@code threshold_enabled}
 	 */
-	public Boolean thresholdEnabled() {
+	public boolean thresholdEnabled() {
 		return this.thresholdEnabled;
 	}
 
@@ -83,7 +82,7 @@ public final class IndexRoutingAllocationDisk implements JsonpSerializable {
 		/**
 		 * API name: {@code threshold_enabled}
 		 */
-		public Builder thresholdEnabled(Boolean value) {
+		public Builder thresholdEnabled(boolean value) {
 			this.thresholdEnabled = value;
 			return this;
 		}

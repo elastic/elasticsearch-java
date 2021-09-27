@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: _global.count.Response
 @JsonpDeserializable
 public final class CountResponse implements JsonpSerializable {
-	private final Long count;
+	private final long count;
 
 	private final ShardStatistics shards;
 
@@ -57,7 +57,7 @@ public final class CountResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Long count() {
+	public long count() {
 		return this.count;
 	}
 
@@ -100,7 +100,7 @@ public final class CountResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Long value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}

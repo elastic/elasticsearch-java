@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: watcher._types.ActivationState
 @JsonpDeserializable
 public final class ActivationState implements JsonpSerializable {
-	private final Boolean active;
+	private final boolean active;
 
 	private final String timestamp;
 
@@ -56,7 +56,7 @@ public final class ActivationState implements JsonpSerializable {
 	/**
 	 * API name: {@code active}
 	 */
-	public Boolean active() {
+	public boolean active() {
 		return this.active;
 	}
 
@@ -99,7 +99,7 @@ public final class ActivationState implements JsonpSerializable {
 		/**
 		 * API name: {@code active}
 		 */
-		public Builder active(Boolean value) {
+		public Builder active(boolean value) {
 			this.active = value;
 			return this;
 		}

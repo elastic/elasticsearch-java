@@ -42,15 +42,15 @@ import javax.annotation.Nullable;
 public final class FileSystemTotal implements JsonpSerializable {
 	private final String available;
 
-	private final Long availableInBytes;
+	private final long availableInBytes;
 
 	private final String free;
 
-	private final Long freeInBytes;
+	private final long freeInBytes;
 
 	private final String total;
 
-	private final Long totalInBytes;
+	private final long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 	/**
 	 * API name: {@code available_in_bytes}
 	 */
-	public Long availableInBytes() {
+	public long availableInBytes() {
 		return this.availableInBytes;
 	}
 
@@ -89,7 +89,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 	/**
 	 * API name: {@code free_in_bytes}
 	 */
-	public Long freeInBytes() {
+	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
@@ -103,7 +103,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Long totalInBytes() {
+	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -167,7 +167,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(Long value) {
+		public Builder availableInBytes(long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -183,7 +183,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(Long value) {
+		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -199,7 +199,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Long value) {
+		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}

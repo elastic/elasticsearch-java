@@ -42,13 +42,13 @@ import javax.annotation.Nullable;
 public final class ShingleTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final String fillerToken;
 
-	private final Integer maxShingleSize;
+	private final int maxShingleSize;
 
-	private final Integer minShingleSize;
+	private final int minShingleSize;
 
-	private final Boolean outputUnigrams;
+	private final boolean outputUnigrams;
 
-	private final Boolean outputUnigramsIfNoShingles;
+	private final boolean outputUnigramsIfNoShingles;
 
 	private final String tokenSeparator;
 
@@ -85,28 +85,28 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 	/**
 	 * API name: {@code max_shingle_size}
 	 */
-	public Integer maxShingleSize() {
+	public int maxShingleSize() {
 		return this.maxShingleSize;
 	}
 
 	/**
 	 * API name: {@code min_shingle_size}
 	 */
-	public Integer minShingleSize() {
+	public int minShingleSize() {
 		return this.minShingleSize;
 	}
 
 	/**
 	 * API name: {@code output_unigrams}
 	 */
-	public Boolean outputUnigrams() {
+	public boolean outputUnigrams() {
 		return this.outputUnigrams;
 	}
 
 	/**
 	 * API name: {@code output_unigrams_if_no_shingles}
 	 */
-	public Boolean outputUnigramsIfNoShingles() {
+	public boolean outputUnigramsIfNoShingles() {
 		return this.outputUnigramsIfNoShingles;
 	}
 
@@ -173,7 +173,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code max_shingle_size}
 		 */
-		public Builder maxShingleSize(Integer value) {
+		public Builder maxShingleSize(int value) {
 			this.maxShingleSize = value;
 			return this;
 		}
@@ -181,7 +181,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code min_shingle_size}
 		 */
-		public Builder minShingleSize(Integer value) {
+		public Builder minShingleSize(int value) {
 			this.minShingleSize = value;
 			return this;
 		}
@@ -189,7 +189,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code output_unigrams}
 		 */
-		public Builder outputUnigrams(Boolean value) {
+		public Builder outputUnigrams(boolean value) {
 			this.outputUnigrams = value;
 			return this;
 		}
@@ -197,7 +197,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code output_unigrams_if_no_shingles}
 		 */
-		public Builder outputUnigramsIfNoShingles(Boolean value) {
+		public Builder outputUnigramsIfNoShingles(boolean value) {
 			this.outputUnigramsIfNoShingles = value;
 			return this;
 		}

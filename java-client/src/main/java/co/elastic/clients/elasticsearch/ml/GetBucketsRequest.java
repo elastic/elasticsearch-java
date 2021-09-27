@@ -471,8 +471,7 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 				if (request.timestamp() != null)
 					propsSet |= _timestamp;
 

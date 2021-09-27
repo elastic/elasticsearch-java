@@ -46,9 +46,9 @@ import javax.annotation.Nullable;
 // typedef: _global.search._types.Suggest
 
 public final class Suggestion<T> implements JsonpSerializable {
-	private final Integer length;
+	private final int length;
 
-	private final Integer offset;
+	private final int offset;
 
 	private final List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options;
 
@@ -72,14 +72,14 @@ public final class Suggestion<T> implements JsonpSerializable {
 	/**
 	 * API name: {@code length}
 	 */
-	public Integer length() {
+	public int length() {
 		return this.length;
 	}
 
 	/**
 	 * API name: {@code offset}
 	 */
-	public Integer offset() {
+	public int offset() {
 		return this.offset;
 	}
 
@@ -147,7 +147,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * API name: {@code length}
 		 */
-		public Builder<T> length(Integer value) {
+		public Builder<T> length(int value) {
 			this.length = value;
 			return this;
 		}
@@ -155,7 +155,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * API name: {@code offset}
 		 */
-		public Builder<T> offset(Integer value) {
+		public Builder<T> offset(int value) {
 			this.offset = value;
 			return this;
 		}

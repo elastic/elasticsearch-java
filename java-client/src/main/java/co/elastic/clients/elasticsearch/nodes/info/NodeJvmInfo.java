@@ -52,9 +52,9 @@ public final class NodeJvmInfo implements JsonpSerializable {
 
 	private final List<String> memoryPools;
 
-	private final Integer pid;
+	private final int pid;
 
-	private final Long startTimeInMillis;
+	private final long startTimeInMillis;
 
 	private final String version;
 
@@ -64,9 +64,9 @@ public final class NodeJvmInfo implements JsonpSerializable {
 
 	private final String vmVersion;
 
-	private final Boolean bundledJdk;
+	private final boolean bundledJdk;
 
-	private final Boolean usingBundledJdk;
+	private final boolean usingBundledJdk;
 
 	@Nullable
 	private final Boolean usingCompressedOrdinaryObjectPointers;
@@ -117,14 +117,14 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code pid}
 	 */
-	public Integer pid() {
+	public int pid() {
 		return this.pid;
 	}
 
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public Long startTimeInMillis() {
+	public long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -159,14 +159,14 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code bundled_jdk}
 	 */
-	public Boolean bundledJdk() {
+	public boolean bundledJdk() {
 		return this.bundledJdk;
 	}
 
 	/**
 	 * API name: {@code using_bundled_jdk}
 	 */
-	public Boolean usingBundledJdk() {
+	public boolean usingBundledJdk() {
 		return this.usingBundledJdk;
 	}
 
@@ -361,7 +361,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code pid}
 		 */
-		public Builder pid(Integer value) {
+		public Builder pid(int value) {
 			this.pid = value;
 			return this;
 		}
@@ -369,7 +369,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(Long value) {
+		public Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -409,7 +409,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code bundled_jdk}
 		 */
-		public Builder bundledJdk(Boolean value) {
+		public Builder bundledJdk(boolean value) {
 			this.bundledJdk = value;
 			return this;
 		}
@@ -417,7 +417,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code using_bundled_jdk}
 		 */
-		public Builder usingBundledJdk(Boolean value) {
+		public Builder usingBundledJdk(boolean value) {
 			this.usingBundledJdk = value;
 			return this;
 		}

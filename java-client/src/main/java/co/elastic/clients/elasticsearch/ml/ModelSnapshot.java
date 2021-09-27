@@ -48,21 +48,21 @@ public final class ModelSnapshot implements JsonpSerializable {
 
 	private final String jobId;
 
-	private final Integer latestRecordTimeStamp;
+	private final int latestRecordTimeStamp;
 
-	private final Integer latestResultTimeStamp;
+	private final int latestResultTimeStamp;
 
 	private final String minVersion;
 
 	private final ModelSizeStats modelSizeStats;
 
-	private final Boolean retain;
+	private final boolean retain;
 
-	private final Long snapshotDocCount;
+	private final long snapshotDocCount;
 
 	private final String snapshotId;
 
-	private final Integer timestamp;
+	private final int timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -106,7 +106,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code latest_record_time_stamp}
 	 */
-	public Integer latestRecordTimeStamp() {
+	public int latestRecordTimeStamp() {
 		return this.latestRecordTimeStamp;
 	}
 
@@ -115,7 +115,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code latest_result_time_stamp}
 	 */
-	public Integer latestResultTimeStamp() {
+	public int latestResultTimeStamp() {
 		return this.latestResultTimeStamp;
 	}
 
@@ -144,7 +144,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code retain}
 	 */
-	public Boolean retain() {
+	public boolean retain() {
 		return this.retain;
 	}
 
@@ -153,7 +153,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code snapshot_doc_count}
 	 */
-	public Long snapshotDocCount() {
+	public long snapshotDocCount() {
 		return this.snapshotDocCount;
 	}
 
@@ -171,7 +171,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public Integer timestamp() {
+	public int timestamp() {
 		return this.timestamp;
 	}
 
@@ -275,7 +275,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latest_record_time_stamp}
 		 */
-		public Builder latestRecordTimeStamp(Integer value) {
+		public Builder latestRecordTimeStamp(int value) {
 			this.latestRecordTimeStamp = value;
 			return this;
 		}
@@ -285,7 +285,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latest_result_time_stamp}
 		 */
-		public Builder latestResultTimeStamp(Integer value) {
+		public Builder latestResultTimeStamp(int value) {
 			this.latestResultTimeStamp = value;
 			return this;
 		}
@@ -326,7 +326,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code retain}
 		 */
-		public Builder retain(Boolean value) {
+		public Builder retain(boolean value) {
 			this.retain = value;
 			return this;
 		}
@@ -336,7 +336,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code snapshot_doc_count}
 		 */
-		public Builder snapshotDocCount(Long value) {
+		public Builder snapshotDocCount(long value) {
 			this.snapshotDocCount = value;
 			return this;
 		}
@@ -356,7 +356,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Integer value) {
+		public Builder timestamp(int value) {
 			this.timestamp = value;
 			return this;
 		}

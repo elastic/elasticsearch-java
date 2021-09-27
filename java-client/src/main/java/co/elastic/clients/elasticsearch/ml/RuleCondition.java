@@ -43,7 +43,7 @@ public final class RuleCondition implements JsonpSerializable {
 
 	private final ConditionOperator operator;
 
-	private final Double value;
+	private final double value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ public final class RuleCondition implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public Double value() {
+	public double value() {
 		return this.value;
 	}
 
@@ -149,7 +149,7 @@ public final class RuleCondition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(Double value) {
+		public Builder value(double value) {
 			this.value = value;
 			return this;
 		}

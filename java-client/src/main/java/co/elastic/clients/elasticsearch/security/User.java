@@ -58,7 +58,7 @@ public class User implements JsonpSerializable {
 
 	private final String username;
 
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ public class User implements JsonpSerializable {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
@@ -277,7 +277,7 @@ public class User implements JsonpSerializable {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public BuilderT enabled(Boolean value) {
+		public BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}

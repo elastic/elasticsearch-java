@@ -42,9 +42,9 @@ import javax.annotation.Nullable;
 public final class Retention implements JsonpSerializable {
 	private final String expireAfter;
 
-	private final Integer maxCount;
+	private final int maxCount;
 
-	private final Integer minCount;
+	private final int minCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code max_count}
 	 */
-	public Integer maxCount() {
+	public int maxCount() {
 		return this.maxCount;
 	}
 
@@ -82,7 +82,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code min_count}
 	 */
-	public Integer minCount() {
+	public int minCount() {
 		return this.minCount;
 	}
 
@@ -138,7 +138,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_count}
 		 */
-		public Builder maxCount(Integer value) {
+		public Builder maxCount(int value) {
 			this.maxCount = value;
 			return this;
 		}
@@ -148,7 +148,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code min_count}
 		 */
-		public Builder minCount(Integer value) {
+		public Builder minCount(int value) {
 			this.minCount = value;
 			return this;
 		}

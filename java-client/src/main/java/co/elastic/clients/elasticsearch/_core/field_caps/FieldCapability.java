@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: _global.field_caps.FieldCapability
 @JsonpDeserializable
 public final class FieldCapability implements JsonpSerializable {
-	private final Boolean aggregatable;
+	private final boolean aggregatable;
 
 	@Nullable
 	private final List<String> indices;
@@ -59,7 +59,7 @@ public final class FieldCapability implements JsonpSerializable {
 	@Nullable
 	private final List<String> nonSearchableIndices;
 
-	private final Boolean searchable;
+	private final boolean searchable;
 
 	private final String type;
 
@@ -84,7 +84,7 @@ public final class FieldCapability implements JsonpSerializable {
 	/**
 	 * API name: {@code aggregatable}
 	 */
-	public Boolean aggregatable() {
+	public boolean aggregatable() {
 		return this.aggregatable;
 	}
 
@@ -123,7 +123,7 @@ public final class FieldCapability implements JsonpSerializable {
 	/**
 	 * API name: {@code searchable}
 	 */
-	public Boolean searchable() {
+	public boolean searchable() {
 		return this.searchable;
 	}
 
@@ -252,7 +252,7 @@ public final class FieldCapability implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregatable}
 		 */
-		public Builder aggregatable(Boolean value) {
+		public Builder aggregatable(boolean value) {
 			this.aggregatable = value;
 			return this;
 		}
@@ -362,7 +362,7 @@ public final class FieldCapability implements JsonpSerializable {
 		/**
 		 * API name: {@code searchable}
 		 */
-		public Builder searchable(Boolean value) {
+		public Builder searchable(boolean value) {
 			this.searchable = value;
 			return this;
 		}

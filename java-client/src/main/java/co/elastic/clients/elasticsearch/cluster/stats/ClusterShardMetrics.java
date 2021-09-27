@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterShardMetrics
 @JsonpDeserializable
 public final class ClusterShardMetrics implements JsonpSerializable {
-	private final Double avg;
+	private final double avg;
 
-	private final Double max;
+	private final double max;
 
-	private final Double min;
+	private final double min;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,21 +57,21 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 	/**
 	 * API name: {@code avg}
 	 */
-	public Double avg() {
+	public double avg() {
 		return this.avg;
 	}
 
 	/**
 	 * API name: {@code max}
 	 */
-	public Double max() {
+	public double max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code min}
 	 */
-	public Double min() {
+	public double min() {
 		return this.min;
 	}
 
@@ -113,7 +112,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * API name: {@code avg}
 		 */
-		public Builder avg(Double value) {
+		public Builder avg(double value) {
 			this.avg = value;
 			return this;
 		}
@@ -121,7 +120,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Double value) {
+		public Builder max(double value) {
 			this.max = value;
 			return this;
 		}
@@ -129,7 +128,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * API name: {@code min}
 		 */
-		public Builder min(Double value) {
+		public Builder min(double value) {
 			this.min = value;
 			return this;
 		}

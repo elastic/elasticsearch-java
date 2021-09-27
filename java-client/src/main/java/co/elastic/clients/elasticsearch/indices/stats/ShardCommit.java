@@ -43,11 +43,11 @@ import javax.annotation.Nullable;
 // typedef: indices.stats.ShardCommit
 @JsonpDeserializable
 public final class ShardCommit implements JsonpSerializable {
-	private final Integer generation;
+	private final int generation;
 
 	private final String id;
 
-	private final Long numDocs;
+	private final long numDocs;
 
 	private final Map<String, String> userData;
 
@@ -65,7 +65,7 @@ public final class ShardCommit implements JsonpSerializable {
 	/**
 	 * API name: {@code generation}
 	 */
-	public Integer generation() {
+	public int generation() {
 		return this.generation;
 	}
 
@@ -79,7 +79,7 @@ public final class ShardCommit implements JsonpSerializable {
 	/**
 	 * API name: {@code num_docs}
 	 */
-	public Long numDocs() {
+	public long numDocs() {
 		return this.numDocs;
 	}
 
@@ -138,7 +138,7 @@ public final class ShardCommit implements JsonpSerializable {
 		/**
 		 * API name: {@code generation}
 		 */
-		public Builder generation(Integer value) {
+		public Builder generation(int value) {
 			this.generation = value;
 			return this;
 		}
@@ -154,7 +154,7 @@ public final class ShardCommit implements JsonpSerializable {
 		/**
 		 * API name: {@code num_docs}
 		 */
-		public Builder numDocs(Long value) {
+		public Builder numDocs(long value) {
 			this.numDocs = value;
 			return this;
 		}

@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: indices.recovery.RecoveryStartStatus
 @JsonpDeserializable
 public final class RecoveryStartStatus implements JsonpSerializable {
-	private final Long checkIndexTime;
+	private final long checkIndexTime;
 
 	private final String totalTimeInMillis;
 
@@ -56,7 +56,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code check_index_time}
 	 */
-	public Long checkIndexTime() {
+	public long checkIndexTime() {
 		return this.checkIndexTime;
 	}
 
@@ -99,7 +99,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code check_index_time}
 		 */
-		public Builder checkIndexTime(Long value) {
+		public Builder checkIndexTime(long value) {
 			this.checkIndexTime = value;
 			return this;
 		}

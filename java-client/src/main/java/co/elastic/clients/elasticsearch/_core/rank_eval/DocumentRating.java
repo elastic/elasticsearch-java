@@ -44,7 +44,7 @@ public final class DocumentRating implements JsonpSerializable {
 
 	private final String index;
 
-	private final Integer rating;
+	private final int rating;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ public final class DocumentRating implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code rating}
 	 */
-	public Integer rating() {
+	public int rating() {
 		return this.rating;
 	}
 
@@ -144,7 +144,7 @@ public final class DocumentRating implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code rating}
 		 */
-		public Builder rating(Integer value) {
+		public Builder rating(int value) {
 			this.rating = value;
 			return this;
 		}

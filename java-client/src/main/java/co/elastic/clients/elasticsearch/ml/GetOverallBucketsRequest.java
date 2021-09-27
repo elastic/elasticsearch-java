@@ -374,8 +374,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();

@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class ShardSegmentRouting implements JsonpSerializable {
 	private final String node;
 
-	private final Boolean primary;
+	private final boolean primary;
 
 	private final String state;
 
@@ -66,7 +66,7 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 	/**
 	 * API name: {@code primary}
 	 */
-	public Boolean primary() {
+	public boolean primary() {
 		return this.primary;
 	}
 
@@ -122,7 +122,7 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 		/**
 		 * API name: {@code primary}
 		 */
-		public Builder primary(Boolean value) {
+		public Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}

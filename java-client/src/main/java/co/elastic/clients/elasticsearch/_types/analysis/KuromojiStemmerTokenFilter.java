@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiStemmerTokenFilter
 @JsonpDeserializable
 public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Integer minimumLength;
+	private final int minimumLength;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements
 	/**
 	 * API name: {@code minimum_length}
 	 */
-	public Integer minimumLength() {
+	public int minimumLength() {
 		return this.minimumLength;
 	}
 
@@ -87,7 +86,7 @@ public final class KuromojiStemmerTokenFilter extends TokenFilterBase implements
 		/**
 		 * API name: {@code minimum_length}
 		 */
-		public Builder minimumLength(Integer value) {
+		public Builder minimumLength(int value) {
 			this.minimumLength = value;
 			return this;
 		}

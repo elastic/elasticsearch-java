@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: transform.get_transform_stats.Checkpointing
 @JsonpDeserializable
 public final class Checkpointing implements JsonpSerializable {
-	private final Long changesLastDetectedAt;
+	private final long changesLastDetectedAt;
 
 	@Nullable
 	private final String changesLastDetectedAtDateTime;
@@ -69,7 +69,7 @@ public final class Checkpointing implements JsonpSerializable {
 	/**
 	 * API name: {@code changes_last_detected_at}
 	 */
-	public Long changesLastDetectedAt() {
+	public long changesLastDetectedAt() {
 		return this.changesLastDetectedAt;
 	}
 
@@ -165,7 +165,7 @@ public final class Checkpointing implements JsonpSerializable {
 		/**
 		 * API name: {@code changes_last_detected_at}
 		 */
-		public Builder changesLastDetectedAt(Long value) {
+		public Builder changesLastDetectedAt(long value) {
 			this.changesLastDetectedAt = value;
 			return this;
 		}

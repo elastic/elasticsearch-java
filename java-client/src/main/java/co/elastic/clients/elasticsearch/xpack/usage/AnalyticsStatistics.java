@@ -39,21 +39,21 @@ import javax.annotation.Nullable;
 // typedef: xpack.usage.AnalyticsStatistics
 @JsonpDeserializable
 public final class AnalyticsStatistics implements JsonpSerializable {
-	private final Long boxplotUsage;
+	private final long boxplotUsage;
 
-	private final Long cumulativeCardinalityUsage;
+	private final long cumulativeCardinalityUsage;
 
-	private final Long stringStatsUsage;
+	private final long stringStatsUsage;
 
-	private final Long topMetricsUsage;
+	private final long topMetricsUsage;
 
-	private final Long tTestUsage;
+	private final long tTestUsage;
 
-	private final Long movingPercentilesUsage;
+	private final long movingPercentilesUsage;
 
-	private final Long normalizeUsage;
+	private final long normalizeUsage;
 
-	private final Long rateUsage;
+	private final long rateUsage;
 
 	@Nullable
 	private final Long multiTermsUsage;
@@ -79,56 +79,56 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code boxplot_usage}
 	 */
-	public Long boxplotUsage() {
+	public long boxplotUsage() {
 		return this.boxplotUsage;
 	}
 
 	/**
 	 * API name: {@code cumulative_cardinality_usage}
 	 */
-	public Long cumulativeCardinalityUsage() {
+	public long cumulativeCardinalityUsage() {
 		return this.cumulativeCardinalityUsage;
 	}
 
 	/**
 	 * API name: {@code string_stats_usage}
 	 */
-	public Long stringStatsUsage() {
+	public long stringStatsUsage() {
 		return this.stringStatsUsage;
 	}
 
 	/**
 	 * API name: {@code top_metrics_usage}
 	 */
-	public Long topMetricsUsage() {
+	public long topMetricsUsage() {
 		return this.topMetricsUsage;
 	}
 
 	/**
 	 * API name: {@code t_test_usage}
 	 */
-	public Long tTestUsage() {
+	public long tTestUsage() {
 		return this.tTestUsage;
 	}
 
 	/**
 	 * API name: {@code moving_percentiles_usage}
 	 */
-	public Long movingPercentilesUsage() {
+	public long movingPercentilesUsage() {
 		return this.movingPercentilesUsage;
 	}
 
 	/**
 	 * API name: {@code normalize_usage}
 	 */
-	public Long normalizeUsage() {
+	public long normalizeUsage() {
 		return this.normalizeUsage;
 	}
 
 	/**
 	 * API name: {@code rate_usage}
 	 */
-	public Long rateUsage() {
+	public long rateUsage() {
 		return this.rateUsage;
 	}
 
@@ -212,7 +212,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code boxplot_usage}
 		 */
-		public Builder boxplotUsage(Long value) {
+		public Builder boxplotUsage(long value) {
 			this.boxplotUsage = value;
 			return this;
 		}
@@ -220,7 +220,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code cumulative_cardinality_usage}
 		 */
-		public Builder cumulativeCardinalityUsage(Long value) {
+		public Builder cumulativeCardinalityUsage(long value) {
 			this.cumulativeCardinalityUsage = value;
 			return this;
 		}
@@ -228,7 +228,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code string_stats_usage}
 		 */
-		public Builder stringStatsUsage(Long value) {
+		public Builder stringStatsUsage(long value) {
 			this.stringStatsUsage = value;
 			return this;
 		}
@@ -236,7 +236,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code top_metrics_usage}
 		 */
-		public Builder topMetricsUsage(Long value) {
+		public Builder topMetricsUsage(long value) {
 			this.topMetricsUsage = value;
 			return this;
 		}
@@ -244,7 +244,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code t_test_usage}
 		 */
-		public Builder tTestUsage(Long value) {
+		public Builder tTestUsage(long value) {
 			this.tTestUsage = value;
 			return this;
 		}
@@ -252,7 +252,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code moving_percentiles_usage}
 		 */
-		public Builder movingPercentilesUsage(Long value) {
+		public Builder movingPercentilesUsage(long value) {
 			this.movingPercentilesUsage = value;
 			return this;
 		}
@@ -260,7 +260,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code normalize_usage}
 		 */
-		public Builder normalizeUsage(Long value) {
+		public Builder normalizeUsage(long value) {
 			this.normalizeUsage = value;
 			return this;
 		}
@@ -268,7 +268,7 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code rate_usage}
 		 */
-		public Builder rateUsage(Long value) {
+		public Builder rateUsage(long value) {
 			this.rateUsage = value;
 			return this;
 		}

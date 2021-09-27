@@ -61,11 +61,11 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 	private final String field;
 
-	private final Integer zoom;
+	private final int zoom;
 
-	private final Integer x;
+	private final int x;
 
-	private final Integer y;
+	private final int y;
 
 	@Nullable
 	private final Map<String, Aggregation> aggs;
@@ -142,7 +142,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code zoom}
 	 */
-	public Integer zoom() {
+	public int zoom() {
 		return this.zoom;
 	}
 
@@ -151,7 +151,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code x}
 	 */
-	public Integer x() {
+	public int x() {
 		return this.x;
 	}
 
@@ -160,7 +160,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code y}
 	 */
-	public Integer y() {
+	public int y() {
 		return this.y;
 	}
 
@@ -476,7 +476,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code zoom}
 		 */
-		public Builder zoom(Integer value) {
+		public Builder zoom(int value) {
 			this.zoom = value;
 			return this;
 		}
@@ -486,7 +486,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code x}
 		 */
-		public Builder x(Integer value) {
+		public Builder x(int value) {
 			this.x = value;
 			return this;
 		}
@@ -496,7 +496,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code y}
 		 */
-		public Builder y(Integer value) {
+		public Builder y(int value) {
 			this.y = value;
 			return this;
 		}
@@ -789,16 +789,11 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
-				if (request.field() != null)
-					propsSet |= _field;
-				if (request.zoom() != null)
-					propsSet |= _zoom;
-				if (request.x() != null)
-					propsSet |= _x;
-				if (request.y() != null)
-					propsSet |= _y;
+				propsSet |= _index;
+				propsSet |= _field;
+				propsSet |= _zoom;
+				propsSet |= _x;
+				propsSet |= _y;
 
 				if (propsSet == (_index | _field | _zoom | _x | _y)) {
 					StringBuilder buf = new StringBuilder();

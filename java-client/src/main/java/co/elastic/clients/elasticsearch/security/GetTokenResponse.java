@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public final class GetTokenResponse implements JsonpSerializable {
 	private final String accessToken;
 
-	private final Long expiresIn;
+	private final long expiresIn;
 
 	@Nullable
 	private final String scope;
@@ -82,7 +82,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code expires_in}
 	 */
-	public Long expiresIn() {
+	public long expiresIn() {
 		return this.expiresIn;
 	}
 
@@ -198,7 +198,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code expires_in}
 		 */
-		public Builder expiresIn(Long value) {
+		public Builder expiresIn(long value) {
 			this.expiresIn = value;
 			return this;
 		}

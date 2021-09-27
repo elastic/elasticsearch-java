@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class RemovePolicyResponse implements JsonpSerializable {
 	private final List<String> failedIndexes;
 
-	private final Boolean hasFailures;
+	private final boolean hasFailures;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code has_failures}
 	 */
-	public Boolean hasFailures() {
+	public boolean hasFailures() {
 		return this.hasFailures;
 	}
 
@@ -134,7 +134,7 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code has_failures}
 		 */
-		public Builder hasFailures(Boolean value) {
+		public Builder hasFailures(boolean value) {
 			this.hasFailures = value;
 			return this;
 		}

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable {
 	private final Hyperparameters hyperparameters;
 
-	private final Integer iteration;
+	private final int iteration;
 
 	private final String timestamp;
 
@@ -75,7 +75,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 	 * <p>
 	 * API name: {@code iteration}
 	 */
-	public Integer iteration() {
+	public int iteration() {
 		return this.iteration;
 	}
 
@@ -164,7 +164,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		 * <p>
 		 * API name: {@code iteration}
 		 */
-		public Builder iteration(Integer value) {
+		public Builder iteration(int value) {
 			this.iteration = value;
 			return this;
 		}

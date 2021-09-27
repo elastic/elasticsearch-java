@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class DataframeClassificationSummaryMulticlassConfusionMatrix implements JsonpSerializable {
 	private final List<ConfusionMatrixItem> confusionMatrix;
 
-	private final Integer otherActualClassCount;
+	private final int otherActualClassCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	/**
 	 * API name: {@code other_actual_class_count}
 	 */
-	public Integer otherActualClassCount() {
+	public int otherActualClassCount() {
 		return this.otherActualClassCount;
 	}
 
@@ -149,7 +149,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		/**
 		 * API name: {@code other_actual_class_count}
 		 */
-		public Builder otherActualClassCount(Integer value) {
+		public Builder otherActualClassCount(int value) {
 			this.otherActualClassCount = value;
 			return this;
 		}

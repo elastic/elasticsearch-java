@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: _global.msearch.Response
 
 public final class MsearchResponse<TDocument> implements JsonpSerializable {
-	private final Long took;
+	private final long took;
 
 	private final List<JsonValue /*
 									 * Union(_global.msearch.SearchResult<_global.msearch.TDocument> |
@@ -68,7 +68,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Long took() {
+	public long took() {
 		return this.took;
 	}
 
@@ -128,7 +128,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder<TDocument> took(Long value) {
+		public Builder<TDocument> took(long value) {
 			this.took = value;
 			return this;
 		}

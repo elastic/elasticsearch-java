@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Counter
 @JsonpDeserializable
 public class Counter implements JsonpSerializable {
-	private final Long active;
+	private final long active;
 
-	private final Long total;
+	private final long total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public class Counter implements JsonpSerializable {
 	/**
 	 * API name: {@code active}
 	 */
-	public Long active() {
+	public long active() {
 		return this.active;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
@@ -116,7 +115,7 @@ public class Counter implements JsonpSerializable {
 		/**
 		 * API name: {@code active}
 		 */
-		public BuilderT active(Long value) {
+		public BuilderT active(long value) {
 			this.active = value;
 			return self();
 		}
@@ -124,7 +123,7 @@ public class Counter implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public BuilderT total(Long value) {
+		public BuilderT total(long value) {
 			this.total = value;
 			return self();
 		}

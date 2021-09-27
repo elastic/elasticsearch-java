@@ -34,20 +34,19 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModelsCount
 @JsonpDeserializable
 public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
-	private final Long total;
+	private final long total;
 
-	private final Long prepackaged;
+	private final long prepackaged;
 
-	private final Long other;
+	private final long other;
 
-	private final Long regression;
+	private final long regression;
 
-	private final Long classification;
+	private final long classification;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,35 +63,35 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code prepackaged}
 	 */
-	public Long prepackaged() {
+	public long prepackaged() {
 		return this.prepackaged;
 	}
 
 	/**
 	 * API name: {@code other}
 	 */
-	public Long other() {
+	public long other() {
 		return this.other;
 	}
 
 	/**
 	 * API name: {@code regression}
 	 */
-	public Long regression() {
+	public long regression() {
 		return this.regression;
 	}
 
 	/**
 	 * API name: {@code classification}
 	 */
-	public Long classification() {
+	public long classification() {
 		return this.classification;
 	}
 
@@ -143,7 +142,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Long value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -151,7 +150,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * API name: {@code prepackaged}
 		 */
-		public Builder prepackaged(Long value) {
+		public Builder prepackaged(long value) {
 			this.prepackaged = value;
 			return this;
 		}
@@ -159,7 +158,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * API name: {@code other}
 		 */
-		public Builder other(Long value) {
+		public Builder other(long value) {
 			this.other = value;
 			return this;
 		}
@@ -167,7 +166,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * API name: {@code regression}
 		 */
-		public Builder regression(Long value) {
+		public Builder regression(long value) {
 			this.regression = value;
 			return this;
 		}
@@ -175,7 +174,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * API name: {@code classification}
 		 */
-		public Builder classification(Long value) {
+		public Builder classification(long value) {
 			this.classification = value;
 			return this;
 		}

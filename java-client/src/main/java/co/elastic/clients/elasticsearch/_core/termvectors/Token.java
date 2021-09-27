@@ -46,7 +46,7 @@ public final class Token implements JsonpSerializable {
 	@Nullable
 	private final String payload;
 
-	private final Integer position;
+	private final int position;
 
 	@Nullable
 	private final Integer startOffset;
@@ -81,7 +81,7 @@ public final class Token implements JsonpSerializable {
 	/**
 	 * API name: {@code position}
 	 */
-	public Integer position() {
+	public int position() {
 		return this.position;
 	}
 
@@ -165,7 +165,7 @@ public final class Token implements JsonpSerializable {
 		/**
 		 * API name: {@code position}
 		 */
-		public Builder position(Integer value) {
+		public Builder position(int value) {
 			this.position = value;
 			return this;
 		}

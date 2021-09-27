@@ -53,7 +53,7 @@ public abstract class ResponseItemBase implements JsonpSerializable {
 
 	private final String index;
 
-	private final Integer status;
+	private final int status;
 
 	@Nullable
 	private final ErrorCause error;
@@ -119,7 +119,7 @@ public abstract class ResponseItemBase implements JsonpSerializable {
 	/**
 	 * API name: {@code status}
 	 */
-	public Integer status() {
+	public int status() {
 		return this.status;
 	}
 
@@ -330,7 +330,7 @@ public abstract class ResponseItemBase implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public BuilderT status(Integer value) {
+		public BuilderT status(int value) {
 			this.status = value;
 			return self();
 		}

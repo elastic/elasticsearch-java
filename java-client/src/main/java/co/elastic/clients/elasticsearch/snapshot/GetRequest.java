@@ -327,10 +327,8 @@ public final class GetRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
-				if (request.snapshot() != null)
-					propsSet |= _snapshot;
+				propsSet |= _repository;
+				propsSet |= _snapshot;
 
 				if (propsSet == (_repository | _snapshot)) {
 					StringBuilder buf = new StringBuilder();

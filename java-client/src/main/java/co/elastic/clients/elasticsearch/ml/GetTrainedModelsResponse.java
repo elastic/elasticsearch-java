@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_trained_models.Response
 @JsonpDeserializable
 public final class GetTrainedModelsResponse implements JsonpSerializable {
-	private final Integer count;
+	private final int count;
 
 	private final List<TrainedModelConfig> trainedModelConfigs;
 
@@ -59,7 +59,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Integer count() {
+	public int count() {
 		return this.count;
 	}
 
@@ -110,7 +110,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Integer value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}

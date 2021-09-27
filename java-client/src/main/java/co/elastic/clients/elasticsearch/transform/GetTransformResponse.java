@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 // typedef: transform.get_transform.Response
 @JsonpDeserializable
 public final class GetTransformResponse implements JsonpSerializable {
-	private final Long count;
+	private final long count;
 
 	private final List<EmptyTransform> transforms;
 
@@ -60,7 +60,7 @@ public final class GetTransformResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Long count() {
+	public long count() {
 		return this.count;
 	}
 
@@ -108,7 +108,7 @@ public final class GetTransformResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Long value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}

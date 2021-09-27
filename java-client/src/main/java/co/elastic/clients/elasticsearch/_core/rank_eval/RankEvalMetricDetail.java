@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 // typedef: _global.rank_eval.RankEvalMetricDetail
 @JsonpDeserializable
 public final class RankEvalMetricDetail implements JsonpSerializable {
-	private final Double metricScore;
+	private final double metricScore;
 
 	private final List<UnratedDocument> unratedDocs;
 
@@ -71,7 +71,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code metric_score}
 	 */
-	public Double metricScore() {
+	public double metricScore() {
 		return this.metricScore;
 	}
 
@@ -174,7 +174,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric_score}
 		 */
-		public Builder metricScore(Double value) {
+		public Builder metricScore(double value) {
 			this.metricScore = value;
 			return this;
 		}

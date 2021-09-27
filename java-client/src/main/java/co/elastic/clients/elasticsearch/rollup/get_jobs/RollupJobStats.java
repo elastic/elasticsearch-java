@@ -34,34 +34,33 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobStats
 @JsonpDeserializable
 public final class RollupJobStats implements JsonpSerializable {
-	private final Long documentsProcessed;
+	private final long documentsProcessed;
 
-	private final Long indexFailures;
+	private final long indexFailures;
 
-	private final Long indexTimeInMs;
+	private final long indexTimeInMs;
 
-	private final Long indexTotal;
+	private final long indexTotal;
 
-	private final Long pagesProcessed;
+	private final long pagesProcessed;
 
-	private final Long rollupsIndexed;
+	private final long rollupsIndexed;
 
-	private final Long searchFailures;
+	private final long searchFailures;
 
-	private final Long searchTimeInMs;
+	private final long searchTimeInMs;
 
-	private final Long searchTotal;
+	private final long searchTotal;
 
-	private final Long triggerCount;
+	private final long triggerCount;
 
-	private final Long processingTimeInMs;
+	private final long processingTimeInMs;
 
-	private final Long processingTotal;
+	private final long processingTotal;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -85,84 +84,84 @@ public final class RollupJobStats implements JsonpSerializable {
 	/**
 	 * API name: {@code documents_processed}
 	 */
-	public Long documentsProcessed() {
+	public long documentsProcessed() {
 		return this.documentsProcessed;
 	}
 
 	/**
 	 * API name: {@code index_failures}
 	 */
-	public Long indexFailures() {
+	public long indexFailures() {
 		return this.indexFailures;
 	}
 
 	/**
 	 * API name: {@code index_time_in_ms}
 	 */
-	public Long indexTimeInMs() {
+	public long indexTimeInMs() {
 		return this.indexTimeInMs;
 	}
 
 	/**
 	 * API name: {@code index_total}
 	 */
-	public Long indexTotal() {
+	public long indexTotal() {
 		return this.indexTotal;
 	}
 
 	/**
 	 * API name: {@code pages_processed}
 	 */
-	public Long pagesProcessed() {
+	public long pagesProcessed() {
 		return this.pagesProcessed;
 	}
 
 	/**
 	 * API name: {@code rollups_indexed}
 	 */
-	public Long rollupsIndexed() {
+	public long rollupsIndexed() {
 		return this.rollupsIndexed;
 	}
 
 	/**
 	 * API name: {@code search_failures}
 	 */
-	public Long searchFailures() {
+	public long searchFailures() {
 		return this.searchFailures;
 	}
 
 	/**
 	 * API name: {@code search_time_in_ms}
 	 */
-	public Long searchTimeInMs() {
+	public long searchTimeInMs() {
 		return this.searchTimeInMs;
 	}
 
 	/**
 	 * API name: {@code search_total}
 	 */
-	public Long searchTotal() {
+	public long searchTotal() {
 		return this.searchTotal;
 	}
 
 	/**
 	 * API name: {@code trigger_count}
 	 */
-	public Long triggerCount() {
+	public long triggerCount() {
 		return this.triggerCount;
 	}
 
 	/**
 	 * API name: {@code processing_time_in_ms}
 	 */
-	public Long processingTimeInMs() {
+	public long processingTimeInMs() {
 		return this.processingTimeInMs;
 	}
 
 	/**
 	 * API name: {@code processing_total}
 	 */
-	public Long processingTotal() {
+	public long processingTotal() {
 		return this.processingTotal;
 	}
 
@@ -248,7 +247,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code documents_processed}
 		 */
-		public Builder documentsProcessed(Long value) {
+		public Builder documentsProcessed(long value) {
 			this.documentsProcessed = value;
 			return this;
 		}
@@ -256,7 +255,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_failures}
 		 */
-		public Builder indexFailures(Long value) {
+		public Builder indexFailures(long value) {
 			this.indexFailures = value;
 			return this;
 		}
@@ -264,7 +263,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_time_in_ms}
 		 */
-		public Builder indexTimeInMs(Long value) {
+		public Builder indexTimeInMs(long value) {
 			this.indexTimeInMs = value;
 			return this;
 		}
@@ -272,7 +271,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_total}
 		 */
-		public Builder indexTotal(Long value) {
+		public Builder indexTotal(long value) {
 			this.indexTotal = value;
 			return this;
 		}
@@ -280,7 +279,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code pages_processed}
 		 */
-		public Builder pagesProcessed(Long value) {
+		public Builder pagesProcessed(long value) {
 			this.pagesProcessed = value;
 			return this;
 		}
@@ -288,7 +287,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code rollups_indexed}
 		 */
-		public Builder rollupsIndexed(Long value) {
+		public Builder rollupsIndexed(long value) {
 			this.rollupsIndexed = value;
 			return this;
 		}
@@ -296,7 +295,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code search_failures}
 		 */
-		public Builder searchFailures(Long value) {
+		public Builder searchFailures(long value) {
 			this.searchFailures = value;
 			return this;
 		}
@@ -304,7 +303,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code search_time_in_ms}
 		 */
-		public Builder searchTimeInMs(Long value) {
+		public Builder searchTimeInMs(long value) {
 			this.searchTimeInMs = value;
 			return this;
 		}
@@ -312,7 +311,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code search_total}
 		 */
-		public Builder searchTotal(Long value) {
+		public Builder searchTotal(long value) {
 			this.searchTotal = value;
 			return this;
 		}
@@ -320,7 +319,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code trigger_count}
 		 */
-		public Builder triggerCount(Long value) {
+		public Builder triggerCount(long value) {
 			this.triggerCount = value;
 			return this;
 		}
@@ -328,7 +327,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code processing_time_in_ms}
 		 */
-		public Builder processingTimeInMs(Long value) {
+		public Builder processingTimeInMs(long value) {
 			this.processingTimeInMs = value;
 			return this;
 		}
@@ -336,7 +335,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code processing_total}
 		 */
-		public Builder processingTotal(Long value) {
+		public Builder processingTotal(long value) {
 			this.processingTotal = value;
 			return this;
 		}

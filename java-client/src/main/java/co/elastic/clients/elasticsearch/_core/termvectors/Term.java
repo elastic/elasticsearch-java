@@ -50,7 +50,7 @@ public final class Term implements JsonpSerializable {
 	@Nullable
 	private final Double score;
 
-	private final Integer termFreq;
+	private final int termFreq;
 
 	private final List<Token> tokens;
 
@@ -88,7 +88,7 @@ public final class Term implements JsonpSerializable {
 	/**
 	 * API name: {@code term_freq}
 	 */
-	public Integer termFreq() {
+	public int termFreq() {
 		return this.termFreq;
 	}
 
@@ -189,7 +189,7 @@ public final class Term implements JsonpSerializable {
 		/**
 		 * API name: {@code term_freq}
 		 */
-		public Builder termFreq(Integer value) {
+		public Builder termFreq(int value) {
 			this.termFreq = value;
 			return this;
 		}

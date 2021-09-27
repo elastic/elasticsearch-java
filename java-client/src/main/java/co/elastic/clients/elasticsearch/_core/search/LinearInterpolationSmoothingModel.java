@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _global.search._types.LinearInterpolationSmoothingModel
 @JsonpDeserializable
 public final class LinearInterpolationSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
-	private final Double bigramLambda;
+	private final double bigramLambda;
 
-	private final Double trigramLambda;
+	private final double trigramLambda;
 
-	private final Double unigramLambda;
+	private final double unigramLambda;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,21 +65,21 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 	/**
 	 * API name: {@code bigram_lambda}
 	 */
-	public Double bigramLambda() {
+	public double bigramLambda() {
 		return this.bigramLambda;
 	}
 
 	/**
 	 * API name: {@code trigram_lambda}
 	 */
-	public Double trigramLambda() {
+	public double trigramLambda() {
 		return this.trigramLambda;
 	}
 
 	/**
 	 * API name: {@code unigram_lambda}
 	 */
-	public Double unigramLambda() {
+	public double unigramLambda() {
 		return this.unigramLambda;
 	}
 
@@ -121,7 +120,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		/**
 		 * API name: {@code bigram_lambda}
 		 */
-		public Builder bigramLambda(Double value) {
+		public Builder bigramLambda(double value) {
 			this.bigramLambda = value;
 			return this;
 		}
@@ -129,7 +128,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		/**
 		 * API name: {@code trigram_lambda}
 		 */
-		public Builder trigramLambda(Double value) {
+		public Builder trigramLambda(double value) {
 			this.trigramLambda = value;
 			return this;
 		}
@@ -137,7 +136,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		/**
 		 * API name: {@code unigram_lambda}
 		 */
-		public Builder unigramLambda(Double value) {
+		public Builder unigramLambda(double value) {
 			this.unigramLambda = value;
 			return this;
 		}

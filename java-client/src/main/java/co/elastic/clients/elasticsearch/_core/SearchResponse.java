@@ -58,9 +58,9 @@ import javax.annotation.Nullable;
 // typedef: _global.search.Response
 
 public class SearchResponse<TDocument> implements JsonpSerializable {
-	private final Long took;
+	private final long took;
 
-	private final Boolean timedOut;
+	private final boolean timedOut;
 
 	private final ShardStatistics shards;
 
@@ -128,14 +128,14 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Long took() {
+	public long took() {
 		return this.took;
 	}
 
 	/**
 	 * API name: {@code timed_out}
 	 */
-	public Boolean timedOut() {
+	public boolean timedOut() {
 		return this.timedOut;
 	}
 
@@ -435,7 +435,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public BuilderT took(Long value) {
+		public BuilderT took(long value) {
 			this.took = value;
 			return self();
 		}
@@ -443,7 +443,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code timed_out}
 		 */
-		public BuilderT timedOut(Boolean value) {
+		public BuilderT timedOut(boolean value) {
 			this.timedOut = value;
 			return self();
 		}

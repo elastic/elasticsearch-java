@@ -42,27 +42,27 @@ import javax.annotation.Nullable;
 // typedef: _global.reindex_rethrottle.ReindexStatus
 @JsonpDeserializable
 public final class ReindexStatus implements JsonpSerializable {
-	private final Long batches;
+	private final long batches;
 
-	private final Long created;
+	private final long created;
 
-	private final Long deleted;
+	private final long deleted;
 
-	private final Long noops;
+	private final long noops;
 
-	private final Float requestsPerSecond;
+	private final float requestsPerSecond;
 
 	private final Retries retries;
 
-	private final Long throttledMillis;
+	private final long throttledMillis;
 
-	private final Long throttledUntilMillis;
+	private final long throttledUntilMillis;
 
-	private final Long total;
+	private final long total;
 
-	private final Long updated;
+	private final long updated;
 
-	private final Long versionConflicts;
+	private final long versionConflicts;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -85,35 +85,35 @@ public final class ReindexStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code batches}
 	 */
-	public Long batches() {
+	public long batches() {
 		return this.batches;
 	}
 
 	/**
 	 * API name: {@code created}
 	 */
-	public Long created() {
+	public long created() {
 		return this.created;
 	}
 
 	/**
 	 * API name: {@code deleted}
 	 */
-	public Long deleted() {
+	public long deleted() {
 		return this.deleted;
 	}
 
 	/**
 	 * API name: {@code noops}
 	 */
-	public Long noops() {
+	public long noops() {
 		return this.noops;
 	}
 
 	/**
 	 * API name: {@code requests_per_second}
 	 */
-	public Float requestsPerSecond() {
+	public float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -127,35 +127,35 @@ public final class ReindexStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code throttled_millis}
 	 */
-	public Long throttledMillis() {
+	public long throttledMillis() {
 		return this.throttledMillis;
 	}
 
 	/**
 	 * API name: {@code throttled_until_millis}
 	 */
-	public Long throttledUntilMillis() {
+	public long throttledUntilMillis() {
 		return this.throttledUntilMillis;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code updated}
 	 */
-	public Long updated() {
+	public long updated() {
 		return this.updated;
 	}
 
 	/**
 	 * API name: {@code version_conflicts}
 	 */
-	public Long versionConflicts() {
+	public long versionConflicts() {
 		return this.versionConflicts;
 	}
 
@@ -236,7 +236,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code batches}
 		 */
-		public Builder batches(Long value) {
+		public Builder batches(long value) {
 			this.batches = value;
 			return this;
 		}
@@ -244,7 +244,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code created}
 		 */
-		public Builder created(Long value) {
+		public Builder created(long value) {
 			this.created = value;
 			return this;
 		}
@@ -252,7 +252,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted}
 		 */
-		public Builder deleted(Long value) {
+		public Builder deleted(long value) {
 			this.deleted = value;
 			return this;
 		}
@@ -260,7 +260,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code noops}
 		 */
-		public Builder noops(Long value) {
+		public Builder noops(long value) {
 			this.noops = value;
 			return this;
 		}
@@ -268,7 +268,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(Float value) {
+		public Builder requestsPerSecond(float value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -291,7 +291,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_millis}
 		 */
-		public Builder throttledMillis(Long value) {
+		public Builder throttledMillis(long value) {
 			this.throttledMillis = value;
 			return this;
 		}
@@ -299,7 +299,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until_millis}
 		 */
-		public Builder throttledUntilMillis(Long value) {
+		public Builder throttledUntilMillis(long value) {
 			this.throttledUntilMillis = value;
 			return this;
 		}
@@ -307,7 +307,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Long value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -315,7 +315,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code updated}
 		 */
-		public Builder updated(Long value) {
+		public Builder updated(long value) {
 			this.updated = value;
 			return this;
 		}
@@ -323,7 +323,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code version_conflicts}
 		 */
-		public Builder versionConflicts(Long value) {
+		public Builder versionConflicts(long value) {
 			this.versionConflicts = value;
 			return this;
 		}

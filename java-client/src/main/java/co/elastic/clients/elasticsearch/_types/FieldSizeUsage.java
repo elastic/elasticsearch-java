@@ -43,7 +43,7 @@ public final class FieldSizeUsage implements JsonpSerializable {
 	@Nullable
 	private final String size;
 
-	private final Long sizeInBytes;
+	private final long sizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ public final class FieldSizeUsage implements JsonpSerializable {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Long sizeInBytes() {
+	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -114,7 +114,7 @@ public final class FieldSizeUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Long value) {
+		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}

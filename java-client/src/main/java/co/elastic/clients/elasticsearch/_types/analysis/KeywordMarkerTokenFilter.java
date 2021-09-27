@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.KeywordMarkerTokenFilter
 @JsonpDeserializable
 public final class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Boolean ignoreCase;
+	private final boolean ignoreCase;
 
 	private final List<String> keywords;
 
@@ -73,7 +73,7 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 	/**
 	 * API name: {@code ignore_case}
 	 */
-	public Boolean ignoreCase() {
+	public boolean ignoreCase() {
 		return this.ignoreCase;
 	}
 
@@ -141,7 +141,7 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 		/**
 		 * API name: {@code ignore_case}
 		 */
-		public Builder ignoreCase(Boolean value) {
+		public Builder ignoreCase(boolean value) {
 			this.ignoreCase = value;
 			return this;
 		}

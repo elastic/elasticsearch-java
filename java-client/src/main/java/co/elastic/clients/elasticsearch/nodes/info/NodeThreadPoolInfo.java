@@ -49,7 +49,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	@Nullable
 	private final Integer max;
 
-	private final Integer queueSize;
+	private final int queueSize;
 
 	@Nullable
 	private final Integer size;
@@ -96,7 +96,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code queue_size}
 	 */
-	public Integer queueSize() {
+	public int queueSize() {
 		return this.queueSize;
 	}
 
@@ -209,7 +209,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code queue_size}
 		 */
-		public Builder queueSize(Integer value) {
+		public Builder queueSize(int value) {
 			this.queueSize = value;
 			return this;
 		}

@@ -56,7 +56,7 @@ public final class TemplateMapping implements JsonpSerializable {
 
 	private final TypeMapping mappings;
 
-	private final Integer order;
+	private final int order;
 
 	private final Map<String, JsonData> settings;
 
@@ -100,7 +100,7 @@ public final class TemplateMapping implements JsonpSerializable {
 	/**
 	 * API name: {@code order}
 	 */
-	public Integer order() {
+	public int order() {
 		return this.order;
 	}
 
@@ -268,7 +268,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(Integer value) {
+		public Builder order(int value) {
 			this.order = value;
 			return this;
 		}

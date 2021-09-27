@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 // typedef: watcher._types.ExecutionResultCondition
 @JsonpDeserializable
 public final class ExecutionResultCondition implements JsonpSerializable {
-	private final Boolean met;
+	private final boolean met;
 
 	private final ActionStatusOptions status;
 
@@ -58,7 +58,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 	/**
 	 * API name: {@code met}
 	 */
-	public Boolean met() {
+	public boolean met() {
 		return this.met;
 	}
 
@@ -113,7 +113,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 		/**
 		 * API name: {@code met}
 		 */
-		public Builder met(Boolean value) {
+		public Builder met(boolean value) {
 			this.met = value;
 			return this;
 		}

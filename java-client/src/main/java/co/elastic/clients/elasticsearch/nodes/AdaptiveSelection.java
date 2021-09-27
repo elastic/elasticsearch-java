@@ -40,17 +40,17 @@ import javax.annotation.Nullable;
 // typedef: nodes._types.AdaptiveSelection
 @JsonpDeserializable
 public final class AdaptiveSelection implements JsonpSerializable {
-	private final Long avgQueueSize;
+	private final long avgQueueSize;
 
-	private final Long avgResponseTime;
+	private final long avgResponseTime;
 
-	private final Long avgResponseTimeNs;
+	private final long avgResponseTimeNs;
 
 	private final String avgServiceTime;
 
-	private final Long avgServiceTimeNs;
+	private final long avgServiceTimeNs;
 
-	private final Long outgoingSearches;
+	private final long outgoingSearches;
 
 	private final String rank;
 
@@ -71,21 +71,21 @@ public final class AdaptiveSelection implements JsonpSerializable {
 	/**
 	 * API name: {@code avg_queue_size}
 	 */
-	public Long avgQueueSize() {
+	public long avgQueueSize() {
 		return this.avgQueueSize;
 	}
 
 	/**
 	 * API name: {@code avg_response_time}
 	 */
-	public Long avgResponseTime() {
+	public long avgResponseTime() {
 		return this.avgResponseTime;
 	}
 
 	/**
 	 * API name: {@code avg_response_time_ns}
 	 */
-	public Long avgResponseTimeNs() {
+	public long avgResponseTimeNs() {
 		return this.avgResponseTimeNs;
 	}
 
@@ -99,14 +99,14 @@ public final class AdaptiveSelection implements JsonpSerializable {
 	/**
 	 * API name: {@code avg_service_time_ns}
 	 */
-	public Long avgServiceTimeNs() {
+	public long avgServiceTimeNs() {
 		return this.avgServiceTimeNs;
 	}
 
 	/**
 	 * API name: {@code outgoing_searches}
 	 */
-	public Long outgoingSearches() {
+	public long outgoingSearches() {
 		return this.outgoingSearches;
 	}
 
@@ -174,7 +174,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * API name: {@code avg_queue_size}
 		 */
-		public Builder avgQueueSize(Long value) {
+		public Builder avgQueueSize(long value) {
 			this.avgQueueSize = value;
 			return this;
 		}
@@ -182,7 +182,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * API name: {@code avg_response_time}
 		 */
-		public Builder avgResponseTime(Long value) {
+		public Builder avgResponseTime(long value) {
 			this.avgResponseTime = value;
 			return this;
 		}
@@ -190,7 +190,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * API name: {@code avg_response_time_ns}
 		 */
-		public Builder avgResponseTimeNs(Long value) {
+		public Builder avgResponseTimeNs(long value) {
 			this.avgResponseTimeNs = value;
 			return this;
 		}
@@ -206,7 +206,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * API name: {@code avg_service_time_ns}
 		 */
-		public Builder avgServiceTimeNs(Long value) {
+		public Builder avgServiceTimeNs(long value) {
 			this.avgServiceTimeNs = value;
 			return this;
 		}
@@ -214,7 +214,7 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		/**
 		 * API name: {@code outgoing_searches}
 		 */
-		public Builder outgoingSearches(Long value) {
+		public Builder outgoingSearches(long value) {
 			this.outgoingSearches = value;
 			return this;
 		}

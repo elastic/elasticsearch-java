@@ -48,7 +48,7 @@ public final class ExecutionResult implements JsonpSerializable {
 
 	private final ExecutionResultCondition condition;
 
-	private final Integer executionDuration;
+	private final int executionDuration;
 
 	private final String executionTime;
 
@@ -83,7 +83,7 @@ public final class ExecutionResult implements JsonpSerializable {
 	/**
 	 * API name: {@code execution_duration}
 	 */
-	public Integer executionDuration() {
+	public int executionDuration() {
 		return this.executionDuration;
 	}
 
@@ -210,7 +210,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * API name: {@code execution_duration}
 		 */
-		public Builder executionDuration(Integer value) {
+		public Builder executionDuration(int value) {
 			this.executionDuration = value;
 			return this;
 		}

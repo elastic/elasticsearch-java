@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: security._types.CreatedStatus
 @JsonpDeserializable
 public final class CreatedStatus implements JsonpSerializable {
-	private final Boolean created;
+	private final boolean created;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class CreatedStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code created}
 	 */
-	public Boolean created() {
+	public boolean created() {
 		return this.created;
 	}
 
@@ -83,7 +82,7 @@ public final class CreatedStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code created}
 		 */
-		public Builder created(Boolean value) {
+		public Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}

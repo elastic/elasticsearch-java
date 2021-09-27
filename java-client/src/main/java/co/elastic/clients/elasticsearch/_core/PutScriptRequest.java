@@ -259,8 +259,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 
 				int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
+				propsSet |= _id;
 				if (request.context() != null)
 					propsSet |= _context;
 

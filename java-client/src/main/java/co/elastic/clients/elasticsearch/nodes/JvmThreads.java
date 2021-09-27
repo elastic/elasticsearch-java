@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: nodes._types.JvmThreads
 @JsonpDeserializable
 public final class JvmThreads implements JsonpSerializable {
-	private final Long count;
+	private final long count;
 
-	private final Long peakCount;
+	private final long peakCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class JvmThreads implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Long count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code peak_count}
 	 */
-	public Long peakCount() {
+	public long peakCount() {
 		return this.peakCount;
 	}
 
@@ -98,7 +97,7 @@ public final class JvmThreads implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Long value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class JvmThreads implements JsonpSerializable {
 		/**
 		 * API name: {@code peak_count}
 		 */
-		public Builder peakCount(Long value) {
+		public Builder peakCount(long value) {
 			this.peakCount = value;
 			return this;
 		}

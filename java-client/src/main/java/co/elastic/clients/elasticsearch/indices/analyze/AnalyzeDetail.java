@@ -49,7 +49,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 	@Nullable
 	private final List<CharFilterDetail> charfilters;
 
-	private final Boolean customAnalyzer;
+	private final boolean customAnalyzer;
 
 	@Nullable
 	private final List<TokenDetail> tokenfilters;
@@ -88,7 +88,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 	/**
 	 * API name: {@code custom_analyzer}
 	 */
-	public Boolean customAnalyzer() {
+	public boolean customAnalyzer() {
 		return this.customAnalyzer;
 	}
 
@@ -239,7 +239,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code custom_analyzer}
 		 */
-		public Builder customAnalyzer(Boolean value) {
+		public Builder customAnalyzer(boolean value) {
 			this.customAnalyzer = value;
 			return this;
 		}

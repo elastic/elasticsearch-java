@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricExpectedReciprocalRank
 @JsonpDeserializable
 public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
-	private final Integer maximumRelevance;
+	private final int maximumRelevance;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -54,7 +53,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 	 * <p>
 	 * API name: {@code maximum_relevance}
 	 */
-	public Integer maximumRelevance() {
+	public int maximumRelevance() {
 		return this.maximumRelevance;
 	}
 
@@ -82,7 +81,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 		 * <p>
 		 * API name: {@code maximum_relevance}
 		 */
-		public Builder maximumRelevance(Integer value) {
+		public Builder maximumRelevance(int value) {
 			this.maximumRelevance = value;
 			return this;
 		}

@@ -107,8 +107,7 @@ public final class DeactivateWatchRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.watchId() != null)
-					propsSet |= _watchId;
+				propsSet |= _watchId;
 
 				if (propsSet == (_watchId)) {
 					StringBuilder buf = new StringBuilder();

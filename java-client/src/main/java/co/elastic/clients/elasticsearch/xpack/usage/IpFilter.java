@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.IpFilter
 @JsonpDeserializable
 public final class IpFilter implements JsonpSerializable {
-	private final Boolean http;
+	private final boolean http;
 
-	private final Boolean transport;
+	private final boolean transport;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class IpFilter implements JsonpSerializable {
 	/**
 	 * API name: {@code http}
 	 */
-	public Boolean http() {
+	public boolean http() {
 		return this.http;
 	}
 
 	/**
 	 * API name: {@code transport}
 	 */
-	public Boolean transport() {
+	public boolean transport() {
 		return this.transport;
 	}
 
@@ -98,7 +97,7 @@ public final class IpFilter implements JsonpSerializable {
 		/**
 		 * API name: {@code http}
 		 */
-		public Builder http(Boolean value) {
+		public Builder http(boolean value) {
 			this.http = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class IpFilter implements JsonpSerializable {
 		/**
 		 * API name: {@code transport}
 		 */
-		public Builder transport(Boolean value) {
+		public Builder transport(boolean value) {
 			this.transport = value;
 			return this;
 		}

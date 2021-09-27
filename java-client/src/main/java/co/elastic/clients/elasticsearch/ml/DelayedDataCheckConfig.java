@@ -43,7 +43,7 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 	@Nullable
 	private final String checkWindow;
 
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
@@ -130,7 +130,7 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}

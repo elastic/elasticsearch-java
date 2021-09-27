@@ -54,7 +54,7 @@ public final class WatchStatus implements JsonpSerializable {
 
 	private final ActivationState state;
 
-	private final Long version;
+	private final long version;
 
 	@Nullable
 	private final String executionState;
@@ -105,7 +105,7 @@ public final class WatchStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -253,7 +253,7 @@ public final class WatchStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}

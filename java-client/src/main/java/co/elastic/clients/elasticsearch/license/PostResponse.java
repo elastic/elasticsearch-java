@@ -44,7 +44,7 @@ public final class PostResponse implements JsonpSerializable {
 	@Nullable
 	private final Acknowledgement acknowledge;
 
-	private final Boolean acknowledged;
+	private final boolean acknowledged;
 
 	private final LicenseStatus licenseStatus;
 
@@ -69,7 +69,7 @@ public final class PostResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code acknowledged}
 	 */
-	public Boolean acknowledged() {
+	public boolean acknowledged() {
 		return this.acknowledged;
 	}
 
@@ -137,7 +137,7 @@ public final class PostResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code acknowledged}
 		 */
-		public Builder acknowledged(Boolean value) {
+		public Builder acknowledged(boolean value) {
 			this.acknowledged = value;
 			return this;
 		}

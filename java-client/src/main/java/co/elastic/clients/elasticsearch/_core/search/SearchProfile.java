@@ -47,7 +47,7 @@ public final class SearchProfile implements JsonpSerializable {
 
 	private final List<QueryProfile> query;
 
-	private final Long rewriteTime;
+	private final long rewriteTime;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ public final class SearchProfile implements JsonpSerializable {
 	/**
 	 * API name: {@code rewrite_time}
 	 */
-	public Long rewriteTime() {
+	public long rewriteTime() {
 		return this.rewriteTime;
 	}
 
@@ -209,7 +209,7 @@ public final class SearchProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code rewrite_time}
 		 */
-		public Builder rewriteTime(Long value) {
+		public Builder rewriteTime(long value) {
 			this.rewriteTime = value;
 			return this;
 		}

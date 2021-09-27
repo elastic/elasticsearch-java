@@ -47,7 +47,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 
 	private final String index;
 
-	private final Integer status;
+	private final int status;
 
 	private final String type;
 
@@ -87,7 +87,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 	/**
 	 * API name: {@code status}
 	 */
-	public Integer status() {
+	public int status() {
 		return this.status;
 	}
 
@@ -176,7 +176,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(Integer value) {
+		public Builder status(int value) {
 			this.status = value;
 			return this;
 		}

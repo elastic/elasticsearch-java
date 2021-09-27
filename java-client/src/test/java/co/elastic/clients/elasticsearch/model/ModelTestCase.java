@@ -32,6 +32,9 @@ import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.util.Random;
 
+/**
+ * Base class for tests that encode/decode json
+ */
 abstract public class ModelTestCase extends Assert {
 
     // Same value for all tests in a test run

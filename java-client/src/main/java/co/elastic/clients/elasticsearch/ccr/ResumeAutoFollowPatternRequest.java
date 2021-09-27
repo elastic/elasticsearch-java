@@ -109,8 +109,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();

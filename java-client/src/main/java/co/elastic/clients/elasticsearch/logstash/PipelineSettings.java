@@ -40,19 +40,19 @@ import javax.annotation.Nullable;
 // typedef: logstash._types.PipelineSettings
 @JsonpDeserializable
 public final class PipelineSettings implements JsonpSerializable {
-	private final Integer pipelineWorkers;
+	private final int pipelineWorkers;
 
-	private final Integer pipelineBatchSize;
+	private final int pipelineBatchSize;
 
-	private final Integer pipelineBatchDelay;
+	private final int pipelineBatchDelay;
 
 	private final String queueType;
 
-	private final Integer queueMaxBytesNumber;
+	private final int queueMaxBytesNumber;
 
 	private final String queueMaxBytesUnits;
 
-	private final Integer queueCheckpointWrites;
+	private final int queueCheckpointWrites;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,21 +71,21 @@ public final class PipelineSettings implements JsonpSerializable {
 	/**
 	 * API name: {@code pipeline.workers}
 	 */
-	public Integer pipelineWorkers() {
+	public int pipelineWorkers() {
 		return this.pipelineWorkers;
 	}
 
 	/**
 	 * API name: {@code pipeline.batch.size}
 	 */
-	public Integer pipelineBatchSize() {
+	public int pipelineBatchSize() {
 		return this.pipelineBatchSize;
 	}
 
 	/**
 	 * API name: {@code pipeline.batch.delay}
 	 */
-	public Integer pipelineBatchDelay() {
+	public int pipelineBatchDelay() {
 		return this.pipelineBatchDelay;
 	}
 
@@ -99,7 +99,7 @@ public final class PipelineSettings implements JsonpSerializable {
 	/**
 	 * API name: {@code queue.max_bytes.number}
 	 */
-	public Integer queueMaxBytesNumber() {
+	public int queueMaxBytesNumber() {
 		return this.queueMaxBytesNumber;
 	}
 
@@ -113,7 +113,7 @@ public final class PipelineSettings implements JsonpSerializable {
 	/**
 	 * API name: {@code queue.checkpoint.writes}
 	 */
-	public Integer queueCheckpointWrites() {
+	public int queueCheckpointWrites() {
 		return this.queueCheckpointWrites;
 	}
 
@@ -174,7 +174,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code pipeline.workers}
 		 */
-		public Builder pipelineWorkers(Integer value) {
+		public Builder pipelineWorkers(int value) {
 			this.pipelineWorkers = value;
 			return this;
 		}
@@ -182,7 +182,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code pipeline.batch.size}
 		 */
-		public Builder pipelineBatchSize(Integer value) {
+		public Builder pipelineBatchSize(int value) {
 			this.pipelineBatchSize = value;
 			return this;
 		}
@@ -190,7 +190,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code pipeline.batch.delay}
 		 */
-		public Builder pipelineBatchDelay(Integer value) {
+		public Builder pipelineBatchDelay(int value) {
 			this.pipelineBatchDelay = value;
 			return this;
 		}
@@ -206,7 +206,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code queue.max_bytes.number}
 		 */
-		public Builder queueMaxBytesNumber(Integer value) {
+		public Builder queueMaxBytesNumber(int value) {
 			this.queueMaxBytesNumber = value;
 			return this;
 		}
@@ -222,7 +222,7 @@ public final class PipelineSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code queue.checkpoint.writes}
 		 */
-		public Builder queueCheckpointWrites(Integer value) {
+		public Builder queueCheckpointWrites(int value) {
 			this.queueCheckpointWrites = value;
 			return this;
 		}

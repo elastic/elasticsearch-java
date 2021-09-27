@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionThreadPool
 @JsonpDeserializable
 public final class ExecutionThreadPool implements JsonpSerializable {
-	private final Long maxSize;
+	private final long maxSize;
 
-	private final Long queueSize;
+	private final long queueSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 	/**
 	 * API name: {@code max_size}
 	 */
-	public Long maxSize() {
+	public long maxSize() {
 		return this.maxSize;
 	}
 
 	/**
 	 * API name: {@code queue_size}
 	 */
-	public Long queueSize() {
+	public long queueSize() {
 		return this.queueSize;
 	}
 
@@ -98,7 +97,7 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 		/**
 		 * API name: {@code max_size}
 		 */
-		public Builder maxSize(Long value) {
+		public Builder maxSize(long value) {
 			this.maxSize = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 		/**
 		 * API name: {@code queue_size}
 		 */
-		public Builder queueSize(Long value) {
+		public Builder queueSize(long value) {
 			this.queueSize = value;
 			return this;
 		}

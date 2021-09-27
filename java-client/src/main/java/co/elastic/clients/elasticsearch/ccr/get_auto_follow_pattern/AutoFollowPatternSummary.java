@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPatternSummary
 @JsonpDeserializable
 public final class AutoFollowPatternSummary implements JsonpSerializable {
-	private final Boolean active;
+	private final boolean active;
 
 	private final String remoteCluster;
 
@@ -55,7 +55,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 
 	private final List<String> leaderIndexExclusionPatterns;
 
-	private final Integer maxOutstandingReadRequests;
+	private final int maxOutstandingReadRequests;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	/**
 	 * API name: {@code active}
 	 */
-	public Boolean active() {
+	public boolean active() {
 		return this.active;
 	}
 
@@ -123,7 +123,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code max_outstanding_read_requests}
 	 */
-	public Integer maxOutstandingReadRequests() {
+	public int maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
@@ -194,7 +194,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code active}
 		 */
-		public Builder active(Boolean value) {
+		public Builder active(boolean value) {
 			this.active = value;
 			return this;
 		}
@@ -292,7 +292,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */
-		public Builder maxOutstandingReadRequests(Integer value) {
+		public Builder maxOutstandingReadRequests(int value) {
 			this.maxOutstandingReadRequests = value;
 			return this;
 		}

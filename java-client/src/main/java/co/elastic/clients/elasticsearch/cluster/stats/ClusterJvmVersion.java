@@ -41,11 +41,11 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.ClusterJvmVersion
 @JsonpDeserializable
 public final class ClusterJvmVersion implements JsonpSerializable {
-	private final Boolean bundledJdk;
+	private final boolean bundledJdk;
 
-	private final Integer count;
+	private final int count;
 
-	private final Boolean usingBundledJdk;
+	private final boolean usingBundledJdk;
 
 	private final String version;
 
@@ -72,21 +72,21 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 	/**
 	 * API name: {@code bundled_jdk}
 	 */
-	public Boolean bundledJdk() {
+	public boolean bundledJdk() {
 		return this.bundledJdk;
 	}
 
 	/**
 	 * API name: {@code count}
 	 */
-	public Integer count() {
+	public int count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code using_bundled_jdk}
 	 */
-	public Boolean usingBundledJdk() {
+	public boolean usingBundledJdk() {
 		return this.usingBundledJdk;
 	}
 
@@ -175,7 +175,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * API name: {@code bundled_jdk}
 		 */
-		public Builder bundledJdk(Boolean value) {
+		public Builder bundledJdk(boolean value) {
 			this.bundledJdk = value;
 			return this;
 		}
@@ -183,7 +183,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Integer value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -191,7 +191,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * API name: {@code using_bundled_jdk}
 		 */
-		public Builder usingBundledJdk(Boolean value) {
+		public Builder usingBundledJdk(boolean value) {
 			this.usingBundledJdk = value;
 			return this;
 		}

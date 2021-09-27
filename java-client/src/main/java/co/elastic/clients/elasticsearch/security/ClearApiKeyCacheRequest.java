@@ -132,8 +132,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.ids() != null)
-					propsSet |= _ids;
+				propsSet |= _ids;
 
 				if (propsSet == (_ids)) {
 					StringBuilder buf = new StringBuilder();

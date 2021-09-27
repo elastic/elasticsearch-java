@@ -224,10 +224,8 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
-				if (request.snapshotId() != null)
-					propsSet |= _snapshotId;
+				propsSet |= _jobId;
+				propsSet |= _snapshotId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();

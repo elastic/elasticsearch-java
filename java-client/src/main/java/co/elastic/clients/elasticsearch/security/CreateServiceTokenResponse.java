@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: security.create_service_token.Response
 @JsonpDeserializable
 public final class CreateServiceTokenResponse implements JsonpSerializable {
-	private final Boolean created;
+	private final boolean created;
 
 	private final Token token;
 
@@ -57,7 +57,7 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code created}
 	 */
-	public Boolean created() {
+	public boolean created() {
 		return this.created;
 	}
 
@@ -100,7 +100,7 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code created}
 		 */
-		public Builder created(Boolean value) {
+		public Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}

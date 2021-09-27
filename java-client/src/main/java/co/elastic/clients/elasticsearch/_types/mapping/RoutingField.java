@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RoutingField
 @JsonpDeserializable
 public final class RoutingField implements JsonpSerializable {
-	private final Boolean required;
+	private final boolean required;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class RoutingField implements JsonpSerializable {
 	/**
 	 * API name: {@code required}
 	 */
-	public Boolean required() {
+	public boolean required() {
 		return this.required;
 	}
 
@@ -83,7 +82,7 @@ public final class RoutingField implements JsonpSerializable {
 		/**
 		 * API name: {@code required}
 		 */
-		public Builder required(Boolean value) {
+		public Builder required(boolean value) {
 			this.required = value;
 			return this;
 		}

@@ -132,8 +132,7 @@ public final class GetNodeRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
-					propsSet |= _nodeId;
+				propsSet |= _nodeId;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();

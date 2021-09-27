@@ -69,7 +69,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	@Nullable
 	private final DatafeedIndicesOptions indicesOptions;
 
-	private final Integer maxEmptySearches;
+	private final int maxEmptySearches;
 
 	private final Query query;
 
@@ -81,7 +81,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	@Nullable
 	private final Map<String, ScriptField> scriptFields;
 
-	private final Integer scrollSize;
+	private final int scrollSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -165,7 +165,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code max_empty_searches}
 	 */
-	public Integer maxEmptySearches() {
+	public int maxEmptySearches() {
 		return this.maxEmptySearches;
 	}
 
@@ -202,7 +202,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code scroll_size}
 	 */
-	public Integer scrollSize() {
+	public int scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -471,7 +471,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code max_empty_searches}
 		 */
-		public Builder maxEmptySearches(Integer value) {
+		public Builder maxEmptySearches(int value) {
 			this.maxEmptySearches = value;
 			return this;
 		}
@@ -568,7 +568,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(Integer value) {
+		public Builder scrollSize(int value) {
 			this.scrollSize = value;
 			return this;
 		}

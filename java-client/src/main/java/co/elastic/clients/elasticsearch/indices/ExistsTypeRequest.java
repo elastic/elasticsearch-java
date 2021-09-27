@@ -325,10 +325,8 @@ public final class ExistsTypeRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
+				propsSet |= _index;
+				propsSet |= _type;
 
 				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();

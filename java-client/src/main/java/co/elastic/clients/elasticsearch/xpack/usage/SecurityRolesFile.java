@@ -35,16 +35,15 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesFile
 @JsonpDeserializable
 public final class SecurityRolesFile implements JsonpSerializable {
-	private final Boolean dls;
+	private final boolean dls;
 
-	private final Boolean fls;
+	private final boolean fls;
 
-	private final Long size;
+	private final long size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,21 +58,21 @@ public final class SecurityRolesFile implements JsonpSerializable {
 	/**
 	 * API name: {@code dls}
 	 */
-	public Boolean dls() {
+	public boolean dls() {
 		return this.dls;
 	}
 
 	/**
 	 * API name: {@code fls}
 	 */
-	public Boolean fls() {
+	public boolean fls() {
 		return this.fls;
 	}
 
 	/**
 	 * API name: {@code size}
 	 */
-	public Long size() {
+	public long size() {
 		return this.size;
 	}
 
@@ -114,7 +113,7 @@ public final class SecurityRolesFile implements JsonpSerializable {
 		/**
 		 * API name: {@code dls}
 		 */
-		public Builder dls(Boolean value) {
+		public Builder dls(boolean value) {
 			this.dls = value;
 			return this;
 		}
@@ -122,7 +121,7 @@ public final class SecurityRolesFile implements JsonpSerializable {
 		/**
 		 * API name: {@code fls}
 		 */
-		public Builder fls(Boolean value) {
+		public Builder fls(boolean value) {
 			this.fls = value;
 			return this;
 		}
@@ -130,7 +129,7 @@ public final class SecurityRolesFile implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(Long value) {
+		public Builder size(long value) {
 			this.size = value;
 			return this;
 		}

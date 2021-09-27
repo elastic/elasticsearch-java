@@ -160,8 +160,7 @@ public final class AckWatchRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.watchId() != null)
-					propsSet |= _watchId;
+				propsSet |= _watchId;
 				if (request.actionId() != null)
 					propsSet |= _actionId;
 

@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsDataCounts
 @JsonpDeserializable
 public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
-	private final Integer skippedDocsCount;
+	private final int skippedDocsCount;
 
-	private final Integer testDocsCount;
+	private final int testDocsCount;
 
-	private final Integer trainingDocsCount;
+	private final int trainingDocsCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +63,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code skipped_docs_count}
 	 */
-	public Integer skippedDocsCount() {
+	public int skippedDocsCount() {
 		return this.skippedDocsCount;
 	}
 
@@ -74,7 +73,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code test_docs_count}
 	 */
-	public Integer testDocsCount() {
+	public int testDocsCount() {
 		return this.testDocsCount;
 	}
 
@@ -83,7 +82,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code training_docs_count}
 	 */
-	public Integer trainingDocsCount() {
+	public int trainingDocsCount() {
 		return this.trainingDocsCount;
 	}
 
@@ -130,7 +129,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code skipped_docs_count}
 		 */
-		public Builder skippedDocsCount(Integer value) {
+		public Builder skippedDocsCount(int value) {
 			this.skippedDocsCount = value;
 			return this;
 		}
@@ -141,7 +140,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code test_docs_count}
 		 */
-		public Builder testDocsCount(Integer value) {
+		public Builder testDocsCount(int value) {
 			this.testDocsCount = value;
 			return this;
 		}
@@ -151,7 +150,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code training_docs_count}
 		 */
-		public Builder trainingDocsCount(Integer value) {
+		public Builder trainingDocsCount(int value) {
 			this.trainingDocsCount = value;
 			return this;
 		}

@@ -52,7 +52,7 @@ public final class ShardStore implements JsonpSerializable {
 
 	private final String id;
 
-	private final Long legacyVersion;
+	private final long legacyVersion;
 
 	private final String name;
 
@@ -106,7 +106,7 @@ public final class ShardStore implements JsonpSerializable {
 	/**
 	 * API name: {@code legacy_version}
 	 */
-	public Long legacyVersion() {
+	public long legacyVersion() {
 		return this.legacyVersion;
 	}
 
@@ -242,7 +242,7 @@ public final class ShardStore implements JsonpSerializable {
 		/**
 		 * API name: {@code legacy_version}
 		 */
-		public Builder legacyVersion(Long value) {
+		public Builder legacyVersion(long value) {
 			this.legacyVersion = value;
 			return this;
 		}

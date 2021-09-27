@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public final class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> keepWords;
 
-	private final Boolean keepWordsCase;
+	private final boolean keepWordsCase;
 
 	private final String keepWordsPath;
 
@@ -77,7 +77,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * API name: {@code keep_words_case}
 	 */
-	public Boolean keepWordsCase() {
+	public boolean keepWordsCase() {
 		return this.keepWordsCase;
 	}
 
@@ -153,7 +153,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 		/**
 		 * API name: {@code keep_words_case}
 		 */
-		public Builder keepWordsCase(Boolean value) {
+		public Builder keepWordsCase(boolean value) {
 			this.keepWordsCase = value;
 			return this;
 		}

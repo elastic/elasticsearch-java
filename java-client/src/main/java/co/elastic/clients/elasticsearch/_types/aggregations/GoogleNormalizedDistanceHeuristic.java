@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GoogleNormalizedDistanceHeuristic
 @JsonpDeserializable
 public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
-	private final Boolean backgroundIsSuperset;
+	private final boolean backgroundIsSuperset;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 	/**
 	 * API name: {@code background_is_superset}
 	 */
-	public Boolean backgroundIsSuperset() {
+	public boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
@@ -83,7 +82,7 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 		/**
 		 * API name: {@code background_is_superset}
 		 */
-		public Builder backgroundIsSuperset(Boolean value) {
+		public Builder backgroundIsSuperset(boolean value) {
 			this.backgroundIsSuperset = value;
 			return this;
 		}

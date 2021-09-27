@@ -47,7 +47,7 @@ public final class CertificateInformation implements JsonpSerializable {
 
 	private final String format;
 
-	private final Boolean hasPrivateKey;
+	private final boolean hasPrivateKey;
 
 	private final String path;
 
@@ -94,7 +94,7 @@ public final class CertificateInformation implements JsonpSerializable {
 	/**
 	 * API name: {@code has_private_key}
 	 */
-	public Boolean hasPrivateKey() {
+	public boolean hasPrivateKey() {
 		return this.hasPrivateKey;
 	}
 
@@ -205,7 +205,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code has_private_key}
 		 */
-		public Builder hasPrivateKey(Boolean value) {
+		public Builder hasPrivateKey(boolean value) {
 			this.hasPrivateKey = value;
 			return this;
 		}

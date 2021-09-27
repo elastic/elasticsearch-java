@@ -47,18 +47,18 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 	private final String index;
 
-	private final Long primaryTerm;
+	private final long primaryTerm;
 
 	private final Result result;
 
-	private final Integer seqNo;
+	private final int seqNo;
 
 	private final ShardStatistics shards;
 
 	@Nullable
 	private final String type;
 
-	private final Long version;
+	private final long version;
 
 	@Nullable
 	private final Boolean forcedRefresh;
@@ -96,7 +96,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	/**
 	 * API name: {@code _primary_term}
 	 */
-	public Long primaryTerm() {
+	public long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -110,7 +110,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	/**
 	 * API name: {@code _seq_no}
 	 */
-	public Integer seqNo() {
+	public int seqNo() {
 		return this.seqNo;
 	}
 
@@ -132,7 +132,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	/**
 	 * API name: {@code _version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -232,7 +232,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public BuilderT primaryTerm(Long value) {
+		public BuilderT primaryTerm(long value) {
 			this.primaryTerm = value;
 			return self();
 		}
@@ -248,7 +248,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public BuilderT seqNo(Integer value) {
+		public BuilderT seqNo(int value) {
 			this.seqNo = value;
 			return self();
 		}
@@ -279,7 +279,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public BuilderT version(Long value) {
+		public BuilderT version(long value) {
 			this.version = value;
 			return self();
 		}

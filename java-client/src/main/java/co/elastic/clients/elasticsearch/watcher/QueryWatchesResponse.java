@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 // typedef: watcher.query_watches.Response
 @JsonpDeserializable
 public final class QueryWatchesResponse implements JsonpSerializable {
-	private final Integer count;
+	private final int count;
 
 	private final List<QueryWatch> watches;
 
@@ -59,7 +59,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Integer count() {
+	public int count() {
 		return this.count;
 	}
 
@@ -107,7 +107,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Integer value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}

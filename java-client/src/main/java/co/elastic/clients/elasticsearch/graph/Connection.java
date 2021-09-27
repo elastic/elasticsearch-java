@@ -35,18 +35,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: graph._types.Connection
 @JsonpDeserializable
 public final class Connection implements JsonpSerializable {
-	private final Long docCount;
+	private final long docCount;
 
-	private final Long source;
+	private final long source;
 
-	private final Long target;
+	private final long target;
 
-	private final Double weight;
+	private final double weight;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -62,28 +61,28 @@ public final class Connection implements JsonpSerializable {
 	/**
 	 * API name: {@code doc_count}
 	 */
-	public Long docCount() {
+	public long docCount() {
 		return this.docCount;
 	}
 
 	/**
 	 * API name: {@code source}
 	 */
-	public Long source() {
+	public long source() {
 		return this.source;
 	}
 
 	/**
 	 * API name: {@code target}
 	 */
-	public Long target() {
+	public long target() {
 		return this.target;
 	}
 
 	/**
 	 * API name: {@code weight}
 	 */
-	public Double weight() {
+	public double weight() {
 		return this.weight;
 	}
 
@@ -129,7 +128,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_count}
 		 */
-		public Builder docCount(Long value) {
+		public Builder docCount(long value) {
 			this.docCount = value;
 			return this;
 		}
@@ -137,7 +136,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * API name: {@code source}
 		 */
-		public Builder source(Long value) {
+		public Builder source(long value) {
 			this.source = value;
 			return this;
 		}
@@ -145,7 +144,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * API name: {@code target}
 		 */
-		public Builder target(Long value) {
+		public Builder target(long value) {
 			this.target = value;
 			return this;
 		}
@@ -153,7 +152,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * API name: {@code weight}
 		 */
-		public Builder weight(Double value) {
+		public Builder weight(double value) {
 			this.weight = value;
 			return this;
 		}

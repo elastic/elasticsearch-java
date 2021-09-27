@@ -107,8 +107,7 @@ public final class DeleteCalendarRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.calendarId() != null)
-					propsSet |= _calendarId;
+				propsSet |= _calendarId;
 
 				if (propsSet == (_calendarId)) {
 					StringBuilder buf = new StringBuilder();

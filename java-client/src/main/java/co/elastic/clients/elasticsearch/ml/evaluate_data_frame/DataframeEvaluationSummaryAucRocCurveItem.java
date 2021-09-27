@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRocCurveItem
 @JsonpDeserializable
 public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializable {
-	private final Double tpr;
+	private final double tpr;
 
-	private final Double fpr;
+	private final double fpr;
 
-	private final Double threshold;
+	private final double threshold;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,21 +57,21 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 	/**
 	 * API name: {@code tpr}
 	 */
-	public Double tpr() {
+	public double tpr() {
 		return this.tpr;
 	}
 
 	/**
 	 * API name: {@code fpr}
 	 */
-	public Double fpr() {
+	public double fpr() {
 		return this.fpr;
 	}
 
 	/**
 	 * API name: {@code threshold}
 	 */
-	public Double threshold() {
+	public double threshold() {
 		return this.threshold;
 	}
 
@@ -113,7 +112,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		/**
 		 * API name: {@code tpr}
 		 */
-		public Builder tpr(Double value) {
+		public Builder tpr(double value) {
 			this.tpr = value;
 			return this;
 		}
@@ -121,7 +120,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		/**
 		 * API name: {@code fpr}
 		 */
-		public Builder fpr(Double value) {
+		public Builder fpr(double value) {
 			this.fpr = value;
 			return this;
 		}
@@ -129,7 +128,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		/**
 		 * API name: {@code threshold}
 		 */
-		public Builder threshold(Double value) {
+		public Builder threshold(double value) {
 			this.threshold = value;
 			return this;
 		}

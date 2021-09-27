@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: graph._types.VertexInclude
 @JsonpDeserializable
 public final class VertexInclude implements JsonpSerializable {
-	private final Double boost;
+	private final double boost;
 
 	private final String term;
 
@@ -56,7 +56,7 @@ public final class VertexInclude implements JsonpSerializable {
 	/**
 	 * API name: {@code boost}
 	 */
-	public Double boost() {
+	public double boost() {
 		return this.boost;
 	}
 
@@ -99,7 +99,7 @@ public final class VertexInclude implements JsonpSerializable {
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(Double value) {
+		public Builder boost(double value) {
 			this.boost = value;
 			return this;
 		}

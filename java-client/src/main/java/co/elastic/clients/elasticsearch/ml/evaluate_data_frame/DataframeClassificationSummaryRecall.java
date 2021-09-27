@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class DataframeClassificationSummaryRecall implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
 
-	private final Double avgRecall;
+	private final double avgRecall;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 	/**
 	 * API name: {@code avg_recall}
 	 */
-	public Double avgRecall() {
+	public double avgRecall() {
 		return this.avgRecall;
 	}
 
@@ -149,7 +149,7 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 		/**
 		 * API name: {@code avg_recall}
 		 */
-		public Builder avgRecall(Double value) {
+		public Builder avgRecall(double value) {
 			this.avgRecall = value;
 			return this;
 		}

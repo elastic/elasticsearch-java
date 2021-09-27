@@ -48,9 +48,9 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 
 	private final Map<String, List<String>> headers;
 
-	private final Long version;
+	private final long version;
 
-	private final Long modifiedDate;
+	private final long modifiedDate;
 
 	private final String modifiedDateString;
 
@@ -83,14 +83,14 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 	/**
 	 * API name: {@code version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
 	/**
 	 * API name: {@code modified_date}
 	 */
-	public Long modifiedDate() {
+	public long modifiedDate() {
 		return this.modifiedDate;
 	}
 
@@ -194,7 +194,7 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -202,7 +202,7 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 		/**
 		 * API name: {@code modified_date}
 		 */
-		public Builder modifiedDate(Long value) {
+		public Builder modifiedDate(long value) {
 			this.modifiedDate = value;
 			return this;
 		}

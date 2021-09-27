@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 // typedef: transform.update_transform.Response
 @JsonpDeserializable
 public final class UpdateTransformResponse implements JsonpSerializable {
-	private final Long createTime;
+	private final long createTime;
 
 	private final String description;
 
@@ -84,7 +84,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code create_time}
 	 */
-	public Long createTime() {
+	public long createTime() {
 		return this.createTime;
 	}
 
@@ -229,7 +229,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(Long value) {
+		public Builder createTime(long value) {
 			this.createTime = value;
 			return this;
 		}

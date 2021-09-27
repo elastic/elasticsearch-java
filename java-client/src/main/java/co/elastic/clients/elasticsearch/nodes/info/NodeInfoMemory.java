@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class NodeInfoMemory implements JsonpSerializable {
 	private final String total;
 
-	private final Long totalInBytes;
+	private final long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Long totalInBytes() {
+	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -107,7 +107,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Long value) {
+		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}

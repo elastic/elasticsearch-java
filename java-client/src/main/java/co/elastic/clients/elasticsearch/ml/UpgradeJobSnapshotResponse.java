@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	private final String node;
 
-	private final Boolean completed;
+	private final boolean completed;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code completed}
 	 */
-	public Boolean completed() {
+	public boolean completed() {
 		return this.completed;
 	}
 
@@ -115,7 +115,7 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completed}
 		 */
-		public Builder completed(Boolean value) {
+		public Builder completed(boolean value) {
 			this.completed = value;
 			return this;
 		}

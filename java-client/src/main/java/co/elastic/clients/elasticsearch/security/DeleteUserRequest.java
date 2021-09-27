@@ -142,8 +142,7 @@ public final class DeleteUserRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.username() != null)
-					propsSet |= _username;
+				propsSet |= _username;
 
 				if (propsSet == (_username)) {
 					StringBuilder buf = new StringBuilder();

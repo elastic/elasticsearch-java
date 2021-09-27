@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: xpack.usage.SecurityRolesDlsBitSetCache
 @JsonpDeserializable
 public final class SecurityRolesDlsBitSetCache implements JsonpSerializable {
-	private final Integer count;
+	private final int count;
 
 	@Nullable
 	private final String memory;
@@ -61,7 +61,7 @@ public final class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Integer count() {
+	public int count() {
 		return this.count;
 	}
 
@@ -122,7 +122,7 @@ public final class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Integer value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}

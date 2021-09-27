@@ -58,11 +58,11 @@ public class MemoryStats implements JsonpSerializable {
 	@Nullable
 	private final Long totalVirtualInBytes;
 
-	private final Long totalInBytes;
+	private final long totalInBytes;
 
-	private final Long freeInBytes;
+	private final long freeInBytes;
 
-	private final Long usedInBytes;
+	private final long usedInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -131,21 +131,21 @@ public class MemoryStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Long totalInBytes() {
+	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
 	 * API name: {@code free_in_bytes}
 	 */
-	public Long freeInBytes() {
+	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * API name: {@code used_in_bytes}
 	 */
-	public Long usedInBytes() {
+	public long usedInBytes() {
 		return this.usedInBytes;
 	}
 
@@ -307,7 +307,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public BuilderT totalInBytes(Long value) {
+		public BuilderT totalInBytes(long value) {
 			this.totalInBytes = value;
 			return self();
 		}
@@ -315,7 +315,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code free_in_bytes}
 		 */
-		public BuilderT freeInBytes(Long value) {
+		public BuilderT freeInBytes(long value) {
 			this.freeInBytes = value;
 			return self();
 		}
@@ -323,7 +323,7 @@ public class MemoryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code used_in_bytes}
 		 */
-		public BuilderT usedInBytes(Long value) {
+		public BuilderT usedInBytes(long value) {
 			this.usedInBytes = value;
 			return self();
 		}

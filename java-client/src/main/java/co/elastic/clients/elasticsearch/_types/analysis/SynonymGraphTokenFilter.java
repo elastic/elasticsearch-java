@@ -42,11 +42,11 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.SynonymGraphTokenFilter
 @JsonpDeserializable
 public final class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Boolean expand;
+	private final boolean expand;
 
 	private final SynonymFormat format;
 
-	private final Boolean lenient;
+	private final boolean lenient;
 
 	private final List<String> synonyms;
 
@@ -54,7 +54,7 @@ public final class SynonymGraphTokenFilter extends TokenFilterBase implements To
 
 	private final String tokenizer;
 
-	private final Boolean updateable;
+	private final boolean updateable;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ public final class SynonymGraphTokenFilter extends TokenFilterBase implements To
 	/**
 	 * API name: {@code expand}
 	 */
-	public Boolean expand() {
+	public boolean expand() {
 		return this.expand;
 	}
 
@@ -96,7 +96,7 @@ public final class SynonymGraphTokenFilter extends TokenFilterBase implements To
 	/**
 	 * API name: {@code lenient}
 	 */
-	public Boolean lenient() {
+	public boolean lenient() {
 		return this.lenient;
 	}
 
@@ -124,7 +124,7 @@ public final class SynonymGraphTokenFilter extends TokenFilterBase implements To
 	/**
 	 * API name: {@code updateable}
 	 */
-	public Boolean updateable() {
+	public boolean updateable() {
 		return this.updateable;
 	}
 
@@ -186,7 +186,7 @@ public final class SynonymGraphTokenFilter extends TokenFilterBase implements To
 		/**
 		 * API name: {@code expand}
 		 */
-		public Builder expand(Boolean value) {
+		public Builder expand(boolean value) {
 			this.expand = value;
 			return this;
 		}
@@ -202,7 +202,7 @@ public final class SynonymGraphTokenFilter extends TokenFilterBase implements To
 		/**
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(Boolean value) {
+		public Builder lenient(boolean value) {
 			this.lenient = value;
 			return this;
 		}
@@ -253,7 +253,7 @@ public final class SynonymGraphTokenFilter extends TokenFilterBase implements To
 		/**
 		 * API name: {@code updateable}
 		 */
-		public Builder updateable(Boolean value) {
+		public Builder updateable(boolean value) {
 			this.updateable = value;
 			return this;
 		}

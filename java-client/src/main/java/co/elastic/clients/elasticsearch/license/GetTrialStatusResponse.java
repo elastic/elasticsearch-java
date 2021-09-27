@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: license.get_trial_status.Response
 @JsonpDeserializable
 public final class GetTrialStatusResponse implements JsonpSerializable {
-	private final Boolean eligibleToStartTrial;
+	private final boolean eligibleToStartTrial;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class GetTrialStatusResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code eligible_to_start_trial}
 	 */
-	public Boolean eligibleToStartTrial() {
+	public boolean eligibleToStartTrial() {
 		return this.eligibleToStartTrial;
 	}
 
@@ -83,7 +82,7 @@ public final class GetTrialStatusResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code eligible_to_start_trial}
 		 */
-		public Builder eligibleToStartTrial(Boolean value) {
+		public Builder eligibleToStartTrial(boolean value) {
 			this.eligibleToStartTrial = value;
 			return this;
 		}

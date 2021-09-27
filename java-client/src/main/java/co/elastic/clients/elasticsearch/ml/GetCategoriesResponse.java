@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class GetCategoriesResponse implements JsonpSerializable {
 	private final List<Category> categories;
 
-	private final Long count;
+	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Long count() {
+	public long count() {
 		return this.count;
 	}
 
@@ -148,7 +148,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Long value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}

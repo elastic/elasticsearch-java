@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 public final class Info implements JsonpSerializable {
 	private final String action;
 
-	private final Boolean cancellable;
+	private final boolean cancellable;
 
 	@Nullable
 	private final List<Info> children;
@@ -59,13 +59,13 @@ public final class Info implements JsonpSerializable {
 
 	private final Map<String, List<String>> headers;
 
-	private final Long id;
+	private final long id;
 
 	private final String node;
 
-	private final Long runningTimeInNanos;
+	private final long runningTimeInNanos;
 
-	private final Long startTimeInMillis;
+	private final long startTimeInMillis;
 
 	@Nullable
 	private final Status status;
@@ -104,7 +104,7 @@ public final class Info implements JsonpSerializable {
 	/**
 	 * API name: {@code cancellable}
 	 */
-	public Boolean cancellable() {
+	public boolean cancellable() {
 		return this.cancellable;
 	}
 
@@ -134,7 +134,7 @@ public final class Info implements JsonpSerializable {
 	/**
 	 * API name: {@code id}
 	 */
-	public Long id() {
+	public long id() {
 		return this.id;
 	}
 
@@ -148,14 +148,14 @@ public final class Info implements JsonpSerializable {
 	/**
 	 * API name: {@code running_time_in_nanos}
 	 */
-	public Long runningTimeInNanos() {
+	public long runningTimeInNanos() {
 		return this.runningTimeInNanos;
 	}
 
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public Long startTimeInMillis() {
+	public long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -307,7 +307,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code cancellable}
 		 */
-		public Builder cancellable(Boolean value) {
+		public Builder cancellable(boolean value) {
 			this.cancellable = value;
 			return this;
 		}
@@ -383,7 +383,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(Long value) {
+		public Builder id(long value) {
 			this.id = value;
 			return this;
 		}
@@ -399,7 +399,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code running_time_in_nanos}
 		 */
-		public Builder runningTimeInNanos(Long value) {
+		public Builder runningTimeInNanos(long value) {
 			this.runningTimeInNanos = value;
 			return this;
 		}
@@ -407,7 +407,7 @@ public final class Info implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(Long value) {
+		public Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}

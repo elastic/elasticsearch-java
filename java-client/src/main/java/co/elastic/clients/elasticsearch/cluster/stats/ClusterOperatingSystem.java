@@ -43,9 +43,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.ClusterOperatingSystem
 @JsonpDeserializable
 public final class ClusterOperatingSystem implements JsonpSerializable {
-	private final Integer allocatedProcessors;
+	private final int allocatedProcessors;
 
-	private final Integer availableProcessors;
+	private final int availableProcessors;
 
 	private final OperatingSystemMemoryInfo mem;
 
@@ -72,14 +72,14 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 	/**
 	 * API name: {@code allocated_processors}
 	 */
-	public Integer allocatedProcessors() {
+	public int allocatedProcessors() {
 		return this.allocatedProcessors;
 	}
 
 	/**
 	 * API name: {@code available_processors}
 	 */
-	public Integer availableProcessors() {
+	public int availableProcessors() {
 		return this.availableProcessors;
 	}
 
@@ -184,7 +184,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code allocated_processors}
 		 */
-		public Builder allocatedProcessors(Integer value) {
+		public Builder allocatedProcessors(int value) {
 			this.allocatedProcessors = value;
 			return this;
 		}
@@ -192,7 +192,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code available_processors}
 		 */
-		public Builder availableProcessors(Integer value) {
+		public Builder availableProcessors(int value) {
 			this.availableProcessors = value;
 			return this;
 		}

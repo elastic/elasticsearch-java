@@ -46,7 +46,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 
 	private final Map<String, Boolean> cluster;
 
-	private final Boolean hasAllRequested;
+	private final boolean hasAllRequested;
 
 	private final Map<String, Map<String, Boolean>> index;
 
@@ -81,7 +81,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code has_all_requested}
 	 */
-	public Boolean hasAllRequested() {
+	public boolean hasAllRequested() {
 		return this.hasAllRequested;
 	}
 
@@ -220,7 +220,7 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code has_all_requested}
 		 */
-		public Builder hasAllRequested(Boolean value) {
+		public Builder hasAllRequested(boolean value) {
 			this.hasAllRequested = value;
 			return this;
 		}

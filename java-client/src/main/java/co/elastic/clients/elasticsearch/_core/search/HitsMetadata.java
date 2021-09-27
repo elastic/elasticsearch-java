@@ -32,7 +32,6 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: _global.search._types.HitsMetadata
 
 public final class HitsMetadata<T> implements JsonpSerializable {
-	private final JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total;
+	private final TotalHits total;
 
 	private final List<Hit<T>> hits;
 
@@ -70,7 +69,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	/**
 	 * API name: {@code total}
 	 */
-	public JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total() {
+	public TotalHits total() {
 		return this.total;
 	}
 
@@ -101,7 +100,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("total");
-		generator.write(this.total);
+		this.total.serialize(generator, mapper);
 
 		generator.writeKey("hits");
 		generator.writeStartArray();
@@ -126,7 +125,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	 * Builder for {@link HitsMetadata}.
 	 */
 	public static class Builder<T> implements ObjectBuilder<HitsMetadata<T>> {
-		private JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total;
+		private TotalHits total;
 
 		private List<Hit<T>> hits;
 
@@ -139,9 +138,16 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder<T> total(JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ value) {
+		public Builder<T> total(TotalHits value) {
 			this.total = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code total}
+		 */
+		public Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
+			return this.total(fn.apply(new TotalHits.Builder()).build());
 		}
 
 		/**
@@ -228,7 +234,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	protected static <T> void setupHitsMetadataDeserializer(DelegatingDeserializer<HitsMetadata.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {
 
-		op.add(Builder::total, JsonpDeserializer.jsonValueDeserializer(), "total");
+		op.add(Builder::total, TotalHits._DESERIALIZER, "total");
 		op.add(Builder::hits, JsonpDeserializer.arrayDeserializer(Hit.createHitDeserializer(tDeserializer)), "hits");
 		op.add(Builder::maxScore, JsonpDeserializer.doubleDeserializer(), "max_score");
 

@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DenseVectorProperty
 @JsonpDeserializable
 public final class DenseVectorProperty extends PropertyBase implements PropertyVariant {
-	private final Integer dims;
+	private final int dims;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class DenseVectorProperty extends PropertyBase implements PropertyV
 	/**
 	 * API name: {@code dims}
 	 */
-	public Integer dims() {
+	public int dims() {
 		return this.dims;
 	}
 
@@ -87,7 +86,7 @@ public final class DenseVectorProperty extends PropertyBase implements PropertyV
 		/**
 		 * API name: {@code dims}
 		 */
-		public Builder dims(Integer value) {
+		public Builder dims(int value) {
 			this.dims = value;
 			return this;
 		}

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 // typedef: ml._types.Job
 @JsonpDeserializable
 public final class Job implements JsonpSerializable {
-	private final Boolean allowLazyOpen;
+	private final boolean allowLazyOpen;
 
 	private final AnalysisConfig analysisConfig;
 
@@ -58,7 +58,7 @@ public final class Job implements JsonpSerializable {
 	@Nullable
 	private final JobBlocked blocked;
 
-	private final Integer createTime;
+	private final int createTime;
 
 	@Nullable
 	private final CustomSettings customSettings;
@@ -95,7 +95,7 @@ public final class Job implements JsonpSerializable {
 	@Nullable
 	private final String modelSnapshotId;
 
-	private final Long modelSnapshotRetentionDays;
+	private final long modelSnapshotRetentionDays;
 
 	@Nullable
 	private final Long renormalizationWindowDays;
@@ -140,7 +140,7 @@ public final class Job implements JsonpSerializable {
 	/**
 	 * API name: {@code allow_lazy_open}
 	 */
-	public Boolean allowLazyOpen() {
+	public boolean allowLazyOpen() {
 		return this.allowLazyOpen;
 	}
 
@@ -177,7 +177,7 @@ public final class Job implements JsonpSerializable {
 	/**
 	 * API name: {@code create_time}
 	 */
-	public Integer createTime() {
+	public int createTime() {
 		return this.createTime;
 	}
 
@@ -284,7 +284,7 @@ public final class Job implements JsonpSerializable {
 	/**
 	 * API name: {@code model_snapshot_retention_days}
 	 */
-	public Long modelSnapshotRetentionDays() {
+	public long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
@@ -512,7 +512,7 @@ public final class Job implements JsonpSerializable {
 		/**
 		 * API name: {@code allow_lazy_open}
 		 */
-		public Builder allowLazyOpen(Boolean value) {
+		public Builder allowLazyOpen(boolean value) {
 			this.allowLazyOpen = value;
 			return this;
 		}
@@ -573,7 +573,7 @@ public final class Job implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(Integer value) {
+		public Builder createTime(int value) {
 			this.createTime = value;
 			return this;
 		}
@@ -732,7 +732,7 @@ public final class Job implements JsonpSerializable {
 		/**
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(Long value) {
+		public Builder modelSnapshotRetentionDays(long value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}

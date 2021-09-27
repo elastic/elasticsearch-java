@@ -42,25 +42,25 @@ import javax.annotation.Nullable;
 public final class DataPathStats implements JsonpSerializable {
 	private final String available;
 
-	private final Long availableInBytes;
+	private final long availableInBytes;
 
 	private final String diskQueue;
 
-	private final Long diskReads;
+	private final long diskReads;
 
 	private final String diskReadSize;
 
-	private final Long diskReadSizeInBytes;
+	private final long diskReadSizeInBytes;
 
-	private final Long diskWrites;
+	private final long diskWrites;
 
 	private final String diskWriteSize;
 
-	private final Long diskWriteSizeInBytes;
+	private final long diskWriteSizeInBytes;
 
 	private final String free;
 
-	private final Long freeInBytes;
+	private final long freeInBytes;
 
 	private final String mount;
 
@@ -68,7 +68,7 @@ public final class DataPathStats implements JsonpSerializable {
 
 	private final String total;
 
-	private final Long totalInBytes;
+	private final long totalInBytes;
 
 	private final String type;
 
@@ -105,7 +105,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code available_in_bytes}
 	 */
-	public Long availableInBytes() {
+	public long availableInBytes() {
 		return this.availableInBytes;
 	}
 
@@ -119,7 +119,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code disk_reads}
 	 */
-	public Long diskReads() {
+	public long diskReads() {
 		return this.diskReads;
 	}
 
@@ -133,14 +133,14 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code disk_read_size_in_bytes}
 	 */
-	public Long diskReadSizeInBytes() {
+	public long diskReadSizeInBytes() {
 		return this.diskReadSizeInBytes;
 	}
 
 	/**
 	 * API name: {@code disk_writes}
 	 */
-	public Long diskWrites() {
+	public long diskWrites() {
 		return this.diskWrites;
 	}
 
@@ -154,7 +154,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code disk_write_size_in_bytes}
 	 */
-	public Long diskWriteSizeInBytes() {
+	public long diskWriteSizeInBytes() {
 		return this.diskWriteSizeInBytes;
 	}
 
@@ -168,7 +168,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code free_in_bytes}
 	 */
-	public Long freeInBytes() {
+	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
@@ -196,7 +196,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Long totalInBytes() {
+	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -317,7 +317,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(Long value) {
+		public Builder availableInBytes(long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -333,7 +333,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code disk_reads}
 		 */
-		public Builder diskReads(Long value) {
+		public Builder diskReads(long value) {
 			this.diskReads = value;
 			return this;
 		}
@@ -349,7 +349,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code disk_read_size_in_bytes}
 		 */
-		public Builder diskReadSizeInBytes(Long value) {
+		public Builder diskReadSizeInBytes(long value) {
 			this.diskReadSizeInBytes = value;
 			return this;
 		}
@@ -357,7 +357,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code disk_writes}
 		 */
-		public Builder diskWrites(Long value) {
+		public Builder diskWrites(long value) {
 			this.diskWrites = value;
 			return this;
 		}
@@ -373,7 +373,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code disk_write_size_in_bytes}
 		 */
-		public Builder diskWriteSizeInBytes(Long value) {
+		public Builder diskWriteSizeInBytes(long value) {
 			this.diskWriteSizeInBytes = value;
 			return this;
 		}
@@ -389,7 +389,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(Long value) {
+		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -421,7 +421,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Long value) {
+		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}

@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class IndicesBlockStatus implements JsonpSerializable {
 	private final String name;
 
-	private final Boolean blocked;
+	private final boolean blocked;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code blocked}
 	 */
-	public Boolean blocked() {
+	public boolean blocked() {
 		return this.blocked;
 	}
 
@@ -107,7 +107,7 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code blocked}
 		 */
-		public Builder blocked(Boolean value) {
+		public Builder blocked(boolean value) {
 			this.blocked = value;
 			return this;
 		}

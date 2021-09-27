@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: ml.flush_job.Response
 @JsonpDeserializable
 public final class FlushJobResponse implements JsonpSerializable {
-	private final Boolean flushed;
+	private final boolean flushed;
 
 	@Nullable
 	private final Integer lastFinalizedBucketEnd;
@@ -57,7 +57,7 @@ public final class FlushJobResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code flushed}
 	 */
-	public Boolean flushed() {
+	public boolean flushed() {
 		return this.flushed;
 	}
 
@@ -106,7 +106,7 @@ public final class FlushJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code flushed}
 		 */
-		public Builder flushed(Boolean value) {
+		public Builder flushed(boolean value) {
 			this.flushed = value;
 			return this;
 		}

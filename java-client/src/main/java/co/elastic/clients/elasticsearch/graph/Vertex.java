@@ -41,13 +41,13 @@ import javax.annotation.Nullable;
 // typedef: graph._types.Vertex
 @JsonpDeserializable
 public final class Vertex implements JsonpSerializable {
-	private final Long depth;
+	private final long depth;
 
 	private final String field;
 
 	private final String term;
 
-	private final Double weight;
+	private final double weight;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ public final class Vertex implements JsonpSerializable {
 	/**
 	 * API name: {@code depth}
 	 */
-	public Long depth() {
+	public long depth() {
 		return this.depth;
 	}
 
@@ -84,7 +84,7 @@ public final class Vertex implements JsonpSerializable {
 	/**
 	 * API name: {@code weight}
 	 */
-	public Double weight() {
+	public double weight() {
 		return this.weight;
 	}
 
@@ -130,7 +130,7 @@ public final class Vertex implements JsonpSerializable {
 		/**
 		 * API name: {@code depth}
 		 */
-		public Builder depth(Long value) {
+		public Builder depth(long value) {
 			this.depth = value;
 			return this;
 		}
@@ -154,7 +154,7 @@ public final class Vertex implements JsonpSerializable {
 		/**
 		 * API name: {@code weight}
 		 */
-		public Builder weight(Double value) {
+		public Builder weight(double value) {
 			this.weight = value;
 			return this;
 		}

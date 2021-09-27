@@ -40,16 +40,16 @@ import javax.annotation.Nullable;
 // typedef: _types.RequestCacheStats
 @JsonpDeserializable
 public final class RequestCacheStats implements JsonpSerializable {
-	private final Long evictions;
+	private final long evictions;
 
-	private final Long hitCount;
+	private final long hitCount;
 
 	@Nullable
 	private final String memorySize;
 
-	private final Long memorySizeInBytes;
+	private final long memorySizeInBytes;
 
-	private final Long missCount;
+	private final long missCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,14 +66,14 @@ public final class RequestCacheStats implements JsonpSerializable {
 	/**
 	 * API name: {@code evictions}
 	 */
-	public Long evictions() {
+	public long evictions() {
 		return this.evictions;
 	}
 
 	/**
 	 * API name: {@code hit_count}
 	 */
-	public Long hitCount() {
+	public long hitCount() {
 		return this.hitCount;
 	}
 
@@ -88,14 +88,14 @@ public final class RequestCacheStats implements JsonpSerializable {
 	/**
 	 * API name: {@code memory_size_in_bytes}
 	 */
-	public Long memorySizeInBytes() {
+	public long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
 	 * API name: {@code miss_count}
 	 */
-	public Long missCount() {
+	public long missCount() {
 		return this.missCount;
 	}
 
@@ -151,7 +151,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code evictions}
 		 */
-		public Builder evictions(Long value) {
+		public Builder evictions(long value) {
 			this.evictions = value;
 			return this;
 		}
@@ -159,7 +159,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code hit_count}
 		 */
-		public Builder hitCount(Long value) {
+		public Builder hitCount(long value) {
 			this.hitCount = value;
 			return this;
 		}
@@ -175,7 +175,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(Long value) {
+		public Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -183,7 +183,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code miss_count}
 		 */
-		public Builder missCount(Long value) {
+		public Builder missCount(long value) {
 			this.missCount = value;
 			return this;
 		}

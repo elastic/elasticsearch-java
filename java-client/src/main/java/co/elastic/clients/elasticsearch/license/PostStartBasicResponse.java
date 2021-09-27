@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 	private final Map<String, List<String>> acknowledge;
 
-	private final Boolean basicWasStarted;
+	private final boolean basicWasStarted;
 
 	private final String errorMessage;
 
@@ -70,7 +70,7 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code basic_was_started}
 	 */
-	public Boolean basicWasStarted() {
+	public boolean basicWasStarted() {
 		return this.basicWasStarted;
 	}
 
@@ -143,7 +143,7 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code basic_was_started}
 		 */
-		public Builder basicWasStarted(Boolean value) {
+		public Builder basicWasStarted(boolean value) {
 			this.basicWasStarted = value;
 			return this;
 		}

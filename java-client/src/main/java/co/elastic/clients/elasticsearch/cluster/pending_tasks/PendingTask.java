@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: cluster.pending_tasks.PendingTask
 @JsonpDeserializable
 public final class PendingTask implements JsonpSerializable {
-	private final Integer insertOrder;
+	private final int insertOrder;
 
 	private final String priority;
 
@@ -48,7 +48,7 @@ public final class PendingTask implements JsonpSerializable {
 
 	private final String timeInQueue;
 
-	private final Integer timeInQueueMillis;
+	private final int timeInQueueMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ public final class PendingTask implements JsonpSerializable {
 	/**
 	 * API name: {@code insert_order}
 	 */
-	public Integer insertOrder() {
+	public int insertOrder() {
 		return this.insertOrder;
 	}
 
@@ -93,7 +93,7 @@ public final class PendingTask implements JsonpSerializable {
 	/**
 	 * API name: {@code time_in_queue_millis}
 	 */
-	public Integer timeInQueueMillis() {
+	public int timeInQueueMillis() {
 		return this.timeInQueueMillis;
 	}
 
@@ -144,7 +144,7 @@ public final class PendingTask implements JsonpSerializable {
 		/**
 		 * API name: {@code insert_order}
 		 */
-		public Builder insertOrder(Integer value) {
+		public Builder insertOrder(int value) {
 			this.insertOrder = value;
 			return this;
 		}
@@ -176,7 +176,7 @@ public final class PendingTask implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_queue_millis}
 		 */
-		public Builder timeInQueueMillis(Integer value) {
+		public Builder timeInQueueMillis(int value) {
 			this.timeInQueueMillis = value;
 			return this;
 		}

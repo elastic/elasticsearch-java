@@ -43,7 +43,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	@Nullable
 	private final Long memoryReestimateBytes;
 
-	private final Long peakUsageBytes;
+	private final long peakUsageBytes;
 
 	private final String status;
 
@@ -77,7 +77,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	 * <p>
 	 * API name: {@code peak_usage_bytes}
 	 */
-	public Long peakUsageBytes() {
+	public long peakUsageBytes() {
 		return this.peakUsageBytes;
 	}
 
@@ -165,7 +165,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		 * <p>
 		 * API name: {@code peak_usage_bytes}
 		 */
-		public Builder peakUsageBytes(Long value) {
+		public Builder peakUsageBytes(long value) {
 			this.peakUsageBytes = value;
 			return this;
 		}

@@ -107,8 +107,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.policy() != null)
-					propsSet |= _policy;
+				propsSet |= _policy;
 
 				if (propsSet == (_policy)) {
 					StringBuilder buf = new StringBuilder();

@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiReadingFormTokenFilter
 @JsonpDeserializable
 public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Boolean useRomaji;
+	private final boolean useRomaji;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implem
 	/**
 	 * API name: {@code use_romaji}
 	 */
-	public Boolean useRomaji() {
+	public boolean useRomaji() {
 		return this.useRomaji;
 	}
 
@@ -87,7 +86,7 @@ public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implem
 		/**
 		 * API name: {@code use_romaji}
 		 */
-		public Builder useRomaji(Boolean value) {
+		public Builder useRomaji(boolean value) {
 			this.useRomaji = value;
 			return this;
 		}

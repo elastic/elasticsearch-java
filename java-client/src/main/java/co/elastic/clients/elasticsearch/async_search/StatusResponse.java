@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	private final ShardStatistics shards;
 
-	private final Integer completionStatus;
+	private final int completionStatus;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -70,7 +70,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	/**
 	 * API name: {@code completion_status}
 	 */
-	public Integer completionStatus() {
+	public int completionStatus() {
 		return this.completionStatus;
 	}
 
@@ -119,7 +119,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		/**
 		 * API name: {@code completion_status}
 		 */
-		public Builder<TDocument> completionStatus(Integer value) {
+		public Builder<TDocument> completionStatus(int value) {
 			this.completionStatus = value;
 			return this;
 		}

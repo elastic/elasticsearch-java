@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: indices.shrink.Response
 @JsonpDeserializable
 public final class ShrinkResponse extends AcknowledgedResponseBase {
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	private final String index;
 
@@ -57,7 +57,7 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
@@ -95,7 +95,7 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}

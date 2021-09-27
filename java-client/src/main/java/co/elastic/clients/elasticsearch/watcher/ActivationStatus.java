@@ -47,7 +47,7 @@ public final class ActivationStatus implements JsonpSerializable {
 
 	private final ActivationState state;
 
-	private final Long version;
+	private final long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ public final class ActivationStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -171,7 +171,7 @@ public final class ActivationStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}

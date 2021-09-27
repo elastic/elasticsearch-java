@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 public final class TotalHits implements JsonpSerializable {
 	private final TotalHitsRelation relation;
 
-	private final Long value;
+	private final long value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ public final class TotalHits implements JsonpSerializable {
 	/**
 	 * API name: {@code value}
 	 */
-	public Long value() {
+	public long value() {
 		return this.value;
 	}
 
@@ -106,7 +106,7 @@ public final class TotalHits implements JsonpSerializable {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(Long value) {
+		public Builder value(long value) {
 			this.value = value;
 			return this;
 		}

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	private final String arch;
 
-	private final Integer availableProcessors;
+	private final int availableProcessors;
 
 	@Nullable
 	private final Integer allocatedProcessors;
@@ -52,7 +52,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 
 	private final String prettyName;
 
-	private final Integer refreshIntervalInMillis;
+	private final int refreshIntervalInMillis;
 
 	private final String version;
 
@@ -97,7 +97,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code available_processors}
 	 */
-	public Integer availableProcessors() {
+	public int availableProcessors() {
 		return this.availableProcessors;
 	}
 
@@ -134,7 +134,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
-	public Integer refreshIntervalInMillis() {
+	public int refreshIntervalInMillis() {
 		return this.refreshIntervalInMillis;
 	}
 
@@ -273,7 +273,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code available_processors}
 		 */
-		public Builder availableProcessors(Integer value) {
+		public Builder availableProcessors(int value) {
 			this.availableProcessors = value;
 			return this;
 		}
@@ -313,7 +313,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
-		public Builder refreshIntervalInMillis(Integer value) {
+		public Builder refreshIntervalInMillis(int value) {
 			this.refreshIntervalInMillis = value;
 			return this;
 		}

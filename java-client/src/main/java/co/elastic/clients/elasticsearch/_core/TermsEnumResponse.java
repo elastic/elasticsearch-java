@@ -49,7 +49,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 
 	private final List<String> terms;
 
-	private final Boolean complete;
+	private final boolean complete;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code complete}
 	 */
-	public Boolean complete() {
+	public boolean complete() {
 		return this.complete;
 	}
 
@@ -166,7 +166,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code complete}
 		 */
-		public Builder complete(Boolean value) {
+		public Builder complete(boolean value) {
 			this.complete = value;
 			return this;
 		}

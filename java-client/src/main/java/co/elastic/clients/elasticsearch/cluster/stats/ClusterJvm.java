@@ -43,11 +43,11 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.ClusterJvm
 @JsonpDeserializable
 public final class ClusterJvm implements JsonpSerializable {
-	private final Long maxUptimeInMillis;
+	private final long maxUptimeInMillis;
 
 	private final ClusterJvmMemory mem;
 
-	private final Long threads;
+	private final long threads;
 
 	private final List<ClusterJvmVersion> versions;
 
@@ -65,7 +65,7 @@ public final class ClusterJvm implements JsonpSerializable {
 	/**
 	 * API name: {@code max_uptime_in_millis}
 	 */
-	public Long maxUptimeInMillis() {
+	public long maxUptimeInMillis() {
 		return this.maxUptimeInMillis;
 	}
 
@@ -79,7 +79,7 @@ public final class ClusterJvm implements JsonpSerializable {
 	/**
 	 * API name: {@code threads}
 	 */
-	public Long threads() {
+	public long threads() {
 		return this.threads;
 	}
 
@@ -137,7 +137,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		/**
 		 * API name: {@code max_uptime_in_millis}
 		 */
-		public Builder maxUptimeInMillis(Long value) {
+		public Builder maxUptimeInMillis(long value) {
 			this.maxUptimeInMillis = value;
 			return this;
 		}
@@ -160,7 +160,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		/**
 		 * API name: {@code threads}
 		 */
-		public Builder threads(Long value) {
+		public Builder threads(long value) {
 			this.threads = value;
 			return this;
 		}

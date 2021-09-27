@@ -229,8 +229,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 
 				int propsSet = 0;
 
-				if (request.datafeedId() != null)
-					propsSet |= _datafeedId;
+				propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {
 					StringBuilder buf = new StringBuilder();

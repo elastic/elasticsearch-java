@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeywordTokenizer
 @JsonpDeserializable
 public final class KeywordTokenizer extends TokenizerBase implements TokenizerVariant {
-	private final Integer bufferSize;
+	private final int bufferSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 	/**
 	 * API name: {@code buffer_size}
 	 */
-	public Integer bufferSize() {
+	public int bufferSize() {
 		return this.bufferSize;
 	}
 
@@ -87,7 +86,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 		/**
 		 * API name: {@code buffer_size}
 		 */
-		public Builder bufferSize(Integer value) {
+		public Builder bufferSize(int value) {
 			this.bufferSize = value;
 			return this;
 		}

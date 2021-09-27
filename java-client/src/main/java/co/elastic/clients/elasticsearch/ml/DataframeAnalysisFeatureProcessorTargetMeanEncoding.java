@@ -46,7 +46,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		implements
 			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
-	private final Integer defaultValue;
+	private final int defaultValue;
 
 	private final String featureName;
 
@@ -78,7 +78,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * <p>
 	 * API name: {@code default_value}
 	 */
-	public Integer defaultValue() {
+	public int defaultValue() {
 		return this.defaultValue;
 	}
 
@@ -159,7 +159,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 * <p>
 		 * API name: {@code default_value}
 		 */
-		public Builder defaultValue(Integer value) {
+		public Builder defaultValue(int value) {
 			this.defaultValue = value;
 			return this;
 		}

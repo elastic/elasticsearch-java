@@ -55,7 +55,7 @@ public final class LicenseInformation implements JsonpSerializable {
 
 	private final String issuer;
 
-	private final Long maxNodes;
+	private final long maxNodes;
 
 	@Nullable
 	private final Integer maxResourceUnits;
@@ -132,7 +132,7 @@ public final class LicenseInformation implements JsonpSerializable {
 	/**
 	 * API name: {@code max_nodes}
 	 */
-	public Long maxNodes() {
+	public long maxNodes() {
 		return this.maxNodes;
 	}
 
@@ -307,7 +307,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code max_nodes}
 		 */
-		public Builder maxNodes(Long value) {
+		public Builder maxNodes(long value) {
 			this.maxNodes = value;
 			return this;
 		}

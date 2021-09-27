@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceTokenizer
 @JsonpDeserializable
 public final class WhitespaceTokenizer extends TokenizerBase implements TokenizerVariant {
-	private final Integer maxTokenLength;
+	private final int maxTokenLength;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class WhitespaceTokenizer extends TokenizerBase implements Tokenize
 	/**
 	 * API name: {@code max_token_length}
 	 */
-	public Integer maxTokenLength() {
+	public int maxTokenLength() {
 		return this.maxTokenLength;
 	}
 
@@ -87,7 +86,7 @@ public final class WhitespaceTokenizer extends TokenizerBase implements Tokenize
 		/**
 		 * API name: {@code max_token_length}
 		 */
-		public Builder maxTokenLength(Integer value) {
+		public Builder maxTokenLength(int value) {
 			this.maxTokenLength = value;
 			return this;
 		}

@@ -40,28 +40,28 @@ import javax.annotation.Nullable;
 // typedef: _types.GetStats
 @JsonpDeserializable
 public final class GetStats implements JsonpSerializable {
-	private final Long current;
+	private final long current;
 
 	@Nullable
 	private final String existsTime;
 
-	private final Long existsTimeInMillis;
+	private final long existsTimeInMillis;
 
-	private final Long existsTotal;
+	private final long existsTotal;
 
 	@Nullable
 	private final String missingTime;
 
-	private final Long missingTimeInMillis;
+	private final long missingTimeInMillis;
 
-	private final Long missingTotal;
+	private final long missingTotal;
 
 	@Nullable
 	private final String time;
 
-	private final Long timeInMillis;
+	private final long timeInMillis;
 
-	private final Long total;
+	private final long total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ public final class GetStats implements JsonpSerializable {
 	/**
 	 * API name: {@code current}
 	 */
-	public Long current() {
+	public long current() {
 		return this.current;
 	}
 
@@ -98,14 +98,14 @@ public final class GetStats implements JsonpSerializable {
 	/**
 	 * API name: {@code exists_time_in_millis}
 	 */
-	public Long existsTimeInMillis() {
+	public long existsTimeInMillis() {
 		return this.existsTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code exists_total}
 	 */
-	public Long existsTotal() {
+	public long existsTotal() {
 		return this.existsTotal;
 	}
 
@@ -120,14 +120,14 @@ public final class GetStats implements JsonpSerializable {
 	/**
 	 * API name: {@code missing_time_in_millis}
 	 */
-	public Long missingTimeInMillis() {
+	public long missingTimeInMillis() {
 		return this.missingTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code missing_total}
 	 */
-	public Long missingTotal() {
+	public long missingTotal() {
 		return this.missingTotal;
 	}
 
@@ -142,14 +142,14 @@ public final class GetStats implements JsonpSerializable {
 	/**
 	 * API name: {@code time_in_millis}
 	 */
-	public Long timeInMillis() {
+	public long timeInMillis() {
 		return this.timeInMillis;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
@@ -240,7 +240,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current}
 		 */
-		public Builder current(Long value) {
+		public Builder current(long value) {
 			this.current = value;
 			return this;
 		}
@@ -256,7 +256,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code exists_time_in_millis}
 		 */
-		public Builder existsTimeInMillis(Long value) {
+		public Builder existsTimeInMillis(long value) {
 			this.existsTimeInMillis = value;
 			return this;
 		}
@@ -264,7 +264,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code exists_total}
 		 */
-		public Builder existsTotal(Long value) {
+		public Builder existsTotal(long value) {
 			this.existsTotal = value;
 			return this;
 		}
@@ -280,7 +280,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code missing_time_in_millis}
 		 */
-		public Builder missingTimeInMillis(Long value) {
+		public Builder missingTimeInMillis(long value) {
 			this.missingTimeInMillis = value;
 			return this;
 		}
@@ -288,7 +288,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code missing_total}
 		 */
-		public Builder missingTotal(Long value) {
+		public Builder missingTotal(long value) {
 			this.missingTotal = value;
 			return this;
 		}
@@ -304,7 +304,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(Long value) {
+		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -312,7 +312,7 @@ public final class GetStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Long value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}

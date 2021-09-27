@@ -35,16 +35,15 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeProcessInfo
 @JsonpDeserializable
 public final class NodeProcessInfo implements JsonpSerializable {
-	private final Long id;
+	private final long id;
 
-	private final Boolean mlockall;
+	private final boolean mlockall;
 
-	private final Long refreshIntervalInMillis;
+	private final long refreshIntervalInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -62,7 +61,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public Long id() {
+	public long id() {
 		return this.id;
 	}
 
@@ -71,7 +70,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code mlockall}
 	 */
-	public Boolean mlockall() {
+	public boolean mlockall() {
 		return this.mlockall;
 	}
 
@@ -80,7 +79,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
-	public Long refreshIntervalInMillis() {
+	public long refreshIntervalInMillis() {
 		return this.refreshIntervalInMillis;
 	}
 
@@ -123,7 +122,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(Long value) {
+		public Builder id(long value) {
 			this.id = value;
 			return this;
 		}
@@ -133,7 +132,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code mlockall}
 		 */
-		public Builder mlockall(Boolean value) {
+		public Builder mlockall(boolean value) {
 			this.mlockall = value;
 			return this;
 		}
@@ -143,7 +142,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
-		public Builder refreshIntervalInMillis(Long value) {
+		public Builder refreshIntervalInMillis(long value) {
 			this.refreshIntervalInMillis = value;
 			return this;
 		}

@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class CommandMoveAction implements JsonpSerializable {
 	private final String index;
 
-	private final Integer shard;
+	private final int shard;
 
 	private final String fromNode;
 
@@ -69,7 +69,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Integer shard() {
+	public int shard() {
 		return this.shard;
 	}
 
@@ -141,7 +141,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Integer value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}

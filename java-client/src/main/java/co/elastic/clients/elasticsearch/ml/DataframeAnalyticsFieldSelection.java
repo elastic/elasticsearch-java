@@ -43,9 +43,9 @@ import javax.annotation.Nullable;
 // typedef: ml._types.DataframeAnalyticsFieldSelection
 @JsonpDeserializable
 public final class DataframeAnalyticsFieldSelection implements JsonpSerializable {
-	private final Boolean isIncluded;
+	private final boolean isIncluded;
 
-	private final Boolean isRequired;
+	private final boolean isRequired;
 
 	@Nullable
 	private final String featureType;
@@ -75,7 +75,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	 * <p>
 	 * API name: {@code is_included}
 	 */
-	public Boolean isIncluded() {
+	public boolean isIncluded() {
 		return this.isIncluded;
 	}
 
@@ -84,7 +84,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	 * <p>
 	 * API name: {@code is_required}
 	 */
-	public Boolean isRequired() {
+	public boolean isRequired() {
 		return this.isRequired;
 	}
 
@@ -196,7 +196,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 * <p>
 		 * API name: {@code is_included}
 		 */
-		public Builder isIncluded(Boolean value) {
+		public Builder isIncluded(boolean value) {
 			this.isIncluded = value;
 			return this;
 		}
@@ -206,7 +206,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		 * <p>
 		 * API name: {@code is_required}
 		 */
-		public Builder isRequired(Boolean value) {
+		public Builder isRequired(boolean value) {
 			this.isRequired = value;
 			return this;
 		}

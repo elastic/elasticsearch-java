@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: indices.unfreeze.Response
 @JsonpDeserializable
 public final class UnfreezeResponse extends AcknowledgedResponseBase {
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,7 +52,7 @@ public final class UnfreezeResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
@@ -79,7 +78,7 @@ public final class UnfreezeResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}

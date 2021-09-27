@@ -38,9 +38,9 @@ import javax.annotation.Nullable;
 // typedef: xpack.usage.Vector
 @JsonpDeserializable
 public final class Vector extends Base {
-	private final Integer denseVectorDimsAvgCount;
+	private final int denseVectorDimsAvgCount;
 
-	private final Integer denseVectorFieldsCount;
+	private final int denseVectorFieldsCount;
 
 	@Nullable
 	private final Integer sparseVectorFieldsCount;
@@ -61,14 +61,14 @@ public final class Vector extends Base {
 	/**
 	 * API name: {@code dense_vector_dims_avg_count}
 	 */
-	public Integer denseVectorDimsAvgCount() {
+	public int denseVectorDimsAvgCount() {
 		return this.denseVectorDimsAvgCount;
 	}
 
 	/**
 	 * API name: {@code dense_vector_fields_count}
 	 */
-	public Integer denseVectorFieldsCount() {
+	public int denseVectorFieldsCount() {
 		return this.denseVectorFieldsCount;
 	}
 
@@ -115,7 +115,7 @@ public final class Vector extends Base {
 		/**
 		 * API name: {@code dense_vector_dims_avg_count}
 		 */
-		public Builder denseVectorDimsAvgCount(Integer value) {
+		public Builder denseVectorDimsAvgCount(int value) {
 			this.denseVectorDimsAvgCount = value;
 			return this;
 		}
@@ -123,7 +123,7 @@ public final class Vector extends Base {
 		/**
 		 * API name: {@code dense_vector_fields_count}
 		 */
-		public Builder denseVectorFieldsCount(Integer value) {
+		public Builder denseVectorFieldsCount(int value) {
 			this.denseVectorFieldsCount = value;
 			return this;
 		}

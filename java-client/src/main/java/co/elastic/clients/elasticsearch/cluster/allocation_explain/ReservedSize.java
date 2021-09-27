@@ -47,7 +47,7 @@ public final class ReservedSize implements JsonpSerializable {
 
 	private final String path;
 
-	private final Long total;
+	private final long total;
 
 	private final List<String> shards;
 
@@ -79,7 +79,7 @@ public final class ReservedSize implements JsonpSerializable {
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
@@ -153,7 +153,7 @@ public final class ReservedSize implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Long value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}

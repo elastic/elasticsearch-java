@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class StartDatafeedResponse implements JsonpSerializable {
 	private final List<String> node;
 
-	private final Boolean started;
+	private final boolean started;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code started}
 	 */
-	public Boolean started() {
+	public boolean started() {
 		return this.started;
 	}
 
@@ -134,7 +134,7 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code started}
 		 */
-		public Builder started(Boolean value) {
+		public Builder started(boolean value) {
 			this.started = value;
 			return this;
 		}

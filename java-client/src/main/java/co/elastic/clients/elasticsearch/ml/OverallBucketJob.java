@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class OverallBucketJob implements JsonpSerializable {
 	private final String jobId;
 
-	private final Double maxAnomalyScore;
+	private final double maxAnomalyScore;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 	/**
 	 * API name: {@code max_anomaly_score}
 	 */
-	public Double maxAnomalyScore() {
+	public double maxAnomalyScore() {
 		return this.maxAnomalyScore;
 	}
 
@@ -107,7 +107,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 		/**
 		 * API name: {@code max_anomaly_score}
 		 */
-		public Builder maxAnomalyScore(Double value) {
+		public Builder maxAnomalyScore(double value) {
 			this.maxAnomalyScore = value;
 			return this;
 		}

@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 // typedef: watcher._types.IndexResultSummary
 @JsonpDeserializable
 public final class IndexResultSummary implements JsonpSerializable {
-	private final Boolean created;
+	private final boolean created;
 
 	private final String id;
 
@@ -50,7 +50,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 
 	private final Result result;
 
-	private final Long version;
+	private final long version;
 
 	@Nullable
 	private final String type;
@@ -71,7 +71,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 	/**
 	 * API name: {@code created}
 	 */
-	public Boolean created() {
+	public boolean created() {
 		return this.created;
 	}
 
@@ -99,7 +99,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 	/**
 	 * API name: {@code version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -168,7 +168,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code created}
 		 */
-		public Builder created(Boolean value) {
+		public Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -200,7 +200,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}

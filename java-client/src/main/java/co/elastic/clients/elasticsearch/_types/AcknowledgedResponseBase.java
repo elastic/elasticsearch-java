@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.AcknowledgedResponseBase
 
 public abstract class AcknowledgedResponseBase implements JsonpSerializable {
-	private final Boolean acknowledged;
+	private final boolean acknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,7 +54,7 @@ public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code acknowledged}
 	 */
-	public Boolean acknowledged() {
+	public boolean acknowledged() {
 		return this.acknowledged;
 	}
 
@@ -84,7 +83,7 @@ public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code acknowledged}
 		 */
-		public BuilderT acknowledged(Boolean value) {
+		public BuilderT acknowledged(boolean value) {
 			this.acknowledged = value;
 			return self();
 		}

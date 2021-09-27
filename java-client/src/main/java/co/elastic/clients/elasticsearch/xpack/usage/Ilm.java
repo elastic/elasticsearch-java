@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 // typedef: xpack.usage.Ilm
 @JsonpDeserializable
 public final class Ilm implements JsonpSerializable {
-	private final Integer policyCount;
+	private final int policyCount;
 
 	private final List<IlmPolicyStatistics> policyStats;
 
@@ -59,7 +59,7 @@ public final class Ilm implements JsonpSerializable {
 	/**
 	 * API name: {@code policy_count}
 	 */
-	public Integer policyCount() {
+	public int policyCount() {
 		return this.policyCount;
 	}
 
@@ -107,7 +107,7 @@ public final class Ilm implements JsonpSerializable {
 		/**
 		 * API name: {@code policy_count}
 		 */
-		public Builder policyCount(Integer value) {
+		public Builder policyCount(int value) {
 			this.policyCount = value;
 			return this;
 		}

@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: watcher._types.SlackAttachmentField
 @JsonpDeserializable
 public final class SlackAttachmentField implements JsonpSerializable {
-	private final Boolean short_;
+	private final boolean short_;
 
 	private final String title;
 
@@ -59,7 +59,7 @@ public final class SlackAttachmentField implements JsonpSerializable {
 	/**
 	 * API name: {@code short}
 	 */
-	public Boolean short_() {
+	public boolean short_() {
 		return this.short_;
 	}
 
@@ -114,7 +114,7 @@ public final class SlackAttachmentField implements JsonpSerializable {
 		/**
 		 * API name: {@code short}
 		 */
-		public Builder short_(Boolean value) {
+		public Builder short_(boolean value) {
 			this.short_ = value;
 			return this;
 		}

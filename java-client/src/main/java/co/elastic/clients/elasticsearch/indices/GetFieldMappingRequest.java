@@ -374,8 +374,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.fields() != null)
-					propsSet |= _fields;
+				propsSet |= _fields;
 				if (request.index() != null)
 					propsSet |= _index;
 

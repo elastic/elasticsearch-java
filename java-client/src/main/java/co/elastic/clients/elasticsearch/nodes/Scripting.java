@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: nodes._types.Scripting
 @JsonpDeserializable
 public final class Scripting implements JsonpSerializable {
-	private final Long cacheEvictions;
+	private final long cacheEvictions;
 
-	private final Long compilations;
+	private final long compilations;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class Scripting implements JsonpSerializable {
 	/**
 	 * API name: {@code cache_evictions}
 	 */
-	public Long cacheEvictions() {
+	public long cacheEvictions() {
 		return this.cacheEvictions;
 	}
 
 	/**
 	 * API name: {@code compilations}
 	 */
-	public Long compilations() {
+	public long compilations() {
 		return this.compilations;
 	}
 
@@ -98,7 +97,7 @@ public final class Scripting implements JsonpSerializable {
 		/**
 		 * API name: {@code cache_evictions}
 		 */
-		public Builder cacheEvictions(Long value) {
+		public Builder cacheEvictions(long value) {
 			this.cacheEvictions = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class Scripting implements JsonpSerializable {
 		/**
 		 * API name: {@code compilations}
 		 */
-		public Builder compilations(Long value) {
+		public Builder compilations(long value) {
 			this.compilations = value;
 			return this;
 		}

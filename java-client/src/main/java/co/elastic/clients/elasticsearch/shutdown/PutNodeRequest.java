@@ -107,8 +107,7 @@ public final class PutNodeRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
-					propsSet |= _nodeId;
+				propsSet |= _nodeId;
 
 				if (propsSet == (_nodeId)) {
 					StringBuilder buf = new StringBuilder();

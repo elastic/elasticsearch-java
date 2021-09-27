@@ -181,8 +181,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.realms() != null)
-					propsSet |= _realms;
+				propsSet |= _realms;
 
 				if (propsSet == (_realms)) {
 					StringBuilder buf = new StringBuilder();

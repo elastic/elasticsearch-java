@@ -733,8 +733,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();

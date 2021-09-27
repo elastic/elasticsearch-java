@@ -276,8 +276,7 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
+				propsSet |= _repository;
 
 				if (propsSet == (_repository)) {
 					StringBuilder buf = new StringBuilder();

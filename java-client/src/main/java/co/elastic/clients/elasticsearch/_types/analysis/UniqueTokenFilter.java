@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UniqueTokenFilter
 @JsonpDeserializable
 public final class UniqueTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Boolean onlyOnSamePosition;
+	private final boolean onlyOnSamePosition;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 	/**
 	 * API name: {@code only_on_same_position}
 	 */
-	public Boolean onlyOnSamePosition() {
+	public boolean onlyOnSamePosition() {
 		return this.onlyOnSamePosition;
 	}
 
@@ -87,7 +86,7 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 		/**
 		 * API name: {@code only_on_same_position}
 		 */
-		public Builder onlyOnSamePosition(Boolean value) {
+		public Builder onlyOnSamePosition(boolean value) {
 			this.onlyOnSamePosition = value;
 			return this;
 		}

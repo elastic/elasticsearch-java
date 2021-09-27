@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.FingerprintTokenFilter
 @JsonpDeserializable
 public final class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Integer maxOutputSize;
+	private final int maxOutputSize;
 
 	private final String separator;
 
@@ -64,7 +64,7 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 	/**
 	 * API name: {@code max_output_size}
 	 */
-	public Integer maxOutputSize() {
+	public int maxOutputSize() {
 		return this.maxOutputSize;
 	}
 
@@ -103,7 +103,7 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 		/**
 		 * API name: {@code max_output_size}
 		 */
-		public Builder maxOutputSize(Integer value) {
+		public Builder maxOutputSize(int value) {
 			this.maxOutputSize = value;
 			return this;
 		}

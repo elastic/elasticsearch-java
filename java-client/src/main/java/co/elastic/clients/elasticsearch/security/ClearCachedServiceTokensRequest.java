@@ -182,12 +182,9 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.namespace() != null)
-					propsSet |= _namespace;
-				if (request.service() != null)
-					propsSet |= _service;
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _namespace;
+				propsSet |= _service;
+				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name)) {
 					StringBuilder buf = new StringBuilder();

@@ -89,9 +89,9 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Boolean terminatedEarly;
 
-	private final Boolean timedOut;
+	private final boolean timedOut;
 
-	private final Long took;
+	private final long took;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -215,14 +215,14 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code timed_out}
 	 */
-	public Boolean timedOut() {
+	public boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
 	 * API name: {@code took}
 	 */
-	public Long took() {
+	public long took() {
 		return this.took;
 	}
 
@@ -547,7 +547,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code timed_out}
 		 */
-		public Builder<TDocument> timedOut(Boolean value) {
+		public Builder<TDocument> timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}
@@ -555,7 +555,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder<TDocument> took(Long value) {
+		public Builder<TDocument> took(long value) {
 			this.took = value;
 			return this;
 		}

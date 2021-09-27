@@ -43,9 +43,9 @@ import javax.annotation.Nullable;
 public final class GetStatusResponse implements JsonpSerializable {
 	private final String id;
 
-	private final Boolean isPartial;
+	private final boolean isPartial;
 
-	private final Boolean isRunning;
+	private final boolean isRunning;
 
 	@Nullable
 	private final String startTimeInMillis;
@@ -84,7 +84,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code is_partial}
 	 */
-	public Boolean isPartial() {
+	public boolean isPartial() {
 		return this.isPartial;
 	}
 
@@ -96,7 +96,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code is_running}
 	 */
-	public Boolean isRunning() {
+	public boolean isRunning() {
 		return this.isRunning;
 	}
 
@@ -211,7 +211,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code is_partial}
 		 */
-		public Builder isPartial(Boolean value) {
+		public Builder isPartial(boolean value) {
 			this.isPartial = value;
 			return this;
 		}
@@ -224,7 +224,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code is_running}
 		 */
-		public Builder isRunning(Boolean value) {
+		public Builder isRunning(boolean value) {
 			this.isRunning = value;
 			return this;
 		}

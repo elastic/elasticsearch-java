@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.AsciiFoldingTokenFilter
 @JsonpDeserializable
 public final class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Boolean preserveOriginal;
+	private final boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 	/**
 	 * API name: {@code preserve_original}
 	 */
-	public Boolean preserveOriginal() {
+	public boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -87,7 +86,7 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 		/**
 		 * API name: {@code preserve_original}
 		 */
-		public Builder preserveOriginal(Boolean value) {
+		public Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}

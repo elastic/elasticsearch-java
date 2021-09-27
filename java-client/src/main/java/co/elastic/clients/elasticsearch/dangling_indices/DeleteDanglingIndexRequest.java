@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public final class DeleteDanglingIndexRequest extends RequestBase {
 	private final String indexUuid;
 
-	private final Boolean acceptDataLoss;
+	private final boolean acceptDataLoss;
 
 	@Nullable
 	private final String masterTimeout;
@@ -77,7 +77,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
-	public Boolean acceptDataLoss() {
+	public boolean acceptDataLoss() {
 		return this.acceptDataLoss;
 	}
 
@@ -132,7 +132,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
-		public Builder acceptDataLoss(Boolean value) {
+		public Builder acceptDataLoss(boolean value) {
 			this.acceptDataLoss = value;
 			return this;
 		}
@@ -187,8 +187,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.indexUuid() != null)
-					propsSet |= _indexUuid;
+				propsSet |= _indexUuid;
 
 				if (propsSet == (_indexUuid)) {
 					StringBuilder buf = new StringBuilder();

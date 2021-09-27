@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 // typedef: cluster._types.ClusterStateMetadataClusterCoordination
 @JsonpDeserializable
 public final class ClusterStateMetadataClusterCoordination implements JsonpSerializable {
-	private final Integer term;
+	private final int term;
 
 	private final List<String> lastCommittedConfig;
 
@@ -67,7 +67,7 @@ public final class ClusterStateMetadataClusterCoordination implements JsonpSeria
 	/**
 	 * API name: {@code term}
 	 */
-	public Integer term() {
+	public int term() {
 		return this.term;
 	}
 
@@ -149,7 +149,7 @@ public final class ClusterStateMetadataClusterCoordination implements JsonpSeria
 		/**
 		 * API name: {@code term}
 		 */
-		public Builder term(Integer value) {
+		public Builder term(int value) {
 			this.term = value;
 			return this;
 		}

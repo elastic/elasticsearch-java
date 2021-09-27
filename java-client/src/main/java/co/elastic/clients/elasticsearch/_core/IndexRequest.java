@@ -530,8 +530,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 
 				if (request.id() != null)
 					propsSet |= _id;
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index | _id))
 					return "PUT";
@@ -550,8 +549,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 
 				if (request.id() != null)
 					propsSet |= _id;
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();

@@ -47,19 +47,19 @@ public final class GetStatsResponse implements JsonpSerializable {
 
 	private final String retentionDeletionTimeMillis;
 
-	private final Long retentionFailed;
+	private final long retentionFailed;
 
-	private final Long retentionRuns;
+	private final long retentionRuns;
 
-	private final Long retentionTimedOut;
+	private final long retentionTimedOut;
 
-	private final Long totalSnapshotsDeleted;
+	private final long totalSnapshotsDeleted;
 
-	private final Long totalSnapshotDeletionFailures;
+	private final long totalSnapshotDeletionFailures;
 
-	private final Long totalSnapshotsFailed;
+	private final long totalSnapshotsFailed;
 
-	private final Long totalSnapshotsTaken;
+	private final long totalSnapshotsTaken;
 
 	private final List<String> policyStats;
 
@@ -99,49 +99,49 @@ public final class GetStatsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code retention_failed}
 	 */
-	public Long retentionFailed() {
+	public long retentionFailed() {
 		return this.retentionFailed;
 	}
 
 	/**
 	 * API name: {@code retention_runs}
 	 */
-	public Long retentionRuns() {
+	public long retentionRuns() {
 		return this.retentionRuns;
 	}
 
 	/**
 	 * API name: {@code retention_timed_out}
 	 */
-	public Long retentionTimedOut() {
+	public long retentionTimedOut() {
 		return this.retentionTimedOut;
 	}
 
 	/**
 	 * API name: {@code total_snapshots_deleted}
 	 */
-	public Long totalSnapshotsDeleted() {
+	public long totalSnapshotsDeleted() {
 		return this.totalSnapshotsDeleted;
 	}
 
 	/**
 	 * API name: {@code total_snapshot_deletion_failures}
 	 */
-	public Long totalSnapshotDeletionFailures() {
+	public long totalSnapshotDeletionFailures() {
 		return this.totalSnapshotDeletionFailures;
 	}
 
 	/**
 	 * API name: {@code total_snapshots_failed}
 	 */
-	public Long totalSnapshotsFailed() {
+	public long totalSnapshotsFailed() {
 		return this.totalSnapshotsFailed;
 	}
 
 	/**
 	 * API name: {@code total_snapshots_taken}
 	 */
-	public Long totalSnapshotsTaken() {
+	public long totalSnapshotsTaken() {
 		return this.totalSnapshotsTaken;
 	}
 
@@ -245,7 +245,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code retention_failed}
 		 */
-		public Builder retentionFailed(Long value) {
+		public Builder retentionFailed(long value) {
 			this.retentionFailed = value;
 			return this;
 		}
@@ -253,7 +253,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code retention_runs}
 		 */
-		public Builder retentionRuns(Long value) {
+		public Builder retentionRuns(long value) {
 			this.retentionRuns = value;
 			return this;
 		}
@@ -261,7 +261,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code retention_timed_out}
 		 */
-		public Builder retentionTimedOut(Long value) {
+		public Builder retentionTimedOut(long value) {
 			this.retentionTimedOut = value;
 			return this;
 		}
@@ -269,7 +269,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code total_snapshots_deleted}
 		 */
-		public Builder totalSnapshotsDeleted(Long value) {
+		public Builder totalSnapshotsDeleted(long value) {
 			this.totalSnapshotsDeleted = value;
 			return this;
 		}
@@ -277,7 +277,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code total_snapshot_deletion_failures}
 		 */
-		public Builder totalSnapshotDeletionFailures(Long value) {
+		public Builder totalSnapshotDeletionFailures(long value) {
 			this.totalSnapshotDeletionFailures = value;
 			return this;
 		}
@@ -285,7 +285,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code total_snapshots_failed}
 		 */
-		public Builder totalSnapshotsFailed(Long value) {
+		public Builder totalSnapshotsFailed(long value) {
 			this.totalSnapshotsFailed = value;
 			return this;
 		}
@@ -293,7 +293,7 @@ public final class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code total_snapshots_taken}
 		 */
-		public Builder totalSnapshotsTaken(Long value) {
+		public Builder totalSnapshotsTaken(long value) {
 			this.totalSnapshotsTaken = value;
 			return this;
 		}

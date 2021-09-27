@@ -43,11 +43,11 @@ import javax.annotation.Nullable;
 public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 	private final String index;
 
-	private final Integer shard;
+	private final int shard;
 
 	private final String node;
 
-	private final Boolean acceptDataLoss;
+	private final boolean acceptDataLoss;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,7 +70,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Integer shard() {
+	public int shard() {
 		return this.shard;
 	}
 
@@ -88,7 +88,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
-	public Boolean acceptDataLoss() {
+	public boolean acceptDataLoss() {
 		return this.acceptDataLoss;
 	}
 
@@ -142,7 +142,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Integer value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -162,7 +162,7 @@ public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
-		public Builder acceptDataLoss(Boolean value) {
+		public Builder acceptDataLoss(boolean value) {
 			this.acceptDataLoss = value;
 			return this;
 		}

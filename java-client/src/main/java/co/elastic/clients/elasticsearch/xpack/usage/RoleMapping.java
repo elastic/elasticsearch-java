@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RoleMapping
 @JsonpDeserializable
 public final class RoleMapping implements JsonpSerializable {
-	private final Integer enabled;
+	private final int enabled;
 
-	private final Integer size;
+	private final int size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class RoleMapping implements JsonpSerializable {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Integer enabled() {
+	public int enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * API name: {@code size}
 	 */
-	public Integer size() {
+	public int size() {
 		return this.size;
 	}
 
@@ -98,7 +97,7 @@ public final class RoleMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Integer value) {
+		public Builder enabled(int value) {
 			this.enabled = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class RoleMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(Integer value) {
+		public Builder size(int value) {
 			this.size = value;
 			return this;
 		}

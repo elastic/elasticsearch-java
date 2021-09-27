@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationValue
 @JsonpDeserializable
 public class DataframeEvaluationValue implements JsonpSerializable {
-	private final Double value;
+	private final double value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 	/**
 	 * API name: {@code value}
 	 */
-	public Double value() {
+	public double value() {
 		return this.value;
 	}
 
@@ -103,7 +102,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 		/**
 		 * API name: {@code value}
 		 */
-		public BuilderT value(Double value) {
+		public BuilderT value(double value) {
 			this.value = value;
 			return self();
 		}

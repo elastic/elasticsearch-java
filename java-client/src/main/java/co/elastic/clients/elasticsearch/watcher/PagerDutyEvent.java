@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 public final class PagerDutyEvent implements JsonpSerializable {
 	private final String account;
 
-	private final Boolean attachPayload;
+	private final boolean attachPayload;
 
 	private final String client;
 
@@ -85,7 +85,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 	/**
 	 * API name: {@code attach_payload}
 	 */
-	public Boolean attachPayload() {
+	public boolean attachPayload() {
 		return this.attachPayload;
 	}
 
@@ -206,7 +206,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		/**
 		 * API name: {@code attach_payload}
 		 */
-		public Builder attachPayload(Boolean value) {
+		public Builder attachPayload(boolean value) {
 			this.attachPayload = value;
 			return this;
 		}

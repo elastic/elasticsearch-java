@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IndexField
 @JsonpDeserializable
 public final class IndexField implements JsonpSerializable {
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class IndexField implements JsonpSerializable {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
@@ -83,7 +82,7 @@ public final class IndexField implements JsonpSerializable {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}

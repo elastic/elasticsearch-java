@@ -41,21 +41,21 @@ import javax.annotation.Nullable;
 // typedef: _types.TranslogStats
 @JsonpDeserializable
 public final class TranslogStats implements JsonpSerializable {
-	private final Long earliestLastModifiedAge;
+	private final long earliestLastModifiedAge;
 
-	private final Long operations;
+	private final long operations;
 
 	@Nullable
 	private final String size;
 
-	private final Long sizeInBytes;
+	private final long sizeInBytes;
 
-	private final Integer uncommittedOperations;
+	private final int uncommittedOperations;
 
 	@Nullable
 	private final String uncommittedSize;
 
-	private final Long uncommittedSizeInBytes;
+	private final long uncommittedSizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,14 +76,14 @@ public final class TranslogStats implements JsonpSerializable {
 	/**
 	 * API name: {@code earliest_last_modified_age}
 	 */
-	public Long earliestLastModifiedAge() {
+	public long earliestLastModifiedAge() {
 		return this.earliestLastModifiedAge;
 	}
 
 	/**
 	 * API name: {@code operations}
 	 */
-	public Long operations() {
+	public long operations() {
 		return this.operations;
 	}
 
@@ -98,14 +98,14 @@ public final class TranslogStats implements JsonpSerializable {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Long sizeInBytes() {
+	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
 	 * API name: {@code uncommitted_operations}
 	 */
-	public Integer uncommittedOperations() {
+	public int uncommittedOperations() {
 		return this.uncommittedOperations;
 	}
 
@@ -120,7 +120,7 @@ public final class TranslogStats implements JsonpSerializable {
 	/**
 	 * API name: {@code uncommitted_size_in_bytes}
 	 */
-	public Long uncommittedSizeInBytes() {
+	public long uncommittedSizeInBytes() {
 		return this.uncommittedSizeInBytes;
 	}
 
@@ -191,7 +191,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * API name: {@code earliest_last_modified_age}
 		 */
-		public Builder earliestLastModifiedAge(Long value) {
+		public Builder earliestLastModifiedAge(long value) {
 			this.earliestLastModifiedAge = value;
 			return this;
 		}
@@ -199,7 +199,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * API name: {@code operations}
 		 */
-		public Builder operations(Long value) {
+		public Builder operations(long value) {
 			this.operations = value;
 			return this;
 		}
@@ -215,7 +215,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Long value) {
+		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -223,7 +223,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * API name: {@code uncommitted_operations}
 		 */
-		public Builder uncommittedOperations(Integer value) {
+		public Builder uncommittedOperations(int value) {
 			this.uncommittedOperations = value;
 			return this;
 		}
@@ -239,7 +239,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * API name: {@code uncommitted_size_in_bytes}
 		 */
-		public Builder uncommittedSizeInBytes(Long value) {
+		public Builder uncommittedSizeInBytes(long value) {
 			this.uncommittedSizeInBytes = value;
 			return this;
 		}

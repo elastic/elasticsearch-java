@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 // typedef: indices.add_block.Response
 @JsonpDeserializable
 public final class AddBlockResponse extends AcknowledgedResponseBase {
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	private final List<IndicesBlockStatus> indices;
 
@@ -61,7 +61,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
@@ -104,7 +104,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}

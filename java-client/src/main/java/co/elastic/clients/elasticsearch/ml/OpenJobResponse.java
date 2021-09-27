@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: ml.open_job.Response
 @JsonpDeserializable
 public final class OpenJobResponse implements JsonpSerializable {
-	private final Boolean opened;
+	private final boolean opened;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class OpenJobResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code opened}
 	 */
-	public Boolean opened() {
+	public boolean opened() {
 		return this.opened;
 	}
 
@@ -83,7 +82,7 @@ public final class OpenJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code opened}
 		 */
-		public Builder opened(Boolean value) {
+		public Builder opened(boolean value) {
 			this.opened = value;
 			return this;
 		}

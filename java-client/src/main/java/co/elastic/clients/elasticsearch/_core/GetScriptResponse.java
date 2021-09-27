@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public final class GetScriptResponse implements JsonpSerializable {
 	private final String id;
 
-	private final Boolean found;
+	private final boolean found;
 
 	@Nullable
 	private final StoredScript script;
@@ -69,7 +69,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code found}
 	 */
-	public Boolean found() {
+	public boolean found() {
 		return this.found;
 	}
 
@@ -131,7 +131,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code found}
 		 */
-		public Builder found(Boolean value) {
+		public Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}

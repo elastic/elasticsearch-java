@@ -45,15 +45,15 @@ import javax.annotation.Nullable;
 // typedef: cluster.remote_info.ClusterRemoteSniffInfo
 @JsonpDeserializable
 public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
-	private final Boolean connected;
+	private final boolean connected;
 
-	private final Integer maxConnectionsPerCluster;
+	private final int maxConnectionsPerCluster;
 
-	private final Long numNodesConnected;
+	private final long numNodesConnected;
 
 	private final String initialConnectTimeout;
 
-	private final Boolean skipUnavailable;
+	private final boolean skipUnavailable;
 
 	private final List<String> seeds;
 
@@ -82,21 +82,21 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 	/**
 	 * API name: {@code connected}
 	 */
-	public Boolean connected() {
+	public boolean connected() {
 		return this.connected;
 	}
 
 	/**
 	 * API name: {@code max_connections_per_cluster}
 	 */
-	public Integer maxConnectionsPerCluster() {
+	public int maxConnectionsPerCluster() {
 		return this.maxConnectionsPerCluster;
 	}
 
 	/**
 	 * API name: {@code num_nodes_connected}
 	 */
-	public Long numNodesConnected() {
+	public long numNodesConnected() {
 		return this.numNodesConnected;
 	}
 
@@ -110,7 +110,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 	/**
 	 * API name: {@code skip_unavailable}
 	 */
-	public Boolean skipUnavailable() {
+	public boolean skipUnavailable() {
 		return this.skipUnavailable;
 	}
 
@@ -180,7 +180,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * API name: {@code connected}
 		 */
-		public Builder connected(Boolean value) {
+		public Builder connected(boolean value) {
 			this.connected = value;
 			return this;
 		}
@@ -188,7 +188,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * API name: {@code max_connections_per_cluster}
 		 */
-		public Builder maxConnectionsPerCluster(Integer value) {
+		public Builder maxConnectionsPerCluster(int value) {
 			this.maxConnectionsPerCluster = value;
 			return this;
 		}
@@ -196,7 +196,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * API name: {@code num_nodes_connected}
 		 */
-		public Builder numNodesConnected(Long value) {
+		public Builder numNodesConnected(long value) {
 			this.numNodesConnected = value;
 			return this;
 		}
@@ -212,7 +212,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * API name: {@code skip_unavailable}
 		 */
-		public Builder skipUnavailable(Boolean value) {
+		public Builder skipUnavailable(boolean value) {
 			this.skipUnavailable = value;
 			return this;
 		}

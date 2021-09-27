@@ -40,11 +40,11 @@ import javax.annotation.Nullable;
 // typedef: indices.recovery.FileDetails
 @JsonpDeserializable
 public final class FileDetails implements JsonpSerializable {
-	private final Long length;
+	private final long length;
 
 	private final String name;
 
-	private final Long recovered;
+	private final long recovered;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ public final class FileDetails implements JsonpSerializable {
 	/**
 	 * API name: {@code length}
 	 */
-	public Long length() {
+	public long length() {
 		return this.length;
 	}
 
@@ -73,7 +73,7 @@ public final class FileDetails implements JsonpSerializable {
 	/**
 	 * API name: {@code recovered}
 	 */
-	public Long recovered() {
+	public long recovered() {
 		return this.recovered;
 	}
 
@@ -114,7 +114,7 @@ public final class FileDetails implements JsonpSerializable {
 		/**
 		 * API name: {@code length}
 		 */
-		public Builder length(Long value) {
+		public Builder length(long value) {
 			this.length = value;
 			return this;
 		}
@@ -130,7 +130,7 @@ public final class FileDetails implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered}
 		 */
-		public Builder recovered(Long value) {
+		public Builder recovered(long value) {
 			this.recovered = value;
 			return this;
 		}

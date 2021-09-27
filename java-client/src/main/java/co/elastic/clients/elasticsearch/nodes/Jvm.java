@@ -54,11 +54,11 @@ public final class Jvm implements JsonpSerializable {
 
 	private final JvmThreads threads;
 
-	private final Long timestamp;
+	private final long timestamp;
 
 	private final String uptime;
 
-	private final Long uptimeInMillis;
+	private final long uptimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ public final class Jvm implements JsonpSerializable {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Long timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
@@ -127,7 +127,7 @@ public final class Jvm implements JsonpSerializable {
 	/**
 	 * API name: {@code uptime_in_millis}
 	 */
-	public Long uptimeInMillis() {
+	public long uptimeInMillis() {
 		return this.uptimeInMillis;
 	}
 
@@ -292,7 +292,7 @@ public final class Jvm implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Long value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -308,7 +308,7 @@ public final class Jvm implements JsonpSerializable {
 		/**
 		 * API name: {@code uptime_in_millis}
 		 */
-		public Builder uptimeInMillis(Long value) {
+		public Builder uptimeInMillis(long value) {
 			this.uptimeInMillis = value;
 			return this;
 		}

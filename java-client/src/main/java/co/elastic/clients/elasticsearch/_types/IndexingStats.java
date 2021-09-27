@@ -45,34 +45,34 @@ import javax.annotation.Nullable;
 // typedef: _types.IndexingStats
 @JsonpDeserializable
 public final class IndexingStats implements JsonpSerializable {
-	private final Long indexCurrent;
+	private final long indexCurrent;
 
-	private final Long deleteCurrent;
+	private final long deleteCurrent;
 
 	@Nullable
 	private final String deleteTime;
 
-	private final Long deleteTimeInMillis;
+	private final long deleteTimeInMillis;
 
-	private final Long deleteTotal;
+	private final long deleteTotal;
 
-	private final Boolean isThrottled;
+	private final boolean isThrottled;
 
-	private final Long noopUpdateTotal;
+	private final long noopUpdateTotal;
 
 	@Nullable
 	private final String throttleTime;
 
-	private final Long throttleTimeInMillis;
+	private final long throttleTimeInMillis;
 
 	@Nullable
 	private final String indexTime;
 
-	private final Long indexTimeInMillis;
+	private final long indexTimeInMillis;
 
-	private final Long indexTotal;
+	private final long indexTotal;
 
-	private final Long indexFailed;
+	private final long indexFailed;
 
 	@Nullable
 	private final Map<String, IndexingStats> types;
@@ -101,14 +101,14 @@ public final class IndexingStats implements JsonpSerializable {
 	/**
 	 * API name: {@code index_current}
 	 */
-	public Long indexCurrent() {
+	public long indexCurrent() {
 		return this.indexCurrent;
 	}
 
 	/**
 	 * API name: {@code delete_current}
 	 */
-	public Long deleteCurrent() {
+	public long deleteCurrent() {
 		return this.deleteCurrent;
 	}
 
@@ -123,28 +123,28 @@ public final class IndexingStats implements JsonpSerializable {
 	/**
 	 * API name: {@code delete_time_in_millis}
 	 */
-	public Long deleteTimeInMillis() {
+	public long deleteTimeInMillis() {
 		return this.deleteTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code delete_total}
 	 */
-	public Long deleteTotal() {
+	public long deleteTotal() {
 		return this.deleteTotal;
 	}
 
 	/**
 	 * API name: {@code is_throttled}
 	 */
-	public Boolean isThrottled() {
+	public boolean isThrottled() {
 		return this.isThrottled;
 	}
 
 	/**
 	 * API name: {@code noop_update_total}
 	 */
-	public Long noopUpdateTotal() {
+	public long noopUpdateTotal() {
 		return this.noopUpdateTotal;
 	}
 
@@ -159,7 +159,7 @@ public final class IndexingStats implements JsonpSerializable {
 	/**
 	 * API name: {@code throttle_time_in_millis}
 	 */
-	public Long throttleTimeInMillis() {
+	public long throttleTimeInMillis() {
 		return this.throttleTimeInMillis;
 	}
 
@@ -174,21 +174,21 @@ public final class IndexingStats implements JsonpSerializable {
 	/**
 	 * API name: {@code index_time_in_millis}
 	 */
-	public Long indexTimeInMillis() {
+	public long indexTimeInMillis() {
 		return this.indexTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code index_total}
 	 */
-	public Long indexTotal() {
+	public long indexTotal() {
 		return this.indexTotal;
 	}
 
 	/**
 	 * API name: {@code index_failed}
 	 */
-	public Long indexFailed() {
+	public long indexFailed() {
 		return this.indexFailed;
 	}
 
@@ -318,7 +318,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_current}
 		 */
-		public Builder indexCurrent(Long value) {
+		public Builder indexCurrent(long value) {
 			this.indexCurrent = value;
 			return this;
 		}
@@ -326,7 +326,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code delete_current}
 		 */
-		public Builder deleteCurrent(Long value) {
+		public Builder deleteCurrent(long value) {
 			this.deleteCurrent = value;
 			return this;
 		}
@@ -342,7 +342,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code delete_time_in_millis}
 		 */
-		public Builder deleteTimeInMillis(Long value) {
+		public Builder deleteTimeInMillis(long value) {
 			this.deleteTimeInMillis = value;
 			return this;
 		}
@@ -350,7 +350,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code delete_total}
 		 */
-		public Builder deleteTotal(Long value) {
+		public Builder deleteTotal(long value) {
 			this.deleteTotal = value;
 			return this;
 		}
@@ -358,7 +358,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code is_throttled}
 		 */
-		public Builder isThrottled(Boolean value) {
+		public Builder isThrottled(boolean value) {
 			this.isThrottled = value;
 			return this;
 		}
@@ -366,7 +366,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code noop_update_total}
 		 */
-		public Builder noopUpdateTotal(Long value) {
+		public Builder noopUpdateTotal(long value) {
 			this.noopUpdateTotal = value;
 			return this;
 		}
@@ -382,7 +382,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_time_in_millis}
 		 */
-		public Builder throttleTimeInMillis(Long value) {
+		public Builder throttleTimeInMillis(long value) {
 			this.throttleTimeInMillis = value;
 			return this;
 		}
@@ -398,7 +398,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_time_in_millis}
 		 */
-		public Builder indexTimeInMillis(Long value) {
+		public Builder indexTimeInMillis(long value) {
 			this.indexTimeInMillis = value;
 			return this;
 		}
@@ -406,7 +406,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_total}
 		 */
-		public Builder indexTotal(Long value) {
+		public Builder indexTotal(long value) {
 			this.indexTotal = value;
 			return this;
 		}
@@ -414,7 +414,7 @@ public final class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_failed}
 		 */
-		public Builder indexFailed(Long value) {
+		public Builder indexFailed(long value) {
 			this.indexFailed = value;
 			return this;
 		}

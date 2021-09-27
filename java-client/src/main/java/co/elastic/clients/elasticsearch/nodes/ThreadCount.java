@@ -34,22 +34,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: nodes._types.ThreadCount
 @JsonpDeserializable
 public final class ThreadCount implements JsonpSerializable {
-	private final Long active;
+	private final long active;
 
-	private final Long completed;
+	private final long completed;
 
-	private final Long largest;
+	private final long largest;
 
-	private final Long queue;
+	private final long queue;
 
-	private final Long rejected;
+	private final long rejected;
 
-	private final Long threads;
+	private final long threads;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,42 +66,42 @@ public final class ThreadCount implements JsonpSerializable {
 	/**
 	 * API name: {@code active}
 	 */
-	public Long active() {
+	public long active() {
 		return this.active;
 	}
 
 	/**
 	 * API name: {@code completed}
 	 */
-	public Long completed() {
+	public long completed() {
 		return this.completed;
 	}
 
 	/**
 	 * API name: {@code largest}
 	 */
-	public Long largest() {
+	public long largest() {
 		return this.largest;
 	}
 
 	/**
 	 * API name: {@code queue}
 	 */
-	public Long queue() {
+	public long queue() {
 		return this.queue;
 	}
 
 	/**
 	 * API name: {@code rejected}
 	 */
-	public Long rejected() {
+	public long rejected() {
 		return this.rejected;
 	}
 
 	/**
 	 * API name: {@code threads}
 	 */
-	public Long threads() {
+	public long threads() {
 		return this.threads;
 	}
 
@@ -158,7 +157,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code active}
 		 */
-		public Builder active(Long value) {
+		public Builder active(long value) {
 			this.active = value;
 			return this;
 		}
@@ -166,7 +165,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code completed}
 		 */
-		public Builder completed(Long value) {
+		public Builder completed(long value) {
 			this.completed = value;
 			return this;
 		}
@@ -174,7 +173,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code largest}
 		 */
-		public Builder largest(Long value) {
+		public Builder largest(long value) {
 			this.largest = value;
 			return this;
 		}
@@ -182,7 +181,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code queue}
 		 */
-		public Builder queue(Long value) {
+		public Builder queue(long value) {
 			this.queue = value;
 			return this;
 		}
@@ -190,7 +189,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code rejected}
 		 */
-		public Builder rejected(Long value) {
+		public Builder rejected(long value) {
 			this.rejected = value;
 			return this;
 		}
@@ -198,7 +197,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code threads}
 		 */
-		public Builder threads(Long value) {
+		public Builder threads(long value) {
 			this.threads = value;
 			return this;
 		}

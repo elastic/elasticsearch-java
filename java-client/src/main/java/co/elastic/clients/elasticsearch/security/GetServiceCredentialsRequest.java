@@ -132,10 +132,8 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.namespace() != null)
-					propsSet |= _namespace;
-				if (request.service() != null)
-					propsSet |= _service;
+				propsSet |= _namespace;
+				propsSet |= _service;
 
 				if (propsSet == (_namespace | _service)) {
 					StringBuilder buf = new StringBuilder();

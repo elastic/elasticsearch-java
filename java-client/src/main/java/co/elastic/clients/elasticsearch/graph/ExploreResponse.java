@@ -49,9 +49,9 @@ public final class ExploreResponse implements JsonpSerializable {
 
 	private final List<ShardFailure> failures;
 
-	private final Boolean timedOut;
+	private final boolean timedOut;
 
-	private final Long took;
+	private final long took;
 
 	private final List<Vertex> vertices;
 
@@ -84,14 +84,14 @@ public final class ExploreResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code timed_out}
 	 */
-	public Boolean timedOut() {
+	public boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
 	 * API name: {@code took}
 	 */
-	public Long took() {
+	public long took() {
 		return this.took;
 	}
 
@@ -246,7 +246,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code timed_out}
 		 */
-		public Builder timedOut(Boolean value) {
+		public Builder timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}
@@ -254,7 +254,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(Long value) {
+		public Builder took(long value) {
 			this.took = value;
 			return this;
 		}

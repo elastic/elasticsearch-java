@@ -48,7 +48,7 @@ public final class QueryProfile implements JsonpSerializable {
 
 	private final String description;
 
-	private final Long timeInNanos;
+	private final long timeInNanos;
 
 	private final String type;
 
@@ -84,7 +84,7 @@ public final class QueryProfile implements JsonpSerializable {
 	/**
 	 * API name: {@code time_in_nanos}
 	 */
-	public Long timeInNanos() {
+	public long timeInNanos() {
 		return this.timeInNanos;
 	}
 
@@ -183,7 +183,7 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_nanos}
 		 */
-		public Builder timeInNanos(Long value) {
+		public Builder timeInNanos(long value) {
 			this.timeInNanos = value;
 			return this;
 		}

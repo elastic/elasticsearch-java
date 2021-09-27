@@ -228,8 +228,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 
 				int propsSet = 0;
 
-				if (request.datafeedId() != null)
-					propsSet |= _datafeedId;
+				propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {
 					StringBuilder buf = new StringBuilder();

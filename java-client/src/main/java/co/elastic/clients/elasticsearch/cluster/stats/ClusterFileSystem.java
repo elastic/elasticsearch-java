@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterFileSystem
 @JsonpDeserializable
 public final class ClusterFileSystem implements JsonpSerializable {
-	private final Long availableInBytes;
+	private final long availableInBytes;
 
-	private final Long freeInBytes;
+	private final long freeInBytes;
 
-	private final Long totalInBytes;
+	private final long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,21 +57,21 @@ public final class ClusterFileSystem implements JsonpSerializable {
 	/**
 	 * API name: {@code available_in_bytes}
 	 */
-	public Long availableInBytes() {
+	public long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
 	 * API name: {@code free_in_bytes}
 	 */
-	public Long freeInBytes() {
+	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Long totalInBytes() {
+	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -113,7 +112,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(Long value) {
+		public Builder availableInBytes(long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -121,7 +120,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(Long value) {
+		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -129,7 +128,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Long value) {
+		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}

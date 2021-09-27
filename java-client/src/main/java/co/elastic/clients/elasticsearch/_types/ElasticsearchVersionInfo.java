@@ -46,7 +46,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 
 	private final String buildHash;
 
-	private final Boolean buildSnapshot;
+	private final boolean buildSnapshot;
 
 	private final String buildType;
 
@@ -100,7 +100,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code build_snapshot}
 	 */
-	public Boolean buildSnapshot() {
+	public boolean buildSnapshot() {
 		return this.buildSnapshot;
 	}
 
@@ -230,7 +230,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code build_snapshot}
 		 */
-		public Builder buildSnapshot(Boolean value) {
+		public Builder buildSnapshot(boolean value) {
 			this.buildSnapshot = value;
 			return this;
 		}

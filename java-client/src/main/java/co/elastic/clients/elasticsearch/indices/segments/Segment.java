@@ -47,21 +47,21 @@ import javax.annotation.Nullable;
 public final class Segment implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
-	private final Boolean committed;
+	private final boolean committed;
 
-	private final Boolean compound;
+	private final boolean compound;
 
-	private final Long deletedDocs;
+	private final long deletedDocs;
 
-	private final Integer generation;
+	private final int generation;
 
-	private final Double memoryInBytes;
+	private final double memoryInBytes;
 
-	private final Boolean search;
+	private final boolean search;
 
-	private final Double sizeInBytes;
+	private final double sizeInBytes;
 
-	private final Long numDocs;
+	private final long numDocs;
 
 	private final String version;
 
@@ -92,56 +92,56 @@ public final class Segment implements JsonpSerializable {
 	/**
 	 * API name: {@code committed}
 	 */
-	public Boolean committed() {
+	public boolean committed() {
 		return this.committed;
 	}
 
 	/**
 	 * API name: {@code compound}
 	 */
-	public Boolean compound() {
+	public boolean compound() {
 		return this.compound;
 	}
 
 	/**
 	 * API name: {@code deleted_docs}
 	 */
-	public Long deletedDocs() {
+	public long deletedDocs() {
 		return this.deletedDocs;
 	}
 
 	/**
 	 * API name: {@code generation}
 	 */
-	public Integer generation() {
+	public int generation() {
 		return this.generation;
 	}
 
 	/**
 	 * API name: {@code memory_in_bytes}
 	 */
-	public Double memoryInBytes() {
+	public double memoryInBytes() {
 		return this.memoryInBytes;
 	}
 
 	/**
 	 * API name: {@code search}
 	 */
-	public Boolean search() {
+	public boolean search() {
 		return this.search;
 	}
 
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Double sizeInBytes() {
+	public double sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
 	 * API name: {@code num_docs}
 	 */
-	public Long numDocs() {
+	public long numDocs() {
 		return this.numDocs;
 	}
 
@@ -249,7 +249,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code committed}
 		 */
-		public Builder committed(Boolean value) {
+		public Builder committed(boolean value) {
 			this.committed = value;
 			return this;
 		}
@@ -257,7 +257,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code compound}
 		 */
-		public Builder compound(Boolean value) {
+		public Builder compound(boolean value) {
 			this.compound = value;
 			return this;
 		}
@@ -265,7 +265,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted_docs}
 		 */
-		public Builder deletedDocs(Long value) {
+		public Builder deletedDocs(long value) {
 			this.deletedDocs = value;
 			return this;
 		}
@@ -273,7 +273,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code generation}
 		 */
-		public Builder generation(Integer value) {
+		public Builder generation(int value) {
 			this.generation = value;
 			return this;
 		}
@@ -281,7 +281,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_in_bytes}
 		 */
-		public Builder memoryInBytes(Double value) {
+		public Builder memoryInBytes(double value) {
 			this.memoryInBytes = value;
 			return this;
 		}
@@ -289,7 +289,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code search}
 		 */
-		public Builder search(Boolean value) {
+		public Builder search(boolean value) {
 			this.search = value;
 			return this;
 		}
@@ -297,7 +297,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Double value) {
+		public Builder sizeInBytes(double value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -305,7 +305,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code num_docs}
 		 */
-		public Builder numDocs(Long value) {
+		public Builder numDocs(long value) {
 			this.numDocs = value;
 			return this;
 		}

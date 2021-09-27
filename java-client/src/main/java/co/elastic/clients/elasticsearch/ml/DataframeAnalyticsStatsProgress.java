@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 	private final String phase;
 
-	private final Integer progressPercent;
+	private final int progressPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 	 * <p>
 	 * API name: {@code progress_percent}
 	 */
-	public Integer progressPercent() {
+	public int progressPercent() {
 		return this.progressPercent;
 	}
 
@@ -117,7 +117,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code progress_percent}
 		 */
-		public Builder progressPercent(Integer value) {
+		public Builder progressPercent(int value) {
 			this.progressPercent = value;
 			return this;
 		}

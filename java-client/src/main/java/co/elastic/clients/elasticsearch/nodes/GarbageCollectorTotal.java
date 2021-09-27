@@ -40,11 +40,11 @@ import javax.annotation.Nullable;
 // typedef: nodes._types.GarbageCollectorTotal
 @JsonpDeserializable
 public final class GarbageCollectorTotal implements JsonpSerializable {
-	private final Long collectionCount;
+	private final long collectionCount;
 
 	private final String collectionTime;
 
-	private final Long collectionTimeInMillis;
+	private final long collectionTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +60,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 	/**
 	 * API name: {@code collection_count}
 	 */
-	public Long collectionCount() {
+	public long collectionCount() {
 		return this.collectionCount;
 	}
 
@@ -74,7 +74,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 	/**
 	 * API name: {@code collection_time_in_millis}
 	 */
-	public Long collectionTimeInMillis() {
+	public long collectionTimeInMillis() {
 		return this.collectionTimeInMillis;
 	}
 
@@ -115,7 +115,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		/**
 		 * API name: {@code collection_count}
 		 */
-		public Builder collectionCount(Long value) {
+		public Builder collectionCount(long value) {
 			this.collectionCount = value;
 			return this;
 		}
@@ -131,7 +131,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		/**
 		 * API name: {@code collection_time_in_millis}
 		 */
-		public Builder collectionTimeInMillis(Long value) {
+		public Builder collectionTimeInMillis(long value) {
 			this.collectionTimeInMillis = value;
 			return this;
 		}

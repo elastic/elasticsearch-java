@@ -60,7 +60,7 @@ public final class Anomaly implements JsonpSerializable {
 	@Nullable
 	private final List<AnomalyCause> causes;
 
-	private final Integer detectorIndex;
+	private final int detectorIndex;
 
 	@Nullable
 	private final String fieldName;
@@ -74,9 +74,9 @@ public final class Anomaly implements JsonpSerializable {
 	@Nullable
 	private final List<Influence> influencers;
 
-	private final Double initialRecordScore;
+	private final double initialRecordScore;
 
-	private final Boolean isInterim;
+	private final boolean isInterim;
 
 	private final String jobId;
 
@@ -92,9 +92,9 @@ public final class Anomaly implements JsonpSerializable {
 	@Nullable
 	private final String partitionFieldValue;
 
-	private final Double probability;
+	private final double probability;
 
-	private final Double recordScore;
+	private final double recordScore;
 
 	private final String resultType;
 
@@ -174,7 +174,7 @@ public final class Anomaly implements JsonpSerializable {
 	/**
 	 * API name: {@code detector_index}
 	 */
-	public Integer detectorIndex() {
+	public int detectorIndex() {
 		return this.detectorIndex;
 	}
 
@@ -213,14 +213,14 @@ public final class Anomaly implements JsonpSerializable {
 	/**
 	 * API name: {@code initial_record_score}
 	 */
-	public Double initialRecordScore() {
+	public double initialRecordScore() {
 		return this.initialRecordScore;
 	}
 
 	/**
 	 * API name: {@code is_interim}
 	 */
-	public Boolean isInterim() {
+	public boolean isInterim() {
 		return this.isInterim;
 	}
 
@@ -266,14 +266,14 @@ public final class Anomaly implements JsonpSerializable {
 	/**
 	 * API name: {@code probability}
 	 */
-	public Double probability() {
+	public double probability() {
 		return this.probability;
 	}
 
 	/**
 	 * API name: {@code record_score}
 	 */
-	public Double recordScore() {
+	public double recordScore() {
 		return this.recordScore;
 	}
 
@@ -600,7 +600,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code detector_index}
 		 */
-		public Builder detectorIndex(Integer value) {
+		public Builder detectorIndex(int value) {
 			this.detectorIndex = value;
 			return this;
 		}
@@ -673,7 +673,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code initial_record_score}
 		 */
-		public Builder initialRecordScore(Double value) {
+		public Builder initialRecordScore(double value) {
 			this.initialRecordScore = value;
 			return this;
 		}
@@ -681,7 +681,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code is_interim}
 		 */
-		public Builder isInterim(Boolean value) {
+		public Builder isInterim(boolean value) {
 			this.isInterim = value;
 			return this;
 		}
@@ -729,7 +729,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code probability}
 		 */
-		public Builder probability(Double value) {
+		public Builder probability(double value) {
 			this.probability = value;
 			return this;
 		}
@@ -737,7 +737,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code record_score}
 		 */
-		public Builder recordScore(Double value) {
+		public Builder recordScore(double value) {
 			this.recordScore = value;
 			return this;
 		}

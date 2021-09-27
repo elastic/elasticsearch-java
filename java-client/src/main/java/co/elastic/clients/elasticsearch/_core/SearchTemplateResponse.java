@@ -47,9 +47,9 @@ import javax.annotation.Nullable;
 public final class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	private final ShardStatistics shards;
 
-	private final Boolean timedOut;
+	private final boolean timedOut;
 
-	private final Integer took;
+	private final int took;
 
 	private final HitsMetadata<TDocument> hits;
 
@@ -78,14 +78,14 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 	/**
 	 * API name: {@code timed_out}
 	 */
-	public Boolean timedOut() {
+	public boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
 	 * API name: {@code took}
 	 */
-	public Integer took() {
+	public int took() {
 		return this.took;
 	}
 
@@ -156,7 +156,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		/**
 		 * API name: {@code timed_out}
 		 */
-		public Builder<TDocument> timedOut(Boolean value) {
+		public Builder<TDocument> timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}
@@ -164,7 +164,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder<TDocument> took(Integer value) {
+		public Builder<TDocument> took(int value) {
 			this.took = value;
 			return this;
 		}

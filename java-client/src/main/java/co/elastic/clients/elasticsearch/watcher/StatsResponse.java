@@ -50,7 +50,7 @@ public final class StatsResponse implements JsonpSerializable {
 
 	private final String clusterName;
 
-	private final Boolean manuallyStopped;
+	private final boolean manuallyStopped;
 
 	private final List<WatcherNodeStats> stats;
 
@@ -82,7 +82,7 @@ public final class StatsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code manually_stopped}
 	 */
-	public Boolean manuallyStopped() {
+	public boolean manuallyStopped() {
 		return this.manuallyStopped;
 	}
 
@@ -163,7 +163,7 @@ public final class StatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code manually_stopped}
 		 */
-		public Builder manuallyStopped(Boolean value) {
+		public Builder manuallyStopped(boolean value) {
 			this.manuallyStopped = value;
 			return this;
 		}

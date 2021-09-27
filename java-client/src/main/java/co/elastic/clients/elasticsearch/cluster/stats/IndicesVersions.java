@@ -41,11 +41,11 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.IndicesVersions
 @JsonpDeserializable
 public final class IndicesVersions implements JsonpSerializable {
-	private final Integer indexCount;
+	private final int indexCount;
 
-	private final Integer primaryShardCount;
+	private final int primaryShardCount;
 
-	private final Long totalPrimaryBytes;
+	private final long totalPrimaryBytes;
 
 	private final String version;
 
@@ -63,21 +63,21 @@ public final class IndicesVersions implements JsonpSerializable {
 	/**
 	 * API name: {@code index_count}
 	 */
-	public Integer indexCount() {
+	public int indexCount() {
 		return this.indexCount;
 	}
 
 	/**
 	 * API name: {@code primary_shard_count}
 	 */
-	public Integer primaryShardCount() {
+	public int primaryShardCount() {
 		return this.primaryShardCount;
 	}
 
 	/**
 	 * API name: {@code total_primary_bytes}
 	 */
-	public Long totalPrimaryBytes() {
+	public long totalPrimaryBytes() {
 		return this.totalPrimaryBytes;
 	}
 
@@ -130,7 +130,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		/**
 		 * API name: {@code index_count}
 		 */
-		public Builder indexCount(Integer value) {
+		public Builder indexCount(int value) {
 			this.indexCount = value;
 			return this;
 		}
@@ -138,7 +138,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		/**
 		 * API name: {@code primary_shard_count}
 		 */
-		public Builder primaryShardCount(Integer value) {
+		public Builder primaryShardCount(int value) {
 			this.primaryShardCount = value;
 			return this;
 		}
@@ -146,7 +146,7 @@ public final class IndicesVersions implements JsonpSerializable {
 		/**
 		 * API name: {@code total_primary_bytes}
 		 */
-		public Builder totalPrimaryBytes(Long value) {
+		public Builder totalPrimaryBytes(long value) {
 			this.totalPrimaryBytes = value;
 			return this;
 		}

@@ -138,8 +138,7 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.taskId() != null)
-					propsSet |= _taskId;
+				propsSet |= _taskId;
 
 				if (propsSet == (_taskId)) {
 					StringBuilder buf = new StringBuilder();

@@ -428,8 +428,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 
 				int propsSet = 0;
 
-				if (request.username() != null)
-					propsSet |= _username;
+				propsSet |= _username;
 
 				if (propsSet == (_username)) {
 					StringBuilder buf = new StringBuilder();

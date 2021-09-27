@@ -45,13 +45,13 @@ import javax.annotation.Nullable;
 public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	private final String hyphenationPatternsPath;
 
-	private final Integer maxSubwordSize;
+	private final int maxSubwordSize;
 
-	private final Integer minSubwordSize;
+	private final int minSubwordSize;
 
-	private final Integer minWordSize;
+	private final int minWordSize;
 
-	private final Boolean onlyLongestMatch;
+	private final boolean onlyLongestMatch;
 
 	private final List<String> wordList;
 
@@ -83,28 +83,28 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	/**
 	 * API name: {@code max_subword_size}
 	 */
-	public Integer maxSubwordSize() {
+	public int maxSubwordSize() {
 		return this.maxSubwordSize;
 	}
 
 	/**
 	 * API name: {@code min_subword_size}
 	 */
-	public Integer minSubwordSize() {
+	public int minSubwordSize() {
 		return this.minSubwordSize;
 	}
 
 	/**
 	 * API name: {@code min_word_size}
 	 */
-	public Integer minWordSize() {
+	public int minWordSize() {
 		return this.minWordSize;
 	}
 
 	/**
 	 * API name: {@code only_longest_match}
 	 */
-	public Boolean onlyLongestMatch() {
+	public boolean onlyLongestMatch() {
 		return this.onlyLongestMatch;
 	}
 
@@ -182,7 +182,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		/**
 		 * API name: {@code max_subword_size}
 		 */
-		public BuilderT maxSubwordSize(Integer value) {
+		public BuilderT maxSubwordSize(int value) {
 			this.maxSubwordSize = value;
 			return self();
 		}
@@ -190,7 +190,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		/**
 		 * API name: {@code min_subword_size}
 		 */
-		public BuilderT minSubwordSize(Integer value) {
+		public BuilderT minSubwordSize(int value) {
 			this.minSubwordSize = value;
 			return self();
 		}
@@ -198,7 +198,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		/**
 		 * API name: {@code min_word_size}
 		 */
-		public BuilderT minWordSize(Integer value) {
+		public BuilderT minWordSize(int value) {
 			this.minWordSize = value;
 			return self();
 		}
@@ -206,7 +206,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		/**
 		 * API name: {@code only_longest_match}
 		 */
-		public BuilderT onlyLongestMatch(Boolean value) {
+		public BuilderT onlyLongestMatch(boolean value) {
 			this.onlyLongestMatch = value;
 			return self();
 		}

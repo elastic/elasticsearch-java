@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvmMemory
 @JsonpDeserializable
 public final class ClusterJvmMemory implements JsonpSerializable {
-	private final Long heapMaxInBytes;
+	private final long heapMaxInBytes;
 
-	private final Long heapUsedInBytes;
+	private final long heapUsedInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 	/**
 	 * API name: {@code heap_max_in_bytes}
 	 */
-	public Long heapMaxInBytes() {
+	public long heapMaxInBytes() {
 		return this.heapMaxInBytes;
 	}
 
 	/**
 	 * API name: {@code heap_used_in_bytes}
 	 */
-	public Long heapUsedInBytes() {
+	public long heapUsedInBytes() {
 		return this.heapUsedInBytes;
 	}
 
@@ -98,7 +97,7 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code heap_max_in_bytes}
 		 */
-		public Builder heapMaxInBytes(Long value) {
+		public Builder heapMaxInBytes(long value) {
 			this.heapMaxInBytes = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code heap_used_in_bytes}
 		 */
-		public Builder heapUsedInBytes(Long value) {
+		public Builder heapUsedInBytes(long value) {
 			this.heapUsedInBytes = value;
 			return this;
 		}

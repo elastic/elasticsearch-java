@@ -42,29 +42,29 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.WordDelimiterGraphTokenFilter
 @JsonpDeserializable
 public final class WordDelimiterGraphTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Boolean adjustOffsets;
+	private final boolean adjustOffsets;
 
-	private final Boolean catenateAll;
+	private final boolean catenateAll;
 
-	private final Boolean catenateNumbers;
+	private final boolean catenateNumbers;
 
-	private final Boolean catenateWords;
+	private final boolean catenateWords;
 
-	private final Boolean generateNumberParts;
+	private final boolean generateNumberParts;
 
-	private final Boolean generateWordParts;
+	private final boolean generateWordParts;
 
-	private final Boolean preserveOriginal;
+	private final boolean preserveOriginal;
 
 	private final List<String> protectedWords;
 
 	private final String protectedWordsPath;
 
-	private final Boolean splitOnCaseChange;
+	private final boolean splitOnCaseChange;
 
-	private final Boolean splitOnNumerics;
+	private final boolean splitOnNumerics;
 
-	private final Boolean stemEnglishPossessive;
+	private final boolean stemEnglishPossessive;
 
 	private final List<String> typeTable;
 
@@ -103,49 +103,49 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 	/**
 	 * API name: {@code adjust_offsets}
 	 */
-	public Boolean adjustOffsets() {
+	public boolean adjustOffsets() {
 		return this.adjustOffsets;
 	}
 
 	/**
 	 * API name: {@code catenate_all}
 	 */
-	public Boolean catenateAll() {
+	public boolean catenateAll() {
 		return this.catenateAll;
 	}
 
 	/**
 	 * API name: {@code catenate_numbers}
 	 */
-	public Boolean catenateNumbers() {
+	public boolean catenateNumbers() {
 		return this.catenateNumbers;
 	}
 
 	/**
 	 * API name: {@code catenate_words}
 	 */
-	public Boolean catenateWords() {
+	public boolean catenateWords() {
 		return this.catenateWords;
 	}
 
 	/**
 	 * API name: {@code generate_number_parts}
 	 */
-	public Boolean generateNumberParts() {
+	public boolean generateNumberParts() {
 		return this.generateNumberParts;
 	}
 
 	/**
 	 * API name: {@code generate_word_parts}
 	 */
-	public Boolean generateWordParts() {
+	public boolean generateWordParts() {
 		return this.generateWordParts;
 	}
 
 	/**
 	 * API name: {@code preserve_original}
 	 */
-	public Boolean preserveOriginal() {
+	public boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -166,21 +166,21 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 	/**
 	 * API name: {@code split_on_case_change}
 	 */
-	public Boolean splitOnCaseChange() {
+	public boolean splitOnCaseChange() {
 		return this.splitOnCaseChange;
 	}
 
 	/**
 	 * API name: {@code split_on_numerics}
 	 */
-	public Boolean splitOnNumerics() {
+	public boolean splitOnNumerics() {
 		return this.splitOnNumerics;
 	}
 
 	/**
 	 * API name: {@code stem_english_possessive}
 	 */
-	public Boolean stemEnglishPossessive() {
+	public boolean stemEnglishPossessive() {
 		return this.stemEnglishPossessive;
 	}
 
@@ -296,7 +296,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code adjust_offsets}
 		 */
-		public Builder adjustOffsets(Boolean value) {
+		public Builder adjustOffsets(boolean value) {
 			this.adjustOffsets = value;
 			return this;
 		}
@@ -304,7 +304,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code catenate_all}
 		 */
-		public Builder catenateAll(Boolean value) {
+		public Builder catenateAll(boolean value) {
 			this.catenateAll = value;
 			return this;
 		}
@@ -312,7 +312,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code catenate_numbers}
 		 */
-		public Builder catenateNumbers(Boolean value) {
+		public Builder catenateNumbers(boolean value) {
 			this.catenateNumbers = value;
 			return this;
 		}
@@ -320,7 +320,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code catenate_words}
 		 */
-		public Builder catenateWords(Boolean value) {
+		public Builder catenateWords(boolean value) {
 			this.catenateWords = value;
 			return this;
 		}
@@ -328,7 +328,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code generate_number_parts}
 		 */
-		public Builder generateNumberParts(Boolean value) {
+		public Builder generateNumberParts(boolean value) {
 			this.generateNumberParts = value;
 			return this;
 		}
@@ -336,7 +336,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code generate_word_parts}
 		 */
-		public Builder generateWordParts(Boolean value) {
+		public Builder generateWordParts(boolean value) {
 			this.generateWordParts = value;
 			return this;
 		}
@@ -344,7 +344,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code preserve_original}
 		 */
-		public Builder preserveOriginal(Boolean value) {
+		public Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}
@@ -387,7 +387,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code split_on_case_change}
 		 */
-		public Builder splitOnCaseChange(Boolean value) {
+		public Builder splitOnCaseChange(boolean value) {
 			this.splitOnCaseChange = value;
 			return this;
 		}
@@ -395,7 +395,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code split_on_numerics}
 		 */
-		public Builder splitOnNumerics(Boolean value) {
+		public Builder splitOnNumerics(boolean value) {
 			this.splitOnNumerics = value;
 			return this;
 		}
@@ -403,7 +403,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		/**
 		 * API name: {@code stem_english_possessive}
 		 */
-		public Builder stemEnglishPossessive(Boolean value) {
+		public Builder stemEnglishPossessive(boolean value) {
 			this.stemEnglishPossessive = value;
 			return this;
 		}

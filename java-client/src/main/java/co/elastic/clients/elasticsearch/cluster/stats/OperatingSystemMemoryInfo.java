@@ -35,20 +35,19 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: cluster.stats.OperatingSystemMemoryInfo
 @JsonpDeserializable
 public final class OperatingSystemMemoryInfo implements JsonpSerializable {
-	private final Long freeInBytes;
+	private final long freeInBytes;
 
-	private final Integer freePercent;
+	private final int freePercent;
 
-	private final Long totalInBytes;
+	private final long totalInBytes;
 
-	private final Long usedInBytes;
+	private final long usedInBytes;
 
-	private final Integer usedPercent;
+	private final int usedPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,35 +64,35 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code free_in_bytes}
 	 */
-	public Long freeInBytes() {
+	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * API name: {@code free_percent}
 	 */
-	public Integer freePercent() {
+	public int freePercent() {
 		return this.freePercent;
 	}
 
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Long totalInBytes() {
+	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
 	 * API name: {@code used_in_bytes}
 	 */
-	public Long usedInBytes() {
+	public long usedInBytes() {
 		return this.usedInBytes;
 	}
 
 	/**
 	 * API name: {@code used_percent}
 	 */
-	public Integer usedPercent() {
+	public int usedPercent() {
 		return this.usedPercent;
 	}
 
@@ -144,7 +143,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(Long value) {
+		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -152,7 +151,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code free_percent}
 		 */
-		public Builder freePercent(Integer value) {
+		public Builder freePercent(int value) {
 			this.freePercent = value;
 			return this;
 		}
@@ -160,7 +159,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Long value) {
+		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -168,7 +167,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code used_in_bytes}
 		 */
-		public Builder usedInBytes(Long value) {
+		public Builder usedInBytes(long value) {
 			this.usedInBytes = value;
 			return this;
 		}
@@ -176,7 +175,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code used_percent}
 		 */
-		public Builder usedPercent(Integer value) {
+		public Builder usedPercent(int value) {
 			this.usedPercent = value;
 			return this;
 		}

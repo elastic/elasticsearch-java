@@ -41,17 +41,17 @@ import javax.annotation.Nullable;
 // typedef: cluster.health.ShardHealthStats
 @JsonpDeserializable
 public final class ShardHealthStats implements JsonpSerializable {
-	private final Integer activeShards;
+	private final int activeShards;
 
-	private final Integer initializingShards;
+	private final int initializingShards;
 
-	private final Boolean primaryActive;
+	private final boolean primaryActive;
 
-	private final Integer relocatingShards;
+	private final int relocatingShards;
 
 	private final Health status;
 
-	private final Integer unassignedShards;
+	private final int unassignedShards;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,28 +69,28 @@ public final class ShardHealthStats implements JsonpSerializable {
 	/**
 	 * API name: {@code active_shards}
 	 */
-	public Integer activeShards() {
+	public int activeShards() {
 		return this.activeShards;
 	}
 
 	/**
 	 * API name: {@code initializing_shards}
 	 */
-	public Integer initializingShards() {
+	public int initializingShards() {
 		return this.initializingShards;
 	}
 
 	/**
 	 * API name: {@code primary_active}
 	 */
-	public Boolean primaryActive() {
+	public boolean primaryActive() {
 		return this.primaryActive;
 	}
 
 	/**
 	 * API name: {@code relocating_shards}
 	 */
-	public Integer relocatingShards() {
+	public int relocatingShards() {
 		return this.relocatingShards;
 	}
 
@@ -104,7 +104,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 	/**
 	 * API name: {@code unassigned_shards}
 	 */
-	public Integer unassignedShards() {
+	public int unassignedShards() {
 		return this.unassignedShards;
 	}
 
@@ -160,7 +160,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * API name: {@code active_shards}
 		 */
-		public Builder activeShards(Integer value) {
+		public Builder activeShards(int value) {
 			this.activeShards = value;
 			return this;
 		}
@@ -168,7 +168,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * API name: {@code initializing_shards}
 		 */
-		public Builder initializingShards(Integer value) {
+		public Builder initializingShards(int value) {
 			this.initializingShards = value;
 			return this;
 		}
@@ -176,7 +176,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * API name: {@code primary_active}
 		 */
-		public Builder primaryActive(Boolean value) {
+		public Builder primaryActive(boolean value) {
 			this.primaryActive = value;
 			return this;
 		}
@@ -184,7 +184,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * API name: {@code relocating_shards}
 		 */
-		public Builder relocatingShards(Integer value) {
+		public Builder relocatingShards(int value) {
 			this.relocatingShards = value;
 			return this;
 		}
@@ -200,7 +200,7 @@ public final class ShardHealthStats implements JsonpSerializable {
 		/**
 		 * API name: {@code unassigned_shards}
 		 */
-		public Builder unassignedShards(Integer value) {
+		public Builder unassignedShards(int value) {
 			this.unassignedShards = value;
 			return this;
 		}

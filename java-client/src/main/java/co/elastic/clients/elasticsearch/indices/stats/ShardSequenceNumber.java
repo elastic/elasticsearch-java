@@ -35,16 +35,15 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardSequenceNumber
 @JsonpDeserializable
 public final class ShardSequenceNumber implements JsonpSerializable {
-	private final Long globalCheckpoint;
+	private final long globalCheckpoint;
 
-	private final Long localCheckpoint;
+	private final long localCheckpoint;
 
-	private final Integer maxSeqNo;
+	private final int maxSeqNo;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,21 +58,21 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 	/**
 	 * API name: {@code global_checkpoint}
 	 */
-	public Long globalCheckpoint() {
+	public long globalCheckpoint() {
 		return this.globalCheckpoint;
 	}
 
 	/**
 	 * API name: {@code local_checkpoint}
 	 */
-	public Long localCheckpoint() {
+	public long localCheckpoint() {
 		return this.localCheckpoint;
 	}
 
 	/**
 	 * API name: {@code max_seq_no}
 	 */
-	public Integer maxSeqNo() {
+	public int maxSeqNo() {
 		return this.maxSeqNo;
 	}
 
@@ -114,7 +113,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		/**
 		 * API name: {@code global_checkpoint}
 		 */
-		public Builder globalCheckpoint(Long value) {
+		public Builder globalCheckpoint(long value) {
 			this.globalCheckpoint = value;
 			return this;
 		}
@@ -122,7 +121,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		/**
 		 * API name: {@code local_checkpoint}
 		 */
-		public Builder localCheckpoint(Long value) {
+		public Builder localCheckpoint(long value) {
 			this.localCheckpoint = value;
 			return this;
 		}
@@ -130,7 +129,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		/**
 		 * API name: {@code max_seq_no}
 		 */
-		public Builder maxSeqNo(Integer value) {
+		public Builder maxSeqNo(int value) {
 			this.maxSeqNo = value;
 			return this;
 		}

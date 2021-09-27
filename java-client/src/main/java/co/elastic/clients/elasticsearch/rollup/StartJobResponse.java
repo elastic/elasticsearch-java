@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: rollup.start_job.Response
 @JsonpDeserializable
 public final class StartJobResponse implements JsonpSerializable {
-	private final Boolean started;
+	private final boolean started;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class StartJobResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code started}
 	 */
-	public Boolean started() {
+	public boolean started() {
 		return this.started;
 	}
 
@@ -83,7 +82,7 @@ public final class StartJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code started}
 		 */
-		public Builder started(Boolean value) {
+		public Builder started(boolean value) {
 			this.started = value;
 			return this;
 		}

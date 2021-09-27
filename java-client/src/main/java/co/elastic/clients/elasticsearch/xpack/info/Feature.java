@@ -41,12 +41,12 @@ import javax.annotation.Nullable;
 // typedef: xpack.info.Feature
 @JsonpDeserializable
 public final class Feature implements JsonpSerializable {
-	private final Boolean available;
+	private final boolean available;
 
 	@Nullable
 	private final String description;
 
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	@Nullable
 	private final NativeCodeInformation nativeCodeInfo;
@@ -65,7 +65,7 @@ public final class Feature implements JsonpSerializable {
 	/**
 	 * API name: {@code available}
 	 */
-	public Boolean available() {
+	public boolean available() {
 		return this.available;
 	}
 
@@ -80,7 +80,7 @@ public final class Feature implements JsonpSerializable {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
@@ -144,7 +144,7 @@ public final class Feature implements JsonpSerializable {
 		/**
 		 * API name: {@code available}
 		 */
-		public Builder available(Boolean value) {
+		public Builder available(boolean value) {
 			this.available = value;
 			return this;
 		}
@@ -160,7 +160,7 @@ public final class Feature implements JsonpSerializable {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}

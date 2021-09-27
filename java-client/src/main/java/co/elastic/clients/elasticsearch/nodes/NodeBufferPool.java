@@ -40,15 +40,15 @@ import javax.annotation.Nullable;
 // typedef: nodes._types.NodeBufferPool
 @JsonpDeserializable
 public final class NodeBufferPool implements JsonpSerializable {
-	private final Long count;
+	private final long count;
 
 	private final String totalCapacity;
 
-	private final Long totalCapacityInBytes;
+	private final long totalCapacityInBytes;
 
 	private final String used;
 
-	private final Long usedInBytes;
+	private final long usedInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Long count() {
+	public long count() {
 		return this.count;
 	}
 
@@ -79,7 +79,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 	/**
 	 * API name: {@code total_capacity_in_bytes}
 	 */
-	public Long totalCapacityInBytes() {
+	public long totalCapacityInBytes() {
 		return this.totalCapacityInBytes;
 	}
 
@@ -93,7 +93,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 	/**
 	 * API name: {@code used_in_bytes}
 	 */
-	public Long usedInBytes() {
+	public long usedInBytes() {
 		return this.usedInBytes;
 	}
 
@@ -144,7 +144,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Long value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -160,7 +160,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		/**
 		 * API name: {@code total_capacity_in_bytes}
 		 */
-		public Builder totalCapacityInBytes(Long value) {
+		public Builder totalCapacityInBytes(long value) {
 			this.totalCapacityInBytes = value;
 			return this;
 		}
@@ -176,7 +176,7 @@ public final class NodeBufferPool implements JsonpSerializable {
 		/**
 		 * API name: {@code used_in_bytes}
 		 */
-		public Builder usedInBytes(Long value) {
+		public Builder usedInBytes(long value) {
 			this.usedInBytes = value;
 			return this;
 		}

@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _global.search._types.StupidBackoffSmoothingModel
 @JsonpDeserializable
 public final class StupidBackoffSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
-	private final Double discount;
+	private final double discount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class StupidBackoffSmoothingModel implements SmoothingModelVariant,
 	/**
 	 * API name: {@code discount}
 	 */
-	public Double discount() {
+	public double discount() {
 		return this.discount;
 	}
 
@@ -91,7 +90,7 @@ public final class StupidBackoffSmoothingModel implements SmoothingModelVariant,
 		/**
 		 * API name: {@code discount}
 		 */
-		public Builder discount(Double value) {
+		public Builder discount(double value) {
 			this.discount = value;
 			return this;
 		}

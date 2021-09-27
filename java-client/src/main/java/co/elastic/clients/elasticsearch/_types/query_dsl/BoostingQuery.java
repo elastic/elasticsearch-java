@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 // typedef: _types.query_dsl.BoostingQuery
 @JsonpDeserializable
 public final class BoostingQuery extends QueryBase implements QueryVariant {
-	private final Double negativeBoost;
+	private final double negativeBoost;
 
 	private final Query negative;
 
@@ -67,7 +67,7 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 	/**
 	 * API name: {@code negative_boost}
 	 */
-	public Double negativeBoost() {
+	public double negativeBoost() {
 		return this.negativeBoost;
 	}
 
@@ -115,7 +115,7 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code negative_boost}
 		 */
-		public Builder negativeBoost(Double value) {
+		public Builder negativeBoost(double value) {
 			this.negativeBoost = value;
 			return this;
 		}

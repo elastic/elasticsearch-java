@@ -53,7 +53,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 	private final ClusterStatus status;
 
-	private final Long timestamp;
+	private final long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -121,7 +121,7 @@ public final class StatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public Long timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
@@ -244,7 +244,7 @@ public final class StatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Long value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}

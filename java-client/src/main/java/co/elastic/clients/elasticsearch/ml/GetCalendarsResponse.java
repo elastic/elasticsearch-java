@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 public final class GetCalendarsResponse implements JsonpSerializable {
 	private final List<Calendar> calendars;
 
-	private final Long count;
+	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Long count() {
+	public long count() {
 		return this.count;
 	}
 
@@ -149,7 +149,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Long value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}

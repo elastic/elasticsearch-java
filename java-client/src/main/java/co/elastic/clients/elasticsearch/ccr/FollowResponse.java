@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: ccr.follow.Response
 @JsonpDeserializable
 public final class FollowResponse implements JsonpSerializable {
-	private final Boolean followIndexCreated;
+	private final boolean followIndexCreated;
 
-	private final Boolean followIndexShardsAcked;
+	private final boolean followIndexShardsAcked;
 
-	private final Boolean indexFollowingStarted;
+	private final boolean indexFollowingStarted;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,21 +58,21 @@ public final class FollowResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code follow_index_created}
 	 */
-	public Boolean followIndexCreated() {
+	public boolean followIndexCreated() {
 		return this.followIndexCreated;
 	}
 
 	/**
 	 * API name: {@code follow_index_shards_acked}
 	 */
-	public Boolean followIndexShardsAcked() {
+	public boolean followIndexShardsAcked() {
 		return this.followIndexShardsAcked;
 	}
 
 	/**
 	 * API name: {@code index_following_started}
 	 */
-	public Boolean indexFollowingStarted() {
+	public boolean indexFollowingStarted() {
 		return this.indexFollowingStarted;
 	}
 
@@ -114,7 +113,7 @@ public final class FollowResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code follow_index_created}
 		 */
-		public Builder followIndexCreated(Boolean value) {
+		public Builder followIndexCreated(boolean value) {
 			this.followIndexCreated = value;
 			return this;
 		}
@@ -122,7 +121,7 @@ public final class FollowResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code follow_index_shards_acked}
 		 */
-		public Builder followIndexShardsAcked(Boolean value) {
+		public Builder followIndexShardsAcked(boolean value) {
 			this.followIndexShardsAcked = value;
 			return this;
 		}
@@ -130,7 +129,7 @@ public final class FollowResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code index_following_started}
 		 */
-		public Builder indexFollowingStarted(Boolean value) {
+		public Builder indexFollowingStarted(boolean value) {
 			this.indexFollowingStarted = value;
 			return this;
 		}

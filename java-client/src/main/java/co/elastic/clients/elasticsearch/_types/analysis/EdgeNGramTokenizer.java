@@ -44,9 +44,9 @@ import javax.annotation.Nullable;
 public final class EdgeNGramTokenizer extends TokenizerBase implements TokenizerVariant {
 	private final String customTokenChars;
 
-	private final Integer maxGram;
+	private final int maxGram;
 
-	private final Integer minGram;
+	private final int minGram;
 
 	private final List<TokenChar> tokenChars;
 
@@ -80,14 +80,14 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 	/**
 	 * API name: {@code max_gram}
 	 */
-	public Integer maxGram() {
+	public int maxGram() {
 		return this.maxGram;
 	}
 
 	/**
 	 * API name: {@code min_gram}
 	 */
-	public Integer minGram() {
+	public int minGram() {
 		return this.minGram;
 	}
 
@@ -148,7 +148,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		/**
 		 * API name: {@code max_gram}
 		 */
-		public Builder maxGram(Integer value) {
+		public Builder maxGram(int value) {
 			this.maxGram = value;
 			return this;
 		}
@@ -156,7 +156,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		/**
 		 * API name: {@code min_gram}
 		 */
-		public Builder minGram(Integer value) {
+		public Builder minGram(int value) {
 			this.minGram = value;
 			return this;
 		}

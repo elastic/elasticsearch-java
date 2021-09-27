@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: xpack.usage.IlmPolicyStatistics
 @JsonpDeserializable
 public final class IlmPolicyStatistics implements JsonpSerializable {
-	private final Integer indicesManaged;
+	private final int indicesManaged;
 
 	private final Phases phases;
 
@@ -57,7 +57,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code indices_managed}
 	 */
-	public Integer indicesManaged() {
+	public int indicesManaged() {
 		return this.indicesManaged;
 	}
 
@@ -100,7 +100,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code indices_managed}
 		 */
-		public Builder indicesManaged(Integer value) {
+		public Builder indicesManaged(int value) {
 			this.indicesManaged = value;
 			return this;
 		}

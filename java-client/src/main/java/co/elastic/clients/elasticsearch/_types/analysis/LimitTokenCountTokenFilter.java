@@ -34,14 +34,13 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LimitTokenCountTokenFilter
 @JsonpDeserializable
 public final class LimitTokenCountTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Boolean consumeAllTokens;
+	private final boolean consumeAllTokens;
 
-	private final Integer maxTokenCount;
+	private final int maxTokenCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,14 +63,14 @@ public final class LimitTokenCountTokenFilter extends TokenFilterBase implements
 	/**
 	 * API name: {@code consume_all_tokens}
 	 */
-	public Boolean consumeAllTokens() {
+	public boolean consumeAllTokens() {
 		return this.consumeAllTokens;
 	}
 
 	/**
 	 * API name: {@code max_token_count}
 	 */
-	public Integer maxTokenCount() {
+	public int maxTokenCount() {
 		return this.maxTokenCount;
 	}
 
@@ -103,7 +102,7 @@ public final class LimitTokenCountTokenFilter extends TokenFilterBase implements
 		/**
 		 * API name: {@code consume_all_tokens}
 		 */
-		public Builder consumeAllTokens(Boolean value) {
+		public Builder consumeAllTokens(boolean value) {
 			this.consumeAllTokens = value;
 			return this;
 		}
@@ -111,7 +110,7 @@ public final class LimitTokenCountTokenFilter extends TokenFilterBase implements
 		/**
 		 * API name: {@code max_token_count}
 		 */
-		public Builder maxTokenCount(Integer value) {
+		public Builder maxTokenCount(int value) {
 			this.maxTokenCount = value;
 			return this;
 		}

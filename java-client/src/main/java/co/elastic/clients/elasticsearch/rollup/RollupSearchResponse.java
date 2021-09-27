@@ -48,9 +48,9 @@ import javax.annotation.Nullable;
 // typedef: rollup.rollup_search.Response
 
 public final class RollupSearchResponse<TDocument> implements JsonpSerializable {
-	private final Long took;
+	private final long took;
 
-	private final Boolean timedOut;
+	private final boolean timedOut;
 
 	@Nullable
 	private final Boolean terminatedEarly;
@@ -82,14 +82,14 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 	/**
 	 * API name: {@code took}
 	 */
-	public Long took() {
+	public long took() {
 		return this.took;
 	}
 
 	/**
 	 * API name: {@code timed_out}
 	 */
-	public Boolean timedOut() {
+	public boolean timedOut() {
 		return this.timedOut;
 	}
 
@@ -195,7 +195,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder<TDocument> took(Long value) {
+		public Builder<TDocument> took(long value) {
 			this.took = value;
 			return this;
 		}
@@ -203,7 +203,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		/**
 		 * API name: {@code timed_out}
 		 */
-		public Builder<TDocument> timedOut(Boolean value) {
+		public Builder<TDocument> timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}

@@ -34,30 +34,29 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.DataTierPhaseStatistics
 @JsonpDeserializable
 public final class DataTierPhaseStatistics implements JsonpSerializable {
-	private final Long nodeCount;
+	private final long nodeCount;
 
-	private final Long indexCount;
+	private final long indexCount;
 
-	private final Long totalShardCount;
+	private final long totalShardCount;
 
-	private final Long primaryShardCount;
+	private final long primaryShardCount;
 
-	private final Long docCount;
+	private final long docCount;
 
-	private final Long totalSizeBytes;
+	private final long totalSizeBytes;
 
-	private final Long primarySizeBytes;
+	private final long primarySizeBytes;
 
-	private final Long primaryShardSizeAvgBytes;
+	private final long primaryShardSizeAvgBytes;
 
-	private final Long primaryShardSizeMedianBytes;
+	private final long primaryShardSizeMedianBytes;
 
-	private final Long primaryShardSizeMadBytes;
+	private final long primaryShardSizeMadBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,70 +81,70 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code node_count}
 	 */
-	public Long nodeCount() {
+	public long nodeCount() {
 		return this.nodeCount;
 	}
 
 	/**
 	 * API name: {@code index_count}
 	 */
-	public Long indexCount() {
+	public long indexCount() {
 		return this.indexCount;
 	}
 
 	/**
 	 * API name: {@code total_shard_count}
 	 */
-	public Long totalShardCount() {
+	public long totalShardCount() {
 		return this.totalShardCount;
 	}
 
 	/**
 	 * API name: {@code primary_shard_count}
 	 */
-	public Long primaryShardCount() {
+	public long primaryShardCount() {
 		return this.primaryShardCount;
 	}
 
 	/**
 	 * API name: {@code doc_count}
 	 */
-	public Long docCount() {
+	public long docCount() {
 		return this.docCount;
 	}
 
 	/**
 	 * API name: {@code total_size_bytes}
 	 */
-	public Long totalSizeBytes() {
+	public long totalSizeBytes() {
 		return this.totalSizeBytes;
 	}
 
 	/**
 	 * API name: {@code primary_size_bytes}
 	 */
-	public Long primarySizeBytes() {
+	public long primarySizeBytes() {
 		return this.primarySizeBytes;
 	}
 
 	/**
 	 * API name: {@code primary_shard_size_avg_bytes}
 	 */
-	public Long primaryShardSizeAvgBytes() {
+	public long primaryShardSizeAvgBytes() {
 		return this.primaryShardSizeAvgBytes;
 	}
 
 	/**
 	 * API name: {@code primary_shard_size_median_bytes}
 	 */
-	public Long primaryShardSizeMedianBytes() {
+	public long primaryShardSizeMedianBytes() {
 		return this.primaryShardSizeMedianBytes;
 	}
 
 	/**
 	 * API name: {@code primary_shard_size_mad_bytes}
 	 */
-	public Long primaryShardSizeMadBytes() {
+	public long primaryShardSizeMadBytes() {
 		return this.primaryShardSizeMadBytes;
 	}
 
@@ -221,7 +220,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code node_count}
 		 */
-		public Builder nodeCount(Long value) {
+		public Builder nodeCount(long value) {
 			this.nodeCount = value;
 			return this;
 		}
@@ -229,7 +228,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code index_count}
 		 */
-		public Builder indexCount(Long value) {
+		public Builder indexCount(long value) {
 			this.indexCount = value;
 			return this;
 		}
@@ -237,7 +236,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total_shard_count}
 		 */
-		public Builder totalShardCount(Long value) {
+		public Builder totalShardCount(long value) {
 			this.totalShardCount = value;
 			return this;
 		}
@@ -245,7 +244,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code primary_shard_count}
 		 */
-		public Builder primaryShardCount(Long value) {
+		public Builder primaryShardCount(long value) {
 			this.primaryShardCount = value;
 			return this;
 		}
@@ -253,7 +252,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_count}
 		 */
-		public Builder docCount(Long value) {
+		public Builder docCount(long value) {
 			this.docCount = value;
 			return this;
 		}
@@ -261,7 +260,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total_size_bytes}
 		 */
-		public Builder totalSizeBytes(Long value) {
+		public Builder totalSizeBytes(long value) {
 			this.totalSizeBytes = value;
 			return this;
 		}
@@ -269,7 +268,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code primary_size_bytes}
 		 */
-		public Builder primarySizeBytes(Long value) {
+		public Builder primarySizeBytes(long value) {
 			this.primarySizeBytes = value;
 			return this;
 		}
@@ -277,7 +276,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code primary_shard_size_avg_bytes}
 		 */
-		public Builder primaryShardSizeAvgBytes(Long value) {
+		public Builder primaryShardSizeAvgBytes(long value) {
 			this.primaryShardSizeAvgBytes = value;
 			return this;
 		}
@@ -285,7 +284,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code primary_shard_size_median_bytes}
 		 */
-		public Builder primaryShardSizeMedianBytes(Long value) {
+		public Builder primaryShardSizeMedianBytes(long value) {
 			this.primaryShardSizeMedianBytes = value;
 			return this;
 		}
@@ -293,7 +292,7 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code primary_shard_size_mad_bytes}
 		 */
-		public Builder primaryShardSizeMadBytes(Long value) {
+		public Builder primaryShardSizeMadBytes(long value) {
 			this.primaryShardSizeMadBytes = value;
 			return this;
 		}

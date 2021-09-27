@@ -44,14 +44,14 @@ import javax.annotation.Nullable;
 // typedef: security.get_api_key.ApiKey
 @JsonpDeserializable
 public final class ApiKey implements JsonpSerializable {
-	private final Long creation;
+	private final long creation;
 
 	@Nullable
 	private final Long expiration;
 
 	private final String id;
 
-	private final Boolean invalidated;
+	private final boolean invalidated;
 
 	private final String name;
 
@@ -80,7 +80,7 @@ public final class ApiKey implements JsonpSerializable {
 	/**
 	 * API name: {@code creation}
 	 */
-	public Long creation() {
+	public long creation() {
 		return this.creation;
 	}
 
@@ -102,7 +102,7 @@ public final class ApiKey implements JsonpSerializable {
 	/**
 	 * API name: {@code invalidated}
 	 */
-	public Boolean invalidated() {
+	public boolean invalidated() {
 		return this.invalidated;
 	}
 
@@ -213,7 +213,7 @@ public final class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code creation}
 		 */
-		public Builder creation(Long value) {
+		public Builder creation(long value) {
 			this.creation = value;
 			return this;
 		}
@@ -237,7 +237,7 @@ public final class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code invalidated}
 		 */
-		public Builder invalidated(Boolean value) {
+		public Builder invalidated(boolean value) {
 			this.invalidated = value;
 			return this;
 		}

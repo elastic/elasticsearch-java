@@ -44,15 +44,15 @@ import javax.annotation.Nullable;
 public final class RolloverResponse extends AcknowledgedResponseBase {
 	private final Map<String, Boolean> conditions;
 
-	private final Boolean dryRun;
+	private final boolean dryRun;
 
 	private final String newIndex;
 
 	private final String oldIndex;
 
-	private final Boolean rolledOver;
+	private final boolean rolledOver;
 
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code dry_run}
 	 */
-	public Boolean dryRun() {
+	public boolean dryRun() {
 		return this.dryRun;
 	}
 
@@ -99,14 +99,14 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code rolled_over}
 	 */
-	public Boolean rolledOver() {
+	public boolean rolledOver() {
 		return this.rolledOver;
 	}
 
 	/**
 	 * API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
@@ -182,7 +182,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code dry_run}
 		 */
-		public Builder dryRun(Boolean value) {
+		public Builder dryRun(boolean value) {
 			this.dryRun = value;
 			return this;
 		}
@@ -206,7 +206,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code rolled_over}
 		 */
-		public Builder rolledOver(Boolean value) {
+		public Builder rolledOver(boolean value) {
 			this.rolledOver = value;
 			return this;
 		}
@@ -214,7 +214,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}

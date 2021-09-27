@@ -56,7 +56,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 
 	private final List<FieldMetric> metrics;
 
-	private final Long pageSize;
+	private final long pageSize;
 
 	private final String rollupIndex;
 
@@ -115,7 +115,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 	/**
 	 * API name: {@code page_size}
 	 */
-	public Long pageSize() {
+	public long pageSize() {
 		return this.pageSize;
 	}
 
@@ -280,7 +280,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * API name: {@code page_size}
 		 */
-		public Builder pageSize(Long value) {
+		public Builder pageSize(long value) {
 			this.pageSize = value;
 			return this;
 		}

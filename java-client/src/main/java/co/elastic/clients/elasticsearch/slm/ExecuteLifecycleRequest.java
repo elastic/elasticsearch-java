@@ -107,8 +107,7 @@ public final class ExecuteLifecycleRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.policyId() != null)
-					propsSet |= _policyId;
+				propsSet |= _policyId;
 
 				if (propsSet == (_policyId)) {
 					StringBuilder buf = new StringBuilder();

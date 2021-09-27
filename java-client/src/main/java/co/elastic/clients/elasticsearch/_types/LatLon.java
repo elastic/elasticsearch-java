@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.LatLon
 @JsonpDeserializable
 public final class LatLon implements JsonpSerializable {
-	private final Double lat;
+	private final double lat;
 
-	private final Double lon;
+	private final double lon;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class LatLon implements JsonpSerializable {
 	/**
 	 * API name: {@code lat}
 	 */
-	public Double lat() {
+	public double lat() {
 		return this.lat;
 	}
 
 	/**
 	 * API name: {@code lon}
 	 */
-	public Double lon() {
+	public double lon() {
 		return this.lon;
 	}
 
@@ -98,7 +97,7 @@ public final class LatLon implements JsonpSerializable {
 		/**
 		 * API name: {@code lat}
 		 */
-		public Builder lat(Double value) {
+		public Builder lat(double value) {
 			this.lat = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class LatLon implements JsonpSerializable {
 		/**
 		 * API name: {@code lon}
 		 */
-		public Builder lon(Double value) {
+		public Builder lon(double value) {
 			this.lon = value;
 			return this;
 		}

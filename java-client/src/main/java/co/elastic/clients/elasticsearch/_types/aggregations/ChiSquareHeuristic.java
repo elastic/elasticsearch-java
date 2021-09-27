@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ChiSquareHeuristic
 @JsonpDeserializable
 public final class ChiSquareHeuristic implements JsonpSerializable {
-	private final Boolean backgroundIsSuperset;
+	private final boolean backgroundIsSuperset;
 
-	private final Boolean includeNegatives;
+	private final boolean includeNegatives;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 	/**
 	 * API name: {@code background_is_superset}
 	 */
-	public Boolean backgroundIsSuperset() {
+	public boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
 	/**
 	 * API name: {@code include_negatives}
 	 */
-	public Boolean includeNegatives() {
+	public boolean includeNegatives() {
 		return this.includeNegatives;
 	}
 
@@ -98,7 +97,7 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 		/**
 		 * API name: {@code background_is_superset}
 		 */
-		public Builder backgroundIsSuperset(Boolean value) {
+		public Builder backgroundIsSuperset(boolean value) {
 			this.backgroundIsSuperset = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 		/**
 		 * API name: {@code include_negatives}
 		 */
-		public Builder includeNegatives(Boolean value) {
+		public Builder includeNegatives(boolean value) {
 			this.includeNegatives = value;
 			return this;
 		}

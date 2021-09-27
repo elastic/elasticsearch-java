@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 public final class ClusterStateMetadata implements JsonpSerializable {
 	private final String clusterUuid;
 
-	private final Boolean clusterUuidCommitted;
+	private final boolean clusterUuidCommitted;
 
 	private final ClusterStateMetadataTemplate templates;
 
@@ -101,7 +101,7 @@ public final class ClusterStateMetadata implements JsonpSerializable {
 	/**
 	 * API name: {@code cluster_uuid_committed}
 	 */
-	public Boolean clusterUuidCommitted() {
+	public boolean clusterUuidCommitted() {
 		return this.clusterUuidCommitted;
 	}
 
@@ -309,7 +309,7 @@ public final class ClusterStateMetadata implements JsonpSerializable {
 		/**
 		 * API name: {@code cluster_uuid_committed}
 		 */
-		public Builder clusterUuidCommitted(Boolean value) {
+		public Builder clusterUuidCommitted(boolean value) {
 			this.clusterUuidCommitted = value;
 			return this;
 		}

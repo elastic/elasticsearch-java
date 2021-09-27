@@ -35,14 +35,13 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _global.clear_scroll.Response
 @JsonpDeserializable
 public final class ClearScrollResponse implements JsonpSerializable {
-	private final Boolean succeeded;
+	private final boolean succeeded;
 
-	private final Integer numFreed;
+	private final int numFreed;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,14 +55,14 @@ public final class ClearScrollResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code succeeded}
 	 */
-	public Boolean succeeded() {
+	public boolean succeeded() {
 		return this.succeeded;
 	}
 
 	/**
 	 * API name: {@code num_freed}
 	 */
-	public Integer numFreed() {
+	public int numFreed() {
 		return this.numFreed;
 	}
 
@@ -99,7 +98,7 @@ public final class ClearScrollResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code succeeded}
 		 */
-		public Builder succeeded(Boolean value) {
+		public Builder succeeded(boolean value) {
 			this.succeeded = value;
 			return this;
 		}
@@ -107,7 +106,7 @@ public final class ClearScrollResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code num_freed}
 		 */
-		public Builder numFreed(Integer value) {
+		public Builder numFreed(int value) {
 			this.numFreed = value;
 			return this;
 		}

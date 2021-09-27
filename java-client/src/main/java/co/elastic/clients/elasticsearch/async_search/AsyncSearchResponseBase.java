@@ -43,9 +43,9 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
-	private final Boolean isPartial;
+	private final boolean isPartial;
 
-	private final Boolean isRunning;
+	private final boolean isRunning;
 
 	private final String expirationTimeInMillis;
 
@@ -75,14 +75,14 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	/**
 	 * API name: {@code is_partial}
 	 */
-	public Boolean isPartial() {
+	public boolean isPartial() {
 		return this.isPartial;
 	}
 
 	/**
 	 * API name: {@code is_running}
 	 */
-	public Boolean isRunning() {
+	public boolean isRunning() {
 		return this.isRunning;
 	}
 
@@ -155,7 +155,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code is_partial}
 		 */
-		public BuilderT isPartial(Boolean value) {
+		public BuilderT isPartial(boolean value) {
 			this.isPartial = value;
 			return self();
 		}
@@ -163,7 +163,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code is_running}
 		 */
-		public BuilderT isRunning(Boolean value) {
+		public BuilderT isRunning(boolean value) {
 			this.isRunning = value;
 			return self();
 		}

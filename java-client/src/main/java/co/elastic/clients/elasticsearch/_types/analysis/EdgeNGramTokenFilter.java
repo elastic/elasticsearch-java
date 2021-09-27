@@ -38,9 +38,9 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.EdgeNGramTokenFilter
 @JsonpDeserializable
 public final class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Integer maxGram;
+	private final int maxGram;
 
-	private final Integer minGram;
+	private final int minGram;
 
 	private final EdgeNGramSide side;
 
@@ -66,14 +66,14 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * API name: {@code max_gram}
 	 */
-	public Integer maxGram() {
+	public int maxGram() {
 		return this.maxGram;
 	}
 
 	/**
 	 * API name: {@code min_gram}
 	 */
-	public Integer minGram() {
+	public int minGram() {
 		return this.minGram;
 	}
 
@@ -117,7 +117,7 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 		/**
 		 * API name: {@code max_gram}
 		 */
-		public Builder maxGram(Integer value) {
+		public Builder maxGram(int value) {
 			this.maxGram = value;
 			return this;
 		}
@@ -125,7 +125,7 @@ public final class EdgeNGramTokenFilter extends TokenFilterBase implements Token
 		/**
 		 * API name: {@code min_gram}
 		 */
-		public Builder minGram(Integer value) {
+		public Builder minGram(int value) {
 			this.minGram = value;
 			return this;
 		}

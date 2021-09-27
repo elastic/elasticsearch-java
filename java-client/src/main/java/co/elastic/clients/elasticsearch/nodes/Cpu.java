@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 // typedef: nodes._types.Cpu
 @JsonpDeserializable
 public final class Cpu implements JsonpSerializable {
-	private final Integer percent;
+	private final int percent;
 
 	@Nullable
 	private final String sys;
@@ -85,7 +85,7 @@ public final class Cpu implements JsonpSerializable {
 	/**
 	 * API name: {@code percent}
 	 */
-	public Integer percent() {
+	public int percent() {
 		return this.percent;
 	}
 
@@ -242,7 +242,7 @@ public final class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code percent}
 		 */
-		public Builder percent(Integer value) {
+		public Builder percent(int value) {
 			this.percent = value;
 			return this;
 		}

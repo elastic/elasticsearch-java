@@ -53,7 +53,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Map<String, JsonData> fields;
 
-	private final Boolean found;
+	private final boolean found;
 
 	private final String id;
 
@@ -114,7 +114,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code found}
 	 */
-	public Boolean found() {
+	public boolean found() {
 		return this.found;
 	}
 
@@ -311,7 +311,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code found}
 		 */
-		public Builder<TDocument> found(Boolean value) {
+		public Builder<TDocument> found(boolean value) {
 			this.found = value;
 			return this;
 		}

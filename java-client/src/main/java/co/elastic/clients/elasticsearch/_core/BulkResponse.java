@@ -45,11 +45,11 @@ import javax.annotation.Nullable;
 // typedef: _global.bulk.Response
 @JsonpDeserializable
 public final class BulkResponse implements JsonpSerializable {
-	private final Boolean errors;
+	private final boolean errors;
 
 	private final List<ResponseItem> items;
 
-	private final Long took;
+	private final long took;
 
 	@Nullable
 	private final Long ingestTook;
@@ -68,7 +68,7 @@ public final class BulkResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code errors}
 	 */
-	public Boolean errors() {
+	public boolean errors() {
 		return this.errors;
 	}
 
@@ -82,7 +82,7 @@ public final class BulkResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Long took() {
+	public long took() {
 		return this.took;
 	}
 
@@ -146,7 +146,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code errors}
 		 */
-		public Builder errors(Boolean value) {
+		public Builder errors(boolean value) {
 			this.errors = value;
 			return this;
 		}
@@ -195,7 +195,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(Long value) {
+		public Builder took(long value) {
 			this.took = value;
 			return this;
 		}

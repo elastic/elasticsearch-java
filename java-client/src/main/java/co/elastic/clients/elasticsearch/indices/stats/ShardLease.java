@@ -43,9 +43,9 @@ import javax.annotation.Nullable;
 public final class ShardLease implements JsonpSerializable {
 	private final String id;
 
-	private final Integer retainingSeqNo;
+	private final int retainingSeqNo;
 
-	private final Long timestamp;
+	private final long timestamp;
 
 	private final String source;
 
@@ -70,14 +70,14 @@ public final class ShardLease implements JsonpSerializable {
 	/**
 	 * API name: {@code retaining_seq_no}
 	 */
-	public Integer retainingSeqNo() {
+	public int retainingSeqNo() {
 		return this.retainingSeqNo;
 	}
 
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Long timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
@@ -138,7 +138,7 @@ public final class ShardLease implements JsonpSerializable {
 		/**
 		 * API name: {@code retaining_seq_no}
 		 */
-		public Builder retainingSeqNo(Integer value) {
+		public Builder retainingSeqNo(int value) {
 			this.retainingSeqNo = value;
 			return this;
 		}
@@ -146,7 +146,7 @@ public final class ShardLease implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Long value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}

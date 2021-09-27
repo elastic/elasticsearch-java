@@ -46,7 +46,7 @@ public final class OperatingSystem implements JsonpSerializable {
 
 	private final MemoryStats swap;
 
-	private final Long timestamp;
+	private final long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ public final class OperatingSystem implements JsonpSerializable {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Long timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
@@ -174,7 +174,7 @@ public final class OperatingSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Long value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}

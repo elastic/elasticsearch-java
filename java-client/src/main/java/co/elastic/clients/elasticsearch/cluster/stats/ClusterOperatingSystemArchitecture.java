@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.ClusterOperatingSystemArchitecture
 @JsonpDeserializable
 public final class ClusterOperatingSystemArchitecture implements JsonpSerializable {
-	private final Integer count;
+	private final int count;
 
 	private final String arch;
 
@@ -56,7 +56,7 @@ public final class ClusterOperatingSystemArchitecture implements JsonpSerializab
 	/**
 	 * API name: {@code count}
 	 */
-	public Integer count() {
+	public int count() {
 		return this.count;
 	}
 
@@ -99,7 +99,7 @@ public final class ClusterOperatingSystemArchitecture implements JsonpSerializab
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Integer value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}

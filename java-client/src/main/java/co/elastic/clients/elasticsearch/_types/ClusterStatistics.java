@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.ClusterStatistics
 @JsonpDeserializable
 public final class ClusterStatistics implements JsonpSerializable {
-	private final Integer skipped;
+	private final int skipped;
 
-	private final Integer successful;
+	private final int successful;
 
-	private final Integer total;
+	private final int total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,21 +57,21 @@ public final class ClusterStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code skipped}
 	 */
-	public Integer skipped() {
+	public int skipped() {
 		return this.skipped;
 	}
 
 	/**
 	 * API name: {@code successful}
 	 */
-	public Integer successful() {
+	public int successful() {
 		return this.successful;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Integer total() {
+	public int total() {
 		return this.total;
 	}
 
@@ -113,7 +112,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code skipped}
 		 */
-		public Builder skipped(Integer value) {
+		public Builder skipped(int value) {
 			this.skipped = value;
 			return this;
 		}
@@ -121,7 +120,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code successful}
 		 */
-		public Builder successful(Integer value) {
+		public Builder successful(int value) {
 			this.successful = value;
 			return this;
 		}
@@ -129,7 +128,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Integer value) {
+		public Builder total(int value) {
 			this.total = value;
 			return this;
 		}

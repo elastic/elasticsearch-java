@@ -40,27 +40,27 @@ import javax.annotation.Nullable;
 // typedef: _types.BulkStats
 @JsonpDeserializable
 public final class BulkStats implements JsonpSerializable {
-	private final Long totalOperations;
+	private final long totalOperations;
 
 	@Nullable
 	private final String totalTime;
 
-	private final Long totalTimeInMillis;
+	private final long totalTimeInMillis;
 
 	@Nullable
 	private final String totalSize;
 
-	private final Long totalSizeInBytes;
+	private final long totalSizeInBytes;
 
 	@Nullable
 	private final String avgTime;
 
-	private final Long avgTimeInMillis;
+	private final long avgTimeInMillis;
 
 	@Nullable
 	private final String avgSize;
 
-	private final Long avgSizeInBytes;
+	private final long avgSizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ public final class BulkStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_operations}
 	 */
-	public Long totalOperations() {
+	public long totalOperations() {
 		return this.totalOperations;
 	}
 
@@ -96,7 +96,7 @@ public final class BulkStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_time_in_millis}
 	 */
-	public Long totalTimeInMillis() {
+	public long totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -111,7 +111,7 @@ public final class BulkStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_size_in_bytes}
 	 */
-	public Long totalSizeInBytes() {
+	public long totalSizeInBytes() {
 		return this.totalSizeInBytes;
 	}
 
@@ -126,7 +126,7 @@ public final class BulkStats implements JsonpSerializable {
 	/**
 	 * API name: {@code avg_time_in_millis}
 	 */
-	public Long avgTimeInMillis() {
+	public long avgTimeInMillis() {
 		return this.avgTimeInMillis;
 	}
 
@@ -141,7 +141,7 @@ public final class BulkStats implements JsonpSerializable {
 	/**
 	 * API name: {@code avg_size_in_bytes}
 	 */
-	public Long avgSizeInBytes() {
+	public long avgSizeInBytes() {
 		return this.avgSizeInBytes;
 	}
 
@@ -232,7 +232,7 @@ public final class BulkStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_operations}
 		 */
-		public Builder totalOperations(Long value) {
+		public Builder totalOperations(long value) {
 			this.totalOperations = value;
 			return this;
 		}
@@ -248,7 +248,7 @@ public final class BulkStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(Long value) {
+		public Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -264,7 +264,7 @@ public final class BulkStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_size_in_bytes}
 		 */
-		public Builder totalSizeInBytes(Long value) {
+		public Builder totalSizeInBytes(long value) {
 			this.totalSizeInBytes = value;
 			return this;
 		}
@@ -280,7 +280,7 @@ public final class BulkStats implements JsonpSerializable {
 		/**
 		 * API name: {@code avg_time_in_millis}
 		 */
-		public Builder avgTimeInMillis(Long value) {
+		public Builder avgTimeInMillis(long value) {
 			this.avgTimeInMillis = value;
 			return this;
 		}
@@ -296,7 +296,7 @@ public final class BulkStats implements JsonpSerializable {
 		/**
 		 * API name: {@code avg_size_in_bytes}
 		 */
-		public Builder avgSizeInBytes(Long value) {
+		public Builder avgSizeInBytes(long value) {
 			this.avgSizeInBytes = value;
 			return this;
 		}

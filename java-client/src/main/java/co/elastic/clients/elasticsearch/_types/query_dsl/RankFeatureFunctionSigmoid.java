@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
 @JsonpDeserializable
 public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implements JsonpSerializable {
-	private final Float pivot;
+	private final float pivot;
 
-	private final Float exponent;
+	private final float exponent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 	/**
 	 * API name: {@code pivot}
 	 */
-	public Float pivot() {
+	public float pivot() {
 		return this.pivot;
 	}
 
 	/**
 	 * API name: {@code exponent}
 	 */
-	public Float exponent() {
+	public float exponent() {
 		return this.exponent;
 	}
 
@@ -98,7 +97,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 		/**
 		 * API name: {@code pivot}
 		 */
-		public Builder pivot(Float value) {
+		public Builder pivot(float value) {
 			this.pivot = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 		/**
 		 * API name: {@code exponent}
 		 */
-		public Builder exponent(Float value) {
+		public Builder exponent(float value) {
 			this.exponent = value;
 			return this;
 		}

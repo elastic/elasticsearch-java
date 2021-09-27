@@ -43,9 +43,9 @@ public final class SlicedScroll implements JsonpSerializable {
 	@Nullable
 	private final String field;
 
-	private final Integer id;
+	private final int id;
 
-	private final Integer max;
+	private final int max;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,14 +68,14 @@ public final class SlicedScroll implements JsonpSerializable {
 	/**
 	 * API name: {@code id}
 	 */
-	public Integer id() {
+	public int id() {
 		return this.id;
 	}
 
 	/**
 	 * API name: {@code max}
 	 */
-	public Integer max() {
+	public int max() {
 		return this.max;
 	}
 
@@ -129,7 +129,7 @@ public final class SlicedScroll implements JsonpSerializable {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(Integer value) {
+		public Builder id(int value) {
 			this.id = value;
 			return this;
 		}
@@ -137,7 +137,7 @@ public final class SlicedScroll implements JsonpSerializable {
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Integer value) {
+		public Builder max(int value) {
 			this.max = value;
 			return this;
 		}

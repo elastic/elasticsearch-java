@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 // typedef: indices.close.CloseIndexResult
 @JsonpDeserializable
 public final class CloseIndexResult implements JsonpSerializable {
-	private final Boolean closed;
+	private final boolean closed;
 
 	@Nullable
 	private final Map<String, CloseShardResult> shards;
@@ -60,7 +60,7 @@ public final class CloseIndexResult implements JsonpSerializable {
 	/**
 	 * API name: {@code closed}
 	 */
-	public Boolean closed() {
+	public boolean closed() {
 		return this.closed;
 	}
 
@@ -115,7 +115,7 @@ public final class CloseIndexResult implements JsonpSerializable {
 		/**
 		 * API name: {@code closed}
 		 */
-		public Builder closed(Boolean value) {
+		public Builder closed(boolean value) {
 			this.closed = value;
 			return this;
 		}

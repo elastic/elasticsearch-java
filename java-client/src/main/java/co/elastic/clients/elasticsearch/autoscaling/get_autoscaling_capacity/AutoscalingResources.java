@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingResources
 @JsonpDeserializable
 public final class AutoscalingResources implements JsonpSerializable {
-	private final Integer storage;
+	private final int storage;
 
-	private final Integer memory;
+	private final int memory;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class AutoscalingResources implements JsonpSerializable {
 	/**
 	 * API name: {@code storage}
 	 */
-	public Integer storage() {
+	public int storage() {
 		return this.storage;
 	}
 
 	/**
 	 * API name: {@code memory}
 	 */
-	public Integer memory() {
+	public int memory() {
 		return this.memory;
 	}
 
@@ -98,7 +97,7 @@ public final class AutoscalingResources implements JsonpSerializable {
 		/**
 		 * API name: {@code storage}
 		 */
-		public Builder storage(Integer value) {
+		public Builder storage(int value) {
 			this.storage = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class AutoscalingResources implements JsonpSerializable {
 		/**
 		 * API name: {@code memory}
 		 */
-		public Builder memory(Integer value) {
+		public Builder memory(int value) {
 			this.memory = value;
 			return this;
 		}

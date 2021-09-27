@@ -50,7 +50,7 @@ public final class CurrentNode implements JsonpSerializable {
 
 	private final String transportAddress;
 
-	private final Integer weightRanking;
+	private final int weightRanking;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ public final class CurrentNode implements JsonpSerializable {
 	/**
 	 * API name: {@code weight_ranking}
 	 */
-	public Integer weightRanking() {
+	public int weightRanking() {
 		return this.weightRanking;
 	}
 
@@ -195,7 +195,7 @@ public final class CurrentNode implements JsonpSerializable {
 		/**
 		 * API name: {@code weight_ranking}
 		 */
-		public Builder weightRanking(Integer value) {
+		public Builder weightRanking(int value) {
 			this.weightRanking = value;
 			return this;
 		}

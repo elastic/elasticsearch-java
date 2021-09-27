@@ -46,13 +46,13 @@ import javax.annotation.Nullable;
 // typedef: ml._types.OverallBucket
 @JsonpDeserializable
 public final class OverallBucket implements JsonpSerializable {
-	private final Long bucketSpan;
+	private final long bucketSpan;
 
-	private final Boolean isInterim;
+	private final boolean isInterim;
 
 	private final List<OverallBucketJob> jobs;
 
-	private final Double overallScore;
+	private final double overallScore;
 
 	private final String resultType;
 
@@ -77,7 +77,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
-	public Long bucketSpan() {
+	public long bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -87,7 +87,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code is_interim}
 	 */
-	public Boolean isInterim() {
+	public boolean isInterim() {
 		return this.isInterim;
 	}
 
@@ -105,7 +105,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code overall_score}
 	 */
-	public Double overallScore() {
+	public double overallScore() {
 		return this.overallScore;
 	}
 
@@ -187,7 +187,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(Long value) {
+		public Builder bucketSpan(long value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -198,7 +198,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code is_interim}
 		 */
-		public Builder isInterim(Boolean value) {
+		public Builder isInterim(boolean value) {
 			this.isInterim = value;
 			return this;
 		}
@@ -253,7 +253,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overall_score}
 		 */
-		public Builder overallScore(Double value) {
+		public Builder overallScore(double value) {
 			this.overallScore = value;
 			return this;
 		}

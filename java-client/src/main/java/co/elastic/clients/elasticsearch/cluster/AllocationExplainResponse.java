@@ -104,7 +104,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	@Nullable
 	private final List<NodeAllocationExplanation> nodeAllocationDecisions;
 
-	private final Boolean primary;
+	private final boolean primary;
 
 	@Nullable
 	private final String rebalanceExplanation;
@@ -115,7 +115,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	@Nullable
 	private final Long remainingDelayInMillis;
 
-	private final Integer shard;
+	private final int shard;
 
 	@Nullable
 	private final UnassignedInformation unassignedInfo;
@@ -300,7 +300,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code primary}
 	 */
-	public Boolean primary() {
+	public boolean primary() {
 		return this.primary;
 	}
 
@@ -331,7 +331,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Integer shard() {
+	public int shard() {
 		return this.shard;
 	}
 
@@ -864,7 +864,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code primary}
 		 */
-		public Builder primary(Boolean value) {
+		public Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}
@@ -896,7 +896,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Integer value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}

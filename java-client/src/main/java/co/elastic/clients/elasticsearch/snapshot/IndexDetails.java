@@ -41,14 +41,14 @@ import javax.annotation.Nullable;
 // typedef: snapshot._types.IndexDetails
 @JsonpDeserializable
 public final class IndexDetails implements JsonpSerializable {
-	private final Integer shardCount;
+	private final int shardCount;
 
 	@Nullable
 	private final String size;
 
-	private final Long sizeInBytes;
+	private final long sizeInBytes;
 
-	private final Long maxSegmentsPerShard;
+	private final long maxSegmentsPerShard;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ public final class IndexDetails implements JsonpSerializable {
 	/**
 	 * API name: {@code shard_count}
 	 */
-	public Integer shardCount() {
+	public int shardCount() {
 		return this.shardCount;
 	}
 
@@ -79,14 +79,14 @@ public final class IndexDetails implements JsonpSerializable {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Long sizeInBytes() {
+	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
 	 * API name: {@code max_segments_per_shard}
 	 */
-	public Long maxSegmentsPerShard() {
+	public long maxSegmentsPerShard() {
 		return this.maxSegmentsPerShard;
 	}
 
@@ -137,7 +137,7 @@ public final class IndexDetails implements JsonpSerializable {
 		/**
 		 * API name: {@code shard_count}
 		 */
-		public Builder shardCount(Integer value) {
+		public Builder shardCount(int value) {
 			this.shardCount = value;
 			return this;
 		}
@@ -153,7 +153,7 @@ public final class IndexDetails implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Long value) {
+		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -161,7 +161,7 @@ public final class IndexDetails implements JsonpSerializable {
 		/**
 		 * API name: {@code max_segments_per_shard}
 		 */
-		public Builder maxSegmentsPerShard(Long value) {
+		public Builder maxSegmentsPerShard(long value) {
 			this.maxSegmentsPerShard = value;
 			return this;
 		}

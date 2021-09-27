@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: license.get_basic_status.Response
 @JsonpDeserializable
 public final class GetBasicStatusResponse implements JsonpSerializable {
-	private final Boolean eligibleToStartBasic;
+	private final boolean eligibleToStartBasic;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code eligible_to_start_basic}
 	 */
-	public Boolean eligibleToStartBasic() {
+	public boolean eligibleToStartBasic() {
 		return this.eligibleToStartBasic;
 	}
 
@@ -83,7 +82,7 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code eligible_to_start_basic}
 		 */
-		public Builder eligibleToStartBasic(Boolean value) {
+		public Builder eligibleToStartBasic(boolean value) {
 			this.eligibleToStartBasic = value;
 			return this;
 		}

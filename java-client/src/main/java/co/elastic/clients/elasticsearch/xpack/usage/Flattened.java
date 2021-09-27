@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Flattened
 @JsonpDeserializable
 public final class Flattened extends Base {
-	private final Integer fieldCount;
+	private final int fieldCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class Flattened extends Base {
 	/**
 	 * API name: {@code field_count}
 	 */
-	public Integer fieldCount() {
+	public int fieldCount() {
 		return this.fieldCount;
 	}
 
@@ -76,7 +75,7 @@ public final class Flattened extends Base {
 		/**
 		 * API name: {@code field_count}
 		 */
-		public Builder fieldCount(Integer value) {
+		public Builder fieldCount(int value) {
 			this.fieldCount = value;
 			return this;
 		}

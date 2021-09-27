@@ -386,8 +386,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 				if (request.type() != null)
 					propsSet |= _type;
 

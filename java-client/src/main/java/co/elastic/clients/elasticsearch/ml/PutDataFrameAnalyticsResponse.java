@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final String id;
 
-	private final Long createTime;
+	private final long createTime;
 
 	private final String version;
 
@@ -59,9 +59,9 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	private final String modelMemoryLimit;
 
-	private final Boolean allowLazyStart;
+	private final boolean allowLazyStart;
 
-	private final Integer maxNumThreads;
+	private final int maxNumThreads;
 
 	private final DataframeAnalysis analysis;
 
@@ -96,7 +96,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code create_time}
 	 */
-	public Long createTime() {
+	public long createTime() {
 		return this.createTime;
 	}
 
@@ -139,14 +139,14 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code allow_lazy_start}
 	 */
-	public Boolean allowLazyStart() {
+	public boolean allowLazyStart() {
 		return this.allowLazyStart;
 	}
 
 	/**
 	 * API name: {@code max_num_threads}
 	 */
-	public Integer maxNumThreads() {
+	public int maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -260,7 +260,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(Long value) {
+		public Builder createTime(long value) {
 			this.createTime = value;
 			return this;
 		}
@@ -323,7 +323,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code allow_lazy_start}
 		 */
-		public Builder allowLazyStart(Boolean value) {
+		public Builder allowLazyStart(boolean value) {
 			this.allowLazyStart = value;
 			return this;
 		}
@@ -331,7 +331,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(Integer value) {
+		public Builder maxNumThreads(int value) {
 			this.maxNumThreads = value;
 			return this;
 		}

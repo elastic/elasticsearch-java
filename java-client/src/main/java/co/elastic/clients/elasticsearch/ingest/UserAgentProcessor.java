@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public final class UserAgentProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
-	private final Boolean ignoreMissing;
+	private final boolean ignoreMissing;
 
 	private final List<UserAgentProperty> options;
 
@@ -83,7 +83,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 	/**
 	 * API name: {@code ignore_missing}
 	 */
-	public Boolean ignoreMissing() {
+	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -162,7 +162,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(Boolean value) {
+		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}

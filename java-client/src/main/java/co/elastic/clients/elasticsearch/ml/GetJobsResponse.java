@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 // typedef: ml.get_jobs.Response
 @JsonpDeserializable
 public final class GetJobsResponse implements JsonpSerializable {
-	private final Long count;
+	private final long count;
 
 	private final List<Job> jobs;
 
@@ -59,7 +59,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Long count() {
+	public long count() {
 		return this.count;
 	}
 
@@ -107,7 +107,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Long value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}

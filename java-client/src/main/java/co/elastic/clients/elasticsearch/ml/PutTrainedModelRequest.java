@@ -439,8 +439,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 
 				int propsSet = 0;
 
-				if (request.modelId() != null)
-					propsSet |= _modelId;
+				propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
 					StringBuilder buf = new StringBuilder();

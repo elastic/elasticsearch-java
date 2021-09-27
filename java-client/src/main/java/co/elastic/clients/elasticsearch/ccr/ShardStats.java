@@ -46,52 +46,52 @@ import javax.annotation.Nullable;
 // typedef: ccr._types.ShardStats
 @JsonpDeserializable
 public final class ShardStats implements JsonpSerializable {
-	private final Long bytesRead;
+	private final long bytesRead;
 
-	private final Long failedReadRequests;
+	private final long failedReadRequests;
 
-	private final Long failedWriteRequests;
+	private final long failedWriteRequests;
 
 	@Nullable
 	private final ErrorCause fatalException;
 
-	private final Long followerAliasesVersion;
+	private final long followerAliasesVersion;
 
-	private final Long followerGlobalCheckpoint;
+	private final long followerGlobalCheckpoint;
 
 	private final String followerIndex;
 
-	private final Long followerMappingVersion;
+	private final long followerMappingVersion;
 
-	private final Integer followerMaxSeqNo;
+	private final int followerMaxSeqNo;
 
-	private final Long followerSettingsVersion;
+	private final long followerSettingsVersion;
 
-	private final Integer lastRequestedSeqNo;
+	private final int lastRequestedSeqNo;
 
-	private final Long leaderGlobalCheckpoint;
+	private final long leaderGlobalCheckpoint;
 
 	private final String leaderIndex;
 
-	private final Integer leaderMaxSeqNo;
+	private final int leaderMaxSeqNo;
 
-	private final Long operationsRead;
+	private final long operationsRead;
 
-	private final Long operationsWritten;
+	private final long operationsWritten;
 
-	private final Integer outstandingReadRequests;
+	private final int outstandingReadRequests;
 
-	private final Integer outstandingWriteRequests;
+	private final int outstandingWriteRequests;
 
 	private final List<ReadException> readExceptions;
 
 	private final String remoteCluster;
 
-	private final Integer shardId;
+	private final int shardId;
 
-	private final Long successfulReadRequests;
+	private final long successfulReadRequests;
 
-	private final Long successfulWriteRequests;
+	private final long successfulWriteRequests;
 
 	private final String timeSinceLastReadMillis;
 
@@ -101,7 +101,7 @@ public final class ShardStats implements JsonpSerializable {
 
 	private final String totalWriteTimeMillis;
 
-	private final Long writeBufferOperationCount;
+	private final long writeBufferOperationCount;
 
 	private final String writeBufferSizeInBytes;
 
@@ -157,21 +157,21 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * API name: {@code bytes_read}
 	 */
-	public Long bytesRead() {
+	public long bytesRead() {
 		return this.bytesRead;
 	}
 
 	/**
 	 * API name: {@code failed_read_requests}
 	 */
-	public Long failedReadRequests() {
+	public long failedReadRequests() {
 		return this.failedReadRequests;
 	}
 
 	/**
 	 * API name: {@code failed_write_requests}
 	 */
-	public Long failedWriteRequests() {
+	public long failedWriteRequests() {
 		return this.failedWriteRequests;
 	}
 
@@ -186,14 +186,14 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * API name: {@code follower_aliases_version}
 	 */
-	public Long followerAliasesVersion() {
+	public long followerAliasesVersion() {
 		return this.followerAliasesVersion;
 	}
 
 	/**
 	 * API name: {@code follower_global_checkpoint}
 	 */
-	public Long followerGlobalCheckpoint() {
+	public long followerGlobalCheckpoint() {
 		return this.followerGlobalCheckpoint;
 	}
 
@@ -207,35 +207,35 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * API name: {@code follower_mapping_version}
 	 */
-	public Long followerMappingVersion() {
+	public long followerMappingVersion() {
 		return this.followerMappingVersion;
 	}
 
 	/**
 	 * API name: {@code follower_max_seq_no}
 	 */
-	public Integer followerMaxSeqNo() {
+	public int followerMaxSeqNo() {
 		return this.followerMaxSeqNo;
 	}
 
 	/**
 	 * API name: {@code follower_settings_version}
 	 */
-	public Long followerSettingsVersion() {
+	public long followerSettingsVersion() {
 		return this.followerSettingsVersion;
 	}
 
 	/**
 	 * API name: {@code last_requested_seq_no}
 	 */
-	public Integer lastRequestedSeqNo() {
+	public int lastRequestedSeqNo() {
 		return this.lastRequestedSeqNo;
 	}
 
 	/**
 	 * API name: {@code leader_global_checkpoint}
 	 */
-	public Long leaderGlobalCheckpoint() {
+	public long leaderGlobalCheckpoint() {
 		return this.leaderGlobalCheckpoint;
 	}
 
@@ -249,35 +249,35 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * API name: {@code leader_max_seq_no}
 	 */
-	public Integer leaderMaxSeqNo() {
+	public int leaderMaxSeqNo() {
 		return this.leaderMaxSeqNo;
 	}
 
 	/**
 	 * API name: {@code operations_read}
 	 */
-	public Long operationsRead() {
+	public long operationsRead() {
 		return this.operationsRead;
 	}
 
 	/**
 	 * API name: {@code operations_written}
 	 */
-	public Long operationsWritten() {
+	public long operationsWritten() {
 		return this.operationsWritten;
 	}
 
 	/**
 	 * API name: {@code outstanding_read_requests}
 	 */
-	public Integer outstandingReadRequests() {
+	public int outstandingReadRequests() {
 		return this.outstandingReadRequests;
 	}
 
 	/**
 	 * API name: {@code outstanding_write_requests}
 	 */
-	public Integer outstandingWriteRequests() {
+	public int outstandingWriteRequests() {
 		return this.outstandingWriteRequests;
 	}
 
@@ -298,21 +298,21 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * API name: {@code shard_id}
 	 */
-	public Integer shardId() {
+	public int shardId() {
 		return this.shardId;
 	}
 
 	/**
 	 * API name: {@code successful_read_requests}
 	 */
-	public Long successfulReadRequests() {
+	public long successfulReadRequests() {
 		return this.successfulReadRequests;
 	}
 
 	/**
 	 * API name: {@code successful_write_requests}
 	 */
-	public Long successfulWriteRequests() {
+	public long successfulWriteRequests() {
 		return this.successfulWriteRequests;
 	}
 
@@ -347,7 +347,7 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * API name: {@code write_buffer_operation_count}
 	 */
-	public Long writeBufferOperationCount() {
+	public long writeBufferOperationCount() {
 		return this.writeBufferOperationCount;
 	}
 
@@ -535,7 +535,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code bytes_read}
 		 */
-		public Builder bytesRead(Long value) {
+		public Builder bytesRead(long value) {
 			this.bytesRead = value;
 			return this;
 		}
@@ -543,7 +543,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code failed_read_requests}
 		 */
-		public Builder failedReadRequests(Long value) {
+		public Builder failedReadRequests(long value) {
 			this.failedReadRequests = value;
 			return this;
 		}
@@ -551,7 +551,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code failed_write_requests}
 		 */
-		public Builder failedWriteRequests(Long value) {
+		public Builder failedWriteRequests(long value) {
 			this.failedWriteRequests = value;
 			return this;
 		}
@@ -574,7 +574,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code follower_aliases_version}
 		 */
-		public Builder followerAliasesVersion(Long value) {
+		public Builder followerAliasesVersion(long value) {
 			this.followerAliasesVersion = value;
 			return this;
 		}
@@ -582,7 +582,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code follower_global_checkpoint}
 		 */
-		public Builder followerGlobalCheckpoint(Long value) {
+		public Builder followerGlobalCheckpoint(long value) {
 			this.followerGlobalCheckpoint = value;
 			return this;
 		}
@@ -598,7 +598,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code follower_mapping_version}
 		 */
-		public Builder followerMappingVersion(Long value) {
+		public Builder followerMappingVersion(long value) {
 			this.followerMappingVersion = value;
 			return this;
 		}
@@ -606,7 +606,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code follower_max_seq_no}
 		 */
-		public Builder followerMaxSeqNo(Integer value) {
+		public Builder followerMaxSeqNo(int value) {
 			this.followerMaxSeqNo = value;
 			return this;
 		}
@@ -614,7 +614,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code follower_settings_version}
 		 */
-		public Builder followerSettingsVersion(Long value) {
+		public Builder followerSettingsVersion(long value) {
 			this.followerSettingsVersion = value;
 			return this;
 		}
@@ -622,7 +622,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code last_requested_seq_no}
 		 */
-		public Builder lastRequestedSeqNo(Integer value) {
+		public Builder lastRequestedSeqNo(int value) {
 			this.lastRequestedSeqNo = value;
 			return this;
 		}
@@ -630,7 +630,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code leader_global_checkpoint}
 		 */
-		public Builder leaderGlobalCheckpoint(Long value) {
+		public Builder leaderGlobalCheckpoint(long value) {
 			this.leaderGlobalCheckpoint = value;
 			return this;
 		}
@@ -646,7 +646,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code leader_max_seq_no}
 		 */
-		public Builder leaderMaxSeqNo(Integer value) {
+		public Builder leaderMaxSeqNo(int value) {
 			this.leaderMaxSeqNo = value;
 			return this;
 		}
@@ -654,7 +654,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code operations_read}
 		 */
-		public Builder operationsRead(Long value) {
+		public Builder operationsRead(long value) {
 			this.operationsRead = value;
 			return this;
 		}
@@ -662,7 +662,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code operations_written}
 		 */
-		public Builder operationsWritten(Long value) {
+		public Builder operationsWritten(long value) {
 			this.operationsWritten = value;
 			return this;
 		}
@@ -670,7 +670,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code outstanding_read_requests}
 		 */
-		public Builder outstandingReadRequests(Integer value) {
+		public Builder outstandingReadRequests(int value) {
 			this.outstandingReadRequests = value;
 			return this;
 		}
@@ -678,7 +678,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code outstanding_write_requests}
 		 */
-		public Builder outstandingWriteRequests(Integer value) {
+		public Builder outstandingWriteRequests(int value) {
 			this.outstandingWriteRequests = value;
 			return this;
 		}
@@ -735,7 +735,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code shard_id}
 		 */
-		public Builder shardId(Integer value) {
+		public Builder shardId(int value) {
 			this.shardId = value;
 			return this;
 		}
@@ -743,7 +743,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code successful_read_requests}
 		 */
-		public Builder successfulReadRequests(Long value) {
+		public Builder successfulReadRequests(long value) {
 			this.successfulReadRequests = value;
 			return this;
 		}
@@ -751,7 +751,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code successful_write_requests}
 		 */
-		public Builder successfulWriteRequests(Long value) {
+		public Builder successfulWriteRequests(long value) {
 			this.successfulWriteRequests = value;
 			return this;
 		}
@@ -791,7 +791,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code write_buffer_operation_count}
 		 */
-		public Builder writeBufferOperationCount(Long value) {
+		public Builder writeBufferOperationCount(long value) {
 			this.writeBufferOperationCount = value;
 			return this;
 		}

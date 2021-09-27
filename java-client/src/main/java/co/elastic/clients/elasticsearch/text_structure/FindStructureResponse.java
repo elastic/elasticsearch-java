@@ -56,7 +56,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	@Nullable
 	private final Boolean hasHeaderRow;
 
-	private final Boolean hasByteOrderMarker;
+	private final boolean hasByteOrderMarker;
 
 	private final String format;
 
@@ -64,7 +64,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 	private final String sampleStart;
 
-	private final Integer numMessagesAnalyzed;
+	private final int numMessagesAnalyzed;
 
 	private final TypeMapping mappings;
 
@@ -74,9 +74,9 @@ public final class FindStructureResponse implements JsonpSerializable {
 	@Nullable
 	private final String delimiter;
 
-	private final Boolean needClientTimezone;
+	private final boolean needClientTimezone;
 
-	private final Integer numLinesAnalyzed;
+	private final int numLinesAnalyzed;
 
 	@Nullable
 	private final List<String> columnNames;
@@ -154,7 +154,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code has_byte_order_marker}
 	 */
-	public Boolean hasByteOrderMarker() {
+	public boolean hasByteOrderMarker() {
 		return this.hasByteOrderMarker;
 	}
 
@@ -182,7 +182,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code num_messages_analyzed}
 	 */
-	public Integer numMessagesAnalyzed() {
+	public int numMessagesAnalyzed() {
 		return this.numMessagesAnalyzed;
 	}
 
@@ -212,14 +212,14 @@ public final class FindStructureResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code need_client_timezone}
 	 */
-	public Boolean needClientTimezone() {
+	public boolean needClientTimezone() {
 		return this.needClientTimezone;
 	}
 
 	/**
 	 * API name: {@code num_lines_analyzed}
 	 */
-	public Integer numLinesAnalyzed() {
+	public int numLinesAnalyzed() {
 		return this.numLinesAnalyzed;
 	}
 
@@ -527,7 +527,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code has_byte_order_marker}
 		 */
-		public Builder hasByteOrderMarker(Boolean value) {
+		public Builder hasByteOrderMarker(boolean value) {
 			this.hasByteOrderMarker = value;
 			return this;
 		}
@@ -584,7 +584,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code num_messages_analyzed}
 		 */
-		public Builder numMessagesAnalyzed(Integer value) {
+		public Builder numMessagesAnalyzed(int value) {
 			this.numMessagesAnalyzed = value;
 			return this;
 		}
@@ -623,7 +623,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code need_client_timezone}
 		 */
-		public Builder needClientTimezone(Boolean value) {
+		public Builder needClientTimezone(boolean value) {
 			this.needClientTimezone = value;
 			return this;
 		}
@@ -631,7 +631,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code num_lines_analyzed}
 		 */
-		public Builder numLinesAnalyzed(Integer value) {
+		public Builder numLinesAnalyzed(int value) {
 			this.numLinesAnalyzed = value;
 			return this;
 		}

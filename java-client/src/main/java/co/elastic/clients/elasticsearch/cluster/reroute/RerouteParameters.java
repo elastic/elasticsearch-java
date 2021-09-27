@@ -41,13 +41,13 @@ import javax.annotation.Nullable;
 // typedef: cluster.reroute.RerouteParameters
 @JsonpDeserializable
 public final class RerouteParameters implements JsonpSerializable {
-	private final Boolean allowPrimary;
+	private final boolean allowPrimary;
 
 	private final String index;
 
 	private final String node;
 
-	private final Integer shard;
+	private final int shard;
 
 	@Nullable
 	private final String fromNode;
@@ -71,7 +71,7 @@ public final class RerouteParameters implements JsonpSerializable {
 	/**
 	 * API name: {@code allow_primary}
 	 */
-	public Boolean allowPrimary() {
+	public boolean allowPrimary() {
 		return this.allowPrimary;
 	}
 
@@ -92,7 +92,7 @@ public final class RerouteParameters implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Integer shard() {
+	public int shard() {
 		return this.shard;
 	}
 
@@ -173,7 +173,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		/**
 		 * API name: {@code allow_primary}
 		 */
-		public Builder allowPrimary(Boolean value) {
+		public Builder allowPrimary(boolean value) {
 			this.allowPrimary = value;
 			return this;
 		}
@@ -197,7 +197,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Integer value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}

@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: ml.info.Datafeeds
 @JsonpDeserializable
 public final class Datafeeds implements JsonpSerializable {
-	private final Integer scrollSize;
+	private final int scrollSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class Datafeeds implements JsonpSerializable {
 	/**
 	 * API name: {@code scroll_size}
 	 */
-	public Integer scrollSize() {
+	public int scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -83,7 +82,7 @@ public final class Datafeeds implements JsonpSerializable {
 		/**
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(Integer value) {
+		public Builder scrollSize(int value) {
 			this.scrollSize = value;
 			return this;
 		}

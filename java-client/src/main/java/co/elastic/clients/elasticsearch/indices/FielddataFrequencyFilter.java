@@ -35,16 +35,15 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.FielddataFrequencyFilter
 @JsonpDeserializable
 public final class FielddataFrequencyFilter implements JsonpSerializable {
-	private final Double max;
+	private final double max;
 
-	private final Double min;
+	private final double min;
 
-	private final Integer minSegmentSize;
+	private final int minSegmentSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,21 +58,21 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 	/**
 	 * API name: {@code max}
 	 */
-	public Double max() {
+	public double max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code min}
 	 */
-	public Double min() {
+	public double min() {
 		return this.min;
 	}
 
 	/**
 	 * API name: {@code min_segment_size}
 	 */
-	public Integer minSegmentSize() {
+	public int minSegmentSize() {
 		return this.minSegmentSize;
 	}
 
@@ -114,7 +113,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Double value) {
+		public Builder max(double value) {
 			this.max = value;
 			return this;
 		}
@@ -122,7 +121,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		/**
 		 * API name: {@code min}
 		 */
-		public Builder min(Double value) {
+		public Builder min(double value) {
 			this.min = value;
 			return this;
 		}
@@ -130,7 +129,7 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		/**
 		 * API name: {@code min_segment_size}
 		 */
-		public Builder minSegmentSize(Integer value) {
+		public Builder minSegmentSize(int value) {
 			this.minSegmentSize = value;
 			return this;
 		}

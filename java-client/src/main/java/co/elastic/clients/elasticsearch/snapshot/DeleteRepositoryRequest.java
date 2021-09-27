@@ -190,8 +190,7 @@ public final class DeleteRepositoryRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
+				propsSet |= _repository;
 
 				if (propsSet == (_repository)) {
 					StringBuilder buf = new StringBuilder();

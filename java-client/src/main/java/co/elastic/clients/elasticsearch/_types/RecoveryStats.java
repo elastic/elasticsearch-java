@@ -40,14 +40,14 @@ import javax.annotation.Nullable;
 // typedef: _types.RecoveryStats
 @JsonpDeserializable
 public final class RecoveryStats implements JsonpSerializable {
-	private final Long currentAsSource;
+	private final long currentAsSource;
 
-	private final Long currentAsTarget;
+	private final long currentAsTarget;
 
 	@Nullable
 	private final String throttleTime;
 
-	private final Long throttleTimeInMillis;
+	private final long throttleTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,14 +63,14 @@ public final class RecoveryStats implements JsonpSerializable {
 	/**
 	 * API name: {@code current_as_source}
 	 */
-	public Long currentAsSource() {
+	public long currentAsSource() {
 		return this.currentAsSource;
 	}
 
 	/**
 	 * API name: {@code current_as_target}
 	 */
-	public Long currentAsTarget() {
+	public long currentAsTarget() {
 		return this.currentAsTarget;
 	}
 
@@ -85,7 +85,7 @@ public final class RecoveryStats implements JsonpSerializable {
 	/**
 	 * API name: {@code throttle_time_in_millis}
 	 */
-	public Long throttleTimeInMillis() {
+	public long throttleTimeInMillis() {
 		return this.throttleTimeInMillis;
 	}
 
@@ -136,7 +136,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current_as_source}
 		 */
-		public Builder currentAsSource(Long value) {
+		public Builder currentAsSource(long value) {
 			this.currentAsSource = value;
 			return this;
 		}
@@ -144,7 +144,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current_as_target}
 		 */
-		public Builder currentAsTarget(Long value) {
+		public Builder currentAsTarget(long value) {
 			this.currentAsTarget = value;
 			return this;
 		}
@@ -160,7 +160,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_time_in_millis}
 		 */
-		public Builder throttleTimeInMillis(Long value) {
+		public Builder throttleTimeInMillis(long value) {
 			this.throttleTimeInMillis = value;
 			return this;
 		}

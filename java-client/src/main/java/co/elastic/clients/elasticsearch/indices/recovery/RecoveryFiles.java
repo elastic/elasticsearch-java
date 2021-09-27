@@ -49,11 +49,11 @@ public final class RecoveryFiles implements JsonpSerializable {
 
 	private final String percent;
 
-	private final Long recovered;
+	private final long recovered;
 
-	private final Long reused;
+	private final long reused;
 
-	private final Long total;
+	private final long total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -85,21 +85,21 @@ public final class RecoveryFiles implements JsonpSerializable {
 	/**
 	 * API name: {@code recovered}
 	 */
-	public Long recovered() {
+	public long recovered() {
 		return this.recovered;
 	}
 
 	/**
 	 * API name: {@code reused}
 	 */
-	public Long reused() {
+	public long reused() {
 		return this.reused;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
@@ -209,7 +209,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered}
 		 */
-		public Builder recovered(Long value) {
+		public Builder recovered(long value) {
 			this.recovered = value;
 			return this;
 		}
@@ -217,7 +217,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code reused}
 		 */
-		public Builder reused(Long value) {
+		public Builder reused(long value) {
 			this.reused = value;
 			return this;
 		}
@@ -225,7 +225,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Long value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}

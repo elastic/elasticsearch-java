@@ -405,10 +405,8 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _index;
+				propsSet |= _name;
 
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();

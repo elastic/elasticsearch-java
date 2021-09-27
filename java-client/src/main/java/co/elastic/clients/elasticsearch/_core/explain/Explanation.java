@@ -48,7 +48,7 @@ public final class Explanation implements JsonpSerializable {
 
 	private final List<ExplanationDetail> details;
 
-	private final Float value;
+	private final float value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public final class Explanation implements JsonpSerializable {
 	/**
 	 * API name: {@code value}
 	 */
-	public Float value() {
+	public float value() {
 		return this.value;
 	}
 
@@ -172,7 +172,7 @@ public final class Explanation implements JsonpSerializable {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(Float value) {
+		public Builder value(float value) {
 			this.value = value;
 			return this;
 		}

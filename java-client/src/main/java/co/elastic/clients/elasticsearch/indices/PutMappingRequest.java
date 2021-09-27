@@ -960,8 +960,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();

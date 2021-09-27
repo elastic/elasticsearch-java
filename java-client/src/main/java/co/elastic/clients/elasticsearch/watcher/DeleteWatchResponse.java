@@ -41,11 +41,11 @@ import javax.annotation.Nullable;
 // typedef: watcher.delete_watch.Response
 @JsonpDeserializable
 public final class DeleteWatchResponse implements JsonpSerializable {
-	private final Boolean found;
+	private final boolean found;
 
 	private final String id;
 
-	private final Long version;
+	private final long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +60,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code found}
 	 */
-	public Boolean found() {
+	public boolean found() {
 		return this.found;
 	}
 
@@ -74,7 +74,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code _version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -115,7 +115,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code found}
 		 */
-		public Builder found(Boolean value) {
+		public Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -131,7 +131,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder version(Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}

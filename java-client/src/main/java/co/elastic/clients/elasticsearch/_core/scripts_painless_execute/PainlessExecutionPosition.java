@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.PainlessExecutionPosition
 @JsonpDeserializable
 public final class PainlessExecutionPosition implements JsonpSerializable {
-	private final Integer offset;
+	private final int offset;
 
-	private final Integer start;
+	private final int start;
 
-	private final Integer end;
+	private final int end;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,21 +57,21 @@ public final class PainlessExecutionPosition implements JsonpSerializable {
 	/**
 	 * API name: {@code offset}
 	 */
-	public Integer offset() {
+	public int offset() {
 		return this.offset;
 	}
 
 	/**
 	 * API name: {@code start}
 	 */
-	public Integer start() {
+	public int start() {
 		return this.start;
 	}
 
 	/**
 	 * API name: {@code end}
 	 */
-	public Integer end() {
+	public int end() {
 		return this.end;
 	}
 
@@ -113,7 +112,7 @@ public final class PainlessExecutionPosition implements JsonpSerializable {
 		/**
 		 * API name: {@code offset}
 		 */
-		public Builder offset(Integer value) {
+		public Builder offset(int value) {
 			this.offset = value;
 			return this;
 		}
@@ -121,7 +120,7 @@ public final class PainlessExecutionPosition implements JsonpSerializable {
 		/**
 		 * API name: {@code start}
 		 */
-		public Builder start(Integer value) {
+		public Builder start(int value) {
 			this.start = value;
 			return this;
 		}
@@ -129,7 +128,7 @@ public final class PainlessExecutionPosition implements JsonpSerializable {
 		/**
 		 * API name: {@code end}
 		 */
-		public Builder end(Integer value) {
+		public Builder end(int value) {
 			this.end = value;
 			return this;
 		}

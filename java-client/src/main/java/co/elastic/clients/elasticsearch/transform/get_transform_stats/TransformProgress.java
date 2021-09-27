@@ -35,20 +35,19 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.TransformProgress
 @JsonpDeserializable
 public final class TransformProgress implements JsonpSerializable {
-	private final Long docsIndexed;
+	private final long docsIndexed;
 
-	private final Long docsProcessed;
+	private final long docsProcessed;
 
-	private final Long docsRemaining;
+	private final long docsRemaining;
 
-	private final Double percentComplete;
+	private final double percentComplete;
 
-	private final Long totalDocs;
+	private final long totalDocs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,35 +64,35 @@ public final class TransformProgress implements JsonpSerializable {
 	/**
 	 * API name: {@code docs_indexed}
 	 */
-	public Long docsIndexed() {
+	public long docsIndexed() {
 		return this.docsIndexed;
 	}
 
 	/**
 	 * API name: {@code docs_processed}
 	 */
-	public Long docsProcessed() {
+	public long docsProcessed() {
 		return this.docsProcessed;
 	}
 
 	/**
 	 * API name: {@code docs_remaining}
 	 */
-	public Long docsRemaining() {
+	public long docsRemaining() {
 		return this.docsRemaining;
 	}
 
 	/**
 	 * API name: {@code percent_complete}
 	 */
-	public Double percentComplete() {
+	public double percentComplete() {
 		return this.percentComplete;
 	}
 
 	/**
 	 * API name: {@code total_docs}
 	 */
-	public Long totalDocs() {
+	public long totalDocs() {
 		return this.totalDocs;
 	}
 
@@ -144,7 +143,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * API name: {@code docs_indexed}
 		 */
-		public Builder docsIndexed(Long value) {
+		public Builder docsIndexed(long value) {
 			this.docsIndexed = value;
 			return this;
 		}
@@ -152,7 +151,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * API name: {@code docs_processed}
 		 */
-		public Builder docsProcessed(Long value) {
+		public Builder docsProcessed(long value) {
 			this.docsProcessed = value;
 			return this;
 		}
@@ -160,7 +159,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * API name: {@code docs_remaining}
 		 */
-		public Builder docsRemaining(Long value) {
+		public Builder docsRemaining(long value) {
 			this.docsRemaining = value;
 			return this;
 		}
@@ -168,7 +167,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * API name: {@code percent_complete}
 		 */
-		public Builder percentComplete(Double value) {
+		public Builder percentComplete(double value) {
 			this.percentComplete = value;
 			return this;
 		}
@@ -176,7 +175,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * API name: {@code total_docs}
 		 */
-		public Builder totalDocs(Long value) {
+		public Builder totalDocs(long value) {
 			this.totalDocs = value;
 			return this;
 		}

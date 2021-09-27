@@ -40,15 +40,15 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.PathHierarchyTokenizer
 @JsonpDeserializable
 public final class PathHierarchyTokenizer extends TokenizerBase implements TokenizerVariant {
-	private final Integer bufferSize;
+	private final int bufferSize;
 
 	private final String delimiter;
 
 	private final String replacement;
 
-	private final Boolean reverse;
+	private final boolean reverse;
 
-	private final Integer skip;
+	private final int skip;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 	/**
 	 * API name: {@code buffer_size}
 	 */
-	public Integer bufferSize() {
+	public int bufferSize() {
 		return this.bufferSize;
 	}
 
@@ -95,14 +95,14 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 	/**
 	 * API name: {@code reverse}
 	 */
-	public Boolean reverse() {
+	public boolean reverse() {
 		return this.reverse;
 	}
 
 	/**
 	 * API name: {@code skip}
 	 */
-	public Integer skip() {
+	public int skip() {
 		return this.skip;
 	}
 
@@ -149,7 +149,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * API name: {@code buffer_size}
 		 */
-		public Builder bufferSize(Integer value) {
+		public Builder bufferSize(int value) {
 			this.bufferSize = value;
 			return this;
 		}
@@ -173,7 +173,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * API name: {@code reverse}
 		 */
-		public Builder reverse(Boolean value) {
+		public Builder reverse(boolean value) {
 			this.reverse = value;
 			return this;
 		}
@@ -181,7 +181,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * API name: {@code skip}
 		 */
-		public Builder skip(Integer value) {
+		public Builder skip(int value) {
 			this.skip = value;
 			return this;
 		}

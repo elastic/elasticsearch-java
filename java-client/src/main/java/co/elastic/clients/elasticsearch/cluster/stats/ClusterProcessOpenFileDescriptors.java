@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcessOpenFileDescriptors
 @JsonpDeserializable
 public final class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
-	private final Long avg;
+	private final long avg;
 
-	private final Long max;
+	private final long max;
 
-	private final Long min;
+	private final long min;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,21 +57,21 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 	/**
 	 * API name: {@code avg}
 	 */
-	public Long avg() {
+	public long avg() {
 		return this.avg;
 	}
 
 	/**
 	 * API name: {@code max}
 	 */
-	public Long max() {
+	public long max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code min}
 	 */
-	public Long min() {
+	public long min() {
 		return this.min;
 	}
 
@@ -113,7 +112,7 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 		/**
 		 * API name: {@code avg}
 		 */
-		public Builder avg(Long value) {
+		public Builder avg(long value) {
 			this.avg = value;
 			return this;
 		}
@@ -121,7 +120,7 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Long value) {
+		public Builder max(long value) {
 			this.max = value;
 			return this;
 		}
@@ -129,7 +128,7 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 		/**
 		 * API name: {@code min}
 		 */
-		public Builder min(Long value) {
+		public Builder min(long value) {
 			this.min = value;
 			return this;
 		}

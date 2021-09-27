@@ -41,35 +41,35 @@ import javax.annotation.Nullable;
 // typedef: ml.post_data.Response
 @JsonpDeserializable
 public final class PostDataResponse implements JsonpSerializable {
-	private final Long bucketCount;
+	private final long bucketCount;
 
-	private final Integer earliestRecordTimestamp;
+	private final int earliestRecordTimestamp;
 
-	private final Long emptyBucketCount;
+	private final long emptyBucketCount;
 
-	private final Long inputBytes;
+	private final long inputBytes;
 
-	private final Long inputFieldCount;
+	private final long inputFieldCount;
 
-	private final Long inputRecordCount;
+	private final long inputRecordCount;
 
-	private final Long invalidDateCount;
+	private final long invalidDateCount;
 
 	private final String jobId;
 
-	private final Integer lastDataTime;
+	private final int lastDataTime;
 
-	private final Integer latestRecordTimestamp;
+	private final int latestRecordTimestamp;
 
-	private final Long missingFieldCount;
+	private final long missingFieldCount;
 
-	private final Long outOfOrderTimestampCount;
+	private final long outOfOrderTimestampCount;
 
-	private final Long processedFieldCount;
+	private final long processedFieldCount;
 
-	private final Long processedRecordCount;
+	private final long processedRecordCount;
 
-	private final Long sparseBucketCount;
+	private final long sparseBucketCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -98,49 +98,49 @@ public final class PostDataResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code bucket_count}
 	 */
-	public Long bucketCount() {
+	public long bucketCount() {
 		return this.bucketCount;
 	}
 
 	/**
 	 * API name: {@code earliest_record_timestamp}
 	 */
-	public Integer earliestRecordTimestamp() {
+	public int earliestRecordTimestamp() {
 		return this.earliestRecordTimestamp;
 	}
 
 	/**
 	 * API name: {@code empty_bucket_count}
 	 */
-	public Long emptyBucketCount() {
+	public long emptyBucketCount() {
 		return this.emptyBucketCount;
 	}
 
 	/**
 	 * API name: {@code input_bytes}
 	 */
-	public Long inputBytes() {
+	public long inputBytes() {
 		return this.inputBytes;
 	}
 
 	/**
 	 * API name: {@code input_field_count}
 	 */
-	public Long inputFieldCount() {
+	public long inputFieldCount() {
 		return this.inputFieldCount;
 	}
 
 	/**
 	 * API name: {@code input_record_count}
 	 */
-	public Long inputRecordCount() {
+	public long inputRecordCount() {
 		return this.inputRecordCount;
 	}
 
 	/**
 	 * API name: {@code invalid_date_count}
 	 */
-	public Long invalidDateCount() {
+	public long invalidDateCount() {
 		return this.invalidDateCount;
 	}
 
@@ -154,49 +154,49 @@ public final class PostDataResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code last_data_time}
 	 */
-	public Integer lastDataTime() {
+	public int lastDataTime() {
 		return this.lastDataTime;
 	}
 
 	/**
 	 * API name: {@code latest_record_timestamp}
 	 */
-	public Integer latestRecordTimestamp() {
+	public int latestRecordTimestamp() {
 		return this.latestRecordTimestamp;
 	}
 
 	/**
 	 * API name: {@code missing_field_count}
 	 */
-	public Long missingFieldCount() {
+	public long missingFieldCount() {
 		return this.missingFieldCount;
 	}
 
 	/**
 	 * API name: {@code out_of_order_timestamp_count}
 	 */
-	public Long outOfOrderTimestampCount() {
+	public long outOfOrderTimestampCount() {
 		return this.outOfOrderTimestampCount;
 	}
 
 	/**
 	 * API name: {@code processed_field_count}
 	 */
-	public Long processedFieldCount() {
+	public long processedFieldCount() {
 		return this.processedFieldCount;
 	}
 
 	/**
 	 * API name: {@code processed_record_count}
 	 */
-	public Long processedRecordCount() {
+	public long processedRecordCount() {
 		return this.processedRecordCount;
 	}
 
 	/**
 	 * API name: {@code sparse_bucket_count}
 	 */
-	public Long sparseBucketCount() {
+	public long sparseBucketCount() {
 		return this.sparseBucketCount;
 	}
 
@@ -297,7 +297,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code bucket_count}
 		 */
-		public Builder bucketCount(Long value) {
+		public Builder bucketCount(long value) {
 			this.bucketCount = value;
 			return this;
 		}
@@ -305,7 +305,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code earliest_record_timestamp}
 		 */
-		public Builder earliestRecordTimestamp(Integer value) {
+		public Builder earliestRecordTimestamp(int value) {
 			this.earliestRecordTimestamp = value;
 			return this;
 		}
@@ -313,7 +313,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code empty_bucket_count}
 		 */
-		public Builder emptyBucketCount(Long value) {
+		public Builder emptyBucketCount(long value) {
 			this.emptyBucketCount = value;
 			return this;
 		}
@@ -321,7 +321,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code input_bytes}
 		 */
-		public Builder inputBytes(Long value) {
+		public Builder inputBytes(long value) {
 			this.inputBytes = value;
 			return this;
 		}
@@ -329,7 +329,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code input_field_count}
 		 */
-		public Builder inputFieldCount(Long value) {
+		public Builder inputFieldCount(long value) {
 			this.inputFieldCount = value;
 			return this;
 		}
@@ -337,7 +337,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code input_record_count}
 		 */
-		public Builder inputRecordCount(Long value) {
+		public Builder inputRecordCount(long value) {
 			this.inputRecordCount = value;
 			return this;
 		}
@@ -345,7 +345,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code invalid_date_count}
 		 */
-		public Builder invalidDateCount(Long value) {
+		public Builder invalidDateCount(long value) {
 			this.invalidDateCount = value;
 			return this;
 		}
@@ -361,7 +361,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code last_data_time}
 		 */
-		public Builder lastDataTime(Integer value) {
+		public Builder lastDataTime(int value) {
 			this.lastDataTime = value;
 			return this;
 		}
@@ -369,7 +369,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code latest_record_timestamp}
 		 */
-		public Builder latestRecordTimestamp(Integer value) {
+		public Builder latestRecordTimestamp(int value) {
 			this.latestRecordTimestamp = value;
 			return this;
 		}
@@ -377,7 +377,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code missing_field_count}
 		 */
-		public Builder missingFieldCount(Long value) {
+		public Builder missingFieldCount(long value) {
 			this.missingFieldCount = value;
 			return this;
 		}
@@ -385,7 +385,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code out_of_order_timestamp_count}
 		 */
-		public Builder outOfOrderTimestampCount(Long value) {
+		public Builder outOfOrderTimestampCount(long value) {
 			this.outOfOrderTimestampCount = value;
 			return this;
 		}
@@ -393,7 +393,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code processed_field_count}
 		 */
-		public Builder processedFieldCount(Long value) {
+		public Builder processedFieldCount(long value) {
 			this.processedFieldCount = value;
 			return this;
 		}
@@ -401,7 +401,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code processed_record_count}
 		 */
-		public Builder processedRecordCount(Long value) {
+		public Builder processedRecordCount(long value) {
 			this.processedRecordCount = value;
 			return this;
 		}
@@ -409,7 +409,7 @@ public final class PostDataResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code sparse_bucket_count}
 		 */
-		public Builder sparseBucketCount(Long value) {
+		public Builder sparseBucketCount(long value) {
 			this.sparseBucketCount = value;
 			return this;
 		}

@@ -46,9 +46,9 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 
 	private final String commonWordsPath;
 
-	private final Boolean ignoreCase;
+	private final boolean ignoreCase;
 
-	private final Boolean queryMode;
+	private final boolean queryMode;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -87,14 +87,14 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 	/**
 	 * API name: {@code ignore_case}
 	 */
-	public Boolean ignoreCase() {
+	public boolean ignoreCase() {
 		return this.ignoreCase;
 	}
 
 	/**
 	 * API name: {@code query_mode}
 	 */
-	public Boolean queryMode() {
+	public boolean queryMode() {
 		return this.queryMode;
 	}
 
@@ -176,7 +176,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		/**
 		 * API name: {@code ignore_case}
 		 */
-		public Builder ignoreCase(Boolean value) {
+		public Builder ignoreCase(boolean value) {
 			this.ignoreCase = value;
 			return this;
 		}
@@ -184,7 +184,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		/**
 		 * API name: {@code query_mode}
 		 */
-		public Builder queryMode(Boolean value) {
+		public Builder queryMode(boolean value) {
 			this.queryMode = value;
 			return this;
 		}

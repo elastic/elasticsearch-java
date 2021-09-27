@@ -46,9 +46,9 @@ import javax.annotation.Nullable;
 public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final String version;
 
-	private final Integer maxOutputSize;
+	private final int maxOutputSize;
 
-	private final Boolean preserveOriginal;
+	private final boolean preserveOriginal;
 
 	private final String separator;
 
@@ -87,14 +87,14 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 	/**
 	 * API name: {@code max_output_size}
 	 */
-	public Integer maxOutputSize() {
+	public int maxOutputSize() {
 		return this.maxOutputSize;
 	}
 
 	/**
 	 * API name: {@code preserve_original}
 	 */
-	public Boolean preserveOriginal() {
+	public boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -186,7 +186,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		/**
 		 * API name: {@code max_output_size}
 		 */
-		public Builder maxOutputSize(Integer value) {
+		public Builder maxOutputSize(int value) {
 			this.maxOutputSize = value;
 			return this;
 		}
@@ -194,7 +194,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		/**
 		 * API name: {@code preserve_original}
 		 */
-		public Builder preserveOriginal(Boolean value) {
+		public Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}

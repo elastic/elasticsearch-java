@@ -45,9 +45,9 @@ public final class Process implements JsonpSerializable {
 
 	private final MemoryStats mem;
 
-	private final Integer openFileDescriptors;
+	private final int openFileDescriptors;
 
-	private final Long timestamp;
+	private final long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,14 +77,14 @@ public final class Process implements JsonpSerializable {
 	/**
 	 * API name: {@code open_file_descriptors}
 	 */
-	public Integer openFileDescriptors() {
+	public int openFileDescriptors() {
 		return this.openFileDescriptors;
 	}
 
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Long timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
@@ -160,7 +160,7 @@ public final class Process implements JsonpSerializable {
 		/**
 		 * API name: {@code open_file_descriptors}
 		 */
-		public Builder openFileDescriptors(Integer value) {
+		public Builder openFileDescriptors(int value) {
 			this.openFileDescriptors = value;
 			return this;
 		}
@@ -168,7 +168,7 @@ public final class Process implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Long value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}

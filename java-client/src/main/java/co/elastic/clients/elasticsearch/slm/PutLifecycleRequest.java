@@ -395,8 +395,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 				int propsSet = 0;
 
-				if (request.policyId() != null)
-					propsSet |= _policyId;
+				propsSet |= _policyId;
 
 				if (propsSet == (_policyId)) {
 					StringBuilder buf = new StringBuilder();

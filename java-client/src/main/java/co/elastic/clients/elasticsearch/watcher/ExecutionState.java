@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 // typedef: watcher._types.ExecutionState
 @JsonpDeserializable
 public final class ExecutionState implements JsonpSerializable {
-	private final Boolean successful;
+	private final boolean successful;
 
 	private final String timestamp;
 
@@ -56,7 +56,7 @@ public final class ExecutionState implements JsonpSerializable {
 	/**
 	 * API name: {@code successful}
 	 */
-	public Boolean successful() {
+	public boolean successful() {
 		return this.successful;
 	}
 
@@ -99,7 +99,7 @@ public final class ExecutionState implements JsonpSerializable {
 		/**
 		 * API name: {@code successful}
 		 */
-		public Builder successful(Boolean value) {
+		public Builder successful(boolean value) {
 			this.successful = value;
 			return this;
 		}

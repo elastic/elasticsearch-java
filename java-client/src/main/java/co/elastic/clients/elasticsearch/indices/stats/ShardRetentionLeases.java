@@ -43,9 +43,9 @@ import javax.annotation.Nullable;
 // typedef: indices.stats.ShardRetentionLeases
 @JsonpDeserializable
 public final class ShardRetentionLeases implements JsonpSerializable {
-	private final Long primaryTerm;
+	private final long primaryTerm;
 
-	private final Long version;
+	private final long version;
 
 	private final List<ShardLease> leases;
 
@@ -62,14 +62,14 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 	/**
 	 * API name: {@code primary_term}
 	 */
-	public Long primaryTerm() {
+	public long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
 	 * API name: {@code version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -122,7 +122,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		/**
 		 * API name: {@code primary_term}
 		 */
-		public Builder primaryTerm(Long value) {
+		public Builder primaryTerm(long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -130,7 +130,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}

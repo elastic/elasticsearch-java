@@ -34,18 +34,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcessor
 @JsonpDeserializable
 public final class ClusterProcessor implements JsonpSerializable {
-	private final Long count;
+	private final long count;
 
-	private final Long current;
+	private final long current;
 
-	private final Long failed;
+	private final long failed;
 
-	private final Long timeInMillis;
+	private final long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,28 +60,28 @@ public final class ClusterProcessor implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Long count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code current}
 	 */
-	public Long current() {
+	public long current() {
 		return this.current;
 	}
 
 	/**
 	 * API name: {@code failed}
 	 */
-	public Long failed() {
+	public long failed() {
 		return this.failed;
 	}
 
 	/**
 	 * API name: {@code time_in_millis}
 	 */
-	public Long timeInMillis() {
+	public long timeInMillis() {
 		return this.timeInMillis;
 	}
 
@@ -128,7 +127,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Long value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -136,7 +135,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * API name: {@code current}
 		 */
-		public Builder current(Long value) {
+		public Builder current(long value) {
 			this.current = value;
 			return this;
 		}
@@ -144,7 +143,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * API name: {@code failed}
 		 */
-		public Builder failed(Long value) {
+		public Builder failed(long value) {
 			this.failed = value;
 			return this;
 		}
@@ -152,7 +151,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(Long value) {
+		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}

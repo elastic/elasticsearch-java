@@ -49,7 +49,7 @@ public final class ShardFailure implements JsonpSerializable {
 
 	private final ErrorCause reason;
 
-	private final Integer shard;
+	private final int shard;
 
 	@Nullable
 	private final String status;
@@ -92,7 +92,7 @@ public final class ShardFailure implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Integer shard() {
+	public int shard() {
 		return this.shard;
 	}
 
@@ -196,7 +196,7 @@ public final class ShardFailure implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Integer value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}

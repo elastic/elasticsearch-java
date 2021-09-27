@@ -339,8 +339,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 				if (request.snapshotId() != null)
 					propsSet |= _snapshotId;
 

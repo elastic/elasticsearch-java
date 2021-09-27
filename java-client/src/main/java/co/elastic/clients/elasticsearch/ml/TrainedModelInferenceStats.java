@@ -40,13 +40,13 @@ import javax.annotation.Nullable;
 // typedef: ml._types.TrainedModelInferenceStats
 @JsonpDeserializable
 public final class TrainedModelInferenceStats implements JsonpSerializable {
-	private final Long failureCount;
+	private final long failureCount;
 
-	private final Long inferenceCount;
+	private final long inferenceCount;
 
-	private final Long cacheMissCount;
+	private final long cacheMissCount;
 
-	private final Long missingAllFieldsCount;
+	private final long missingAllFieldsCount;
 
 	private final String timestamp;
 
@@ -67,7 +67,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code failure_count}
 	 */
-	public Long failureCount() {
+	public long failureCount() {
 		return this.failureCount;
 	}
 
@@ -77,7 +77,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code inference_count}
 	 */
-	public Long inferenceCount() {
+	public long inferenceCount() {
 		return this.inferenceCount;
 	}
 
@@ -90,7 +90,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code cache_miss_count}
 	 */
-	public Long cacheMissCount() {
+	public long cacheMissCount() {
 		return this.cacheMissCount;
 	}
 
@@ -100,7 +100,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code missing_all_fields_count}
 	 */
-	public Long missingAllFieldsCount() {
+	public long missingAllFieldsCount() {
 		return this.missingAllFieldsCount;
 	}
 
@@ -162,7 +162,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code failure_count}
 		 */
-		public Builder failureCount(Long value) {
+		public Builder failureCount(long value) {
 			this.failureCount = value;
 			return this;
 		}
@@ -173,7 +173,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_count}
 		 */
-		public Builder inferenceCount(Long value) {
+		public Builder inferenceCount(long value) {
 			this.inferenceCount = value;
 			return this;
 		}
@@ -187,7 +187,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cache_miss_count}
 		 */
-		public Builder cacheMissCount(Long value) {
+		public Builder cacheMissCount(long value) {
 			this.cacheMissCount = value;
 			return this;
 		}
@@ -198,7 +198,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code missing_all_fields_count}
 		 */
-		public Builder missingAllFieldsCount(Long value) {
+		public Builder missingAllFieldsCount(long value) {
 			this.missingAllFieldsCount = value;
 			return this;
 		}

@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class DataframeClassificationSummaryAccuracy implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
 
-	private final Double overallAccuracy;
+	private final double overallAccuracy;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class DataframeClassificationSummaryAccuracy implements JsonpSerial
 	/**
 	 * API name: {@code overall_accuracy}
 	 */
-	public Double overallAccuracy() {
+	public double overallAccuracy() {
 		return this.overallAccuracy;
 	}
 
@@ -149,7 +149,7 @@ public final class DataframeClassificationSummaryAccuracy implements JsonpSerial
 		/**
 		 * API name: {@code overall_accuracy}
 		 */
-		public Builder overallAccuracy(Double value) {
+		public Builder overallAccuracy(double value) {
 			this.overallAccuracy = value;
 			return this;
 		}

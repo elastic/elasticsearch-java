@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 // typedef: xpack.usage.Monitoring
 @JsonpDeserializable
 public final class Monitoring extends Base {
-	private final Boolean collectionEnabled;
+	private final boolean collectionEnabled;
 
 	private final Map<String, Long> enabledExporters;
 
@@ -58,7 +58,7 @@ public final class Monitoring extends Base {
 	/**
 	 * API name: {@code collection_enabled}
 	 */
-	public Boolean collectionEnabled() {
+	public boolean collectionEnabled() {
 		return this.collectionEnabled;
 	}
 
@@ -100,7 +100,7 @@ public final class Monitoring extends Base {
 		/**
 		 * API name: {@code collection_enabled}
 		 */
-		public Builder collectionEnabled(Boolean value) {
+		public Builder collectionEnabled(boolean value) {
 			this.collectionEnabled = value;
 			return this;
 		}

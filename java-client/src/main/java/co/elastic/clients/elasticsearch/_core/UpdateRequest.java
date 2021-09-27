@@ -846,10 +846,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 
 				int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _id;
+				propsSet |= _index;
 				if (request.type() != null)
 					propsSet |= _type;
 

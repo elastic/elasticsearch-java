@@ -162,8 +162,7 @@ public final class DeleteScriptRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
+				propsSet |= _id;
 
 				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();

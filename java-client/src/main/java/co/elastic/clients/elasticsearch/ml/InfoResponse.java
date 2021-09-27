@@ -47,7 +47,7 @@ public final class InfoResponse implements JsonpSerializable {
 
 	private final Limits limits;
 
-	private final Boolean upgradeMode;
+	private final boolean upgradeMode;
 
 	private final NativeCode nativeCode;
 
@@ -79,7 +79,7 @@ public final class InfoResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code upgrade_mode}
 	 */
-	public Boolean upgradeMode() {
+	public boolean upgradeMode() {
 		return this.upgradeMode;
 	}
 
@@ -162,7 +162,7 @@ public final class InfoResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code upgrade_mode}
 		 */
-		public Builder upgradeMode(Boolean value) {
+		public Builder upgradeMode(boolean value) {
 			this.upgradeMode = value;
 			return this;
 		}

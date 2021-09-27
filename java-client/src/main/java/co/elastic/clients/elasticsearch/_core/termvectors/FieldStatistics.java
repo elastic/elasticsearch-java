@@ -35,16 +35,15 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.FieldStatistics
 @JsonpDeserializable
 public final class FieldStatistics implements JsonpSerializable {
-	private final Integer docCount;
+	private final int docCount;
 
-	private final Long sumDocFreq;
+	private final long sumDocFreq;
 
-	private final Long sumTtf;
+	private final long sumTtf;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,21 +58,21 @@ public final class FieldStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code doc_count}
 	 */
-	public Integer docCount() {
+	public int docCount() {
 		return this.docCount;
 	}
 
 	/**
 	 * API name: {@code sum_doc_freq}
 	 */
-	public Long sumDocFreq() {
+	public long sumDocFreq() {
 		return this.sumDocFreq;
 	}
 
 	/**
 	 * API name: {@code sum_ttf}
 	 */
-	public Long sumTtf() {
+	public long sumTtf() {
 		return this.sumTtf;
 	}
 
@@ -114,7 +113,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_count}
 		 */
-		public Builder docCount(Integer value) {
+		public Builder docCount(int value) {
 			this.docCount = value;
 			return this;
 		}
@@ -122,7 +121,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code sum_doc_freq}
 		 */
-		public Builder sumDocFreq(Long value) {
+		public Builder sumDocFreq(long value) {
 			this.sumDocFreq = value;
 			return this;
 		}
@@ -130,7 +129,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code sum_ttf}
 		 */
-		public Builder sumTtf(Long value) {
+		public Builder sumTtf(long value) {
 			this.sumTtf = value;
 			return this;
 		}

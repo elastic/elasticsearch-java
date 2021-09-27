@@ -51,7 +51,7 @@ public final class PluginStats implements JsonpSerializable {
 
 	private final List<String> extendedPlugins;
 
-	private final Boolean hasNativeController;
+	private final boolean hasNativeController;
 
 	private final String javaVersion;
 
@@ -59,7 +59,7 @@ public final class PluginStats implements JsonpSerializable {
 
 	private final String version;
 
-	private final Boolean licensed;
+	private final boolean licensed;
 
 	private final String type;
 
@@ -111,7 +111,7 @@ public final class PluginStats implements JsonpSerializable {
 	/**
 	 * API name: {@code has_native_controller}
 	 */
-	public Boolean hasNativeController() {
+	public boolean hasNativeController() {
 		return this.hasNativeController;
 	}
 
@@ -139,7 +139,7 @@ public final class PluginStats implements JsonpSerializable {
 	/**
 	 * API name: {@code licensed}
 	 */
-	public Boolean licensed() {
+	public boolean licensed() {
 		return this.licensed;
 	}
 
@@ -278,7 +278,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * API name: {@code has_native_controller}
 		 */
-		public Builder hasNativeController(Boolean value) {
+		public Builder hasNativeController(boolean value) {
 			this.hasNativeController = value;
 			return this;
 		}
@@ -310,7 +310,7 @@ public final class PluginStats implements JsonpSerializable {
 		/**
 		 * API name: {@code licensed}
 		 */
-		public Builder licensed(Boolean value) {
+		public Builder licensed(boolean value) {
 			this.licensed = value;
 			return this;
 		}

@@ -51,7 +51,7 @@ public final class ExploreControls implements JsonpSerializable {
 	@Nullable
 	private final String timeout;
 
-	private final Boolean useSignificance;
+	private final boolean useSignificance;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -91,7 +91,7 @@ public final class ExploreControls implements JsonpSerializable {
 	/**
 	 * API name: {@code use_significance}
 	 */
-	public Boolean useSignificance() {
+	public boolean useSignificance() {
 		return this.useSignificance;
 	}
 
@@ -181,7 +181,7 @@ public final class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code use_significance}
 		 */
-		public Builder useSignificance(Boolean value) {
+		public Builder useSignificance(boolean value) {
 			this.useSignificance = value;
 			return this;
 		}

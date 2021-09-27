@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: sql.translate.Response
 @JsonpDeserializable
 public final class TranslateResponse implements JsonpSerializable {
-	private final Long size;
+	private final long size;
 
 	private final JsonValue /*
 							 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
@@ -69,7 +69,7 @@ public final class TranslateResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code size}
 	 */
-	public Long size() {
+	public long size() {
 		return this.size;
 	}
 
@@ -156,7 +156,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(Long value) {
+		public Builder size(long value) {
 			this.size = value;
 			return this;
 		}

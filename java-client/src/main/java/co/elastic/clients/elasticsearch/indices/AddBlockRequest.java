@@ -305,10 +305,8 @@ public final class AddBlockRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
-				if (request.block() != null)
-					propsSet |= _block;
+				propsSet |= _index;
+				propsSet |= _block;
 
 				if (propsSet == (_index | _block)) {
 					StringBuilder buf = new StringBuilder();

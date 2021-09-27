@@ -48,7 +48,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 
 	private final String index;
 
-	private final Boolean valid;
+	private final boolean valid;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 	/**
 	 * API name: {@code valid}
 	 */
-	public Boolean valid() {
+	public boolean valid() {
 		return this.valid;
 	}
 
@@ -166,7 +166,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 		/**
 		 * API name: {@code valid}
 		 */
-		public Builder valid(Boolean value) {
+		public Builder valid(boolean value) {
 			this.valid = value;
 			return this;
 		}

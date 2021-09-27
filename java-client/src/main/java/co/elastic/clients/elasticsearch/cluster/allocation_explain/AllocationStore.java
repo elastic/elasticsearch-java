@@ -43,13 +43,13 @@ import javax.annotation.Nullable;
 public final class AllocationStore implements JsonpSerializable {
 	private final String allocationId;
 
-	private final Boolean found;
+	private final boolean found;
 
-	private final Boolean inSync;
+	private final boolean inSync;
 
-	private final Long matchingSizeInBytes;
+	private final long matchingSizeInBytes;
 
-	private final Boolean matchingSyncId;
+	private final boolean matchingSyncId;
 
 	private final String storeException;
 
@@ -76,28 +76,28 @@ public final class AllocationStore implements JsonpSerializable {
 	/**
 	 * API name: {@code found}
 	 */
-	public Boolean found() {
+	public boolean found() {
 		return this.found;
 	}
 
 	/**
 	 * API name: {@code in_sync}
 	 */
-	public Boolean inSync() {
+	public boolean inSync() {
 		return this.inSync;
 	}
 
 	/**
 	 * API name: {@code matching_size_in_bytes}
 	 */
-	public Long matchingSizeInBytes() {
+	public long matchingSizeInBytes() {
 		return this.matchingSizeInBytes;
 	}
 
 	/**
 	 * API name: {@code matching_sync_id}
 	 */
-	public Boolean matchingSyncId() {
+	public boolean matchingSyncId() {
 		return this.matchingSyncId;
 	}
 
@@ -168,7 +168,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * API name: {@code found}
 		 */
-		public Builder found(Boolean value) {
+		public Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -176,7 +176,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * API name: {@code in_sync}
 		 */
-		public Builder inSync(Boolean value) {
+		public Builder inSync(boolean value) {
 			this.inSync = value;
 			return this;
 		}
@@ -184,7 +184,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * API name: {@code matching_size_in_bytes}
 		 */
-		public Builder matchingSizeInBytes(Long value) {
+		public Builder matchingSizeInBytes(long value) {
 			this.matchingSizeInBytes = value;
 			return this;
 		}
@@ -192,7 +192,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * API name: {@code matching_sync_id}
 		 */
-		public Builder matchingSyncId(Boolean value) {
+		public Builder matchingSyncId(boolean value) {
 			this.matchingSyncId = value;
 			return this;
 		}

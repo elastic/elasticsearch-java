@@ -49,9 +49,9 @@ public final class Hyperparameter implements JsonpSerializable {
 	@Nullable
 	private final Double relativeImportance;
 
-	private final Boolean supplied;
+	private final boolean supplied;
 
-	private final Double value;
+	private final double value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code supplied}
 	 */
-	public Boolean supplied() {
+	public boolean supplied() {
 		return this.supplied;
 	}
 
@@ -114,7 +114,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public Double value() {
+	public double value() {
 		return this.value;
 	}
 
@@ -213,7 +213,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code supplied}
 		 */
-		public Builder supplied(Boolean value) {
+		public Builder supplied(boolean value) {
 			this.supplied = value;
 			return this;
 		}
@@ -223,7 +223,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(Double value) {
+		public Builder value(double value) {
 			this.value = value;
 			return this;
 		}

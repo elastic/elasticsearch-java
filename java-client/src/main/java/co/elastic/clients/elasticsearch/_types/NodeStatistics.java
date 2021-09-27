@@ -46,11 +46,11 @@ public final class NodeStatistics implements JsonpSerializable {
 	@Nullable
 	private final List<ErrorCause> failures;
 
-	private final Integer total;
+	private final int total;
 
-	private final Integer successful;
+	private final int successful;
 
-	private final Integer failed;
+	private final int failed;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ public final class NodeStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total}
 	 */
-	public Integer total() {
+	public int total() {
 		return this.total;
 	}
 
@@ -85,7 +85,7 @@ public final class NodeStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code successful}
 	 */
-	public Integer successful() {
+	public int successful() {
 		return this.successful;
 	}
 
@@ -95,7 +95,7 @@ public final class NodeStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code failed}
 	 */
-	public Integer failed() {
+	public int failed() {
 		return this.failed;
 	}
 
@@ -194,7 +194,7 @@ public final class NodeStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total}
 		 */
-		public Builder total(Integer value) {
+		public Builder total(int value) {
 			this.total = value;
 			return this;
 		}
@@ -204,7 +204,7 @@ public final class NodeStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code successful}
 		 */
-		public Builder successful(Integer value) {
+		public Builder successful(int value) {
 			this.successful = value;
 			return this;
 		}
@@ -215,7 +215,7 @@ public final class NodeStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code failed}
 		 */
-		public Builder failed(Integer value) {
+		public Builder failed(int value) {
 			this.failed = value;
 			return this;
 		}

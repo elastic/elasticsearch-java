@@ -52,7 +52,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 
 	private final String id;
 
-	private final Boolean matched;
+	private final boolean matched;
 
 	@Nullable
 	private final ExplanationDetail explanation;
@@ -102,7 +102,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code matched}
 	 */
-	public Boolean matched() {
+	public boolean matched() {
 		return this.matched;
 	}
 
@@ -215,7 +215,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code matched}
 		 */
-		public Builder<TDocument> matched(Boolean value) {
+		public Builder<TDocument> matched(boolean value) {
 			this.matched = value;
 			return this;
 		}

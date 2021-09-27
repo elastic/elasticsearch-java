@@ -107,8 +107,7 @@ public final class RemovePolicyRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();

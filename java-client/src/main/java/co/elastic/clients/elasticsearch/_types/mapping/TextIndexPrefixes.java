@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TextIndexPrefixes
 @JsonpDeserializable
 public final class TextIndexPrefixes implements JsonpSerializable {
-	private final Integer maxChars;
+	private final int maxChars;
 
-	private final Integer minChars;
+	private final int minChars;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 	/**
 	 * API name: {@code max_chars}
 	 */
-	public Integer maxChars() {
+	public int maxChars() {
 		return this.maxChars;
 	}
 
 	/**
 	 * API name: {@code min_chars}
 	 */
-	public Integer minChars() {
+	public int minChars() {
 		return this.minChars;
 	}
 
@@ -98,7 +97,7 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 		/**
 		 * API name: {@code max_chars}
 		 */
-		public Builder maxChars(Integer value) {
+		public Builder maxChars(int value) {
 			this.maxChars = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 		/**
 		 * API name: {@code min_chars}
 		 */
-		public Builder minChars(Integer value) {
+		public Builder minChars(int value) {
 			this.minChars = value;
 			return this;
 		}

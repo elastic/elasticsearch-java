@@ -545,10 +545,8 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
-				if (request.snapshot() != null)
-					propsSet |= _snapshot;
+				propsSet |= _repository;
+				propsSet |= _snapshot;
 
 				if (propsSet == (_repository | _snapshot)) {
 					StringBuilder buf = new StringBuilder();

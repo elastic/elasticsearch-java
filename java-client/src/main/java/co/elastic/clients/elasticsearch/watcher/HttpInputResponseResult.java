@@ -47,7 +47,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 
 	private final Map<String, List<String>> headers;
 
-	private final Integer status;
+	private final int status;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 	/**
 	 * API name: {@code status}
 	 */
-	public Integer status() {
+	public int status() {
 		return this.status;
 	}
 
@@ -155,7 +155,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(Integer value) {
+		public Builder status(int value) {
 			this.status = value;
 			return this;
 		}

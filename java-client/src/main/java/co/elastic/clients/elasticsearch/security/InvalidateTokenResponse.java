@@ -44,14 +44,14 @@ import javax.annotation.Nullable;
 // typedef: security.invalidate_token.Response
 @JsonpDeserializable
 public final class InvalidateTokenResponse implements JsonpSerializable {
-	private final Long errorCount;
+	private final long errorCount;
 
 	@Nullable
 	private final List<ErrorCause> errorDetails;
 
-	private final Long invalidatedTokens;
+	private final long invalidatedTokens;
 
-	private final Long previouslyInvalidatedTokens;
+	private final long previouslyInvalidatedTokens;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code error_count}
 	 */
-	public Long errorCount() {
+	public long errorCount() {
 		return this.errorCount;
 	}
 
@@ -83,14 +83,14 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code invalidated_tokens}
 	 */
-	public Long invalidatedTokens() {
+	public long invalidatedTokens() {
 		return this.invalidatedTokens;
 	}
 
 	/**
 	 * API name: {@code previously_invalidated_tokens}
 	 */
-	public Long previouslyInvalidatedTokens() {
+	public long previouslyInvalidatedTokens() {
 		return this.previouslyInvalidatedTokens;
 	}
 
@@ -146,7 +146,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error_count}
 		 */
-		public Builder errorCount(Long value) {
+		public Builder errorCount(long value) {
 			this.errorCount = value;
 			return this;
 		}
@@ -195,7 +195,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code invalidated_tokens}
 		 */
-		public Builder invalidatedTokens(Long value) {
+		public Builder invalidatedTokens(long value) {
 			this.invalidatedTokens = value;
 			return this;
 		}
@@ -203,7 +203,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code previously_invalidated_tokens}
 		 */
-		public Builder previouslyInvalidatedTokens(Long value) {
+		public Builder previouslyInvalidatedTokens(long value) {
 			this.previouslyInvalidatedTokens = value;
 			return this;
 		}

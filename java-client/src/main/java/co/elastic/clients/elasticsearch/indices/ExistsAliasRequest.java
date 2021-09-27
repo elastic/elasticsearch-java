@@ -325,8 +325,7 @@ public final class ExistsAliasRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 				if (request.index() != null)
 					propsSet |= _index;
 

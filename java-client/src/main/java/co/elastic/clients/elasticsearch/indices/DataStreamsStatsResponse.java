@@ -48,14 +48,14 @@ import javax.annotation.Nullable;
 public final class DataStreamsStatsResponse implements JsonpSerializable {
 	private final ShardStatistics shards;
 
-	private final Integer backingIndices;
+	private final int backingIndices;
 
-	private final Integer dataStreamCount;
+	private final int dataStreamCount;
 
 	@Nullable
 	private final String totalStoreSizes;
 
-	private final Integer totalStoreSizeBytes;
+	private final int totalStoreSizeBytes;
 
 	private final List<DataStreamsStatsItem> dataStreams;
 
@@ -82,14 +82,14 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code backing_indices}
 	 */
-	public Integer backingIndices() {
+	public int backingIndices() {
 		return this.backingIndices;
 	}
 
 	/**
 	 * API name: {@code data_stream_count}
 	 */
-	public Integer dataStreamCount() {
+	public int dataStreamCount() {
 		return this.dataStreamCount;
 	}
 
@@ -104,7 +104,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code total_store_size_bytes}
 	 */
-	public Integer totalStoreSizeBytes() {
+	public int totalStoreSizeBytes() {
 		return this.totalStoreSizeBytes;
 	}
 
@@ -192,7 +192,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code backing_indices}
 		 */
-		public Builder backingIndices(Integer value) {
+		public Builder backingIndices(int value) {
 			this.backingIndices = value;
 			return this;
 		}
@@ -200,7 +200,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code data_stream_count}
 		 */
-		public Builder dataStreamCount(Integer value) {
+		public Builder dataStreamCount(int value) {
 			this.dataStreamCount = value;
 			return this;
 		}
@@ -216,7 +216,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code total_store_size_bytes}
 		 */
-		public Builder totalStoreSizeBytes(Integer value) {
+		public Builder totalStoreSizeBytes(int value) {
 			this.totalStoreSizeBytes = value;
 			return this;
 		}

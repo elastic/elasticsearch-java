@@ -107,8 +107,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.modelId() != null)
-					propsSet |= _modelId;
+				propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
 					StringBuilder buf = new StringBuilder();

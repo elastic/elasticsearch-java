@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: sql.clear_cursor.Response
 @JsonpDeserializable
 public final class ClearCursorResponse implements JsonpSerializable {
-	private final Boolean succeeded;
+	private final boolean succeeded;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class ClearCursorResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code succeeded}
 	 */
-	public Boolean succeeded() {
+	public boolean succeeded() {
 		return this.succeeded;
 	}
 
@@ -83,7 +82,7 @@ public final class ClearCursorResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code succeeded}
 		 */
-		public Builder succeeded(Boolean value) {
+		public Builder succeeded(boolean value) {
 			this.succeeded = value;
 			return this;
 		}

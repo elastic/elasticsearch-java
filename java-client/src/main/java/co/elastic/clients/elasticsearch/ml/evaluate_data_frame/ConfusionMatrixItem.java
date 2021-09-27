@@ -46,11 +46,11 @@ import javax.annotation.Nullable;
 public final class ConfusionMatrixItem implements JsonpSerializable {
 	private final String actualClass;
 
-	private final Integer actualClassDocCount;
+	private final int actualClassDocCount;
 
 	private final List<ConfusionMatrixPrediction> predictedClasses;
 
-	private final Integer otherPredictedClassDocCount;
+	private final int otherPredictedClassDocCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 	/**
 	 * API name: {@code actual_class_doc_count}
 	 */
-	public Integer actualClassDocCount() {
+	public int actualClassDocCount() {
 		return this.actualClassDocCount;
 	}
 
@@ -88,7 +88,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 	/**
 	 * API name: {@code other_predicted_class_doc_count}
 	 */
-	public Integer otherPredictedClassDocCount() {
+	public int otherPredictedClassDocCount() {
 		return this.otherPredictedClassDocCount;
 	}
 
@@ -147,7 +147,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		/**
 		 * API name: {@code actual_class_doc_count}
 		 */
-		public Builder actualClassDocCount(Integer value) {
+		public Builder actualClassDocCount(int value) {
 			this.actualClassDocCount = value;
 			return this;
 		}
@@ -198,7 +198,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		/**
 		 * API name: {@code other_predicted_class_doc_count}
 		 */
-		public Builder otherPredictedClassDocCount(Integer value) {
+		public Builder otherPredictedClassDocCount(int value) {
 			this.otherPredictedClassDocCount = value;
 			return this;
 		}

@@ -33,14 +33,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LengthTokenFilter
 @JsonpDeserializable
 public final class LengthTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Integer max;
+	private final int max;
 
-	private final Integer min;
+	private final int min;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,14 +62,14 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 	/**
 	 * API name: {@code max}
 	 */
-	public Integer max() {
+	public int max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code min}
 	 */
-	public Integer min() {
+	public int min() {
 		return this.min;
 	}
 
@@ -102,7 +101,7 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Integer value) {
+		public Builder max(int value) {
 			this.max = value;
 			return this;
 		}
@@ -110,7 +109,7 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 		/**
 		 * API name: {@code min}
 		 */
-		public Builder min(Integer value) {
+		public Builder min(int value) {
 			this.min = value;
 			return this;
 		}

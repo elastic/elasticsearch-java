@@ -40,11 +40,11 @@ import javax.annotation.Nullable;
 // typedef: ingest._types.CircleProcessor
 @JsonpDeserializable
 public final class CircleProcessor extends ProcessorBase implements ProcessorVariant {
-	private final Double errorDistance;
+	private final double errorDistance;
 
 	private final String field;
 
-	private final Boolean ignoreMissing;
+	private final boolean ignoreMissing;
 
 	private final ShapeType shapeType;
 
@@ -74,7 +74,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 	/**
 	 * API name: {@code error_distance}
 	 */
-	public Double errorDistance() {
+	public double errorDistance() {
 		return this.errorDistance;
 	}
 
@@ -88,7 +88,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 	/**
 	 * API name: {@code ignore_missing}
 	 */
-	public Boolean ignoreMissing() {
+	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -148,7 +148,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * API name: {@code error_distance}
 		 */
-		public Builder errorDistance(Double value) {
+		public Builder errorDistance(double value) {
 			this.errorDistance = value;
 			return this;
 		}
@@ -164,7 +164,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(Boolean value) {
+		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}

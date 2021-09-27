@@ -50,9 +50,9 @@ public final class GetResponse implements JsonpSerializable {
 	@Nullable
 	private final List<SnapshotInfo> snapshots;
 
-	private final Integer total;
+	private final int total;
 
-	private final Integer remaining;
+	private final int remaining;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ public final class GetResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total}
 	 */
-	public Integer total() {
+	public int total() {
 		return this.total;
 	}
 
@@ -97,7 +97,7 @@ public final class GetResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code remaining}
 	 */
-	public Integer remaining() {
+	public int remaining() {
 		return this.remaining;
 	}
 
@@ -247,7 +247,7 @@ public final class GetResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total}
 		 */
-		public Builder total(Integer value) {
+		public Builder total(int value) {
 			this.total = value;
 			return this;
 		}
@@ -258,7 +258,7 @@ public final class GetResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code remaining}
 		 */
-		public Builder remaining(Integer value) {
+		public Builder remaining(int value) {
 			this.remaining = value;
 			return this;
 		}

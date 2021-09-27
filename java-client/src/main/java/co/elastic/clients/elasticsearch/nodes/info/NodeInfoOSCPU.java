@@ -42,17 +42,17 @@ import javax.annotation.Nullable;
 public final class NodeInfoOSCPU implements JsonpSerializable {
 	private final String cacheSize;
 
-	private final Integer cacheSizeInBytes;
+	private final int cacheSizeInBytes;
 
-	private final Integer coresPerSocket;
+	private final int coresPerSocket;
 
-	private final Integer mhz;
+	private final int mhz;
 
 	private final String model;
 
-	private final Integer totalCores;
+	private final int totalCores;
 
-	private final Integer totalSockets;
+	private final int totalSockets;
 
 	private final String vendor;
 
@@ -81,21 +81,21 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 	/**
 	 * API name: {@code cache_size_in_bytes}
 	 */
-	public Integer cacheSizeInBytes() {
+	public int cacheSizeInBytes() {
 		return this.cacheSizeInBytes;
 	}
 
 	/**
 	 * API name: {@code cores_per_socket}
 	 */
-	public Integer coresPerSocket() {
+	public int coresPerSocket() {
 		return this.coresPerSocket;
 	}
 
 	/**
 	 * API name: {@code mhz}
 	 */
-	public Integer mhz() {
+	public int mhz() {
 		return this.mhz;
 	}
 
@@ -109,14 +109,14 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 	/**
 	 * API name: {@code total_cores}
 	 */
-	public Integer totalCores() {
+	public int totalCores() {
 		return this.totalCores;
 	}
 
 	/**
 	 * API name: {@code total_sockets}
 	 */
-	public Integer totalSockets() {
+	public int totalSockets() {
 		return this.totalSockets;
 	}
 
@@ -197,7 +197,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * API name: {@code cache_size_in_bytes}
 		 */
-		public Builder cacheSizeInBytes(Integer value) {
+		public Builder cacheSizeInBytes(int value) {
 			this.cacheSizeInBytes = value;
 			return this;
 		}
@@ -205,7 +205,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * API name: {@code cores_per_socket}
 		 */
-		public Builder coresPerSocket(Integer value) {
+		public Builder coresPerSocket(int value) {
 			this.coresPerSocket = value;
 			return this;
 		}
@@ -213,7 +213,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * API name: {@code mhz}
 		 */
-		public Builder mhz(Integer value) {
+		public Builder mhz(int value) {
 			this.mhz = value;
 			return this;
 		}
@@ -229,7 +229,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * API name: {@code total_cores}
 		 */
-		public Builder totalCores(Integer value) {
+		public Builder totalCores(int value) {
 			this.totalCores = value;
 			return this;
 		}
@@ -237,7 +237,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		/**
 		 * API name: {@code total_sockets}
 		 */
-		public Builder totalSockets(Integer value) {
+		public Builder totalSockets(int value) {
 			this.totalSockets = value;
 			return this;
 		}

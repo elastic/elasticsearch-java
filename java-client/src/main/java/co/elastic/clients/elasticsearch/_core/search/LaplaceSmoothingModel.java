@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _global.search._types.LaplaceSmoothingModel
 @JsonpDeserializable
 public final class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
-	private final Double alpha;
+	private final double alpha;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class LaplaceSmoothingModel implements SmoothingModelVariant, Jsonp
 	/**
 	 * API name: {@code alpha}
 	 */
-	public Double alpha() {
+	public double alpha() {
 		return this.alpha;
 	}
 
@@ -91,7 +90,7 @@ public final class LaplaceSmoothingModel implements SmoothingModelVariant, Jsonp
 		/**
 		 * API name: {@code alpha}
 		 */
-		public Builder alpha(Double value) {
+		public Builder alpha(double value) {
 			this.alpha = value;
 			return this;
 		}

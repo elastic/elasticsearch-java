@@ -53,7 +53,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	@Nullable
 	private final List<WatchRecordQueuedStats> queuedWatches;
 
-	private final Long watchCount;
+	private final long watchCount;
 
 	private final WatcherState watcherState;
 
@@ -98,7 +98,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	/**
 	 * API name: {@code watch_count}
 	 */
-	public Long watchCount() {
+	public long watchCount() {
 		return this.watchCount;
 	}
 
@@ -288,7 +288,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code watch_count}
 		 */
-		public Builder watchCount(Long value) {
+		public Builder watchCount(long value) {
 			this.watchCount = value;
 			return this;
 		}

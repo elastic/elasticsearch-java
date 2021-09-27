@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 public final class NestedIdentity implements JsonpSerializable {
 	private final String field;
 
-	private final Integer offset;
+	private final int offset;
 
 	@Nullable
 	private final NestedIdentity nested;
@@ -68,7 +68,7 @@ public final class NestedIdentity implements JsonpSerializable {
 	/**
 	 * API name: {@code offset}
 	 */
-	public Integer offset() {
+	public int offset() {
 		return this.offset;
 	}
 
@@ -130,7 +130,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		/**
 		 * API name: {@code offset}
 		 */
-		public Builder offset(Integer value) {
+		public Builder offset(int value) {
 			this.offset = value;
 			return this;
 		}

@@ -45,31 +45,31 @@ import javax.annotation.Nullable;
 public final class RuntimeFieldTypes implements JsonpSerializable {
 	private final String name;
 
-	private final Integer count;
+	private final int count;
 
-	private final Integer indexCount;
+	private final int indexCount;
 
-	private final Integer scriptlessCount;
+	private final int scriptlessCount;
 
-	private final Integer shadowedCount;
+	private final int shadowedCount;
 
 	private final List<String> lang;
 
-	private final Integer linesMax;
+	private final int linesMax;
 
-	private final Integer linesTotal;
+	private final int linesTotal;
 
-	private final Integer charsMax;
+	private final int charsMax;
 
-	private final Integer charsTotal;
+	private final int charsTotal;
 
-	private final Integer sourceMax;
+	private final int sourceMax;
 
-	private final Integer sourceTotal;
+	private final int sourceTotal;
 
-	private final Integer docMax;
+	private final int docMax;
 
-	private final Integer docTotal;
+	private final int docTotal;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -102,28 +102,28 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Integer count() {
+	public int count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code index_count}
 	 */
-	public Integer indexCount() {
+	public int indexCount() {
 		return this.indexCount;
 	}
 
 	/**
 	 * API name: {@code scriptless_count}
 	 */
-	public Integer scriptlessCount() {
+	public int scriptlessCount() {
 		return this.scriptlessCount;
 	}
 
 	/**
 	 * API name: {@code shadowed_count}
 	 */
-	public Integer shadowedCount() {
+	public int shadowedCount() {
 		return this.shadowedCount;
 	}
 
@@ -137,56 +137,56 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 	/**
 	 * API name: {@code lines_max}
 	 */
-	public Integer linesMax() {
+	public int linesMax() {
 		return this.linesMax;
 	}
 
 	/**
 	 * API name: {@code lines_total}
 	 */
-	public Integer linesTotal() {
+	public int linesTotal() {
 		return this.linesTotal;
 	}
 
 	/**
 	 * API name: {@code chars_max}
 	 */
-	public Integer charsMax() {
+	public int charsMax() {
 		return this.charsMax;
 	}
 
 	/**
 	 * API name: {@code chars_total}
 	 */
-	public Integer charsTotal() {
+	public int charsTotal() {
 		return this.charsTotal;
 	}
 
 	/**
 	 * API name: {@code source_max}
 	 */
-	public Integer sourceMax() {
+	public int sourceMax() {
 		return this.sourceMax;
 	}
 
 	/**
 	 * API name: {@code source_total}
 	 */
-	public Integer sourceTotal() {
+	public int sourceTotal() {
 		return this.sourceTotal;
 	}
 
 	/**
 	 * API name: {@code doc_max}
 	 */
-	public Integer docMax() {
+	public int docMax() {
 		return this.docMax;
 	}
 
 	/**
 	 * API name: {@code doc_total}
 	 */
-	public Integer docTotal() {
+	public int docTotal() {
 		return this.docTotal;
 	}
 
@@ -295,7 +295,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Integer value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -303,7 +303,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code index_count}
 		 */
-		public Builder indexCount(Integer value) {
+		public Builder indexCount(int value) {
 			this.indexCount = value;
 			return this;
 		}
@@ -311,7 +311,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code scriptless_count}
 		 */
-		public Builder scriptlessCount(Integer value) {
+		public Builder scriptlessCount(int value) {
 			this.scriptlessCount = value;
 			return this;
 		}
@@ -319,7 +319,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code shadowed_count}
 		 */
-		public Builder shadowedCount(Integer value) {
+		public Builder shadowedCount(int value) {
 			this.shadowedCount = value;
 			return this;
 		}
@@ -354,7 +354,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code lines_max}
 		 */
-		public Builder linesMax(Integer value) {
+		public Builder linesMax(int value) {
 			this.linesMax = value;
 			return this;
 		}
@@ -362,7 +362,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code lines_total}
 		 */
-		public Builder linesTotal(Integer value) {
+		public Builder linesTotal(int value) {
 			this.linesTotal = value;
 			return this;
 		}
@@ -370,7 +370,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code chars_max}
 		 */
-		public Builder charsMax(Integer value) {
+		public Builder charsMax(int value) {
 			this.charsMax = value;
 			return this;
 		}
@@ -378,7 +378,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code chars_total}
 		 */
-		public Builder charsTotal(Integer value) {
+		public Builder charsTotal(int value) {
 			this.charsTotal = value;
 			return this;
 		}
@@ -386,7 +386,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code source_max}
 		 */
-		public Builder sourceMax(Integer value) {
+		public Builder sourceMax(int value) {
 			this.sourceMax = value;
 			return this;
 		}
@@ -394,7 +394,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code source_total}
 		 */
-		public Builder sourceTotal(Integer value) {
+		public Builder sourceTotal(int value) {
 			this.sourceTotal = value;
 			return this;
 		}
@@ -402,7 +402,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_max}
 		 */
-		public Builder docMax(Integer value) {
+		public Builder docMax(int value) {
 			this.docMax = value;
 			return this;
 		}
@@ -410,7 +410,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_total}
 		 */
-		public Builder docTotal(Integer value) {
+		public Builder docTotal(int value) {
 			this.docTotal = value;
 			return this;
 		}

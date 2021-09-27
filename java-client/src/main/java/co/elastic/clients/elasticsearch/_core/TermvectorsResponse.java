@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 // typedef: _global.termvectors.Response
 @JsonpDeserializable
 public final class TermvectorsResponse implements JsonpSerializable {
-	private final Boolean found;
+	private final boolean found;
 
 	private final String id;
 
@@ -55,12 +55,12 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	@Nullable
 	private final Map<String, TermVector> termVectors;
 
-	private final Long took;
+	private final long took;
 
 	@Nullable
 	private final String type;
 
-	private final Long version;
+	private final long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code found}
 	 */
-	public Boolean found() {
+	public boolean found() {
 		return this.found;
 	}
 
@@ -108,7 +108,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Long took() {
+	public long took() {
 		return this.took;
 	}
 
@@ -123,7 +123,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code _version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -200,7 +200,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code found}
 		 */
-		public Builder found(Boolean value) {
+		public Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -257,7 +257,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(Long value) {
+		public Builder took(long value) {
 			this.took = value;
 			return this;
 		}
@@ -273,7 +273,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder version(Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}

@@ -48,7 +48,7 @@ public final class SimulatedActions implements JsonpSerializable {
 
 	private final SimulatedActions all;
 
-	private final Boolean useAll;
+	private final boolean useAll;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public final class SimulatedActions implements JsonpSerializable {
 	/**
 	 * API name: {@code use_all}
 	 */
-	public Boolean useAll() {
+	public boolean useAll() {
 		return this.useAll;
 	}
 
@@ -165,7 +165,7 @@ public final class SimulatedActions implements JsonpSerializable {
 		/**
 		 * API name: {@code use_all}
 		 */
-		public Builder useAll(Boolean value) {
+		public Builder useAll(boolean value) {
 			this.useAll = value;
 			return this;
 		}

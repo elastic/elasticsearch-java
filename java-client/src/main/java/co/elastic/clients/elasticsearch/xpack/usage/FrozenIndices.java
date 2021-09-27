@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.FrozenIndices
 @JsonpDeserializable
 public final class FrozenIndices extends Base {
-	private final Long indicesCount;
+	private final long indicesCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class FrozenIndices extends Base {
 	/**
 	 * API name: {@code indices_count}
 	 */
-	public Long indicesCount() {
+	public long indicesCount() {
 		return this.indicesCount;
 	}
 
@@ -76,7 +75,7 @@ public final class FrozenIndices extends Base {
 		/**
 		 * API name: {@code indices_count}
 		 */
-		public Builder indicesCount(Long value) {
+		public Builder indicesCount(long value) {
 			this.indicesCount = value;
 			return this;
 		}

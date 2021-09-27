@@ -44,9 +44,9 @@ import javax.annotation.Nullable;
 // typedef: text_structure.find_structure.FieldStat
 @JsonpDeserializable
 public final class FieldStat implements JsonpSerializable {
-	private final Integer count;
+	private final int count;
 
-	private final Integer cardinality;
+	private final int cardinality;
 
 	private final List<TopHit> topHits;
 
@@ -87,14 +87,14 @@ public final class FieldStat implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Integer count() {
+	public int count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code cardinality}
 	 */
-	public Integer cardinality() {
+	public int cardinality() {
 		return this.cardinality;
 	}
 
@@ -250,7 +250,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Integer value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -258,7 +258,7 @@ public final class FieldStat implements JsonpSerializable {
 		/**
 		 * API name: {@code cardinality}
 		 */
-		public Builder cardinality(Integer value) {
+		public Builder cardinality(int value) {
 			this.cardinality = value;
 			return this;
 		}

@@ -195,8 +195,7 @@ public final class DeleteForecastRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 				if (request.forecastId() != null)
 					propsSet |= _forecastId;
 

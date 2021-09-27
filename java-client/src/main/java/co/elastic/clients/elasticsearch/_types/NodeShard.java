@@ -48,12 +48,12 @@ import javax.annotation.Nullable;
 public final class NodeShard implements JsonpSerializable {
 	private final ShardRoutingState state;
 
-	private final Boolean primary;
+	private final boolean primary;
 
 	@Nullable
 	private final String node;
 
-	private final Integer shard;
+	private final int shard;
 
 	private final String index;
 
@@ -91,7 +91,7 @@ public final class NodeShard implements JsonpSerializable {
 	/**
 	 * API name: {@code primary}
 	 */
-	public Boolean primary() {
+	public boolean primary() {
 		return this.primary;
 	}
 
@@ -106,7 +106,7 @@ public final class NodeShard implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Integer shard() {
+	public int shard() {
 		return this.shard;
 	}
 
@@ -241,7 +241,7 @@ public final class NodeShard implements JsonpSerializable {
 		/**
 		 * API name: {@code primary}
 		 */
-		public Builder primary(Boolean value) {
+		public Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}
@@ -257,7 +257,7 @@ public final class NodeShard implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Integer value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}

@@ -35,16 +35,15 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: ml._types.TotalFeatureImportanceStatistics
 @JsonpDeserializable
 public final class TotalFeatureImportanceStatistics implements JsonpSerializable {
-	private final Double meanMagnitude;
+	private final double meanMagnitude;
 
-	private final Integer max;
+	private final int max;
 
-	private final Integer min;
+	private final int min;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +62,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * <p>
 	 * API name: {@code mean_magnitude}
 	 */
-	public Double meanMagnitude() {
+	public double meanMagnitude() {
 		return this.meanMagnitude;
 	}
 
@@ -72,7 +71,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * <p>
 	 * API name: {@code max}
 	 */
-	public Integer max() {
+	public int max() {
 		return this.max;
 	}
 
@@ -81,7 +80,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * <p>
 	 * API name: {@code min}
 	 */
-	public Integer min() {
+	public int min() {
 		return this.min;
 	}
 
@@ -126,7 +125,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 * <p>
 		 * API name: {@code mean_magnitude}
 		 */
-		public Builder meanMagnitude(Double value) {
+		public Builder meanMagnitude(double value) {
 			this.meanMagnitude = value;
 			return this;
 		}
@@ -136,7 +135,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 * <p>
 		 * API name: {@code max}
 		 */
-		public Builder max(Integer value) {
+		public Builder max(int value) {
 			this.max = value;
 			return this;
 		}
@@ -146,7 +145,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 * <p>
 		 * API name: {@code min}
 		 */
-		public Builder min(Integer value) {
+		public Builder min(int value) {
 			this.min = value;
 			return this;
 		}

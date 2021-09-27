@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 // typedef: security.invalidate_api_key.Response
 @JsonpDeserializable
 public final class InvalidateApiKeyResponse implements JsonpSerializable {
-	private final Integer errorCount;
+	private final int errorCount;
 
 	@Nullable
 	private final List<ErrorCause> errorDetails;
@@ -69,7 +69,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code error_count}
 	 */
-	public Integer errorCount() {
+	public int errorCount() {
 		return this.errorCount;
 	}
 
@@ -157,7 +157,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error_count}
 		 */
-		public Builder errorCount(Integer value) {
+		public Builder errorCount(int value) {
 			this.errorCount = value;
 			return this;
 		}

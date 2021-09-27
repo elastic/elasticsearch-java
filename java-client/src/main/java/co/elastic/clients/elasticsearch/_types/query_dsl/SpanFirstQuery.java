@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 // typedef: _types.query_dsl.SpanFirstQuery
 @JsonpDeserializable
 public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
-	private final Integer end;
+	private final int end;
 
 	private final SpanQuery match;
 
@@ -64,7 +64,7 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 	/**
 	 * API name: {@code end}
 	 */
-	public Integer end() {
+	public int end() {
 		return this.end;
 	}
 
@@ -100,7 +100,7 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 		/**
 		 * API name: {@code end}
 		 */
-		public Builder end(Integer value) {
+		public Builder end(int value) {
 			this.end = value;
 			return this;
 		}

@@ -43,15 +43,15 @@ import javax.annotation.Nullable;
 public final class Breaker implements JsonpSerializable {
 	private final String estimatedSize;
 
-	private final Long estimatedSizeInBytes;
+	private final long estimatedSizeInBytes;
 
 	private final String limitSize;
 
-	private final Long limitSizeInBytes;
+	private final long limitSizeInBytes;
 
-	private final Float overhead;
+	private final float overhead;
 
-	private final Float tripped;
+	private final float tripped;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ public final class Breaker implements JsonpSerializable {
 	/**
 	 * API name: {@code estimated_size_in_bytes}
 	 */
-	public Long estimatedSizeInBytes() {
+	public long estimatedSizeInBytes() {
 		return this.estimatedSizeInBytes;
 	}
 
@@ -90,21 +90,21 @@ public final class Breaker implements JsonpSerializable {
 	/**
 	 * API name: {@code limit_size_in_bytes}
 	 */
-	public Long limitSizeInBytes() {
+	public long limitSizeInBytes() {
 		return this.limitSizeInBytes;
 	}
 
 	/**
 	 * API name: {@code overhead}
 	 */
-	public Float overhead() {
+	public float overhead() {
 		return this.overhead;
 	}
 
 	/**
 	 * API name: {@code tripped}
 	 */
-	public Float tripped() {
+	public float tripped() {
 		return this.tripped;
 	}
 
@@ -168,7 +168,7 @@ public final class Breaker implements JsonpSerializable {
 		/**
 		 * API name: {@code estimated_size_in_bytes}
 		 */
-		public Builder estimatedSizeInBytes(Long value) {
+		public Builder estimatedSizeInBytes(long value) {
 			this.estimatedSizeInBytes = value;
 			return this;
 		}
@@ -184,7 +184,7 @@ public final class Breaker implements JsonpSerializable {
 		/**
 		 * API name: {@code limit_size_in_bytes}
 		 */
-		public Builder limitSizeInBytes(Long value) {
+		public Builder limitSizeInBytes(long value) {
 			this.limitSizeInBytes = value;
 			return this;
 		}
@@ -192,7 +192,7 @@ public final class Breaker implements JsonpSerializable {
 		/**
 		 * API name: {@code overhead}
 		 */
-		public Builder overhead(Float value) {
+		public Builder overhead(float value) {
 			this.overhead = value;
 			return this;
 		}
@@ -200,7 +200,7 @@ public final class Breaker implements JsonpSerializable {
 		/**
 		 * API name: {@code tripped}
 		 */
-		public Builder tripped(Float value) {
+		public Builder tripped(float value) {
 			this.tripped = value;
 			return this;
 		}

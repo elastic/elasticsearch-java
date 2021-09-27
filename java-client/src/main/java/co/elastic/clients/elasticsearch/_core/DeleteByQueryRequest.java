@@ -1285,8 +1285,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();

@@ -42,9 +42,9 @@ import javax.annotation.Nullable;
 public final class FieldTypes implements JsonpSerializable {
 	private final String name;
 
-	private final Integer count;
+	private final int count;
 
-	private final Integer indexCount;
+	private final int indexCount;
 
 	@Nullable
 	private final Integer scriptCount;
@@ -70,14 +70,14 @@ public final class FieldTypes implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Integer count() {
+	public int count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code index_count}
 	 */
-	public Integer indexCount() {
+	public int indexCount() {
 		return this.indexCount;
 	}
 
@@ -144,7 +144,7 @@ public final class FieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Integer value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -152,7 +152,7 @@ public final class FieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code index_count}
 		 */
-		public Builder indexCount(Integer value) {
+		public Builder indexCount(int value) {
 			this.indexCount = value;
 			return this;
 		}

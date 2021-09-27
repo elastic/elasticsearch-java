@@ -46,9 +46,9 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 
 	private final String field;
 
-	private final Boolean firstOnly;
+	private final boolean firstOnly;
 
-	private final Boolean ignoreMissing;
+	private final boolean ignoreMissing;
 
 	private final List<String> properties;
 
@@ -93,14 +93,14 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 	/**
 	 * API name: {@code first_only}
 	 */
-	public Boolean firstOnly() {
+	public boolean firstOnly() {
 		return this.firstOnly;
 	}
 
 	/**
 	 * API name: {@code ignore_missing}
 	 */
-	public Boolean ignoreMissing() {
+	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -186,7 +186,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * API name: {@code first_only}
 		 */
-		public Builder firstOnly(Boolean value) {
+		public Builder firstOnly(boolean value) {
 			this.firstOnly = value;
 			return this;
 		}
@@ -194,7 +194,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(Boolean value) {
+		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}

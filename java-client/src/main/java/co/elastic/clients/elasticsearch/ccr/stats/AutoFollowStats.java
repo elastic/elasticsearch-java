@@ -46,11 +46,11 @@ import javax.annotation.Nullable;
 public final class AutoFollowStats implements JsonpSerializable {
 	private final List<AutoFollowedCluster> autoFollowedClusters;
 
-	private final Long numberOfFailedFollowIndices;
+	private final long numberOfFailedFollowIndices;
 
-	private final Long numberOfFailedRemoteClusterStateRequests;
+	private final long numberOfFailedRemoteClusterStateRequests;
 
-	private final Long numberOfSuccessfulFollowIndices;
+	private final long numberOfSuccessfulFollowIndices;
 
 	private final List<ErrorCause> recentAutoFollowErrors;
 
@@ -80,21 +80,21 @@ public final class AutoFollowStats implements JsonpSerializable {
 	/**
 	 * API name: {@code number_of_failed_follow_indices}
 	 */
-	public Long numberOfFailedFollowIndices() {
+	public long numberOfFailedFollowIndices() {
 		return this.numberOfFailedFollowIndices;
 	}
 
 	/**
 	 * API name: {@code number_of_failed_remote_cluster_state_requests}
 	 */
-	public Long numberOfFailedRemoteClusterStateRequests() {
+	public long numberOfFailedRemoteClusterStateRequests() {
 		return this.numberOfFailedRemoteClusterStateRequests;
 	}
 
 	/**
 	 * API name: {@code number_of_successful_follow_indices}
 	 */
-	public Long numberOfSuccessfulFollowIndices() {
+	public long numberOfSuccessfulFollowIndices() {
 		return this.numberOfSuccessfulFollowIndices;
 	}
 
@@ -207,7 +207,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_failed_follow_indices}
 		 */
-		public Builder numberOfFailedFollowIndices(Long value) {
+		public Builder numberOfFailedFollowIndices(long value) {
 			this.numberOfFailedFollowIndices = value;
 			return this;
 		}
@@ -215,7 +215,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_failed_remote_cluster_state_requests}
 		 */
-		public Builder numberOfFailedRemoteClusterStateRequests(Long value) {
+		public Builder numberOfFailedRemoteClusterStateRequests(long value) {
 			this.numberOfFailedRemoteClusterStateRequests = value;
 			return this;
 		}
@@ -223,7 +223,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_successful_follow_indices}
 		 */
-		public Builder numberOfSuccessfulFollowIndices(Long value) {
+		public Builder numberOfSuccessfulFollowIndices(long value) {
 			this.numberOfSuccessfulFollowIndices = value;
 			return this;
 		}

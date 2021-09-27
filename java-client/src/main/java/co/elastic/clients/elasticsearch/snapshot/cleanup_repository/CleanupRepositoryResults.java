@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: snapshot.cleanup_repository.CleanupRepositoryResults
 @JsonpDeserializable
 public final class CleanupRepositoryResults implements JsonpSerializable {
-	private final Long deletedBlobs;
+	private final long deletedBlobs;
 
-	private final Long deletedBytes;
+	private final long deletedBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 	/**
 	 * API name: {@code deleted_blobs}
 	 */
-	public Long deletedBlobs() {
+	public long deletedBlobs() {
 		return this.deletedBlobs;
 	}
 
 	/**
 	 * API name: {@code deleted_bytes}
 	 */
-	public Long deletedBytes() {
+	public long deletedBytes() {
 		return this.deletedBytes;
 	}
 
@@ -98,7 +97,7 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted_blobs}
 		 */
-		public Builder deletedBlobs(Long value) {
+		public Builder deletedBlobs(long value) {
 			this.deletedBlobs = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted_bytes}
 		 */
-		public Builder deletedBytes(Long value) {
+		public Builder deletedBytes(long value) {
 			this.deletedBytes = value;
 			return this;
 		}

@@ -39,13 +39,13 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.HunspellTokenFilter
 @JsonpDeserializable
 public final class HunspellTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Boolean dedup;
+	private final boolean dedup;
 
 	private final String dictionary;
 
 	private final String locale;
 
-	private final Boolean longestOnly;
+	private final boolean longestOnly;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,7 +70,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 	/**
 	 * API name: {@code dedup}
 	 */
-	public Boolean dedup() {
+	public boolean dedup() {
 		return this.dedup;
 	}
 
@@ -91,7 +91,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 	/**
 	 * API name: {@code longest_only}
 	 */
-	public Boolean longestOnly() {
+	public boolean longestOnly() {
 		return this.longestOnly;
 	}
 
@@ -133,7 +133,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * API name: {@code dedup}
 		 */
-		public Builder dedup(Boolean value) {
+		public Builder dedup(boolean value) {
 			this.dedup = value;
 			return this;
 		}
@@ -157,7 +157,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * API name: {@code longest_only}
 		 */
-		public Builder longestOnly(Boolean value) {
+		public Builder longestOnly(boolean value) {
 			this.longestOnly = value;
 			return this;
 		}

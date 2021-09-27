@@ -46,24 +46,24 @@ import javax.annotation.Nullable;
 // typedef: ml._types.BucketSummary
 @JsonpDeserializable
 public final class BucketSummary implements JsonpSerializable {
-	private final Double anomalyScore;
+	private final double anomalyScore;
 
 	private final List<BucketInfluencer> bucketInfluencers;
 
 	private final String bucketSpan;
 
-	private final Long eventCount;
+	private final long eventCount;
 
-	private final Double initialAnomalyScore;
+	private final double initialAnomalyScore;
 
-	private final Boolean isInterim;
+	private final boolean isInterim;
 
 	private final String jobId;
 
 	@Nullable
 	private final List<PartitionScore> partitionScores;
 
-	private final Double processingTimeMs;
+	private final double processingTimeMs;
 
 	private final String resultType;
 
@@ -90,7 +90,7 @@ public final class BucketSummary implements JsonpSerializable {
 	/**
 	 * API name: {@code anomaly_score}
 	 */
-	public Double anomalyScore() {
+	public double anomalyScore() {
 		return this.anomalyScore;
 	}
 
@@ -111,21 +111,21 @@ public final class BucketSummary implements JsonpSerializable {
 	/**
 	 * API name: {@code event_count}
 	 */
-	public Long eventCount() {
+	public long eventCount() {
 		return this.eventCount;
 	}
 
 	/**
 	 * API name: {@code initial_anomaly_score}
 	 */
-	public Double initialAnomalyScore() {
+	public double initialAnomalyScore() {
 		return this.initialAnomalyScore;
 	}
 
 	/**
 	 * API name: {@code is_interim}
 	 */
-	public Boolean isInterim() {
+	public boolean isInterim() {
 		return this.isInterim;
 	}
 
@@ -147,7 +147,7 @@ public final class BucketSummary implements JsonpSerializable {
 	/**
 	 * API name: {@code processing_time_ms}
 	 */
-	public Double processingTimeMs() {
+	public double processingTimeMs() {
 		return this.processingTimeMs;
 	}
 
@@ -257,7 +257,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code anomaly_score}
 		 */
-		public Builder anomalyScore(Double value) {
+		public Builder anomalyScore(double value) {
 			this.anomalyScore = value;
 			return this;
 		}
@@ -314,7 +314,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code event_count}
 		 */
-		public Builder eventCount(Long value) {
+		public Builder eventCount(long value) {
 			this.eventCount = value;
 			return this;
 		}
@@ -322,7 +322,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code initial_anomaly_score}
 		 */
-		public Builder initialAnomalyScore(Double value) {
+		public Builder initialAnomalyScore(double value) {
 			this.initialAnomalyScore = value;
 			return this;
 		}
@@ -330,7 +330,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code is_interim}
 		 */
-		public Builder isInterim(Boolean value) {
+		public Builder isInterim(boolean value) {
 			this.isInterim = value;
 			return this;
 		}
@@ -387,7 +387,7 @@ public final class BucketSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code processing_time_ms}
 		 */
-		public Builder processingTimeMs(Double value) {
+		public Builder processingTimeMs(double value) {
 			this.processingTimeMs = value;
 			return this;
 		}

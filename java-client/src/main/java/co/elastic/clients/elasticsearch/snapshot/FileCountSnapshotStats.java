@@ -35,14 +35,13 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: snapshot._types.FileCountSnapshotStats
 @JsonpDeserializable
 public final class FileCountSnapshotStats implements JsonpSerializable {
-	private final Integer fileCount;
+	private final int fileCount;
 
-	private final Long sizeInBytes;
+	private final long sizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,14 +55,14 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 	/**
 	 * API name: {@code file_count}
 	 */
-	public Integer fileCount() {
+	public int fileCount() {
 		return this.fileCount;
 	}
 
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Long sizeInBytes() {
+	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -99,7 +98,7 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 		/**
 		 * API name: {@code file_count}
 		 */
-		public Builder fileCount(Integer value) {
+		public Builder fileCount(int value) {
 			this.fileCount = value;
 			return this;
 		}
@@ -107,7 +106,7 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Long value) {
+		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}

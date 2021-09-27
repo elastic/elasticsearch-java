@@ -224,8 +224,7 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 
 				int propsSet = 0;
 
-				if (request.filterId() != null)
-					propsSet |= _filterId;
+				propsSet |= _filterId;
 
 				if (propsSet == (_filterId)) {
 					StringBuilder buf = new StringBuilder();

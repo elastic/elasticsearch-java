@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 // typedef: xpack.usage.SearchableSnapshots
 @JsonpDeserializable
 public final class SearchableSnapshots extends Base {
-	private final Integer indicesCount;
+	private final int indicesCount;
 
 	@Nullable
 	private final Integer fullCopyIndicesCount;
@@ -60,7 +60,7 @@ public final class SearchableSnapshots extends Base {
 	/**
 	 * API name: {@code indices_count}
 	 */
-	public Integer indicesCount() {
+	public int indicesCount() {
 		return this.indicesCount;
 	}
 
@@ -119,7 +119,7 @@ public final class SearchableSnapshots extends Base {
 		/**
 		 * API name: {@code indices_count}
 		 */
-		public Builder indicesCount(Integer value) {
+		public Builder indicesCount(int value) {
 			this.indicesCount = value;
 			return this;
 		}

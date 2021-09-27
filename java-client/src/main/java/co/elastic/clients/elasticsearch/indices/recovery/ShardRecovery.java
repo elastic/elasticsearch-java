@@ -42,11 +42,11 @@ import javax.annotation.Nullable;
 // typedef: indices.recovery.ShardRecovery
 @JsonpDeserializable
 public final class ShardRecovery implements JsonpSerializable {
-	private final Long id;
+	private final long id;
 
 	private final RecoveryIndexStatus index;
 
-	private final Boolean primary;
+	private final boolean primary;
 
 	private final RecoveryOrigin source;
 
@@ -104,7 +104,7 @@ public final class ShardRecovery implements JsonpSerializable {
 	/**
 	 * API name: {@code id}
 	 */
-	public Long id() {
+	public long id() {
 		return this.id;
 	}
 
@@ -118,7 +118,7 @@ public final class ShardRecovery implements JsonpSerializable {
 	/**
 	 * API name: {@code primary}
 	 */
-	public Boolean primary() {
+	public boolean primary() {
 		return this.primary;
 	}
 
@@ -338,7 +338,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(Long value) {
+		public Builder id(long value) {
 			this.id = value;
 			return this;
 		}
@@ -361,7 +361,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		/**
 		 * API name: {@code primary}
 		 */
-		public Builder primary(Boolean value) {
+		public Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}

@@ -43,7 +43,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 
 	private final String field;
 
-	private final Boolean ignoreMissing;
+	private final boolean ignoreMissing;
 
 	private final String pattern;
 
@@ -84,7 +84,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 	/**
 	 * API name: {@code ignore_missing}
 	 */
-	public Boolean ignoreMissing() {
+	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -148,7 +148,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(Boolean value) {
+		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}

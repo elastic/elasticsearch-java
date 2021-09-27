@@ -43,12 +43,12 @@ public final class StoreStats implements JsonpSerializable {
 	@Nullable
 	private final String size;
 
-	private final Integer sizeInBytes;
+	private final int sizeInBytes;
 
 	@Nullable
 	private final String reserved;
 
-	private final Integer reservedInBytes;
+	private final int reservedInBytes;
 
 	@Nullable
 	private final String totalDataSetSize;
@@ -80,7 +80,7 @@ public final class StoreStats implements JsonpSerializable {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Integer sizeInBytes() {
+	public int sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -95,7 +95,7 @@ public final class StoreStats implements JsonpSerializable {
 	/**
 	 * API name: {@code reserved_in_bytes}
 	 */
-	public Integer reservedInBytes() {
+	public int reservedInBytes() {
 		return this.reservedInBytes;
 	}
 
@@ -194,7 +194,7 @@ public final class StoreStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Integer value) {
+		public Builder sizeInBytes(int value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -210,7 +210,7 @@ public final class StoreStats implements JsonpSerializable {
 		/**
 		 * API name: {@code reserved_in_bytes}
 		 */
-		public Builder reservedInBytes(Integer value) {
+		public Builder reservedInBytes(int value) {
 			this.reservedInBytes = value;
 			return this;
 		}

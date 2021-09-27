@@ -64,7 +64,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 
 	private final String username;
 
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	private final String authenticationType;
 
@@ -142,7 +142,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
@@ -358,7 +358,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}

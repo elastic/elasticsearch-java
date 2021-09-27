@@ -167,10 +167,8 @@ public final class DeletePrivilegesRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.application() != null)
-					propsSet |= _application;
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _application;
+				propsSet |= _name;
 
 				if (propsSet == (_application | _name)) {
 					StringBuilder buf = new StringBuilder();

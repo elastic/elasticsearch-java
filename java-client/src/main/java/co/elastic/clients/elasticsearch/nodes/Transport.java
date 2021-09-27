@@ -41,19 +41,19 @@ import javax.annotation.Nullable;
 // typedef: nodes._types.Transport
 @JsonpDeserializable
 public final class Transport implements JsonpSerializable {
-	private final Long rxCount;
+	private final long rxCount;
 
 	private final String rxSize;
 
-	private final Long rxSizeInBytes;
+	private final long rxSizeInBytes;
 
-	private final Integer serverOpen;
+	private final int serverOpen;
 
-	private final Long txCount;
+	private final long txCount;
 
 	private final String txSize;
 
-	private final Long txSizeInBytes;
+	private final long txSizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -72,7 +72,7 @@ public final class Transport implements JsonpSerializable {
 	/**
 	 * API name: {@code rx_count}
 	 */
-	public Long rxCount() {
+	public long rxCount() {
 		return this.rxCount;
 	}
 
@@ -86,21 +86,21 @@ public final class Transport implements JsonpSerializable {
 	/**
 	 * API name: {@code rx_size_in_bytes}
 	 */
-	public Long rxSizeInBytes() {
+	public long rxSizeInBytes() {
 		return this.rxSizeInBytes;
 	}
 
 	/**
 	 * API name: {@code server_open}
 	 */
-	public Integer serverOpen() {
+	public int serverOpen() {
 		return this.serverOpen;
 	}
 
 	/**
 	 * API name: {@code tx_count}
 	 */
-	public Long txCount() {
+	public long txCount() {
 		return this.txCount;
 	}
 
@@ -114,7 +114,7 @@ public final class Transport implements JsonpSerializable {
 	/**
 	 * API name: {@code tx_size_in_bytes}
 	 */
-	public Long txSizeInBytes() {
+	public long txSizeInBytes() {
 		return this.txSizeInBytes;
 	}
 
@@ -175,7 +175,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * API name: {@code rx_count}
 		 */
-		public Builder rxCount(Long value) {
+		public Builder rxCount(long value) {
 			this.rxCount = value;
 			return this;
 		}
@@ -191,7 +191,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * API name: {@code rx_size_in_bytes}
 		 */
-		public Builder rxSizeInBytes(Long value) {
+		public Builder rxSizeInBytes(long value) {
 			this.rxSizeInBytes = value;
 			return this;
 		}
@@ -199,7 +199,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * API name: {@code server_open}
 		 */
-		public Builder serverOpen(Integer value) {
+		public Builder serverOpen(int value) {
 			this.serverOpen = value;
 			return this;
 		}
@@ -207,7 +207,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * API name: {@code tx_count}
 		 */
-		public Builder txCount(Long value) {
+		public Builder txCount(long value) {
 			this.txCount = value;
 			return this;
 		}
@@ -223,7 +223,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * API name: {@code tx_size_in_bytes}
 		 */
-		public Builder txSizeInBytes(Long value) {
+		public Builder txSizeInBytes(long value) {
 			this.txSizeInBytes = value;
 			return this;
 		}

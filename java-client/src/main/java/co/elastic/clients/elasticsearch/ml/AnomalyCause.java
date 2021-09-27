@@ -68,7 +68,7 @@ public final class AnomalyCause implements JsonpSerializable {
 
 	private final String partitionFieldValue;
 
-	private final Double probability;
+	private final double probability;
 
 	private final List<Double> typical;
 
@@ -181,7 +181,7 @@ public final class AnomalyCause implements JsonpSerializable {
 	/**
 	 * API name: {@code probability}
 	 */
-	public Double probability() {
+	public double probability() {
 		return this.probability;
 	}
 
@@ -447,7 +447,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * API name: {@code probability}
 		 */
-		public Builder probability(Double value) {
+		public Builder probability(double value) {
 			this.probability = value;
 			return this;
 		}

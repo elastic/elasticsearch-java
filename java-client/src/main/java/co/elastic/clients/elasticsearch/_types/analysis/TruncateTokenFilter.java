@@ -33,12 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TruncateTokenFilter
 @JsonpDeserializable
 public final class TruncateTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final Integer length;
+	private final int length;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 	/**
 	 * API name: {@code length}
 	 */
-	public Integer length() {
+	public int length() {
 		return this.length;
 	}
 
@@ -87,7 +86,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * API name: {@code length}
 		 */
-		public Builder length(Integer value) {
+		public Builder length(int value) {
 			this.length = value;
 			return this;
 		}

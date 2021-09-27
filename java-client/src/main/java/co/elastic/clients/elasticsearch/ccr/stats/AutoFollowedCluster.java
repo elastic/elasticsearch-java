@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class AutoFollowedCluster implements JsonpSerializable {
 	private final String clusterName;
 
-	private final Long lastSeenMetadataVersion;
+	private final long lastSeenMetadataVersion;
 
 	private final String timeSinceLastCheckMillis;
 
@@ -68,7 +68,7 @@ public final class AutoFollowedCluster implements JsonpSerializable {
 	/**
 	 * API name: {@code last_seen_metadata_version}
 	 */
-	public Long lastSeenMetadataVersion() {
+	public long lastSeenMetadataVersion() {
 		return this.lastSeenMetadataVersion;
 	}
 
@@ -124,7 +124,7 @@ public final class AutoFollowedCluster implements JsonpSerializable {
 		/**
 		 * API name: {@code last_seen_metadata_version}
 		 */
-		public Builder lastSeenMetadataVersion(Long value) {
+		public Builder lastSeenMetadataVersion(long value) {
 			this.lastSeenMetadataVersion = value;
 			return this;
 		}

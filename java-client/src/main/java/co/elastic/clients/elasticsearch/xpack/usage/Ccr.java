@@ -33,14 +33,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Ccr
 @JsonpDeserializable
 public final class Ccr extends Base {
-	private final Integer autoFollowPatternsCount;
+	private final int autoFollowPatternsCount;
 
-	private final Integer followerIndicesCount;
+	private final int followerIndicesCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,14 +55,14 @@ public final class Ccr extends Base {
 	/**
 	 * API name: {@code auto_follow_patterns_count}
 	 */
-	public Integer autoFollowPatternsCount() {
+	public int autoFollowPatternsCount() {
 		return this.autoFollowPatternsCount;
 	}
 
 	/**
 	 * API name: {@code follower_indices_count}
 	 */
-	public Integer followerIndicesCount() {
+	public int followerIndicesCount() {
 		return this.followerIndicesCount;
 	}
 
@@ -92,7 +91,7 @@ public final class Ccr extends Base {
 		/**
 		 * API name: {@code auto_follow_patterns_count}
 		 */
-		public Builder autoFollowPatternsCount(Integer value) {
+		public Builder autoFollowPatternsCount(int value) {
 			this.autoFollowPatternsCount = value;
 			return this;
 		}
@@ -100,7 +99,7 @@ public final class Ccr extends Base {
 		/**
 		 * API name: {@code follower_indices_count}
 		 */
-		public Builder followerIndicesCount(Integer value) {
+		public Builder followerIndicesCount(int value) {
 			this.followerIndicesCount = value;
 			return this;
 		}

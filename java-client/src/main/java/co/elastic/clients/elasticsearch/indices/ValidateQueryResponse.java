@@ -52,7 +52,7 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 	@Nullable
 	private final ShardStatistics shards;
 
-	private final Boolean valid;
+	private final boolean valid;
 
 	@Nullable
 	private final String error;
@@ -87,7 +87,7 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code valid}
 	 */
-	public Boolean valid() {
+	public boolean valid() {
 		return this.valid;
 	}
 
@@ -218,7 +218,7 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code valid}
 		 */
-		public Builder valid(Boolean value) {
+		public Builder valid(boolean value) {
 			this.valid = value;
 			return this;
 		}

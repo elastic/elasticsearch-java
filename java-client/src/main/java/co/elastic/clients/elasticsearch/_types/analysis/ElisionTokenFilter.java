@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public final class ElisionTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> articles;
 
-	private final Boolean articlesCase;
+	private final boolean articlesCase;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 	/**
 	 * API name: {@code articles_case}
 	 */
-	public Boolean articlesCase() {
+	public boolean articlesCase() {
 		return this.articlesCase;
 	}
 
@@ -138,7 +138,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code articles_case}
 		 */
-		public Builder articlesCase(Boolean value) {
+		public Builder articlesCase(boolean value) {
 			this.articlesCase = value;
 			return this;
 		}

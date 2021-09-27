@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 // typedef: security._types.RoleMapping
 @JsonpDeserializable
 public final class RoleMapping implements JsonpSerializable {
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	private final Map<String, JsonData> metadata;
 
@@ -74,7 +74,7 @@ public final class RoleMapping implements JsonpSerializable {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
@@ -175,7 +175,7 @@ public final class RoleMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}

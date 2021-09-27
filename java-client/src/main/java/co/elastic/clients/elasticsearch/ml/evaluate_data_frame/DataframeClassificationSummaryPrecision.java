@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 public final class DataframeClassificationSummaryPrecision implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
 
-	private final Double avgPrecision;
+	private final double avgPrecision;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 	/**
 	 * API name: {@code avg_precision}
 	 */
-	public Double avgPrecision() {
+	public double avgPrecision() {
 		return this.avgPrecision;
 	}
 
@@ -149,7 +149,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 		/**
 		 * API name: {@code avg_precision}
 		 */
-		public Builder avgPrecision(Double value) {
+		public Builder avgPrecision(double value) {
 			this.avgPrecision = value;
 			return this;
 		}

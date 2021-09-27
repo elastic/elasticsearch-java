@@ -43,7 +43,7 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 	@Nullable
 	private final String memorySize;
 
-	private final Long memorySizeInBytes;
+	private final long memorySizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 	/**
 	 * API name: {@code memory_size_in_bytes}
 	 */
-	public Long memorySizeInBytes() {
+	public long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
@@ -114,7 +114,7 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(Long value) {
+		public Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}

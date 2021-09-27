@@ -43,9 +43,9 @@ import javax.annotation.Nullable;
 public final class ReadException implements JsonpSerializable {
 	private final ErrorCause exception;
 
-	private final Integer fromSeqNo;
+	private final int fromSeqNo;
 
-	private final Integer retries;
+	private final int retries;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,14 +67,14 @@ public final class ReadException implements JsonpSerializable {
 	/**
 	 * API name: {@code from_seq_no}
 	 */
-	public Integer fromSeqNo() {
+	public int fromSeqNo() {
 		return this.fromSeqNo;
 	}
 
 	/**
 	 * API name: {@code retries}
 	 */
-	public Integer retries() {
+	public int retries() {
 		return this.retries;
 	}
 
@@ -130,7 +130,7 @@ public final class ReadException implements JsonpSerializable {
 		/**
 		 * API name: {@code from_seq_no}
 		 */
-		public Builder fromSeqNo(Integer value) {
+		public Builder fromSeqNo(int value) {
 			this.fromSeqNo = value;
 			return this;
 		}
@@ -138,7 +138,7 @@ public final class ReadException implements JsonpSerializable {
 		/**
 		 * API name: {@code retries}
 		 */
-		public Builder retries(Integer value) {
+		public Builder retries(int value) {
 			this.retries = value;
 			return this;
 		}

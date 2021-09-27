@@ -34,16 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceIngestProcessorCount
 @JsonpDeserializable
 public final class MlInferenceIngestProcessorCount implements JsonpSerializable {
-	private final Long max;
+	private final long max;
 
-	private final Long sum;
+	private final long sum;
 
-	private final Long min;
+	private final long min;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,21 +57,21 @@ public final class MlInferenceIngestProcessorCount implements JsonpSerializable 
 	/**
 	 * API name: {@code max}
 	 */
-	public Long max() {
+	public long max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code sum}
 	 */
-	public Long sum() {
+	public long sum() {
 		return this.sum;
 	}
 
 	/**
 	 * API name: {@code min}
 	 */
-	public Long min() {
+	public long min() {
 		return this.min;
 	}
 
@@ -113,7 +112,7 @@ public final class MlInferenceIngestProcessorCount implements JsonpSerializable 
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Long value) {
+		public Builder max(long value) {
 			this.max = value;
 			return this;
 		}
@@ -121,7 +120,7 @@ public final class MlInferenceIngestProcessorCount implements JsonpSerializable 
 		/**
 		 * API name: {@code sum}
 		 */
-		public Builder sum(Long value) {
+		public Builder sum(long value) {
 			this.sum = value;
 			return this;
 		}
@@ -129,7 +128,7 @@ public final class MlInferenceIngestProcessorCount implements JsonpSerializable 
 		/**
 		 * API name: {@code min}
 		 */
-		public Builder min(Long value) {
+		public Builder min(long value) {
 			this.min = value;
 			return this;
 		}

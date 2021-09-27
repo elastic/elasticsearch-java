@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 // typedef: ml.update_job.Response
 @JsonpDeserializable
 public final class UpdateJobResponse implements JsonpSerializable {
-	private final Boolean allowLazyOpen;
+	private final boolean allowLazyOpen;
 
 	private final AnalysisConfigRead analysisConfig;
 
@@ -64,7 +64,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	@Nullable
 	private final Map<String, String> customSettings;
 
-	private final Long dailyModelSnapshotRetentionAfterDays;
+	private final long dailyModelSnapshotRetentionAfterDays;
 
 	private final DataDescription dataDescription;
 
@@ -89,7 +89,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	@Nullable
 	private final String modelSnapshotId;
 
-	private final Long modelSnapshotRetentionDays;
+	private final long modelSnapshotRetentionDays;
 
 	@Nullable
 	private final Long renormalizationWindowDays;
@@ -132,7 +132,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code allow_lazy_open}
 	 */
-	public Boolean allowLazyOpen() {
+	public boolean allowLazyOpen() {
 		return this.allowLazyOpen;
 	}
 
@@ -184,7 +184,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code daily_model_snapshot_retention_after_days}
 	 */
-	public Long dailyModelSnapshotRetentionAfterDays() {
+	public long dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
@@ -259,7 +259,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code model_snapshot_retention_days}
 	 */
-	public Long modelSnapshotRetentionDays() {
+	public long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
@@ -470,7 +470,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code allow_lazy_open}
 		 */
-		public Builder allowLazyOpen(Boolean value) {
+		public Builder allowLazyOpen(boolean value) {
 			this.allowLazyOpen = value;
 			return this;
 		}
@@ -551,7 +551,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code daily_model_snapshot_retention_after_days}
 		 */
-		public Builder dailyModelSnapshotRetentionAfterDays(Long value) {
+		public Builder dailyModelSnapshotRetentionAfterDays(long value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
 			return this;
 		}
@@ -671,7 +671,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(Long value) {
+		public Builder modelSnapshotRetentionDays(long value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}

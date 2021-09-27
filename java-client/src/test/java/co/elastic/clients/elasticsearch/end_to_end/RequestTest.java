@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments;
+package co.elastic.clients.elasticsearch.end_to_end;
 
 
 import co.elastic.clients.base.BooleanResponse;
@@ -140,7 +140,7 @@ public class RequestTest extends Assert {
                 , AppData.class
         );
 
-        int hits = search.hits().total().asJsonObject().getInt("value"); // union types not handled yet
+        long hits = search.hits().total().value();
         assertEquals(1, hits);
 
         esData = search.hits().hits().get(0).source();

@@ -35,14 +35,13 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: nodes._types.Http
 @JsonpDeserializable
 public final class Http implements JsonpSerializable {
-	private final Integer currentOpen;
+	private final int currentOpen;
 
-	private final Long totalOpened;
+	private final long totalOpened;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,14 +55,14 @@ public final class Http implements JsonpSerializable {
 	/**
 	 * API name: {@code current_open}
 	 */
-	public Integer currentOpen() {
+	public int currentOpen() {
 		return this.currentOpen;
 	}
 
 	/**
 	 * API name: {@code total_opened}
 	 */
-	public Long totalOpened() {
+	public long totalOpened() {
 		return this.totalOpened;
 	}
 
@@ -99,7 +98,7 @@ public final class Http implements JsonpSerializable {
 		/**
 		 * API name: {@code current_open}
 		 */
-		public Builder currentOpen(Integer value) {
+		public Builder currentOpen(int value) {
 			this.currentOpen = value;
 			return this;
 		}
@@ -107,7 +106,7 @@ public final class Http implements JsonpSerializable {
 		/**
 		 * API name: {@code total_opened}
 		 */
-		public Builder totalOpened(Long value) {
+		public Builder totalOpened(long value) {
 			this.totalOpened = value;
 			return this;
 		}

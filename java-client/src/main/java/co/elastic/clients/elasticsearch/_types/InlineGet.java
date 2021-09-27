@@ -51,11 +51,11 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Map<String, JsonData> fields;
 
-	private final Boolean found;
+	private final boolean found;
 
-	private final Integer seqNo;
+	private final int seqNo;
 
-	private final Long primaryTerm;
+	private final long primaryTerm;
 
 	@Nullable
 	private final String routing;
@@ -90,21 +90,21 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code found}
 	 */
-	public Boolean found() {
+	public boolean found() {
 		return this.found;
 	}
 
 	/**
 	 * API name: {@code _seq_no}
 	 */
-	public Integer seqNo() {
+	public int seqNo() {
 		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _primary_term}
 	 */
-	public Long primaryTerm() {
+	public long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -213,7 +213,7 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code found}
 		 */
-		public Builder<TDocument> found(Boolean value) {
+		public Builder<TDocument> found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -221,7 +221,7 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> seqNo(Integer value) {
+		public Builder<TDocument> seqNo(int value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -229,7 +229,7 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder<TDocument> primaryTerm(Long value) {
+		public Builder<TDocument> primaryTerm(long value) {
 			this.primaryTerm = value;
 			return this;
 		}

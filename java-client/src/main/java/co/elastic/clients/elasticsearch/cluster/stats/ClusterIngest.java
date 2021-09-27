@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.ClusterIngest
 @JsonpDeserializable
 public final class ClusterIngest implements JsonpSerializable {
-	private final Integer numberOfPipelines;
+	private final int numberOfPipelines;
 
 	private final Map<String, ClusterProcessor> processorStats;
 
@@ -59,7 +59,7 @@ public final class ClusterIngest implements JsonpSerializable {
 	/**
 	 * API name: {@code number_of_pipelines}
 	 */
-	public Integer numberOfPipelines() {
+	public int numberOfPipelines() {
 		return this.numberOfPipelines;
 	}
 
@@ -108,7 +108,7 @@ public final class ClusterIngest implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_pipelines}
 		 */
-		public Builder numberOfPipelines(Integer value) {
+		public Builder numberOfPipelines(int value) {
 			this.numberOfPipelines = value;
 			return this;
 		}

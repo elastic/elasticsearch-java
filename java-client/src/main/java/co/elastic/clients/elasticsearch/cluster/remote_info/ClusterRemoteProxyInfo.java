@@ -41,19 +41,19 @@ import javax.annotation.Nullable;
 // typedef: cluster.remote_info.ClusterRemoteProxyInfo
 @JsonpDeserializable
 public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
-	private final Boolean connected;
+	private final boolean connected;
 
 	private final String initialConnectTimeout;
 
-	private final Boolean skipUnavailable;
+	private final boolean skipUnavailable;
 
 	private final String proxyAddress;
 
 	private final String serverName;
 
-	private final Integer numProxySocketsConnected;
+	private final int numProxySocketsConnected;
 
-	private final Integer maxProxySocketConnections;
+	private final int maxProxySocketConnections;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 	/**
 	 * API name: {@code connected}
 	 */
-	public Boolean connected() {
+	public boolean connected() {
 		return this.connected;
 	}
 
@@ -96,7 +96,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 	/**
 	 * API name: {@code skip_unavailable}
 	 */
-	public Boolean skipUnavailable() {
+	public boolean skipUnavailable() {
 		return this.skipUnavailable;
 	}
 
@@ -117,14 +117,14 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 	/**
 	 * API name: {@code num_proxy_sockets_connected}
 	 */
-	public Integer numProxySocketsConnected() {
+	public int numProxySocketsConnected() {
 		return this.numProxySocketsConnected;
 	}
 
 	/**
 	 * API name: {@code max_proxy_socket_connections}
 	 */
-	public Integer maxProxySocketConnections() {
+	public int maxProxySocketConnections() {
 		return this.maxProxySocketConnections;
 	}
 
@@ -187,7 +187,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * API name: {@code connected}
 		 */
-		public Builder connected(Boolean value) {
+		public Builder connected(boolean value) {
 			this.connected = value;
 			return this;
 		}
@@ -203,7 +203,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * API name: {@code skip_unavailable}
 		 */
-		public Builder skipUnavailable(Boolean value) {
+		public Builder skipUnavailable(boolean value) {
 			this.skipUnavailable = value;
 			return this;
 		}
@@ -227,7 +227,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * API name: {@code num_proxy_sockets_connected}
 		 */
-		public Builder numProxySocketsConnected(Integer value) {
+		public Builder numProxySocketsConnected(int value) {
 			this.numProxySocketsConnected = value;
 			return this;
 		}
@@ -235,7 +235,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * API name: {@code max_proxy_socket_connections}
 		 */
-		public Builder maxProxySocketConnections(Integer value) {
+		public Builder maxProxySocketConnections(int value) {
 			this.maxProxySocketConnections = value;
 			return this;
 		}

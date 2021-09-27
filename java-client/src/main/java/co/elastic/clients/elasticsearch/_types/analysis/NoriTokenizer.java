@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public final class NoriTokenizer extends TokenizerBase implements TokenizerVariant {
 	private final NoriDecompoundMode decompoundMode;
 
-	private final Boolean discardPunctuation;
+	private final boolean discardPunctuation;
 
 	private final String userDictionary;
 
@@ -80,7 +80,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 	/**
 	 * API name: {@code discard_punctuation}
 	 */
-	public Boolean discardPunctuation() {
+	public boolean discardPunctuation() {
 		return this.discardPunctuation;
 	}
 
@@ -147,7 +147,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 		/**
 		 * API name: {@code discard_punctuation}
 		 */
-		public Builder discardPunctuation(Boolean value) {
+		public Builder discardPunctuation(boolean value) {
 			this.discardPunctuation = value;
 			return this;
 		}

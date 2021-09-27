@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class SampleDiversity implements JsonpSerializable {
 	private final String field;
 
-	private final Integer maxDocsPerValue;
+	private final int maxDocsPerValue;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ public final class SampleDiversity implements JsonpSerializable {
 	/**
 	 * API name: {@code max_docs_per_value}
 	 */
-	public Integer maxDocsPerValue() {
+	public int maxDocsPerValue() {
 		return this.maxDocsPerValue;
 	}
 
@@ -107,7 +107,7 @@ public final class SampleDiversity implements JsonpSerializable {
 		/**
 		 * API name: {@code max_docs_per_value}
 		 */
-		public Builder maxDocsPerValue(Integer value) {
+		public Builder maxDocsPerValue(int value) {
 			this.maxDocsPerValue = value;
 			return this;
 		}

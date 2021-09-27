@@ -182,10 +182,8 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
-				if (request.rollupIndex() != null)
-					propsSet |= _rollupIndex;
+				propsSet |= _index;
+				propsSet |= _rollupIndex;
 
 				if (propsSet == (_index | _rollupIndex)) {
 					StringBuilder buf = new StringBuilder();

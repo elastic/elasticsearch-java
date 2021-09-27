@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class ActionWebhook implements JsonpSerializable {
 	private final String host;
 
-	private final Integer port;
+	private final int port;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ public final class ActionWebhook implements JsonpSerializable {
 	/**
 	 * API name: {@code port}
 	 */
-	public Integer port() {
+	public int port() {
 		return this.port;
 	}
 
@@ -107,7 +107,7 @@ public final class ActionWebhook implements JsonpSerializable {
 		/**
 		 * API name: {@code port}
 		 */
-		public Builder port(Integer value) {
+		public Builder port(int value) {
 			this.port = value;
 			return this;
 		}

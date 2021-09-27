@@ -43,11 +43,11 @@ import javax.annotation.Nullable;
 // typedef: indices.segments.ShardsSegment
 @JsonpDeserializable
 public final class ShardsSegment implements JsonpSerializable {
-	private final Integer numCommittedSegments;
+	private final int numCommittedSegments;
 
 	private final ShardSegmentRouting routing;
 
-	private final Integer numSearchSegments;
+	private final int numSearchSegments;
 
 	private final Map<String, Segment> segments;
 
@@ -65,7 +65,7 @@ public final class ShardsSegment implements JsonpSerializable {
 	/**
 	 * API name: {@code num_committed_segments}
 	 */
-	public Integer numCommittedSegments() {
+	public int numCommittedSegments() {
 		return this.numCommittedSegments;
 	}
 
@@ -79,7 +79,7 @@ public final class ShardsSegment implements JsonpSerializable {
 	/**
 	 * API name: {@code num_search_segments}
 	 */
-	public Integer numSearchSegments() {
+	public int numSearchSegments() {
 		return this.numSearchSegments;
 	}
 
@@ -138,7 +138,7 @@ public final class ShardsSegment implements JsonpSerializable {
 		/**
 		 * API name: {@code num_committed_segments}
 		 */
-		public Builder numCommittedSegments(Integer value) {
+		public Builder numCommittedSegments(int value) {
 			this.numCommittedSegments = value;
 			return this;
 		}
@@ -161,7 +161,7 @@ public final class ShardsSegment implements JsonpSerializable {
 		/**
 		 * API name: {@code num_search_segments}
 		 */
-		public Builder numSearchSegments(Integer value) {
+		public Builder numSearchSegments(int value) {
 			this.numSearchSegments = value;
 			return this;
 		}

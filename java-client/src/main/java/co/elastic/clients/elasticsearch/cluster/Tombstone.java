@@ -46,7 +46,7 @@ public final class Tombstone implements JsonpSerializable {
 	@Nullable
 	private final String deleteDate;
 
-	private final Long deleteDateInMillis;
+	private final long deleteDateInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ public final class Tombstone implements JsonpSerializable {
 	/**
 	 * API name: {@code delete_date_in_millis}
 	 */
-	public Long deleteDateInMillis() {
+	public long deleteDateInMillis() {
 		return this.deleteDateInMillis;
 	}
 
@@ -145,7 +145,7 @@ public final class Tombstone implements JsonpSerializable {
 		/**
 		 * API name: {@code delete_date_in_millis}
 		 */
-		public Builder deleteDateInMillis(Long value) {
+		public Builder deleteDateInMillis(long value) {
 			this.deleteDateInMillis = value;
 			return this;
 		}

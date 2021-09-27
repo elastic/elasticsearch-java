@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 // typedef: snapshot._types.Status
 @JsonpDeserializable
 public final class Status implements JsonpSerializable {
-	private final Boolean includeGlobalState;
+	private final boolean includeGlobalState;
 
 	private final Map<String, SnapshotIndexStats> indices;
 
@@ -78,7 +78,7 @@ public final class Status implements JsonpSerializable {
 	/**
 	 * API name: {@code include_global_state}
 	 */
-	public Boolean includeGlobalState() {
+	public boolean includeGlobalState() {
 		return this.includeGlobalState;
 	}
 
@@ -199,7 +199,7 @@ public final class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code include_global_state}
 		 */
-		public Builder includeGlobalState(Boolean value) {
+		public Builder includeGlobalState(boolean value) {
 			this.includeGlobalState = value;
 			return this;
 		}

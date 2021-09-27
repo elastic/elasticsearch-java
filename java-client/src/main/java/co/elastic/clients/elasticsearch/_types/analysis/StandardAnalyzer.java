@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.StandardAnalyzer
 @JsonpDeserializable
 public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
-	private final Integer maxTokenLength;
+	private final int maxTokenLength;
 
 	private final List<String> stopwords;
 
@@ -67,7 +67,7 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	/**
 	 * API name: {@code max_token_length}
 	 */
-	public Integer maxTokenLength() {
+	public int maxTokenLength() {
 		return this.maxTokenLength;
 	}
 
@@ -117,7 +117,7 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		/**
 		 * API name: {@code max_token_length}
 		 */
-		public Builder maxTokenLength(Integer value) {
+		public Builder maxTokenLength(int value) {
 			this.maxTokenLength = value;
 			return this;
 		}

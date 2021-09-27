@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 public final class PatternCaptureTokenFilter extends TokenFilterBase implements TokenFilterVariant {
 	private final List<String> patterns;
 
-	private final Boolean preserveOriginal;
+	private final boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 	/**
 	 * API name: {@code preserve_original}
 	 */
-	public Boolean preserveOriginal() {
+	public boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -138,7 +138,7 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 		/**
 		 * API name: {@code preserve_original}
 		 */
-		public Builder preserveOriginal(Boolean value) {
+		public Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}

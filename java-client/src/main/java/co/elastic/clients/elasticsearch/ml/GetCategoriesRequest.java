@@ -295,8 +295,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 				if (request.categoryId() != null)
 					propsSet |= _categoryId;
 

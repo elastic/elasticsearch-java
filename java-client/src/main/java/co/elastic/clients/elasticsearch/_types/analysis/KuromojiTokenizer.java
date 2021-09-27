@@ -43,11 +43,11 @@ import javax.annotation.Nullable;
 // typedef: _types.analysis.KuromojiTokenizer
 @JsonpDeserializable
 public final class KuromojiTokenizer extends TokenizerBase implements TokenizerVariant {
-	private final Boolean discardPunctuation;
+	private final boolean discardPunctuation;
 
 	private final KuromojiTokenizationMode mode;
 
-	private final Integer nbestCost;
+	private final int nbestCost;
 
 	private final String nbestExamples;
 
@@ -80,7 +80,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 	/**
 	 * API name: {@code discard_punctuation}
 	 */
-	public Boolean discardPunctuation() {
+	public boolean discardPunctuation() {
 		return this.discardPunctuation;
 	}
 
@@ -94,7 +94,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 	/**
 	 * API name: {@code nbest_cost}
 	 */
-	public Integer nbestCost() {
+	public int nbestCost() {
 		return this.nbestCost;
 	}
 
@@ -172,7 +172,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		/**
 		 * API name: {@code discard_punctuation}
 		 */
-		public Builder discardPunctuation(Boolean value) {
+		public Builder discardPunctuation(boolean value) {
 			this.discardPunctuation = value;
 			return this;
 		}
@@ -188,7 +188,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		/**
 		 * API name: {@code nbest_cost}
 		 */
-		public Builder nbestCost(Integer value) {
+		public Builder nbestCost(int value) {
 			this.nbestCost = value;
 			return this;
 		}

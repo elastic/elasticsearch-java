@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Weights
 @JsonpDeserializable
 public final class Weights implements JsonpSerializable {
-	private final Double weights;
+	private final double weights;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class Weights implements JsonpSerializable {
 	/**
 	 * API name: {@code weights}
 	 */
-	public Double weights() {
+	public double weights() {
 		return this.weights;
 	}
 
@@ -83,7 +82,7 @@ public final class Weights implements JsonpSerializable {
 		/**
 		 * API name: {@code weights}
 		 */
-		public Builder weights(Double value) {
+		public Builder weights(double value) {
 			this.weights = value;
 			return this;
 		}

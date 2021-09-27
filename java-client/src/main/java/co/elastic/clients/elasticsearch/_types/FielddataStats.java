@@ -50,7 +50,7 @@ public final class FielddataStats implements JsonpSerializable {
 	@Nullable
 	private final String memorySize;
 
-	private final Long memorySizeInBytes;
+	private final long memorySizeInBytes;
 
 	@Nullable
 	private final Map<String, FieldMemoryUsage> fields;
@@ -85,7 +85,7 @@ public final class FielddataStats implements JsonpSerializable {
 	/**
 	 * API name: {@code memory_size_in_bytes}
 	 */
-	public Long memorySizeInBytes() {
+	public long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
@@ -175,7 +175,7 @@ public final class FielddataStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(Long value) {
+		public Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}

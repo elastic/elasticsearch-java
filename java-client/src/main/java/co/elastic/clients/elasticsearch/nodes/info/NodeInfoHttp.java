@@ -48,7 +48,7 @@ public final class NodeInfoHttp implements JsonpSerializable {
 	@Nullable
 	private final String maxContentLength;
 
-	private final Long maxContentLengthInBytes;
+	private final long maxContentLengthInBytes;
 
 	private final String publishAddress;
 
@@ -82,7 +82,7 @@ public final class NodeInfoHttp implements JsonpSerializable {
 	/**
 	 * API name: {@code max_content_length_in_bytes}
 	 */
-	public Long maxContentLengthInBytes() {
+	public long maxContentLengthInBytes() {
 		return this.maxContentLengthInBytes;
 	}
 
@@ -180,7 +180,7 @@ public final class NodeInfoHttp implements JsonpSerializable {
 		/**
 		 * API name: {@code max_content_length_in_bytes}
 		 */
-		public Builder maxContentLengthInBytes(Long value) {
+		public Builder maxContentLengthInBytes(long value) {
 			this.maxContentLengthInBytes = value;
 			return this;
 		}

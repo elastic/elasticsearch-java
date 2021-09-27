@@ -39,34 +39,34 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.ClusterNodeCount
 @JsonpDeserializable
 public final class ClusterNodeCount implements JsonpSerializable {
-	private final Integer coordinatingOnly;
+	private final int coordinatingOnly;
 
-	private final Integer data;
+	private final int data;
 
-	private final Integer ingest;
+	private final int ingest;
 
-	private final Integer master;
+	private final int master;
 
-	private final Integer total;
+	private final int total;
 
-	private final Integer votingOnly;
+	private final int votingOnly;
 
-	private final Integer dataCold;
+	private final int dataCold;
 
 	@Nullable
 	private final Integer dataFrozen;
 
-	private final Integer dataContent;
+	private final int dataContent;
 
-	private final Integer dataWarm;
+	private final int dataWarm;
 
-	private final Integer dataHot;
+	private final int dataHot;
 
-	private final Integer ml;
+	private final int ml;
 
-	private final Integer remoteClusterClient;
+	private final int remoteClusterClient;
 
-	private final Integer transform;
+	private final int transform;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -92,49 +92,49 @@ public final class ClusterNodeCount implements JsonpSerializable {
 	/**
 	 * API name: {@code coordinating_only}
 	 */
-	public Integer coordinatingOnly() {
+	public int coordinatingOnly() {
 		return this.coordinatingOnly;
 	}
 
 	/**
 	 * API name: {@code data}
 	 */
-	public Integer data() {
+	public int data() {
 		return this.data;
 	}
 
 	/**
 	 * API name: {@code ingest}
 	 */
-	public Integer ingest() {
+	public int ingest() {
 		return this.ingest;
 	}
 
 	/**
 	 * API name: {@code master}
 	 */
-	public Integer master() {
+	public int master() {
 		return this.master;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Integer total() {
+	public int total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code voting_only}
 	 */
-	public Integer votingOnly() {
+	public int votingOnly() {
 		return this.votingOnly;
 	}
 
 	/**
 	 * API name: {@code data_cold}
 	 */
-	public Integer dataCold() {
+	public int dataCold() {
 		return this.dataCold;
 	}
 
@@ -149,42 +149,42 @@ public final class ClusterNodeCount implements JsonpSerializable {
 	/**
 	 * API name: {@code data_content}
 	 */
-	public Integer dataContent() {
+	public int dataContent() {
 		return this.dataContent;
 	}
 
 	/**
 	 * API name: {@code data_warm}
 	 */
-	public Integer dataWarm() {
+	public int dataWarm() {
 		return this.dataWarm;
 	}
 
 	/**
 	 * API name: {@code data_hot}
 	 */
-	public Integer dataHot() {
+	public int dataHot() {
 		return this.dataHot;
 	}
 
 	/**
 	 * API name: {@code ml}
 	 */
-	public Integer ml() {
+	public int ml() {
 		return this.ml;
 	}
 
 	/**
 	 * API name: {@code remote_cluster_client}
 	 */
-	public Integer remoteClusterClient() {
+	public int remoteClusterClient() {
 		return this.remoteClusterClient;
 	}
 
 	/**
 	 * API name: {@code transform}
 	 */
-	public Integer transform() {
+	public int transform() {
 		return this.transform;
 	}
 
@@ -285,7 +285,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code coordinating_only}
 		 */
-		public Builder coordinatingOnly(Integer value) {
+		public Builder coordinatingOnly(int value) {
 			this.coordinatingOnly = value;
 			return this;
 		}
@@ -293,7 +293,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code data}
 		 */
-		public Builder data(Integer value) {
+		public Builder data(int value) {
 			this.data = value;
 			return this;
 		}
@@ -301,7 +301,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code ingest}
 		 */
-		public Builder ingest(Integer value) {
+		public Builder ingest(int value) {
 			this.ingest = value;
 			return this;
 		}
@@ -309,7 +309,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code master}
 		 */
-		public Builder master(Integer value) {
+		public Builder master(int value) {
 			this.master = value;
 			return this;
 		}
@@ -317,7 +317,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Integer value) {
+		public Builder total(int value) {
 			this.total = value;
 			return this;
 		}
@@ -325,7 +325,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code voting_only}
 		 */
-		public Builder votingOnly(Integer value) {
+		public Builder votingOnly(int value) {
 			this.votingOnly = value;
 			return this;
 		}
@@ -333,7 +333,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code data_cold}
 		 */
-		public Builder dataCold(Integer value) {
+		public Builder dataCold(int value) {
 			this.dataCold = value;
 			return this;
 		}
@@ -349,7 +349,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code data_content}
 		 */
-		public Builder dataContent(Integer value) {
+		public Builder dataContent(int value) {
 			this.dataContent = value;
 			return this;
 		}
@@ -357,7 +357,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code data_warm}
 		 */
-		public Builder dataWarm(Integer value) {
+		public Builder dataWarm(int value) {
 			this.dataWarm = value;
 			return this;
 		}
@@ -365,7 +365,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code data_hot}
 		 */
-		public Builder dataHot(Integer value) {
+		public Builder dataHot(int value) {
 			this.dataHot = value;
 			return this;
 		}
@@ -373,7 +373,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code ml}
 		 */
-		public Builder ml(Integer value) {
+		public Builder ml(int value) {
 			this.ml = value;
 			return this;
 		}
@@ -381,7 +381,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code remote_cluster_client}
 		 */
-		public Builder remoteClusterClient(Integer value) {
+		public Builder remoteClusterClient(int value) {
 			this.remoteClusterClient = value;
 			return this;
 		}
@@ -389,7 +389,7 @@ public final class ClusterNodeCount implements JsonpSerializable {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(Integer value) {
+		public Builder transform(int value) {
 			this.transform = value;
 			return this;
 		}

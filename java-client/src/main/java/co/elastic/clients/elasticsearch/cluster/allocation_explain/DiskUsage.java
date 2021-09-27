@@ -43,15 +43,15 @@ import javax.annotation.Nullable;
 public final class DiskUsage implements JsonpSerializable {
 	private final String path;
 
-	private final Long totalBytes;
+	private final long totalBytes;
 
-	private final Long usedBytes;
+	private final long usedBytes;
 
-	private final Long freeBytes;
+	private final long freeBytes;
 
-	private final Double freeDiskPercent;
+	private final double freeDiskPercent;
 
-	private final Double usedDiskPercent;
+	private final double usedDiskPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,35 +76,35 @@ public final class DiskUsage implements JsonpSerializable {
 	/**
 	 * API name: {@code total_bytes}
 	 */
-	public Long totalBytes() {
+	public long totalBytes() {
 		return this.totalBytes;
 	}
 
 	/**
 	 * API name: {@code used_bytes}
 	 */
-	public Long usedBytes() {
+	public long usedBytes() {
 		return this.usedBytes;
 	}
 
 	/**
 	 * API name: {@code free_bytes}
 	 */
-	public Long freeBytes() {
+	public long freeBytes() {
 		return this.freeBytes;
 	}
 
 	/**
 	 * API name: {@code free_disk_percent}
 	 */
-	public Double freeDiskPercent() {
+	public double freeDiskPercent() {
 		return this.freeDiskPercent;
 	}
 
 	/**
 	 * API name: {@code used_disk_percent}
 	 */
-	public Double usedDiskPercent() {
+	public double usedDiskPercent() {
 		return this.usedDiskPercent;
 	}
 
@@ -168,7 +168,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code total_bytes}
 		 */
-		public Builder totalBytes(Long value) {
+		public Builder totalBytes(long value) {
 			this.totalBytes = value;
 			return this;
 		}
@@ -176,7 +176,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code used_bytes}
 		 */
-		public Builder usedBytes(Long value) {
+		public Builder usedBytes(long value) {
 			this.usedBytes = value;
 			return this;
 		}
@@ -184,7 +184,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code free_bytes}
 		 */
-		public Builder freeBytes(Long value) {
+		public Builder freeBytes(long value) {
 			this.freeBytes = value;
 			return this;
 		}
@@ -192,7 +192,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code free_disk_percent}
 		 */
-		public Builder freeDiskPercent(Double value) {
+		public Builder freeDiskPercent(double value) {
 			this.freeDiskPercent = value;
 			return this;
 		}
@@ -200,7 +200,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code used_disk_percent}
 		 */
-		public Builder usedDiskPercent(Double value) {
+		public Builder usedDiskPercent(double value) {
 			this.usedDiskPercent = value;
 			return this;
 		}

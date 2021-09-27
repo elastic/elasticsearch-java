@@ -79,7 +79,7 @@ public final class Stats implements JsonpSerializable {
 
 	private final Map<String, ThreadCount> threadPool;
 
-	private final Long timestamp;
+	private final long timestamp;
 
 	private final Transport transport;
 
@@ -221,7 +221,7 @@ public final class Stats implements JsonpSerializable {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Long timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
@@ -690,7 +690,7 @@ public final class Stats implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Long value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}

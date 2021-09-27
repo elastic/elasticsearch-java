@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 // typedef: ingest._types.JsonProcessor
 @JsonpDeserializable
 public final class JsonProcessor extends ProcessorBase implements ProcessorVariant {
-	private final Boolean addToRoot;
+	private final boolean addToRoot;
 
 	private final String field;
 
@@ -67,7 +67,7 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 	/**
 	 * API name: {@code add_to_root}
 	 */
-	public Boolean addToRoot() {
+	public boolean addToRoot() {
 		return this.addToRoot;
 	}
 
@@ -115,7 +115,7 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * API name: {@code add_to_root}
 		 */
-		public Builder addToRoot(Boolean value) {
+		public Builder addToRoot(boolean value) {
 			this.addToRoot = value;
 			return this;
 		}

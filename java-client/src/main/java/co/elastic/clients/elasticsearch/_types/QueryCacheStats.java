@@ -40,22 +40,22 @@ import javax.annotation.Nullable;
 // typedef: _types.QueryCacheStats
 @JsonpDeserializable
 public final class QueryCacheStats implements JsonpSerializable {
-	private final Integer cacheCount;
+	private final int cacheCount;
 
-	private final Integer cacheSize;
+	private final int cacheSize;
 
-	private final Integer evictions;
+	private final int evictions;
 
-	private final Integer hitCount;
+	private final int hitCount;
 
 	@Nullable
 	private final String memorySize;
 
-	private final Integer memorySizeInBytes;
+	private final int memorySizeInBytes;
 
-	private final Integer missCount;
+	private final int missCount;
 
-	private final Integer totalCount;
+	private final int totalCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,28 +75,28 @@ public final class QueryCacheStats implements JsonpSerializable {
 	/**
 	 * API name: {@code cache_count}
 	 */
-	public Integer cacheCount() {
+	public int cacheCount() {
 		return this.cacheCount;
 	}
 
 	/**
 	 * API name: {@code cache_size}
 	 */
-	public Integer cacheSize() {
+	public int cacheSize() {
 		return this.cacheSize;
 	}
 
 	/**
 	 * API name: {@code evictions}
 	 */
-	public Integer evictions() {
+	public int evictions() {
 		return this.evictions;
 	}
 
 	/**
 	 * API name: {@code hit_count}
 	 */
-	public Integer hitCount() {
+	public int hitCount() {
 		return this.hitCount;
 	}
 
@@ -111,21 +111,21 @@ public final class QueryCacheStats implements JsonpSerializable {
 	/**
 	 * API name: {@code memory_size_in_bytes}
 	 */
-	public Integer memorySizeInBytes() {
+	public int memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
 	 * API name: {@code miss_count}
 	 */
-	public Integer missCount() {
+	public int missCount() {
 		return this.missCount;
 	}
 
 	/**
 	 * API name: {@code total_count}
 	 */
-	public Integer totalCount() {
+	public int totalCount() {
 		return this.totalCount;
 	}
 
@@ -196,7 +196,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code cache_count}
 		 */
-		public Builder cacheCount(Integer value) {
+		public Builder cacheCount(int value) {
 			this.cacheCount = value;
 			return this;
 		}
@@ -204,7 +204,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code cache_size}
 		 */
-		public Builder cacheSize(Integer value) {
+		public Builder cacheSize(int value) {
 			this.cacheSize = value;
 			return this;
 		}
@@ -212,7 +212,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code evictions}
 		 */
-		public Builder evictions(Integer value) {
+		public Builder evictions(int value) {
 			this.evictions = value;
 			return this;
 		}
@@ -220,7 +220,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code hit_count}
 		 */
-		public Builder hitCount(Integer value) {
+		public Builder hitCount(int value) {
 			this.hitCount = value;
 			return this;
 		}
@@ -236,7 +236,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(Integer value) {
+		public Builder memorySizeInBytes(int value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -244,7 +244,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code miss_count}
 		 */
-		public Builder missCount(Integer value) {
+		public Builder missCount(int value) {
 			this.missCount = value;
 			return this;
 		}
@@ -252,7 +252,7 @@ public final class QueryCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_count}
 		 */
-		public Builder totalCount(Integer value) {
+		public Builder totalCount(int value) {
 			this.totalCount = value;
 			return this;
 		}

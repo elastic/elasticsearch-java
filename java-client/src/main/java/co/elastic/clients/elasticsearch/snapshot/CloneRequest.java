@@ -261,12 +261,9 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
-				if (request.snapshot() != null)
-					propsSet |= _snapshot;
-				if (request.targetSnapshot() != null)
-					propsSet |= _targetSnapshot;
+				propsSet |= _repository;
+				propsSet |= _snapshot;
+				propsSet |= _targetSnapshot;
 
 				if (propsSet == (_repository | _snapshot | _targetSnapshot)) {
 					StringBuilder buf = new StringBuilder();

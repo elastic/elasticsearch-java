@@ -44,9 +44,9 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 
 	private final ShardsStatsSummaryItem total;
 
-	private final Long startTimeInMillis;
+	private final long startTimeInMillis;
 
-	private final Long timeInMillis;
+	private final long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,14 +76,14 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public Long startTimeInMillis() {
+	public long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code time_in_millis}
 	 */
-	public Long timeInMillis() {
+	public long timeInMillis() {
 		return this.timeInMillis;
 	}
 
@@ -159,7 +159,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(Long value) {
+		public Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -167,7 +167,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(Long value) {
+		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}

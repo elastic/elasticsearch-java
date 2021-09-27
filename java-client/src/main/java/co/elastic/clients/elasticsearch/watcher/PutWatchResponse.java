@@ -42,15 +42,15 @@ import javax.annotation.Nullable;
 // typedef: watcher.put_watch.Response
 @JsonpDeserializable
 public final class PutWatchResponse implements JsonpSerializable {
-	private final Boolean created;
+	private final boolean created;
 
 	private final String id;
 
-	private final Long primaryTerm;
+	private final long primaryTerm;
 
-	private final Integer seqNo;
+	private final int seqNo;
 
-	private final Long version;
+	private final long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code created}
 	 */
-	public Boolean created() {
+	public boolean created() {
 		return this.created;
 	}
 
@@ -81,21 +81,21 @@ public final class PutWatchResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code _primary_term}
 	 */
-	public Long primaryTerm() {
+	public long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
 	 * API name: {@code _seq_no}
 	 */
-	public Integer seqNo() {
+	public int seqNo() {
 		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -146,7 +146,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code created}
 		 */
-		public Builder created(Boolean value) {
+		public Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -162,7 +162,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder primaryTerm(Long value) {
+		public Builder primaryTerm(long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -170,7 +170,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder seqNo(Integer value) {
+		public Builder seqNo(int value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -178,7 +178,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder version(Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}

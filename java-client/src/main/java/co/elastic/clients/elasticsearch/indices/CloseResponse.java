@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 public final class CloseResponse extends AcknowledgedResponseBase {
 	private final Map<String, CloseIndexResult> indices;
 
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
@@ -138,7 +138,7 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}

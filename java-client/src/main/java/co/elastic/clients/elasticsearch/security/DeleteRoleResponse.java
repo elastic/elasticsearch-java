@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: security.delete_role.Response
 @JsonpDeserializable
 public final class DeleteRoleResponse implements JsonpSerializable {
-	private final Boolean found;
+	private final boolean found;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class DeleteRoleResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code found}
 	 */
-	public Boolean found() {
+	public boolean found() {
 		return this.found;
 	}
 
@@ -83,7 +82,7 @@ public final class DeleteRoleResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code found}
 		 */
-		public Builder found(Boolean value) {
+		public Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}

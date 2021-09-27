@@ -40,14 +40,14 @@ import javax.annotation.Nullable;
 // typedef: _types.WarmerStats
 @JsonpDeserializable
 public final class WarmerStats implements JsonpSerializable {
-	private final Long current;
+	private final long current;
 
-	private final Long total;
+	private final long total;
 
 	@Nullable
 	private final String totalTime;
 
-	private final Long totalTimeInMillis;
+	private final long totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,14 +63,14 @@ public final class WarmerStats implements JsonpSerializable {
 	/**
 	 * API name: {@code current}
 	 */
-	public Long current() {
+	public long current() {
 		return this.current;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
@@ -85,7 +85,7 @@ public final class WarmerStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_time_in_millis}
 	 */
-	public Long totalTimeInMillis() {
+	public long totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -136,7 +136,7 @@ public final class WarmerStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current}
 		 */
-		public Builder current(Long value) {
+		public Builder current(long value) {
 			this.current = value;
 			return this;
 		}
@@ -144,7 +144,7 @@ public final class WarmerStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Long value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -160,7 +160,7 @@ public final class WarmerStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(Long value) {
+		public Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}

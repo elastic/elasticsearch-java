@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcessCpu
 @JsonpDeserializable
 public final class ClusterProcessCpu implements JsonpSerializable {
-	private final Integer percent;
+	private final int percent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 	/**
 	 * API name: {@code percent}
 	 */
-	public Integer percent() {
+	public int percent() {
 		return this.percent;
 	}
 
@@ -83,7 +82,7 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 		/**
 		 * API name: {@code percent}
 		 */
-		public Builder percent(Integer value) {
+		public Builder percent(int value) {
 			this.percent = value;
 			return this;
 		}

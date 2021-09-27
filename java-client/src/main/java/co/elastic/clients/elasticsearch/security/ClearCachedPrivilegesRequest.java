@@ -107,8 +107,7 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.application() != null)
-					propsSet |= _application;
+				propsSet |= _application;
 
 				if (propsSet == (_application)) {
 					StringBuilder buf = new StringBuilder();

@@ -40,21 +40,21 @@ import javax.annotation.Nullable;
 // typedef: ccr.follow_info.FollowerIndexParameters
 @JsonpDeserializable
 public final class FollowerIndexParameters implements JsonpSerializable {
-	private final Integer maxOutstandingReadRequests;
+	private final int maxOutstandingReadRequests;
 
-	private final Integer maxOutstandingWriteRequests;
+	private final int maxOutstandingWriteRequests;
 
-	private final Integer maxReadRequestOperationCount;
+	private final int maxReadRequestOperationCount;
 
 	private final String maxReadRequestSize;
 
 	private final String maxRetryDelay;
 
-	private final Integer maxWriteBufferCount;
+	private final int maxWriteBufferCount;
 
 	private final String maxWriteBufferSize;
 
-	private final Integer maxWriteRequestOperationCount;
+	private final int maxWriteRequestOperationCount;
 
 	private final String maxWriteRequestSize;
 
@@ -84,21 +84,21 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 	/**
 	 * API name: {@code max_outstanding_read_requests}
 	 */
-	public Integer maxOutstandingReadRequests() {
+	public int maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
 	/**
 	 * API name: {@code max_outstanding_write_requests}
 	 */
-	public Integer maxOutstandingWriteRequests() {
+	public int maxOutstandingWriteRequests() {
 		return this.maxOutstandingWriteRequests;
 	}
 
 	/**
 	 * API name: {@code max_read_request_operation_count}
 	 */
-	public Integer maxReadRequestOperationCount() {
+	public int maxReadRequestOperationCount() {
 		return this.maxReadRequestOperationCount;
 	}
 
@@ -119,7 +119,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 	/**
 	 * API name: {@code max_write_buffer_count}
 	 */
-	public Integer maxWriteBufferCount() {
+	public int maxWriteBufferCount() {
 		return this.maxWriteBufferCount;
 	}
 
@@ -133,7 +133,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 	/**
 	 * API name: {@code max_write_request_operation_count}
 	 */
-	public Integer maxWriteRequestOperationCount() {
+	public int maxWriteRequestOperationCount() {
 		return this.maxWriteRequestOperationCount;
 	}
 
@@ -223,7 +223,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * API name: {@code max_outstanding_read_requests}
 		 */
-		public Builder maxOutstandingReadRequests(Integer value) {
+		public Builder maxOutstandingReadRequests(int value) {
 			this.maxOutstandingReadRequests = value;
 			return this;
 		}
@@ -231,7 +231,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * API name: {@code max_outstanding_write_requests}
 		 */
-		public Builder maxOutstandingWriteRequests(Integer value) {
+		public Builder maxOutstandingWriteRequests(int value) {
 			this.maxOutstandingWriteRequests = value;
 			return this;
 		}
@@ -239,7 +239,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * API name: {@code max_read_request_operation_count}
 		 */
-		public Builder maxReadRequestOperationCount(Integer value) {
+		public Builder maxReadRequestOperationCount(int value) {
 			this.maxReadRequestOperationCount = value;
 			return this;
 		}
@@ -263,7 +263,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * API name: {@code max_write_buffer_count}
 		 */
-		public Builder maxWriteBufferCount(Integer value) {
+		public Builder maxWriteBufferCount(int value) {
 			this.maxWriteBufferCount = value;
 			return this;
 		}
@@ -279,7 +279,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * API name: {@code max_write_request_operation_count}
 		 */
-		public Builder maxWriteRequestOperationCount(Integer value) {
+		public Builder maxWriteRequestOperationCount(int value) {
 			this.maxWriteRequestOperationCount = value;
 			return this;
 		}

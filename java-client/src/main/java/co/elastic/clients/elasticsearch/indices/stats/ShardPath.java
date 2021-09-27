@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class ShardPath implements JsonpSerializable {
 	private final String dataPath;
 
-	private final Boolean isCustomDataPath;
+	private final boolean isCustomDataPath;
 
 	private final String statePath;
 
@@ -66,7 +66,7 @@ public final class ShardPath implements JsonpSerializable {
 	/**
 	 * API name: {@code is_custom_data_path}
 	 */
-	public Boolean isCustomDataPath() {
+	public boolean isCustomDataPath() {
 		return this.isCustomDataPath;
 	}
 
@@ -122,7 +122,7 @@ public final class ShardPath implements JsonpSerializable {
 		/**
 		 * API name: {@code is_custom_data_path}
 		 */
-		public Builder isCustomDataPath(Boolean value) {
+		public Builder isCustomDataPath(boolean value) {
 			this.isCustomDataPath = value;
 			return this;
 		}

@@ -34,12 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.FeatureToggle
 @JsonpDeserializable
 public class FeatureToggle implements JsonpSerializable {
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +51,7 @@ public class FeatureToggle implements JsonpSerializable {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
@@ -101,7 +100,7 @@ public class FeatureToggle implements JsonpSerializable {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public BuilderT enabled(Boolean value) {
+		public BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}

@@ -40,14 +40,14 @@ import javax.annotation.Nullable;
 // typedef: indices.analyze.AnalyzeToken
 @JsonpDeserializable
 public final class AnalyzeToken implements JsonpSerializable {
-	private final Long endOffset;
+	private final long endOffset;
 
-	private final Long position;
+	private final long position;
 
 	@Nullable
 	private final Long positionLength;
 
-	private final Long startOffset;
+	private final long startOffset;
 
 	private final String token;
 
@@ -69,14 +69,14 @@ public final class AnalyzeToken implements JsonpSerializable {
 	/**
 	 * API name: {@code end_offset}
 	 */
-	public Long endOffset() {
+	public long endOffset() {
 		return this.endOffset;
 	}
 
 	/**
 	 * API name: {@code position}
 	 */
-	public Long position() {
+	public long position() {
 		return this.position;
 	}
 
@@ -91,7 +91,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 	/**
 	 * API name: {@code start_offset}
 	 */
-	public Long startOffset() {
+	public long startOffset() {
 		return this.startOffset;
 	}
 
@@ -166,7 +166,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code end_offset}
 		 */
-		public Builder endOffset(Long value) {
+		public Builder endOffset(long value) {
 			this.endOffset = value;
 			return this;
 		}
@@ -174,7 +174,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code position}
 		 */
-		public Builder position(Long value) {
+		public Builder position(long value) {
 			this.position = value;
 			return this;
 		}
@@ -190,7 +190,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code start_offset}
 		 */
-		public Builder startOffset(Long value) {
+		public Builder startOffset(long value) {
 			this.startOffset = value;
 			return this;
 		}

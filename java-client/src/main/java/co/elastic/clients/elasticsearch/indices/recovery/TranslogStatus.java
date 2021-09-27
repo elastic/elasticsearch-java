@@ -42,11 +42,11 @@ import javax.annotation.Nullable;
 public final class TranslogStatus implements JsonpSerializable {
 	private final String percent;
 
-	private final Long recovered;
+	private final long recovered;
 
-	private final Long total;
+	private final long total;
 
-	private final Long totalOnStart;
+	private final long totalOnStart;
 
 	@Nullable
 	private final String totalTime;
@@ -76,21 +76,21 @@ public final class TranslogStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code recovered}
 	 */
-	public Long recovered() {
+	public long recovered() {
 		return this.recovered;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code total_on_start}
 	 */
-	public Long totalOnStart() {
+	public long totalOnStart() {
 		return this.totalOnStart;
 	}
 
@@ -174,7 +174,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered}
 		 */
-		public Builder recovered(Long value) {
+		public Builder recovered(long value) {
 			this.recovered = value;
 			return this;
 		}
@@ -182,7 +182,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Long value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -190,7 +190,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total_on_start}
 		 */
-		public Builder totalOnStart(Long value) {
+		public Builder totalOnStart(long value) {
 			this.totalOnStart = value;
 			return this;
 		}

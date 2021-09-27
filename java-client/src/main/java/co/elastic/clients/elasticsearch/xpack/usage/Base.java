@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Base
 @JsonpDeserializable
 public class Base implements JsonpSerializable {
-	private final Boolean available;
+	private final boolean available;
 
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public class Base implements JsonpSerializable {
 	/**
 	 * API name: {@code available}
 	 */
-	public Boolean available() {
+	public boolean available() {
 		return this.available;
 	}
 
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
@@ -116,7 +115,7 @@ public class Base implements JsonpSerializable {
 		/**
 		 * API name: {@code available}
 		 */
-		public BuilderT available(Boolean value) {
+		public BuilderT available(boolean value) {
 			this.available = value;
 			return self();
 		}
@@ -124,7 +123,7 @@ public class Base implements JsonpSerializable {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public BuilderT enabled(Boolean value) {
+		public BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}

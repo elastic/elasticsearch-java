@@ -41,15 +41,15 @@ import javax.annotation.Nullable;
 // typedef: enrich.stats.CoordinatorStats
 @JsonpDeserializable
 public final class CoordinatorStats implements JsonpSerializable {
-	private final Long executedSearchesTotal;
+	private final long executedSearchesTotal;
 
 	private final String nodeId;
 
-	private final Integer queueSize;
+	private final int queueSize;
 
-	private final Integer remoteRequestsCurrent;
+	private final int remoteRequestsCurrent;
 
-	private final Long remoteRequestsTotal;
+	private final long remoteRequestsTotal;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 	/**
 	 * API name: {@code executed_searches_total}
 	 */
-	public Long executedSearchesTotal() {
+	public long executedSearchesTotal() {
 		return this.executedSearchesTotal;
 	}
 
@@ -80,21 +80,21 @@ public final class CoordinatorStats implements JsonpSerializable {
 	/**
 	 * API name: {@code queue_size}
 	 */
-	public Integer queueSize() {
+	public int queueSize() {
 		return this.queueSize;
 	}
 
 	/**
 	 * API name: {@code remote_requests_current}
 	 */
-	public Integer remoteRequestsCurrent() {
+	public int remoteRequestsCurrent() {
 		return this.remoteRequestsCurrent;
 	}
 
 	/**
 	 * API name: {@code remote_requests_total}
 	 */
-	public Long remoteRequestsTotal() {
+	public long remoteRequestsTotal() {
 		return this.remoteRequestsTotal;
 	}
 
@@ -145,7 +145,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * API name: {@code executed_searches_total}
 		 */
-		public Builder executedSearchesTotal(Long value) {
+		public Builder executedSearchesTotal(long value) {
 			this.executedSearchesTotal = value;
 			return this;
 		}
@@ -161,7 +161,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * API name: {@code queue_size}
 		 */
-		public Builder queueSize(Integer value) {
+		public Builder queueSize(int value) {
 			this.queueSize = value;
 			return this;
 		}
@@ -169,7 +169,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * API name: {@code remote_requests_current}
 		 */
-		public Builder remoteRequestsCurrent(Integer value) {
+		public Builder remoteRequestsCurrent(int value) {
 			this.remoteRequestsCurrent = value;
 			return this;
 		}
@@ -177,7 +177,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * API name: {@code remote_requests_total}
 		 */
-		public Builder remoteRequestsTotal(Long value) {
+		public Builder remoteRequestsTotal(long value) {
 			this.remoteRequestsTotal = value;
 			return this;
 		}

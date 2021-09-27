@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	private final String policy;
 
-	private final Long version;
+	private final long version;
 
 	private final String modifiedDateInMillis;
 
@@ -66,7 +66,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	/**
 	 * API name: {@code version}
 	 */
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
@@ -122,7 +122,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}

@@ -34,14 +34,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherActionTotals
 @JsonpDeserializable
 public final class WatcherActionTotals implements JsonpSerializable {
-	private final Long total;
+	private final long total;
 
-	private final Long totalTimeInMs;
+	private final long totalTimeInMs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,14 +54,14 @@ public final class WatcherActionTotals implements JsonpSerializable {
 	/**
 	 * API name: {@code total}
 	 */
-	public Long total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code total_time_in_ms}
 	 */
-	public Long totalTimeInMs() {
+	public long totalTimeInMs() {
 		return this.totalTimeInMs;
 	}
 
@@ -98,7 +97,7 @@ public final class WatcherActionTotals implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Long value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -106,7 +105,7 @@ public final class WatcherActionTotals implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time_in_ms}
 		 */
-		public Builder totalTimeInMs(Long value) {
+		public Builder totalTimeInMs(long value) {
 			this.totalTimeInMs = value;
 			return this;
 		}

@@ -165,10 +165,8 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.modelAlias() != null)
-					propsSet |= _modelAlias;
-				if (request.modelId() != null)
-					propsSet |= _modelId;
+				propsSet |= _modelAlias;
+				propsSet |= _modelId;
 
 				if (propsSet == (_modelId | _modelAlias)) {
 					StringBuilder buf = new StringBuilder();

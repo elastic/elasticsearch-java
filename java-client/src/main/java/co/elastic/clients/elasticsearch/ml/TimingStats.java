@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 // typedef: ml._types.TimingStats
 @JsonpDeserializable
 public final class TimingStats implements JsonpSerializable {
-	private final Integer elapsedTime;
+	private final int elapsedTime;
 
 	@Nullable
 	private final Integer iterationTime;
@@ -58,7 +58,7 @@ public final class TimingStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code elapsed_time}
 	 */
-	public Integer elapsedTime() {
+	public int elapsedTime() {
 		return this.elapsedTime;
 	}
 
@@ -111,7 +111,7 @@ public final class TimingStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code elapsed_time}
 		 */
-		public Builder elapsedTime(Integer value) {
+		public Builder elapsedTime(int value) {
 			this.elapsedTime = value;
 			return this;
 		}

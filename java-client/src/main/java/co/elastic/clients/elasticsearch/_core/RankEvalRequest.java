@@ -425,8 +425,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();

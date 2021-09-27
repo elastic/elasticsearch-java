@@ -47,7 +47,7 @@ public final class MachineLearning extends Base {
 
 	private final Map<String, Job> jobs;
 
-	private final Integer nodeCount;
+	private final int nodeCount;
 
 	private final MlDataFrameAnalyticsJobs dataFrameAnalyticsJobs;
 
@@ -84,7 +84,7 @@ public final class MachineLearning extends Base {
 	/**
 	 * API name: {@code node_count}
 	 */
-	public Integer nodeCount() {
+	public int nodeCount() {
 		return this.nodeCount;
 	}
 
@@ -220,7 +220,7 @@ public final class MachineLearning extends Base {
 		/**
 		 * API name: {@code node_count}
 		 */
-		public Builder nodeCount(Integer value) {
+		public Builder nodeCount(int value) {
 			this.nodeCount = value;
 			return this;
 		}

@@ -40,16 +40,16 @@ import javax.annotation.Nullable;
 // typedef: indices.data_streams_stats.DataStreamsStatsItem
 @JsonpDeserializable
 public final class DataStreamsStatsItem implements JsonpSerializable {
-	private final Integer backingIndices;
+	private final int backingIndices;
 
 	private final String dataStream;
 
 	@Nullable
 	private final String storeSize;
 
-	private final Integer storeSizeBytes;
+	private final int storeSizeBytes;
 
-	private final Integer maximumTimestamp;
+	private final int maximumTimestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	/**
 	 * API name: {@code backing_indices}
 	 */
-	public Integer backingIndices() {
+	public int backingIndices() {
 		return this.backingIndices;
 	}
 
@@ -88,14 +88,14 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	/**
 	 * API name: {@code store_size_bytes}
 	 */
-	public Integer storeSizeBytes() {
+	public int storeSizeBytes() {
 		return this.storeSizeBytes;
 	}
 
 	/**
 	 * API name: {@code maximum_timestamp}
 	 */
-	public Integer maximumTimestamp() {
+	public int maximumTimestamp() {
 		return this.maximumTimestamp;
 	}
 
@@ -151,7 +151,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * API name: {@code backing_indices}
 		 */
-		public Builder backingIndices(Integer value) {
+		public Builder backingIndices(int value) {
 			this.backingIndices = value;
 			return this;
 		}
@@ -175,7 +175,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * API name: {@code store_size_bytes}
 		 */
-		public Builder storeSizeBytes(Integer value) {
+		public Builder storeSizeBytes(int value) {
 			this.storeSizeBytes = value;
 			return this;
 		}
@@ -183,7 +183,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * API name: {@code maximum_timestamp}
 		 */
-		public Builder maximumTimestamp(Integer value) {
+		public Builder maximumTimestamp(int value) {
 			this.maximumTimestamp = value;
 			return this;
 		}

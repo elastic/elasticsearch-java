@@ -252,8 +252,7 @@ public final class StopTransformRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.transformId() != null)
-					propsSet |= _transformId;
+				propsSet |= _transformId;
 
 				if (propsSet == (_transformId)) {
 					StringBuilder buf = new StringBuilder();

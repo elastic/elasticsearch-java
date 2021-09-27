@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 public final class NodeInfoNetwork implements JsonpSerializable {
 	private final NodeInfoNetworkInterface primaryInterface;
 
-	private final Integer refreshInterval;
+	private final int refreshInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 	/**
 	 * API name: {@code refresh_interval}
 	 */
-	public Integer refreshInterval() {
+	public int refreshInterval() {
 		return this.refreshInterval;
 	}
 
@@ -115,7 +115,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		/**
 		 * API name: {@code refresh_interval}
 		 */
-		public Builder refreshInterval(Integer value) {
+		public Builder refreshInterval(int value) {
 			this.refreshInterval = value;
 			return this;
 		}

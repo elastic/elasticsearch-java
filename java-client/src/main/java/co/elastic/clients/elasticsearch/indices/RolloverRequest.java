@@ -494,8 +494,7 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 
 				int propsSet = 0;
 
-				if (request.alias() != null)
-					propsSet |= _alias;
+				propsSet |= _alias;
 				if (request.newIndex() != null)
 					propsSet |= _newIndex;
 

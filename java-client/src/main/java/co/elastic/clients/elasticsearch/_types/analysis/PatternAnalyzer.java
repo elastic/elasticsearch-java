@@ -47,7 +47,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 
 	private final String flags;
 
-	private final Boolean lowercase;
+	private final boolean lowercase;
 
 	private final String pattern;
 
@@ -90,7 +90,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 	/**
 	 * API name: {@code lowercase}
 	 */
-	public Boolean lowercase() {
+	public boolean lowercase() {
 		return this.lowercase;
 	}
 
@@ -178,7 +178,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		/**
 		 * API name: {@code lowercase}
 		 */
-		public Builder lowercase(Boolean value) {
+		public Builder lowercase(boolean value) {
 			this.lowercase = value;
 			return this;
 		}

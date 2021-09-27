@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 // typedef: cluster.put_settings.Response
 @JsonpDeserializable
 public final class PutSettingsResponse implements JsonpSerializable {
-	private final Boolean acknowledged;
+	private final boolean acknowledged;
 
 	private final Map<String, JsonData> persistent;
 
@@ -61,7 +61,7 @@ public final class PutSettingsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code acknowledged}
 	 */
-	public Boolean acknowledged() {
+	public boolean acknowledged() {
 		return this.acknowledged;
 	}
 
@@ -128,7 +128,7 @@ public final class PutSettingsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code acknowledged}
 		 */
-		public Builder acknowledged(Boolean value) {
+		public Builder acknowledged(boolean value) {
 			this.acknowledged = value;
 			return this;
 		}
